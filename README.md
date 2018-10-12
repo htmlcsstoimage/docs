@@ -1,111 +1,60 @@
 ---
 description: >-
-  Welcome to the HTML/CSS to Image API documentation. This page will get you
-  started and show you how to start generating images from HTML/CSS in a variety
-  of languages using our API.
+  Super simple HTTP API for converting your HTML/CSS into images. Works with any
+  framework or language.
 ---
 
-# Getting started
+# Introduction
 
-{% api-method method="post" host="https://htmlcsstoimage.com" path="/api/v1/image" %}
-{% api-method-summary %}
-Create an Image
-{% endapi-method-summary %}
+## Converting HTML/CSS into images
 
-{% api-method-description %}
-This endpoint generates an image from HTML/CSS.
-{% endapi-method-description %}
+No dependencies to manage. Super simple HTTP API. We've figured out the complexities and details of rendering images from HTML for you.
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-path-parameters %}
-{% api-method-parameter name="id" type="string" %}
-ID of the cake to get, for free of course.
-{% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
+Your code is run in an isolated instance of Google Chrome. Allowing us to replicate the exact, high quality image you're looking for.
 
-{% api-method-headers %}
-{% api-method-parameter name="Authentication" type="string" required=true %}
-Authentication token to track down who is emptying our stocks.
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
+## Examples
 
-{% api-method-body-parameters %}
-{% api-method-parameter name="css" type="string" required=true %}
-Your css. Example: .red { color: red; }
-{% endapi-method-parameter %}
+The API can be used to programmatically render images from any HTML/CSS. Autogenerate images from your applications backend.
 
-{% api-method-parameter name="html" type="string" required=true %}
-Your html markup. Example: &lt;div class="red"&gt;Hello world!&lt;/div&gt;
-{% endapi-method-parameter %}
-{% endapi-method-body-parameters %}
-{% endapi-method-request %}
+### Social Sharing Cards
 
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-Cake successfully retrieved.
-{% endapi-method-response-example-description %}
+Generate social cards for your content on the fly. Fill in your `og:image` tags automatically, resulting in more sharing and clicks across Twitter and Facebook. Here's an example.
 
-```javascript
-{
-    "url":"https://htmlcsstoimage.com/v1/image/7dc505c1-f43b-43ed-a33a-a8f861c4c1ab"
-} 
-```
-{% endapi-method-response-example %}
+![URL: https://hcti.io/v1/image/dbd3b3f1-a266-42bb-808c-c565bb752af4?width=600](.gitbook/assets/dbd3b3f1-a266-42bb-808c-c565bb752af4-1.jpeg)
 
-{% api-method-response-example httpCode=400 %}
-{% api-method-response-example-description %}
+Source code for this example on [CodePen](https://codepen.io/mscccc/pen/eLRLQq).
 
-{% endapi-method-response-example-description %}
+## Get an API key
 
-```javascript
-{
-    "errors":[{"location":"body","param":"css","msg":"Invalid value"}]
-} 
-```
-{% endapi-method-response-example %}
+To use this API, you'll first need an API key. You may retrieve one by [signing up here](https://htmlcsstoimage.com).
 
-{% api-method-response-example httpCode=401 %}
-{% api-method-response-example-description %}
+## Start creating images from HTML/CSS
 
-{% endapi-method-response-example-description %}
+Now that you have an API key, get started [creating your first image](getting-started/creating-an-image.md).
 
-```javascript
-{
-    "error":"Invalid credentials. Visit https://htmlcsstoimage.com/dashboard for your User ID and API Key."
-} 
-```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+## Features
 
-{% api-method method="get" host="https://htmlcsstoimage.com" path="/api/v1/image/:image\_id" %}
-{% api-method-summary %}
-Get an image
-{% endapi-method-summary %}
+**Superior rendering**
 
-{% api-method-description %}
-Returns your image
-{% endapi-method-description %}
+Renders your `<markup>` just like Google Chrome would. Supports CSS3. Get just the look you want.
 
-{% api-method-spec %}
-{% api-method-request %}
+**Global CDN**
 
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
+Don't worry about bandwidth. We render once and cache forever. Images served from Cloudflare's global content delivery network.
 
-{% endapi-method-response-example-description %}
+**Simple HTTP API**
 
-```
+No dependencies to install. Simple [authentication](getting-started/authentication.md). Works with any language, any framework.
 
-```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+**Retina friendly**
 
+Render high resolution `@2X` images. Clean, crisp, ready for any screen resolution.
 
+**Advanced options**
+
+Configurable. Set custom height/width. Built in emoji support. [Set your format](getting-started/file-formats.md): PNG, JPEG or WebP.
+
+**Google Font Support**
+
+Need custom fonts? Use the `google_fonts` parameter to load any font from [Google Fonts](advanced-examples/using-google-fonts.md).
 

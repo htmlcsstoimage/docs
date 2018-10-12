@@ -1,10 +1,9 @@
 # Table of contents
 
-* [Getting started](README.md)
+* [Introduction](README.md)
 
 ## Getting started
 
-* [Introduction](getting-started/introduction.md)
 * [Creating an image](getting-started/creating-an-image.md)
 * [Authentication](getting-started/authentication.md)
 * [Retrieving an image](getting-started/retrieving-an-image.md)
