@@ -1,6 +1,6 @@
 # Creating an image
 
-To create an image, send a **HTTP POST** request to the `/v1/image` endpoint. This can be done with any language or framework. 
+To create an image, send an **HTTP POST** request to the `/v1/image` endpoint. This can be done with any language or framework. 
 
 This API endpoint will return the URL to your newly created image.
 
@@ -21,15 +21,21 @@ HTTP Basic Authentication. Your username is your `User ID` and your password is 
 {% endapi-method-parameter %}
 {% endapi-method-headers %}
 
-{% api-method-query-parameters %}
-{% api-method-parameter name="html" type="string" required=true %}
-The API will do its best to find a cake matching the provided recipe.
+{% api-method-form-data-parameters %}
+{% api-method-parameter name="google\_fonts" type="string" required=false %}
+Google fonts to be loaded. Example: Roboto.  
+  
+Multiple fonts delimited by \|. Roboto\|Open Sans
 {% endapi-method-parameter %}
 
-{% api-method-parameter name="css" type="boolean" %}
-Whether the cake should be gluten-free or not.
+{% api-method-parameter name="css" type="string" required=false %}
+CSS styles for your image
 {% endapi-method-parameter %}
-{% endapi-method-query-parameters %}
+
+{% api-method-parameter name="html" type="string" required=true %}
+HTML markup. An entire page or an HTML snippet.
+{% endapi-method-parameter %}
+{% endapi-method-form-data-parameters %}
 {% endapi-method-request %}
 
 {% api-method-response %}
