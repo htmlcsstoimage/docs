@@ -1,4 +1,11 @@
-# Initial page
+---
+description: >-
+  Welcome to the HTML/CSS to Image API documentation. This page will get you
+  started and show you how to start generating images from HTML/CSS in a variety
+  of languages using our API.
+---
+
+# Getting started
 
 {% api-method method="post" host="https://htmlcsstoimage.com" path="/api/v1/image" %}
 {% api-method-summary %}
