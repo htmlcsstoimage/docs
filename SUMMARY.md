@@ -6,6 +6,7 @@
 
 * [Introduction](getting-started/introduction.md)
 * [Creating an image](getting-started/creating-an-image.md)
+* [Authentication](getting-started/authentication.md)
 * [Retrieving an image](getting-started/retrieving-an-image.md)
 * [Setting height and width](getting-started/setting-height-and-width.md)
 * [File formats](getting-started/file-formats.md)
