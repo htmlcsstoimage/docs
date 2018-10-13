@@ -25,7 +25,7 @@ HTTP Basic Authentication. Your username is your `User ID` and your password is 
 {% endapi-method-parameter %}
 {% endapi-method-headers %}
 
-{% api-method-form-data-parameters %}
+{% api-method-body-parameters %}
 {% api-method-parameter name="google\_fonts" type="string" required=false %}
 Google fonts to be loaded. Example: Roboto.  
   
