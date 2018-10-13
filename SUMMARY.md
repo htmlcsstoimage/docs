@@ -19,7 +19,7 @@
 
 * [Ruby](example-code/ruby.md)
 * [PHP](example-code/php.md)
-* [JavaScript](example-code/javascript.md)
+* [JavaScript/Node.js](example-code/javascript.md)
 * [cURL](example-code/curl.md)
 * [Postman](example-code/postman.md)
 * [Insomnia](example-code/insomnia.md)
