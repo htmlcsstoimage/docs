@@ -12,6 +12,8 @@ No dependencies to manage. Super simple HTTP API. We've figured out the complexi
 
 Your code is run in an isolated instance of Google Chrome. Allowing us to replicate the exact, high quality image you're looking for.
 
+Built in support for Google Fonts, emoji rendering, CSS3 and HTML5.
+
 ## Examples
 
 The API can be used to programmatically render images from any HTML/CSS. Autogenerate images from your applications backend.
@@ -23,6 +25,51 @@ Generate social cards for your content on the fly. Fill in your `og:image` tags 
 ![URL: https://hcti.io/v1/image/dbd3b3f1-a266-42bb-808c-c565bb752af4?width=600](.gitbook/assets/dbd3b3f1-a266-42bb-808c-c565bb752af4-1.jpeg)
 
 Source code for this example on [CodePen](https://codepen.io/mscccc/pen/eLRLQq).
+
+### Highlighted Text Shots
+
+Generate images from your users comments. Add the ability to highlight and share.
+
+![URL: https://hcti.io/v1/image/cd514452-b86c-4ab3-b109-2ef13a7ed00c](.gitbook/assets/textshot2.png)
+
+  
+Source code for this example on [CodePen](https://codepen.io/mscccc/pen/yRzBWP).
+
+### Auto Generated Job Listing
+
+Generate images from job listings for sharing in emails, ads or social media.
+
+![URL: https://hcti.io/v1/image/3bf60f9f-579f-4a88-8534-a1a936ffd15e?width=600](.gitbook/assets/jobad.jpeg)
+
+Source code for this example on [CodePen](https://codepen.io/mscccc/pen/xyXKrj).
+
+### Full Webpage Screenshots
+
+Pass an entire webpage to the API to generate a full page screenshot. Here we passed [stripe.com](https://stripe.com)'s homepage HTML to the API.
+
+![URL: https://hcti.io/v1/image/2ac52eb8-0c20-4ac6-b0e3-06fb5f421f4a](.gitbook/assets/stripe.png)
+
+{% hint style="info" %}
+### Full page screenshots
+
+When rendering an entire page, be sure to include all of the markup. Including the `<html>` tags. All external assets \(css, javascript, images\) must be loaded using a full URL. Relative ****paths will not work.
+{% endhint %}
+
+### Resize on the Fly
+
+Once an image is generated, use our API to adjust the image to any size you need with the **width** and **height** params. When only one param is passed, the API will maintain the aspect ratio of the original image.
+
+**?width=400**
+
+![URL: https://hcti.io/v1/image/cd514452-b86c-4ab3-b109-2ef13a7ed00c?width=400](.gitbook/assets/w400.jpeg)
+
+**?width=400&height=400**
+
+![URL: https://hcti.io/v1/image/cd514452-b86c-4ab3-b109-2ef13a7ed00c?width=400&amp;height=400](.gitbook/assets/w400h400.jpeg)
+
+**?height=300**
+
+![URL: https://hcti.io/v1/image/cd514452-b86c-4ab3-b109-2ef13a7ed00c?height=300](.gitbook/assets/h300.jpeg)
 
 ## Get an API key
 
