@@ -6,11 +6,11 @@ description: Introduction and examples for the HTML/CSS to Image API.
 
 ## Converting HTML/CSS into images
 
-No dependencies to manage. Super simple HTTP API. We've figured out the complexities and details of rendering images from HTML for you.
+No dependencies to manage. Super [simple HTTP API](getting-started/creating-an-image.md). We've figured out the complexities and details of rendering images from HTML for you.
 
 Your code is run in an isolated instance of Google Chrome. Allowing us to replicate the exact, high quality image you're looking for.
 
-Built in support for Google Fonts, emoji rendering, CSS3 and HTML5.
+Built in support for [Google Fonts](advanced-examples/using-google-fonts.md), emoji rendering, CSS3 and HTML5.
 
 ## Examples
 
