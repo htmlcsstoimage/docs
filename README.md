@@ -1,4 +1,8 @@
-# Introduction
+---
+description: Introduction and examples for the HTML/CSS to Image API.
+---
+
+# HTML/CSS to Image API
 
 ## Converting HTML/CSS into images
 

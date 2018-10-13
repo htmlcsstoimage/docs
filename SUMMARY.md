@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Introduction](README.md)
+* [HTML/CSS to Image API](README.md)
 
 ## Getting started
 
