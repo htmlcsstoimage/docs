@@ -8,6 +8,8 @@ To create an image, send an **HTTP POST** request to the `/v1/image` endpoint. T
 
 This API endpoint will return the URL to your newly created image.
 
+Take a [look at our examples](../#examples) for ways to make use of the API.
+
 {% api-method method="post" host="https://hcti.io" path="/v1/image" %}
 {% api-method-summary %}
 Create an image
@@ -35,7 +37,7 @@ CSS styles for your image
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="google\_fonts" type="string" required=false %}
-Google fonts to be loaded. Example: Roboto.Multiple fonts delimited by \|. Roboto\|Open Sans
+Google fonts to be loaded. Example: Roboto. Multiple fonts delimited by \|. Roboto\|Open Sans
 {% endapi-method-parameter %}
 {% endapi-method-body-parameters %}
 {% endapi-method-request %}
@@ -98,4 +100,6 @@ Invalid authorization token
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
+
+Visit [this page for more information about using Google Fonts](../advanced-examples/using-google-fonts.md).
 
