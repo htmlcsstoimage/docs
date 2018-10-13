@@ -26,12 +26,17 @@ HTTP Basic Authentication. Your username is your `User ID` and your password is 
 {% endapi-method-headers %}
 
 {% api-method-body-parameters %}
+{% api-method-parameter name="html" type="string" required=true %}
+HTML markup. An entire page or an HTML snippet.
+{% endapi-method-parameter %}
 
-{% api-method-parameter name="html" type="string" required=true %} HTML markup. An entire page or an HTML snippet. {% endapi-method-parameter %}
-{% api-method-parameter name="css" type="string" required=false %} CSS styles for your image {% endapi-method-parameter %}
-{% api-method-parameter name="google_fonts" type="string" required=false %} Google fonts to be loaded. Example: Roboto.
+{% api-method-parameter name="css" type="string" required=false %}
+CSS styles for your image
+{% endapi-method-parameter %}
 
-Multiple fonts delimited by |. Roboto|Open Sans {% endapi-method-parameter %}
+{% api-method-parameter name="google\_fonts" type="string" required=false %}
+Google fonts to be loaded. Example: Roboto.Multiple fonts delimited by \|. Roboto\|Open Sans
+{% endapi-method-parameter %}
 {% endapi-method-body-parameters %}
 {% endapi-method-request %}
 
