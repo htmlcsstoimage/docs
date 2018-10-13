@@ -29,3 +29,7 @@ image = HTTParty.post("https://hcti.io/v1/image",
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
+### More examples
+
+For more advanced examples, [take a look here](../#examples).
+
