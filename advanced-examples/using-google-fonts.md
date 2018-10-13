@@ -1,7 +1,3 @@
----
-description: How to use Google Fonts when rendering images.
----
-
 # Using Google Fonts
 
 ## How it works

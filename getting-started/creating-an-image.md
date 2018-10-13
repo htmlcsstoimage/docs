@@ -4,7 +4,7 @@ description: Converting HTML/CSS to an Image with the API
 
 # Creating an image
 
-To create an image, send an **HTTP POST** request to the `/v1/image` endpoint. This can be done with any language or framework. 
+To create an image, send an **HTTP POST** request to the `/v1/image` endpoint. This can be done with any language or framework.
 
 This API endpoint will return the URL to your newly created image.
 
@@ -26,20 +26,10 @@ HTTP Basic Authentication. Your username is your `User ID` and your password is 
 {% endapi-method-headers %}
 
 {% api-method-body-parameters %}
-{% api-method-parameter name="google\_fonts" type="string" required=false %}
-Google fonts to be loaded. Example: Roboto.  
-  
-Multiple fonts delimited by \|. Roboto\|Open Sans
+{% api-method-parameter name="" type="string" required=false %}
+test
 {% endapi-method-parameter %}
-
-{% api-method-parameter name="css" type="string" required=false %}
-CSS styles for your image
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="html" type="string" required=true %}
-HTML markup. An entire page or an HTML snippet.
-{% endapi-method-parameter %}
-{% endapi-method-form-data-parameters %}
+{% endapi-method-body-parameters %}
 {% endapi-method-request %}
 
 {% api-method-response %}
@@ -68,9 +58,9 @@ Missing parameter
 {% code-tabs-item title="bad\_request.json" %}
 ```javascript
 {
-	"statusCode": 400,
-	"error": "Bad Request",
-	"message": "child \"html\" fails because [\"html\" is required]"
+    "statusCode": 400,
+    "error": "Bad Request",
+    "message": "child \"html\" fails because [\"html\" is required]"
 }
 ```
 {% endcode-tabs-item %}
@@ -86,12 +76,12 @@ Invalid authorization token
 {% code-tabs-item title="bad\_token.json" %}
 ```javascript
 {
-	"statusCode": 401,
-	"error": "Unauthorized",
-	"message": "Bad username or password",
-	"attributes": {
-		"error": "Bad username or password"
-	}
+    "statusCode": 401,
+    "error": "Unauthorized",
+    "message": "Bad username or password",
+    "attributes": {
+        "error": "Bad username or password"
+    }
 }
 ```
 {% endcode-tabs-item %}
@@ -100,6 +90,4 @@ Invalid authorization token
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
-
-
 

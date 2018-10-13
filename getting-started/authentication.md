@@ -1,7 +1,3 @@
----
-description: Authenticating the HTML/CSS to Image API
----
-
 # Authentication
 
 The API is protected by [HTTP Basic authentication](https://en.wikipedia.org/wiki/Basic_access_authentication). Authentication is only required for [creating a new image](creating-an-image.md).

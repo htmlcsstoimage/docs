@@ -1,7 +1,3 @@
----
-description: Frequently asked questions
----
-
 # FAQ
 
 ## **Can I use external CSS stylesheets?**

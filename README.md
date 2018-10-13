@@ -1,9 +1,3 @@
----
-description: >-
-  Super simple HTTP API for converting your HTML/CSS into images. Works with any
-  framework or language.
----
-
 # Introduction
 
 ## Converting HTML/CSS into images
