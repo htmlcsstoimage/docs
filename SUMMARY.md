@@ -21,6 +21,8 @@
 * [Ruby](example-code/ruby.md)
 * [PHP](example-code/php.md)
 * [JavaScript/Node.js](example-code/javascript.md)
+* [VB.NET](example-code/vb.net.md)
+* [C\#](example-code/c.md)
 * [cURL](example-code/curl.md)
 * [Postman](example-code/postman.md)
 * [Insomnia](example-code/insomnia.md)
