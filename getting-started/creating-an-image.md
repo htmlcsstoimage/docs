@@ -97,6 +97,20 @@ Invalid authorization token
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 {% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=429 %}
+{% api-method-response-example-description %}
+Plan limit exceeded
+{% endapi-method-response-example-description %}
+
+```javascript
+{
+	"statusCode": 429,
+	"error": "Plan limit exceeded",
+	"message": "You've used 3102 of your 3000 renders. Upgrade via the Dashboard: https://htmlcsstoimage.com/dashboard"
+}
+```
+{% endapi-method-response-example %}
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
