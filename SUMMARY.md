@@ -9,8 +9,8 @@
 * [Retrieving an image](getting-started/retrieving-an-image.md)
 * [Setting height and width](getting-started/setting-height-and-width.md)
 * [File formats](getting-started/file-formats.md)
-* [FAQ](getting-started/faq.md)
 * [Lossless image optimization](getting-started/lossless-image-optimization.md)
+* [FAQ](getting-started/faq.md)
 
 ## Advanced examples
 
