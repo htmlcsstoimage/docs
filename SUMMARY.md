@@ -26,5 +26,5 @@
 * [C\#](example-code/c.md)
 * [cURL](example-code/curl.md)
 * [Postman](example-code/postman.md)
-* [Insomnia](example-code/insomnia.md)
+* [Insomnia REST client](example-code/insomnia.md)
 

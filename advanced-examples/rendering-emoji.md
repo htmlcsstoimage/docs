@@ -4,7 +4,7 @@ description: How to render emoji with the HTML/CSS to Image API
 
 # Rendering Emoji
 
-Emoji's are automatically replaced with images for consistent and clear rendering. This enabled for you by default.
+Emoji's are automatically replaced with images for consistent and clear rendering. This is enabled for you by default.
 
 ![](../.gitbook/assets/emoji.jpeg)
 
