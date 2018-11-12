@@ -1,5 +1,9 @@
 # FAQ
 
+## **I need to generate a large amount of images one time, which plan should I use?**
+
+If an existing monthly plan does not fit your needs, please email us at: **support@htmlcsstoimage.com** with the number of images you need to generate. We can send you a one time invoice and credit your account with the number of images you need to generate.
+
 ## **Can I use external CSS stylesheets?**
 
 Yes, embed the `link` tag in your HTML and it will be loaded on render. Multiple CSS files are supported. Large files may slow down initial render time. See this [CodePen for an example](https://codepen.io/mscccc/pen/eLRLQq).
