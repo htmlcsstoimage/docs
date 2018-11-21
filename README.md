@@ -24,6 +24,13 @@ Generate social cards for your content on the fly. Fill in your `og:image` tags 
 
 Source code for this example on [CodePen](https://codepen.io/mscccc/pen/eLRLQq).
 
+![https://www.producthunt.com/@syswarren/goals/16979](.gitbook/assets/f356dffe-d99f-487e-bb16-74dc076c0657.jpeg)
+
+  
+Product Hunt uses HTML/CSS to Image to dynamically generate social cards for Maker Goals. Try tweeting this link: [https://www.producthunt.com/@syswarren/goals/16979](https://www.producthunt.com/@syswarren/goals/16979) to see how it looks.
+
+![Twitter card preview](.gitbook/assets/image-2018-11-21-at-10.54.37-am.png)
+
 ### Highlighted Text Shots
 
 Generate images from your users comments. Add the ability to highlight and share.
