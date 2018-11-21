@@ -24,6 +24,8 @@ Generate social cards for your content on the fly. Fill in your `og:image` tags 
 
 Source code for this example on [CodePen](https://codepen.io/mscccc/pen/eLRLQq).
 
+### Product Hunt Makers Social Cards
+
 ![https://www.producthunt.com/@syswarren/goals/16979](.gitbook/assets/f356dffe-d99f-487e-bb16-74dc076c0657.jpeg)
 
   
