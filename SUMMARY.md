@@ -16,6 +16,7 @@
 
 * [Using Google Fonts](advanced-examples/using-google-fonts.md)
 * [Rendering Emoji](advanced-examples/rendering-emoji.md)
+* [Transparent background](advanced-examples/transparent-background.md)
 
 ## Example code
 

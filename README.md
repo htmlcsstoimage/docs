@@ -33,6 +33,16 @@ Product Hunt uses HTML/CSS to Image to dynamically generate social cards for Mak
 
 ![Twitter card preview](.gitbook/assets/image-2018-11-21-at-10.54.37-am.png)
 
+  
+Source code for this example on [CodePen](https://codepen.io/ayrtonbe/pen/ZmWBMw).
+
+### Remote Stories Social Cards
+
+![https://hcti.io/v1/image/7e2da2be-7328-4746-ae69-418b295360ae](.gitbook/assets/7e2da2be-7328-4746-ae69-418b295360ae.jpeg)
+
+  
+Source code for this example on [CodePen](https://codepen.io/ayrtonbe/pen/pQLyKN).
+
 ### Highlighted Text Shots
 
 Generate images from your users comments. Add the ability to highlight and share.
