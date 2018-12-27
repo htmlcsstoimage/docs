@@ -4,6 +4,22 @@ description: Introduction and examples for the HTML/CSS to Image API.
 
 # HTML/CSS to Image API
 
+## Quick start
+
+Rendering your first image takes 5 minutes. Pick your language.
+
+{% page-ref page="example-code/ruby.md" %}
+
+{% page-ref page="example-code/javascript.md" %}
+
+{% page-ref page="example-code/c.md" %}
+
+{% page-ref page="example-code/vb.net.md" %}
+
+{% page-ref page="example-code/curl.md" %}
+
+Your language not here? We work with any language or framework. See the [curl](example-code/curl.md) example for how to make a request. [Email us](mailto:support@htmlcsstoimage.com) if you need help getting started. We'd love to add more example code here.
+
 ## Converting HTML/CSS into images
 
 No dependencies to manage. Super [simple HTTP API](getting-started/creating-an-image.md). We've figured out the complexities and details of rendering images from HTML for you.
