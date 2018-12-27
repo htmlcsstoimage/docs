@@ -11,9 +11,7 @@ Here you can generate an image using cURL. Run this command in your terminal.
 {% code-tabs %}
 {% code-tabs-item title="curl\_example" %}
 ```bash
-curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey'
-                            -d "html=<div class='ping'>Pong ✅</div>"
-                            -d "css=.ping { padding: 20px; font-family: 'sans-serif'; }"
+curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' -d html="<div class='ping'>Pong ✅</div>" -d css=".ping { padding: 20px; font-family: 'sans-serif'; }"
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
