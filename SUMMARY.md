@@ -10,8 +10,8 @@
 * [Setting height and width](getting-started/setting-height-and-width.md)
 * [File formats](getting-started/file-formats.md)
 * [Lossless image optimization](getting-started/lossless-image-optimization.md)
-* [FAQ](getting-started/faq.md)
 * [Full page images](getting-started/full-page-images.md)
+* [FAQ](getting-started/faq.md)
 
 ## Advanced examples
 
