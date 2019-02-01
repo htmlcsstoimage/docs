@@ -12,6 +12,10 @@ Yes, embed the `link` tag in your HTML and it will be loaded on render. Multiple
 
 When passing your HTML to the API, include the full HTML markup. Starting and ending with the `<html>` tags. The HCTI API will enter full page mode and render the entire page as displayed by Google Chrome.
 
+## **How long will my image url work?**
+
+Forever. As long as your HCTI account is active, we keep a copy of your generated image stored and accessible from your image url.
+
 ## **Can I load external images?**
 
 Yes, be sure to include the full URL to your external image. The API will load it before creating the image. `<img src="https://example.com/yourimage.png" />`

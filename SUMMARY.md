@@ -12,6 +12,7 @@
 * [Lossless image optimization](getting-started/lossless-image-optimization.md)
 * [Full page images](getting-started/full-page-images.md)
 * [FAQ](getting-started/faq.md)
+* [Zapier Integration](getting-started/zapier-integration.md)
 
 ## Advanced examples
 
