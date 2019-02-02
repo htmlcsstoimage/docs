@@ -57,5 +57,7 @@ This is useful for displaying images at different resolutions without having to 
 
 ![URL: https://hcti.io/v1/image/cd514452-b86c-4ab3-b109-2ef13a7ed00c?height=300](../.gitbook/assets/h300.jpeg)
 
-## 
+{% hint style="info" %}
+Resized images will be automatically cached by the CDN as well. You can use these URLs directly on your webpages and expect lightning fast response times + optimization for SEO.
+{% endhint %}
 
