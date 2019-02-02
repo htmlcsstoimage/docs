@@ -28,6 +28,10 @@ You may change your plan anytime by visiting the [Dashboard](https://htmlcsstoim
 
 All images served by the [hcti.io](https://hcti.io) domain are cached by Cloudflare's global content delivery network. Bandwidth is unlimited and paid for as a part of your subscription.
 
+## **Can I use the API for a hackathon?**
+
+Definitely. If you're a student and using the API to build something cool. Email us and we'd be happy to add free images to your account.
+
 ## **What version of Google Chrome does HCTI use?**
 
 We regularly keep HCTI up-to-date with the latest version of Chrome. We run a full test suite to ensure images render as expected before upgrading the API.
