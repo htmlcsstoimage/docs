@@ -6,7 +6,15 @@ description: Converting HTML/CSS to an Image with the API
 
 To create an image, send an **HTTP POST** request to the `/v1/image` endpoint. This can be done with any language or framework.
 
-This API endpoint will return the URL to your newly created image.
+The API will return JSON with the URL to your newly created image.
+
+```javascript
+{
+  "url": "https://hcti.io/v1/image/6e253850-736c-487a-8dc8-b6950ca94703"
+}
+```
+
+By default, this URL will return a **jpeg**. See [File formats](file-formats.md) for other options.
 
 Take a [look at our examples](../#examples) for ways to make use of the API.
 
