@@ -32,6 +32,14 @@ All images served by the [hcti.io](https://hcti.io) domain are cached by Cloudfl
 
 Definitely. If you're a student and using the API to build something cool. Email us and we'd be happy to add free images to your account.
 
+## **Can I set my images filename?**
+
+The filename for your image is a randomly generated \(and unique!\) [UUID](https://en.m.wikipedia.org/wiki/Universally_unique_identifier). We currently do not have the option to set the filename. 
+
+The `v1/image` namespace is shared by everyone who uses the API. Auto generating the file names makes your content more secure \(hard to guess\). We also use these long keys as partition keys for our infrastructure. This helps us scale the API for creating millions of images each month. 
+
+So what we're saying is, yes they aren't pretty, but they help keep the service easy to use, fast and secure. Which is important to us.
+
 ## **What version of Google Chrome does HCTI use?**
 
 We regularly keep HCTI up-to-date with the latest version of Chrome. We run a full test suite to ensure images render as expected before upgrading the API.
