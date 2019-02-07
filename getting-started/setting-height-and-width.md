@@ -33,6 +33,12 @@ Margins are respected by the API. To add padding around your image, you can do t
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
+### Performance considerations
+
+For best performance, we recommend a maximum of 2000x2000 pixels in your HTML. This will result in a 4000x4000 pixel image \(because we render everything `@2X` for retina screens\).
+
+We dedicate 2gb of RAM for every rendered image. Going above 2000x2000 can cause Chrome to use more than 2gb of RAM when rendering your image.
+
 {% hint style="info" %}
 ### Retina by default
 
