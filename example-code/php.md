@@ -6,9 +6,49 @@ description: Convert HTML/CSS to an image with PHP.
 
 Here we will show you how to generate an image from HTML/CSS with PHP.
 
-This example uses the [Guzzle library](https://github.com/guzzle/guzzle). Install instructions are [here](https://github.com/guzzle/guzzle#installing-guzzle).
+### Plain PHP example
 
-### Example code
+{% code-tabs %}
+{% code-tabs-item title="html\_css\_to\_image.php" %}
+```php
+<?php
+
+$html = "<div class='box'>Generated from PHP ✅</div>";
+$css = ".box { border: 4px solid #03B875; padding: 20px; font-family: 'Roboto'; }";
+$google_fonts = "Roboto";
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://hcti.io/v1/image");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+curl_setopt($ch, CURLOPT_POSTFIELDS, 'html='.$html.'&css='.$css.'&google_fonts='.$google_fonts);
+
+curl_setopt($ch, CURLOPT_POST, 1);
+// Retrieve your user_id and api_key from https://htmlcsstoimage.com/dashboard
+curl_setopt($ch, CURLOPT_USERPWD, "user_id" . ":" . "api_key");
+
+$headers = array();
+$headers[] = "Content-Type: application/x-www-form-urlencoded";
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+$result = curl_exec($ch);
+if (curl_errno($ch)) {
+  echo 'Error:' . curl_error($ch);
+}
+curl_close ($ch);
+$res = json_decode($result,true);
+echo $res['url'];
+// https://hcti.io/v1/image/202dc04d-5efc-482e-8f92-bb51612c84cf
+?>
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+![URL: https://hcti.io/v1/image/202dc04d-5efc-482e-8f92-bb51612c84cf](../.gitbook/assets/image.png)
+
+### PHP example with Guzzle library
+
+This example uses the [Guzzle library](https://github.com/guzzle/guzzle). Installation instructions are [here](https://github.com/guzzle/guzzle#installing-guzzle).
 
 {% code-tabs %}
 {% code-tabs-item title="php\_example.php" %}
