@@ -20,6 +20,8 @@ Rendering your first image takes 5 minutes. Pick your language.
 
 {% page-ref page="example-code/curl.md" %}
 
+{% page-ref page="example-code/go.md" %}
+
 Your language not here? We work with any language or framework. See the [curl](example-code/curl.md) example for how to make a request. [Email us](mailto:support@htmlcsstoimage.com) if you need help getting started. We'd love to add more example code here.
 
 ## Converting HTML/CSS into images
