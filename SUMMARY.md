@@ -27,6 +27,7 @@
 * [JavaScript/Node.js](example-code/javascript.md)
 * [VB.NET](example-code/vb.net.md)
 * [C\#](example-code/c.md)
+* [Go](example-code/go.md)
 * [cURL](example-code/curl.md)
 * [Postman](example-code/postman.md)
 * [Insomnia REST client](example-code/insomnia.md)

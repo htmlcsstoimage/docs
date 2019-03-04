@@ -18,9 +18,9 @@ Rendering your first image takes 5 minutes. Pick your language.
 
 {% page-ref page="example-code/vb.net.md" %}
 
-{% page-ref page="example-code/curl.md" %}
-
 {% page-ref page="example-code/go.md" %}
+
+{% page-ref page="example-code/curl.md" %}
 
 Your language not here? We work with any language or framework. See the [curl](example-code/curl.md) example for how to make a request. [Email us](mailto:support@htmlcsstoimage.com) if you need help getting started. We'd love to add more example code here.
 
@@ -48,19 +48,16 @@ Source code for this example on [CodePen](https://codepen.io/mscccc/pen/eLRLQq).
 
 ![https://www.producthunt.com/@syswarren/goals/16979](.gitbook/assets/f356dffe-d99f-487e-bb16-74dc076c0657.jpeg)
 
-  
 Product Hunt uses HTML/CSS to Image to dynamically generate social cards for Maker Goals. Try tweeting this link: [https://www.producthunt.com/@syswarren/goals/16979](https://www.producthunt.com/@syswarren/goals/16979) to see how it looks.
 
 ![Twitter card preview](.gitbook/assets/image-2018-11-21-at-10.54.37-am.png)
 
-  
 Source code for this example on [CodePen](https://codepen.io/ayrtonbe/pen/ZmWBMw).
 
 ### Remote Stories Social Cards
 
 ![https://hcti.io/v1/image/7e2da2be-7328-4746-ae69-418b295360ae](.gitbook/assets/7e2da2be-7328-4746-ae69-418b295360ae.jpeg)
 
-  
 Source code for this example on [CodePen](https://codepen.io/ayrtonbe/pen/pQLyKN).
 
 ### Highlighted Text Shots
@@ -69,7 +66,6 @@ Generate images from your users comments. Add the ability to highlight and share
 
 ![URL: https://hcti.io/v1/image/cd514452-b86c-4ab3-b109-2ef13a7ed00c](.gitbook/assets/textshot2.png)
 
-  
 Source code for this example on [CodePen](https://codepen.io/mscccc/pen/yRzBWP).
 
 ### Auto Generated Job Listing
@@ -89,7 +85,7 @@ Pass an entire webpage to the API to generate a full page screenshot. Here we pa
 {% hint style="info" %}
 ### Full page screenshots
 
-When rendering an entire page, be sure to include all of the markup. Including the `<html>` tags. All external assets \(css, javascript, images\) must be loaded using a full URL. Relative ****paths will not work.
+When rendering an entire page, be sure to include all of the markup. Including the `<html>` tags. All external assets \(css, javascript, images\) must be loaded using a full URL. Relative _\*\*_paths will not work.
 {% endhint %}
 
 ### Resize on the Fly
