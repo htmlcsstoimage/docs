@@ -85,7 +85,7 @@ Pass an entire webpage to the API to generate a full page screenshot. Here we pa
 {% hint style="info" %}
 ### Full page screenshots
 
-When rendering an entire page, be sure to include all of the markup. Including the `<html>` tags. All external assets \(css, javascript, images\) must be loaded using a full URL. Relative _\*\*_paths will not work.
+When rendering an entire page, be sure to include all of the markup. Including the `<html>` tags. All external assets \(css, javascript, images\) must be loaded using a full URL. **Relative paths will not work**.
 {% endhint %}
 
 ### Resize on the Fly
