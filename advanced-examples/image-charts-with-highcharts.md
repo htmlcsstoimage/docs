@@ -2,7 +2,7 @@
 description: Generate an image from Highcharts.js
 ---
 
-# Image charts with Highcharts
+# Image charts with Highcharts.js
 
 You can generate images of charts using Highcharts.js + the HTML/CSS to Image API.
 
