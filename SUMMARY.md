@@ -19,6 +19,7 @@
 * [Using Google Fonts](advanced-examples/using-google-fonts.md)
 * [Rendering Emoji](advanced-examples/rendering-emoji.md)
 * [Transparent background](advanced-examples/transparent-background.md)
+* [Image charts with Highcharts.js](advanced-examples/image-charts-with-highcharts.js.md)
 
 ## Example code
 
