@@ -12,7 +12,7 @@ Get an image
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Renders your HTML/CSS into an image. Returns a jpeg by default. Change the file extension to return a png or webp image.
+Renders your HTML/CSS into an image. Returns a png by default. Change the file extension to return a jpeg or webp image.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -55,7 +55,7 @@ Sorry, we do not currently support that format. Valid image types are: jpg, webp
 {% hint style="success" %}
 ### Global CDN
 
-All images are served by Cloudflare's global content delivery network. They will be cached on servers around the world to provide fast load times.
+All images are served by Cloudflare's global content delivery network. They will be cached on servers around the world to provide lightning fast load times.
 {% endhint %}
 
 
