@@ -38,7 +38,7 @@ The filename for your image is a randomly generated \(and unique!\) [UUID](https
 
 The `v1/image` namespace is shared by everyone who uses the API. Auto generating the file names makes your content more secure \(hard to guess\). We also use these long keys as partition keys for our infrastructure. This helps us scale the API for creating millions of images each month. 
 
-So what we're saying is, yes they aren't pretty, but they help keep the service easy to use, fast and secure. Which is important to us.
+Using UUID's helps us keep the service easy to use, fast and secure. Which is important to us.
 
 ## **What version of Google Chrome does HCTI use?**
 
