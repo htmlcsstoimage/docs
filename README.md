@@ -10,6 +10,8 @@ Rendering your first image takes 5 minutes. Pick your language.
 
 {% page-ref page="example-code/ruby.md" %}
 
+{% page-ref page="example-code/php.md" %}
+
 {% page-ref page="getting-started/zapier-integration.md" %}
 
 {% page-ref page="example-code/javascript.md" %}
