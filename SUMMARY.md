@@ -13,6 +13,7 @@
 * [Full page images](getting-started/full-page-images.md)
 * [FAQ](getting-started/faq.md)
 * [Zapier Integration](getting-started/zapier-integration.md)
+* [Duplicate image detection](getting-started/duplicate-image-detection.md)
 
 ## Advanced examples
 
