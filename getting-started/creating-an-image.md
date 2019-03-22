@@ -76,9 +76,9 @@ Missing parameter
 {% code-tabs-item title="bad\_request.json" %}
 ```javascript
 {
-    "statusCode": 400,
-    "error": "Bad Request",
-    "message": "child \"html\" fails because [\"html\" is required]"
+  "error": "Bad Request",
+  "statusCode": 400,
+  "message": "HTML is Required"
 }
 ```
 {% endcode-tabs-item %}
@@ -94,12 +94,9 @@ Invalid authorization token
 {% code-tabs-item title="bad\_token.json" %}
 ```javascript
 {
-    "statusCode": 401,
-    "error": "Unauthorized",
-    "message": "Bad username or password",
-    "attributes": {
-        "error": "Bad username or password"
-    }
+  "error": "Unauthorized",
+  "statusCode": 401,
+  "message": "Bad username or password."
 }
 ```
 {% endcode-tabs-item %}

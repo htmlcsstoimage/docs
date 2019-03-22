@@ -4,7 +4,12 @@ description: API endpoint for retrieving an image.
 
 # Retrieving an image
 
-After [creating an image](creating-an-image.md), you'll receive a URL to your image. This URL will render your image. The URL is permanent for as long as your account is active. It can be used for hot linking.
+After [creating an image](creating-an-image.md), you'll receive the URL to your image.
+
+This URL is permanent for as long as your account is active. It's automatically cached and optimized by Cloudflare's global content delivery network. You can use it directly on your webpages and not worry about hurting your page speed score.
+
+* **Lossless optimization:** each image is optimized with no change in image quality.
+* **Global cache:** the image is cached near your users to reduce latency.
 
 {% api-method method="get" host="https://hcti.io" path="/v1/image/:image\_id" %}
 {% api-method-summary %}
@@ -52,11 +57,9 @@ Sorry, we do not currently support that format. Valid image types are: jpg, webp
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% hint style="success" %}
-### Global CDN
+You can modify this URL to adjust the size and file format.
 
-All images are served by Cloudflare's global content delivery network. They will be cached on servers around the world to provide lightning fast load times.
-{% endhint %}
+{% page-ref page="file-formats.md" %}
 
-
+{% page-ref page="setting-height-and-width.md" %}
 
