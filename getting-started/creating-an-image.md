@@ -14,7 +14,7 @@ The API will return JSON with the URL to your newly created image.
 }
 ```
 
-By default, this URL will return a **jpeg**. See [File formats](file-formats.md) for other options.
+By default, this URL will return a **png**. See [File formats](file-formats.md) for other options.
 
 Take a [look at our examples](../#examples) for ways to make use of the API.
 
