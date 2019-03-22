@@ -37,12 +37,10 @@ Margins are respected by the API. To add padding around your image, you can do t
 
 For best performance, we recommend a maximum of 2000x2000 pixels in your HTML. This will result in a 4000x4000 pixel image \(because we render everything `@2X` for retina screens\).
 
-We dedicate 2gb of RAM for every rendered image. Going above 2000x2000 can cause Chrome to use more than 2gb of RAM when rendering your image.
-
 {% hint style="info" %}
 ### Retina by default
 
-We render all images **@2X** by default. This results in a super high quality image that will work with any monitor. When specifying **400px** in your HTML, the resulting image will be **800px** to account for high res screens.
+We render all images **@2X** by default. This results in a super high quality image that will work with any monitor. When specifying **400px** in your HTML, the resulting image will be **800px** to account for high resolution screens.
 {% endhint %}
 
 ## Resize on the fly
