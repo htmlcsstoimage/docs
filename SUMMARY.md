@@ -35,3 +35,7 @@
 * [Postman](example-code/postman.md)
 * [Insomnia REST client](example-code/insomnia.md)
 
+## Blog posts
+
+* [Creating images with Ruby + HTML/CSS API](https://dev.to/mscccc/creating-images-with-ruby--htmlcss-api-16g4)
+
