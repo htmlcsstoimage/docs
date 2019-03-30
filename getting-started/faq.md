@@ -28,6 +28,10 @@ Yes, be sure to include the full URL to your external image. The API will load i
 
 You may change your plan anytime by visiting the [Dashboard](https://htmlcsstoimage.com/dashboard).
 
+## **Do you support Chinese, Japanese and Korean c**haracters**?**
+
+Yes. We have [Noto CJK](https://www.google.com/get/noto/help/cjk/) installed in our image renderer. If you find any language/character set that does not render correctly, please send us an email and we'll get it added for you.
+
 ## **How much bandwidth can I use?**
 
 All images served by the [hcti.io](https://hcti.io) domain are cached by Cloudflare's global content delivery network. Bandwidth is unlimited and paid for as a part of your subscription.
