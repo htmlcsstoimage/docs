@@ -44,7 +44,7 @@ echo $res['url'];
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-![URL: https://hcti.io/v1/image/202dc04d-5efc-482e-8f92-bb51612c84cf](../.gitbook/assets/image.png)
+![URL: https://hcti.io/v1/image/202dc04d-5efc-482e-8f92-bb51612c84cf](../.gitbook/assets/image%20%284%29.png)
 
 ### PHP example with Guzzle library
 
