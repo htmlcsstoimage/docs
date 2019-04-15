@@ -1,12 +1,22 @@
 ---
-description: Convert HTML/CSS to an image with PHP.
+description: PHP example code for using the API.
 ---
 
-# PHP
+# Convert HTML to an image with PHP
 
-Here we will show you how to generate an image from HTML/CSS with PHP.
+For a live demo of the API, visit: [https://htmlcsstoimage.com/\#demo](https://htmlcsstoimage.com/#demo).
+
+### Autogenerate images from code
+
+* Renders exactly like the latest version of Google Chrome
+* Convert HTML/CSS into PNG, JPG or WebP
+* Simple REST API
 
 ### Plain PHP example
+
+This script will send HTML/CSS to the API and get back a URL to your new image. You'll need an API key to use this example.
+
+If you'd like to try it out first without writing any code, take a look at the [demo](https://htmlcsstoimage.com/#demo).
 
 {% code-tabs %}
 {% code-tabs-item title="html\_css\_to\_image.php" %}
@@ -44,7 +54,7 @@ echo $res['url'];
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-![URL: https://hcti.io/v1/image/202dc04d-5efc-482e-8f92-bb51612c84cf](../.gitbook/assets/image%20%284%29.png)
+![URL: https://hcti.io/v1/image/202dc04d-5efc-482e-8f92-bb51612c84cf](../.gitbook/assets/image%20%285%29.png)
 
 ### PHP example with Guzzle library
 
