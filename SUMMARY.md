@@ -1,6 +1,7 @@
 # Table of contents
 
 * [HTML/CSS to Image API](README.md)
+* [Live Demo](https://htmlcsstoimage.com/#demo)
 
 ## Getting started
 
@@ -26,7 +27,7 @@
 ## Example code
 
 * [Ruby](example-code/ruby.md)
-* [Convert HTML to an image with PHP](example-code/php.md)
+* [PHP](example-code/php.md)
 * [JavaScript/Node.js](example-code/javascript.md)
 * [VB.NET](example-code/vb.net.md)
 * [C\#](example-code/c.md)

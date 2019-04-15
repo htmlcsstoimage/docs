@@ -1,10 +1,10 @@
 ---
-description: PHP example code for using the API.
+description: Convert HTML to an image with PHP.
 ---
 
-# Convert HTML to an image with PHP
+# PHP
 
-For a live demo of the API, visit: [https://htmlcsstoimage.com/\#demo](https://htmlcsstoimage.com/#demo).
+To see it work, take a look at the [Live demo](https://htmlcsstoimage.com/#demo).
 
 ### Autogenerate images from code
 
