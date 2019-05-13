@@ -21,7 +21,9 @@ namespace htciExample
             string css = ".ping {padding: 20px; font-family:'sans-serif'; }";
             using (var client = new WebClient())
             {
-                client.Credentials = new NetworkCredential("user_id", "api_key");
+                string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("user_id:api_key"));
+				client.Headers[HttpRequestHeader.Authorization] = "Basic " + credentials;
+                
                 result = client.UploadValues(
                     "https://hcti.io/v1/image",
                     "POST", 
