@@ -22,7 +22,7 @@ namespace htciExample
             using (var client = new WebClient())
             {
                 string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("user_id:api_key"));
-				client.Headers[HttpRequestHeader.Authorization] = "Basic " + credentials;
+		client.Headers[HttpRequestHeader.Authorization] = "Basic " + credentials;
                 
                 result = client.UploadValues(
                     "https://hcti.io/v1/image",
