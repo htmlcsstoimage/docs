@@ -4,9 +4,9 @@ description: 'Converting HTML/CSS to an Image with C#'
 
 # C\#
 
-### Example Code
+## Example Code
 
-This code creates a WebClient, sets credentials and POSTS the HTML & CSS as values to the API.  The response will be json with the URL to the generated image.
+This code creates a WebClient, sets credentials and POSTS the HTML & CSS as values to the API. The response will be json with the URL to the generated image.
 
 ```csharp
 using System.Net;
@@ -22,8 +22,8 @@ namespace htciExample
             using (var client = new WebClient())
             {
                 string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("user_id:api_key"));
-		client.Headers[HttpRequestHeader.Authorization] = "Basic " + credentials;
-                
+                client.Headers[HttpRequestHeader.Authorization] = "Basic " + credentials;
+
                 result = client.UploadValues(
                     "https://hcti.io/v1/image",
                     "POST", 
@@ -39,10 +39,9 @@ namespace htciExample
         }
     }
 }
-
 ```
 
-### More examples <a id="more-examples"></a>
+## More examples  <a id="more-examples"></a>
 
-For more advanced examples, [take a look here](/~/drafts/-LPHcAPUeRw0IdlUIJu2/primary/#examples).
+For more advanced examples, [take a look here](https://github.com/htmlcsstoimage/docs/tree/f2267eac0924af42a670353de74fc9c83b6385b6/~/drafts/-LPHcAPUeRw0IdlUIJu2/primary/README.md#examples).
 
