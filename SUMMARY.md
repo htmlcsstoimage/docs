@@ -22,6 +22,7 @@
 * [Rendering Emoji](advanced-examples/rendering-emoji.md)
 * [Image charts with Highcharts.js](advanced-examples/image-charts-with-highcharts.md)
 * [Transparent background](advanced-examples/transparent-background.md)
+* [Create image and save to S3 \(Ruby\)](advanced-examples/create-image-and-save-to-s3-ruby.md)
 * [Rendering a React component](advanced-examples/rendering-a-react-component.md)
 
 ## Example code
