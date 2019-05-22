@@ -1,18 +1,64 @@
 ---
-description: Convert HTML to an image with PHP.
+description: >-
+  Convert HTML to an image (png, jpg or webp) with PHP + the HTML/CSS to Image
+  API. Renders exactly like Google Chrome.
 ---
 
 # PHP
 
-To see it work, take a look at the [Live demo](https://htmlcsstoimage.com/#demo).
+In this post, you'll learn how to convert html to an image with PHP
 
-### Autogenerate images from code
+![HTML to an image with PHP](../.gitbook/assets/image%20%287%29.png)
 
-* Renders exactly like the latest version of Google Chrome
-* Convert HTML/CSS into PNG, JPG or WebP
-* Simple REST API
+
+
+Try it out yourself with the ****[**live demo**](https://htmlcsstoimage.com/#demo).
 
 ### Plain PHP example
+
+To create an image, you need to send a POST request to the  `v1/image` endpoint. 
+
+The API takes your HTML/CSS and runs it inside a real instance of Google Chrome to generate the image.
+
+#### Parameters
+
+{% tabs %}
+{% tab title="html" %}
+**Data type:** String \(required\)
+
+This is the HTML you want to render. You can send an HTML snippet \(`<div>Your content</div>`\) or an entire webpage.
+
+**External JS and CSS are supported.** 
+
+You can include script tags and &lt;link&gt; tags to CSS. Be sure that any assets you include are available via a full publicly accessible URL so that we can download them before rendering.
+{% endtab %}
+
+{% tab title="css" %}
+**Data type:** String \(optional\)
+
+The CSS for your image.
+{% endtab %}
+
+{% tab title="google\_fonts" %}
+**Data type:** String \(optional\)
+
+Google Fonts to be loaded before rendering the image. To see all of the fonts available, visit: [https://fonts.google.com/](https://fonts.google.com/)
+
+**Single font**
+
+Pass the font name as the parameter.
+
+`Roboto`
+
+**Multiple fonts**
+
+Separate multiple fonts with a `|`.
+
+`Roboto|Roboto Condensed|Open Sans`
+
+\*\*\*\*
+{% endtab %}
+{% endtabs %}
 
 This script will send HTML/CSS to the API and get back a URL to your new image. You'll need an API key to use this example.
 
@@ -54,7 +100,7 @@ echo $res['url'];
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-![URL: https://hcti.io/v1/image/202dc04d-5efc-482e-8f92-bb51612c84cf](../.gitbook/assets/image%20%285%29.png)
+![URL: https://hcti.io/v1/image/202dc04d-5efc-482e-8f92-bb51612c84cf](../.gitbook/assets/image%20%286%29.png)
 
 ### PHP example with Guzzle library
 
@@ -85,5 +131,11 @@ echo $res->getBody();
 
 ### More examples
 
-For more advanced examples, [take a look here](../#examples).
+This was a really simple example. The API can render anything that Chrome can. For more advanced examples, [take a look here](../#examples).
+
+### Need help?
+
+Email us **support@htmlcsstoimage.com**
+
+Share with us what you're building. We're experts at generating images and love to help.
 
