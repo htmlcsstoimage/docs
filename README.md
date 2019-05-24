@@ -1,5 +1,7 @@
 ---
-description: Introduction and examples for the HTML/CSS to Image API.
+description: >-
+  Introduction and examples for the HTML/CSS to Image API. Convert html to an
+  image  (jpg, png, webp). Renders images exactly like Google Chrome.
 ---
 
 # HTML/CSS to Image API

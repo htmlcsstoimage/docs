@@ -1,12 +1,14 @@
 ---
-description: Converting HTML/CSS to an Image with Go
+description: >-
+  Converting HTML/CSS to an Image (jpg, png, webp) with Go. Renders exactly like
+  Google Chrome.
 ---
 
 # Go
 
 This code only uses the standard library, so the only prerequisite is that you have go installed.
 
-#### Example code
+### Example code
 
 This code sample creates our request body, formats it, creates a new POST request, sets our authentication, creates a client, performs the POST to the API, reads the response and then prints it out the response as a string. The response will be json with the URL to the generated image.
 
@@ -62,4 +64,10 @@ func main() {
 #### More examples
 
 For more advanced examples, [take a look here](../#examples).
+
+### Need help? 
+
+Email us **support@htmlcsstoimage.com** 
+
+Share with us what you're building. We're experts at generating images and love to help.
 
