@@ -12,6 +12,10 @@ If an existing monthly plan does not fit your needs, please email us at: **suppo
 
 Yes, embed the `link` tag in your HTML and it will be loaded on render. Multiple CSS files are supported. Large files may slow down initial render time. See this [CodePen for an example](https://codepen.io/mscccc/pen/eLRLQq).
 
+## **Can I use my own Font Awesome Pro icons?**
+
+Yes, include the `<link>` tag to the Font Awesome CDN in your html. You may need to add `localhost` to your hostname whitelist for us render icons using your account.
+
 ## **How do I render an entire webpage?**
 
 When passing your HTML to the API, include the full HTML markup. Starting and ending with the `<html>` tags. The HCTI API will enter full page mode and render the entire page as displayed by Google Chrome.
