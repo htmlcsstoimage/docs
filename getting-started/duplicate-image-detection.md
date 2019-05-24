@@ -1,3 +1,7 @@
+---
+description: Protection against generating duplicate images.
+---
+
 # Duplicate image detection
 
 The API will automatically detect if your API key is creating the same image repeatedly within a short time period. When this happens, a new image will not be created and you will get back the URL to the existing image.
