@@ -54,5 +54,5 @@ We regularly keep HCTI up-to-date with the latest version of Chrome. We run a fu
 
 ## **I have other questions, who do I ask?**
 
-Email us! **support@htmlcsstoimage.com**. We'd love to hear from you.
+Email us! **support@htmlcsstoimage.com**. We'd love to hear from you. We're great at debugging rendering issues, so send us your toughest problems.
 
