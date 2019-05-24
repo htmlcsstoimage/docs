@@ -69,15 +69,32 @@ If you'd like to try it out first without writing any code, take a look at the [
 ```php
 <?php
 
-$html = "<div class='box'>Generated from PHP ✅</div>";
-$css = ".box { border: 4px solid #03B875; padding: 20px; font-family: 'Roboto'; }";
+$html = <<<EOD
+<div class='box'>
+  Generated from PHP ✅
+</div>
+EOD;
+
+$css = <<<EOD
+.box { 
+  border: 4px solid #03B875; 
+  padding: 20px; 
+  font-family: 'Roboto'; 
+}
+EOD;
+
 $google_fonts = "Roboto";
+
+$data = array('html'=>$html,
+              'css'=>$css,
+              'google_fonts'=>'Roboto');
+
 $ch = curl_init();
 
 curl_setopt($ch, CURLOPT_URL, "https://hcti.io/v1/image");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-curl_setopt($ch, CURLOPT_POSTFIELDS, 'html='.$html.'&css='.$css.'&google_fonts='.$google_fonts);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
 
 curl_setopt($ch, CURLOPT_POST, 1);
 // Retrieve your user_id and api_key from https://htmlcsstoimage.com/dashboard
