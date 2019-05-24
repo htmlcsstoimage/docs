@@ -1,3 +1,9 @@
+---
+description: >-
+  How to use the google_fonts parameter for preloading fonts for use in your
+  images.
+---
+
 # Using Google Fonts
 
 ## How it works
@@ -9,7 +15,7 @@ To load a single font, set the parameter to the font name: `google_fonts=Roboto`
 Multiple fonts must be delimited by the `|` character: `google_fonts=Open Sans|Roboto|Montserrat`
 
 {% hint style="info" %}
-### `Fonts and rendering speed`
+### Fonts and rendering speed
 
 A large number of custom fonts can slow down initial render time. Only include the fonts you use.  
 {% endhint %}
