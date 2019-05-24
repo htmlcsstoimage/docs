@@ -1,5 +1,5 @@
 ---
-description: API endpoint for retrieving an image.
+description: Downloading your image via the API.
 ---
 
 # Retrieving an image
@@ -17,7 +17,7 @@ Get an image
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Renders your HTML/CSS into an image. Returns a png by default. Change the file extension to return a jpeg or webp image.
+Renders your HTML/CSS into an image. Returns a png by default. Change the file extension to return a jpg or webp image.
 {% endapi-method-description %}
 
 {% api-method-spec %}
