@@ -1,12 +1,14 @@
 ---
-description: Converting HTML/CSS to an Image with Node.js.
+description: >-
+  Example code for converting HTML/CSS to an image (jpg, png, webp) with
+  JavaScript. Renders the image exactly like Google Chrome.
 ---
 
 # JavaScript/Node.js
 
-Here are a bunch of examples for generating an image with JavaScript.
+This post will teach you how to convert HTML/CSS to an image using JavaScript.
 
-We recommend using an HTTP library to take care of the heavy lifting for you. Here we use [Request](https://github.com/request/request) \(but any HTTP library will work\).
+We recommend using an HTTP library to take care of the heavy lifting for you. In this example we use [Request](https://github.com/request/request) \(but any HTTP library will work\).
 
 If you need a plain, NodeJS only example, scroll to the bottom.
 
@@ -121,4 +123,10 @@ req.end()
 ### More examples
 
 For more advanced examples, [take a look here](../#examples).
+
+### Need help? 
+
+Email us **support@htmlcsstoimage.com** 
+
+Share with us what you're building. We're experts at generating images and love to help.
 
