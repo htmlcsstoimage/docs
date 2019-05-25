@@ -87,7 +87,7 @@ $google_fonts = "Roboto";
 
 $data = array('html'=>$html,
               'css'=>$css,
-              'google_fonts'=>'Roboto');
+              'google_fonts'=>$google_fonts);
 
 $ch = curl_init();
 
