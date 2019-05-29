@@ -1,10 +1,14 @@
 ---
-description: 'Converting HTML/CSS to an Image with C#'
+description: >-
+  Convert HTML to an image (png, jpg or webp) with C# + the HTML/CSS to Image
+  API. Renders exactly like Google Chrome.
 ---
 
 # C\#
 
-## Example Code
+In this post, you'll learn how to convert HTML into an image using C\#.
+
+### Example Code
 
 This code creates a WebClient, sets credentials and POSTS the HTML & CSS as values to the API. The response will be json with the URL to the generated image.
 
