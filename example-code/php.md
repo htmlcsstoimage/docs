@@ -121,7 +121,9 @@ echo $res['url'];
 
 ### PHP example with Guzzle library
 
-This example uses the [Guzzle library](https://github.com/guzzle/guzzle). Installation instructions are [here](https://github.com/guzzle/guzzle#installing-guzzle).
+Using an HTTP library such as [Guzzle](https://github.com/guzzle/guzzle) can simplify your code even further. Here's an example of how to use the HTML/CSS to Image API with Guzzle.
+
+Installation instructions for Guzzle are [here](https://github.com/guzzle/guzzle#installing-guzzle).
 
 {% code-tabs %}
 {% code-tabs-item title="php\_example.php" %}
@@ -146,9 +148,11 @@ echo $res->getBody();
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
+The code turns out to be a bit more readable and less complex when using Guzzle. A great option if you're open to adding the library to your project.
+
 ### More examples
 
-This was a really simple example. The API can render anything that Chrome can. For more advanced examples, [take a look here](../#examples).
+This page showed really simple image example. The API can render anything that Google Chrome can. For more advanced examples, [take a look here](../#examples).
 
 ### Need help?
 
