@@ -16,9 +16,9 @@ Add the Zapier integration to your account by [**clicking here**](%20https://zap
 
 Once it's added to your account, you will be able to use it by creating a new Zap, and searching for "HTML/CSS" when adding an action to your zap.
 
-![Search html css to find the app.](../.gitbook/assets/image%20%286%29.png)
+![Search html css to find the app.](../.gitbook/assets/image%20%287%29.png)
 
-![](../.gitbook/assets/image%20%288%29.png)
+![](../.gitbook/assets/image%20%2810%29.png)
 
 ![HTML/CSS to Image with Zapier](../.gitbook/assets/image-2019-01-27-at-5.57.52-pm.png)
 

@@ -1,10 +1,27 @@
 ---
-description: Converting HTML/CSS to an Image with the API
+description: >-
+  Converting HTML/CSS to an Image (jpg, png, webp) with the API. Renders exactly
+  like Google Chrome.
 ---
 
 # Creating an image
 
-To create an image, send an **HTTP POST** request to the `/v1/image` endpoint. This can be done with any language or framework.
+Learn to use the API to generate images from your HTML and CSS.
+
+![Converting HTML/CSS to an image.](../.gitbook/assets/image%20%288%29.png)
+
+Try it out yourself with the ****[**live demo**](https://htmlcsstoimage.com/#demo).
+
+### How it works
+
+To create an image, send an **HTTP POST** request to the `/v1/image` endpoint. This can be done with any language or framework. We have code samples in many languages.
+
+* [PHP](../example-code/php.md)
+* [JavaScript](../example-code/javascript.md)
+* [Ruby](../example-code/ruby.md)
+* [VB.NET](../example-code/vb.net.md)
+* [Go](../example-code/go.md)
+* [C\#](../example-code/c.md)
 
 The API will return JSON with the URL to your newly created image.
 
@@ -24,7 +41,7 @@ Create an image
 {% endapi-method-summary %}
 
 {% api-method-description %}
-This endpoint allows you to create a new image.
+Create a new image
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -121,4 +138,28 @@ Plan limit exceeded
 {% endapi-method %}
 
 Visit [this page for more information about using Google Fonts](../advanced-examples/using-google-fonts.md).
+
+### Designing your image
+
+The hardest part of using the API is often getting your HTML/CSS just right.
+
+We recommend using [CodePen](https://codepen.io/mscccc/pen/eLRLQq) when writing your code to quickly preview what your image will look like when rendered. It makes debugging easy!
+
+![Use CodePen to test your HTML/CSS](../.gitbook/assets/image%20%285%29.png)
+
+### Learn more
+
+We have tons of resources to help you generate perfect images.
+
+{% page-ref page="../advanced-examples/using-google-fonts.md" %}
+
+{% page-ref page="setting-height-and-width.md" %}
+
+{% page-ref page="../advanced-examples/external-css-and-fonts.md" %}
+
+### Get help from us
+
+Tell us what you're building. We're experts at generating images and will help you get your project up and running quickly with the API.
+
+Email: **support@htmlcsstoimage.com**. We reply fast!
 
