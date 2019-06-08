@@ -30,7 +30,7 @@
 
 * [Ruby](example-code/ruby.md)
 * [PHP](example-code/php.md)
-* [JavaScript/Node.js](example-code/javascript.md)
+* [JavaScript](example-code/javascript.md)
 * [VB.NET](example-code/vb.net.md)
 * [C\#](example-code/c.md)
 * [Go](example-code/go.md)
