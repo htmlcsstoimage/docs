@@ -152,7 +152,7 @@ The code turns out to be a bit more readable and less complex when using Guzzle.
 
 ### More examples
 
-This page showed really simple image example. The API can render anything that Google Chrome can. For more advanced examples, [take a look here](../#examples).
+This page showed really simple image examples. The API can render anything that Google Chrome can. For more advanced examples, [take a look here](../#examples).
 
 ### Need help?
 
