@@ -47,5 +47,5 @@ namespace htciExample
 
 ## More examples  <a id="more-examples"></a>
 
-For more advanced examples, [take a look here](https://github.com/htmlcsstoimage/docs/tree/f2267eac0924af42a670353de74fc9c83b6385b6/~/drafts/-LPHcAPUeRw0IdlUIJu2/primary/README.md#examples).
+For more advanced examples, [take a look here](https://github.com/htmlcsstoimage/docs/blob/master/README.md#examples).
 
