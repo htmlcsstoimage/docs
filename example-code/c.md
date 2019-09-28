@@ -45,7 +45,7 @@ namespace htciExample
 }
 ```
 
-## More examples  <a id="more-examples"></a>
+## More examples <a id="more-examples"></a>
 
 For more advanced examples, [take a look here](https://github.com/htmlcsstoimage/docs/blob/master/README.md#examples).
 
