@@ -8,7 +8,7 @@ description: >-
 
 In this post, you'll learn how to convert html/css to an image with Ruby
 
-![HTML to Image with Ruby](../.gitbook/assets/image%20%2815%29.png)
+![HTML to Image with Ruby](../.gitbook/assets/image%20%2816%29.png)
 
 Try it out yourself with the ****[**live demo**](https://htmlcsstoimage.com/#demo).
 
