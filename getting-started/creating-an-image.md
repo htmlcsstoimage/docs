@@ -19,6 +19,7 @@ To create an image, send an **HTTP POST** request to the `/v1/image` endpoint. T
 * [PHP](../example-code/php.md)
 * [JavaScript](../example-code/javascript.md)
 * [Ruby](../example-code/ruby.md)
+* [Python](../example-code/python.md)
 * [VB.NET](../example-code/vb.net.md)
 * [Go](../example-code/go.md)
 * [C\#](../example-code/c.md)

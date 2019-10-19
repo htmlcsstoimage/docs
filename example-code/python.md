@@ -1,18 +1,18 @@
 ---
 description: >-
-  Example code for converting HTML/CSS to an Image with Ruby. Renders the image
-  exactly like Google Chrome.
+  Convert HTML to an image (png, jpg or webp) with Python + the HTML/CSS to
+  Image API. Renders exactly like Google Chrome.
 ---
 
-# Ruby
+# Python
 
-In this post, you'll learn how to convert html/css to an image with Ruby
+Here you'll learn how to convert html to an image using Python.
 
-![HTML to Image with Ruby](../.gitbook/assets/image%20%2817%29.png)
+![HTML to Image with Python](../.gitbook/assets/image%20%2816%29.png)
 
 Try it out yourself with the ****[**live demo**](https://htmlcsstoimage.com/#demo).
 
-### Plain Ruby example
+### Simple Python example
 
 To create an image, you need to send a POST request to the  `v1/image` endpoint. 
 
@@ -60,37 +60,35 @@ Separate multiple fonts with a `|`.
 
 This script will send HTML/CSS to the API and get back a URL to your new image. You'll need an API key to use this example.
 
-If you'd like to try it out first without writing any code, take a look at the [demo](https://htmlcsstoimage.com/#demo).
+If you'd like to try it out first without writing any code, try the [demo](https://htmlcsstoimage.com/#demo).
 
-### Setup
-
-This example uses the [HTTParty gem](https://github.com/jnunemaker/httparty). Install with `gem install httparty`, or add it to your Gemfile.
-
-### Example code
+This example uses the requests library. To install, run: `pip3 install requests`
 
 {% code-tabs %}
-{% code-tabs-item title="image.rb" %}
-```ruby
-require "httparty"
-# Retrieve your user id and api key from the Dashboard
-auth = { username: 'user_id', password: 'api_key' }
+{% code-tabs-item title="hcti.py" %}
+```python
+# pip3 install requests
+import requests
 
-html = "<div class='ping'>Pong ✅</div>"
-css = ".ping { padding: 20px; font-family: 'sans-serif'; }"
+HCTI_API_ENDPOINT = "https://hcti.io/v1/image"
+HCTI_API_USER_ID = 'your-user-id'
+HCTI_API_KEY = 'your-api-key'
 
-image = HTTParty.post("https://hcti.io/v1/image",
-                      body: { html: html, css: css },
-                      basic_auth: auth)
+data = { 'html': "<div class='box'>Hello, world!</div>",
+         'css': ".box { color: white; background-color: #0f79b9; padding: 10px; font-family: Roboto }",
+         'google_fonts': "Roboto" }
 
-# => {"url"=>"https://hcti.io/v1/image/bde7d5bf-f7bb-49d9-b931-74e5512b8738"}
+image = requests.post(url = HCTI_API_ENDPOINT, data = data, auth=(HCTI_API_USER_ID, HCTI_API_KEY))
+
+print("Your image URL is: %s"%image.json()['url'])
+# https://hcti.io/v1/image/7ed741b8-f012-431e-8282-7eedb9910b32
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-### Advanced examples
+### More examples
 
-* [Generating an image and storing on S3](../advanced-examples/create-image-and-save-to-s3-ruby.md)
-* For more advanced examples, [take a look here](../#examples).
+This page showed really simple image examples. The API can render anything that Google Chrome can. For more advanced examples, [take a look here](../#examples).
 
 ### Need help?
 

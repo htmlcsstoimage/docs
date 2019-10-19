@@ -36,6 +36,7 @@
 * [C\#](example-code/c.md)
 * [Go](example-code/go.md)
 * [cURL](example-code/curl.md)
+* [Python](example-code/python.md)
 * [Postman](example-code/postman.md)
 * [Insomnia REST client](example-code/insomnia.md)
 
