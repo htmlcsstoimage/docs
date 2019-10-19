@@ -30,14 +30,6 @@ Rendering your first image takes 5 minutes. Pick your language.
 
 Your language not here? We work with any language or framework. See the [curl](example-code/curl.md) example for how to make a request. [Email us](mailto:support@htmlcsstoimage.com) if you need help getting started. We'd love to add more example code here.
 
-## Converting HTML/CSS into images
-
-No dependencies to manage. Super [simple HTTP API](getting-started/creating-an-image.md). We've figured out the complexities and details of rendering images from HTML for you.
-
-Your code is run in an isolated instance of Google Chrome. Allowing us to replicate the exact, high quality image you're looking for.
-
-Built in support for [Google Fonts](advanced-examples/using-google-fonts.md), emoji rendering, CSS3 and HTML5.
-
 ## Examples
 
 The API can be used to programmatically render images from any HTML/CSS. Autogenerate images from your applications backend.
@@ -54,9 +46,7 @@ Source code for this example on [CodePen](https://codepen.io/mscccc/pen/eLRLQq).
 
 ![https://www.producthunt.com/@syswarren/goals/16979](.gitbook/assets/f356dffe-d99f-487e-bb16-74dc076c0657.jpeg)
 
-Product Hunt uses HTML/CSS to Image to dynamically generate social cards for Maker Goals. Try tweeting this link: [https://www.producthunt.com/@syswarren/goals/16979](https://www.producthunt.com/@syswarren/goals/16979) to see how it looks.
-
-![Twitter card preview](.gitbook/assets/image-2018-11-21-at-10.54.37-am.png)
+Product Hunt uses HTML/CSS to Image to dynamically generate social cards for Maker Goals.
 
 Source code for this example on [CodePen](https://codepen.io/ayrtonbe/pen/ZmWBMw).
 
@@ -118,29 +108,5 @@ To use this API, you'll first need an API key. You may retrieve one by [signing 
 
 Now that you have an API key, get started [creating your first image](getting-started/creating-an-image.md).
 
-## Features
-
-**Superior rendering**
-
-Renders your `<markup>` just like Google Chrome would. Supports CSS3. Get just the look you want.
-
-**Global CDN**
-
-Don't worry about bandwidth. We render once and cache forever. Images served from Cloudflare's global content delivery network.
-
-**Simple HTTP API**
-
-No dependencies to install. Simple [authentication](getting-started/authentication.md). Works with any language, any framework.
-
-**Retina friendly**
-
-Render high resolution `@2X` images. Clean, crisp, ready for any screen resolution.
-
-**Advanced options**
-
-Configurable. Set custom height/width. Built in emoji support. [Set your format](getting-started/file-formats.md): PNG, JPEG or WebP.
-
-**Google Font Support**
-
-Need custom fonts? Use the `google_fonts` parameter to load any font from [Google Fonts](advanced-examples/using-google-fonts.md).
+{% page-ref page="getting-started/creating-an-image.md" %}
 
