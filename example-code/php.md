@@ -64,8 +64,8 @@ This script will send HTML/CSS to the API and get back a URL to your new image. 
 
 If you'd like to try it out first without writing any code, take a look at the [demo](https://htmlcsstoimage.com/#demo).
 
-{% code-tabs %}
-{% code-tabs-item title="html\_css\_to\_image.php" %}
+{% tabs %}
+{% tab title="html\_css\_to\_image.php" %}
 ```php
 <?php
 
@@ -114,8 +114,8 @@ echo $res['url'];
 // https://hcti.io/v1/image/202dc04d-5efc-482e-8f92-bb51612c84cf
 ?>
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 ![URL: https://hcti.io/v1/image/202dc04d-5efc-482e-8f92-bb51612c84cf](../.gitbook/assets/image%20%2811%29.png)
 
@@ -125,8 +125,8 @@ Using an HTTP library such as [Guzzle](https://github.com/guzzle/guzzle) can sim
 
 Installation instructions for Guzzle are [here](https://github.com/guzzle/guzzle#installing-guzzle).
 
-{% code-tabs %}
-{% code-tabs-item title="php\_example.php" %}
+{% tabs %}
+{% tab title="php\_example.php" %}
 ```php
 <?php
 require 'vendor/autoload.php';
@@ -145,8 +145,8 @@ echo $res->getBody();
 // {"url":"https://hcti.io/v1/image/5803a3f0-abd3-4f56-9e6c-3823d7466ed6"}
 ?>
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 The code turns out to be a bit more readable and less complex when using Guzzle. A great option if you're open to adding the library to your project.
 

@@ -74,15 +74,15 @@ Google fonts to be loaded. Example: Roboto. Multiple fonts delimited by \|. Robo
 Image successfully created
 {% endapi-method-response-example-description %}
 
-{% code-tabs %}
-{% code-tabs-item title="example\_response.json" %}
+{% tabs %}
+{% tab title="example\_response.json" %}
 ```javascript
 {
   "url": "https://hcti.io/v1/image/6e253850-736c-487a-8dc8-b6950ca94703"
 }
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 {% endapi-method-response-example %}
 
 {% api-method-response-example httpCode=400 %}
@@ -90,8 +90,8 @@ Image successfully created
 Missing parameter
 {% endapi-method-response-example-description %}
 
-{% code-tabs %}
-{% code-tabs-item title="bad\_request.json" %}
+{% tabs %}
+{% tab title="bad\_request.json" %}
 ```javascript
 {
   "error": "Bad Request",
@@ -99,8 +99,8 @@ Missing parameter
   "message": "HTML is Required"
 }
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 {% endapi-method-response-example %}
 
 {% api-method-response-example httpCode=401 %}
@@ -108,8 +108,8 @@ Missing parameter
 Invalid authorization token
 {% endapi-method-response-example-description %}
 
-{% code-tabs %}
-{% code-tabs-item title="bad\_token.json" %}
+{% tabs %}
+{% tab title="bad\_token.json" %}
 ```javascript
 {
   "error": "Unauthorized",
@@ -117,8 +117,8 @@ Invalid authorization token
   "message": "Bad username or password."
 }
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 {% endapi-method-response-example %}
 
 {% api-method-response-example httpCode=429 %}

@@ -12,13 +12,13 @@ Be sure to use the full URL to the asset. We are unable to download relative URL
 
 For an external CSS file, at it to your HTML with the following. Replace `href` with the URL to your CSS file.
 
-{% code-tabs %}
-{% code-tabs-item title="css.html" %}
+{% tabs %}
+{% tab title="css.html" %}
 ```markup
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/10.8.1/build.css" />
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 ### External Font Example
 

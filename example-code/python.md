@@ -64,8 +64,8 @@ If you'd like to try it out first without writing any code, try the [demo](https
 
 This example uses the requests library. To install, run: `pip3 install requests`
 
-{% code-tabs %}
-{% code-tabs-item title="hcti.py" %}
+{% tabs %}
+{% tab title="hcti.py" %}
 ```python
 # pip3 install requests
 import requests
@@ -83,8 +83,8 @@ image = requests.post(url = HCTI_API_ENDPOINT, data = data, auth=(HCTI_API_USER_
 print("Your image URL is: %s"%image.json()['url'])
 # https://hcti.io/v1/image/7ed741b8-f012-431e-8282-7eedb9910b32
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 ### More examples
 
