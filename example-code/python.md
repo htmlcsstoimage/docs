@@ -8,7 +8,7 @@ description: >-
 
 Here you'll learn how to convert html to an image using Python.
 
-![HTML to Image with Python](../.gitbook/assets/image%20%2816%29.png)
+![HTML to Image with Python](../.gitbook/assets/image%20%2818%29.png)
 
 Try it out yourself with the ****[**live demo**](https://htmlcsstoimage.com/#demo).
 
@@ -64,8 +64,7 @@ If you'd like to try it out first without writing any code, try the [demo](https
 
 This example uses the requests library. To install, run: `pip3 install requests`
 
-{% tabs %}
-{% tab title="hcti.py" %}
+{% code title="hcti.py" %}
 ```python
 # pip3 install requests
 import requests
@@ -83,8 +82,7 @@ image = requests.post(url = HCTI_API_ENDPOINT, data = data, auth=(HCTI_API_USER_
 print("Your image URL is: %s"%image.json()['url'])
 # https://hcti.io/v1/image/7ed741b8-f012-431e-8282-7eedb9910b32
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ### More examples
 

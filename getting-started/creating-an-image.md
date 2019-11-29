@@ -8,7 +8,7 @@ description: >-
 
 Learn to use the API to generate images from your HTML and CSS.
 
-![Converting HTML/CSS to an image.](../.gitbook/assets/image%20%288%29.png)
+![Converting HTML/CSS to an image.](../.gitbook/assets/image%20%2810%29.png)
 
 Try it out yourself with the ****[**live demo**](https://htmlcsstoimage.com/#demo).
 
@@ -74,15 +74,13 @@ Google fonts to be loaded. Example: Roboto. Multiple fonts delimited by \|. Robo
 Image successfully created
 {% endapi-method-response-example-description %}
 
-{% tabs %}
-{% tab title="example\_response.json" %}
+{% code title="example\_response.json" %}
 ```javascript
 {
   "url": "https://hcti.io/v1/image/6e253850-736c-487a-8dc8-b6950ca94703"
 }
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 {% endapi-method-response-example %}
 
 {% api-method-response-example httpCode=400 %}
@@ -90,8 +88,7 @@ Image successfully created
 Missing parameter
 {% endapi-method-response-example-description %}
 
-{% tabs %}
-{% tab title="bad\_request.json" %}
+{% code title="bad\_request.json" %}
 ```javascript
 {
   "error": "Bad Request",
@@ -99,8 +96,7 @@ Missing parameter
   "message": "HTML is Required"
 }
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 {% endapi-method-response-example %}
 
 {% api-method-response-example httpCode=401 %}
@@ -108,8 +104,7 @@ Missing parameter
 Invalid authorization token
 {% endapi-method-response-example-description %}
 
-{% tabs %}
-{% tab title="bad\_token.json" %}
+{% code title="bad\_token.json" %}
 ```javascript
 {
   "error": "Unauthorized",
@@ -117,8 +112,7 @@ Invalid authorization token
   "message": "Bad username or password."
 }
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 {% endapi-method-response-example %}
 
 {% api-method-response-example httpCode=429 %}
@@ -146,7 +140,7 @@ The hardest part of using the API is often getting your HTML/CSS just right.
 
 We recommend using [CodePen](https://codepen.io/mscccc/pen/eLRLQq) when writing your code to quickly preview what your image will look like when rendered. It makes debugging easy!
 
-![Use CodePen to test your HTML/CSS](../.gitbook/assets/image%20%285%29.png)
+![Use CodePen to test your HTML/CSS](../.gitbook/assets/image%20%287%29.png)
 
 ### Learn more
 

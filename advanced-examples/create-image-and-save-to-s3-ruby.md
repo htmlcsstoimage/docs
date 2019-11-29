@@ -25,8 +25,7 @@ Once those gems are installed, you'll need both `upload_s3.rb` and `html_css_to_
 
 Each of these files are simple modules to help isolate the code and make it easier to read/maintain.
 
-{% tabs %}
-{% tab title="html\_css\_to\_image.rb" %}
+{% code title="html\_css\_to\_image.rb" %}
 ```ruby
 require 'httparty'
 
@@ -47,11 +46,9 @@ module HtmlCssToImage
   end
 end
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
-{% tabs %}
-{% tab title="upload\_s3.rb" %}
+{% code title="upload\_s3.rb" %}
 ```ruby
 require 'aws-sdk-s3'
 require 'httparty'
@@ -84,8 +81,7 @@ module UploadS3
   end
 end
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ### S3 Bucket
 
@@ -110,8 +106,7 @@ Here is everything put together. You can either use the generated ID as the file
 
 By default, the script stores your image as `public-read` on S3. You can change the default permissions by editing `upload_s3.rb`.
 
-{% tabs %}
-{% tab title="example.rb" %}
+{% code title="example.rb" %}
 ```ruby
 require_relative 'upload_s3'
 require_relative 'html_css_to_image'
@@ -130,8 +125,7 @@ s3_url = UploadS3.store_on_s3(source_url: image_url, filename: "custom.png")
 # https://my-bucket-name123.s3.amazonaws.com/custom.png
 puts s3_url
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ### Need more?
 

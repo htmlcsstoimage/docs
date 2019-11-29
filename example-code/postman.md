@@ -14,13 +14,13 @@ For creating an image, create a new POST request to **https://hcti.io/v1/image**
 
 First, go to the Authorization tab, select "Basic Auth" and enter your User ID and API Key \(available from your [Dashboard](https://htmlcsstoimage.com/dashboard)\).
 
-![](../.gitbook/assets/image%20%289%29.png)
+![](../.gitbook/assets/image%20%2811%29.png)
 
 ### Set HTML/CSS
 
 Go to "Body" and click "form-data". Then enter your HTML/CSS.
 
-![](../.gitbook/assets/image%20%286%29.png)
+![](../.gitbook/assets/image%20%288%29.png)
 
 ### Done
 

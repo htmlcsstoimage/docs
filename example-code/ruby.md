@@ -8,7 +8,7 @@ description: >-
 
 In this post, you'll learn how to convert html/css to an image with Ruby
 
-![HTML to Image with Ruby](../.gitbook/assets/image%20%2817%29.png)
+![HTML to Image with Ruby](../.gitbook/assets/image%20%2819%29.png)
 
 Try it out yourself with the ****[**live demo**](https://htmlcsstoimage.com/#demo).
 
@@ -68,8 +68,7 @@ This example uses the [HTTParty gem](https://github.com/jnunemaker/httparty). In
 
 ### Example code
 
-{% tabs %}
-{% tab title="image.rb" %}
+{% code title="image.rb" %}
 ```ruby
 require "httparty"
 # Retrieve your user id and api key from the Dashboard
@@ -84,8 +83,7 @@ image = HTTParty.post("https://hcti.io/v1/image",
 
 # => {"url"=>"https://hcti.io/v1/image/bde7d5bf-f7bb-49d9-b931-74e5512b8738"}
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ### Advanced examples
 

@@ -66,8 +66,7 @@ If you'd like to try it out first without writing any code, take a look at the [
 
 This example uses the [Request client](https://github.com/request/request-promise). Install with `npm install request`.
 
-{% tabs %}
-{% tab title="javascript\_example.js" %}
+{% code title="javascript\_example.js" %}
 ```javascript
 const request = require('request')
 
@@ -88,8 +87,7 @@ request.post({ url: 'https://hcti.io/v1/image', form: data})
 
 // {"url": "https://hcti.io/v1/image/1113184e-419f-49f1-b231-2069942a186f"}
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 
 
@@ -107,8 +105,7 @@ If your code supports async/await, we recommend using the following.
 
 This example uses the [Request promise client](https://github.com/request/request-promise). Install with `npm install request-promise`.
 
-{% tabs %}
-{% tab title="javascript\_example.js" %}
+{% code title="javascript\_example.js" %}
 ```javascript
 require('request')
 const request = require('request-promise')
@@ -130,8 +127,7 @@ const { url } = JSON.parse(image)
 
 // {"url": "https://hcti.io/v1/image/1113184e-419f-49f1-b231-2069942a186f"}
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ![https://hcti.io/v1/image/1113184e-419f-49f1-b231-2069942a186f](../.gitbook/assets/javascript.jpeg)
 
@@ -139,8 +135,7 @@ const { url } = JSON.parse(image)
 
 If you prefer not to install an HTTP library for making the request. This example shows you how to use the API without any.
 
-{% tabs %}
-{% tab title="node.js" %}
+{% code title="node.js" %}
 ```javascript
 const https = require('https')
 
@@ -181,8 +176,7 @@ req.on('error', (error) => {
 req.write(data)
 req.end()
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ### More examples
 

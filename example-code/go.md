@@ -60,8 +60,7 @@ This script will send HTML/CSS to the API and get back a URL to your new image. 
 
 If you'd like to try it out first without writing any code, take a look at the [demo](https://htmlcsstoimage.com/#demo).
 
-{% tabs %}
-{% tab title="main.go" %}
+{% code title="main.go" %}
 ```go
 package main
 import (
@@ -106,8 +105,7 @@ func main() {
     // {"url":"https://hcti.io/v1/image/f1e2762b-1f95-4f99-ab5d-0444b26dfd42"}
 }
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 #### More examples
 

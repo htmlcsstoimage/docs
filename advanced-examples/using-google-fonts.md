@@ -24,8 +24,7 @@ A large number of custom fonts can slow down initial render time. Only include t
 
 ![Rendering with Multiple Google Fonts](../.gitbook/assets/8e8c1093-d205-4994-845c-67419598d081.jpeg)
 
-{% tabs %}
-{% tab title="fonts\_example.html" %}
+{% code title="fonts\_example.html" %}
 ```markup
 <div class="box">
   <h1>Hello world! 😎 /h1>
@@ -35,11 +34,9 @@ A large number of custom fonts can slow down initial render time. Only include t
   <h1>Fancy font + Gradient + Emoji 😍</h1>
 </div>
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
-{% tabs %}
-{% tab title="fonts\_example.css" %}
+{% code title="fonts\_example.css" %}
 ```css
 .box {
   width: 300px;
@@ -78,6 +75,5 @@ body {
   background-color: #03B874;
 }
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 

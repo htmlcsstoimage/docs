@@ -29,8 +29,7 @@ Here's the end result.
 
 ### HTML
 
-{% tabs %}
-{% tab title="react.html" %}
+{% code title="react.html" %}
 ```markup
 <link href="https://fonts.googleapis.com/css?family=Germania+One" rel="stylesheet">
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
@@ -66,13 +65,11 @@ class MyComponent extends React.Component {
 ReactDOM.render(<MyComponent />, document.querySelector("#app"));
 </script>
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ### CSS
 
-{% tabs %}
-{% tab title="react.css" %}
+{% code title="react.css" %}
 ```css
 body {
   background-color:#111;
@@ -91,8 +88,7 @@ h1 {
   -webkit-text-fill-color: transparent;
 }
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 ### Alternative: renderToString\(\)
 
