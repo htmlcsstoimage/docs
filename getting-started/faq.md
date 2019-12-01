@@ -1,4 +1,12 @@
+---
+description: Frequently Asked Questions
+---
+
 # FAQ
+
+## **Is there a rate limit?**
+
+ No rate limits here. You'll be able to create images up until you reach your account limit.
 
 ## **Can you provide an SLA?**
 
