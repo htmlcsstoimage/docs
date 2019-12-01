@@ -1,6 +1,6 @@
 ---
 description: >-
-  Accounts on the Growth plan or above have lossless image optimization
+  Accounts on the 30,000 image plan or above have lossless image optimization
   automatically enabled for them.
 ---
 
@@ -10,7 +10,7 @@ description: >-
 
 Lossless image optimization reduces the file size of your images without any change in the quality. This improves your users download times and will boost your websites SEO/Pagespeed score.
 
-All images created on the [Growth plan](https://htmlcsstoimage.com/#pricing) or above have this enabled automatically for all images. After the images initial render, our CDN will automatically compress the image for you. Subsequent downloads of the image will be automatically optimized.
+All images created on the[ 30k image plan](https://htmlcsstoimage.com/#pricing) or above have this enabled automatically for all images. After the images initial render, our CDN will automatically compress the image for you. Subsequent downloads of the image will be automatically optimized.
 
 ### How do I know it's working?
 
