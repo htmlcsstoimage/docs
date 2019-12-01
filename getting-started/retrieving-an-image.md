@@ -57,7 +57,7 @@ Sorry, we do not currently support that format. Valid image types are: jpg, webp
 {% endapi-method-spec %}
 {% endapi-method %}
 
-You can modify this URL to adjust the size and file format.
+You can modify this URL to adjust the size and file format. Take a look at the following links for details on how to change the file format and change the height/width of your image.
 
 {% page-ref page="file-formats.md" %}
 
