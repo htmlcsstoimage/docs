@@ -144,7 +144,7 @@ We recommend using [CodePen](https://codepen.io/mscccc/pen/eLRLQq) when writing 
 
 ### Learn more
 
-We have tons of resources to help you generate perfect images.
+We have tons of resources to help you generate images. Take a look at the following pages for more. 
 
 {% page-ref page="../advanced-examples/using-google-fonts.md" %}
 
