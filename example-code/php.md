@@ -8,7 +8,7 @@ description: >-
 
 In this post, you'll learn how to convert html to an image with PHP
 
-![HTML to an image with PHP](../.gitbook/assets/image%20%2814%29.png)
+![HTML to an image with PHP](../.gitbook/assets/image%20%2815%29.png)
 
 
 
@@ -115,7 +115,7 @@ echo $res['url'];
 ```
 {% endcode %}
 
-![URL: https://hcti.io/v1/image/202dc04d-5efc-482e-8f92-bb51612c84cf](../.gitbook/assets/image%20%2813%29.png)
+![URL: https://hcti.io/v1/image/202dc04d-5efc-482e-8f92-bb51612c84cf](../.gitbook/assets/image%20%2814%29.png)
 
 ### PHP example with Guzzle library
 

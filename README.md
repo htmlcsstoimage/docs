@@ -1,14 +1,16 @@
 ---
 description: >-
-  Introduction and examples for the HTML/CSS to Image API. Convert html to an
-  image  (jpg, png, webp). Renders images exactly like Google Chrome.
+  Convert HTML to an image  (jpg, png, webp). Renders images exactly like Google
+  Chrome.
 ---
 
 # HTML/CSS to Image API
 
 ## Quick start
 
-Rendering your first image takes 5 minutes. Pick your language.
+Welcome to the API docs! To get started, we recommend taking a look at one of our code samples. 
+
+Don't want to write code? That's OK! We also integrate with [Zapier](getting-started/zapier-integration.md) and [Integromat](getting-started/integromat-integration.md).
 
 {% page-ref page="example-code/ruby.md" %}
 
@@ -28,19 +30,21 @@ Rendering your first image takes 5 minutes. Pick your language.
 
 {% page-ref page="example-code/python.md" %}
 
-Your language not here? We work with any language or framework. See the [curl](example-code/curl.md) example for how to make a request. [Email us](mailto:support@htmlcsstoimage.com) if you need help getting started. We'd love to add more example code here.
+{% page-ref page="getting-started/integromat-integration.md" %}
 
-## Examples
+Your favorite language not here? Sorry about that! Don't worry, we work with any language or framework. See the [curl](example-code/curl.md) example for how to make a request. [Email us](mailto:support@htmlcsstoimage.com) if you need help getting started. We'd love to add more example code here.
 
-The API can be used to programmatically render images from any HTML/CSS. Autogenerate images from your applications backend.
+## Image Examples
 
-### Social Sharing Cards
+Your imagination is the only limit. We render HTML/CSS just like Google Chrome. Here are a few examples of ways people have used the API to automate their image generation.
 
-Generate social cards for your content on the fly. Fill in your `og:image` tags automatically, resulting in more sharing and clicks across Twitter and Facebook. Here's an example.
+### Social Images: Dev.to
 
-![URL: https://hcti.io/v1/image/dbd3b3f1-a266-42bb-808c-c565bb752af4?width=600](.gitbook/assets/dbd3b3f1-a266-42bb-808c-c565bb752af4-1.jpeg)
+[Dev.to](https://dev.to) uses the API to autogenerate thousands of custom images for Twitter and Facebook.
 
-Source code for this example on [CodePen](https://codepen.io/mscccc/pen/eLRLQq).
+![@ThePracticalDev](.gitbook/assets/image%20%2823%29.png)
+
+To see how they do it, [take a look at their code](https://github.com/thepracticaldev/dev.to/blob/master/app/controllers/social_previews_controller.rb) \(it's open source!\).
 
 ### Product Hunt Makers Social Cards
 
