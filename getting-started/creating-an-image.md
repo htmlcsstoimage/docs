@@ -154,7 +154,7 @@ Visit [this page for more information about using Google Fonts](../advanced-exam
 
 We recommend using [CodePen](https://codepen.io/mscccc/pen/eLRLQq) when writing your HTML/CSS to quickly preview what your image will look like when rendered. It makes debugging easy. Here's an example where we used CodePen to design a Social Graph image.
 
-![Use CodePen to test your HTML/CSS](../.gitbook/assets/image%20%288%29.png)
+![Use CodePen to test your HTML/CSS](../.gitbook/assets/image%20%287%29.png)
 
 ### Learn more
 
