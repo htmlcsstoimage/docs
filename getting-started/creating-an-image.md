@@ -54,12 +54,28 @@ HTTP Basic Authentication. Your username is your `User ID` and your password is 
 {% endapi-method-headers %}
 
 {% api-method-body-parameters %}
+{% api-method-parameter name="ms\_delay" type="number" required=false %}
+The number of milliseconds the API should delay before generating the image. This is useful when waiting for JavaScript. We recommend starting with `500`. Large values slow down the initial render time.
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="url" type="string" required=false %}
+The fully qualified URL to a public webpage. Such as `https://htmlcsstoimage.com`. When passed this will override the **html** param and will generate a screenshot of the url.
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="viewport\_width" type="number" required=false %}
+Set the width of Chrome's viewport. This will disable automatic cropping.
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="viewport\_height" type="number" required=false %}
+Set the height of Chrome's viewport. This will disable automatic cropping.
+{% endapi-method-parameter %}
+
 {% api-method-parameter name="html" type="string" required=true %}
 HTML markup. An entire page or an HTML snippet.
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="css" type="string" required=false %}
-CSS styles for your image
+CSS styles for your image.
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="google\_fonts" type="string" required=false %}
@@ -136,15 +152,13 @@ Visit [this page for more information about using Google Fonts](../advanced-exam
 
 ### Designing your image
 
-The hardest part of using the API is often getting your HTML/CSS just right.
-
-We recommend using [CodePen](https://codepen.io/mscccc/pen/eLRLQq) when writing your code to quickly preview what your image will look like when rendered. It makes debugging easy!
+We recommend using [CodePen](https://codepen.io/mscccc/pen/eLRLQq) when writing your HTML/CSS to quickly preview what your image will look like when rendered. It makes debugging easy. Here's an example where we used CodePen to design a Social Graph image.
 
 ![Use CodePen to test your HTML/CSS](../.gitbook/assets/image%20%288%29.png)
 
 ### Learn more
 
-We have tons of resources to help you generate images. Take a look at the following pages for more. 
+Take a look at the following pages for more details on how to generate images. 
 
 {% page-ref page="../advanced-examples/using-google-fonts.md" %}
 
