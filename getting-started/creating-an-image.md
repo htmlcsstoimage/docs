@@ -8,7 +8,7 @@ description: >-
 
 Learn to use the API to generate images from your HTML and CSS.
 
-![Converting HTML/CSS to an image.](../.gitbook/assets/image%20%2811%29.png)
+![Converting HTML/CSS to an image.](../.gitbook/assets/image%20%2810%29.png)
 
 Try it out yourself with the [**live demo**](https://htmlcsstoimage.com/#demo).
 
