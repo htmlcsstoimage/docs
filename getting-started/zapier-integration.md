@@ -6,11 +6,20 @@ description: >-
 
 # Zapier Integration
 
-### Add the integration
+Our [Zapier](https://zapier.com/apps/htmlcss-to-image/integrations) integration allows you to automate image generation without writing any code.
 
-Our Zapier integration is currently in beta. With it you can use the HTML/CSS API without writing any code.
+### **Add the integration to your account**
 
-Add the Zapier integration to your account by [**clicking here**](%20https://zapier.com/platform/public-invite/9032/818bf02a72301968dcb7c7461cb4c521/).
+First, you'll need to add the integration to your account by [**clicking here**](https://zapier.com/apps/htmlcss-to-image/integrations).
+
+### **Example uses**
+
+You can automate tasks that were previously very tedious or time consuming by generating images with Zapier.
+
+* Create an image when a new record is added to a Google Sheets or AirTable doc.
+* Regularly take screenshots of a website and save to Google Drive.
+* Dynamically change text within a generated image by using variables inside your HTML.
+* Auto generate targeted advertisements and publish them.
 
 ### Use it in a Zap
 
