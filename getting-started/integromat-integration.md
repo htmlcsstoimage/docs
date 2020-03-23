@@ -10,7 +10,7 @@ description: >-
 
 Use the HTML/CSS integration to automate the creation of images.
 
-![Create workflows with Integromat](../.gitbook/assets/image%20%2821%29.png)
+![Create workflows with Integromat](../.gitbook/assets/image%20%2824%29.png)
 
 ### Add the integration
 
@@ -24,13 +24,13 @@ When setting up the integration, you'll need your credentials. Grab them from th
 
 Define your HTML/CSS and use variables from previous steps to automate the creation of images.
 
-![Auto generate images](../.gitbook/assets/image%20%287%29.png)
+![Auto generate images](../.gitbook/assets/image%20%289%29.png)
 
 ### Download your image
 
 To automate downloading your image, use the HTTP "Get File" integration.
 
-![Download your image](../.gitbook/assets/image%20%286%29.png)
+![Download your image](../.gitbook/assets/image%20%288%29.png)
 
 ### Need help?
 

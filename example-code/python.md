@@ -8,7 +8,7 @@ description: >-
 
 Here you'll learn how to convert html to an image using Python.
 
-![HTML to Image with Python](../.gitbook/assets/image%20%2819%29.png)
+![HTML to Image with Python](../.gitbook/assets/image%20%2822%29.png)
 
 Try it out yourself with the ****[**live demo**](https://htmlcsstoimage.com/#demo).
 

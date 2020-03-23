@@ -8,11 +8,11 @@ description: >-
 
 Learn to use the API to generate images from your HTML and CSS.
 
-![Converting HTML/CSS to an image.](../.gitbook/assets/image%20%2810%29.png)
+![Converting HTML/CSS to an image.](../.gitbook/assets/image%20%2813%29.png)
 
 Try it out yourself with the [**live demo**](https://htmlcsstoimage.com/#demo).
 
-### How it works
+## How it works
 
 To create an image, send an **HTTP POST** request to the `/v1/image` endpoint. This can be done with any language or framework. We have code samples in many languages.
 
@@ -138,9 +138,9 @@ Plan limit exceeded
 
 ```javascript
 {
-	"statusCode": 429,
-	"error": "Plan limit exceeded",
-	"message": "You've used 3102 of your 3000 renders. Upgrade via the Dashboard: https://htmlcsstoimage.com/dashboard"
+    "statusCode": 429,
+    "error": "Plan limit exceeded",
+    "message": "You've used 3102 of your 3000 renders. Upgrade via the Dashboard: https://htmlcsstoimage.com/dashboard"
 }
 ```
 {% endapi-method-response-example %}
@@ -150,15 +150,15 @@ Plan limit exceeded
 
 Visit [this page for more information about using Google Fonts](../advanced-examples/using-google-fonts.md).
 
-### Designing your image
+## Designing your image
 
 We recommend using [CodePen](https://codepen.io/mscccc/pen/eLRLQq) when writing your HTML/CSS to quickly preview what your image will look like when rendered. It makes debugging easy. Here's an example where we used CodePen to design a Social Graph image.
 
-![Use CodePen to test your HTML/CSS](../.gitbook/assets/image%20%287%29.png)
+![Use CodePen to test your HTML/CSS](../.gitbook/assets/image%20%2810%29.png)
 
-### Learn more
+## Learn more
 
-Take a look at the following pages for more details on how to generate images. 
+Take a look at the following pages for more details on how to generate images.
 
 {% page-ref page="../advanced-examples/using-google-fonts.md" %}
 
@@ -166,7 +166,7 @@ Take a look at the following pages for more details on how to generate images.
 
 {% page-ref page="../advanced-examples/external-css-and-fonts.md" %}
 
-### Get help from us
+## Get help from us
 
 Tell us what you're building. We're experts at generating images and will help you get your project up and running quickly with the API.
 

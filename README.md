@@ -42,7 +42,7 @@ Your imagination is the only limit. We render HTML/CSS just like Google Chrome. 
 
 [Dev.to](https://dev.to) uses the API to autogenerate thousands of custom images for Twitter and Facebook.
 
-![@ThePracticalDev](.gitbook/assets/image%20%2823%29.png)
+![@ThePracticalDev](.gitbook/assets/image%20%2826%29.png)
 
 To see how they do it, [take a look at their code](https://github.com/thepracticaldev/dev.to/blob/master/app/controllers/social_previews_controller.rb) \(it's open source!\).
 
