@@ -1,7 +1,7 @@
 ---
 description: >-
-  Convert HTML/CSS to an image (jpg, png or webp) with Zapier. Renders images
-  exactly like Google Chrome.
+  Convert HTML/CSS to an image (jpg, png or webp) with Integromat. Renders
+  images exactly like Google Chrome.
 ---
 
 # Integromat Integration
