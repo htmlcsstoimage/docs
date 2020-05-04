@@ -6,18 +6,18 @@
 ## Getting started
 
 * [Creating an image](getting-started/creating-an-image.md)
+* [URL to image](getting-started/url-to-image.md)
 * [Authentication](getting-started/authentication.md)
 * [Retrieving an image](getting-started/retrieving-an-image.md)
 * [Deleting an image](getting-started/deleting-an-image.md)
-* [URL to image](getting-started/url-to-image.md)
 * [Setting height and width](getting-started/setting-height-and-width.md)
 * [File formats](getting-started/file-formats.md)
 * [Lossless image optimization](getting-started/lossless-image-optimization.md)
 * [Full page images](getting-started/full-page-images.md)
-* [FAQ](getting-started/faq.md)
 * [Zapier Integration](getting-started/zapier-integration.md)
 * [Integromat Integration](getting-started/integromat-integration.md)
 * [Duplicate image detection](getting-started/duplicate-image-detection.md)
+* [FAQ](getting-started/faq.md)
 
 ## Advanced examples
 
