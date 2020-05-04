@@ -25,9 +25,9 @@ You can automate tasks that were previously very tedious or time consuming by ge
 
 Once it's added to your account, you will be able to use it by creating a new Zap, and searching for "HTML/CSS" when adding an action to your zap.
 
-![Search html css to find the app.](../.gitbook/assets/image%20%2812%29.png)
+![Search html css to find the app.](../.gitbook/assets/image%20%2815%29.png)
 
-![](../.gitbook/assets/image%20%2815%29.png)
+![](../.gitbook/assets/image%20%2818%29.png)
 
 ![HTML/CSS to Image with Zapier](../.gitbook/assets/image-2019-01-27-at-5.57.52-pm.png)
 

@@ -29,6 +29,7 @@
 * [Rendering a React component](advanced-examples/rendering-a-react-component.md)
 * [External CSS and Fonts](advanced-examples/external-css-and-fonts.md)
 * [Instagram Embed](advanced-examples/instagram-embed.md)
+* [Twitter Embed](advanced-examples/twitter-embed.md)
 
 ## Example code
 

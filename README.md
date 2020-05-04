@@ -42,7 +42,7 @@ Your imagination is the only limit. We render HTML/CSS just like Google Chrome. 
 
 [Dev.to](https://dev.to) uses the API to autogenerate thousands of custom images for Twitter and Facebook.
 
-![@ThePracticalDev](.gitbook/assets/image%20%2826%29.png)
+![@ThePracticalDev](.gitbook/assets/image%20%2829%29.png)
 
 To see how they do it, [take a look at their code](https://github.com/thepracticaldev/dev.to/blob/master/app/controllers/social_previews_controller.rb) \(it's open source!\).
 
@@ -78,17 +78,13 @@ Source code for this example on [CodePen](https://codepen.io/mscccc/pen/xyXKrj).
 
 ### Full Webpage Screenshots
 
-Pass an entire webpage to the API to generate a full page screenshot. Here we passed [stripe.com](https://stripe.com)'s homepage HTML to the API.
+We call this [URL to image](getting-started/url-to-image.md). You can pass in a URL, and we'll generate a screenshot of the webpage.
+
+Here is an example of [stripe.com](https://stripe.com)'s homepage rendered using the API.
 
 ![URL: https://hcti.io/v1/image/2ac52eb8-0c20-4ac6-b0e3-06fb5f421f4a](.gitbook/assets/stripe.png)
 
-{% hint style="info" %}
-### Full page screenshots
-
-When rendering an entire page, be sure to include all of the markup. Including the `<html>` tags. All external assets \(css, javascript, images\) must be loaded using a full URL. **Relative paths will not work**.
-{% endhint %}
-
-### Resize on the Fly
+### Resize on the fly
 
 Once an image is generated, use our API to adjust the image to any size you need with the **width** and **height** params. When only one param is passed, the API will maintain the aspect ratio of the original image.
 

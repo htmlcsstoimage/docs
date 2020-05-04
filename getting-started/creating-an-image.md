@@ -8,7 +8,7 @@ description: >-
 
 Learn to use the API to generate images from your HTML and CSS.
 
-![Converting HTML/CSS to an image.](../.gitbook/assets/image%20%2813%29.png)
+![Converting HTML/CSS to an image.](../.gitbook/assets/image%20%2816%29.png)
 
 Try it out yourself with the [**live demo**](https://htmlcsstoimage.com/#demo).
 
@@ -55,7 +55,7 @@ HTTP Basic Authentication. Your username is your `User ID` and your password is 
 
 {% api-method-body-parameters %}
 {% api-method-parameter name="html" type="string" required=true %}
-HTML markup. An entire page or an HTML snippet.
+Your HTML markup. Can include link tags to external CSS or JavaScript.
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="css" type="string" required=false %}
@@ -154,11 +154,13 @@ Visit [this page for more information about using Google Fonts](../advanced-exam
 
 We recommend using [CodePen](https://codepen.io/mscccc/pen/eLRLQq) when writing your HTML/CSS to quickly preview what your image will look like when rendered. It makes debugging easy. Here's an example where we used CodePen to design a Social Graph image.
 
-![Use CodePen to test your HTML/CSS](../.gitbook/assets/image%20%2810%29.png)
+![Use CodePen to test your HTML/CSS](../.gitbook/assets/image%20%2813%29.png)
 
 ## Learn more
 
 Take a look at the following pages for more details on how to generate images.
+
+{% page-ref page="url-to-image.md" %}
 
 {% page-ref page="../advanced-examples/using-google-fonts.md" %}
 
