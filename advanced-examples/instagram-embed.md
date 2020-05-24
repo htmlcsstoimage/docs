@@ -15,5 +15,5 @@ Here is example code that works with the HCTI API. Swap out the link in the `a` 
 
 The resulting image will look like this.
 
-![](../.gitbook/assets/image%20%2824%29.png)
+![](../.gitbook/assets/image%20%2817%29%20%281%29.png)
 

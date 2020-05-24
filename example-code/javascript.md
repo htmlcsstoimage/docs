@@ -12,7 +12,7 @@ This post will show you how to convert HTML/CSS to an image using JavaScript.
 * [JavaScript Example - async/await](javascript.md#javascript-example-async-await)
 * [Plain JavaScript \(Node.js\) example](javascript.md#plain-javascript-nodejs-example)
 
-![Converting HTML/CSS to an Image with JavaScript](../.gitbook/assets/image%20%285%29.png)
+![Converting HTML/CSS to an Image with JavaScript](../.gitbook/assets/image%20%283%29%20%281%29.png)
 
 Try it out yourself with the ****[**live demo**](https://htmlcsstoimage.com/#demo).
 

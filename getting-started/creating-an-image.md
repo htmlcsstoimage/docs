@@ -8,7 +8,7 @@ description: >-
 
 Learn to use the API to generate images from your HTML and CSS.
 
-![Converting HTML/CSS to an image.](../.gitbook/assets/image%20%2816%29.png)
+![Converting HTML/CSS to an image.](../.gitbook/assets/image%20%2810%29.png)
 
 Try it out yourself with the [**live demo**](https://htmlcsstoimage.com/#demo).
 
@@ -154,7 +154,7 @@ Visit [this page for more information about using Google Fonts](../advanced-exam
 
 We recommend using [CodePen](https://codepen.io/mscccc/pen/eLRLQq) when writing your HTML/CSS to quickly preview what your image will look like when rendered. It makes debugging easy. Here's an example where we used CodePen to design a Social Graph image.
 
-![Use CodePen to test your HTML/CSS](../.gitbook/assets/image%20%2813%29.png)
+![Use CodePen to test your HTML/CSS](../.gitbook/assets/image%20%287%29.png)
 
 ## Learn more
 
