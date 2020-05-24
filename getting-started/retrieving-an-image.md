@@ -23,6 +23,10 @@ Renders your HTML/CSS into an image. Returns a png by default. Change the file e
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-query-parameters %}
+{% api-method-parameter name="dl" type="number" required=false %}
+Set dl=1 to automatically download the image in a browser.
+{% endapi-method-parameter %}
+
 {% api-method-parameter name="height" type="integer" required=false %}
 The height of the image. Maximum: 5000
 {% endapi-method-parameter %}
