@@ -4,6 +4,8 @@ description: Generating an image from a React component.
 
 # Rendering a React component
 
+The API supports rendering single page applications as well. Here you will learn how to pass your HTML directly to the API to have it render a component. Or, if you have your page publicly available, you can use the [URL to Image](../getting-started/url-to-image.md) endpoint to take a screenshot of your React component.
+
 Here we will generate an image from a React Clock component.
 
 ```javascript
@@ -28,6 +30,8 @@ Here's the end result.
 ![https://hcti.io/v1/image/1db2ffd7-b6f4-4d9a-91b8-3be0889eda19](../.gitbook/assets/react.png)
 
 ### HTML
+
+Notice here that we are directly including script tags in our HTML. The API will load these external assets before creating your image. More details are in the code samples comments.
 
 {% code title="react.html" %}
 ```markup
@@ -93,4 +97,8 @@ h1 {
 ### Alternative: renderToString\(\)
 
 An alternative approach to the above example is using React's [renderToString](https://reactjs.org/docs/react-dom-server.html#rendertostring) to generate the HTML from your component. This can then be passed to the API for rendering.
+
+### Debugging a white image
+
+If you are getting back a blank image when rendering React. It's most likely due to a delay in the JavaScript executing in the browser. You can debug this by using the ms\_delay parameter to give the page more time to render before we take the screenshot. We recommend starting with `ms_delay: 500`. Then slowly increase until you find a value that works well for your image. High values will slow down the initial render, so you'll want to find the lowest delay you can while still reliably rendering your image.
 
