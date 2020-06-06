@@ -43,6 +43,7 @@
 * [Python](example-code/python.md)
 * [Postman](example-code/postman.md)
 * [Insomnia REST client](example-code/insomnia.md)
+* [Google Apps Script](example-code/google-apps-script.md)
 
 ## Blog posts
 
