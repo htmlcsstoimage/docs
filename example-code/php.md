@@ -8,7 +8,7 @@ description: >-
 
 In this post, you'll learn how to convert html to an image with PHP
 
-![HTML to an image with PHP](../.gitbook/assets/image%20%2814%29.png)
+![](../.gitbook/assets/image%20%2814%29.png)
 
 
 
