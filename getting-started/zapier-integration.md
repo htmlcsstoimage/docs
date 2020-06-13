@@ -12,9 +12,13 @@ Our [Zapier](https://zapier.com/apps/htmlcss-to-image/integrations) integration 
 
 First, you'll need to add the integration to your account by [**clicking here**](https://zapier.com/apps/htmlcss-to-image/integrations).
 
+### Video tutorial
+
+Our friends at Makerpad have produced a high quality tutorial for using HTML/CSS to Image API with Zapier. Take [a look here](https://www.makerpad.co/tutorial/capture-email-metadata-and-save-as-an-image-with-zapier).
+
 ### **Example uses**
 
-You can automate tasks that were previously very tedious or time consuming by generating images with Zapier.
+You can automate tasks that were previously tedious or time consuming by generating images with Zapier.
 
 * Create an image when a new record is added to a Google Sheets or AirTable doc.
 * Regularly take screenshots of a website and save to Google Drive.
