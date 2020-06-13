@@ -34,8 +34,6 @@ The API will return JSON with the URL to your newly created image.
 
 By default, this URL will return a **png**. See [File formats](file-formats.md) for other options.
 
-Take a [look at our examples](../#examples) for ways to make use of the API.
-
 {% api-method method="post" host="https://hcti.io" path="/v1/image" %}
 {% api-method-summary %}
 Create an image
@@ -49,7 +47,7 @@ Create a new image
 {% api-method-request %}
 {% api-method-headers %}
 {% api-method-parameter name="Authentication" type="string" required=true %}
-HTTP Basic Authentication. Your username is your `User ID` and your password is your `API Key`. See Authentication for details.
+HTTP Basic Authentication. Your username is your `User ID` and your password is your `API Key`. 
 {% endapi-method-parameter %}
 {% endapi-method-headers %}
 
