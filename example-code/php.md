@@ -1,16 +1,12 @@
 ---
-description: >-
-  Convert HTML to an image (png, jpg or webp) with PHP + the HTML/CSS to Image
-  API. Renders exactly like Google Chrome.
+description: Convert HTML/CSS to an image with PHP. Renders exactly like Google Chrome.
 ---
 
 # PHP
 
-In this post, you'll learn how to convert html to an image with PHP
+In this post, you'll learn how to convert html to an image with PHP.
 
-![](../.gitbook/assets/image%20%2814%29.png)
-
-
+![Create an image with PHP](../.gitbook/assets/php.jpg)
 
 Try it out yourself with the ****[**live demo**](https://htmlcsstoimage.com/#demo).
 
@@ -63,6 +59,8 @@ Separate multiple fonts with a `|`.
 This script will send HTML/CSS to the API and get back a URL to your new image. You'll need an API key to use this example.
 
 If you'd like to try it out first without writing any code, take a look at the [demo](https://htmlcsstoimage.com/#demo).
+
+#### Example code
 
 {% code title="html\_css\_to\_image.php" %}
 ```php
