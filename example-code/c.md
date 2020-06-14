@@ -10,7 +10,9 @@ In this post, you'll learn how to convert HTML into an image using C\#.
 
 ### Example Code
 
-This code creates a WebClient, sets credentials and POSTS the HTML & CSS as values to the API. The response will be json with the URL to the generated image.
+This example uses the HTML/CSS to Image API to create an image. It handles the authentication for you, as well as POSTing the html/css to the API.
+
+The response is `JSON` with the URL to the generated image.
 
 ```csharp
 using System.Net;
@@ -47,5 +49,5 @@ namespace htciExample
 
 ## More examples <a id="more-examples"></a>
 
-For more advanced examples, [take a look here](https://github.com/htmlcsstoimage/docs/blob/master/README.md#examples).
+This was a simple example. To see a full list of available parameters, take a look at [Creating an image](../getting-started/creating-an-image.md).
 
