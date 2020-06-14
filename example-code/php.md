@@ -56,11 +56,13 @@ Separate multiple fonts with a `|`.
 {% endtab %}
 {% endtabs %}
 
-This script will send HTML/CSS to the API and get back a URL to your new image. You'll need an API key to use this example.
-
-If you'd like to try it out first without writing any code, take a look at the [demo](https://htmlcsstoimage.com/#demo).
+{% hint style="info" %}
+To see a full list of available parameters, take a look at [**Creating an image**](../getting-started/creating-an-image.md).
+{% endhint %}
 
 #### Example code
+
+This script will send HTML/CSS to the API and get back a URL to your new image. You'll need an API key to use this example.
 
 {% code title="html\_css\_to\_image.php" %}
 ```php

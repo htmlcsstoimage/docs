@@ -12,7 +12,7 @@ This post will show you how to convert HTML/CSS to an image using JavaScript.
 * [JavaScript Example - async/await](javascript.md#javascript-example-async-await)
 * [Plain JavaScript \(Node.js\) example](https://docs.htmlcsstoimage.com/example-code/javascript#plain-javascript-node-js-example)
 
-![Converting HTML/CSS to an Image with JavaScript](../.gitbook/assets/image%20%283%29%20%281%29.png)
+![Converting HTML/CSS to an image with JavaScript](../.gitbook/assets/javascript.jpg)
 
 Try it out yourself with the ****[**live demo**](https://htmlcsstoimage.com/#demo).
 
@@ -62,6 +62,10 @@ Separate multiple fonts with a `|`.
 {% endtab %}
 {% endtabs %}
 
+{% hint style="info" %}
+To see a full list of available parameters, take a look at [**Creating an image**](../getting-started/creating-an-image.md).
+{% endhint %}
+
 If you'd like to try it out first without writing any code, take a look at the [demo](https://htmlcsstoimage.com/#demo).
 
 This example uses the [Request client](https://github.com/request/request-promise). Install with `npm install request`.
@@ -97,8 +101,6 @@ request.post({ url: 'https://hcti.io/v1/image', form: data})
 No. We recommend only using the API server-side. This is important because it keeps your api keys secret. If you expose them in the browser, they can be used by anyone.
 {% endhint %}
 
-\*\*\*\*
-
 ### JavaScript Example - async/await
 
 If your code supports async/await, we recommend using the following.
@@ -133,7 +135,7 @@ const { url } = JSON.parse(image)
 
 ### Plain JavaScript \(Node.js\) example
 
-If you prefer not to install an HTTP library for making the request. This example shows you how to use the API without any.
+If you prefer not to install an HTTP library for making the request. This example shows you how to use the API without any dependencies.
 
 {% code title="node.js" %}
 ```javascript
@@ -180,7 +182,7 @@ req.end()
 
 ### More examples
 
-For more advanced examples, [take a look here](../#examples).
+This page shows the most basic options. To see everything the API can do, take a look at [Creating an image](../getting-started/creating-an-image.md).
 
 ### Need help? 
 

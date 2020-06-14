@@ -8,7 +8,7 @@ description: >-
 
 Here you'll learn how to convert html to an image using Python.
 
-![](../.gitbook/assets/image%20%2818%29.png)
+![Generate an image with Python](../.gitbook/assets/python.jpg)
 
 Try it out yourself with the ****[**live demo**](https://htmlcsstoimage.com/#demo).
 
@@ -58,9 +58,13 @@ Separate multiple fonts with a `|`.
 {% endtab %}
 {% endtabs %}
 
-This script will send HTML/CSS to the API and get back a URL to your new image. You'll need an API key to use this example.
+{% hint style="info" %}
+To see a full list of available parameters, take a look at [**Creating an image**](../getting-started/creating-an-image.md).
+{% endhint %}
 
-If you'd like to try it out first without writing any code, try the [demo](https://htmlcsstoimage.com/#demo).
+### Example code
+
+This script will send HTML/CSS to the API and get back a URL to your new image. You'll need an API key to use this example.
 
 This example uses the requests library. To install, run: `pip3 install requests`
 
@@ -86,7 +90,7 @@ print("Your image URL is: %s"%image.json()['url'])
 
 ### More examples
 
-This page showed really simple image examples. The API can render anything that Google Chrome can. For more advanced examples, [take a look here](../#examples).
+This page showed really simple image examples. The API can render anything that Google Chrome can. For more advanced examples, [take a look here](../getting-started/creating-an-image.md).
 
 ### Need help?
 
