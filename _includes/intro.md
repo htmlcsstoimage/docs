@@ -19,7 +19,7 @@ Table of contents
 The API takes your HTML/CSS and runs it inside a real instance of Google Chrome to convert your html into an image.
 Send the API your HTML/CSS or a URL to screenshot. You'll get back the URL to your generated image.
 
-For more details on how this works, see [Creating an image](/api-endpoints/#creating-an-imageapi-endpoints/#creating-an-image).
+For more details on how this works, see [Creating an image](/getting-started/using-the-api#creating-an-image).
 
 ```javascript
 {
