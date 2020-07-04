@@ -17,8 +17,7 @@
             {%- assign first_level_url = node.url | absolute_url -%}
           {%- endif -%}
           {%- if node.has_children -%}
-            <!-- <a href="#" class="nav&#45;list&#45;expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg&#45;arrow&#45;right"></use></svg></a> -->
-            <h4 class="mb-0 hi mike"><a href="{{ node.url | absolute_url }}" class="nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a></h4>
+            <a href="{{ node.url | absolute_url }}" class="text-delta mb-0 nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
           {%- else -%}
             <a href="{{ node.url | absolute_url }}" class="nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
           {%- endif -%}

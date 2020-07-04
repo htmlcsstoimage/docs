@@ -15,9 +15,9 @@ Table of contents
 - TOC
 {:toc}
 
-## How it works
+## Generating images with {{include.language}}
 The API takes your HTML/CSS and runs it inside a real instance of Google Chrome to convert your html into an image.
-Send the API your HTML/CSS or a URL to screenshot. You'll get back the URL to your generated image.
+Use {{include.language}} to send the API your HTML/CSS. You'll get back the URL to your generated image.
 
 For more details on how this works, see [Creating an image](/getting-started/using-the-api#creating-an-image).
 
@@ -36,7 +36,7 @@ For more details on how this works, see [Creating an image](/getting-started/usi
     "format": "auto"
   }'>
 
-## Authentication
+## Authentication with {{ include.language }}
 The API uses [HTTP Basic authentication](https://en.wikipedia.org/wiki/Basic_access_authentication). 
 
 Your username is your **User ID** and your password is your **API Key**. Both of these are available from the [dashboard](https://htmlcsstoimage.com/dashboard). The {{ include.language }} code sample demonstrates how to authenticate your request.
