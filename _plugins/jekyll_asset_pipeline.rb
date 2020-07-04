@@ -12,3 +12,32 @@ module JekyllAssetPipeline
     end
   end
 end
+
+module JekyllAssetPipeline
+  class CssCompressor < JekyllAssetPipeline::Compressor
+    require 'yui/compressor'
+    require 'pry'
+    require 'pry-byebug'
+
+    def self.filetype
+      '.css'
+    end
+
+    def compress
+      # binding.pry
+      return YUI::CssCompressor.new.compress(@content)
+    end
+  end
+
+  class JavaScriptCompressor < JekyllAssetPipeline::Compressor
+    require 'uglifier'
+
+    def self.filetype
+      '.js'
+    end
+
+    def compress
+      Uglifier.compile(@content, harmony: true)
+    end
+  end
+end

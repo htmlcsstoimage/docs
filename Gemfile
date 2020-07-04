@@ -13,6 +13,8 @@ gem "just-the-docs"
 gem "pry"
 gem "pry-byebug"
 gem 'jekyll-octicons'
+gem 'yui-compressor'
+gem 'uglifier'
 
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
 # uncomment the line below. To upgrade, run `bundle update github-pages`.
