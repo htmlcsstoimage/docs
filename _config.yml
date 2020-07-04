@@ -36,8 +36,13 @@ highlighter: none
 theme: just-the-docs
 color_scheme: hcti
 plugins:
+  - jekyll-sitemap
   - jekyll/imgix
   - jekyll-octicons
+  - jekyll-last-modified-at
+
+last_edit_timestamp: true
+last_edit_time_format: "%b %e %Y at %I:%M %p" # uses ruby's time format: https://ruby-doc.org/stdlib-2.7.0/libdoc/time/rdoc/Time.html
 
 imgix:
   source: hcti.imgix.net # Your imgix source address
@@ -55,6 +60,8 @@ gh_edit_branch: "main" # the branch that your docs is served from
 gh_edit_view_mode: "tree"
 
 footer_content: "Built with extensive integration tests and serious care for developer happiness. <br> &copy; 2018-2020 Code Happy, LLC."
+
+ga_tracking: UA-32961413-2
 
 # Aux links for the upper right navigation
 aux_links:
