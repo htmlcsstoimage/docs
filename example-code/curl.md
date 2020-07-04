@@ -36,7 +36,7 @@ curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey'\
      -d css=".ping { padding: 20px; font-family: 'sans-serif'; }"
 ```
 
-### Response
+## Response
 
 The API will return a json payload with the URL to your new image.
 

@@ -1,13 +1,13 @@
 ---
 layout: page
-title: Go
+title: GoLang
 parent: Example code
 permalink: /example-code/go/
 description: >-
-  Convert HTML to an image (png, jpg or webp) with Go + the HTML/CSS to Image
+  Convert HTML to an image (png, jpg or webp) with GoLang + the HTML/CSS to Image
   API. Renders exactly like Google Chrome.
 ---
-{% include intro.md language="Go" %}
+{% include intro.md language="GoLang" %}
 
 ```go
 package main

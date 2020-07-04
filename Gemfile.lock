@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/mscoutermarsh/just-the-docs
+  revision: 8ed553fb55b52bd21c6fe55df1fb58779e21c45d
+  specs:
+    just-the-docs (0.3.0)
+      jekyll (>= 3.8.5)
+      jekyll-seo-tag (~> 2.0)
+      rake (>= 12.3.1, < 13.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -75,10 +84,6 @@ GEM
       jekyll (>= 3.5, < 5.0)
       liquid (~> 4.0)
     json (2.3.1)
-    just-the-docs (0.3.0)
-      jekyll (>= 3.8.5)
-      jekyll-seo-tag (~> 2.0)
-      rake (>= 12.3.1, < 13.1.0)
     kramdown (2.3.0)
       rexml
     kramdown-parser-gfm (1.1.0)
@@ -135,7 +140,7 @@ DEPENDENCIES
   jekyll-octicons
   jekyll-sitemap
   jekyll_asset_pipeline
-  just-the-docs
+  just-the-docs!
   liquid
   pry
   pry-byebug

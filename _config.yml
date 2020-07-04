@@ -61,6 +61,10 @@ gh_edit_view_mode: "tree"
 
 footer_content: "Built with extensive integration tests and serious care for developer happiness. <br> &copy; 2018-2020 Code Happy, LLC."
 
+# Back to top link
+back_to_top: true
+back_to_top_text: "Back to top"
+
 # ga_tracking: UA-32961413-2
 
 # Aux links for the upper right navigation

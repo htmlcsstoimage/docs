@@ -9,7 +9,7 @@ source "https://rubygems.org"
 # Happy Jekylling!
 gem "jekyll", "~> 4.1.1"
 
-gem "just-the-docs"
+gem "just-the-docs", git: 'https://github.com/mscoutermarsh/just-the-docs'
 gem "pry"
 gem "pry-byebug"
 gem 'jekyll-octicons'
