@@ -56,6 +56,9 @@ GEM
       imgix (~> 1.1.0)
     jekyll-include_snippet (0.2.0)
       liquid (>= 3.0)
+    jekyll-last-modified-at (1.3.0)
+      jekyll (>= 3.7, < 5.0)
+      posix-spawn (~> 0.3.9)
     jekyll-octicons (10.0.0)
       jekyll (>= 3.6, < 5.0)
       octicons (= 10.0.0)
@@ -63,6 +66,8 @@ GEM
       sassc (> 2.0.1, < 3.0)
     jekyll-seo-tag (2.6.1)
       jekyll (>= 3.3, < 5.0)
+    jekyll-sitemap (1.4.0)
+      jekyll (>= 3.7, < 5.0)
     jekyll-watch (2.2.1)
       listen (~> 3.0)
     jekyll_asset_pipeline (0.6.2)
@@ -90,6 +95,7 @@ GEM
       nokogiri (>= 1.6.3.1)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
+    posix-spawn (0.3.14)
     progressbar (1.10.1)
     pry (0.13.1)
       coderay (~> 1.1)
@@ -121,7 +127,9 @@ DEPENDENCIES
   jekyll-feed (~> 0.12)
   jekyll-imgix
   jekyll-include_snippet
+  jekyll-last-modified-at
   jekyll-octicons
+  jekyll-sitemap
   jekyll_asset_pipeline
   just-the-docs
   liquid

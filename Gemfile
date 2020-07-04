@@ -25,6 +25,8 @@ group :jekyll_plugins do
   gem "jekyll_asset_pipeline"
   gem 'liquid'
   gem 'jekyll-imgix'
+  gem 'jekyll-sitemap'
+  gem "jekyll-last-modified-at"
 end
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
