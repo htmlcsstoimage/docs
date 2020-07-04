@@ -7,8 +7,17 @@ module JekyllAssetPipeline
     end
 
     def html
-      "<link href='#{output_path}/#{@filename}' rel='stylesheet' " \
-        "type='text/css' defer />\n"
+      file_path = "#{output_path}/#{@filename}"
+
+      if @filename.match? "jtd"
+        return "<link href='#{file_path}' rel='stylesheet' " \
+                  "type='text/css' async />\n" \
+      end
+
+      "<link href='#{file_path}' rel='preload' " \
+        "type='text/css' async />\n" \
+      "<link rel='preload' href='#{file_path}' as='style' onload=\"this.onload=null;this.rel='stylesheet'\"> " \
+        "<noscript><link rel='stylesheet' href='#{file_path}'></noscript>"
     end
   end
 end
@@ -24,8 +33,8 @@ module JekyllAssetPipeline
     end
 
     def compress
-      # binding.pry
-      return YUI::CssCompressor.new.compress(@content)
+      return @content
+      # return YUI::CssCompressor.new.compress(@content)
     end
   end
 

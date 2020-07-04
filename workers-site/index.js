@@ -27,7 +27,21 @@ addEventListener('fetch', event => {
 async function handleEvent(event) {
   const url = new URL(event.request.url)
   let options = {}
+  let cacheControl = {}
 
+  if (event.request.url.match(/\.js$/) || event.request.url.match(/\.css$/) || event.request.url.match(/\.png$/)) {
+    cacheControl = {
+      browserTTL: 365* 60 * 60 * 24,
+      edgeTTL: 30 * 60 * 60 * 24,
+      bypassCache: false, // do not bypass Cloudflare's cache
+    }
+  } else {
+    cacheControl = {
+      browserTTL: 600,
+      edgeTTL: 60,
+      bypassCache: false, // do not bypass Cloudflare's cache
+    }
+  }
   /**
    * You can add custom logic to how we fetch your assets
    * by configuring the function `mapRequestToAsset`
@@ -40,6 +54,8 @@ async function handleEvent(event) {
       options.cacheControl = {
         bypassCache: true,
       }
+    } else {
+      options.cacheControl = cacheControl
     }
 
     const page = await getAssetFromKV(event, options)
