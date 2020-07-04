@@ -1,15 +1,15 @@
 ---
 layout: default
-title: Getting started
-permalink: /getting-started/
-nav_order: 2
+title: Guides
+permalink: /guides/
+nav_order: 3
 has_children: true
 ---
-# Getting started
+# Guides
 {: .no_toc }
 {: .fs-9 }
 
-Start here to learn how to use the HTML/CSS to Image API.
+Use these guides to get started converting images with HTML/CSS to Image.
 {: .fs-4 .fw-300 }
 
 [Live demo](https://htmlcsstoimage.com/demo){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
