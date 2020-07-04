@@ -2,7 +2,7 @@
 layout: page
 title: PHP
 parent: Example code
-permalink: /php/
+permalink: /example-code/php/
 description: >-
   Convert HTML to an image (png, jpg or webp) with PHP + the HTML/CSS to Image
   API. Renders exactly like Google Chrome.
@@ -41,13 +41,4 @@ echo $res->getBody();
 
 The code turns out to be a bit more readable and less complex when using Guzzle. A great option if you're open to adding the library to your project.
 
-### More examples
-
-This page showed really simple image examples. The API can render anything that Google Chrome can. For more advanced examples, [take a look here](../#examples).
-
-### Need help?
-
-Email us **support@htmlcsstoimage.com**
-
-Share with us what you're building. We're experts at generating images and love to help.
-
+{% include code_footer.md version=2 %}

@@ -4,7 +4,7 @@ description: 'HTML/CSS can be converted to jpg, png or webp.'
 
 # File formats
 
-The API supports `jpg`, `png` and `webp`. If no file extension is passed, you'll get back a png by default. If you need a different file format, simply adjust the extension on the url. Such as: `v1/image/image_id`**`.jpg`**.
+The API supports `jpg`, `png` and `webp`. If no file extension is passed, you'll get back a png by default. If you need a different file format, simply adjust the extension on the url.
 
 | **Format** | **Example** |
 | :--- | :--- |

@@ -1,0 +1,9 @@
+name = "docs"
+account_id = "fadc7c4786d4e9b9ef650985a9282c82"
+type = "webpack"
+# workers_dev = true
+route = "docs-next.htmlcsstoimage.com/*"
+zone_id = "afe7c7febba92b591f139226a076a193"
+
+[site]
+bucket = "./_site"

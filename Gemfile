@@ -11,6 +11,7 @@ gem "jekyll", "~> 4.1.1"
 
 gem "just-the-docs"
 gem "pry"
+gem "pry-byebug"
 gem 'jekyll-octicons'
 
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
@@ -21,6 +22,9 @@ group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
   gem 'jekyll-algolia', '~> 1.0'
   gem 'jekyll-include_snippet'
+  gem "jekyll_asset_pipeline"
+  gem 'liquid'
+  gem 'jekyll-imgix'
 end
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem

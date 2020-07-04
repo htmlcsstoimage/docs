@@ -1,5 +1,12 @@
 @import "./syntax";
 
+img {
+  vertical-align: bottom;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
 ::selection {
   background: $blue-100 !important;
 }
@@ -26,6 +33,63 @@
       }
     }
   }
+}
+
+.code-example {
+  align-text: center;
+  .hcti-container {
+    margin: auto;
+    display: inline-block;
+    background-color: transparentize($blue-100, 0.75);
+    border: 1px dashed $blue-100;
+  }
+  background-image: linear-gradient(0deg,rgba(225,228,232,0),rgba(225,228,232,0) 7px,#e1e4e8 ,rgba(225,228,232,0) 8px),linear-gradient(90deg,rgba(225,228,232,0),rgba(225,228,232,0) 7px,#e1e4e8 ,rgba(225,228,232,0) 8px);
+  background-position: center center;
+  background-size: 15px 15px;
+}
+
+.hint {
+  svg {
+    vertical-align: middle;
+    margin-top: -2px;
+    margin-right: 4px;
+    fill: $blue-000;
+  }
+  p {
+    margin-left: 28px;
+    color: $grey-dk-200;
+  }
+  background: linear-gradient(140deg, rgba(245,246,250,0.30) 0%, rgba(245,246,250,1) 61%);
+  border-left: 4px solid $blue-000;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: .75rem;
+  margin-top: .75rem;
+  overflow: auto;
+  padding: .75rem;
+}
+
+.http-method {
+  span {
+    background-color: $blue-100;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: #fff;
+    padding: 4px 8px;
+    text-transform: uppercase;
+  }
+  color: $grey-dk-200;
+  border-color: none;
+  background-color: $code-background-color;
+  background: linear-gradient(140deg, rgba(245,246,250,0.50) 0%, rgba(245,246,250,1) 61%);
+  border-radius: 3px;
+  box-sizing: border-box;
+  line-height: 1.45;
+  margin-bottom: 16px;
+  margin-top: 10px;
+  padding: 10px;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
 img {
