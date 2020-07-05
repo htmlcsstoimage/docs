@@ -1,4 +1,5 @@
 _site
+.asset-pipeline
 .sass-cache
 .jekyll-cache
 .jekyll-metadata
