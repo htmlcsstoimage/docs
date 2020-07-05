@@ -27,9 +27,8 @@ Table of contents
 ## Authentication
 The API uses [HTTP Basic authentication](https://en.wikipedia.org/wiki/Basic_access_authentication). 
 
-Your username is your **User ID** and your password is your **API Key**. Both of these are available from the [dashboard](https://htmlcsstoimage.com/dashboard). The code samples demonstrate how to authenticate your request.
-
-Treat your API Key like a password. If exposed, it could be used to create images using your account.
+- Your username is your **User ID** and your password is your **API Key**. Both of these are available from the [dashboard](https://htmlcsstoimage.com/dashboard). The code samples demonstrate how to authenticate your request.
+- Treat your API Key like a password. If exposed, it could be used to create images using your account.
 
 ## Creating an image
 
