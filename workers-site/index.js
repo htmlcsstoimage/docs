@@ -45,6 +45,30 @@ async function redirectOrHandleEvent(event) {
     case "/getting-started/full-page-images":
       return Response.redirect(site + '/getting-started/convert-emails-images/', 301);
       break;
+    case "/getting-started/faq":
+      return Response.redirect(site + '/faq', 301);
+      break;
+    case "/advanced-examples/using-google-fonts":
+      return Response.redirect(site + '/guides/using-google-fonts', 301);
+      break;
+    case "/advanced-examples/rendering-emoji":
+      return Response.redirect(site + '/guides/rendering-emoji', 301);
+      break;
+    case "/advanced-examples/transparent-background":
+      return Response.redirect(site + '/guides/transparent-background', 301);
+      break;
+    case "/advanced-examples/external-css-and-fonts":
+      return Response.redirect(site + '/guides/external-css-js-and-fonts/', 301);
+      break;
+    case "/getting-started/lossless-image-optimization":
+      return Response.redirect(site + '/getting-started/file-formats', 301);
+      break;
+    case "/advanced-examples/instagram-embed":
+      return Response.redirect(site + '/guides/instagram-embed/', 301);
+      break;
+    case "/advanced-examples/twitter-embed":
+      return Response.redirect(site + '/guides/twitter-embed/', 301);
+      break;
     default:
       return await handleEvent(event);
       break;
