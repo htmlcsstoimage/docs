@@ -15,7 +15,7 @@ We're always looking to improve this documentation. Please send us an email: **s
 {% if include.version == 3 %}
 ## Need help? 
 
-Have more questions? Talk to a human: **support@htmlcsstoimage.com**. We'll respond fast.
+Talk to a human: **support@htmlcsstoimage.com**. We always respond within 24 hours. And often, even faster.
 
 {% endif %}
 

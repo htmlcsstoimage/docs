@@ -26,19 +26,17 @@ The API for generating high quality images from HTML/CSS. No yak shaving require
 This image was created using just HTML/CSS and the HCTI API.
 
 <div class="code-example" markdown="1">
-<div class="hcti-container">
-  <img
-    alt="Image generated with HTML/CSS to Image."
-    loading="lazy"
-    style="margin: 0px;"
-    ix-path="/assets/images/dog-rates-example.png"
-    sizes="400px"
-    ix-params='{
-      "w": 400,
-      "format": "auto"
-    }'>
-</div>
-
+  <div class="hcti-container">
+    <img
+      alt="Image generated with HTML/CSS to Image."
+      loading="lazy"
+      ix-path="/assets/images/dog-rates-example.png"
+      sizes="400px"
+      ix-params='{
+        "w": 400,
+        "format": "auto"
+      }'>
+  </div>
 </div>
 ```html
 <div class="p-4 text-center mt-4" style="width: 500px">
