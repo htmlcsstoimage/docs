@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Zapier integration
-permalink: /getting-started/zapier/
+permalink: /getting-started/zapier-integration/
 parent: Getting started
 nav_order: 7
 description: >-

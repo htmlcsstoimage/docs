@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Integromat integration
-permalink: /getting-started/integromat/
+permalink: /getting-started/integromat-integration/
 parent: Getting started
 nav_order: 8
 description: >-

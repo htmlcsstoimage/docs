@@ -11,7 +11,7 @@ const DEBUG = false
 
 addEventListener('fetch', event => {
   try {
-    event.respondWith(handleEvent(event))
+    event.respondWith(redirectOrHandleEvent(event))
   } catch (e) {
     if (DEBUG) {
       return event.respondWith(
@@ -23,6 +23,33 @@ addEventListener('fetch', event => {
     event.respondWith(new Response('Internal Error', { status: 500 }))
   }
 })
+
+async function redirectOrHandleEvent(event) {
+  var url = new URL(event.request.url);
+  var path = url.pathname;
+  var site = "https://docs-next.htmlcsstoimage.com";
+
+  switch(path) {
+    case "/getting-started/creating-an-image":
+      return Response.redirect(site + '/getting-started/using-the-api/', 301);
+      break;
+    case "/getting-started/deleting-an-image":
+      return Response.redirect(site + '/getting-started/using-the-api/', 301);
+      break;
+    case "/getting-started/retrieving-an-image":
+      return Response.redirect(site + '/getting-started/using-the-api/', 301);
+      break;
+    case "/getting-started/authentication":
+      return Response.redirect(site + '/getting-started/using-the-api/', 301);
+      break;
+    case "/getting-started/full-page-images":
+      return Response.redirect(site + '/getting-started/convert-emails-images/', 301);
+      break;
+    default:
+      return await handleEvent(event);
+      break;
+  }
+}
 
 async function handleEvent(event) {
   const url = new URL(event.request.url)
@@ -107,3 +134,5 @@ function handlePrefix(prefix) {
     return new Request(url.toString(), defaultAssetKey)
   }
 }
+
+
