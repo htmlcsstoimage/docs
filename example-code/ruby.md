@@ -32,8 +32,10 @@ image = HTTParty.post("https://hcti.io/v1/image",
 This example shows a common setup for a Rails application. Add this file to your `lib` folder, such as `app/lib/html_css_to_image.rb`.
 You'll then be able to use it from any of your models.
 
-We also use Rails built in caching. This works best with Memcached or Redis. The cache key is a SHA of your html/css and google fonts. Which is essentially a unique thumbprint of the data used to create the image.
-This means you'll only generate a unique image once. If your HTML changes at all, a new image will be created. Subsequent calls using the same HTML/CSS parameters will return the cached URL rather than creating a new image.
+**This example uses Rails built in caching:**
+- The cache key is a SHA of your html/css and google fonts.
+- You'll only generate a unique image once. 
+- If your HTML changes at all, a new image will be created. Subsequent calls using the same HTML/CSS parameters will return the cached URL rather than creating a new image.
 
 ```ruby
 module HtmlCssToImage
@@ -79,12 +81,14 @@ HtmlCssToImage.fetch_url(html: "<div>Hello, world</div>", css: "div { background
 HtmlCssToImage.url(html: "<div>Hello, world</div>", css: "div { background-color: blue; }", google_fonts: "Roboto")
 ```
 
-This can be useful from within a controller. To render a template from Rails and pass it to the API, use `render_to_string` from within a controller action.
+### Rendering a Rails view
+
+This can be useful from within a controller. To render a view from Rails and pass it to the API, use `render_to_string` from within a controller action.
 
 With this, you can create an image from a template and redirects the user to the image.
 
 ```ruby
-html = render_to_string(template, formats: :html, layout: false)
+html = render_to_string("path/to/view", formats: :html, layout: false)
 redirect_to HtmlCssToImage.fetch_url(html: html, google_fonts: "Roboto|Roboto+Condensed"), status: :found
 ```
 

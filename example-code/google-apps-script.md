@@ -7,15 +7,15 @@ description: >-
   Convert HTML to an image (png, jpg or webp) with Google Apps Script + the HTML/CSS to Image
   API. Renders exactly like Google Chrome.
 ---
-# Google Apps Script
+# Google Apps Script: HTML/CSS to Image
 {: .no_toc }
 {: .fs-9 }
 
 Generate a png, jpg or webp images with Google Apps Script.
 {: .fs-4 .fw-300 }
 
-[Live demo](https://htmlcsstoimage.com/demo){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
-[Get an API Key](https://htmlcsstoimage.com){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Live demo](https://htmlcsstoimage.com/demo){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 target="_blank" }
+[Get an API Key](https://htmlcsstoimage.com){: .btn .fs-5 .mb-4 .mb-md-0 target="_blank" }
 <hr>
 
 Table of contents
