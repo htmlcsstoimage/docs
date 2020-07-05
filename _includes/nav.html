@@ -19,7 +19,7 @@
           {%- if node.has_children -%}
             <a href="{{ node.url | absolute_url }}" class="text-delta mb-0 nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
           {%- else -%}
-            <a href="{{ node.url | absolute_url }}" class="nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
+            <a href="{{ node.url | absolute_url }}" class="nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a> 
           {%- endif -%}
           {%- if node.has_children -%}
             {%- assign children_list = pages_list | where: "parent", node.title -%}
