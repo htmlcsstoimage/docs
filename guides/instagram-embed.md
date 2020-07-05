@@ -18,16 +18,15 @@ Learn how to use the API to generate an image from an Instagram post.
 
 ## How it works
 
-To generate a screenshot of an Instagram post, we can make use of the Instagram embed API.
+To generate a screenshot of an Instagram post, you can make use of the Instagram embed API.
 
-We figured this out by getting the Instagram embed code from a post.
 <img
   alt="Instagram embed instructions"
   loading="lazy"
   ix-path="/assets/images/insta-embed.png"
-  sizes="150px"
+  sizes="300px"
   ix-params='{
-  "w": 150,
+  "w": 300,
   "format": "auto"
   }'>
 

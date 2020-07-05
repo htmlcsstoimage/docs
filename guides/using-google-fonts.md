@@ -20,9 +20,9 @@ Learn how to load in Google Fonts and use them in your images.
 
 The API supports all [Google Fonts](https://fonts.google.com/). To use them, you must specify the fonts you would like loaded via the `google_fonts` parameter when creating your image.
 
-To load a single font, set the parameter to the font name: `google_fonts=Roboto`. And then set the font family in your CSS: `font-family: 'Roboto';`. On render, the API will load the font and use it for creating your image.
+- To load a single font, set the parameter to the font name: `google_fonts=Roboto`. And then set the font family in your CSS: `font-family: 'Roboto';`. On render, the API will load the font and use it for creating your image.
 
-Multiple fonts must be delimited by the `|` character: `google_fonts=Open Sans|Roboto|Montserrat`
+- Multiple fonts must be delimited by the `|` character: `google_fonts=Open Sans|Roboto|Montserrat`
 
 {% include hint.md title="Fonts and rendering speed" text="A large number of custom fonts can slow down initial render time. Only include the fonts you use." %}
 
