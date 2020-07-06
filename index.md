@@ -81,11 +81,13 @@ Prefer #NoCode? We also integrate with **[Zapier](getting-started/zapier-integra
 
 {% include hint.md title="Works with any language" text="Your favorite language not here? Don't worry, we work with any language or framework. See the [curl](example-code/curl.md) example for how to make a request. [Email us](mailto:support@htmlcsstoimage.com) if you need help getting started. We'd love to add more example code here." %}
 
+<hr>
+
 ## Image Examples
 
 Your imagination is the only limit. We render HTML/CSS just like Google Chrome. Here are a few examples of ways people have used the API to automate their image generation.
 
-### Social Images: Dev.to
+## Social Images: Dev.to
 
 [Dev.to](https://dev.to) uses the API to autogenerate thousands of custom images for Twitter and Facebook.
 
