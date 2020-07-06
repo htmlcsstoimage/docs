@@ -98,7 +98,7 @@ STATUS: 429 TOO MANY REQUESTS
 {
     "error": "Plan limit exceeded",
     "statusCode": 429,
-    "message": "You've used 3102 of your 3000 renders. Upgrade via the Dashboard: https://htmlcsstoimage.com/dashboard"
+    "message": "You've used 3055 of your 3000 renders. Upgrade via the Dashboard: https://htmlcsstoimage.com/dashboard"
 }
 ```
 
@@ -123,9 +123,11 @@ The API supports `jpg`, `png` and `webp`. If no file extension is passed, you'll
 
 | **Format** | **Example** |
 | :--- | :--- |
-| jpg | `https://hcti.io/v1/image/a3ab2ab2-906e-4b5c-a88d-41a1c3f3779e.jpg` |
 | png | `https://hcti.io/v1/image/a3ab2ab2-906e-4b5c-a88d-41a1c3f3779e.png` |
+| jpg | `https://hcti.io/v1/image/a3ab2ab2-906e-4b5c-a88d-41a1c3f3779e.jpg` |
 | webp | `https://hcti.io/v1/image/a3ab2ab2-906e-4b5c-a88d-41a1c3f3779e.webp` |
+
+{% include hint.md title="PNG by default" text="The API returns `png` by default. If no extension is on the URL, a png will be generated." %}
 
 ### Query parameters
 
@@ -133,8 +135,8 @@ Query parameters can be added to the URL to adjust your image.
 
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
-| **width**  | `Integer`  | The width of the image. Maximum 5000. |
-| **height** | `String` | The height of the image. Maximum 5000. |
+| **height** | `Integer` | The height of the image. Maximum `5000`. |
+| **width**  | `Integer`  | The width of the image. Maximum `5000`. |
 | **dl**     | `Integer` | Set `dl=1` and the image will be served as a downloadable attachment. |
 
 <hr>
