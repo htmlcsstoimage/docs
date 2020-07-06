@@ -48,7 +48,7 @@ The create image endpoint accepts the following parameters. Accepted as either `
 | **css** | `String` | The CSS for your image. |
 | **url**<span class="text-red-200">*</span>          | `String` | The fully qualified URL to a public webpage. Such as `https://htmlcsstoimage.com`. When passed this will override the html param and will generate a screenshot of the url. |
 
-{% include hint.md title="Required params" text="For creating an image, either `url` or `html` are required. `css` is optional. Within your HTML, `<link>` tags are supported for loading in external CSS or JavaScript." %}
+{% include hint.md title="Required params" text="For creating an image, either `url` or `html` are required. `css` is optional." %}
 
 <hr>
 
@@ -58,12 +58,12 @@ Optional parameters for greater control over your image.
 
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
-| **google_fonts**   | `String` | Google fonts to be loaded. Example: `Roboto`. Multiple fonts can be loaded like this: `Roboto|Open Sans`  |
+| **google_fonts**   | `String` | [Google fonts](/guides/using-google-fonts/) to be loaded. Example: `Roboto`. Multiple fonts can be loaded like this: `Roboto|Open Sans`  |
 | **selector**  | `String` | A CSS selector for an element on the webpage. We'll crop the image to this specific element. For example: `section#complete-toolkit.container-lg` |
 | **ms_delay**   | `Integer` | The number of milliseconds the API should delay before generating the image. This is useful when waiting for JavaScript. We recommend starting with `500`. Large values slow down the initial render time.|
+| **device_scale**   | `Double` | This adjusts the pixel ratio for the screenshot. Minimum: `1`, Maximum: `3`. |
 | **viewport_width**   | `Integer` | Set the width of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
 | **viewport_height**   | `Integer` | Set the height of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
-| **device_scale**   | `Integer` | This adjusts the pixel ratio for the screenshot. Minimum: `1`, Maximum: `3`. |
 
 <hr>
 
