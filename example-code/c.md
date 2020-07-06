@@ -39,7 +39,7 @@ namespace htciExample
             }
             string resultString = System.Text.Encoding.UTF8.GetString(result);
             Console.WriteLine(resultString);
-            '{"url":"https://hcti.io/v1/image/404ed70d-dcb9-4778-9be4-fad912321d5b"}
+            // {"url":"https://hcti.io/v1/image/404ed70d-dcb9-4778-9be4-fad912321d5b"}
         }
     }
 }
