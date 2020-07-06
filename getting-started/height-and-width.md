@@ -84,7 +84,7 @@ rendered inside the default viewport.
 Every device has a **DPR (device pixel ratio)**. Higher quality screens will have a 2x or higher DPR. This means, for crip/clear images, they need 2x or 3x as many pixels
 as a traditional, lower resolution screen.
 
-- We render all images **@2X** by default. 
+- We render HTML/CSS images **@2X** by default. 
 - This results in a high quality image that will work well with any monitor. 
 - When specifying **400px** in your HTML, the resulting image will be **800px** to account for high resolution screens.
 

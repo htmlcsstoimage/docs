@@ -3,7 +3,7 @@ layout: page
 title: Integromat integration
 permalink: /getting-started/integromat-integration/
 parent: Getting started
-nav_order: 8
+nav_order: 7
 description: >-
   Convert HTML/CSS to an image (jpg, png or webp) with Integromat. Renders images
   exactly like Google Chrome.

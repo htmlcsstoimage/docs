@@ -45,6 +45,9 @@ async function redirectOrHandleEvent(event) {
     case "/getting-started/full-page-images":
       return Response.redirect(site + '/getting-started/convert-emails-images/', 301);
       break;
+    case "/getting-started/duplicate-image-detection":
+      return Response.redirect(site + '/guides/duplicate-image-detection/', 301);
+      break;
     case "/getting-started/faq":
       return Response.redirect(site + '/faq', 301);
       break;

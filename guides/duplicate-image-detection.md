@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Duplicate image detection
-permalink: /getting-started/duplicate-image-detection/
-parent: Getting started
+permalink: /guides/duplicate-image-detection/
+parent: Guides
 nav_order: 8
 description: >-
   Protecting your image quota from duplicate images.
@@ -28,7 +28,7 @@ The API will automatically detect if an API key is creating the same image repea
 
 ## URL Images
 
-Duplicate image detection is not enabled for images created from a URL. It only works for images generated with the `html` and `css` parameters.
+Duplicate image detection is not enabled for images created from a URL. It only works for images generated with the `html` parameter.
 
 
 {% include code_footer.md version=1 %}
