@@ -26,9 +26,11 @@ Table of contents
 
 ## Setting height & width in HTML
 
-When sending an HTML snippet to the API. The API will auto crop your image to the height/width of the **outermost HTML element**. For example, the following will generate a screenshot that is 400px wide and 200px tall.
+When sending an HTML snippet to the API it will auto crop your image to the height/width of the **outermost HTML element**. 
 
-**Note**: _This works for HTML snippets only. Full HTML pages will not automatically crop._
+- The following example will generate a screenshot that is 400px wide and 200px tall.
+
+**Note**: _This works for HTML snippets only. Full HTML pages (has `<html>` and `<body>` tags) will not automatically crop._
 
 <div class="code-example" markdown="1">
 <div class="hcti-container">
