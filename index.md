@@ -102,7 +102,7 @@ Your imagination is the only limit. We render HTML/CSS just like Google Chrome. 
 
 To see how they do it, [take a look at their code](https://github.com/thepracticaldev/dev.to/blob/master/app/controllers/social_previews_controller.rb) \(it's open source!\).
 
-### Product Hunt Makers Social Cards
+## Product Hunt Makers Social Cards
 
 <img
   alt="Product Hunt social card generated from HTML."
@@ -119,7 +119,7 @@ Product Hunt uses HTML/CSS to Image to dynamically generate social cards for Mak
 
 Source code for this example on [CodePen](https://codepen.io/ayrtonbe/pen/ZmWBMw).
 
-### Remote Stories Social Cards
+## Remote Stories Social Cards
 
 <img
   alt="Remote stories social card"
@@ -133,7 +133,7 @@ Source code for this example on [CodePen](https://codepen.io/ayrtonbe/pen/ZmWBMw
 
 Source code for this example on [CodePen](https://codepen.io/ayrtonbe/pen/pQLyKN).
 
-### Highlighted Text Shots
+## Highlighted Text Shots
 
 Generate images from your users comments. Add the ability to highlight and share.
 
@@ -149,7 +149,7 @@ Generate images from your users comments. Add the ability to highlight and share
 
 Source code for this example on [CodePen](https://codepen.io/mscccc/pen/yRzBWP).
 
-### Auto Generated Job Listing
+## Auto Generated Job Listing
 
 Generate images from job listings for sharing in emails, ads or social media.
 
@@ -165,7 +165,7 @@ Generate images from job listings for sharing in emails, ads or social media.
 
 Source code for this example on [CodePen](https://codepen.io/mscccc/pen/xyXKrj).
 
-### Full Webpage Screenshots
+## Full Webpage Screenshots
 
 Pass a URL or entire webpage to the API to generate a full page screenshot. Here we passed [stripe.com](https://stripe.com)'s to the API.
 
@@ -190,19 +190,6 @@ Once an image is generated, use query params to adjust to any size you need with
   ix-path="/assets/images/w400.jpeg"
   sizes="400px"
   loading="lazy"
-  ix-params='{
-    "w": 400,
-    "format": "auto"
-  }'>
-
-**?width=400&height=400**
-
-<img
-  alt="Adjust width and height"
-  loading="lazy"
-  ix-path="/assets/images/w400h400.jpeg"
-  loading="lazy"
-  sizes="400px"
   ix-params='{
     "w": 400,
     "format": "auto"
