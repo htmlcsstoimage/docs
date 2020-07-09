@@ -1109,6 +1109,10 @@ if (!_.manual) {
 	}
 }
 
+
+window.requestAnimationFrame(_.highlightAll);
+// _.highlightAll();
+
 return _;
 
 })(_self);

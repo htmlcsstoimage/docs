@@ -174,9 +174,17 @@ layout: table_wrappers
   {% javascript_asset_tag global %}
   - /assets/js/just-the-docs.js
   - /assets/js/lunr.js
-  - /assets/js/clipboard.min.js
-  - /assets/js/prism.js
   - /assets/js/imgix.min.js
+  {% endjavascript_asset_tag %}
+
+  <script>
+    window.Prism = window.Prism || {};
+    Prism.manual = true;
+  </script>
+
+  {% javascript_asset_tag highlighting %}
+  - /assets/js/prism.js
+  - /assets/js/clipboard.min.js
   {% endjavascript_asset_tag %}
 
   {% if jekyll.environment == "production" %}

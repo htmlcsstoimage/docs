@@ -23,6 +23,24 @@ module JekyllAssetPipeline
 end
 
 module JekyllAssetPipeline
+  class JsTagTemplate < JekyllAssetPipeline::Template
+    def self.filetype
+      '.js'
+    end
+
+    def html
+      file_path = "#{output_path}/#{@filename}"
+
+      if @filename.match? "highlighting"
+        return "<script src='#{file_path}' async defer type='text/javascript'></script>\n" \
+      end
+
+      "<script src='#{file_path}' type='text/javascript'></script>\n" \
+    end
+  end
+end
+
+module JekyllAssetPipeline
   class CssCompressor < JekyllAssetPipeline::Compressor
     require 'yui/compressor'
     require 'pry'

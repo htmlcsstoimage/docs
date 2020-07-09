@@ -41,6 +41,13 @@ plugins:
   - jekyll-octicons
   - jekyll-last-modified-at
 
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/images/html-css-to-image.png
+      description: "Convert HTML to an image (jpg, png, webp). Renders images exactly like Google Chrome. Works with PHP, JavaScript, Ruby, .NET and more."
+
 last_edit_timestamp: true
 last_edit_time_format: "%b %e %Y at %I:%M %p" # uses ruby's time format: https://ruby-doc.org/stdlib-2.7.0/libdoc/time/rdoc/Time.html
 

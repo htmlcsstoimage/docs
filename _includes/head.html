@@ -15,7 +15,15 @@
 
   <link rel="stylesheet" href="{{ '/assets/css/just-the-docs-default.css' | absolute_url }}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@htmlcsstoimage">
+  <meta name="twitter:title" content="{{ page.title }}">
+  {% if page.description %}
+    <meta name="twitter:description" content="{{ page.description }}">
+  {% else %}
+    <meta name="twitter:description" content="The API for generating pixel perfect images from HTML/CSS.">
+  {% endif %}
+  <meta name="twitter:image" content="{{ page.image | absolute_url }}">
   {% seo %}
 
   {% include head_custom.html %}

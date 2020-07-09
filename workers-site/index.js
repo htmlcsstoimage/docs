@@ -57,6 +57,9 @@ async function redirectOrHandleEvent(event) {
     case "/advanced-examples/rendering-emoji":
       return Response.redirect(site + '/guides/rendering-emoji', 301);
       break;
+    case "/advanced-examples/image-charts-with-highcharts":
+      return Response.redirect(site + '/guides/image-charts-with-highchartsjs', 301);
+      break;
     case "/advanced-examples/transparent-background":
       return Response.redirect(site + '/guides/transparent-background', 301);
       break;
