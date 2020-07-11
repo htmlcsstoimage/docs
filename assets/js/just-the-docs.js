@@ -53,30 +53,14 @@ function initNav() {
 
 function initSearch() {
   var request = new XMLHttpRequest();
-  request.open('GET', 'https://docs.htmlcsstoimage.com/assets/js/search-data.json', true);
+  request.open('GET', 'assets/js/search-index.json', true);
 
   request.onload = function(){
     if (request.status >= 200 && request.status < 400) {
-      var docs = JSON.parse(request.responseText);
-      
+      var searchData = JSON.parse(request.responseText);
       lunr.tokenizer.separator = /[\s\-/]+/
-
-      var index = lunr(function(){
-        this.ref('id');
-        this.field('title', { boost: 200 });
-        this.field('content', { boost: 2 });
-        this.field('relUrl');
-        this.metadataWhitelist = ['position']
-
-        for (var i in docs) {
-          this.add({
-            id: i,
-            title: docs[i].title,
-            content: docs[i].content,
-            relUrl: docs[i].relUrl
-          });
-        }
-      });
+      var index = lunr.Index.load(searchData["index"])
+      var docs = searchData["docs"]
 
       searchLoaded(index, docs);
     } else {
