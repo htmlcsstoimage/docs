@@ -36,3 +36,7 @@ jobs:
       run: JEKYLL_ENV=production bundle exec jekyll build
     - name: Generate search index
       run: node searchIndex.js
+    - name: Publish
+      uses: cloudflare/wrangler-action@1.2.0
+      with:
+        apiToken: ${{ secrets.CF_API_TOKEN }}
