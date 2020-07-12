@@ -33,6 +33,6 @@ jobs:
         bundle config path vendor/bundle
         bundle install --jobs 4 --retry 3
     - name: Build site
-      run: JEKYLL_ENV=production jekyll build
+      run: JEKYLL_ENV=production bundle exec jekyll build
     - name: Generate search index
       run: node searchIndex.js
