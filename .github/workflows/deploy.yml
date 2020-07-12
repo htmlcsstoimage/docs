@@ -34,3 +34,5 @@ jobs:
         bundle install --jobs 4 --retry 3
     - name: Build site
       run: JEKYLL_ENV=production jekyll build
+    - name: Generate search index
+      run: node searchIndex.js
