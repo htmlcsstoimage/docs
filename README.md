@@ -28,6 +28,6 @@ bundle exec jekyll serve --livereload
 ```
 
 ## Production
-![Deploy](https://github.com/htmlcsstoimage/docs/workflows/Deploy/badge.svg)
+[![](https://github.com/htmlcsstoimage/docs/workflows/Deploy/badge.svg)](https://github.com/htmlcsstoimage/docs/actions)
 
-Docs are built and deployed with GitHub Actions. Served by a Cloudflare Worker.
+Docs are built and deployed with GitHub Actions.
