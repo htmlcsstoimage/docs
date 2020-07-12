@@ -26,3 +26,8 @@ bundle install
 ```
 bundle exec jekyll serve --livereload
 ```
+
+## Production
+![Deploy](https://github.com/htmlcsstoimage/docs/workflows/Deploy/badge.svg)
+
+Docs are built and deployed with GitHub Actions. Served by a Cloudflare Worker.
