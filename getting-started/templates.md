@@ -3,7 +3,7 @@ layout: page
 title: Image Templates
 permalink: /getting-started/templates/
 description: >-
-  Create a template for your HTML & CSS to make image generation easy.
+  Create a re-usable templates for your HTML & CSS to make image generation easy.
 parent: Getting started
 nav_order: 5
 ---
@@ -11,10 +11,10 @@ nav_order: 5
 {: .no_toc }
 {: .fs-9 }
 
-Create re-usable templates SOMETHING SOMETHING.
+Create re-usable templates to make image generation easy.
 {: .fs-6 .fw-300 }
 
-[Get an API Key](https://htmlcsstoimage.com){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Get an API Key](https://htmlcsstoimage.com){: .btn .btn-blue .fs-5 .mb-4 .mb-md-0 }
 
 <hr>
 
@@ -25,15 +25,46 @@ Table of contents
 
 <hr>
 
-# Template Structure
+- Use templates to simplify your image creation. 
+- Define a reusable template, then pass variables to it to generate unique images.
+
+<div class="code-example" markdown="1">
+  <div class="hcti-container">
+    <img
+      alt="Example of an image template"
+      loading="lazy"
+      ix-path="/assets/images/template.png"
+      sizes="400px"
+      ix-params='{
+        "w": 400,
+        "format": "auto"
+      }'>
+  </div>
+</div>
+```html
+{% raw %}
+<div class="p-4 text-center mt-4" style="width: 500px">
+  <span class="tweet-text mb-4">
+    {{text}}
+  </span>
+  <div class="mt-2 p-4">
+    <img src="{{avatar_url}}" class="rounded-circle shadow border mt-4" width="100px">
+  </div>
+  <h4 class="mt-2">
+    {{name}}
+  </h4>
+  <span class="text-muted">{{username}}</span>
+</div>
+{% endraw %}
+```
+
+## Template Structure
 A template is very similar to an Image for the API, but allows you to include {% raw %} `{{placeholders}}` {% endraw %} to be substituted at the time of image creation. 
-
-
 
 Internally, we use [handlebars](https://handlebarsjs.com/) to parse your templates and variables. While we do not support the full functionality currently, we are always improving the API based on customer feedback. Feel free to email us at **support@htmlcsstoimage.com**.
 
 
-# Creating a Template
+## Creating a Template
 
 To generate a template, make an HTTP request to the API.
 
@@ -108,7 +139,7 @@ STATUS: 429 TOO MANY REQUESTS
 {% include hint.md title="Plan Limits" text="Plans include a limited number of different templates. See PRICING LINK for details. You can edit your existing templates though, as explained below. LINK TO BELOW" %}
 <hr>
 
-# Editing a Template
+## Editing a Template
 
 To edit a template you've already made, make an HTTP request to the API with the <b>template_id</b> listed in the CREATE response LINK TO ABOVE.
 
@@ -146,7 +177,7 @@ Optional parameters for greater control over your image.
 
 <hr>
 
-# Creating an image with a template
+## Creating an image with a template
 
 To generate a templated image, make an HTTP request to the API using the <b>template_id</b> listed in the CREATE response LINK TO ABOVE.
 
@@ -169,14 +200,14 @@ The create templated image endpoint accepts the following parameters, accepted a
 <hr>
 
 
-# Listing your templates
+## Listing your templates
 
 
-# Listing your template versions
+## Listing your template versions
 
 
 
-# Example
+## Example
 
 {% raw %}
 ```javascript
@@ -206,7 +237,4 @@ LINK TO FULL CODEPEN
   }'>
 
 
-
-## Need help getting started?
-
-We'd be happy to walk you through getting started. Send us an email: **support@htmlcsstoimage.com**. We're experts at generating images and will help you get going using the API.
+{% include code_footer.md version=2 %}
