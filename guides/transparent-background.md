@@ -3,7 +3,7 @@ layout: page
 title: Transparent background
 permalink: /guides/transparent-background/
 parent: Guides
-nav_order: 8
+nav_order: 1
 description: >-
   Learn how to render an image with a transparent background. HTML/CSS to Image API.
 ---

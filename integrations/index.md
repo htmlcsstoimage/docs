@@ -1,16 +1,16 @@
 ---
 layout: default
-title: Getting started
-permalink: /getting-started/
-nav_order: 2
-expanded: true
+title: Integrations
+permalink: /integrations/
+nav_order: 4
+expanded: false
 has_children: true
 ---
-# Getting started
+# Integrations
 {: .no_toc }
 {: .fs-9 }
 
-Start here to learn how to use the HTML/CSS to Image API.
+Connect the HTML/CSS to Image API to thousands of other services.
 {: .fs-4 .fw-300 }
 
 [Live demo](https://htmlcsstoimage.com/demo){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }

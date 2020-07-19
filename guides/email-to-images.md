@@ -1,9 +1,9 @@
 ---
 layout: page
 title: Convert email to images
-permalink: /getting-started/convert-emails-images/
-parent: Getting started
-nav_order: 8
+permalink: /guides/convert-emails-images/
+parent: Guides
+nav_order: 1
 description: >-
   Convert HTML emails into images (png, jpg) with HTML/CSS to Image
 ---

@@ -77,7 +77,7 @@ To get started quickly, take a look at our example code.
 - [Curl](/example-code/curl)
 - [VB.NET](/example-code/vb.net)
 
-Prefer #NoCode? We also integrate with **[Zapier](getting-started/zapier-integration)** and **[Integromat](getting-started/integromat-integration)**.
+Prefer #NoCode? We also integrate with **[Zapier](integrations/zapier)** and **[Integromat](integrations/integromat)**.
 
 {% include hint.md title="Works with any language" text="Your favorite language not here? Don't worry, we work with any language or framework. See the [curl](example-code/curl.md) example for how to make a request. [Email us](mailto:support@htmlcsstoimage.com) if you need help getting started. We'd love to add more example code here." %}
 

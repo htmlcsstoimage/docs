@@ -12,14 +12,17 @@
   {%- for node in pages_list -%}
     {%- unless node.nav_exclude -%}
       {%- if node.parent == nil and node.title -%}
-        <li class="nav-list-item active {% if page.url == node.url or page.parent == node.title or page.grand_parent == node.title %} active{% endif %}">
+        <li class="nav-list-item {% if node.expanded or page.url == node.url or page.parent == node.title or page.grand_parent == node.title %} active{% endif %}">
           {%- if page.parent == node.title or page.grand_parent == node.title -%}
             {%- assign first_level_url = node.url | absolute_url -%}
           {%- endif -%}
           {%- if node.has_children -%}
-            <a href="{{ node.url | absolute_url }}" class="text-delta mb-0 nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
+            {%- if node.expanded != true -%}
+              <a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a>
+            {%- endif -%}
+            <a href="{{ node.url | absolute_url }}" class="mb-0 nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
           {%- else -%}
-            <a href="{{ node.url | absolute_url }}" class="nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a> 
+            <a href="{{ node.url | absolute_url }}" class="nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
           {%- endif -%}
           {%- if node.has_children -%}
             {%- assign children_list = pages_list | where: "parent", node.title -%}

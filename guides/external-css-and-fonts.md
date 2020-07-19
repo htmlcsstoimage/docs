@@ -3,7 +3,7 @@ layout: page
 title: External CSS, JavaScript & Fonts
 permalink: /guides/external-css-js-and-fonts/
 parent: Guides
-nav_order: 7
+nav_order: 3
 description: >-
   Learn how to use CSS, JavaScript and fonts in your images.
 ---

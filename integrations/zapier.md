@@ -1,9 +1,9 @@
 ---
 layout: page
 title: Zapier integration
-permalink: /getting-started/zapier-integration/
-parent: Getting started
-nav_order: 7
+permalink: /integrations/zapier/
+parent: Integrations
+nav_order: 1
 description: >-
   Convert HTML/CSS to an image (jpg, png or webp) with Zapier. Renders images
   exactly like Google Chrome.

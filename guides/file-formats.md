@@ -1,9 +1,9 @@
 ---
 layout: page
 title: File formats
-permalink: /getting-started/file-formats/
-parent: Getting started
-nav_order: 5
+permalink: /guides/file-formats/
+parent: Guides
+nav_order: 2
 ---
 # File formats
 {: .no_toc }

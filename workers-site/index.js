@@ -75,6 +75,18 @@ async function redirectOrHandleEvent(event) {
     case "/advanced-examples/twitter-embed":
       return Response.redirect(site + '/guides/twitter-embed/', 301);
       break;
+    case "/getting-started/integromat-integration":
+      return Response.redirect(site + '/integrations/integromat/', 301);
+      break;
+    case "/getting-started/zapier-integration":
+      return Response.redirect(site + '/integrations/zapier/', 301);
+      break;
+    case "/getting-started/convert-emails-images":
+      return Response.redirect(site + '/guides/convert-emails-images/', 301);
+      break;
+    case "/getting-started/file-formats":
+      return Response.redirect(site + '/guides/file-formats/', 301);
+      break;
     default:
       return await handleEvent(event);
       break;
