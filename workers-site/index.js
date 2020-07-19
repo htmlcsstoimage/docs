@@ -26,7 +26,7 @@ addEventListener('fetch', event => {
 
 async function redirectOrHandleEvent(event) {
   var url = new URL(event.request.url);
-  var path = url.pathname;
+  var path = url.pathname.replace(/\/$/, "");
   var site = "https://docs.htmlcsstoimage.com";
 
   switch(path) {
