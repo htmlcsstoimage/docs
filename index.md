@@ -181,6 +181,18 @@ Pass a URL or entire webpage to the API to generate a full page screenshot. Here
     "format": "auto"
   }'>
 
+### Screenshot part of a page
+Use the `selector` param to focus on a [specific part of a page](/getting-started/url-to-image/#screenshot-part-of-a-page-with-selector).
+
+<img
+  alt="Use a CSS selector to crop an image"
+  ix-path="/assets/images/url-selector-example.png"
+  sizes="600px"
+  ix-params='{
+    "w": 600,
+    "format": "auto"
+  }'>
+
 ### Resize on the Fly
 
 Once an image is generated, use query params to adjust to any size you need with the **width** and **height** params. When only one param is passed, the API will maintain the aspect ratio of the original image.
