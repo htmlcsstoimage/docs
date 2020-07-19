@@ -136,7 +136,7 @@ STATUS: 429 TOO MANY REQUESTS
     "message": "The tryit plan is limited to 1 template"
 }
 ```
-{% include hint.md title="Plan Limits" text="Plans include a limited number of different templates. See PRICING LINK for details. You can edit your existing templates though, as explained below. LINK TO BELOW" %}
+{% include hint.md title="Plan Limits" text="Plans include a limited number of different templates. See [pricing](https://htmlcsstoimage.com/pricing) for details. You can edit your existing templates an unlimited number of times." %}
 <hr>
 
 ## Editing a Template
@@ -179,22 +179,22 @@ Optional parameters for greater control over your image.
 
 ## Creating an image with a template
 
-To generate a templated image, make an HTTP request to the API using the <b>template_id</b> listed in the CREATE response LINK TO ABOVE.
+To generate a templated image, make an HTTP request to the API using the <b>template_id</b> listed in the [CREATE response](#example-responses).
 
 <pre class="http-method fs-4">
   <span>post</span> https://hcti.io/v1/image/<b>:template_id</b>
 </pre>
 
-{% include hint.md title="Template Versions" text="When you create an image using a template_id, it will automatically utilize the most recent version of that template. If you want to tie an image to a specific template_version you can append `/:template_version` to your POST: https://hcti.io/v1/image/:template_id/<b>:template_version</b>" %}
+{% include hint.md title="Template Versions" text="When you create an image using a `template_id`, it will automatically utilize the most recent version of that template. If you want to create an image from a specific template_version you can append `/:template_version` to your POST: `hcti.io/v1/image/:template_id/:template_version`" %}
 
 ### Parameters
 
 The create templated image endpoint accepts the following parameters, accepted as either `json` or `formdata`. 
-- If you use `formdata`, your `template_params` need to be JSON encoded. 
+- If you use `formdata`, your `template_values` need to be JSON encoded. 
 
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
-| **template_params**<span class="text-red-200">*</span>           | `Object` / `String`  | These are the variables that you will substitute in your template's HTML. |
+| **template_values**<span class="text-red-200">*</span>           | `Object` / `String`  | These are the variables that will be substituted in your template's HTML. |
 
 
 <hr>
