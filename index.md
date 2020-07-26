@@ -1,6 +1,6 @@
 ---
 title: HTML/CSS to Image API
-layout: home
+layout: default
 nav_order: 1
 ---
 

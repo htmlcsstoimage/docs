@@ -25,9 +25,29 @@ Table of contents
 
 <hr>
 
-- Use templates to simplify your image creation. 
-- Define a reusable template, then pass variables to it to generate unique images.
+## What are Templates?
 
+A template allows you to define HTML that includes **variables** to be substituted at the time of image creation. 
+
+### Handlebars variables
+Templates support [handlebars](https://handlebarsjs.com/) variables. This allows you to place {% raw %} `{{title_text}}` {% endraw %} in your HTML.
+Then have that replaced with any value you'd like while creating your image.
+
+### Common usecases
+- Define a reusable template, then pass variables to it to generate unique images.
+- Create images using signed urls in a `GET` request (no need to POST and store the URL).
+- Useful for social sharing images. Such as `og:image` or `twitter:image`.
+
+### Example
+This image was generated with a template.
+```javascript
+{ 
+  "text": "With templates, you can use variables to replace parts of your image.",
+  "avatar_url": "https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairDreads01&accessoriesType=Round&hairColor=BrownDark&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=BlazerShirt&eyeType=Happy&eyebrowType=DefaultNatural&mouthType=Eating&skinColor=Brown",
+  "name": "Freddy",
+  "username": "@freddy",
+}
+```
 <div class="code-example" markdown="1">
   <div class="hcti-container">
     <img
@@ -41,6 +61,8 @@ Table of contents
       }'>
   </div>
 </div>
+HTML:
+{: .text-delta }
 ```html
 {% raw %}
 <div class="p-4 text-center mt-4" style="width: 500px">
@@ -57,12 +79,6 @@ Table of contents
 </div>
 {% endraw %}
 ```
-
-## Template Structure
-A template is very similar to an Image for the API, but allows you to include {% raw %} `{{placeholders}}` {% endraw %} to be substituted at the time of image creation. 
-
-Internally, we use [handlebars](https://handlebarsjs.com/) to parse your templates and variables. While we do not support the full functionality currently, we are always improving the API based on customer feedback. Feel free to email us at **support@htmlcsstoimage.com**.
-
 
 ## Creating a Template
 
@@ -103,7 +119,7 @@ Optional parameters for greater control over your image.
 
 ### Example responses
 ```
-STATUS: 200 CREATED
+STATUS: 201 CREATED
 ```
 
 ```javascript
@@ -171,6 +187,7 @@ Optional parameters for greater control over your image.
 | **selector**  | `String` | A CSS selector for an element on the webpage. We'll crop the image to this specific element. For example: `section#complete-toolkit.container-lg` |
 | **ms_delay**   | `Integer` | The number of milliseconds the API should delay before generating the image. This is useful when waiting for JavaScript. We recommend starting with `500`. Large values slow down the initial render time.|
 | **device_scale**   | `Double` | This adjusts the pixel ratio for the screenshot. Minimum: `1`, Maximum: `3`. |
+| **render_when_ready**   | `Boolean` | Set to true to control when the image is generated. Call `ScreenshotReady()` from JavaScript to generate the image. [Learn more](/guides/render-when-ready/). |
 | **viewport_width**   | `Integer` | Set the width of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
 | **viewport_height**   | `Integer` | Set the height of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
 
@@ -194,47 +211,90 @@ The create templated image endpoint accepts the following parameters, accepted a
 
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
-| **template_values**<span class="text-red-200">*</span>           | `Object` / `String`  | These are the variables that will be substituted in your template's HTML. |
-
+| **template_values**<span class="text-red-200">*</span>           | `JSON`  | These are the variables that will be substituted in your template's HTML. |
 
 <hr>
 
 
 ## Listing your templates
 
+To list all of your templates, send a get to `v1/template`. Authentication is required.
+
+<pre class="http-method fs-4">
+  <span>get</span> https://hcti.io<b>/v1/template</b>
+</pre>
+
+### Example responses
+```
+STATUS: 200 OK
+```
+
+```javascript
+{
+  "data": [
+    {
+      "css": null,
+      "created_at": "2020-07-19T17:16:43.987+00:00",
+      "description": null,
+      "device_scale": 2.0,
+      "google_fonts": null,
+      "html": "<blockquote class=\"twitter-tweet\" style=\"width: 400px;\" data-dnt=\"true\">\n<p lang=\"en\" dir=\"ltr\"></p>\n\n<a href=\"{{tweet_link}}\"></a>\n\n</blockquote> <script async src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>",
+      "id": "t-5ff7b966-d32c-4143-bda3-57a440e97a80",
+      "max_wait_ms": null,
+      "ms_delay": 1500,
+      "name": null,
+      "render_when_ready": null,
+      "updated_at": "2020-07-19T17:16:43.987+00:00",
+      "version": 1595179003987,
+      "viewport_height": null,
+      "viewport_width": null
+    }
+  ],
+  "pagination": {
+    "next_page_start": null
+  }
+}
+```
 
 ## Listing your template versions
 
+To list all versions of a template, send a get to `v1/template/:template_id`. Authentication is required.
+
+<pre class="http-method fs-4">
+  <span>get</span> https://hcti.io<b>/v1/template/:template_id</b>
+</pre>
 
 
-## Example
-
-{% raw %}
-```javascript
-<div class="card">
-<div class="card-logo">
-  <img src="{{logo_url}}" style="width:50px">
-  </div>
-  <div class="container">
-  <img src="{{avatar_url}}" height="80px" class="avatar">
-  <div class="text">
-    <h4><b>{{name}}</b></h4>  
-    <p>{{title}}</p>
-    </div>
-  </div>
-</div>
+### Example responses
 ```
-{% endraw %}
-LINK TO FULL CODEPEN
+STATUS: 200 OK
+```
 
-<img
-  alt="Screenshot of template example"
-  ix-path="/assets/images/template_example.png"
-  sizes="200px"
-  ix-params='{
-    "w": 200,
-    "format": "auto"
-  }'>
-
+```javascript
+{
+  "data": [
+    {
+      "css": null,
+      "created_at": "2020-07-19T17:16:43.987+00:00",
+      "description": null,
+      "device_scale": 2.0,
+      "google_fonts": null,
+      "html": "<blockquote class=\"twitter-tweet\" style=\"width: 400px;\" data-dnt=\"true\">\n<p lang=\"en\" dir=\"ltr\"></p>\n\n<a href=\"{{tweet_link}}\"></a>\n\n</blockquote> <script async src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>",
+      "id": "t-5ff7b966-d32c-4143-bda3-57a440e97a80",
+      "max_wait_ms": null,
+      "ms_delay": 1500,
+      "name": null,
+      "render_when_ready": null,
+      "updated_at": "2020-07-19T17:16:43.987+00:00",
+      "version": 1595179003987,
+      "viewport_height": null,
+      "viewport_width": null
+    }
+  ],
+  "pagination": {
+    "next_page_start": null
+  }
+}
+```
 
 {% include code_footer.md version=2 %}
