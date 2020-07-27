@@ -1,3 +1,13 @@
+body {
+  background-color: $sidebar-color;
+}
+
+.main {
+  background-color: white;
+  border-right: $border $border-color;
+  height: 100%;
+}
+
 .site-button {
   &:hover {
     background-color: unset;
