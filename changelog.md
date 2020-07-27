@@ -24,6 +24,16 @@ If you have feature requests, please send them to us: support@htmlcsstoimage.com
 
 <hr>
 
+### Template API
+July 27, 2020
+{: .text-delta}
+The Template API is now available. With templates, you can create re-usable HTML that contains variables.
+These variables can be replaced when creating an image, making for even simpler image generation.
+
+- [HTML/CSS to Image Template API](getting-started/templates/)
+
+<hr>
+
 ### Render when ready
 July 26, 2020
 {: .text-delta}
