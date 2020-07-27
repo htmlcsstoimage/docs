@@ -82,8 +82,15 @@ We have added the `ms_delay` parameter. Allowing you to specify how long you wan
 <hr>
 
 ### Deleting images
-December 12, 2020
+December 12, 2019
 {: .text-delta}
 We have added the [Delete endpoint](/getting-started/using-the-api/#deleting-an-image). You can now delete an image and it will be completely removed from our servers. Requests to the image URL will return 410.
+
+<hr>
+
+### Integromat integration
+November 29, 2019
+{: .text-delta}
+Our [Integromat integration](/integrations/integromat) is now available. You can use the integration to connect HTML/CSS to Image with the thousands of integrations available on Integromat.
 
 <hr>
