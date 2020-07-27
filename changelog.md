@@ -25,7 +25,7 @@ If you have feature requests, please send them to us: support@htmlcsstoimage.com
 <hr>
 
 ### Render when ready
-July 28, 2020
+July 26, 2020
 {: .text-delta}
 We have added the [`render_when_ready` parameter to image creation](guides/render-when-ready/). This gives you control over when the image is rendered.
 
