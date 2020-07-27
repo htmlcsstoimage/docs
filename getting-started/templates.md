@@ -152,12 +152,12 @@ STATUS: 429 TOO MANY REQUESTS
     "message": "The tryit plan is limited to 1 template"
 }
 ```
-{% include hint.md title="Plan Limits" text="Plans include a limited number of different templates. See [pricing](https://htmlcsstoimage.com/pricing) for details. You can edit your existing templates an unlimited number of times." %}
+{% include hint.md title="Plan Limits" text="Free plans can create 1 template. Paid plans can create 1,000. You can edit your existing templates an unlimited number of times." %}
 <hr>
 
 ## Editing a Template
 
-To edit a template you've already made, make an HTTP request to the API with the <b>template_id</b> listed in the CREATE response LINK TO ABOVE.
+To edit a template you've already made, make an HTTP request to the API with the <b>template_id</b> listed in the CREATE response.
 
 <pre class="http-method fs-4">
   <span>post</span> https://hcti.io<b>/v1/template/:template_id</b>
