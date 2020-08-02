@@ -23,7 +23,8 @@
   {% else %}
     <meta name="twitter:description" content="The API for generating pixel perfect images from HTML/CSS.">
   {% endif %}
-  <meta name="twitter:image" content="{{ page.image | absolute_url }}">
+  <meta name="twitter:image" content="{% hcti_image_url {"template_id":"t-9f6526a7-aa2c-4fbb-8723-06eff1c60e89", "title": "{{page.title}}"} %}">
+  <meta name="og:image" content="{% hcti_image_url {"template_id":"t-9f6526a7-aa2c-4fbb-8723-06eff1c60e89", "title": "{{page.title}}"} %}">
   {% seo %}
 
   {% include head_custom.html %}
