@@ -35,9 +35,9 @@ jobs:
         bundle config path vendor/bundle
         bundle install --jobs 4 --retry 3
     - name: Build site
-      run: JEKYLL_ENV=production bundle exec jekyll build
-      with:
+      env:
         HCTI_API_KEY: ${{ secrets.HCTI_API_KEY }}
+      run: JEKYLL_ENV=production bundle exec jekyll build
     - name: Generate search index
       run: node searchIndex.js
     - name: Publish
