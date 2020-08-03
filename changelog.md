@@ -24,6 +24,13 @@ If you have feature requests, please send them to us: support@htmlcsstoimage.com
 
 <hr>
 
+### Integromat updates
+August 3, 2020
+{: .text-delta}
+We've added additional parameters to the Integromat integration. You can now use `selector`, `ms_delay` and `device_scale`.
+
+- [HTML/CSS to Image Integromat Integration](integrations/integromat/)
+
 ### Template API
 July 27, 2020
 {: .text-delta}
