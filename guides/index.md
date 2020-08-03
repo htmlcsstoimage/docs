@@ -4,6 +4,9 @@ title: Guides
 permalink: /guides/
 nav_order: 5
 has_children: true
+description: >-
+  Use these guides to get started converting images with HTML/CSS to Image.
+---
 ---
 # Guides
 {: .no_toc }

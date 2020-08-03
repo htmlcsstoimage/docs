@@ -5,7 +5,7 @@ permalink: /guides/image-charts-with-highchartsjs/
 parent: Guides
 nav_order: 8
 description: >-
-  Convert Highcharts.js charts to an image (png, jpg) with HTML/CSS to Image.
+  Learn how to convert Highcharts.js charts to an image (png, jpg) with HTML/CSS to Image.
 ---
 # Image charts with Highcharts.js
 {: .no_toc }

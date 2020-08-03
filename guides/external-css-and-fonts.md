@@ -5,7 +5,7 @@ permalink: /guides/external-css-js-and-fonts/
 parent: Guides
 nav_order: 3
 description: >-
-  Learn how to use CSS, JavaScript and fonts in your images.
+  Learn how to use external CSS, JavaScript and fonts when generating your images.
 ---
 # External CSS, JavaScript & Fonts
 {: .no_toc }

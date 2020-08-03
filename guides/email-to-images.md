@@ -5,7 +5,7 @@ permalink: /guides/convert-emails-images/
 parent: Guides
 nav_order: 1
 description: >-
-  Convert HTML emails into images (png, jpg) with HTML/CSS to Image
+  Learn how to convert HTML emails into images (png, jpg) with HTML/CSS to Image. Works with Zapier, Integromat and any programming language. PHP, Ruby, JavaScript.
 ---
 # Convert HTML emails to images
 {: .no_toc }

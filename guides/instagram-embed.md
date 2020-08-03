@@ -5,7 +5,7 @@ permalink: /guides/instagram-embed/
 parent: Guides
 nav_order: 4
 description: >-
-  Convert an Instagram post into an image.
+  Learn how to automate converting an Instagram post into an image. Works with Zapier and any programming language. Ruby, PHP, JavaScript.
 ---
 # Convert an Instagram post into an image
 {: .no_toc }

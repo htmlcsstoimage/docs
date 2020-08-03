@@ -5,7 +5,7 @@ permalink: /guides/converting-base64-to-image/
 parent: Guides
 nav_order: 10
 description: >-
-  Convert base64 to a PNG or JPG with HTML/CSS to Image
+  Learn to convert base64 into a PNG or JPG with the HTML/CSS to Image API
 ---
 # Convert base64 to an image
 {: .no_toc }

@@ -5,7 +5,7 @@ permalink: /guides/duplicate-image-detection/
 parent: Guides
 nav_order: 8
 description: >-
-  Protecting your image quota from duplicate images.
+  Protecting your image quota from duplicate images. HTML/CSS to Image API.
 ---
 # Duplicate image detection
 {: .no_toc }

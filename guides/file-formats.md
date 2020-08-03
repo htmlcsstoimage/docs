@@ -4,6 +4,8 @@ title: File formats
 permalink: /guides/file-formats/
 parent: Guides
 nav_order: 2
+description: >-
+  HTML/CSS to Image supports converting html into png, jpg or webp. Learn how to specify the format of your image.
 ---
 # File formats
 {: .no_toc }

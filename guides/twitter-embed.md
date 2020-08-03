@@ -5,7 +5,7 @@ permalink: /guides/twitter-embed/
 parent: Guides
 nav_order: 4
 description: >-
-  Automatically generate a screenshot of a tweet with code.
+  Learn how to automatically generate a screenshot of a tweet with HTML/CSS to Image. This works with Zapier, Integromat or any programming language. JavaScript, PHP, Python, Ruby.
 ---
 # Screenshot a Tweet
 {: .no_toc }
