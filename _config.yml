@@ -77,8 +77,6 @@ aux_links:
     - "https://htmlcsstoimage.com"
   "Demo":
     - "https://htmlcsstoimage.com/demo"
-  "Pricing":
-    - "https://htmlcsstoimage.com/pricing"
 
 # Exclude from processing.
 # The following items will not be processed, by default.
