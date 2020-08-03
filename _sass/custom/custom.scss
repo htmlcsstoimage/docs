@@ -76,7 +76,7 @@ img {
     color: $grey-dk-200;
   }
   background: linear-gradient(140deg, rgba(245,246,250,0.30) 0%, rgba(245,246,250,1) 61%);
-  border-left: 4px solid $blue-000;
+  border: 1px solid $grey-lt-100;
   border-radius: 4px;
   box-sizing: border-box;
   margin-bottom: .75rem;
@@ -87,15 +87,16 @@ img {
 
 .http-method {
   span {
-    background-color: $blue-100;
+    background-color: $grey-lt-100;
     border-radius: 3px;
     box-sizing: border-box;
-    color: #fff;
+    color: black;
     padding: 4px 8px;
     text-transform: uppercase;
   }
   color: $grey-dk-200;
   border-color: none;
+  border-left: solid $blue-100 4px;
   background-color: $code-background-color;
   background: linear-gradient(140deg, rgba(245,246,250,0.50) 0%, rgba(245,246,250,1) 61%);
   border-radius: 3px;
@@ -103,7 +104,7 @@ img {
   line-height: 1.45;
   margin-bottom: 16px;
   margin-top: 10px;
-  padding: 10px;
+  padding: 8px;
   padding-top: 16px;
   padding-bottom: 16px;
 }
