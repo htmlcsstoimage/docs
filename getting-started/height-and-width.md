@@ -56,14 +56,14 @@ Margins are respected by the auto crop. To add some space around your image, you
 
 <div class="hcti-container">
   <div style="height: 200px; width: 400px; margin: 20px; border: 1px solid; text-align: center; background-color: white;">
-    <h1>Hello, world</h1>
+    <h2>Height and width example</h2>
   </div>
 </div>
 
 </div>
 ```html
 <div style="height: 200px; width: 400px; margin: 20px; border: 1px solid; text-align: center;">
-  <h1>Hello, world</h1>
+  <h2>Height and width example</h2>
 </div>
 ```
 
