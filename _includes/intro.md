@@ -3,8 +3,7 @@
 {: .fs-9 }
 
 Generate a png, jpg or webp images with {{ include.language }}. Renders exactly like Google Chrome.
-Want to see how it works? Give the live demo a try.
-{: .fs-4 .fw-300 }
+{: .fs-3 .fw-300 }
 
 [Live demo](https://htmlcsstoimage.com/demo){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 target="_blank" }
 [Get an API Key](https://htmlcsstoimage.com){: .btn .fs-5 .mb-4 .mb-md-0 target="_blank" }
