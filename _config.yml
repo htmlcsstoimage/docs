@@ -43,7 +43,6 @@ defaults:
   - scope:
       path: ""
     values:
-      image: /assets/images/html-css-to-image.png
       description: "Convert HTML to an image (jpg, png, webp). Renders images exactly like Google Chrome. Works with PHP, JavaScript, Ruby, .NET and more."
 
 last_edit_timestamp: true
