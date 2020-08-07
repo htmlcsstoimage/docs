@@ -23,6 +23,13 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
 <hr>
+### Ruby Client released
+August 7, 2020
+{: .text-delta}
+We have released the first version of our new ruby client. This allows for easier integration with the API using Ruby.
+
+- [HTML/CSS to Image Ruby Client](https://github.com/htmlcsstoimage/ruby-client)
+
 
 ### Integromat updates
 August 3, 2020
