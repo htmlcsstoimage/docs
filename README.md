@@ -24,8 +24,10 @@ bundle install
 2. Start the development server
 
 ```
-bundle exec jekyll serve --livereload
+HCTI_API_KEY=key bundle exec jekyll serve --livereload
 ```
+
+`HCTI_API_KEY` is only required to be set for production. You can set it to a fake value for development.
 
 ## Production
 [![](https://github.com/htmlcsstoimage/docs/workflows/Deploy/badge.svg)](https://github.com/htmlcsstoimage/docs/actions)
