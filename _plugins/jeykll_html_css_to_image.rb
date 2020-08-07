@@ -1,13 +1,11 @@
 require "json"
 require 'pry'
 require 'pry-byebug'
-require "addressable"
+require "htmlcsstoimage"
 
 module Jekyll
   class HtmlCssToImageTag < Liquid::Tag
     attr_reader :input, :template_params, :template_id
-
-    URI_TEMPLATE = Addressable::Template.new("https://hcti.io/v1/image/{template_id}/{signed_token}{/format*}{?query*}")
 
     def initialize(tag_name, input, tokens)
       super
@@ -20,18 +18,10 @@ module Jekyll
       @template_params = input
       @template_params.delete("template_id")
 
-      template = URI_TEMPLATE.partial_expand({
-        template_id: template_id,
-        query: template_params
-      })
+      client = HTMLCSSToImage.new(api_key: hcti_key(context))
+      image = client.create_image_from_template(template_id, @template_params)
 
-      query = Addressable::URI.parse(template.generate).query
-      digest = OpenSSL::Digest.new('sha256')
-      signed_token = OpenSSL::HMAC.hexdigest(digest, hcti_key(context), CGI.unescape(query))
-
-      template.expand({
-        signed_token: signed_token
-      }).to_s
+      image.url
     end
 
     private

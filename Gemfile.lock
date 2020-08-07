@@ -30,7 +30,12 @@ GEM
     ffi (1.13.1)
     filesize (0.2.0)
     forwardable-extended (2.6.0)
+    htmlcsstoimage-api (0.1.0)
+      httparty (> 0.10)
     http_parser.rb (0.6.0)
+    httparty (0.18.1)
+      mime-types (~> 3.0)
+      multi_xml (>= 0.5.2)
     httpclient (2.8.3)
     i18n (1.8.3)
       concurrent-ruby (~> 1.0)
@@ -94,7 +99,11 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.10)
     mercenary (0.4.0)
     method_source (1.0.0)
+    mime-types (3.3.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2020.0512)
     mini_portile2 (2.4.0)
+    multi_xml (0.6.0)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     octicons (10.0.0)
@@ -131,6 +140,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  htmlcsstoimage-api
   jekyll (~> 4.1.1)
   jekyll-algolia (~> 1.0)
   jekyll-feed (~> 0.12)
