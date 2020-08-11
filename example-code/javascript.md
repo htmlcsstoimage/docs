@@ -38,7 +38,7 @@ To see all of the available parameters, see: [Creating an image](/api-endpoints/
 
 <hr>
 
-## JavaScript Example - async/await
+## JavaScript example - async/await
 
 If your code supports async/await, we recommend using the following.
 
@@ -112,4 +112,43 @@ req.on('error', (error) => {
 req.write(data)
 req.end()
 ```
+
+## Client side JavaScript example with Fetch API
+- Use the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to make an HTTP POST request to the API
+- Supported by modern browsers
+- Recommended for internal applications only to keep your API key safe
+
+```javascript
+const json = {
+  html: "<div class='test'>Hello, world!</div>",
+  css: ".test { background-color: green; }"
+};
+
+const username = "user-id";
+const password = "api-key";
+
+const options = {
+  method: 'POST',
+  body: JSON.stringify(json),
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Basic ' + btoa(username + ":" + password)
+  }
+}
+
+fetch('https://hcti.io/v1/image', options)
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return Promise.reject(res.status);
+    }
+  })
+  .then(data => {
+    // Image URL is available here
+    console.log(data.url)
+  })
+  .catch(err => console.error(err));
+```
+
 {% include code_footer.md version=1 %}
