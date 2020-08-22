@@ -23,6 +23,15 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
 <hr>
+### New Live Editor
+August 16, 2020
+{: .text-delta}
+We've rebuilt the live demo. Now you can preview your HTML/CSS as you edit it. Then click the *image* button to see it converted into an image.
+This makes it much easier to prototype your images inside a browser.
+
+- [HTML/CSS to Image Demo](https://htmlcsstoimage.com/demo)
+
+<hr>
 ### Ruby Client released
 August 7, 2020
 {: .text-delta}
