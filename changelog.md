@@ -23,6 +23,15 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
 <hr>
+### Zapier plugin released from beta!
+August 31, 2020
+{: .text-delta}
+The HTML/CSS to Image Zapier integration has graduated from beta. Zapier wrote up a [nice blog post about the integration](https://zapier.com/blog/updates/2370/new-integration-htmlcss-image).
+It's become very popular quickly and we've seen many inventive ways people are improving their businesses through automated image generation.
+
+- [HTML/CSS to Image Zapier integration](https://docs.htmlcsstoimage.com/integrations/zapier)
+
+<hr>
 ### New Live Editor
 August 16, 2020
 {: .text-delta}
