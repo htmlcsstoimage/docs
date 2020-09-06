@@ -45,7 +45,7 @@ This image was created using just HTML/CSS and the HCTI API.
     floof will appear afterwards. 13/10
   </span>
   <div class="mt-2 p-4">
-    <img src="https://pbs.twimg.com/profile_images/1267972589722296320/XBr04M6J_400x400.jpg" class="rounded-circle shadow border mt-4" width="100px">
+    <img src="https://docs.htmlcsstoimage.com/assets/images/dog.jpg" class="rounded-circle shadow border mt-4" width="100px">
   </div>
   <h4 class="mt-2">
     WeRateDogs
