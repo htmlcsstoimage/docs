@@ -23,6 +23,14 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
 <hr>
+### Various performance improvements released
+September 10, 2020
+{: .text-delta}
+
+We've been working on further improving the performance of the API. Initial image renders are now ~30% faster. We have also improved caching of images.
+When cached, you can expect an average of 30-50ms when downloading an image.
+
+<hr>
 ### Zapier plugin released from beta!
 August 31, 2020
 {: .text-delta}
