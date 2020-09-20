@@ -15,13 +15,13 @@ description: >-
 Generate images on Integromat with HTML/CSS to Image. Renders exactly like Google Chrome.
 {: .fs-4 .fw-300 }
 
-[Integromat integration](https://www.integromat.com/en/integrations/html-css-to-image){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 target="_blank" }
+[Integromat integration](https://www.integromat.com/en/integrations/html-css-to-image?utm_source=htmlcsstoimage&utm_medium=partner&utm_campaign=htmlcsstoimage-partner-program){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 target="_blank" }
 [Get an API Key](https://htmlcsstoimage.com){: .btn .fs-5 .mb-4 .mb-md-0 target="_blank" }
 <hr>
 
 Connect HTML/CSS to Image with thousands of integrations on Integromat.
 
-<a href="https://www.integromat.com/en/integrations/html-css-to-image" target="_blank">
+<a href="https://www.integromat.com/en/integrations/html-css-to-image?utm_source=htmlcsstoimage&utm_medium=partner&utm_campaign=htmlcsstoimage-partner-program" target="_blank">
 <img
   alt="Connect html css to image with integromat"
   loading="lazy"
