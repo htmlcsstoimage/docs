@@ -43,6 +43,14 @@ Our Integromat integration includes four actions.
 
 To learn about all the parameters available, see [Using the API](/getting-started/using-the-api).
 
+## Example scenarios
+
+Use one of our pre-defined scenarios to get started quickly with Integromat + HTML/CSS to Image.
+
+- [Take a screenshot of a webpage and send it to Telegram](https://www.integromat.com/en/integration/3843-take-a-screenshot-of-a-webpage-and-send-it-to-telegram?utm_source=htmlcsstoimage&utm_medium=partner&utm_campaign=htmlcsstoimage-partner-program)
+- [Generate an HTML/CSS Invoice from new Google Sheets rows](https://www.integromat.com/en/integration/3632-generate-an-html-css-invoice-from-new-google-sheets-rows?utm_source=htmlcsstoimage&utm_medium=partner&utm_campaign=htmlcsstoimage-partner-program)
+- [Generate an image from Tweets via HTML/CSS and share it on Discord](https://www.integromat.com/en/integration/3844-generate-an-image-from-tweets-via-html-css-and-share-it-on-discord?utm_source=htmlcsstoimage&utm_medium=partner&utm_campaign=htmlcsstoimage-partner-program)
+
 ## Authentication
 
 When connecting the integration to your account, you can retrieve your **User ID** and **API Key** from the dashboard.
