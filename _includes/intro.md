@@ -15,9 +15,9 @@ Table of contents
 {:toc}
 
 ## Generating images with {{include.language}}
-- The API takes your HTML/CSS and runs it inside a real instance of Google Chrome to **convert your html into an image**.
-- Use {{include.language}} to send the API your HTML/CSS. 
-- You'll get back the URL to your generated image.
+1. The API takes your HTML/CSS and runs it inside a real instance of Google Chrome to **convert your html into an image**.
+2. Use {{include.language}} to send the API your HTML/CSS. 
+3. You'll get back json with the URL to your generated image.
 
 For more details on how this works, see [Creating an image](/getting-started/using-the-api#creating-an-image).
 
