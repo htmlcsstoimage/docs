@@ -23,6 +23,16 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
 <hr>
+### Font rendering improvements
+September 30, 2020
+{: .text-delta}
+
+We have released a large update to the fonts available to the API. Previously, we were missing some character sets and some images would show an
+empty square instead of the correct character. Our goal is to be able to perfectly render text from any language.
+
+If you notice any more missing characters, please send us the image URL so that we can investigate it.
+
+<hr>
 ### Various performance improvements released
 September 10, 2020
 {: .text-delta}
