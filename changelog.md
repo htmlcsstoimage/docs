@@ -15,9 +15,9 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 <hr>
 
 ### What we're currently working on
+- PDF support
 - WYSIWYG image editor. Making it easier for people to design images for use with the API.
 - Image template API.
-- Improved demo for the homepage.
 - Improving the dashboard with more information about your account.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
