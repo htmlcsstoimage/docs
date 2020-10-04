@@ -24,6 +24,14 @@ If you have feature requests, please send them to us: support@htmlcsstoimage.com
 
 <hr>
 ### Font rendering improvements
+October 2, 2020
+{: .text-delta}
+
+We released a patch update to the [HTML/CSS to Image Ruby Client](https://github.com/htmlcsstoimage/ruby-client). It fixes an issue with 
+`addressable` not being loaded.
+
+<hr>
+### Font rendering improvements
 September 30, 2020
 {: .text-delta}
 
