@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Twitter embed
-permalink: /guides/twitter-embed/
+title: Twitter screenshot
+permalink: /guides/twitter-screenshot/
 parent: Guides
 nav_order: 4
 description: >-

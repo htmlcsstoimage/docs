@@ -87,6 +87,9 @@ async function redirectOrHandleEvent(event) {
     case "/getting-started/file-formats":
       return Response.redirect(site + '/guides/file-formats/', 301);
       break;
+    case "/guides/twitter-embed":
+      return Response.redirect(site + '/guides/twitter-screenshot/', 301);
+      break;
     default:
       return await handleEvent(event);
       break;
