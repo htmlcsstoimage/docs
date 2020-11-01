@@ -21,9 +21,15 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 - Improving the dashboard with more information about your account.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
+<hr>
+### Additional font rendering improvements
+November 1, 2020
+{: .text-delta}
+
+We released another improvement to default font rendering. Fixing character widths when "Helvetica Neue" is specified as the default font family.
 
 <hr>
-### Font rendering improvements
+### Ruby client update
 October 2, 2020
 {: .text-delta}
 
