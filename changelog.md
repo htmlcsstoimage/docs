@@ -26,7 +26,7 @@ If you have feature requests, please send them to us: support@htmlcsstoimage.com
 November 13, 2020
 {: .text-delta}
 
-Integromat now has the full_screen parameter available. When set to true the entire hieght of the page will be included in the image.
+Integromat now has the full_screen parameter available. When set to true the entire height of the page will be included in the image.
 
 
 <hr>
