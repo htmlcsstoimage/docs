@@ -94,7 +94,7 @@ August 3, 2020
 {: .text-delta}
 We've added additional parameters to the Integromat integration. You can now use `selector`, `ms_delay` and `device_scale`.
 
-- [HTML/CSS to Image Integromat Integration](integrations/integromat/)
+- [HTML/CSS to Image Integromat Integration](/integrations/integromat/)
 
 ### Template API
 July 27, 2020
@@ -102,14 +102,14 @@ July 27, 2020
 The Template API is now available. With templates, you can create re-usable HTML that contains variables.
 These variables can be replaced when creating an image, making for even simpler image generation.
 
-- [HTML/CSS to Image Template API](getting-started/templates/)
+- [HTML/CSS to Image Template API](/getting-started/templates/)
 
 <hr>
 
 ### Render when ready
 July 26, 2020
 {: .text-delta}
-We have added the [`render_when_ready` parameter to image creation](guides/render-when-ready/). This gives you control over when the image is rendered.
+We have added the [`render_when_ready` parameter to image creation](/guides/render-when-ready/). This gives you control over when the image is rendered.
 
 By setting `render_when_ready` to `true`, we will wait to generate the image until your HTML calls the `ScreenshotReady()` function in JavaScript.
 
