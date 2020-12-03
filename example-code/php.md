@@ -41,4 +41,8 @@ echo $res->getBody();
 
 The code turns out to be a bit more readable and less complex when using Guzzle. A great option if you're open to adding the library to your project.
 
+## Debugging Error:SSL certificate problem: unable to get local issuer certificate
+
+When running this script on a Windows machine, it's possible you'll get an SSL error. The fix for this [is here](https://stackoverflow.com/questions/28858351/php-ssl-certificate-error-unable-to-get-local-issuer-certificate/32095378#32095378).
+
 {% include code_footer.md version=2 %}
