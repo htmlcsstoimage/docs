@@ -30,15 +30,7 @@ Copy this example, and swap out the href to create an image of any Facebook post
 
 <div class="code-example" markdown="1">
 <div class="hcti-container">
-  <img
-    alt="Generate a screenshot of a Facebook post."
-    loading="lazy"
-    ix-path="/assets/images/facebook.png"
-    sizes="400px"
-    ix-params='{
-      "w": 400,
-      "format": "auto"
-    }'>
+  {% cloudinary /assets/images/facebook.png alt="Generate a screenshot of a Facebook post" %}
 </div>
 </div>
 

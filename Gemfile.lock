@@ -27,6 +27,7 @@ GEM
       http_parser.rb (~> 0.6.0)
     eventmachine (1.2.7)
     execjs (2.7.0)
+    fastimage (2.2.0)
     ffi (1.13.1)
     filesize (0.2.0)
     forwardable-extended (2.6.0)
@@ -65,6 +66,9 @@ GEM
       nokogiri (~> 1.6)
       progressbar (~> 1.9)
       verbal_expressions (~> 0.1.5)
+    jekyll-cloudinary (1.14.1)
+      fastimage (~> 2.0)
+      jekyll (>= 3.6, < 5)
     jekyll-feed (0.14.0)
       jekyll (>= 3.7, < 5.0)
     jekyll-imgix (1.2.0)
@@ -143,6 +147,7 @@ DEPENDENCIES
   htmlcsstoimage-api
   jekyll (~> 4.1.1)
   jekyll-algolia (~> 1.0)
+  jekyll-cloudinary
   jekyll-feed (~> 0.12)
   jekyll-imgix
   jekyll-include_snippet

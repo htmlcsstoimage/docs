@@ -48,6 +48,23 @@ defaults:
 last_edit_timestamp: true
 last_edit_time_format: "%b %e %Y at %I:%M %p" # uses ruby's time format: https://ruby-doc.org/stdlib-2.7.0/libdoc/time/rdoc/Time.html
 
+cloudinary:
+  cloud_name: hcti
+  origin_url: https://docs.htmlcsstoimage.com
+  verbose: true
+  presets:
+    default:
+      min_width: 400
+      max_width: 800
+      q_auto: best
+      sizes: "400px"
+      fetch_format: auto
+      fallback_max_width: 800
+      steps: 3
+      attributes:
+        loading: "lazy"
+        class: "cloudinary-image"
+
 imgix:
   source: hcti.imgix.net # Your imgix source address
   include_library_param: false  # (optional) If `true` all the URLs will include `ixlib` parameter
@@ -70,6 +87,8 @@ back_to_top: true
 back_to_top_text: "Back to top"
 
 # ga_tracking: UA-32961413-2
+search:
+  heading_level: 4
 
 # Aux links for the upper right navigation
 aux_links:
