@@ -2,6 +2,11 @@ body {
   background-color: $sidebar-color;
 }
 
+.cloudinary-image {
+  width: auto;
+  height: auto;
+}
+
 .main {
   background-color: white;
   border-right: $border $border-color;
