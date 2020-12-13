@@ -151,7 +151,7 @@ Query parameters can be added to the URL to adjust your image.
 
 To delete an image using the API, you can send a **DELETE** request to your image URL. This will remove your image from our servers and clear the caching for the image in our CDN. 
 
-Because our CDN servers are distributed throughout the world, it may take a few minutes for this to take effect.
+All data and copies of the image are deleted. This cannot be undone.
 
 ### Example response
 ```

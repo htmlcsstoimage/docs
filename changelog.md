@@ -22,6 +22,15 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 <hr>
+### Improvements to image deletion
+December 13, 2020
+{: .text-delta}
+
+We've improved image deletion. Previously, images might take several minutes to be uncached and deleted everywhere. Now they are removed almost instantly. For more information, learn how to 
+[delete an image](/getting-started/using-the-api/#deleting-an-image).
+
+
+<hr>
 ### Full screen parameter added to Integromat
 November 13, 2020
 {: .text-delta}
