@@ -32,16 +32,7 @@ This image has `background-color: transparent;` set on the `body`.
 
 <div class="code-example" markdown="1">
 <div class="hcti-container" style="background-color: unset;">
-  <img
-    alt="HTML/CSS to Image with a transparent background."
-    loading="lazy"
-    ix-path="/assets/images/cat.png"
-    sizes="400px"
-    ix-params='{
-      "w": 400,
-      "h": 350,
-      "format": "png"
-    }'>
+  {% cloudinary /assets/images/cat.png sizes="400px" alt="HTML/CSS to Image with a transparent background." %}
 </div>
 </div>
 

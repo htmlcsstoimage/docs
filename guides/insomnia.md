@@ -25,16 +25,7 @@ Download[ Insomnia here](https://insomnia.rest/) (Mac OSX only).
 
 First, you'll want to set authorization to **Basic** and enter your API\_ID and API\_KEY from the [Dashboard](https://htmlcsstoimage.com/dashboard).
 
-<img
-  alt="Using insomnia with the html/css to image API"
-  loading="lazy"
-  ix-path="/assets/images/insomnia1.png"
-  sizes="500px"
-  ix-params='{
-  "w": 500,
-  "format": "auto"
-  }'>
-
+{% cloudinary /assets/images/insomnia1.png sizes="700px" alt="Using insomnia with the HTML/CSS to Image API" %}
 
 ### Passing HTML/CSS
 
@@ -42,13 +33,4 @@ Then, enter your HTML/CSS as parameters for the request.
 
 Press send, and you're done.
 
-<img
-  alt="Using insomnia with the html/css to image API"
-  loading="lazy"
-  ix-path="/assets/images/insomnia2.png"
-  sizes="500px"
-  ix-params='{
-  "w": 500,
-  "format": "auto"
-  }'>
-
+{% cloudinary /assets/images/insomnia1.png sizes="700px" alt="Using insomnia with the HTML/CSS to Image API" %}

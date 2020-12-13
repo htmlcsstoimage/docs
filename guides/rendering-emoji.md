@@ -21,15 +21,7 @@ Emoji rendering is built in and handled automatically for you.
 
 Emoji's are automatically replaced with images for consistent and clear rendering. This is enabled for you by default.
 
-<img
-  alt="Emoji support in the HTML/CSS to image API"
-  loading="lazy"
-  ix-path="/assets/images/emoji.jpeg"
-  sizes="400px"
-  ix-params='{
-    "w": 400,
-    "format": "auto"
-  }'>
+{% cloudinary /assets/images/emoji.jpeg sizes="400px" alt="Emoji support in HTML/CSS to Image API" %}
 
 ## `emoji` class
 

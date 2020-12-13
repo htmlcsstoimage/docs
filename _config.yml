@@ -55,12 +55,12 @@ cloudinary:
   presets:
     default:
       min_width: 400
-      max_width: 800
+      max_width: 1200
       q_auto: best
       sizes: "400px"
       fetch_format: auto
       fallback_max_width: 800
-      steps: 3
+      steps: 4
       attributes:
         loading: "lazy"
         class: "cloudinary-image"
