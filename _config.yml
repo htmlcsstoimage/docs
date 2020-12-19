@@ -35,7 +35,6 @@ theme: just-the-docs
 color_scheme: hcti
 plugins:
   - jekyll-sitemap
-  - jekyll/imgix
   - jekyll-octicons
   - jekyll-last-modified-at
 

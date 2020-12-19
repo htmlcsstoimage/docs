@@ -1,6 +1,6 @@
 # Docs
 
-<a href="https://docs.htmlcsstoimage.com"><img src="http://hcti.imgix.net/assets/images/html-css-to-image.png?w=1200" width="600" /></a>
+<a href="https://docs.htmlcsstoimage.com"><img src="https://res.cloudinary.com/hcti/image/fetch/c_limit,f_auto,q_auto,w_1200/https://docs.htmlcsstoimage.com/assets/images/html-css-to-image.png" width="600" /></a>
 
 👋 This is the source for our documentation site: https://docs.htmlcsstoimage.com.
 
