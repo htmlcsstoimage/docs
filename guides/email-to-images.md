@@ -27,14 +27,7 @@ For more details on how this works, see [Creating an image](/getting-started/usi
 
 <div class="code-example" markdown="1">
   <div class="hcti-container">
-    <img
-      alt="Convert an email to an image."
-      ix-path="/assets/images/email.png"
-      sizes="400px"
-      ix-params='{
-        "w": 400,
-        "format": "auto"
-      }'>
+    {% cloudinary /assets/images/email.png alt="Convert an email to an image." %}
   </div>
 </div>
 
