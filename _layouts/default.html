@@ -174,7 +174,6 @@ layout: table_wrappers
   {% javascript_asset_tag global %}
   - /assets/js/just-the-docs.js
   - /assets/js/lunr.js
-  - /assets/js/imgix.min.js
   {% endjavascript_asset_tag %}
 
   <script>
@@ -186,38 +185,5 @@ layout: table_wrappers
   - /assets/js/prism.js
   - /assets/js/clipboard.min.js
   {% endjavascript_asset_tag %}
-
-  {% if jekyll.environment == "production" %}
-  <script>
-    imgix.config.host = 'hcti.imgix.net';
-    imgix.config.useHttps = true;
-    imgix.config.defaultParams = {
-      auto: 'format,compress',
-      fit: 'max'
-    }
-  </script>
-  {% endif %}
-  {% if jekyll.environment != "production" %}
-  <script>
-    imgix.config.host = 'localhost:4000';
-    imgix.config.useHttps = false;
-    imgix.config.defaultParams = {
-      auto: 'format,compress',
-      fit: 'max'
-    }
-  </script>
-  {% endif %}
-
-  {% if site.ga_tracking != nil %}
-    <script defer src="/assets/js/analytics.js"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', '{{ site.ga_tracking }}'{% unless site.ga_tracking_anonymize_ip == nil %}, { 'anonymize_ip': true }{% endunless %});
-    </script>
-
-  {% endif %}
 </body>
 </html>

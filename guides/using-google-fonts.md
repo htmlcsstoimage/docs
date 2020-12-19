@@ -41,6 +41,7 @@ This image was rendered using multiple Google Fonts. Here was passed `google_fon
       "w": 400,
       "format": "auto"
     }'>
+  {% cloudinary /assets/images/8e8c1093-d205-4994-845c-67419598d081.jpeg sizes="400px" alt="Convert html to an image using custom fonts" %}
 </div>
 </div>
 HTML

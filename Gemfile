@@ -27,7 +27,6 @@ group :jekyll_plugins do
   gem 'jekyll-include_snippet'
   gem "jekyll_asset_pipeline"
   gem 'liquid'
-  gem 'jekyll-imgix'
   gem 'jekyll-sitemap'
   gem "jekyll-last-modified-at"
   gem 'jekyll-cloudinary'

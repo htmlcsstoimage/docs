@@ -28,14 +28,7 @@ For more details on how this works, see [Creating an image](/getting-started/usi
 }
 ```
 
-<img
-  alt="Image generated with {{ include.language }}."
-  ix-path="/assets/images/dog-rates-example.png"
-  sizes="400px"
-  ix-params='{
-    "w": 400,
-    "format": "auto"
-  }'>
+{% cloudinary /assets/images/dog-rates-example.png sizes="500px" alt="Image generated with {{ include.language }}. Convert HTML to an image using {{ include.language }}." %}
 
 ## Authentication with {{ include.language }}
 The API uses [HTTP Basic authentication](https://en.wikipedia.org/wiki/Basic_access_authentication). 

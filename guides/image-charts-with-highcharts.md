@@ -19,15 +19,7 @@ Learn how to include external assets when generating images.
 
 You can generate images of charts using Highcharts.js + the HTML/CSS to Image API.
 
-<img
-  alt="Highcharts.js image generated with HTML/CSS to Image."
-  loading="lazy"
-  ix-path="/assets/images/chart.jpeg"
-  sizes="400px"
-  ix-params='{
-    "w": 400,
-    "format": "auto"
-  }'>
+{% cloudinary /assets/images/chart.png alt="Highcharts.js image auto generated with HTML/CSS to Image" %}
 
 
 ### Example HTML

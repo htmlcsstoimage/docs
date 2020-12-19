@@ -20,15 +20,7 @@ Learn how to use the API to generate an image from an Instagram post.
 
 To generate a screenshot of an Instagram post, you can make use of the Instagram embed API.
 
-<img
-  alt="Instagram embed instructions"
-  loading="lazy"
-  ix-path="/assets/images/insta-embed.png"
-  sizes="300px"
-  ix-params='{
-  "w": 300,
-  "format": "auto"
-  }'>
+{% cloudinary /assets/images/insta-embed.png sizes="300px" alt="Generate a screenshot of an instagram post" %}
 
 You can generate this code yourself by viewing an Instagram post in a web browser. Clicking the top right hamburger menu, and then "Embed".
 
@@ -38,15 +30,7 @@ Copy this example, and swap out the href to create an image of any post you'd li
 
 <div class="code-example" markdown="1">
 <div class="hcti-container">
-  <img
-    alt="Instagram post to image."
-    loading="lazy"
-    ix-path="/assets/images/instagram.png"
-    sizes="400px"
-    ix-params='{
-      "w": 400,
-      "format": "auto"
-    }'>
+  {% cloudinary /assets/images/instagram.png sizes="400px" alt="Create a screenshot of an instagram post" %}
 </div>
 </div>
 HTML

@@ -65,10 +65,6 @@ cloudinary:
         loading: "lazy"
         class: "cloudinary-image"
 
-imgix:
-  source: hcti.imgix.net # Your imgix source address
-  include_library_param: false  # (optional) If `true` all the URLs will include `ixlib` parameter
-
 algolia:
   application_id: 'NS4OO0USSZ'
   index_name: 'hcti_docs'

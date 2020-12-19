@@ -50,15 +50,7 @@ This image was generated with a template.
 ```
 <div class="code-example" markdown="1">
   <div class="hcti-container">
-    <img
-      alt="Example of an image template"
-      loading="lazy"
-      ix-path="/assets/images/template.png"
-      sizes="400px"
-      ix-params='{
-        "w": 400,
-        "format": "auto"
-      }'>
+    {% cloudinary /assets/images/template.png alt="Example of an image template use for converting html to an image" %}
   </div>
 </div>
 HTML:

@@ -33,15 +33,7 @@ In this example we convert a base64 of our logo into an image.
 
 <div class="code-example" markdown="1">
 <div class="hcti-container" style="background-color: unset;">
-  <img
-    alt="Convert base64 to an image"
-    loading="lazy"
-    ix-path="/assets/images/base64-logo.png"
-    sizes="100px"
-    ix-params='{
-      "w": 100,
-      "format": "png"
-    }'>
+  {% cloudinary /assets/images/base64-logo.png sizes="100px" alt="Convert base64 to an image" %}
 </div>
 </div>
 ```html
@@ -52,7 +44,7 @@ In this example we convert a base64 of our logo into an image.
 
 ## Use this with Zapier or Integromat
 
-We have integrations for both Zapier and Integromat. You can use the example code above to convert base64 to images.
+We have integrations for both Zapier and Integromat. You can use the example code above to convert base64 to images without writing any code yourself.
 
 
 [Zapier](https://docs.htmlcsstoimage.com/integrations/zapier/){: .btn .btn-green .fs-5 .mb-4 .mb-md-0 .mr-2 }
