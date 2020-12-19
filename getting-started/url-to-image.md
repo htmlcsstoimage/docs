@@ -39,14 +39,7 @@ curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey'
 
 Don't write code? Don't worry, you can also do this with our [Zapier integration](zapier-integration.md).
 
-<img
-  alt="Screenshot of google.com"
-  ix-path="/assets/images/google.jpg"
-  sizes="600px"
-  ix-params='{
-    "w": 600,
-    "format": "auto"
-  }'>
+{% cloudinary /assets/images/google.jpg sizes="600px" alt="Screenshot of google.com" %}
 
 ## Additional parameters
 
@@ -67,14 +60,7 @@ To customize your image further, you can take advantage of the following optiona
 
 A full screenshot of `stripe.com`. With device scale set to 2, for a super high resolution image.
 
-<img
-  alt="Screenshot of stripe.com"
-  ix-path="/assets/images/stripe.png"
-  sizes="600px"
-  ix-params='{
-    "w": 600,
-    "format": "auto"
-  }'>
+{% cloudinary /assets/images/stripe.png sizes="600px" alt="Screenshot of stripe.com auto generated with the API" %}
 
 <hr>
 
@@ -86,14 +72,7 @@ For example, on Stripe's homepage, there is an element with the CSS selector `se
 
 When passing that to the API, we crop to that element only.
 
-<img
-  alt="Use a CSS selector to crop an image"
-  ix-path="/assets/images/url-selector-example.png"
-  sizes="600px"
-  ix-params='{
-    "w": 600,
-    "format": "auto"
-  }'>
+{% cloudinary /assets/images/url-selector-example.png sizes="600px" alt="Use a CSS selector to crop an image" %}
 
 <hr>
 

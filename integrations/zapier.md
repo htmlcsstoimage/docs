@@ -27,15 +27,8 @@ Table of contents
 Connect HTML/CSS to Image with thousands of integrations on Zapier.
 
 <a href="https://zapier.com/apps/htmlcss-to-image/integrations" target="_blank">
-<img
-  alt="Connect html css to image with zapier"
-  loading="lazy"
-  ix-path="/assets/images/zapier.png"
-  sizes="400px"
-  ix-params='{
-  "w": 400,
-  "format": "auto"
-  }'></a>
+{% cloudinary /assets/images/zapier.png alt="Connect html css to image with Zapier" %}
+</a>
 
 ## Available Actions
 
