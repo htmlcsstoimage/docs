@@ -32,15 +32,6 @@ This image was rendered using multiple Google Fonts. Here was passed `google_fon
 
 <div class="code-example" markdown="1">
 <div class="hcti-container">
-  <img
-    alt="Image generated with HTML/CSS to Image and multiple fonts."
-    loading="lazy"
-    ix-path="/assets/images/8e8c1093-d205-4994-845c-67419598d081.jpeg"
-    sizes="400px"
-    ix-params='{
-      "w": 400,
-      "format": "auto"
-    }'>
   {% cloudinary /assets/images/8e8c1093-d205-4994-845c-67419598d081.jpeg sizes="400px" alt="Convert html to an image using custom fonts" %}
 </div>
 </div>
