@@ -55,7 +55,7 @@ cloudinary:
     default:
       min_width: 400
       max_width: 1200
-      q_auto: best
+      q_auto: good
       sizes: "400px"
       fetch_format: auto
       fallback_max_width: 800
