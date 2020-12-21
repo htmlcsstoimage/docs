@@ -18,7 +18,7 @@ A step by step guide
 
 In this guide, we will learn how to post screenshots of emails into Slack. It's super simple with using Zapier + the HTML/CSS to Image integration.
 
-{% cloudinary /assets/images/slack-email.png sizes="500px" alt="Share a screenshot of an email in slack" %}
+{% cloudinary /assets/images/slack-email.png sizes="600px" alt="Share a screenshot of an email in slack" %}
 
 Sharing a full image of the email makes it possible to show things like charts or graphs with your team. Adding a nice visual to every message.
 
