@@ -5,7 +5,7 @@ permalink: /guides/email-screenshot-slack/
 parent: Guides
 nav_order: 8
 description: >-
-  Protecting your image quota from duplicate images. HTML/CSS to Image API.
+  Learn how to post screenshots of emails into Slack. It's super simple with using Zapier + the HTML/CSS to Image integration.
 ---
 # How to automatically post email screenshots to Slack (with Zapier)
 {: .no_toc }
