@@ -22,6 +22,13 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 <hr>
+### Inject custom CSS into a webpage
+December 22, 2020
+{: .text-delta}
+
+When using [URL to Image](/getting-started/url-to-image), you can now inject CSS into the page. This is useful for cases where you want to customize your screenshot of the page. Allowing you to do things like hide specific elements on the page
+(such as annoying popups or cookie banners). To get started with it, pass along the css param when using URL to image. This is now available on Zapier and soon will also be working for Integromat.
+
 ### Zapier integration updated to 1.0.7
 December 20, 2020
 {: .text-delta}
@@ -31,7 +38,6 @@ Making it easy to customize how the page looks.
 
 We have also added the `selector` field to the normal Create image action. This allows you to target a specific CSS selector in your HTML and we'll crop the image to that element.
 
-[delete an image](/getting-started/using-the-api/#deleting-an-image).
 ### Improvements to image deletion
 December 13, 2020
 {: .text-delta}
