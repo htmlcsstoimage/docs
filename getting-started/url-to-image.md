@@ -47,6 +47,7 @@ To customize your image further, you can take advantage of the following optiona
 
 | Parameter |  |
 | :--- | :--- |
+| css | Inject additional CSS into the page. This is useful when you want to customize the webpage. Such as hiding specific elements (like popups or cookie banners). |
 | viewport\_width | Set the width of Chrome's viewport. Defaults to 1366. |
 | viewport\_height | Set the height of Chrome's viewport. Defaults to 768. |
 | device\_scale | This adjusts the pixel ratio for the device. Default: 1. Maximum 3. |
