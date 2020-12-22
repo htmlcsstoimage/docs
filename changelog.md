@@ -22,6 +22,16 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 <hr>
+### Zapier integration updated to 1.0.7
+December 20, 2020
+{: .text-delta}
+
+We've released a new version of the Zapier integration. It now gives you even more configuration options when creating images. For URL images, you'll now see a CSS field. This allows you to inject CSS into the webpage.
+Making it easy to customize how the page looks.
+
+We have also added the `selector` field to the normal Create image action. This allows you to target a specific CSS selector in your HTML and we'll crop the image to that element.
+
+[delete an image](/getting-started/using-the-api/#deleting-an-image).
 ### Improvements to image deletion
 December 13, 2020
 {: .text-delta}
