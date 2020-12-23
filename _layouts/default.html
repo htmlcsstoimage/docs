@@ -59,11 +59,8 @@ layout: table_wrappers
     <div id="main-header" class="main-header">
       {% if site.search_enabled != false %}
         <div class="search">
-          <div class="search-input-wrap">
-            <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search {{ site.title }}" aria-label="Search {{ site.title }}" autocomplete="off">
-            <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
-          </div>
-          <div id="search-results" class="search-results"></div>
+          <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search {{ site.title }}" aria-label="Search {{ site.title }}" autocomplete="off">
+          <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
         </div>
       {% endif %}
       {% if site.aux_links %}
@@ -169,12 +166,22 @@ layout: table_wrappers
 
   {% css_asset_tag prism %}
   - /assets/css/prism.css
+  - /assets/css/search.css
   {% endcss_asset_tag %}
 
   {% javascript_asset_tag global %}
   - /assets/js/just-the-docs.js
   - /assets/js/lunr.js
   {% endjavascript_asset_tag %}
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script type="text/javascript"> docsearch({
+    apiKey: '68bef87826f0ed1de324788b90e28fb3',
+    indexName: 'htmlcsstoimage',
+    inputSelector: '#search-input',
+    debug: false
+  });
+  </script>
 
   <script>
     window.Prism = window.Prism || {};
