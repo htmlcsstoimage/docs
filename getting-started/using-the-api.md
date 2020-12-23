@@ -45,7 +45,7 @@ The create image endpoint accepts the following parameters. Accepted as either `
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
 | **html**<span class="text-red-200">*</span>           | `String`  | This is the HTML you want to render. You can send an HTML snippet \(`<div>Your content</div>`\) or an entire webpage. |
-| **css** | `String` | The CSS for your image. |
+| **css** | `String` | The CSS for your image. When using with `url` it will be injected into the page. |
 | **url**<span class="text-red-200">*</span>          | `String` | The fully qualified URL to a public webpage. Such as `https://htmlcsstoimage.com`. When passed this will override the html param and will generate a screenshot of the url. |
 
 {% include hint.md title="Required params" text="For creating an image, either `url` or `html` are required. `css` is optional." %}
