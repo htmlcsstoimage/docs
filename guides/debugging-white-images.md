@@ -11,12 +11,18 @@ description: >-
 {: .no_toc }
 {: .fs-9 }
 
-How to fix
+Troubleshooting guide
 {: .fs-6 .fw-300 }
+<hr>
+
+Table of contents
+{: .text-delta }
+- TOC
+{:toc}
 
 <hr>
 
-If you're getting back a white or blank image, this guide will help you figure out how to get it working.
+<img src='{% hcti_image_url {"template_id":"t-9f6526a7-aa2c-4fbb-8723-06eff1c60e89", "title": "{{page.title}}" }%}' width="400px" alt="debugging white or blank images with HTML/CSS to Image" />
 
 ## Why is my image white or blank?
 When rendering your image, the API makes its best guess at when your HTML or webpage is ready to be turned into an image.
