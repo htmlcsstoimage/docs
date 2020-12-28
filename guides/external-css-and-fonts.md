@@ -50,7 +50,7 @@ You can load in a custom font using CSS.
 }
 ```
 
-Your font will need proper CORS headers set for this to work. To test it, visit [test-cors.org](https://www.test-cors.org) and paste in your font link.
+Your font will need proper CORS headers set for this to work. To test it, visit [CORS Tester](https://cors-test.codehappy.dev/) and paste in your font link.
 
 If it does not work, check that you have the following header set on your server.
 
