@@ -22,7 +22,7 @@ Generate images on Integromat with HTML/CSS to Image. Renders exactly like Googl
 Connect HTML/CSS to Image with thousands of integrations on Integromat.
 
 <a href="https://www.integromat.com/en/integrations/html-css-to-image?utm_source=htmlcsstoimage&utm_medium=partner&utm_campaign=htmlcsstoimage-partner-program" target="_blank">
-{% cloudinary /assets/images/integomat.png sizes="500px" alt="Connect html css to image with integromat to automatically create images" %}
+{% cloudinary /assets/images/integromat.png sizes="500px" alt="Connect html css to image with integromat to automatically create images" %}
 </a>
 
 ## Available Actions
