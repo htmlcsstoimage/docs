@@ -22,6 +22,20 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 <hr>
+### New params added toZapier
+January 6, 2021
+{: .text-delta}
+
+A new version (1.0.10) of our Zapier plugin has been released. It includes some great new parameters for better control over your images.
+
+- viewport_height
+- viewport_width
+- ms_day
+
+We also improved the error messages for when you run into a problem.
+
+<hr>
+
 ### Inject custom CSS into a webpage
 December 22, 2020
 {: .text-delta}
