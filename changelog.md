@@ -22,7 +22,17 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 <hr>
-### New params added toZapier
+### Integromat integration updated
+January 16, 2021
+{: .text-delta}
+
+We released new params to the Integromat integration.
+
+- CSS injection available for URLs.
+- `selector` for specifying a CSS selector.
+
+<hr>
+### New params added to Zapier
 January 6, 2021
 {: .text-delta}
 
@@ -30,7 +40,7 @@ A new version (1.0.10) of our Zapier plugin has been released. It includes some 
 
 - viewport_height
 - viewport_width
-- ms_day
+- ms_delay
 
 We also improved the error messages for when you run into a problem.
 
