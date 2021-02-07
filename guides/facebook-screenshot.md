@@ -50,5 +50,6 @@ HTML
 - selector: `.fb-post`
 - ms_delay: `1500`
 
+[Try it yourself](https://htmlcsstoimage.com/examples/facebook-screenshot){: .btn .btn-green .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 {% include code_footer.md version=2 %}

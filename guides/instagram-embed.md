@@ -45,6 +45,10 @@ HTML
 </blockquote>
 ```
 
-[Try it yourself](https://htmlcsstoimage.com/demo){: .btn .btn-green .fs-5 .mb-4 .mb-md-0 .mr-2 }
+**Important:** set these parameters when creating the image.
+- selector: `.instagram-media-rendered`
+- ms_delay: `1750`
+
+[Try it yourself](https://htmlcsstoimage.com/examples/instagram-post-screenshot){: .btn .btn-green .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 {% include code_footer.md version=1 %}
