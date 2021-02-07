@@ -21,6 +21,16 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 - Improving the dashboard with more information about your account.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
+
+<hr>
+### Demo and example pages now include an options tab
+February 4, 2021
+{: .text-delta}
+
+We updated the live demo to be even more configurable. Now you can adjust all the options on an image when testing.
+
+We have also been releasing more examples which can be played with inside of the live demo. Give them a try here: <a href="https://htmlcsstoimage.com/examples">HTML/CSS to Image Examples</a>.
+
 <hr>
 ### Integromat integration updated
 January 16, 2021
