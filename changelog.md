@@ -18,9 +18,23 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 - PDF support
 - WYSIWYG image editor. Making it easier for people to design images for use with the API.
 - Image template API.
-- Improving the dashboard with more information about your account.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
+
+<hr>
+### Improvements to transparency rendering
+February 16, 2021
+{: .text-delta}
+
+<a href="/guides/transparent-background/">Background transparency</a> now also works for images generated from URLs. To do it, pass the following code in your CSS param.
+
+```
+body {
+  background-color: transparent;
+}
+```
+
+Note: this will only work for PNG's. Jpeg's do not support transparency.
 
 <hr>
 ### Demo and example pages now include an options tab

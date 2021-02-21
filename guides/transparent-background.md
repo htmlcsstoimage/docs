@@ -36,9 +36,12 @@ This image has `background-color: transparent;` set on the `body`.
 </div>
 </div>
 
-[Try it yourself](https://htmlcsstoimage.com/demo){: .btn .btn-green .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[Try it yourself](https://htmlcsstoimage.com/examples/png-transparent-background){: .btn .btn-green .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 <hr>
+
+## URL Images
+When generating an image from a URL. Pass the same CSS in the CSS param and the background will be rendered as transparent.
 
 
 {% include hint.md title="Works with PNG's only" text="Transparency is only supported by the **PNG** file format. By default, all images are rendered as PNG's. If you render the image as a JPG or Webp, the background will be white." %}
