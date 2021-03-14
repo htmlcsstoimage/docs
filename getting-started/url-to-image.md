@@ -34,7 +34,7 @@ Pass the `url` param to the `hcti.io/v1/image` endpoint, and we'll generate a sc
 
 ```bash
 curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' 
-             -d url="https://google.com"
+             --data-urlencode url="https://google.com"
 ```
 
 Don't write code? Don't worry, you can also do this with our [Zapier integration](zapier-integration.md).
