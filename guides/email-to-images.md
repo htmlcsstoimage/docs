@@ -19,11 +19,17 @@ Generate images of full webpages and emails with HTML/CSS to Image. Renders exac
 <hr>
 
 ## Generating images from emails
-The API takes your HTML/CSS and runs it inside a real instance of Google Chrome to convert your html into an image.
+You can use the API to convert emails into images.
 
-This works great for both HTML emails and full webpages.
+Making it easy to automatically share them in Slack, Instagram or Facebook.
 
-For more details on how this works, see [Creating an image](/getting-started/using-the-api#creating-an-image).
+**How to do it:**
+1. You can use our [Zapier](/integrations/zapier) or [Integromat](/integrations/integromat) integrations to convert email to images without code.
+2. Or, use the [API](/getting-started/using-the-api#creating-an-image) directly.
+3. You'll want to create an image from HTML and pass the full HTML of the email to the API.
+4. The API will then send back a URL to your image of the email.
+
+For more details on how the API works, see [Creating an image](/getting-started/using-the-api#creating-an-image).
 
 <div class="code-example" markdown="1">
   <div class="hcti-container">
@@ -40,7 +46,6 @@ For more details on how this works, see [Creating an image](/getting-started/usi
 To render a full email or webpage with the API, pass the full HTML markup. Starting and ending with the `<html>` tags.
 
 - The API will enter full page mode and render the entire page as displayed by Google Chrome.
-
 - When rendering a full page, be sure to include full paths to all outside assets so that the API is able to download them. Relative paths will not work.
 
 {% include code_footer.md version=2 %}
