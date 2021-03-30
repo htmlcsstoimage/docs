@@ -90,7 +90,7 @@ GEM
       jekyll (>= 3.5, < 5.0)
       liquid (~> 4.0)
     json (2.3.1)
-    kramdown (2.3.0)
+    kramdown (2.3.1)
       rexml
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
