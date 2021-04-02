@@ -22,6 +22,15 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
 <hr>
+### Image console on the dashboard
+March 31, 2021
+{: .text-delta}
+
+We've made a bunch of improvements to the Dashboard. You can now create images in your own account using the Image Console tab.
+
+You can also create images using URL's from the console. Click the Options tab to see the new url field.
+
+<hr>
 ### Improvements to transparency rendering
 February 16, 2021
 {: .text-delta}
