@@ -22,6 +22,13 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
 <hr>
+### Hebrew character set updated
+April 24, 2021
+{: .text-delta}
+
+We released an update to our default fonts to fix a bug where hebrew characters were not rendering properly.
+
+<hr>
 ### Image console on the dashboard
 March 31, 2021
 {: .text-delta}
