@@ -22,6 +22,13 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
 <hr>
+### Chrome version updated
+May 15, 2021
+{: .text-delta}
+
+We updated the image renderer to use the newest build of Chrome. This means all of the latest features in Chrome will also render the same through the API.
+
+<hr>
 ### Hebrew character set updated
 April 24, 2021
 {: .text-delta}
