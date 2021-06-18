@@ -38,17 +38,17 @@ HTML
 {:.text-delta}
 ```html
 <div id="fb-root"></div>
-<script crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0&appId=228636847765&autoLogAppEvents=1" nonce="XHMdHwJF"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0" nonce="SOhYrMAR"></script>
 
 <!-- See data-href below. Replace that with the link to your Facebook post -->
-<!-- set ms_delay: 1500 to give it extra time toload -->
+<!-- set ms_delay: 2500 to give it extra time toload -->
 <!-- set selector: .fb-post -->
-<div class="fb-post" data-href="https://www.facebook.com/HermanMiller/photos/a.171562157561/10158261466927562/" data-show-text="true" data-width=""></div>
+<div class="fb-post" data-href=""https://www.facebook.com/HermanMiller/photos/a.171562157561/10158261466927562/ data-width="500" data-show-text="true"></div>
 ```
 
 **Important:** set these parameters when creating the image.
 - selector: `.fb-post`
-- ms_delay: `1500`
+- ms_delay: `2500`
 
 [Try it yourself](https://htmlcsstoimage.com/examples/facebook-screenshot){: .btn .btn-green .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
