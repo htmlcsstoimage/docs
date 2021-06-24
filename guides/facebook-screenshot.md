@@ -43,7 +43,7 @@ HTML
 <!-- See data-href below. Replace that with the link to your Facebook post -->
 <!-- set ms_delay: 2500 to give it extra time toload -->
 <!-- set selector: .fb-post -->
-<div class="fb-post" data-href=""https://www.facebook.com/HermanMiller/photos/a.171562157561/10158261466927562/ data-width="500" data-show-text="true"></div>
+<div class="fb-post" data-href="https://www.facebook.com/HermanMiller/photos/a.171562157561/10158261466927562/" data-width="500" data-show-text="true"></div>
 ```
 
 **Important:** set these parameters when creating the image.
