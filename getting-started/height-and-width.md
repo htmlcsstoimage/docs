@@ -81,7 +81,7 @@ rendered inside the default viewport.
 
 ## Understanding high resolution (retina) images
 
-Every device has a **DPR (device pixel ratio)**. Higher quality screens will have a 2x or higher DPR. This means, for crip/clear images, they need 2x or 3x as many pixels
+Every device has a **DPR (device pixel ratio)**. Higher quality screens will have a 2x or higher DPR. This means, for crisp/clear images, they need 2x or 3x as many pixels
 as a traditional, lower resolution screen.
 
 - We render HTML/CSS images **@2X** by default. 
