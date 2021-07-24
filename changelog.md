@@ -22,6 +22,21 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
 <hr>
+### Large image performance improvements
+July 23, 2021
+{: .text-delta}
+
+We made a handful of performance improvements for large image rendering speed.
+
+
+<hr>
+### Zapier integration updated
+June 12, 2021
+{: .text-delta}
+
+Released a new version of the Zapier integration. Making security + performance improvements.
+
+<hr>
 ### Chrome version updated
 May 15, 2021
 {: .text-delta}
