@@ -22,6 +22,13 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
 <hr>
+### Dashboard improvements
+October 29, 2021
+{: .text-delta}
+
+We released several improvements to the dashboard and invoices based on your feedback.
+
+<hr>
 ### Large image performance improvements
 July 23, 2021
 {: .text-delta}
