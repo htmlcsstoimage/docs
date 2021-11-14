@@ -36,13 +36,13 @@ Copy this example, and swap out the href to create an image of any post you'd li
 HTML
 {:.text-delta}
 ```html
-<script src="https://platform.instagram.com/en_US/embeds.js"></script>
-<blockquote style="width:600px;" class="instagram-media" data-instgrm-version="7" >
+<blockquote style = 'width:600px;' class='instagram-media' data-instgrm-version='14'>
 
 <!-- replace this href with the link to the post -->
-<a href="https://www.instagram.com/p/B2EkgKalrO6/"></a> 
+<a href='https://www.instagram.com/p/CWA2UbCs6x_/' ></a>
 
 </blockquote>
+<script src="//www.instagram.com/embed.js"></script>
 ```
 
 **Important:** set these parameters when creating the image.
