@@ -23,6 +23,13 @@ If you have feature requests, please send them to us: support@htmlcsstoimage.com
 
 <hr>
 ### Dashboard improvements
+November 21, 2021
+{: .text-delta}
+
+We have added a `usage` endpoint to the API. This exposes the amount of images your account has created in hourly, daily and monthly rollups. [Learn more](/getting-started/using-the-api#checking-account-usage).
+
+
+### Dashboard improvements
 October 29, 2021
 {: .text-delta}
 
