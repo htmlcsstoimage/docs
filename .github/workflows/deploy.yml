@@ -5,6 +5,13 @@
 # This workflow will download a prebuilt Ruby version, install dependencies and run tests with Rake
 # For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
 
+#    - uses: actions/cache@v2
+#      with:
+#        path: vendor/bundle
+#        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+#        restore-keys: |
+#          ${{ runner.os }}-gems-
+
 name: Deploy
 
 on:
@@ -24,12 +31,7 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.6
-    - uses: actions/cache@v2
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gems-
+
     - name: Bundle install
       run: |
         bundle config path vendor/bundle
