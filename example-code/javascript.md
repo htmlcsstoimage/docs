@@ -32,7 +32,7 @@ request.post({ url: 'https://hcti.io/v1/image', form: data})
 // {"url": "https://hcti.io/v1/image/1113184e-419f-49f1-b231-2069942a186f"}
 ```
 
-To see all of the available parameters, see: [Creating an image](/api-endpoints/#creating-an-image).
+To see all of the available parameters, see: [Creating an image](/getting-started/using-the-api/#creating-an-image).
 
 {% include hint.md title="Can I use this in a browser?" text="We recommend only using the API server-side. This is important because it keeps your API key secret. If you expose them in the browser, they can be used by anyone." %}
 

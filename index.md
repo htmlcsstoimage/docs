@@ -147,4 +147,4 @@ Once an image is generated, use query params to adjust to any size you need with
 To use this API, you'll first need an API key. You may retrieve one by [signing up here](https://htmlcsstoimage.com).
 
 <a href="https://htmlcsstoimage.com" target="_blank">Free API Key</a>{: .btn .btn-blue .fs-5 .mb-4 .mb-md-0 }
-[API Docs](/api-endpoints){: .btn .fs-5 .mb-4 .mb-md-0 }
+[API Docs](/getting-started/using-the-api/){: .btn .fs-5 .mb-4 .mb-md-0 }
