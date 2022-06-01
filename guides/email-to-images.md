@@ -24,7 +24,7 @@ You can use the API to convert emails into images.
 Making it easy to automatically share them in Slack, Instagram or Facebook.
 
 **How to do it:**
-1. You can use our [Zapier](/integrations/zapier) or [Integromat](/integrations/integromat) integrations to convert email to images without code.
+1. You can use our [Zapier](/integrations/zapier) or [Make](/integrations/make) integrations to convert email to images without code.
 2. Or, use the [API](/getting-started/using-the-api#creating-an-image) directly.
 3. You'll want to create an image from HTML and pass the full HTML of the email to the API.
 4. The API will then send back a URL to your image of the email.

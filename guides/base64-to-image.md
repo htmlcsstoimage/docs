@@ -42,13 +42,13 @@ In this example we convert a base64 of our logo into an image.
 
 <hr>
 
-## Use this with Zapier or Integromat
+## Use this with Zapier or Make
 
-We have integrations for both Zapier and Integromat. You can use the example code above to convert base64 to images without writing any code yourself.
+We have integrations for both Zapier and Make. You can use the example code above to convert base64 to images without writing any code yourself.
 
 
 [Zapier](https://docs.htmlcsstoimage.com/integrations/zapier/){: .btn .btn-green .fs-5 .mb-4 .mb-md-0 .mr-2 }
-[Integromat](https://docs.htmlcsstoimage.com/integrations/integromat/){: .btn .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[Make](https://docs.htmlcsstoimage.com/integrations/make/){: .btn .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 
 {% include code_footer.md version=3 %}

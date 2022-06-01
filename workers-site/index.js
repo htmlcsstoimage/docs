@@ -78,6 +78,9 @@ async function redirectOrHandleEvent(event) {
     case "/getting-started/integromat-integration":
       return Response.redirect(site + '/integrations/integromat/', 301);
       break;
+    case "/integrations/integromat":
+      return Response.redirect(site + '/integrations/make/', 301);
+      break;
     case "/getting-started/zapier-integration":
       return Response.redirect(site + '/integrations/zapier/', 301);
       break;
