@@ -21,6 +21,15 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+### Invoice improvements
+June 18, 2022
+{: .text-delta}
+
+The invoice page has been upgraded. You can now view all of your invoices, download a PDF, and make payments
+on any overdue invoices.
+
+<hr>
+
 ### Integromat integration is now called Make
 June 1, 2022
 {: .text-delta}
