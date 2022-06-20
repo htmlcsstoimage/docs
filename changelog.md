@@ -21,6 +21,12 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+### Integromat integration is now called Make
+June 1, 2022
+{: .text-delta}
+
+FYI - Integromat has rebranded to Make. We have updated all our links and documentation to now point to Make.
+
 <hr>
 ### ms_delay improvements
 May 18, 2022
@@ -33,6 +39,7 @@ For example, using `ms_delay` of 10000ms on an image will count as 2 images towa
 
 This is useful for pages with very slow load times, such as metrics dashboards. We hope you find it useful!
 
+<hr>
 
 ### Dashboard improvements
 November 21, 2021
