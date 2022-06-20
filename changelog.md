@@ -22,6 +22,18 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
 <hr>
+### ms_delay improvements
+May 18, 2022
+{: .text-delta}
+
+This has been a much requested feature!
+
+We have increased the `ms_delay` limit to 20 seconds (20,000ms). Usage above 5000ms does cost an additional image render credit.
+For example, using `ms_delay` of 10000ms on an image will count as 2 images towards your monthly quota.
+
+This is useful for pages with very slow load times, such as metrics dashboards. We hope you find it useful!
+
+
 ### Dashboard improvements
 November 21, 2021
 {: .text-delta}
