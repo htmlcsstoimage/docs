@@ -33,18 +33,49 @@ Our documented JavaScript examples won't work with GAS. You can make use of the 
 This shows you how to authenticate with the API and pass parameters in a POST request. This is passing html/css parameters to the API. You can adapt this sample to pass any parameters or work with any of our endpoints.
 
 ```javascript
-var formData = {
-  'html': 'Test',
-  'css': 'test',
-};
+function createImage(html, css) {
+  let formData = {
+    'html': html,
+    'css': css,
+  }
+  // Additional parameters such as ms_delay should be included in formData
 
-var options = {
-  'method' : 'post',
-  'payload' : formData
-};
-// Replace username with your User ID and password with your API Key
-options.headers = {"Authorization": "Basic " + Utilities.base64Encode(username + ":" + password)};
-UrlFetchApp.fetch("https://hcti.io/v1/image", options);
+  let options = {
+    'method' : 'post',
+    'payload' : formData
+  }
+
+  // Replace username with your User ID and password with your API Key
+  options.headers = {"Authorization": "Basic " + Utilities.base64Encode(username + ":" + password)}
+  JSON.parse(UrlFetchApp.fetch("https://hcti.io/v1/image", options)).url
+}
+
+function testCreateImage() {
+  let imageUrl = createImage("<div>Hello, world</div>", "div { color: red; }")
+  console.log(imageUrl)
+}
+```
+
+You can use the Google App Script debugger to test your function by running the `testCreateImage` function.
+
+**Using from HTML**
+
+To call your Google App Script function from an HTML file, see the following example.
+
+```javascript
+function onSuccess(imageUrl) {
+  // This code will run when the function executes successfully.
+  console.log(imageUrl)
+}
+
+function onFailure(error) {
+  // This code will run if there is an error.
+  alert(error.message)
+}
+
+var html = "<div>Hello, world</div>"
+var css = "div { color: red; }"
+google.script.run.withSuccessHandler(onSuccess).withFailureHandler(onFailure).createImage(html, css);
 ```
 
 {% include code_footer.md version=2 %}
