@@ -44,7 +44,7 @@ This will call `ScreenshotReady()` after 2 seconds. Delaying the API from genera
 
 When using [URL to Image](/getting-started/url-to-image), you can trigger the rendering of the image by placing an element on the page with the ID `HCTIReadyNow`.
 
-The JavaScript helper is not avilable for URL to Image, since we do not have full control over the page.
+The JavaScript helper is not available for URL to Image, since we do not have full control over the page.
 
 ## When to use this
 
