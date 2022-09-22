@@ -52,7 +52,7 @@ Yes, include the `<link>` tag to the Font Awesome CDN in your html. You may need
 
 ## How do I render an entire webpage?
 
-We recommend passing the `url` to your webpage to the API. Learn how to do that here: [URL to Image](/getting-starting/url-to-image).
+We recommend passing the `url` to your webpage to the API. Learn how to do that here: [URL to Image](/getting-started/url-to-image).
 
 Alternatively, when passing your HTML to the API, include the full HTML markup. Starting and ending with the `<html>` tags. The HCTI API will enter full page mode and render the entire page as displayed by Google Chrome.
 
