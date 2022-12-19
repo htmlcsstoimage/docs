@@ -28,7 +28,8 @@ Use the developer tools inspector to find the ID or CSS class of the cookie bann
 Then use this information to override the visibility of the cookie banner.
 
 Here is an example that hides some common cookie banner.s
-```
+
+```css
 #onetrust-consent-sdk {
  display: none !important;
 }

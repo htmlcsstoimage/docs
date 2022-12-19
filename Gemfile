@@ -7,7 +7,7 @@ source "https://rubygems.org"
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
-gem "jekyll", "~> 4.1.1"
+gem "jekyll", "~> 4.3.1"
 
 gem "just-the-docs", git: 'https://github.com/mscoutermarsh/just-the-docs'
 gem "pry"
