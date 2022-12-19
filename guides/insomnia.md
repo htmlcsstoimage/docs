@@ -33,4 +33,4 @@ Then, enter your HTML/CSS as parameters for the request.
 
 Press send, and you're done.
 
-{% cloudinary /assets/images/insomnia1.png sizes="700px" alt="Using insomnia with the HTML/CSS to Image API" %}
+{% cloudinary /assets/images/insomnia2.png sizes="700px" alt="Using insomnia with the HTML/CSS to Image API" %}
