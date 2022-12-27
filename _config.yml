@@ -65,7 +65,7 @@ cloudinary:
         class: "cloudinary-image"
 
 algolia:
-  application_id: 'NS4OO0USSZ'
+  application_id: 'D7SKRU9AK6'
   index_name: 'hcti_docs'
 
 # Footer "Edit this page on GitHub" link text
