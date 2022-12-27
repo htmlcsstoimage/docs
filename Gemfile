@@ -23,7 +23,6 @@ gem 'htmlcsstoimage-api'
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
-  gem 'jekyll-algolia', '~> 1.0'
   gem 'jekyll-include_snippet'
   gem "jekyll_asset_pipeline"
   gem 'liquid'

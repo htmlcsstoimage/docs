@@ -64,10 +64,6 @@ cloudinary:
         loading: "lazy"
         class: "cloudinary-image"
 
-algolia:
-  application_id: 'D7SKRU9AK6'
-  index_name: 'hcti_docs'
-
 # Footer "Edit this page on GitHub" link text
 gh_edit_link: true # show or hide edit this page link
 gh_edit_link_text: "Edit this page on GitHub."
