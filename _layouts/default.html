@@ -50,17 +50,12 @@ layout: table_wrappers
     <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
       {% include nav.html %}
     </nav>
-    <!-- <footer> -->
-    <!--   Ask a human -->
-    <!--   Not finding what you're looking for? Email us: support@htmlcsstoimage.com. -->
-    <!-- </footer> -->
   </div>
   <div class="main" id="top">
     <div id="main-header" class="main-header">
       {% if site.search_enabled != false %}
         <div class="search">
-          <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search {{ site.title }}" aria-label="Search {{ site.title }}" autocomplete="off">
-          <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+          <div id="docsearch"></div>
         </div>
       {% endif %}
       {% if site.aux_links %}
@@ -174,12 +169,14 @@ layout: table_wrappers
   - /assets/js/lunr.js
   {% endjavascript_asset_tag %}
 
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+  <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+
   <script type="text/javascript"> docsearch({
-    apiKey: '68bef87826f0ed1de324788b90e28fb3',
+    apiKey: 'a4a272e44824cb610accf87cd2d5f0d9',
+    appId: '8F4ERZPKKA',
     indexName: 'htmlcsstoimage',
-    inputSelector: '#search-input',
-    debug: false
+    container: '#docsearch'
   });
   </script>
 
