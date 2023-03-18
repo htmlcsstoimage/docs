@@ -44,4 +44,17 @@ The API will return a json payload with the URL to your new image.
 { "url":"https://hcti.io/v1/image/1eecf460-e2e5-4db1-9db6-cf862c34a744" }
 ```
 
+## Advanced example
+Here we use additional parameters. Note that each line ends with a `\`.
+
+```ruby
+# Replace UserID and APIKey with your credentials from the dashboard https://htmlcsstoimage.com/dashboard
+curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey'\
+     -d html="<div class='ping'>Pong ✅</div>" \
+     -d css=".ping { padding: 20px; font-family: 'sans-serif'; }" \
+     -d ms_delay=1000 \
+     -d selector=".ping"
+```
+
+
 {% include code_footer.md version=3 %}
