@@ -82,6 +82,15 @@ When passing that to the API, we crop to that element only.
 To learn about CSS Selectors, we recommend [this article](https://www.w3schools.com/cssref/css_selectors.asp). There are also Chrome extensions that detect them for you, we like using: [Selector Gadget](https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb?hl=en).
 
 <hr>
+
+## Pages requiring login or sign-in
+
+Our API does not support pages that require login. The URL must be publicly accessible for us to generate an image of it.
+Supporting login is a common request, but we have chosen not to support it due to the risk of storing and transmitting credentials.
+
+Some sites have the option of creating an "embed" of a page. This is the best option if it's available to you. You can then use the embed's HTML to generate a screenshot without login.
+
+<hr>
 ## Need help getting started?
 
 We'd be happy to walk you through getting started. Send us an email: **support@htmlcsstoimage.com**. We're experts at generating images and will help you get going using the API.
