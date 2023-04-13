@@ -31,7 +31,6 @@ x-renders-used	50017
 - `x-renders-used`: the total number used this period.
 
 
-
 ## Usage endpoint
 
 <pre class="http-method fs-4">
