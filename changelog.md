@@ -14,12 +14,13 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 <hr>
 
-### What we're currently working on
-- PDF support
-- WYSIWYG image editor. Making it easier for people to design images for use with the API.
-- Image template API.
-
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
+
+### Getting account usage
+April 12, 2023
+{: .text-delta}
+
+We've added a new page explaining how to [grab your account usage](/guides/account-usage) via the API. 
 
 ### Invoice improvements
 June 18, 2022
