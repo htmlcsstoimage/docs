@@ -20,12 +20,6 @@ You have two options for checking your current usage via the API
 
 Whenever you create an image, we return your current usage in the response headers.
 
-```
-x-renders-allowed	100000
-x-renders-consumed	1
-x-renders-used	50017
-```
-
 - `x-renders-allowed`: the total allowed for the current billing period.
 - `x-renders-consumed`: the number used by the created image.
 - `x-renders-used`: the total number used this period.
