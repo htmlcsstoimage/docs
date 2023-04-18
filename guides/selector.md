@@ -36,19 +36,23 @@ With the following HTML, we only want to screenshot the inner `content` area. Th
 
 To do this, we would set `selector` to `.content` and the API will crop to the inner div.
 
+{% cloudinary /assets/images/selector-example.png alt="Use a CSS selector to crop an image" %}
+
 ### Selector examples
 
 CSS selectors can get quite complicated, here are a couple simple examples.
 
 
-**Class name selector**
+**Class name selector:**
 ```html
 <div class="example"></div>
 ```
 
 A CSS selector for a `class` can be specified with a period before the class name. Here we'd use `.example`.
 
-**ID selector**
+Note: when selecting a class, the API will use the first instance that matches on the page since css classes are not unique.
+
+**ID selector:**
 
 ```html
 <div id="example"></div>
