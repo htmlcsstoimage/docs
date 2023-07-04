@@ -56,5 +56,17 @@ curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey'\
      -d selector=".ping"
 ```
 
+## Loading in contents from a file
+
+In this example, we grab the contents of a local HTML file and pass them in to the `html` param.
+
+The `cat` command outputs the content of the file. By wrapping this in `$()` we are able to get the HTMl included in the payload.
+
+```ruby
+curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey'\
+     -d html="$(cat path/to/file.html)" \
+     -d css=".ping { padding: 20px; font-family: 'sans-serif'; }"
+```
+
 
 {% include code_footer.md version=3 %}
