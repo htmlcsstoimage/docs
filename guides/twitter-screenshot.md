@@ -16,6 +16,8 @@ Use the HTML/CSS to Image API to generate images of tweets.
 
 <hr>
 
+{% include hint.md title="Problems with Twitter screenshots" text="The Twitter embed API has changed and is blocking many requests. This has resulted in screenshots often returning blank images. We currently do not have a solution, but are working on it." %}
+
 ## How it works
 
 To generate a screenshot of a Tweet, we can make use of the Twitter embed API.
