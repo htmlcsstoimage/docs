@@ -16,11 +16,24 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+### New ms_delay and device_scale guides
+November 19, 2023
+{: .text-delta}
+
+We've added new pages with detailed information on how to better use ms_delay and device_scale.
+
+1. [ms_delay](/parameters/ms_delay/)
+2. [device_scale](/parameters/devise_scale/)
+
+<hr>
+
 ### Getting account usage
 April 12, 2023
 {: .text-delta}
 
 We've added a new page explaining how to [grab your account usage](/guides/account-usage) via the API. 
+
+<hr>
 
 ### Invoice improvements
 June 18, 2022
