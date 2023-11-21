@@ -71,7 +71,7 @@ Optional parameters for greater control over your image.
 
 ### Example responses
 ```
-STATUS: 201 CREATED
+STATUS: 200 OK
 ```
 
 ```javascript
