@@ -16,6 +16,14 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+## Learn how to make a downloadable image
+December 20, 2023
+{: .text-delta}
+
+Did you know? You can make your image downloadable by adding `?dl=1` to the end of the URL. Learn more here: [dl param](/parameters/dl/)
+
+<hr>
+
 ### New ms_delay and device_scale guides
 November 19, 2023
 {: .text-delta}
