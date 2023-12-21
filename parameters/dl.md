@@ -29,4 +29,4 @@ For example, to create a download link to your image. You could do the following
 </a>
 ```
 
-This will download have the users browser download the image in jpg format.
+This will instruct the users browser to download the image in jpg format.
