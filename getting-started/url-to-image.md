@@ -37,7 +37,7 @@ curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey'
              --data-urlencode url="https://google.com"
 ```
 
-Don't write code? Don't worry, you can also do this with our [Zapier integration](zapier-integration.md).
+Don't write code? Don't worry, you can also do this with our [Zapier integration](https://docs.htmlcsstoimage.com/integrations/zapier/).
 
 {% cloudinary /assets/images/google.jpg sizes="600px" alt="Screenshot of google.com" %}
 
