@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
@@ -41,6 +41,6 @@ jobs:
         HCTI_API_KEY: ${{ secrets.HCTI_API_KEY }}
       run: JEKYLL_ENV=production bundle exec jekyll build
     - name: Publish
-      uses: cloudflare/wrangler-action@1.2.0
+      uses: cloudflare/wrangler-action@v3
       with:
         apiToken: ${{ secrets.CF_API_TOKEN }}
