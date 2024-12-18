@@ -16,6 +16,15 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+## DPI query param
+December 18, 2024
+{: .text-delta}
+
+We've added a new query param `dpi` which allows you to set the DPI metadata tag on your generated image. For example `hcti.io/v1/image/123abc?dpi=300`.
+This only sets the metadata tag, you must still create an image large enough for the needed DPI.
+
+<hr>
+
 ## Learn how to make a downloadable image
 December 20, 2023
 {: .text-delta}

@@ -129,4 +129,9 @@ For a 300 DPI business card \(3.5 x 2 inches\).
 
 Once you have determined your height and width in pixels, you can then set your HTML to render the exact size you need. We recommend doing this by adding `height` and `width` style parameters to the outermost HTML element in your code.
 
+### DPI metadata tag
+
+If you need the DPI metadata tag set on your image, you can do this by adding the query param to your image url. For example `hcti.io/v1/image/123abc?dpi=300`.
+Please note, you will still need to use the calculations above to create an image large enough to have the correct DPI when printed.
+
 {% include code_footer.md version=3 %}

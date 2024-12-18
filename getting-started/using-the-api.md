@@ -139,6 +139,7 @@ Query parameters can be added to the URL to adjust your image.
 |:-------------|:------------------|:------|
 | **height** | `Integer` | The height of the image. Maximum `5000`. |
 | **width**  | `Integer`  | The width of the image. Maximum `5000`. |
+| **dpi**  | `Integer`  | Sets the DPI metadata tag on the image. Maximum `600`. |
 | **dl**     | `Integer` | Set `dl=1` and the image will be served as a downloadable attachment. |
 
 <hr>
