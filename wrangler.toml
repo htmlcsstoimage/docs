@@ -4,6 +4,7 @@ type = "webpack"
 # workers_dev = true
 route = "docs.htmlcsstoimage.com/*"
 zone_id = "afe7c7febba92b591f139226a076a193"
+compatibility_date = "2024-12-18"
 
 [site]
 bucket = "./_site"
