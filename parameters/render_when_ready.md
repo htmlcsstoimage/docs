@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Render when ready
-permalink: /parameters/render-when-ready/
+permalink: /parameters/render_when_ready/
 parent: Parameters
 nav_order: 8
 description: >-

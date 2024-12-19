@@ -32,7 +32,7 @@ async function redirectOrHandleEvent(event) {
   switch (path) {
     case "/getting-started/creating-an-image":
       return Response.redirect(site + '/getting-started/using-the-api/', 301);
-    case "/guies/render-when-reader":
+    case "/guides/render-when-ready":
       return Response.redirect(site + '/parameters/render_when_ready', 301);
     case "/getting-started/deleting-an-image":
       return Response.redirect(site + '/getting-started/using-the-api/', 301);
