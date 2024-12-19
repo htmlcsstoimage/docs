@@ -16,7 +16,7 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
-## DPI query param
+### DPI query param
 December 18, 2024
 {: .text-delta}
 
@@ -25,7 +25,7 @@ This only sets the metadata tag, you must still create an image large enough for
 
 <hr>
 
-## Learn how to make a downloadable image
+### Learn how to make a downloadable image
 December 20, 2023
 {: .text-delta}
 
