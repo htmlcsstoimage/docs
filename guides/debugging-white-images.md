@@ -38,7 +38,7 @@ the number of milliseconds you set. We recommend starting with `500` and increas
 ## Solution: `render_when_ready`
 
 The `render_when_ready` param gives you exact control over when the API generates the image. When this is set to true, the API will wait to render the image
-until a JavaScript function is called, or a special element is added to the page. [Learn more about render_when_ready](/guides/render-when-ready/).
+until a JavaScript function is called, or a special element is added to the page. [Learn more about render_when_ready](/parameters/render_when_ready/).
 
 
 {% include code_footer.md version=2 %}
