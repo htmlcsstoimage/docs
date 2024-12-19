@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Render when ready
+title: render_when_ready
 permalink: /parameters/render_when_ready/
 parent: Parameters
 nav_order: 8
