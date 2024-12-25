@@ -64,9 +64,9 @@ To get started quickly, take a look at our example code.
 - [JavaScript](/example-code/javascript)
 - [Ruby](/example-code/ruby)
 - [Python](/example-code/python)
-- [GoLang](/example-code/go)
+- [Go](/example-code/go)
 - [C#](/example-code/c)
-- [Curl](/example-code/curl)
+- [cURL](/example-code/curl)
 - [VB.NET](/example-code/vb.net)
 
 Prefer #NoCode? We also integrate with **[Zapier](integrations/zapier)** and **[Make](integrations/make)**.
@@ -130,13 +130,17 @@ Use the `selector` param to focus on a [specific part of a page](/getting-starte
 
 ### Resize on the Fly
 
-Once an image is generated, use query params to adjust to any size you need with the **width** and **height** params. When only one param is passed, the API will maintain the aspect ratio of the original image.
+Once an image is generated, you can adjust its size using query parameters:
+- **width**: Set the image width (e.g., `?width=400`)
+- **height**: Set the image height (e.g., `?height=300`)
 
-**?width=400**
+When only one parameter is specified, the API maintains the original aspect ratio automatically.
+
+Example with width=400:
 
 {% cloudinary /assets/images/w400.jpeg sizes="200px" alt="Auto adjust the width of your image" %}
 
-**?height=300**
+Example with height=300:
 
 {% cloudinary /assets/images/h300.jpeg sizes="300px" alt="Auto adjust the height of your image" %}
 
@@ -144,7 +148,7 @@ Once an image is generated, use query params to adjust to any size you need with
 
 ## Get an API key
 
-To use this API, you'll first need an API key. You may retrieve one by [signing up here](https://htmlcsstoimage.com).
+To use this API, you'll need an API key. Get started for free:
 
-<a href="https://htmlcsstoimage.com" target="_blank">Free API Key</a>{: .btn .btn-blue .fs-5 .mb-4 .mb-md-0 }
-[API Docs](/getting-started/using-the-api/){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Get an API Key](https://htmlcsstoimage.com){: .btn .btn-blue .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[View API Docs](/getting-started/using-the-api/){: .btn .fs-5 .mb-4 .mb-md-0 }
