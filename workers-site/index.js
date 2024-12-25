@@ -46,8 +46,10 @@ async function redirectOrHandleEvent(event) {
       return Response.redirect(site + '/guides/duplicate-image-detection/', 301);
     case "/getting-started/faq":
       return Response.redirect(site + '/faq', 301);
+    case "/guides/using-google-fonts":
+      return Response.redirect(site + '/parameters/google_fonts/', 301);
     case "/advanced-examples/using-google-fonts":
-      return Response.redirect(site + '/guides/using-google-fonts', 301);
+      return Response.redirect(site + '/parameters/google_fonts/', 301);
     case "/advanced-examples/rendering-emoji":
       return Response.redirect(site + '/guides/rendering-emoji', 301);
     case "/advanced-examples/image-charts-with-highcharts":
