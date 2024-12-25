@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Google Fonts
+title: google_fonts
 permalink: /parameters/google_fonts/
 parent: Parameters
 nav_order: 2
@@ -19,7 +19,7 @@ Load and use any Google Font in your generated images.
 
 | Name | Type | Required | Description |
 |:-----|:-----|:---------|:------------|
-| **google_fonts** | `String` | No | The names of Google Fonts to load, separated by `\|` for multiple fonts |
+| **google_fonts** | `String` | No | The names of Google Fonts to load, separated by `|` for multiple fonts |
 
 ## Usage Examples
 
