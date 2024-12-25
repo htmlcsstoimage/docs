@@ -74,6 +74,8 @@ async function redirectOrHandleEvent(event) {
       return Response.redirect(site + '/guides/convert-emails-images/', 301);
     case "/getting-started/file-formats":
       return Response.redirect(site + '/guides/file-formats/', 301);
+    case "/guides/selector":
+      return Response.redirect(site + '/parameters/selector/', 301);
     case "/guides/twitter-embed":
       return Response.redirect(site + '/guides/twitter-screenshot/', 301);
     default:
