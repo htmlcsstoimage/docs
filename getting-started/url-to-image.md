@@ -45,15 +45,7 @@ Don't write code? Don't worry, you can also do this with our [Zapier integration
 
 To customize your image further, you can take advantage of the following optional parameters.
 
-| Parameter |  |
-| :--- | :--- |
-| css | Inject additional CSS into the page. This is useful when you want to customize the webpage. Such as hiding specific elements (like popups or cookie banners). |
-| viewport\_width | Set the width of Chrome's viewport. Defaults to 1366. |
-| viewport\_height | Set the height of Chrome's viewport. Defaults to 768. |
-| device\_scale | This adjusts the pixel ratio for the device. Default: 1. Maximum 3. |
-| full\_screen | When set to true, the API will generate an image of the entire height of the page. |
-| ms\_delay | The number of milliseconds the API should delay before taking the screenshot. This is useful when waiting for JavaScript. If you need to use this, we recommend starting with a low number, such as `500`. Increasing this value slows down the speed of your initial render. |
-| selector | A CSS selector for an element on the webpage. We'll crop the image to this specific element. For example: `section#complete-toolkit.container-lg` |
+{% include additional_parameters.md %}
 
 <hr>
 
