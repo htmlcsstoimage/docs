@@ -75,6 +75,20 @@ To learn about CSS Selectors, we recommend [this article](https://www.w3schools.
 
 <hr>
 
+## Blocking cookie consent banners
+
+Many websites display cookie consent popups that can interfere with your screenshots. Use the `block_consent_banners` parameter to automatically hide these:
+
+```bash
+curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
+     --data-urlencode url="https://example.com" \
+     --data block_consent_banners=true
+```
+
+This automatically detects and blocks common consent frameworks like OneTrust, Cookiebot, and others. For more advanced cases, see our [complete guide to blocking cookie banners](/guides/blocking-cookie-banners/).
+
+<hr>
+
 ## Pages requiring login or sign-in
 
 Our API does not support pages that require login. The URL must be publicly accessible for us to generate an image of it.

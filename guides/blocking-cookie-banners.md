@@ -18,7 +18,34 @@ Learn how to block cookie banners with taking screenshots
 
 ## How it works
 
-The easiest way to hide cookie banners in your screenshots is by injecting CSS into your image to hide them.
+The easiest way to hide cookie banners in your screenshots is by using the `block_consent_banners` parameter.
+
+When set to `true`, the API will automatically detect and block common cookie consent banners and popups on websites. This is the recommended approach for most use cases.
+
+## Automatic Cookie Banner Blocking
+
+Simply add `block_consent_banners: true` to your API request:
+
+```json
+{
+  "url": "https://example.com",
+  "block_consent_banners": true
+}
+```
+
+This automatically handles the most common cookie consent frameworks including:
+- OneTrust
+- Cookiebot
+- Quantcast Choice
+- TrustArc
+- Osano
+- And many others
+
+{% include hint.md title="Recommended Method" text="Using block_consent_banners is the easiest and most reliable way to hide cookie popups. It's maintained and updated regularly to handle new consent frameworks." %}
+
+## Manual CSS Injection (Advanced)
+
+For custom cookie banners not covered by the automatic blocking, you can still use CSS injection.
 
 Any CSS passed via the `css` param when generating a URL image will get injected into the page.
 
