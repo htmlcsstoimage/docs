@@ -16,6 +16,22 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+### Single-Request Image Generation endpoint
+June 15, 2025
+{: .text-delta}
+
+We've released a powerful new endpoint that allows you to generate images from HTML/CSS in a single request using signed URLs. This new [create-and-render endpoint](/getting-started/create-and-render/) eliminates the need for the traditional two-step process of creating an image and then fetching it.
+
+Key benefits include:
+- **Client-side friendly**: Generate image URLs without exposing your API key
+- **No POST requests**: Skip the image creation step and go straight to rendering
+- **HMAC authentication**: Secure signed URLs prevent unauthorized usage
+- **Direct image response**: URLs return images immediately when accessed
+
+This endpoint is perfect for scenarios where you need to generate image URLs from client-side code or want to simplify your image generation workflow. The endpoint uses HMAC SHA256 authentication to ensure security while keeping your API key private.
+
+<hr>
+
 ### DPI query param
 December 18, 2024
 {: .text-delta}
