@@ -71,7 +71,7 @@ gh_edit_repository: "https://github.com/htmlcsstoimage/docs" # the github URL fo
 gh_edit_branch: "main" # the branch that your docs is served from
 gh_edit_view_mode: "tree"
 
-footer_content: "Built with extensive integration tests and serious care for developer happiness. <br> &copy; 2018-2024 Code Happy, LLC."
+footer_content: "Built with extensive integration tests and serious care for developer happiness. <br> &copy; 2018-2025 Code Happy, LLC."
 
 # Back to top link
 back_to_top: true
