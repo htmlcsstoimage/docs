@@ -14,3 +14,5 @@ To get started quickly, take a look at our example code for generating images.
 
 [Live demo](https://htmlcsstoimage.com/demo){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 [Get an API Key](https://htmlcsstoimage.com){: .btn .fs-5 .mb-4 .mb-md-0 }
+
+{% include hint.md title="Using an AI coding assistant?" text="Skip writing code entirely. Connect our [MCP Server](/integrations/mcp/) to generate images directly from Cursor or Claude Code." %}

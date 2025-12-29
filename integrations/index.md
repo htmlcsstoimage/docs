@@ -15,3 +15,13 @@ Connect the HTML/CSS to Image API to thousands of other services.
 
 [Live demo](https://htmlcsstoimage.com/demo){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 [Get an API Key](https://htmlcsstoimage.com){: .btn .fs-5 .mb-4 .mb-md-0 }
+
+<hr>
+
+## Available Integrations
+
+| Integration | Description |
+|:------------|:------------|
+| **[Zapier](/integrations/zapier/)** | Connect with thousands of apps to automate image generation. |
+| **[Make](/integrations/make/)** | Build powerful automation workflows with Make (formerly Integromat). |
+| **[MCP Server](/integrations/mcp/)** | Generate images from AI assistants like Cursor, Claude, Windsurf, Cline, Zed, and OpenCode. |

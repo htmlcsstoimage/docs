@@ -71,6 +71,8 @@ To get started quickly, take a look at our example code.
 
 Prefer #NoCode? We also integrate with **[Zapier](integrations/zapier)** and **[Make](integrations/make)**.
 
+Using an AI coding assistant? Connect the **[MCP Server](/integrations/mcp/)** to generate images directly from Cursor or Claude Code.
+
 {% include hint.md title="Works with any language" text="Your favorite language not here? Don't worry, we work with any language or framework. See the [curl](example-code/curl) example for how to make a request. [Email us](mailto:support@htmlcsstoimage.com) if you need help getting started. We'd love to add more example code here." %}
 
 <hr>
