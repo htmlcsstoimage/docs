@@ -16,6 +16,24 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+### MCP Server for AI Assistants
+December 29, 2025
+{: .text-delta}
+
+We've launched an MCP (Model Context Protocol) server that lets you generate images directly from AI coding assistants. Simply describe what you want, and the AI will create it for you using the HTML/CSS to Image API.
+
+The MCP server supports:
+- **Image creation** from HTML/CSS or URLs
+- **Template management** for reusable image designs
+- **Batch image generation** for creating multiple images at once
+- **OAuth authentication** for seamless, secure access
+
+Works with Cursor, Claude Code, Claude Desktop, Windsurf, Cline, Zed, OpenCode, and automation platforms like Zapier and Pipedream.
+
+[Learn more about the MCP Server integration](/integrations/mcp/)
+
+<hr>
+
 ### Automatic cookie consent banner blocking
 June 18, 2025
 {: .text-delta}
