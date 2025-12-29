@@ -210,35 +210,25 @@ Pipedream supports MCP servers for building serverless workflows. Connect the HT
 
 Once configured, you can ask your AI assistant to generate images naturally. Here are some examples:
 
-### Create an Image from HTML
+**Create an image from HTML:**
+- "Create an image of a blue button that says 'Subscribe Now' with rounded corners and a subtle shadow"
+- "Generate a social card with a gradient background and the title 'Hello World'"
 
-> "Create an image of a blue button that says 'Subscribe Now' with rounded corners and a subtle shadow"
+**Screenshot a website:**
+- "Take a screenshot of https://stripe.com with device_scale set to 2 for high resolution"
+- "Screenshot the pricing table on https://example.com/pricing using the selector '.pricing-grid'"
 
-The AI will generate the HTML/CSS and use the `create_image` tool to render it.
+**Generate social media images:**
+- "Create a Twitter/X card image with a gradient background, the title 'Launching Soon', and our logo"
+- "Make an Open Graph image for my blog post about Python"
 
-### Screenshot a Website
+**Batch create images:**
+- "Create 10 variations of a product card image, each with a different background color"
 
-> "Take a screenshot of https://stripe.com with device_scale set to 2 for high resolution"
-
-### Screenshot a Specific Element
-
-> "Screenshot the pricing table on https://example.com/pricing using the selector '.pricing-grid'"
-
-### Generate Social Media Images
-
-> "Create a Twitter/X card image with a gradient background, the title 'Launching Soon', and our logo"
-
-### Batch Create Images
-
-> "Create 10 variations of a product card image, each with a different background color"
-
-### Work with Templates
-
-> "List my saved templates"
-
-> "Create an image using my 'social-card' template with the title set to 'New Feature Release'"
-
-> "Save this HTML/CSS as a template called 'blog-header' so I can reuse it"
+**Work with templates:**
+- "List my saved templates"
+- "Create an image using my 'social-card' template with the title set to 'New Feature Release'"
+- "Save this HTML/CSS as a template called 'blog-header' so I can reuse it"
 
 ## Image Parameters
 
