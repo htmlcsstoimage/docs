@@ -14,137 +14,65 @@ Your search for pixel perfect image generation ends here.
 [Get an API Key](https://htmlcsstoimage.com){: .btn .fs-5 .mb-4 .mb-md-0 }
 <hr>
 
-The API for generating high quality images from HTML/CSS. No yak shaving required.
+The API for generating high quality images from HTML/CSS.
 
-- converts HTML to `png`, `jpg` or `webp`
-- screenshot any `url`
-- no janky fonts, or blurry images
+- Converts HTML to `png`, `jpg` or `webp`
+- Screenshot any URL
+- No janky fonts or blurry images
 
 <hr>
 
-## Converting HTML to a png
-This image was created using just HTML/CSS and the HCTI API.
+## Two ways to generate images
 
-<div class="code-example" markdown="1">
-  <div class="hcti-container">
-    {% cloudinary /assets/images/dog-rates-example.png alt="Image auto generated with HTML/CSS to Image" %}
-  </div>
-</div>
-```html
-<div class="p-4 text-center mt-4" style="width: 500px">
-  <span class="tweet-text mb-4">
-    This is Little Bear. He tolerates baths because he knows how phenomenal his
-    floof will appear afterwards. 13/10
-  </span>
-  <div class="mt-2 p-4">
-    <img src="https://docs.htmlcsstoimage.com/assets/images/dog.jpg" class="rounded-circle shadow border mt-4" width="100px">
-  </div>
-  <h4 class="mt-2">
-    WeRateDogs
-  </h4>
-  <span class="text-muted">@dog_rates</span>
-</div>
+### From HTML/CSS
 
-<!-- Include external CSS, JavaScript or Fonts! -->
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+Create images programmatically using HTML and CSS. Perfect for social cards, certificates, dynamic graphics, and more.
 
-<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap" rel="stylesheet">
+```bash
+curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
+  -d html="<div style='padding:20px;background:#4f46e5;color:white;font-size:24px;'>Hello World</div>"
 ```
 
+[Learn more about HTML to Image](/getting-started/using-the-api/){: .btn .btn-outline .fs-5 .mb-4 .mb-md-0 }
 
-[Try it yourself](https://htmlcsstoimage.com/demo){: .btn .btn-green .fs-5 .mb-4 .mb-md-0 .mr-2 }
+### From any URL
 
-<hr>
+Take screenshots of any public webpage. Great for archiving, previews, and automated captures.
 
-## Quick start example code
+```bash
+curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
+  --data-urlencode url="https://google.com"
+```
 
-To get started quickly, take a look at our example code.
-
-- [PHP](/example-code/php)
-- [JavaScript](/example-code/javascript)
-- [Ruby](/example-code/ruby)
-- [Python](/example-code/python)
-- [Go](/example-code/go)
-- [C#](/example-code/c)
-- [cURL](/example-code/curl)
-- [VB.NET](/example-code/vb.net)
-
-Prefer #NoCode? We also integrate with **[Zapier](integrations/zapier)** and **[Make](integrations/make)**.
-
-Using an AI coding assistant? Connect the **[MCP Server](/integrations/mcp/)** to generate images directly from Cursor or Claude Code.
-
-{% include hint.md title="Works with any language" text="Your favorite language not here? Don't worry, we work with any language or framework. See the [curl](example-code/curl) example for how to make a request. [Email us](mailto:support@htmlcsstoimage.com) if you need help getting started. We'd love to add more example code here." %}
+[Learn more about URL to Image](/getting-started/url-to-image/){: .btn .btn-outline .fs-5 .mb-4 .mb-md-0 }
 
 <hr>
 
-## Image Examples
+## Quick start
 
-Your imagination is the only limit. We render HTML/CSS just like Google Chrome. Here are a few examples of ways people have used the API to automate their image generation.
+Choose your path to get started:
 
-## Social Images: Dev.to
+| I want to... | Go here |
+|:-------------|:--------|
+| **Read the API docs** | [Using the API](/getting-started/using-the-api/) |
+| **See example code** | [PHP](/example-code/php), [JavaScript](/example-code/javascript), [Ruby](/example-code/ruby), [Python](/example-code/python), [Go](/example-code/go), [cURL](/example-code/curl) |
+| **Use with AI assistants** | [MCP Server](/integrations/mcp/) for Cursor, Claude, Windsurf, and more |
+| **No-code options** | [Zapier](/integrations/zapier/) or [Make](/integrations/make/) |
+| **See use cases** | [Use Cases & Examples](/use-cases/) |
 
-[Dev.to](https://dev.to) uses the API to autogenerate thousands of custom images for Twitter and Facebook.
+{% include hint.md title="Works with any language" text="Don't see your language? The API works with anything that can make HTTP requests. See the [cURL example](/example-code/curl/) and adapt it to your stack." %}
+
+<hr>
+
+## Trusted by developers worldwide
+
+Companies like [Dev.to](https://dev.to), Product Hunt, and thousands of developers use HTML/CSS to Image to generate millions of images every month.
 
 {% cloudinary /assets/images/image%20%2823%29.png alt="Dev.to social card generated from HTML" %}
 
-To see how they do it, [take a look at their code](https://github.com/thepracticaldev/dev.to/blob/master/app/controllers/social_previews_controller.rb) \(it's open source!\).
+Dev.to uses the API to autogenerate thousands of custom social images for Twitter and Facebook..
 
-## Product Hunt Makers Social Cards
-
-{% cloudinary /assets/images/f356dffe-d99f-487e-bb16-74dc076c0657.jpeg alt="Product Hunt social image" %}
-
-Product Hunt uses HTML/CSS to Image to dynamically generate social cards for Maker Goals.
-
-Source code for this example on [CodePen](https://codepen.io/ayrtonbe/pen/ZmWBMw).
-
-## Remote Stories Social Cards
-
-{% cloudinary /assets/images/7e2da2be-7328-4746-ae69-418b295360ae.jpeg alt="Remote stories social image from html" %}
-
-Source code for this example on [CodePen](https://codepen.io/ayrtonbe/pen/pQLyKN).
-
-## Highlighted Text Shots
-
-Generate images from your users comments. Add the ability to highlight and share.
-
-{% cloudinary /assets/images/textshot2.png alt="User comment auto generated text shot" %}
-
-Source code for this example on [CodePen](https://codepen.io/mscccc/pen/yRzBWP).
-
-## Auto Generated Job Listing
-
-Generate images from job listings for sharing in emails, ads or social media.
-
-{% cloudinary /assets/images/jobad.jpeg alt="Autogenerated image for a job advertisement" %}
-
-Source code for this example on [CodePen](https://codepen.io/mscccc/pen/xyXKrj).
-
-## Full Webpage Screenshots
-
-Pass a URL or entire webpage to the API to generate a full page screenshot. Here we passed [stripe.com](https://stripe.com)'s to the API.
-
-{% cloudinary /assets/images/stripe.png alt="Convert a url to a screenshot API" %}
-
-### Screenshot part of a page
-Use the `selector` param to focus on a [specific part of a page](/getting-started/url-to-image/#screenshot-part-of-a-page-with-selector).
-
-{% cloudinary /assets/images/url-selector-example.png alt="Use a CSS selector to crop an image" %}
-
-### Resize on the Fly
-
-Once an image is generated, you can adjust its size using query parameters:
-- **width**: Set the image width (e.g., `?width=400`)
-- **height**: Set the image height (e.g., `?height=300`)
-
-When only one parameter is specified, the API maintains the original aspect ratio automatically.
-
-Example with width=400:
-
-{% cloudinary /assets/images/w400.jpeg sizes="200px" alt="Auto adjust the width of your image" %}
-
-Example with height=300:
-
-{% cloudinary /assets/images/h300.jpeg sizes="300px" alt="Auto adjust the height of your image" %}
+[See more use cases](/use-cases/){: .btn .btn-outline .fs-5 .mb-4 .mb-md-0 }
 
 <hr>
 
