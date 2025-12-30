@@ -15,6 +15,9 @@ Generate images with AI assistants using the Model Context Protocol.
 {: .fs-4 .fw-300 }
 
 [Get an API Key](https://htmlcsstoimage.com){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 target="_blank" }
+
+{% include hint.md title="New feature" text="The MCP server is a new feature. We'd love to hear your feedback! Send us an email at support@htmlcsstoimage.com." %}
+
 <hr>
 
 Table of contents
