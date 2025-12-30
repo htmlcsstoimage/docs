@@ -5,7 +5,7 @@
 | **ms_delay**   | `Integer` | The number of milliseconds the API should delay before generating the image. This is useful when waiting for JavaScript. We recommend starting with `500`. Large values slow down the initial render time. [Learn more](/parameters/ms_delay/). |
 | **device_scale**   | `Double` | Controls the image resolution by adjusting the pixel ratio. Minimum: `1`, Maximum: `3`. Higher values increase image quality and file size. For example, `2` will double the resolution. [Learn more](/parameters/device_scale/). |
 | **render_when_ready**   | `Boolean` | Set to true to control when the image is generated. Call `ScreenshotReady()` from JavaScript to generate the image. [Learn more](/parameters/render_when_ready/). |
-| **full_screen**   | `Boolean` | When set to true, the API will generate an image of the entire height of the page. |
-| **block_consent_banners**   | `Boolean` | When set to `true`, automatically blocks cookie consent banners and popups on websites. Most useful for URL screenshots. |
-| **viewport_width**   | `Integer` | Set the width of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
-| **viewport_height**   | `Integer` | Set the height of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. | 
+| **full_screen**   | `Boolean` | When set to true, the API will generate an image of the entire height of the page. [Learn more](/parameters/full_screen/). |
+| **block_consent_banners**   | `Boolean` | When set to `true`, automatically blocks cookie consent banners and popups on websites. Most useful for URL screenshots. [Learn more](/guides/blocking-cookie-banners/). |
+| **viewport_width**   | `Integer` | Set the width of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. [Learn more](/getting-started/setting-height-and-width/). |
+| **viewport_height**   | `Integer` | Set the height of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. [Learn more](/getting-started/setting-height-and-width/). | 
