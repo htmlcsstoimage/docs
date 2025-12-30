@@ -17,13 +17,6 @@ The complete guide to crystal-clear, high-resolution images
 
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
-<hr>
-
 ## Why Images Look Blurry
 
 Blurry images are almost always caused by **insufficient pixel density** for the display they're viewed on. Modern screens—especially smartphones, tablets, and high-resolution monitors—pack many more pixels into the same physical space than older displays.

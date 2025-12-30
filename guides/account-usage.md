@@ -17,13 +17,6 @@ Two simple ways to track your image generation usage
 
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
-<hr>
-
 ## Automated Usage Alerts
 
 We automatically send email notifications when your account reaches usage thresholds:

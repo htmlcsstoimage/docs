@@ -16,13 +16,6 @@ Auto-generate beautiful social media images for every page.
 
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
-<hr>
-
 ## What are social cards?
 
 Social cards (also called Open Graph images or OG images) are the preview images that appear when you share a link on Twitter, Facebook, LinkedIn, Slack, or other platforms. They're crucial for engagement - posts with images get significantly more clicks and shares.

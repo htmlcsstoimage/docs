@@ -16,13 +16,6 @@ Capture any public webpage as a high-quality image.
 
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
-<hr>
-
 ## Overview
 
 The HTML/CSS to Image API can capture screenshots of any publicly accessible URL. Pass a URL to the API, and get back a pixel-perfect screenshot rendered in a real instance of Google Chrome.

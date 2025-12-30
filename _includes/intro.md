@@ -9,11 +9,6 @@ Generate a png, jpg or webp images with {{ include.language }}. Renders exactly 
 [Get an API Key](https://htmlcsstoimage.com){: .btn .fs-5 .mb-4 .mb-md-0 target="_blank" }
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
 ## Generating images with {{include.language}}
 1. The API takes your HTML/CSS and runs it inside a real instance of Google Chrome to **convert your html into an image**.
 2. Use {{include.language}} to send the API your HTML/CSS. 

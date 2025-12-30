@@ -15,11 +15,6 @@ description: >-
 Adjust rendering delay to capture dynamic content
 {: .fs-6 .fw-300 }
 
-Table of contents
-{: .text-delta }
-1. TOC
-{:toc}
-
 <hr>
 
 ## When to use ms_delay

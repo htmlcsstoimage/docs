@@ -81,4 +81,3 @@ Dev.to uses the API to autogenerate thousands of custom social images for Twitte
 To use this API, you'll need an API key. Get started for free:
 
 [Get an API Key](https://htmlcsstoimage.com){: .btn .btn-blue .fs-5 .mb-4 .mb-md-0 .mr-2 }
-[View API Docs →](/getting-started/using-the-api/)

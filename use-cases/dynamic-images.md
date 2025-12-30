@@ -16,13 +16,6 @@ Turn data into beautiful, shareable images.
 
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
-<hr>
-
 ## Overview
 
 Dynamic images are generated programmatically from structured data. Instead of designing each image manually, you create a template and populate it with data - names, dates, stats, quotes, or any other content.

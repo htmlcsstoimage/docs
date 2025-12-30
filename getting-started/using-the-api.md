@@ -19,13 +19,6 @@ Generate images from HTML and CSS.
 
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
-<hr>
-
 ## Authentication
 The API uses [HTTP Basic authentication](https://en.wikipedia.org/wiki/Basic_access_authentication). 
 

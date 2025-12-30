@@ -17,13 +17,6 @@ Create images with transparent backgrounds for logos, overlays, and more
 
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
-<hr>
-
 ## Implementation
 
 To render an image with a transparent background, set the background color to transparent in your CSS:

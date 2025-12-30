@@ -20,11 +20,6 @@ Generate images with AI assistants using the Model Context Protocol.
 
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
 ## What is MCP?
 
 The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) is an open standard that allows AI assistants to connect to external tools and services. With our MCP server, you can generate images directly from your AI coding assistant without writing any code.

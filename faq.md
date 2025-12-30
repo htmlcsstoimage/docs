@@ -14,13 +14,6 @@ Not finding your answer here? Please email us: <a href="mailto:support@htmlcssto
 
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
-<hr>
-
 ## Is there a rate limit?
 
 No rate limits here. You'll be able to create images up until you reach your account limit.

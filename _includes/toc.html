@@ -1,0 +1,85 @@
+{% comment %}
+  Table of Contents generator
+  Extracts h2 and h3 headings from the page content and generates a TOC
+{% endcomment %}
+
+{% assign content_string = include.content %}
+{% assign headings_found = false %}
+
+{% comment %} Check if there are any h2 headings with id attributes {% endcomment %}
+{% if content_string contains '<h2 id="' %}
+  {% assign headings_found = true %}
+{% endif %}
+
+{% if headings_found %}
+<nav aria-label="On this page" class="toc-nav">
+  <p class="toc-title">On this page</p>
+  <ul class="toc-list">
+    {% comment %} Split content by </h2> to get each h2 section {% endcomment %}
+    {% assign sections = content_string | split: '</h2>' %}
+    
+    {% for section in sections %}
+      {% comment %} Check if this section contains an h2 opening tag {% endcomment %}
+      {% if section contains '<h2 id="' %}
+        {% comment %} Get the part with the h2 {% endcomment %}
+        {% assign h2_parts = section | split: '<h2 id="' %}
+        {% assign h2_content = h2_parts | last %}
+        
+        {% comment %} Extract the id {% endcomment %}
+        {% assign id_parts = h2_content | split: '"' %}
+        {% assign heading_id = id_parts[0] %}
+        
+        {% comment %} Extract the text after the closing anchor tag {% endcomment %}
+        {% if h2_content contains '</a>' %}
+          {% assign after_anchor_parts = h2_content | split: '</a>' %}
+          {% assign heading_text = after_anchor_parts[1] | strip_html | strip | truncate: 80, "" %}
+        {% else %}
+          {% comment %} No anchor, get text after the closing > {% endcomment %}
+          {% assign after_tag_parts = h2_content | split: '>' %}
+          {% assign heading_text = after_tag_parts[1] | strip_html | strip | truncate: 80, "" %}
+        {% endif %}
+        
+        {% if heading_text != "" and heading_id != "" %}
+          <li class="toc-item toc-h2">
+            <a href="#{{ heading_id }}" class="toc-link">{{ heading_text }}</a>
+            
+            {% comment %} Look for h3 headings in the next section {% endcomment %}
+            {% assign next_index = forloop.index %}
+            {% if next_index < sections.size %}
+              {% assign next_section = sections[next_index] %}
+              {% if next_section contains '<h3 id="' %}
+                <ul class="toc-sublist">
+                  {% assign h3_sections = next_section | split: '</h3>' %}
+                  {% for h3_section in h3_sections %}
+                    {% if h3_section contains '<h3 id="' %}
+                      {% assign h3_parts = h3_section | split: '<h3 id="' %}
+                      {% assign h3_content = h3_parts | last %}
+                      
+                      {% assign h3_id_parts = h3_content | split: '"' %}
+                      {% assign h3_id = h3_id_parts[0] %}
+                      
+                      {% if h3_content contains '</a>' %}
+                        {% assign h3_after_anchor = h3_content | split: '</a>' %}
+                        {% assign h3_text = h3_after_anchor[1] | strip_html | strip | truncate: 60, "" %}
+                      {% else %}
+                        {% assign h3_after_tag = h3_content | split: '>' %}
+                        {% assign h3_text = h3_after_tag[1] | strip_html | strip | truncate: 60, "" %}
+                      {% endif %}
+                      
+                      {% if h3_text != "" and h3_id != "" and forloop.index < 8 %}
+                        <li class="toc-item toc-h3">
+                          <a href="#{{ h3_id }}" class="toc-link">{{ h3_text }}</a>
+                        </li>
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endif %}
+          </li>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </ul>
+</nav>
+{% endif %}

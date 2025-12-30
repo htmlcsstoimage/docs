@@ -15,13 +15,6 @@ Troubleshooting guide
 {: .fs-6 .fw-300 }
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
-<hr>
-
 <img src='{% hcti_image_url {"template_id":"t-9f6526a7-aa2c-4fbb-8723-06eff1c60e89", "title": "{{page.title}}" }%}' width="400px" alt="debugging white or blank images with HTML/CSS to Image" />
 
 ## Why is my image white or blank?

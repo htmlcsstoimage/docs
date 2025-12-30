@@ -17,13 +17,6 @@ Make your images downloadable with a simple URL parameter
 
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
-<hr>
-
 ## Overview
 
 The `dl` parameter allows you to control whether an image is displayed in the browser or downloaded automatically. When enabled, the browser will prompt the user to download the image instead of displaying it.

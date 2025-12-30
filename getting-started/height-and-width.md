@@ -17,13 +17,6 @@ Learn how to set the height and width for your images with the API.
 
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
-<hr>
-
 ## Setting height & width in HTML
 
 When sending an HTML snippet to the API it will auto crop your image to the height/width of the **outermost HTML element**. 

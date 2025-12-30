@@ -18,11 +18,6 @@ Generate a png, jpg or webp images from your terminal with cURL.
 [Get an API Key](https://htmlcsstoimage.com){: .btn .fs-5 .mb-4 .mb-md-0 target="_blank" }
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
 ## Generate an image with cURL
 
 Run this command in your terminal to generate an image using the API.

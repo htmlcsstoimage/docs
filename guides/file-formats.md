@@ -17,13 +17,6 @@ Choose the right format for your use case
 
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
-<hr>
-
 ## Supported Formats
 
 The API supports three image formats:

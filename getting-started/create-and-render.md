@@ -14,13 +14,6 @@ Generate images from HTML/CSS in a single request with signed URLs.
 
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
-<hr>
-
 {% include hint.md title="Recommendation" text="We recommend using the [standard API endpoint](/getting-started/using-the-api/) for most use cases. Only use this endpoint if you specifically need to generate image URLs from client-side code or need to avoid the two-step create-then-fetch process." %}
 
 ## Key benefits

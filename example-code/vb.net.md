@@ -18,11 +18,6 @@ Generate a png, jpg or webp images from your terminal with VB.NET
 [Get an API Key](https://htmlcsstoimage.com){: .btn .fs-5 .mb-4 .mb-md-0 target="_blank" }
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
 ## Generate an image with VB.NET
 The API takes your HTML/CSS and runs it in an instance of Google Chrome to convert your html into an image.
 Use VB.NET to send the API your HTML/CSS. You'll get back the URL to your generated image.

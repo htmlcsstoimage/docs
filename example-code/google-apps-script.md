@@ -18,11 +18,6 @@ Generate a png, jpg or webp images with Google Apps Script.
 [Get an API Key](https://htmlcsstoimage.com){: .btn .fs-5 .mb-4 .mb-md-0 target="_blank" }
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
 ## Generate an image with Google Apps Script
 With [Google Apps Script](https://developers.google.com/apps-script), you can build add-ons for Google. It is based on JavaScript, but includes built in functions that you'll need to use to work with the HTML/CSS to Image API.
 

@@ -40,6 +40,7 @@ layout: table_wrappers
     </symbol>
   </svg>
 
+  <div class="site-container">
   <div class="side-bar">
     <div class="site-header">
       <a href="{{ '/' | absolute_url }}" class="site-title lh-tight">{% include title.html %}</a>
@@ -92,59 +93,71 @@ layout: table_wrappers
           </nav>
         {% endif %}
       {% endunless %}
-      <div id="main-content" class="main-content" role="main">
+
+      {% comment %} Capture the rendered content for TOC extraction {% endcomment %}
+      {% capture rendered_content %}
         {% if site.heading_anchors != false %}
           {% include vendor/anchor_headings.html html=content beforeHeading="true" anchorBody="<svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><use xlink:href=\"#svg-link\"></use></svg>" anchorClass="anchor-heading" %}
         {% else %}
           {{ content }}
         {% endif %}
+      {% endcapture %}
 
-        {% if page.has_children == true and page.has_toc != false %}
-          <hr>
-          <h2 class="text-delta">Table of contents</h2>
-          <ul>
-            {%- assign children_list = pages_list | where: "parent", page.title | where: "grand_parent", page.parent -%}
-            {% for child in children_list %}
-              <li>
-                <a href="{{ child.url | absolute_url }}">{{ child.title }}</a>{% if child.summary %} - {{ child.summary }}{% endif %}
-              </li>
-            {% endfor %}
-          </ul>
-        {% endif %}
+      <div class="content-with-toc">
+        <div id="main-content" class="main-content" role="main">
+          {{ rendered_content }}
 
-        {% if site.footer_content != nil or site.last_edit_timestamp or site.gh_edit_link %}
-          <hr>
-          <footer>
-            {% if site.back_to_top %}
-              <p><a href="#top" id="back-to-top">{{ site.back_to_top_text }}</a></p>
-            {% endif %}
-            {% if site.footer_content != nil %}
-              <p class="text-small text-grey-dk-000 mb-0">{{ site.footer_content }}</p>
-            {% endif %}
+          {% if page.has_children == true and page.has_toc != false %}
+            <hr>
+            <h2 class="text-delta">Table of contents</h2>
+            <ul>
+              {%- assign children_list = pages_list | where: "parent", page.title | where: "grand_parent", page.parent -%}
+              {% for child in children_list %}
+                <li>
+                  <a href="{{ child.url | absolute_url }}">{{ child.title }}</a>{% if child.summary %} - {{ child.summary }}{% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
 
-            {% if site.last_edit_timestamp or site.gh_edit_link %}
-              <div class="d-flex mt-2">
-                {% if site.last_edit_timestamp and site.last_edit_time_format and page.last_modified_at %}
-                  <p class="text-small text-grey-dk-000 mb-0 mr-2">
-                    Page last modified: <span class="d-inline-block">{{ page.last_modified_at | date: site.last_edit_time_format }}</span>.
-                  </p>
-                {% endif %}
-                {% if
-                  site.gh_edit_link and
-                  site.gh_edit_link_text and
-                  site.gh_edit_repository and
-                  site.gh_edit_branch and
-                  site.gh_edit_view_mode
-                %}
-                  <p class="text-small text-grey-dk-000 mb-0">
-                    <a href="{{ site.gh_edit_repository }}/{{ site.gh_edit_view_mode }}/{{ site.gh_edit_branch }}/{{ page.path }}" id="edit-this-page">{{ site.gh_edit_link_text }}</a>
-                  </p>
-                {% endif %}
-              </div>
-            {% endif %}
-          </footer>
-        {% endif %}
+          {% if site.footer_content != nil or site.last_edit_timestamp or site.gh_edit_link %}
+            <hr>
+            <footer>
+              {% if site.back_to_top %}
+                <p><a href="#top" id="back-to-top">{{ site.back_to_top_text }}</a></p>
+              {% endif %}
+              {% if site.footer_content != nil %}
+                <p class="text-small text-grey-dk-000 mb-0">{{ site.footer_content }}</p>
+              {% endif %}
 
+              {% if site.last_edit_timestamp or site.gh_edit_link %}
+                <div class="d-flex mt-2">
+                  {% if site.last_edit_timestamp and site.last_edit_time_format and page.last_modified_at %}
+                    <p class="text-small text-grey-dk-000 mb-0 mr-2">
+                      Page last modified: <span class="d-inline-block">{{ page.last_modified_at | date: site.last_edit_time_format }}</span>.
+                    </p>
+                  {% endif %}
+                  {% if
+                    site.gh_edit_link and
+                    site.gh_edit_link_text and
+                    site.gh_edit_repository and
+                    site.gh_edit_branch and
+                    site.gh_edit_view_mode
+                  %}
+                    <p class="text-small text-grey-dk-000 mb-0">
+                      <a href="{{ site.gh_edit_repository }}/{{ site.gh_edit_view_mode }}/{{ site.gh_edit_branch }}/{{ page.path }}" id="edit-this-page">{{ site.gh_edit_link_text }}</a>
+                    </p>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </footer>
+          {% endif %}
+
+        </div>
+
+        <aside class="toc-sidebar">
+          {% include toc.html content=rendered_content %}
+        </aside>
       </div>
     </div>
 
@@ -158,6 +171,7 @@ layout: table_wrappers
       <div class="search-overlay"></div>
     {% endif %}
   </div>
+  </div> <!-- .site-container -->
 
   <link href="/assets/css/syntax.css" rel="stylesheet" type="text/css" />
   <link href="/assets/css/search.css" rel="stylesheet" type="text/css" />

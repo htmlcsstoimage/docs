@@ -17,13 +17,6 @@ Precisely capture specific elements from your webpage
 
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
-<hr>
-
 ## Overview
 
 The `selector` parameter allows you to capture specific elements from a webpage by providing a CSS selector. The API will automatically crop the image to match the dimensions of the selected element.

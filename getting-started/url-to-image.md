@@ -19,13 +19,6 @@ The high resolution screenshot API you've been searching for.
 
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
-<hr>
-
 ## Creating an image from a URL
 
 With the API, you can automate taking a screenshot of any website.

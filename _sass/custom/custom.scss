@@ -11,6 +11,7 @@ body {
   background-color: white;
   border-right: $border $border-color;
   height: 100%;
+  margin-right: auto;
 }
 
 .site-button {
@@ -26,6 +27,17 @@ img {
   margin: 0;
   padding: 0;
   border: 0;
+}
+
+// Inline code styling (single backticks) - light pink text, no background
+// This targets <code> elements that are NOT inside code blocks
+code.language-plaintext.highlighter-rouge {
+  background-color: transparent !important;
+  color: #d63384 !important; // Light pinkish color
+  padding: 0.1em 0.2em !important;
+  font-size: 0.9em;
+  border: none !important;
+  border-radius: 0 !important;
 }
 
 ::selection {
@@ -233,5 +245,171 @@ img {
 
 .nav-list-link.active {
   color: $link-color !important;
+}
+
+// =============================================================================
+// Right Sidebar Table of Contents
+// =============================================================================
+
+.site-container {
+  display: flex;
+
+  @media (max-width: 800px) {
+    max-width: 100%;
+    flex-direction: column;
+  }
+  
+  @media (min-width: 1600px) {
+    max-width: 1700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  @media (min-width: 1900px) {
+    max-width: 1900px;
+  }
+  
+  @media (min-width: 2200px) {
+    max-width: 2100px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main {
+    max-width: none !important;
+  }
+  
+  .main-content-wrap {
+    max-width: none !important;
+  }
+}
+
+.content-with-toc {
+  display: flex;
+  gap: 2rem;
+  
+  @media (min-width: 1600px) {
+    gap: 2.5rem;
+  }
+}
+
+// Main content in flex container
+.content-with-toc > .main-content {
+  flex: 1;
+  min-width: 0;
+  max-width: 750px;
+}
+
+.toc-sidebar {
+  flex: 0 0 200px;
+  width: 200px;
+  
+  // Hide on medium screens
+  @media (max-width: 1200px) {
+    display: none;
+  }
+  
+  // Wider on larger screens
+  @media (min-width: 1600px) {
+    flex: 0 0 240px;
+    width: 240px;
+  }
+}
+
+.toc-nav {
+  position: sticky;
+  top: 2rem;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+  padding-bottom: 2rem;
+}
+
+.toc-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $grey-dk-000;
+  margin-bottom: 0.75rem;
+  padding-left: 0.75rem;
+}
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-left: 1px solid $grey-lt-200;
+}
+
+.toc-item {
+  margin: 0;
+  
+  &.toc-h2 {
+    margin-top: 0.25rem;
+  }
+  
+  &.toc-h3 {
+    margin-top: 0.125rem;
+  }
+}
+
+.toc-link {
+  display: block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: $grey-dk-100;
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  margin-left: -1px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  
+  &:hover {
+    color: $link-color;
+    border-left-color: $grey-lt-100;
+  }
+}
+
+.toc-h3 .toc-link {
+  padding-left: 1.25rem;
+  font-size: 0.75rem;
+  color: $grey-dk-000;
+}
+
+.toc-sublist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+// Hide the inline markdown-toc when we have the sidebar
+// Only show inline TOC on smaller screens where sidebar is hidden
+#markdown-toc {
+  @media (min-width: 1201px) {
+    display: none;
+  }
+}
+
+// Also hide the "Table of contents" text-delta label on large screens
+.text-delta:has(+ #markdown-toc),
+p.text-delta + ul#markdown-toc {
+  @media (min-width: 1201px) {
+    & {
+      display: none;
+    }
+  }
+}
+
+// Hide the preceding "Table of contents" label when sidebar is visible
+@media (min-width: 1201px) {
+  // Target the text-delta paragraph that comes right before the TOC
+  .main-content > p.text-delta {
+    display: none;
+  }
+  
+  // Hide hr elements that wrap the inline TOC
+  .main-content > hr:first-of-type {
+    display: none;
+  }
 }
 

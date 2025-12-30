@@ -18,13 +18,6 @@ Create re-usable templates to make image generation easy.
 
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
-<hr>
-
 ## What are Templates?
 
 A template allows you to define HTML that includes **variables** to be substituted at the time of image creation. 

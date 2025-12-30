@@ -19,11 +19,6 @@ Generate images on Zapier with HTML/CSS to Image. Renders exactly like Google Ch
 [Get an API Key](https://htmlcsstoimage.com){: .btn .fs-5 .mb-4 .mb-md-0 target="_blank" }
 <hr>
 
-Table of contents
-{: .text-delta }
-- TOC
-{:toc}
-
 Connect HTML/CSS to Image with thousands of integrations on Zapier.
 
 <a href="https://zapier.com/apps/htmlcss-to-image/integrations" target="_blank">
