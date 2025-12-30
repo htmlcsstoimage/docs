@@ -33,7 +33,7 @@ curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
   -d html="<div style='padding:20px;background:#4f46e5;color:white;font-size:24px;'>Hello World</div>"
 ```
 
-[Learn more about HTML to Image](/getting-started/using-the-api/){: .btn .btn-outline .fs-5 .mb-4 .mb-md-0 }
+[Learn more about HTML to Image →](/getting-started/using-the-api/)
 
 ### From any URL
 
@@ -44,7 +44,7 @@ curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
   --data-urlencode url="https://google.com"
 ```
 
-[Learn more about URL to Image](/getting-started/url-to-image/){: .btn .btn-outline .fs-5 .mb-4 .mb-md-0 }
+[Learn more about URL to Image →](/getting-started/url-to-image/)
 
 <hr>
 
@@ -72,7 +72,7 @@ Companies like Dev.to, Product Hunt, and thousands of developers use HTML/CSS to
 
 Dev.to uses the API to autogenerate thousands of custom social images for Twitter and Facebook.
 
-[See more use cases](/use-cases/){: .btn .btn-outline .fs-5 .mb-4 .mb-md-0 }
+[See more use cases →](/use-cases/)
 
 <hr>
 
@@ -81,4 +81,4 @@ Dev.to uses the API to autogenerate thousands of custom social images for Twitte
 To use this API, you'll need an API key. Get started for free:
 
 [Get an API Key](https://htmlcsstoimage.com){: .btn .btn-blue .fs-5 .mb-4 .mb-md-0 .mr-2 }
-[View API Docs](/getting-started/using-the-api/){: .btn .fs-5 .mb-4 .mb-md-0 }
+[View API Docs →](/getting-started/using-the-api/)
