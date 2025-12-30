@@ -194,7 +194,6 @@ layout: table_wrappers
 
   <script src="/assets/js/clipboard.min.js"></script>
   <script>
-    // Add copy buttons to code blocks
     document.addEventListener('DOMContentLoaded', function() {
       document.querySelectorAll('.highlight').forEach(function(block) {
         var btn = document.createElement('button');
@@ -210,6 +209,46 @@ layout: table_wrappers
         block.style.position = 'relative';
         block.appendChild(btn);
       });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const tocLinks = document.querySelectorAll('.toc-sidebar .toc-link');
+      if (tocLinks.length === 0) return;
+
+      const headingIds = Array.from(tocLinks).map(link => {
+        const href = link.getAttribute('href');
+        return href ? href.substring(1) : null;
+      }).filter(Boolean);
+
+      const headings = headingIds.map(id => document.getElementById(id)).filter(Boolean);
+      if (headings.length === 0) return;
+
+      function updateActiveSection() {
+        const scrollPos = window.scrollY + 100;
+        
+        let currentSection = null;
+        
+        headings.forEach(function(heading) {
+          if (heading.offsetTop <= scrollPos) {
+            currentSection = heading.id;
+          }
+        });
+
+        tocLinks.forEach(function(link) {
+          link.classList.remove('toc-active');
+        });
+
+        if (currentSection) {
+          const activeLink = document.querySelector('.toc-sidebar .toc-link[href="#' + currentSection + '"]');
+          if (activeLink) {
+            activeLink.classList.add('toc-active');
+          }
+        }
+      }
+
+      window.addEventListener('scroll', updateActiveSection);
+      
+      updateActiveSection();
     });
   </script>
 </body>

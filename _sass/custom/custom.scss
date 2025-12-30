@@ -362,11 +362,19 @@ img {
   text-decoration: none;
   border-left: 2px solid transparent;
   margin-left: -1px;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color 0.15s ease, border-color 0.15s ease, font-weight 0.15s ease;
   
   &:hover {
     color: $link-color;
     border-left-color: $grey-lt-100;
+  }
+  
+  // Active state for scroll-spy
+  &.toc-active {
+    color: $link-color !important;
+    border-left-color: $link-color !important;
+    font-weight: 600;
+    background-color: rgba($link-color, 0.08);
   }
 }
 
@@ -374,6 +382,11 @@ img {
   padding-left: 1.25rem;
   font-size: 0.75rem;
   color: $grey-dk-000;
+  
+  &.toc-active {
+    color: $link-color;
+    font-weight: 600;
+  }
 }
 
 .toc-sublist {
