@@ -1,34 +1,58 @@
 ---
 layout: page
-title: Twitter screenshot
+title: Twitter/X screenshot
 permalink: /guides/twitter-screenshot/
 parent: Guides
 nav_order: 4
 description: >-
-  Learn how to automatically generate a screenshot of a tweet with HTML/CSS to Image. This works with Zapier, Integromat or any programming language. JavaScript, PHP, Python, Ruby.
+  Learn how to automatically generate a screenshot of a tweet/post on X (formerly Twitter) with HTML/CSS to Image. This works with Zapier, Make, or any programming language.
 ---
-# Screenshot a Tweet
+# Screenshot a Tweet/Post
 {: .no_toc }
 {: .fs-9 }
 
-Use the HTML/CSS to Image API to generate images of tweets.
+Use the HTML/CSS to Image API to generate images of tweets and posts on X.
 {: .fs-6 .fw-300 }
 
 <hr>
 
-{% include hint.md title="Problems with Twitter screenshots" text="The Twitter embed API has changed and is blocking many requests. This has resulted in screenshots often returning blank images. We currently do not have a solution, but are working on it." %}
+There are two ways to capture a screenshot of a tweet: using the **URL method** (recommended) or the **HTML embed method**.
 
-## How it works
+## Method 1: URL Screenshot (Recommended)
 
-To generate a screenshot of a Tweet, we can make use of the Twitter embed API.
+The simplest approach is to use the `url` parameter to directly screenshot the tweet on x.com.
 
-For the image to work, make sure you set the `selector` param to `.twitter-tweet` and `ms_delay` to `1500`.
-This gives the embed extra time to load and has the API properly crop the tweet.
+### Example
 
+Pass the tweet URL directly to the API with the `selector` parameter set to `article` to crop to just the tweet.
 
-## Example code
+```bash
+curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
+  -H "Content-Type: application/json" \
+  -d '{
+    "url": "https://x.com/usahockey/status/2006109366827597923",
+    "selector": "article",
+    "ms_delay": 3000,
+    "device_scale": 2
+  }'
+```
 
-Copy this example, and swap out the href to create an image of any tweet you'd like.
+### Parameters
+
+| Parameter | Value | Description |
+|:----------|:------|:------------|
+| **url** | Tweet URL | The full URL to the tweet on x.com (e.g., `https://x.com/username/status/123456789`) |
+| **selector** | `article` | Crops the image to just the tweet content |
+| **ms_delay** | `3000` | Gives the page time to fully load (3 seconds recommended) |
+| **device_scale** | `2` | Optional. Higher resolution image |
+
+{% include hint.md title="Twitter vs X URLs" text="Both `twitter.com` and `x.com` URLs work. The API will follow redirects automatically." %}
+
+<hr>
+
+## Method 2: HTML Embed
+
+You can also use the X/Twitter embed widget to render a tweet. This gives you a card-style appearance.
 
 <div class="code-example" markdown="1">
 <div class="hcti-container">
@@ -39,18 +63,36 @@ Copy this example, and swap out the href to create an image of any tweet you'd l
 HTML
 {:.text-delta}
 ```html
-<blockquote class="twitter-tweet" style="width: 400px;" data-dnt="true">
-<p lang="en" dir="ltr"></p>
-
-<a href="https://twitter.com/fortnitegame/status/1253524351376330752"></a>
-
-</blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-dnt="true">
+  <a href="https://twitter.com/usahockey/status/2006109366827597923"></a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 ```
 
-**Important:** set these parameters when creating the image.
-- selector: `.twitter-tweet`
-- ms_delay: `1500`
+### Parameters for HTML Embed
 
-[Try it yourself](https://htmlcsstoimage.com/examples/twitter-tweet-screenshot){: .btn .btn-green .fs-5 .mb-4 .mb-md-0 .mr-2 }
+| Parameter | Value | Description |
+|:----------|:------|:------------|
+| **selector** | `.twitter-tweet` | Crops to the rendered tweet widget |
+| **ms_delay** | `3000` | Gives the embed time to load via JavaScript |
+
+<hr>
+
+## Choosing the Right Method
+
+| Method | Best For |
+|:-------|:---------|
+| **URL Screenshot** | Full tweet appearance as seen on x.com, including engagement metrics |
+| **HTML Embed** | Card-style appearance with X branding, "Follow" button, and replies link |
+
+<hr>
+
+## Getting the Tweet URL
+
+To get the URL of any tweet:
+
+1. Click on the tweet to open it
+2. Copy the URL from your browser's address bar
+3. The URL format is: `https://x.com/username/status/tweet_id`
 
 {% include code_footer.md version=1 %}
