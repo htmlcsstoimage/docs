@@ -35,10 +35,11 @@ img {
 .code-toolbar {
   position: relative;
   pre {
-    background-color: #f5f6fa !important;
+    background-color: #1e1e2e !important;
   }
   code {
     border: unset;
+    color: #cdd6f4 !important;
   }
 
   .toolbar-item {
@@ -46,13 +47,115 @@ img {
     padding: 8px;
     top: 0px;
     right: 0px;
-    color: $grey-dk-100;
+    color: $grey-lt-100;
 
     .success {
       svg {
         fill: $link-color;
       }
     }
+  }
+}
+
+// Improved code block styling for better contrast
+pre[class*="language-"],
+code[class*="language-"] {
+  background-color: #1e1e2e !important;
+  color: #cdd6f4 !important;
+  border: none !important;
+}
+
+pre[class*="language-"] {
+  border-radius: 6px;
+  padding: 1rem !important;
+}
+
+// Syntax highlighting colors (dark theme)
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #6c7086 !important;
+}
+
+.token.string,
+.token.attr-value {
+  color: #a6e3a1 !important;
+}
+
+.token.punctuation,
+.token.operator {
+  color: #89dceb !important;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol {
+  color: #fab387 !important;
+}
+
+.token.selector,
+.token.attr-name,
+.token.char,
+.token.builtin {
+  color: #f9e2af !important;
+}
+
+.token.keyword,
+.token.atrule {
+  color: #cba6f7 !important;
+}
+
+.token.function {
+  color: #89b4fa !important;
+}
+
+.token.url,
+.token.variable {
+  color: #f38ba8 !important;
+}
+
+// Bash/Shell specific syntax highlighting
+.language-bash,
+.language-shell,
+.language-sh {
+  // Command names (curl, echo, etc.)
+  .token.function {
+    color: #89b4fa !important;
+    font-weight: 600;
+  }
+  
+  // Flags and parameters (-X, -d, -u, --data-urlencode)
+  .token.parameter,
+  .token.variable {
+    color: #f9e2af !important;
+  }
+  
+  // Strings (single and double quoted)
+  .token.string {
+    color: #a6e3a1 !important;
+  }
+  
+  // URLs
+  .token.url {
+    color: #89dceb !important;
+  }
+  
+  // Operators and punctuation
+  .token.operator {
+    color: #f38ba8 !important;
+  }
+}
+
+// Additional bash-specific token styling for better visibility
+pre[class*="language-bash"],
+pre[class*="language-shell"],
+pre[class*="language-sh"] {
+  .token.assign-left {
+    color: #cba6f7 !important;
   }
 }
 

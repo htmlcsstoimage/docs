@@ -1,6 +1,4 @@
 require "json"
-require 'pry'
-require 'pry-byebug'
 require "htmlcsstoimage"
 
 module Jekyll
@@ -13,12 +11,16 @@ module Jekyll
     end
 
     def render(context)
+      key = hcti_key(context)
+      # Return placeholder for local development without API key
+      return "https://via.placeholder.com/600x400?text=HCTI+Image+Placeholder" unless key
+
       input = parse_input(@input, context)
       @template_id = input["template_id"]
       @template_params = input
       @template_params.delete("template_id")
 
-      client = HTMLCSSToImage.new(api_key: hcti_key(context))
+      client = HTMLCSSToImage.new(api_key: key)
       image = client.create_image_from_template(template_id, @template_params)
 
       image.url
@@ -36,7 +38,8 @@ module Jekyll
       end
 
       return key if key
-      raise StandardError.new("Please set your HTML/CSS to Image API key")
+      # Return nil for local development - the tag will return a placeholder
+      nil
     end
 
     def parse_input(input, context)

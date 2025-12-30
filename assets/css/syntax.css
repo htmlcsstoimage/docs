@@ -1,0 +1,269 @@
+/**
+ * Rouge Syntax Highlighting - One Dark Theme
+ * Build-time highlighting - no JavaScript required
+ */
+
+/* Code block container */
+.highlight {
+  background: #1e1e2e;
+  border-radius: 6px;
+  margin: 1em 0;
+  overflow-x: auto;
+}
+
+.highlight pre {
+  margin: 0;
+  padding: 1em;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+
+.highlight code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-family: "SF Mono", "Fira Code", "Consolas", "Monaco", monospace;
+  font-size: 0.9em;
+  color: #cdd6f4;
+}
+
+/* Inline code */
+code {
+  background: #313244;
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
+  font-size: 0.9em;
+  color: #cdd6f4;
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+}
+
+/* Rouge token colors - One Dark / Catppuccin inspired */
+
+/* Comments */
+.highlight .c,   /* Comment */
+.highlight .c1,  /* Comment.Single */
+.highlight .cm,  /* Comment.Multiline */
+.highlight .cp,  /* Comment.Preproc */
+.highlight .cs,  /* Comment.Special */
+.highlight .ch   /* Comment.Hashbang */
+{
+  color: #6c7086;
+  font-style: italic;
+}
+
+/* Strings */
+.highlight .s,   /* String */
+.highlight .s1,  /* String.Single */
+.highlight .s2,  /* String.Double */
+.highlight .sb,  /* String.Backtick */
+.highlight .sc,  /* String.Char */
+.highlight .sd,  /* String.Doc */
+.highlight .se,  /* String.Escape */
+.highlight .sh,  /* String.Heredoc */
+.highlight .si,  /* String.Interpol */
+.highlight .sr,  /* String.Regex */
+.highlight .ss,  /* String.Symbol */
+.highlight .sx   /* String.Other */
+{
+  color: #a6e3a1;
+}
+
+/* Numbers */
+.highlight .m,   /* Number */
+.highlight .mf,  /* Number.Float */
+.highlight .mh,  /* Number.Hex */
+.highlight .mi,  /* Number.Integer */
+.highlight .mo,  /* Number.Oct */
+.highlight .mb,  /* Number.Bin */
+.highlight .mx,  /* Number.Other */
+.highlight .il   /* Number.Integer.Long */
+{
+  color: #fab387;
+}
+
+/* Keywords */
+.highlight .k,   /* Keyword */
+.highlight .kc,  /* Keyword.Constant */
+.highlight .kd,  /* Keyword.Declaration */
+.highlight .kn,  /* Keyword.Namespace */
+.highlight .kp,  /* Keyword.Pseudo */
+.highlight .kr,  /* Keyword.Reserved */
+.highlight .kt   /* Keyword.Type */
+{
+  color: #cba6f7;
+}
+
+/* Names/Identifiers */
+.highlight .n    /* Name */
+{
+  color: #cdd6f4;
+}
+
+.highlight .na   /* Name.Attribute */
+{
+  color: #89b4fa;
+}
+
+.highlight .nb   /* Name.Builtin */
+{
+  color: #f38ba8;
+}
+
+.highlight .nc   /* Name.Class */
+{
+  color: #f9e2af;
+}
+
+.highlight .nd   /* Name.Decorator */
+{
+  color: #cba6f7;
+}
+
+.highlight .nf,  /* Name.Function */
+.highlight .fm   /* Name.Function.Magic */
+{
+  color: #89b4fa;
+}
+
+.highlight .ni   /* Name.Entity */
+{
+  color: #fab387;
+}
+
+.highlight .nl   /* Name.Label */
+{
+  color: #89dceb;
+}
+
+.highlight .nn   /* Name.Namespace */
+{
+  color: #f9e2af;
+}
+
+.highlight .no   /* Name.Constant */
+{
+  color: #fab387;
+}
+
+.highlight .nt   /* Name.Tag */
+{
+  color: #f38ba8;
+}
+
+.highlight .nv,  /* Name.Variable */
+.highlight .vc,  /* Name.Variable.Class */
+.highlight .vg,  /* Name.Variable.Global */
+.highlight .vi,  /* Name.Variable.Instance */
+.highlight .vm   /* Name.Variable.Magic */
+{
+  color: #f38ba8;
+}
+
+/* Operators */
+.highlight .o,   /* Operator */
+.highlight .ow   /* Operator.Word */
+{
+  color: #89dceb;
+}
+
+/* Punctuation */
+.highlight .p    /* Punctuation */
+{
+  color: #cdd6f4;
+}
+
+/* Generic */
+.highlight .gd   /* Generic.Deleted */
+{
+  color: #f38ba8;
+  background: rgba(243, 139, 168, 0.1);
+}
+
+.highlight .ge   /* Generic.Emph */
+{
+  font-style: italic;
+}
+
+.highlight .gh   /* Generic.Heading */
+{
+  color: #89b4fa;
+  font-weight: bold;
+}
+
+.highlight .gi   /* Generic.Inserted */
+{
+  color: #a6e3a1;
+  background: rgba(166, 227, 161, 0.1);
+}
+
+.highlight .gs   /* Generic.Strong */
+{
+  font-weight: bold;
+}
+
+.highlight .gu   /* Generic.Subheading */
+{
+  color: #89dceb;
+}
+
+/* Errors */
+.highlight .err  /* Error */
+{
+  color: #f38ba8;
+}
+
+/* Text/Whitespace */
+.highlight .w    /* Text.Whitespace */
+{
+  color: #6c7086;
+}
+
+/* Shell/Bash specific - these get good highlighting with Rouge */
+.highlight .nb   /* Builtin commands like curl, echo, cd */
+{
+  color: #89b4fa;
+  font-weight: 500;
+}
+
+.highlight .nv   /* Variables like $HOME */
+{
+  color: #f38ba8;
+}
+
+/* Selection */
+.highlight ::selection {
+  background: #45475a;
+}
+
+.highlight ::-moz-selection {
+  background: #45475a;
+}
+
+/* Copy button */
+.copy-btn {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  background: #45475a;
+  color: #cdd6f4;
+  border: none;
+  border-radius: 4px;
+  padding: 0.3em 0.7em;
+  font-size: 0.75em;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.highlight:hover .copy-btn {
+  opacity: 1;
+}
+
+.copy-btn:hover {
+  background: #585b70;
+}
+

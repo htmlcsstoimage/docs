@@ -159,10 +159,8 @@ layout: table_wrappers
     {% endif %}
   </div>
 
-  {% css_asset_tag prism %}
-  - /assets/css/prism.css
-  - /assets/css/search.css
-  {% endcss_asset_tag %}
+  <link href="/assets/css/syntax.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/css/search.css" rel="stylesheet" type="text/css" />
 
   {% javascript_asset_tag global %}
   - /assets/js/just-the-docs.js
@@ -180,14 +178,25 @@ layout: table_wrappers
   });
   </script>
 
+  <script src="/assets/js/clipboard.min.js"></script>
   <script>
-    window.Prism = window.Prism || {};
-    Prism.manual = true;
+    // Add copy buttons to code blocks
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.highlight').forEach(function(block) {
+        var btn = document.createElement('button');
+        btn.className = 'copy-btn';
+        btn.textContent = 'Copy';
+        btn.addEventListener('click', function() {
+          var code = block.querySelector('code');
+          navigator.clipboard.writeText(code.textContent).then(function() {
+            btn.textContent = 'Copied!';
+            setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
+          });
+        });
+        block.style.position = 'relative';
+        block.appendChild(btn);
+      });
+    });
   </script>
-
-  {% javascript_asset_tag highlighting %}
-  - /assets/js/prism.js
-  - /assets/js/clipboard.min.js
-  {% endjavascript_asset_tag %}
 </body>
 </html>

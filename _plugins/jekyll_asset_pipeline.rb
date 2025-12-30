@@ -9,15 +9,8 @@ module JekyllAssetPipeline
     def html
       file_path = "#{output_path}/#{@filename}"
 
-      if @filename.match? "jtd"
-        return "<link href='#{file_path}' rel='stylesheet' " \
-                  "type='text/css' async />\n" \
-      end
-
-      "<link href='#{file_path}' rel='preload' " \
-        "type='text/css' async />\n" \
-      "<link rel='preload' href='#{file_path}' as='style' onload=\"this.onload=null;this.rel='stylesheet'\"> " \
-        "<noscript><link rel='stylesheet' href='#{file_path}'></noscript>"
+      # Load all CSS files directly as stylesheets
+      "<link href='#{file_path}' rel='stylesheet' type='text/css' />\n"
     end
   end
 end
@@ -43,8 +36,6 @@ end
 module JekyllAssetPipeline
   class CssCompressor < JekyllAssetPipeline::Compressor
     require 'yui/compressor'
-    require 'pry'
-    require 'pry-byebug'
 
     def self.filetype
       '.css'

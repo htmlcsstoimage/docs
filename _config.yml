@@ -28,7 +28,13 @@ twitter_username: htmlcsstoimage.com
 github_username:  htmlcsstoimage
 logo: "/assets/images/HCTI.png"
 
-highlighter: none
+highlighter: rouge
+markdown: kramdown
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
 
 # Build settings
 theme: just-the-docs
