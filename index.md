@@ -66,11 +66,11 @@ Choose your path to get started:
 
 ## Trusted by developers worldwide
 
-Companies like [Dev.to](https://dev.to), Product Hunt, and thousands of developers use HTML/CSS to Image to generate millions of images every month.
+Companies like Dev.to, Product Hunt, and thousands of developers use HTML/CSS to Image to generate millions of images every month.
 
 {% cloudinary /assets/images/image%20%2823%29.png alt="Dev.to social card generated from HTML" %}
 
-Dev.to uses the API to autogenerate thousands of custom social images for Twitter and Facebook..
+Dev.to uses the API to autogenerate thousands of custom social images for Twitter and Facebook.
 
 [See more use cases](/use-cases/){: .btn .btn-outline .fs-5 .mb-4 .mb-md-0 }
 
