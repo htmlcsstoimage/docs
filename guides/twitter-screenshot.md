@@ -37,6 +37,14 @@ curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
   }'
 ```
 
+### Result
+
+<div class="code-example" markdown="1">
+<div class="hcti-container">
+  <img src="https://hcti.io/v1/image/019b7170-7bcd-74e0-955c-24adbddf937f" alt="Screenshot of a tweet using the URL method" style="max-width: 100%; border-radius: 8px;" />
+</div>
+</div>
+
 ### Parameters
 
 | Parameter | Value | Description |
@@ -54,12 +62,6 @@ curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
 
 You can also use the X/Twitter embed widget to render a tweet. This gives you a card-style appearance.
 
-<div class="code-example" markdown="1">
-<div class="hcti-container">
-  {% cloudinary /assets/images/tweet.png alt="Generate a screenshot of a tweet automatically" %}
-</div>
-</div>
-
 HTML
 {:.text-delta}
 ```html
@@ -68,6 +70,14 @@ HTML
 </blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 ```
+
+### Result
+
+<div class="code-example" markdown="1">
+<div class="hcti-container">
+  <img src="https://hcti.io/v1/image/019b7170-819f-7c67-a4fa-9d26739b7199" alt="Screenshot of a tweet using the HTML embed method" style="max-width: 100%; border-radius: 8px;" />
+</div>
+</div>
 
 ### Parameters for HTML Embed
 
