@@ -57,7 +57,13 @@ The MCP server uses OAuth for authentication. When you first connect, your brows
 
 ## Setup for Cursor
 
-To use the HTML/CSS to Image MCP server in Cursor, add the following configuration to your `.cursor/mcp.json` file:
+Click the button below to automatically install the HTML/CSS to Image MCP server in Cursor:
+
+<a href="cursor://anysphere.cursor-deeplink/mcp/install?name=HCTI&config=eyJ0eXBlIjoiaHR0cCIsInVybCI6Imh0dHBzOi8vbWNwLmhjdGkuaW8ifQ==" class="cursor-install-btn">
+  <img src="https://cursor.com/deeplink/mcp-install-dark.png" alt="Add HCTI MCP server to Cursor" height="28" />
+</a>
+
+Or manually add the following configuration to your `.cursor/mcp.json` file:
 
 ```json
 {

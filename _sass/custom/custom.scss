@@ -582,3 +582,25 @@ p.text-delta + ul#markdown-toc {
   line-height: 1.4;
 }
 
+// =============================================================================
+// Cursor MCP Install Button
+// =============================================================================
+
+.cursor-install-btn {
+  display: inline-block;
+  margin-bottom: 1rem;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  
+  &:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+  }
+  
+  img {
+    border: none !important;
+    vertical-align: middle;
+    height: 38px !important;
+    width: auto !important;
+  }
+}
+
