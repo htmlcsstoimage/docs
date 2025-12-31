@@ -529,8 +529,8 @@ p.text-delta + ul#markdown-toc {
 .copy-page-menu-item {
   display: flex;
   align-items: flex-start;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
+  gap: 0.875rem;
+  padding: 0.875rem 1rem;
   width: 100%;
   background: none;
   border: none;
@@ -554,8 +554,13 @@ p.text-delta + ul#markdown-toc {
   
   svg {
     flex-shrink: 0;
-    margin-top: 0.125rem;
+    margin-top: 0.1875rem;
     color: $grey-dk-100;
+  }
+  
+  .ai-icon {
+    width: 16px;
+    height: 16px;
   }
 }
 
@@ -568,13 +573,12 @@ p.text-delta + ul#markdown-toc {
   font-size: 0.875rem;
   font-weight: 500;
   color: $grey-dk-300;
-  line-height: 1.4;
-  margin-bottom: 0.125rem;
+  margin-bottom: 0.25rem;
 }
 
 .menu-item-subtitle {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: $grey-dk-100;
-  line-height: 1.3;
+  line-height: 1.4;
 }
 
