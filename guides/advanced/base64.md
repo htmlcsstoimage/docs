@@ -1,9 +1,10 @@
 ---
 layout: page
 title: Base64 to image
-permalink: /guides/converting-base64-to-image/
-parent: Guides
-nav_order: 10
+permalink: /guides/advanced/base64/
+parent: Advanced
+grand_parent: Guides
+nav_order: 4
 description: >-
   Learn to convert base64 into a PNG or JPG with the HTML/CSS to Image API
 ---
@@ -47,8 +48,9 @@ In this example we convert a base64 of our logo into an image.
 We have integrations for both Zapier and Make. You can use the example code above to convert base64 to images without writing any code yourself.
 
 
-[Zapier](https://docs.htmlcsstoimage.com/integrations/zapier/){: .btn .btn-green .fs-5 .mb-4 .mb-md-0 .mr-2 }
-[Make](https://docs.htmlcsstoimage.com/integrations/make/){: .btn .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[Zapier](/integrations/zapier/){: .btn .btn-green .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[Make](/integrations/make/){: .btn .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 
 {% include code_footer.md version=3 %}
+

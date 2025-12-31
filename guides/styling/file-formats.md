@@ -1,9 +1,10 @@
 ---
 layout: page
 title: File formats
-permalink: /guides/file-formats/
-parent: Guides
-nav_order: 2
+permalink: /guides/styling/file-formats/
+parent: Styling
+grand_parent: Guides
+nav_order: 3
 description: >-
   Learn about supported image formats (PNG, JPG, WebP, PDF) and how to optimize your image delivery.
 ---
@@ -123,3 +124,4 @@ Benefits:
 | PDF | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 {% include code_footer.md version=1 %}
+

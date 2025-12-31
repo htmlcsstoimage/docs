@@ -1,9 +1,10 @@
 ---
 layout: page
 title: Twitter/X screenshot
-permalink: /guides/twitter-screenshot/
-parent: Guides
-nav_order: 4
+permalink: /guides/social-media/twitter/
+parent: Social Media
+grand_parent: Guides
+nav_order: 1
 description: >-
   Learn how to automatically generate a screenshot of a tweet/post on X (formerly Twitter) with HTML/CSS to Image. This works with Zapier, Make, or any programming language.
 ---
@@ -106,3 +107,4 @@ To get the URL of any tweet:
 3. The URL format is: `https://x.com/username/status/tweet_id`
 
 {% include code_footer.md version=1 %}
+

@@ -7,7 +7,7 @@
 | **device_scale**   | `Double` | Controls the image resolution by adjusting the pixel ratio. Minimum: `0.1`, Maximum: `3`. Higher values increase image quality and file size. For example, `2` will double the resolution. [Learn more](/parameters/device_scale/). |
 | **render_when_ready**   | `Boolean` | Set to true to control when the image is generated. Call `ScreenshotReady()` from JavaScript to generate the image. [Learn more](/parameters/render_when_ready/). |
 | **full_screen**   | `Boolean` | When set to true, the API will generate an image of the entire height of the page. [Learn more](/parameters/full_screen/). |
-| **block_consent_banners**   | `Boolean` | When set to `true`, automatically blocks cookie consent banners and popups on websites. Most useful for URL screenshots. [Learn more](/guides/blocking-cookie-banners/). |
+| **block_consent_banners**   | `Boolean` | When set to `true`, automatically blocks cookie consent banners and popups on websites. Most useful for URL screenshots. [Learn more](/guides/advanced/blocking-cookie-banners/). |
 | **viewport_width**   | `Integer` | Set the width of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. [Learn more](/getting-started/setting-height-and-width/). |
 | **viewport_height**   | `Integer` | Set the height of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. [Learn more](/getting-started/setting-height-and-width/). |
 | **color_scheme**   | `String` | Set Chrome to render in `light` or `dark` mode. Affects websites using `prefers-color-scheme`. [Learn more](/parameters/color_scheme/). |

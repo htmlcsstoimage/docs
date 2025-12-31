@@ -3,7 +3,7 @@ layout: default
 title: Integrations
 permalink: /integrations/
 nav_order: 3
-expanded: true
+expanded: false
 has_children: true
 ---
 # Integrations

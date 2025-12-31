@@ -1,9 +1,10 @@
 ---
 layout: page
 title: Transparent background
-permalink: /guides/transparent-background/
-parent: Guides
-nav_order: 1
+permalink: /guides/styling/transparent-background/
+parent: Styling
+grand_parent: Guides
+nav_order: 2
 description: >-
   Learn how to create images with transparent backgrounds using the HTML/CSS to Image API.
 ---

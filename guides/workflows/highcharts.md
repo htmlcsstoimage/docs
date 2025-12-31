@@ -1,9 +1,10 @@
 ---
 layout: page
-title: Image charts with Highcharts.js
-permalink: /guides/image-charts-with-highchartsjs/
-parent: Guides
-nav_order: 8
+title: Highcharts
+permalink: /guides/workflows/highcharts/
+parent: Workflows
+grand_parent: Guides
+nav_order: 5
 description: >-
   Learn how to convert Highcharts.js charts to an image (png, jpg) with HTML/CSS to Image.
 ---
@@ -105,3 +106,4 @@ Highcharts.chart('container', {
 {% include hint.md title="Disable animations" text="Be sure to disable animation when rendering your chart. Otherwise, you may see a partial render of the chart. " %}
 
 {% include code_footer.md version=1 %}
+

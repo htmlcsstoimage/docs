@@ -85,7 +85,7 @@ curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
   --data block_consent_banners=true
 ```
 
-[Learn more about blocking cookie banners](/guides/blocking-cookie-banners/)
+[Learn more about blocking cookie banners](/guides/advanced/blocking-cookie-banners/)
 
 ## High-resolution screenshots
 
@@ -132,10 +132,10 @@ curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
 
 We have dedicated guides for capturing content from popular platforms:
 
-- [Twitter/X Screenshots](/guides/twitter-screenshot/)
-- [Facebook Screenshots](/guides/facebook-screenshot/)
-- [Instagram Embeds](/guides/instagram-embed/)
-- [LinkedIn Screenshots](/guides/linkedin-screenshot/)
+- [Twitter/X Screenshots](/guides/social-media/twitter/)
+- [Facebook Screenshots](/guides/social-media/facebook/)
+- [Instagram Embeds](/guides/social-media/instagram/)
+- [LinkedIn Screenshots](/guides/social-media/linkedin/)
 
 ## Limitations
 

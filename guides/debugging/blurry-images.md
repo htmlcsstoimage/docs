@@ -1,9 +1,10 @@
 ---
 layout: page
-title: Debugging blurry images
-permalink: /guides/debugging-blurry-images/
-parent: Guides
-nav_order: 10
+title: Blurry images
+permalink: /guides/debugging/blurry-images/
+parent: Debugging
+grand_parent: Guides
+nav_order: 2
 description: >-
   Complete guide to understanding and fixing blurry images with pixel density, resolution, and device scaling
 ---
@@ -290,3 +291,4 @@ Include:
 We love solving tricky rendering problems and helping you achieve pixel-perfect results.
 
 {% include code_footer.md version=2 %}
+

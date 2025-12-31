@@ -1,9 +1,10 @@
 ---
 layout: page
-title: Duplicate image detection
-permalink: /guides/duplicate-image-detection/
-parent: Guides
-nav_order: 8
+title: Duplicate detection
+permalink: /guides/advanced/duplicate-detection/
+parent: Advanced
+grand_parent: Guides
+nav_order: 2
 description: >-
   Protecting your image quota from duplicate images. HTML/CSS to Image API.
 ---
@@ -32,3 +33,4 @@ Duplicate image detection is not enabled for images created from a URL. It only 
 
 
 {% include code_footer.md version=1 %}
+

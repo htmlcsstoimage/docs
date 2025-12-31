@@ -137,8 +137,8 @@ Advanced cropping options for precise control over the rendered image region.
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
 | **aspect_ratio** | `String` | Crop to a specific aspect ratio. Format: `width_height` (e.g., `16_9`, `1_1`). |
-| **x_origin** | `String` | Origin point for x-axis cropping. Accepts pixels (`100px`), percentage (`50%`), or negative values for positioning from the right edge. |
-| **y_origin** | `String` | Origin point for y-axis cropping. Accepts pixels (`100px`), percentage (`50%`), or negative values for positioning from the bottom edge. |
+| **x_origin** | `String` | Origin point for x-axis cropping. Accepts pixels (`100px`) or percentage (`50%`). |
+| **y_origin** | `String` | Origin point for y-axis cropping. Accepts pixels (`100px`) or percentage (`50%`). |
 | **x_1** | `String` | Starting x coordinate for crop region. Use with `x_2` or `crop_width`. |
 | **x_2** | `String` | Ending x coordinate for crop region. Must be used with `x_1`. |
 | **y_1** | `String` | Starting y coordinate for crop region. Use with `y_2` or `crop_height`. |
@@ -178,12 +178,12 @@ Here's a base image (600x400 pixels) and how different cropping parameters affec
 ?x_1=33%&x_2=66%
 ```
 
-**Crop right third** (`x_1=-33%&crop_width=33%`):
+**Crop right third** (`x_1=67%&crop_width=33%`):
 
-<img src="https://hcti.io/v1/image/019b7577-ecda-7fb7-9179-26c4609288e1?x_1=-33%&crop_width=33%25" alt="Right third crop" style="max-width: 200px;" />
+<img src="https://hcti.io/v1/image/019b7577-ecda-7fb7-9179-26c4609288e1?x_1=67%25&crop_width=33%25" alt="Right third crop" style="max-width: 200px;" />
 
 ```
-?x_1=-33%&crop_width=33%
+?x_1=67%&crop_width=33%
 ```
 
 **Crop to 16:9 aspect ratio** (`aspect_ratio=16_9&crop_width=100%`):

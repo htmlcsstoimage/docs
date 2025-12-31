@@ -1,9 +1,10 @@
 ---
 layout: page
-title: Checking account usage
-permalink: /guides/account-usage/
-parent: Guides
-nav_order: 2
+title: Account usage
+permalink: /guides/advanced/account-usage/
+parent: Advanced
+grand_parent: Guides
+nav_order: 3
 description: >-
   Learn how to monitor your HTML/CSS to Image API usage through response headers and dedicated endpoints.
 ---
@@ -90,3 +91,4 @@ The response includes usage data organized into different time periods:
 {% include hint.md title="Usage Tracking" text="Consider implementing regular usage checks with this endpoint to monitor trends and plan capacity needs." %}
 
 {% include code_footer.md version=1 %}
+

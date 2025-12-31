@@ -1,9 +1,10 @@
 ---
 layout: page
-title: Convert email to images
-permalink: /guides/convert-emails-images/
-parent: Guides
-nav_order: 1
+title: Email to images
+permalink: /guides/workflows/email-to-images/
+parent: Workflows
+grand_parent: Guides
+nav_order: 3
 description: >-
   Learn how to convert HTML emails into images (png, jpg) with HTML/CSS to Image. Works with Zapier, Integromat and any programming language. PHP, Ruby, JavaScript.
 ---
@@ -49,3 +50,4 @@ To render a full email or webpage with the API, pass the full HTML markup. Start
 - When rendering a full page, be sure to include full paths to all outside assets so that the API is able to download them. Relative paths will not work.
 
 {% include code_footer.md version=2 %}
+

@@ -1,9 +1,10 @@
 ---
 layout: page
-title: External CSS, JavaScript & Fonts
-permalink: /guides/external-css-js-and-fonts/
-parent: Guides
-nav_order: 3
+title: External CSS & Fonts
+permalink: /guides/styling/external-css-fonts/
+parent: Styling
+grand_parent: Guides
+nav_order: 1
 description: >-
   Learn how to use external CSS, JavaScript and fonts when generating your images.
 ---
@@ -42,11 +43,11 @@ You can load in a custom font using CSS.
 
 ```css
 @font-face {
-  font-family: "CustomFont";
-  src: url(https://url-to-your-font/FontNameRegular.ttc);
+  font-family: "CustomFont";
+  src: url(https://url-to-your-font/FontNameRegular.ttc);
 }
 .box {
-  font-family: "CustomFont"
+  font-family: "CustomFont"
 }
 ```
 

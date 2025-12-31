@@ -1,9 +1,10 @@
 ---
 layout: page
-title: Insomnia REST Client
-permalink: /guides/insomnia/
-parent: Guides
-nav_order: 10
+title: Insomnia
+permalink: /guides/workflows/insomnia/
+parent: Workflows
+grand_parent: Guides
+nav_order: 2
 description: >-
   Use the HTML/CSS to Image API with Insomnia. Converts html to images.
 ---
@@ -34,3 +35,4 @@ Then, enter your HTML/CSS as parameters for the request.
 Press send, and you're done.
 
 {% cloudinary /assets/images/insomnia2.png sizes="700px" alt="Using insomnia with the HTML/CSS to Image API" %}
+

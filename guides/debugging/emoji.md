@@ -1,11 +1,12 @@
 ---
 layout: page
 title: Rendering emoji
-permalink: /guides/rendering-emoji/
+permalink: /guides/debugging/emoji/
+parent: Debugging
+grand_parent: Guides
+nav_order: 4
 description: >-
   Emoji's are automatically replaced with images for consistent and clear rendering. This is enabled for you by default.
-parent: Guides
-nav_order: 1
 ---
 
 # Rendering Emoji
@@ -59,3 +60,4 @@ By default, we use [Twemoji](https://github.com/twitter/twemoji) to render emoji
 {% include hint.md title="Note" text="When Twemoji is disabled, emoji appearance will vary depending on the fonts available in our rendering environment. Twemoji provides more consistent results across all images." %}
 
 {% include code_footer.md version=2 %}
+

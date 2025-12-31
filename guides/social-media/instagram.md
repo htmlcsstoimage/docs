@@ -1,9 +1,10 @@
 ---
 layout: page
 title: Instagram embed
-permalink: /guides/instagram-embed/
-parent: Guides
-nav_order: 4
+permalink: /guides/social-media/instagram/
+parent: Social Media
+grand_parent: Guides
+nav_order: 3
 description: >-
   Learn how to automate converting an Instagram post into an image. Works with Zapier and any programming language. Ruby, PHP, JavaScript.
 ---
@@ -52,3 +53,4 @@ HTML
 [Try it yourself](https://htmlcsstoimage.com/examples/instagram-post-screenshot){: .btn .btn-green .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 {% include code_footer.md version=1 %}
+

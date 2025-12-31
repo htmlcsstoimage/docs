@@ -78,7 +78,7 @@ curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
      --data block_consent_banners=true
 ```
 
-This automatically detects and blocks common consent frameworks like OneTrust, Cookiebot, and others. For more advanced cases, see our [complete guide to blocking cookie banners](/guides/blocking-cookie-banners/).
+This automatically detects and blocks common consent frameworks like OneTrust, Cookiebot, and others. For more advanced cases, see our [complete guide to blocking cookie banners](/guides/advanced/blocking-cookie-banners/).
 
 <hr>
 

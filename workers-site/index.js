@@ -41,9 +41,9 @@ async function redirectOrHandleEvent(event) {
     case "/getting-started/authentication":
       return Response.redirect(site + '/getting-started/using-the-api/', 301);
     case "/getting-started/full-page-images":
-      return Response.redirect(site + '/getting-started/convert-emails-images/', 301);
+      return Response.redirect(site + '/guides/workflows/email-to-images/', 301);
     case "/getting-started/duplicate-image-detection":
-      return Response.redirect(site + '/guides/duplicate-image-detection/', 301);
+      return Response.redirect(site + '/guides/advanced/duplicate-detection/', 301);
     case "/getting-started/faq":
       return Response.redirect(site + '/faq', 301);
     case "/guides/using-google-fonts":
@@ -51,19 +51,19 @@ async function redirectOrHandleEvent(event) {
     case "/advanced-examples/using-google-fonts":
       return Response.redirect(site + '/parameters/google_fonts/', 301);
     case "/advanced-examples/rendering-emoji":
-      return Response.redirect(site + '/guides/rendering-emoji', 301);
+      return Response.redirect(site + '/guides/debugging/emoji/', 301);
     case "/advanced-examples/image-charts-with-highcharts":
-      return Response.redirect(site + '/guides/image-charts-with-highchartsjs', 301);
+      return Response.redirect(site + '/guides/workflows/highcharts/', 301);
     case "/advanced-examples/transparent-background":
-      return Response.redirect(site + '/guides/transparent-background', 301);
+      return Response.redirect(site + '/guides/styling/transparent-background/', 301);
     case "/advanced-examples/external-css-and-fonts":
-      return Response.redirect(site + '/guides/external-css-js-and-fonts/', 301);
+      return Response.redirect(site + '/guides/styling/external-css-fonts/', 301);
     case "/getting-started/lossless-image-optimization":
-      return Response.redirect(site + '/getting-started/file-formats', 301);
+      return Response.redirect(site + '/guides/styling/file-formats/', 301);
     case "/advanced-examples/instagram-embed":
-      return Response.redirect(site + '/guides/instagram-embed/', 301);
+      return Response.redirect(site + '/guides/social-media/instagram/', 301);
     case "/advanced-examples/twitter-embed":
-      return Response.redirect(site + '/guides/twitter-embed/', 301);
+      return Response.redirect(site + '/guides/social-media/twitter/', 301);
     case "/getting-started/integromat-integration":
       return Response.redirect(site + '/integrations/integromat/', 301);
     case "/integrations/integromat":
@@ -71,13 +71,13 @@ async function redirectOrHandleEvent(event) {
     case "/getting-started/zapier-integration":
       return Response.redirect(site + '/integrations/zapier/', 301);
     case "/getting-started/convert-emails-images":
-      return Response.redirect(site + '/guides/convert-emails-images/', 301);
+      return Response.redirect(site + '/guides/workflows/email-to-images/', 301);
     case "/getting-started/file-formats":
-      return Response.redirect(site + '/guides/file-formats/', 301);
+      return Response.redirect(site + '/guides/styling/file-formats/', 301);
     case "/guides/selector":
       return Response.redirect(site + '/parameters/selector/', 301);
     case "/guides/twitter-embed":
-      return Response.redirect(site + '/guides/twitter-screenshot/', 301);
+      return Response.redirect(site + '/guides/social-media/twitter/', 301);
     default:
       return await handleEvent(event);
   }

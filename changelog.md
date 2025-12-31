@@ -183,7 +183,7 @@ You can also create images using URL's from the console. Click the Options tab t
 February 16, 2021
 {: .text-delta}
 
-<a href="/guides/transparent-background/">Background transparency</a> now also works for images generated from URLs. To do it, pass the following code in your CSS param.
+<a href="/guides/styling/transparent-background/">Background transparency</a> now also works for images generated from URLs. To do it, pass the following code in your CSS param.
 
 ```
 body {

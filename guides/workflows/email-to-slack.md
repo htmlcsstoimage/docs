@@ -1,9 +1,10 @@
 ---
 layout: page
-title: How to post email screenshots to Slack (with Zapier)
-permalink: /guides/email-screenshot-slack/
-parent: Guides
-nav_order: 8
+title: Email to Slack
+permalink: /guides/workflows/email-to-slack/
+parent: Workflows
+grand_parent: Guides
+nav_order: 4
 description: >-
   Learn how to post screenshots of emails into Slack. It's super simple with using Zapier + the HTML/CSS to Image integration.
 ---
@@ -78,3 +79,4 @@ You can customize this further by pulling emails from different sources. Such as
 
 
 {% include code_footer.md version=1 %}
+

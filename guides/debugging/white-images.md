@@ -1,9 +1,10 @@
 ---
 layout: page
-title: Debugging white or blank images
-permalink: /guides/debugging-white-or-blank-images/
-parent: Guides
-nav_order: 10
+title: White or blank images
+permalink: /guides/debugging/white-images/
+parent: Debugging
+grand_parent: Guides
+nav_order: 3
 description: >-
   How to fix getting a white or blank image on HTML/CSS to Image API
 ---
@@ -35,3 +36,4 @@ until a JavaScript function is called, or a special element is added to the page
 
 
 {% include code_footer.md version=2 %}
+

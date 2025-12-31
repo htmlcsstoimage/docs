@@ -1,9 +1,10 @@
 ---
 layout: page
 title: Blocking cookie banners
-permalink: /guides/blocking-cookie-banners/
-parent: Guides
-nav_order: 10
+permalink: /guides/advanced/blocking-cookie-banners/
+parent: Advanced
+grand_parent: Guides
+nav_order: 1
 description: >-
   Learn how to hide cookie banners when taking screenshots
 ---
@@ -70,3 +71,4 @@ To learn about CSS Selectors, we recommend [this article](https://www.w3schools.
 
 
 {% include code_footer.md version=1 %}
+

@@ -1,9 +1,10 @@
 ---
 layout: page
 title: LinkedIn screenshot
-permalink: /guides/linkedin-screenshot/
-parent: Guides
-nav_order: 5
+permalink: /guides/social-media/linkedin/
+parent: Social Media
+grand_parent: Guides
+nav_order: 4
 description: >-
   Learn how to automatically generate a screenshot of a LinkedIn post with HTML/CSS to Image. This works with Zapier, Integromat or any programming language. JavaScript, PHP, Python, Ruby.
 ---
@@ -49,3 +50,4 @@ HTML
 [Try it yourself](https://htmlcsstoimage.com){: .btn .btn-green .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 {% include code_footer.md version=1 %}
+

@@ -1,9 +1,10 @@
 ---
 layout: page
 title: Postman
-permalink: /guides/postman/
-parent: Guides
-nav_order: 9
+permalink: /guides/workflows/postman/
+parent: Workflows
+grand_parent: Guides
+nav_order: 1
 description: >-
   Use the HTML/CSS to Image API with postman. Converts html to images.
 ---
