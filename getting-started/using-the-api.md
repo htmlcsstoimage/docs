@@ -156,7 +156,7 @@ Here's a base image (600x400 pixels) and how different cropping parameters affec
 
 **Crop to 1:1 square from center** (`aspect_ratio=1_1&crop_height=100%`):
 
-<img src="https://hcti.io/v1/image/019b7577-ecda-7fb7-9179-26c4609288e1?aspect_ratio=1_1&crop_height=100%" alt="1:1 aspect ratio crop" style="max-width: 300px;" />
+<img src="https://hcti.io/v1/image/019b7577-ecda-7fb7-9179-26c4609288e1?aspect_ratio=1_1&crop_height=100%25" alt="1:1 aspect ratio crop" style="max-width: 300px;" />
 
 ```
 ?aspect_ratio=1_1&crop_height=100%
@@ -164,7 +164,7 @@ Here's a base image (600x400 pixels) and how different cropping parameters affec
 
 **Crop left third** (`x_1=0&crop_width=33%`):
 
-<img src="https://hcti.io/v1/image/019b7577-ecda-7fb7-9179-26c4609288e1?x_1=0&crop_width=33%" alt="Left third crop" style="max-width: 200px;" />
+<img src="https://hcti.io/v1/image/019b7577-ecda-7fb7-9179-26c4609288e1?x_1=0&crop_width=33%25" alt="Left third crop" style="max-width: 200px;" />
 
 ```
 ?x_1=0&crop_width=33%
@@ -172,7 +172,7 @@ Here's a base image (600x400 pixels) and how different cropping parameters affec
 
 **Crop center section** (`x_1=33%&x_2=66%`):
 
-<img src="https://hcti.io/v1/image/019b7577-ecda-7fb7-9179-26c4609288e1?x_1=33%&x_2=66%" alt="Center third crop" style="max-width: 200px;" />
+<img src="https://hcti.io/v1/image/019b7577-ecda-7fb7-9179-26c4609288e1?x_1=33%&x_2=66%25" alt="Center third crop" style="max-width: 200px;" />
 
 ```
 ?x_1=33%&x_2=66%
@@ -180,7 +180,7 @@ Here's a base image (600x400 pixels) and how different cropping parameters affec
 
 **Crop right third** (`x_1=-33%&crop_width=33%`):
 
-<img src="https://hcti.io/v1/image/019b7577-ecda-7fb7-9179-26c4609288e1?x_1=-33%&crop_width=33%" alt="Right third crop" style="max-width: 200px;" />
+<img src="https://hcti.io/v1/image/019b7577-ecda-7fb7-9179-26c4609288e1?x_1=-33%&crop_width=33%25" alt="Right third crop" style="max-width: 200px;" />
 
 ```
 ?x_1=-33%&crop_width=33%
@@ -188,7 +188,7 @@ Here's a base image (600x400 pixels) and how different cropping parameters affec
 
 **Crop to 16:9 aspect ratio** (`aspect_ratio=16_9&crop_width=100%`):
 
-<img src="https://hcti.io/v1/image/019b7577-ecda-7fb7-9179-26c4609288e1?aspect_ratio=16_9&crop_width=100%" alt="16:9 aspect ratio crop" style="max-width: 100%;" />
+<img src="https://hcti.io/v1/image/019b7577-ecda-7fb7-9179-26c4609288e1?aspect_ratio=16_9&crop_width=100%25" alt="16:9 aspect ratio crop" style="max-width: 100%;" />
 
 ```
 ?aspect_ratio=16_9&crop_width=100%
