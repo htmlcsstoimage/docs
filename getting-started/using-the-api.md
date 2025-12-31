@@ -62,7 +62,8 @@ STATUS: 200 OK
 
 ```javascript
 {
-  "url": "https://hcti.io/v1/image/be4c5118-fe19-462b-a49e-48cf72697a9d"
+  "url": "https://hcti.io/v1/image/be4c5118-fe19-462b-a49e-48cf72697a9d",
+  "id": "be4c5118-fe19-462b-a49e-48cf72697a9d"
 }
 ```
 
@@ -107,13 +108,14 @@ This URL is permanent for as long as your account is active. It's automatically 
 
 ### File formats
 
-The API supports `jpg`, `png` and `webp`. If no file extension is passed, you'll get back a png by default. If you need a different file format, adjust the extension on the url.
+The API supports `jpg`, `png`, `webp`, and `pdf`. If no file extension is passed, you'll get back a png by default. If you need a different file format, adjust the extension on the url.
 
 | **Format** | **Example** |
 | :--- | :--- |
 | png | `https://hcti.io/v1/image/a3ab2ab2-906e-4b5c-a88d-41a1c3f3779e.png` |
 | jpg | `https://hcti.io/v1/image/a3ab2ab2-906e-4b5c-a88d-41a1c3f3779e.jpg` |
 | webp | `https://hcti.io/v1/image/a3ab2ab2-906e-4b5c-a88d-41a1c3f3779e.webp` |
+| pdf | `https://hcti.io/v1/image/a3ab2ab2-906e-4b5c-a88d-41a1c3f3779e.pdf` |
 
 {% include hint.md title="PNG by default" text="The API returns `png` by default. If no extension is on the URL, a png will be generated." %}
 
@@ -125,8 +127,72 @@ Query parameters can be added to the URL to adjust your image.
 |:-------------|:------------------|:------|
 | **height** | `Integer` | The height of the image. Maximum `5000`. |
 | **width**  | `Integer`  | The width of the image. Maximum `5000`. |
-| **dpi**  | `Integer`  | Sets the DPI metadata tag on the image. Maximum `600`. |
+| **dpi**  | `Integer`  | Sets the DPI metadata tag on the image. Minimum `30`, maximum `600`. |
 | **dl**     | `Integer` | Set `dl=1` and the image will be served as a downloadable attachment. |
+
+### Cropping parameters
+
+Advanced cropping options for precise control over the rendered image region.
+
+| Name        | Type          | Description |
+|:-------------|:------------------|:------|
+| **aspect_ratio** | `String` | Crop to a specific aspect ratio. Format: `width_height` (e.g., `16_9`, `1_1`). |
+| **x_origin** | `String` | Origin point for x-axis cropping. Accepts pixels (`100px`), percentage (`50%`), or negative values for positioning from the right edge. |
+| **y_origin** | `String` | Origin point for y-axis cropping. Accepts pixels (`100px`), percentage (`50%`), or negative values for positioning from the bottom edge. |
+| **x_1** | `String` | Starting x coordinate for crop region. Use with `x_2` or `crop_width`. |
+| **x_2** | `String` | Ending x coordinate for crop region. Must be used with `x_1`. |
+| **y_1** | `String` | Starting y coordinate for crop region. Use with `y_2` or `crop_height`. |
+| **y_2** | `String` | Ending y coordinate for crop region. Must be used with `y_1`. |
+| **crop_width** | `String` | Width of the crop region. Use with `x_1` or alone with `aspect_ratio`. |
+| **crop_height** | `String` | Height of the crop region. Use with `y_1` or alone with `aspect_ratio`. |
+
+#### Cropping examples
+
+Here's a base image (600x400 pixels) and how different cropping parameters affect it:
+
+**Original image:**
+
+<img src="https://hcti.io/v1/image/019b7577-ecda-7fb7-9179-26c4609288e1" alt="Original 600x400 image" style="max-width: 100%;" />
+
+**Crop to 1:1 square from center** (`aspect_ratio=1_1&crop_height=100%`):
+
+<img src="https://hcti.io/v1/image/019b7577-ecda-7fb7-9179-26c4609288e1?aspect_ratio=1_1&crop_height=100%" alt="1:1 aspect ratio crop" style="max-width: 300px;" />
+
+```
+?aspect_ratio=1_1&crop_height=100%
+```
+
+**Crop left third** (`x_1=0&crop_width=33%`):
+
+<img src="https://hcti.io/v1/image/019b7577-ecda-7fb7-9179-26c4609288e1?x_1=0&crop_width=33%" alt="Left third crop" style="max-width: 200px;" />
+
+```
+?x_1=0&crop_width=33%
+```
+
+**Crop center section** (`x_1=33%&x_2=66%`):
+
+<img src="https://hcti.io/v1/image/019b7577-ecda-7fb7-9179-26c4609288e1?x_1=33%&x_2=66%" alt="Center third crop" style="max-width: 200px;" />
+
+```
+?x_1=33%&x_2=66%
+```
+
+**Crop right third** (`x_1=-33%&crop_width=33%`):
+
+<img src="https://hcti.io/v1/image/019b7577-ecda-7fb7-9179-26c4609288e1?x_1=-33%&crop_width=33%" alt="Right third crop" style="max-width: 200px;" />
+
+```
+?x_1=-33%&crop_width=33%
+```
+
+**Crop to 16:9 aspect ratio** (`aspect_ratio=16_9&crop_width=100%`):
+
+<img src="https://hcti.io/v1/image/019b7577-ecda-7fb7-9179-26c4609288e1?aspect_ratio=16_9&crop_width=100%" alt="16:9 aspect ratio crop" style="max-width: 100%;" />
+
+```
+?aspect_ratio=16_9&crop_width=100%
+```
 
 <hr>
 
@@ -144,6 +210,115 @@ All data and copies of the image are deleted. This cannot be undone.
 ```
 STATUS: 202 ACCEPTED
 ```
+
+## Batch image creation
+
+Create up to 25 images in a single API request. This is more efficient than making multiple individual requests.
+
+<pre class="http-method fs-4">
+  <span>post</span> https://hcti.io<b>/v1/image/batch</b>
+</pre>
+
+### Parameters
+
+| Name        | Type          | Description |
+|:-------------|:------------------|:------|
+| **default_options** | `Object` | Default parameters applied to all images in the batch. Accepts all standard image creation parameters. |
+| **variations** | `Array` | Array of image objects. Each can override `default_options`. Maximum 25 items. |
+
+### Example request
+
+```javascript
+{
+  "default_options": {
+    "css": "body { font-family: sans-serif; }",
+    "device_scale": 2
+  },
+  "variations": [
+    { "html": "<div>Image 1</div>" },
+    { "html": "<div>Image 2</div>" },
+    { "html": "<div>Image 3</div>", "device_scale": 1 }
+  ]
+}
+```
+
+### Example response
+
+```
+STATUS: 200 OK
+```
+
+```javascript
+{
+  "images": [
+    { "url": "https://hcti.io/v1/image/abc123", "id": "abc123" },
+    { "url": "https://hcti.io/v1/image/def456", "id": "def456" },
+    { "url": "https://hcti.io/v1/image/ghi789", "id": "ghi789" }
+  ]
+}
+```
+
+### Batch deletion
+
+Delete multiple images at once by sending their IDs.
+
+<pre class="http-method fs-4">
+  <span>delete</span> https://hcti.io<b>/v1/image/batch</b>
+</pre>
+
+```javascript
+{
+  "ids": ["abc123", "def456", "ghi789"]
+}
+```
+
+```
+STATUS: 202 ACCEPTED
+```
+
+<hr>
+
+## Listing images
+
+Retrieve a list of all images created by your account with pagination support.
+
+<pre class="http-method fs-4">
+  <span>get</span> https://hcti.io<b>/v1/images</b>
+</pre>
+
+### Query parameters
+
+| Name        | Type          | Description |
+|:-------------|:------------------|:------|
+| **count** | `Integer` | Number of images to return. Default `50`, maximum `50`. |
+| **page_token** | `String` | Token for pagination. Use `next_page_token` from the previous response. |
+
+### Example response
+
+```
+STATUS: 200 OK
+```
+
+```javascript
+{
+  "images": [
+    {
+      "id": "be4c5118-fe19-462b-a49e-48cf72697a9d",
+      "url": "https://hcti.io/v1/image/be4c5118-fe19-462b-a49e-48cf72697a9d",
+      "created_at": "2024-03-15T10:30:00Z"
+    },
+    {
+      "id": "a3ab2ab2-906e-4b5c-a88d-41a1c3f3779e",
+      "url": "https://hcti.io/v1/image/a3ab2ab2-906e-4b5c-a88d-41a1c3f3779e",
+      "created_at": "2024-03-14T08:15:00Z"
+    }
+  ],
+  "next_page_token": "eyJsYXN0X2lkIjoiYTNhYjJhYjItOTA2ZS00YjVjLWE4OGQtNDFhMWMzZjM3NzllIn0=",
+  "has_next_page": true
+}
+```
+
+<hr>
 
 ## Checking account usage
 

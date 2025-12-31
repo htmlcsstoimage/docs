@@ -37,3 +37,25 @@ img.emoji {
   margin: 0 .05em 0 .1em;
 }
 ```
+
+## Disabling Twemoji
+
+By default, we use [Twemoji](https://github.com/twitter/twemoji) to render emoji as images for consistent cross-platform display. If you prefer to use the native emoji fonts instead (the API runs on Linux servers), you can disable Twemoji with the `disable_twemoji` parameter.
+
+### When to disable Twemoji
+
+- You're using a custom emoji font
+- You prefer the native system (linux) emoji appearance
+
+### Example
+
+```json
+{
+  "html": "<div>Hello 👋 World 🌍</div>",
+  "disable_twemoji": true
+}
+```
+
+{% include hint.md title="Note" text="When Twemoji is disabled, emoji appearance will vary depending on the fonts available in our rendering environment. Twemoji provides more consistent results across all images." %}
+
+{% include code_footer.md version=2 %}

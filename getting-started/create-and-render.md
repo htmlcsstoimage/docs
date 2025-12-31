@@ -44,7 +44,7 @@ To generate an image with a signed URL, construct a URL with your API ID and tok
 |:-------------|:------------------|
 | **api_id** | Your public API ID from the dashboard |
 | **token** | HMAC SHA256 hash of the query string using your API Key (see below for how to generate) |
-| **format** | Optional file format: `png` (default), `jpg`, or `webp` |
+| **format** | Optional file format: `png` (default), `jpg`, `webp`, or `pdf` |
 
 ### Parameters
 

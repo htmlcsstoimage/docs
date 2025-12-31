@@ -5,7 +5,7 @@ permalink: /guides/file-formats/
 parent: Guides
 nav_order: 2
 description: >-
-  Learn about supported image formats (PNG, JPG, WebP) and how to optimize your image delivery.
+  Learn about supported image formats (PNG, JPG, WebP, PDF) and how to optimize your image delivery.
 ---
 
 # Image File Formats
@@ -19,10 +19,11 @@ Choose the right format for your use case
 
 ## Supported Formats
 
-The API supports three image formats:
+The API supports four output formats:
 - PNG (default)
 - JPG
 - WebP
+- PDF
 
 To specify a format, add the appropriate file extension to your image URL:
 
@@ -31,6 +32,7 @@ To specify a format, add the appropriate file extension to your image URL:
 | PNG | `https://hcti.io/v1/image/abc123.png` | Screenshots, images with transparency |
 | JPG | `https://hcti.io/v1/image/abc123.jpg` | Photos, complex images with no transparency |
 | WebP | `https://hcti.io/v1/image/abc123.webp` | Modern web applications, optimal compression |
+| PDF | `https://hcti.io/v1/image/abc123.pdf` | Documents, invoices, printable content |
 
 {% include hint.md title="Default Format" text="If no extension is specified, the API will return a PNG image." %}
 
@@ -65,6 +67,17 @@ To specify a format, add the appropriate file extension to your image URL:
   - Progressive loading
   - Optimal performance
   - Modern browsers
+
+### PDF
+- Document format
+- Vector-based rendering
+- Ideal for printing
+- Best for:
+  - Invoices and receipts
+  - Certificates
+  - Reports
+  - Printable documents
+- Use the `pdf_options` parameter for customization ([Learn more](/parameters/pdf_options/))
 
 ## Automatic WebP Optimization
 
@@ -107,5 +120,6 @@ Benefits:
 | PNG | ✅ | ✅ | ✅ | ✅ | ✅ |
 | JPG | ✅ | ✅ | ✅ | ✅ | ✅ |
 | WebP | ✅ | ✅ | ✅ | ✅ | ❌ |
+| PDF | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 {% include code_footer.md version=1 %}

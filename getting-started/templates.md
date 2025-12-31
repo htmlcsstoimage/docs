@@ -93,12 +93,17 @@ Optional parameters for greater control over your image.
 
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
-| **google_fonts**   | `String` | [Google fonts](/guides/using-google-fonts/) to be loaded. Example: `Roboto`. Multiple fonts can be loaded like this: `Roboto|Open Sans`  |
+| **google_fonts**   | `String` | [Google fonts](/parameters/google_fonts/) to be loaded. Example: `Roboto`. Multiple fonts can be loaded like this: `Roboto|Open Sans`  |
 | **selector**  | `String` | A CSS selector for an element on the webpage. We'll crop the image to this specific element. For example: `section#complete-toolkit.container-lg` |
 | **ms_delay**   | `Integer` | The number of milliseconds the API should delay before generating the image. This is useful when waiting for JavaScript. We recommend starting with `500`. Large values slow down the initial render time.|
-| **device_scale**   | `Double` | This adjusts the pixel ratio for the screenshot. Minimum: `1`, Maximum: `3`. |
+| **max_wait_ms**   | `Integer` | Sets a maximum time limit (500-10000ms) for waiting before taking the screenshot. |
+| **device_scale**   | `Double` | This adjusts the pixel ratio for the screenshot. Minimum: `0.1`, Maximum: `3`. |
+| **render_when_ready**   | `Boolean` | Set to true to control when the image is generated. Call `ScreenshotReady()` from JavaScript to generate the image. [Learn more](/parameters/render_when_ready/). |
 | **viewport_width**   | `Integer` | Set the width of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
 | **viewport_height**   | `Integer` | Set the height of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
+| **color_scheme**   | `String` | Set Chrome to render in `light` or `dark` mode. [Learn more](/parameters/color_scheme/). |
+| **timezone**   | `String` | Render your image with Chrome set to a specified timezone. Use IANA timezone identifiers. [Learn more](/parameters/timezone/). |
+| **disable_twemoji**   | `Boolean` | Set to `true` to use native emoji fonts instead of Twemoji. |
 
 <hr>
 
@@ -168,14 +173,17 @@ Optional parameters for greater control over your image.
 
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
-| **google_fonts**   | `String` | [Google fonts](/guides/using-google-fonts/) to be loaded. Example: `Roboto`. Multiple fonts can be loaded like this: `Roboto|Open Sans`  |
+| **google_fonts**   | `String` | [Google fonts](/parameters/google_fonts/) to be loaded. Example: `Roboto`. Multiple fonts can be loaded like this: `Roboto|Open Sans`  |
 | **selector**  | `String` | A CSS selector for an element on the webpage. We'll crop the image to this specific element. For example: `section#complete-toolkit.container-lg` |
 | **ms_delay**   | `Integer` | The number of milliseconds the API should delay before generating the image. This is useful when waiting for JavaScript. We recommend starting with `500`. Large values slow down the initial render time.|
-| **device_scale**   | `Double` | This adjusts the pixel ratio for the screenshot. Minimum: `1`, Maximum: `3`. |
-| **render_when_ready**   | `Boolean` | Set to true to control when the image is generated. Call `ScreenshotReady()` from JavaScript to generate the image. [Learn more](/guides/render-when-ready/). |
+| **max_wait_ms**   | `Integer` | Sets a maximum time limit (500-10000ms) for waiting before taking the screenshot. |
+| **device_scale**   | `Double` | This adjusts the pixel ratio for the screenshot. Minimum: `0.1`, Maximum: `3`. |
+| **render_when_ready**   | `Boolean` | Set to true to control when the image is generated. Call `ScreenshotReady()` from JavaScript to generate the image. [Learn more](/parameters/render_when_ready/). |
 | **viewport_width**   | `Integer` | Set the width of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
 | **viewport_height**   | `Integer` | Set the height of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
-
+| **color_scheme**   | `String` | Set Chrome to render in `light` or `dark` mode. [Learn more](/parameters/color_scheme/). |
+| **timezone**   | `String` | Render your image with Chrome set to a specified timezone. Use IANA timezone identifiers. [Learn more](/parameters/timezone/). |
+| **disable_twemoji**   | `Boolean` | Set to `true` to use native emoji fonts instead of Twemoji. |
 
 <hr>
 
@@ -229,6 +237,9 @@ STATUS: 200 OK
       "ms_delay": 1500,
       "name": null,
       "render_when_ready": null,
+      "render_count": 142,
+      "color_scheme": null,
+      "timezone": null,
       "updated_at": "2020-07-19T17:16:43.987+00:00",
       "version": 1595179003987,
       "viewport_height": null,
@@ -240,6 +251,14 @@ STATUS: 200 OK
   }
 }
 ```
+
+### Response fields
+
+| Field | Type | Description |
+|:------|:-----|:------------|
+| **render_count** | `Integer` | Number of times this template has been used to generate images. |
+| **color_scheme** | `String` | Light or dark mode setting, if configured. |
+| **timezone** | `String` | Timezone setting, if configured. |
 
 ## Listing your template versions
 
@@ -270,6 +289,9 @@ STATUS: 200 OK
       "ms_delay": 1500,
       "name": null,
       "render_when_ready": null,
+      "render_count": 142,
+      "color_scheme": null,
+      "timezone": null,
       "updated_at": "2020-07-19T17:16:43.987+00:00",
       "version": 1595179003987,
       "viewport_height": null,

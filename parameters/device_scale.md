@@ -18,7 +18,8 @@ Control image quality and size by adjusting the pixel ratio
 
 ## How it works
 
-The device_scale parameter controls the pixel ratio of generated images. Values range from `1` to `3`, where:
+The device_scale parameter controls the pixel ratio of generated images. Values range from `0.1` to `3`, where:
+- `0.1` to `0.9` = reduced resolution (smaller file sizes, lower quality)
 - `1` = standard resolution (1:1 pixel ratio)
 - `2` = high resolution (2:1 pixel ratio, recommended for web)
 - `3` = maximum resolution (3:1 pixel ratio)

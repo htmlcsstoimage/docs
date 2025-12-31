@@ -46,7 +46,8 @@ The API returns a URL to your generated image. Use it anywhere - in emails, soci
 
 ```json
 {
-  "url": "https://hcti.io/v1/image/be4c5118-fe19-462b-a49e-48cf72697a9d"
+  "url": "https://hcti.io/v1/image/be4c5118-fe19-462b-a49e-48cf72697a9d",
+  "id": "be4c5118-fe19-462b-a49e-48cf72697a9d"
 }
 ```
 
