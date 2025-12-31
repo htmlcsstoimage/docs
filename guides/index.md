@@ -6,7 +6,7 @@ nav_order: 5
 has_children: true
 expanded: false
 description: >-
-  Use these guides to get started converting images with HTML/CSS to Image.
+  Guides for the HTML/CSS to Image API. Social media screenshots, debugging, styling, transparent backgrounds, and workflow automation.
 ---
 # Guides
 {: .no_toc }

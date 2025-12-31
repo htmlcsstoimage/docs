@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Python
+title: Python - HTML to Image Example
 parent: Example code
 permalink: /example-code/python/
 description: >-

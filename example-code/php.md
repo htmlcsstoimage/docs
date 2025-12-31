@@ -1,6 +1,6 @@
 ---
 layout: page
-title: PHP
+title: PHP - HTML to Image Example
 parent: Example code
 permalink: /example-code/php/
 description: >-

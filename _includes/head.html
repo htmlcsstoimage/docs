@@ -28,6 +28,25 @@
   <meta property="og:type" content="article">
   {% seo %}
 
+  {% if page.url == "/" %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebAPI",
+    "name": "HTML/CSS to Image API",
+    "description": "API for generating high quality images from HTML and CSS. Supports PNG, JPG, WebP, and PDF output.",
+    "url": "https://hcti.io/v1/image",
+    "documentation": "https://docs.htmlcsstoimage.com",
+    "termsOfService": "https://htmlcsstoimage.com/terms",
+    "provider": {
+      "@type": "Organization",
+      "name": "HTML/CSS to Image",
+      "url": "https://htmlcsstoimage.com"
+    }
+  }
+  </script>
+  {% endif %}
+
   {% include head_custom.html %}
 
 </head>

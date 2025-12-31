@@ -20,13 +20,16 @@ Create images with transparent backgrounds for logos, overlays, and more
 
 ## Implementation
 
-To render an image with a transparent background, set the background color to transparent in your CSS:
+To render an image with a transparent background, pass the CSS via the **`css` parameter**:
 
-```css
-body { 
-  background-color: transparent;
+```json
+{
+  "html": "<div class='content'>Your content here</div>",
+  "css": "body { background-color: transparent; }"
 }
 ```
+
+{% include hint.md title="Important" text="The transparent background CSS **must** be passed via the `css` parameter. Putting it in a `<style>` tag inside your HTML will not work. This is a common mistake!" %}
 
 {% include hint.md title="PNG Format Required" text="Transparency is only supported in PNG format. JPG and WebP images will render with a white background." %}
 

@@ -1,0 +1,73 @@
+# HTML/CSS to Image API
+
+> API for converting HTML and CSS to high-quality images (PNG, JPG, WebP, PDF). Renders exactly like Google Chrome.
+
+## Quick Start
+
+- **Endpoint:** `POST https://hcti.io/v1/image`
+- **Authentication:** HTTP Basic Auth (User ID + API Key)
+- **Get credentials:** https://htmlcsstoimage.com/dashboard
+
+## Example Request
+
+```bash
+curl -X POST https://hcti.io/v1/image \
+  -u 'your-user-id:your-api-key' \
+  -H 'Content-Type: application/json' \
+  -d '{"html": "<div style=\"padding:20px;background:#4f46e5;color:white;\">Hello World</div>"}'
+```
+
+## Response
+
+```json
+{
+  "url": "https://hcti.io/v1/image/be4c5118-fe19-462b-a49e-48cf72697a9d",
+  "id": "be4c5118-fe19-462b-a49e-48cf72697a9d"
+}
+```
+
+## Capabilities
+
+- Convert HTML/CSS to images (PNG, JPG, WebP, PDF)
+- Screenshot any public URL
+- Batch create up to 25 images in one request
+- Reusable templates with variable substitution
+- MCP Server integration for AI assistants (Cursor, Claude, Windsurf)
+- Global CDN delivery via Cloudflare
+
+## Key Parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| `html` | HTML to render (required unless using `url`) |
+| `css` | CSS styles for your HTML |
+| `url` | URL to screenshot (required unless using `html`) |
+| `google_fonts` | Google Fonts to load |
+| `device_scale` | Pixel ratio (1-3) for retina images |
+| `viewport_width` | Browser viewport width |
+| `viewport_height` | Browser viewport height |
+| `selector` | CSS selector to capture specific element |
+| `ms_delay` | Milliseconds to wait before capture |
+
+## Documentation
+
+- **API Reference:** https://docs.htmlcsstoimage.com/getting-started/using-the-api/
+- **Code Examples:** https://docs.htmlcsstoimage.com/example-code/
+- **Parameters:** https://docs.htmlcsstoimage.com/parameters/
+- **MCP Server:** https://docs.htmlcsstoimage.com/integrations/mcp/
+- **FAQ:** https://docs.htmlcsstoimage.com/faq/
+
+## Integrations
+
+- **Zapier:** https://docs.htmlcsstoimage.com/integrations/zapier/
+- **Make:** https://docs.htmlcsstoimage.com/integrations/make/
+- **MCP Server:** https://docs.htmlcsstoimage.com/integrations/mcp/
+
+## Code Examples Available
+
+Python, PHP, JavaScript, TypeScript, Ruby, Go, C#, VB.NET, cURL, Google Apps Script
+
+## Support
+
+Email: support@htmlcsstoimage.com
+

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Ruby
+title: Ruby - HTML to Image Example
 parent: Example code
 permalink: /example-code/ruby/
 description: >-

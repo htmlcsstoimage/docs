@@ -1,0 +1,343 @@
+# HTML/CSS to Image API - Complete Documentation
+
+> API for converting HTML and CSS to high-quality images (PNG, JPG, WebP, PDF). Renders exactly like Google Chrome.
+
+Website: https://htmlcsstoimage.com
+Documentation: https://docs.htmlcsstoimage.com
+Dashboard: https://htmlcsstoimage.com/dashboard
+
+---
+
+## Authentication
+
+The API uses HTTP Basic authentication.
+
+- Username: Your **User ID** from the dashboard
+- Password: Your **API Key** from the dashboard
+
+Get credentials at: https://htmlcsstoimage.com/dashboard
+
+---
+
+## API Endpoints
+
+### Create Image
+
+```
+POST https://hcti.io/v1/image
+```
+
+Creates an image from HTML/CSS or screenshots a URL.
+
+**Required Parameters (one of):**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `html` | String | HTML to render. Can be a snippet or full page. |
+| `url` | String | URL to screenshot. Must be publicly accessible. |
+
+**Optional Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `css` | String | CSS styles for your HTML |
+| `google_fonts` | String | Google Fonts to load. Multiple fonts: `Roboto|Open Sans` |
+| `device_scale` | Double | Pixel ratio (0.1-3). Default: 2 (retina) |
+| `viewport_width` | Integer | Browser viewport width in pixels |
+| `viewport_height` | Integer | Browser viewport height in pixels |
+| `selector` | String | CSS selector to capture specific element |
+| `ms_delay` | Integer | Milliseconds to wait before capture (0-10000) |
+| `max_wait_ms` | Integer | Maximum wait time cap (500-10000) |
+| `render_when_ready` | Boolean | Wait for ScreenshotReady() JS call |
+| `full_screen` | Boolean | Capture full scrollable page height |
+| `block_consent_banners` | Boolean | Block cookie consent popups |
+| `color_scheme` | String | `light` or `dark` mode |
+| `timezone` | String | IANA timezone, e.g. `America/New_York` |
+| `disable_twemoji` | Boolean | Use native emoji instead of Twemoji |
+
+**Example Request:**
+
+```bash
+curl -X POST https://hcti.io/v1/image \
+  -u 'your-user-id:your-api-key' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "html": "<div style=\"padding:20px;background:#4f46e5;color:white;\">Hello World</div>",
+    "google_fonts": "Roboto"
+  }'
+```
+
+**Response (200 OK):**
+
+```json
+{
+  "url": "https://hcti.io/v1/image/be4c5118-fe19-462b-a49e-48cf72697a9d",
+  "id": "be4c5118-fe19-462b-a49e-48cf72697a9d"
+}
+```
+
+---
+
+### Get Image
+
+```
+GET https://hcti.io/v1/image/:image_id
+```
+
+Returns the generated image. Append file extension for format:
+
+- `.png` (default)
+- `.jpg`
+- `.webp`
+- `.pdf`
+
+**Query Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `width` | Integer | Resize width (max 5000) |
+| `height` | Integer | Resize height (max 5000) |
+| `dpi` | Integer | DPI metadata (30-600) |
+| `dl` | Integer | Set to 1 for download attachment |
+
+**Cropping Parameters:**
+
+| Parameter | Description |
+|-----------|-------------|
+| `aspect_ratio` | Crop to ratio, e.g. `16_9`, `1_1` |
+| `x_1`, `x_2` | X-axis crop coordinates |
+| `y_1`, `y_2` | Y-axis crop coordinates |
+| `crop_width` | Width of crop region |
+| `crop_height` | Height of crop region |
+
+---
+
+### Delete Image
+
+```
+DELETE https://hcti.io/v1/image/:image_id
+```
+
+Permanently deletes the image. Returns 202 Accepted.
+
+---
+
+### Batch Create Images
+
+```
+POST https://hcti.io/v1/image/batch
+```
+
+Create up to 25 images in a single request.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `default_options` | Object | Default params for all images |
+| `variations` | Array | Array of image objects (max 25) |
+
+**Example:**
+
+```json
+{
+  "default_options": {
+    "css": "body { font-family: sans-serif; }",
+    "device_scale": 2
+  },
+  "variations": [
+    { "html": "<div>Image 1</div>" },
+    { "html": "<div>Image 2</div>" },
+    { "html": "<div>Image 3</div>" }
+  ]
+}
+```
+
+---
+
+### Batch Delete Images
+
+```
+DELETE https://hcti.io/v1/image/batch
+```
+
+```json
+{
+  "ids": ["abc123", "def456", "ghi789"]
+}
+```
+
+---
+
+### List Images
+
+```
+GET https://hcti.io/v1/images
+```
+
+**Query Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `count` | Integer | Number to return (max 50) |
+| `page_token` | String | Pagination token |
+
+---
+
+### Check Usage
+
+```
+GET https://hcti.io/v1/usage
+```
+
+Returns image creation counts by hour, day, month, and billing period.
+
+---
+
+## Templates
+
+Templates allow reusable HTML with variable substitution using Handlebars syntax.
+
+### Create Template
+
+```
+POST https://hcti.io/v1/template
+```
+
+### Create Image from Template
+
+```
+POST https://hcti.io/v1/image
+```
+
+```json
+{
+  "template_id": "t-your-template-id",
+  "template_values": {
+    "title": "My Title",
+    "author": "John Doe"
+  }
+}
+```
+
+---
+
+## MCP Server Integration
+
+For AI assistants like Cursor, Claude Desktop, Windsurf, Cline, and Zed.
+
+**Server URL:** `https://mcp.hcti.io`
+
+**Available Tools:**
+- `create_image` - Generate image from HTML/CSS
+- `create_url_image` - Screenshot a URL
+- `create_templated_image` - Use a template
+- `create_batch_images` - Create multiple images
+- `create_template` - Save a template
+- `list_templates` - View templates
+
+**Cursor Setup:**
+
+```json
+{
+  "mcpServers": {
+    "hcti": {
+      "type": "http",
+      "url": "https://mcp.hcti.io"
+    }
+  }
+}
+```
+
+---
+
+## Code Examples
+
+### Python
+
+```python
+import requests
+
+HCTI_API_ENDPOINT = "https://hcti.io/v1/image"
+HCTI_API_USER_ID = 'your-user-id'
+HCTI_API_KEY = 'your-api-key'
+
+data = {
+    'html': "<div class='box'>Hello, world!</div>",
+    'css': ".box { color: white; background-color: #0f79b9; padding: 10px; }"
+}
+
+image = requests.post(
+    url=HCTI_API_ENDPOINT,
+    data=data,
+    auth=(HCTI_API_USER_ID, HCTI_API_KEY)
+)
+
+print(image.json()['url'])
+```
+
+### JavaScript (Node.js)
+
+```javascript
+const fetch = require('node-fetch');
+
+const data = {
+  html: "<div class='box'>Hello, world!</div>",
+  css: ".box { color: white; background-color: #0f79b9; padding: 10px; }"
+};
+
+const response = await fetch('https://hcti.io/v1/image', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Basic ' + Buffer.from('user-id:api-key').toString('base64')
+  },
+  body: JSON.stringify(data)
+});
+
+const result = await response.json();
+console.log(result.url);
+```
+
+### cURL
+
+```bash
+curl -X POST https://hcti.io/v1/image \
+  -u 'user-id:api-key' \
+  -H 'Content-Type: application/json' \
+  -d '{"html": "<h1>Hello World</h1>"}'
+```
+
+---
+
+## Common Use Cases
+
+1. **Social Cards (OG Images)** - Auto-generate Open Graph images for blog posts
+2. **Website Screenshots** - Capture any public URL
+3. **Dynamic Images** - Certificates, receipts, personalized graphics
+4. **Email Images** - Generate images for email campaigns
+
+---
+
+## FAQ
+
+**Is there a rate limit?**
+No rate limits. Create images until you reach your plan limit.
+
+**How long do image URLs last?**
+Forever, as long as your account is active.
+
+**What file formats are supported?**
+PNG (default), JPG, WebP, and PDF.
+
+**Do you support custom fonts?**
+Yes, via `google_fonts` parameter or embedding font links in HTML.
+
+---
+
+## Support
+
+Email: support@htmlcsstoimage.com
+
+We're experts at debugging HTML rendering issues and love helping developers succeed.
+

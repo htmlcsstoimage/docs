@@ -5,6 +5,8 @@ permalink: /integrations/
 nav_order: 3
 expanded: false
 has_children: true
+description: >-
+  Integrate HTML/CSS to Image with Zapier, Make, and AI assistants via MCP. No-code and low-code automation options.
 ---
 # Integrations
 {: .no_toc }

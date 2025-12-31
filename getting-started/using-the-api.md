@@ -1,9 +1,11 @@
 ---
 layout: page
-title: Using the API
+title: API Reference - HTML/CSS to Image
 permalink: /getting-started/using-the-api/
 parent: Getting started
 nav_order: 1
+description: >-
+  Complete API reference for HTML/CSS to Image. Authentication, endpoints, parameters, batch creation, and response formats.
 ---
 # Using the HTML/CSS to Image API
 {: .no_toc }

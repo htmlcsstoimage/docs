@@ -5,6 +5,8 @@ permalink: /getting-started/
 nav_order: 2
 expanded: true
 has_children: true
+description: >-
+  Get started with the HTML/CSS to Image API. Quick start guide with examples for Python, PHP, JavaScript, Ruby, and Go.
 ---
 # Getting started
 {: .no_toc }

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Social Cards
+title: Social Cards - Generate OG Images from HTML
 permalink: /use-cases/social-cards/
 parent: Use Cases
 nav_order: 1

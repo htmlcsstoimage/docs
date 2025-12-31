@@ -5,6 +5,8 @@ permalink: /parameters/
 nav_order: 4
 expanded: false
 has_children: true
+description: >-
+  Full parameter reference for the HTML/CSS to Image API. Control viewport, device scale, fonts, delays, selectors, and more.
 ---
 # Parameters Reference
 {: .no_toc }

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: MCP Server
+title: MCP Server - Generate Images from Cursor & Claude
 permalink: /integrations/mcp/
 parent: Integrations
 nav_order: 4

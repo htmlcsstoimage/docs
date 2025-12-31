@@ -1,6 +1,6 @@
 ---
 layout: default
-title: JavaScript
+title: JavaScript - HTML to Image Example
 parent: Example code
 permalink: /example-code/javascript/
 description: >-
