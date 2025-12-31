@@ -152,7 +152,7 @@ Here's a base image (600x400 pixels) and how different cropping parameters affec
 
 **Original image:**
 
-<img src="https://hcti.io/v1/image/019b7577-ecda-7fb7-9179-26c4609288e1" alt="Original 600x400 image" style="max-width: 100%;" />
+<img src="https://hcti.io/v1/image/019b7577-ecda-7fb7-9179-26c4609288e1" alt="Original 600x400 image" style="max-width: 300px;" />
 
 **Crop to 1:1 square from center** (`aspect_ratio=1_1&crop_height=100%`):
 
