@@ -1,0 +1,127 @@
+{% comment %}
+  Copy Page Component
+  Provides a dropdown to copy the page as markdown or view the raw markdown
+{% endcomment %}
+
+{% if site.gh_edit_repository and site.gh_edit_branch and page.path %}
+  {% comment %} Extract repo path from full URL {% endcomment %}
+  {% assign repo_parts = site.gh_edit_repository | split: "github.com/" %}
+  {% assign repo_path = repo_parts[1] %}
+  {% assign raw_url = "https://raw.githubusercontent.com/" | append: repo_path | append: "/" | append: site.gh_edit_branch | append: "/" | append: page.path %}
+  {% assign view_url = site.gh_edit_repository | append: "/raw/refs/heads/" | append: site.gh_edit_branch | append: "/" | append: page.path %}
+
+<div class="copy-page-dropdown">
+  <button class="copy-page-btn" id="copyPageBtn" aria-label="Copy page options" aria-expanded="false">
+    <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+      <path fill="currentColor" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path>
+      <path fill="currentColor" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+    </svg>
+    <span>Copy page</span>
+    <svg class="dropdown-arrow" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true">
+      <path fill="currentColor" d="M4.427 7.427l3.396 3.396a.25.25 0 00.354 0l3.396-3.396A.25.25 0 0011.396 7H4.604a.25.25 0 00-.177.427z"></path>
+    </svg>
+  </button>
+  
+  <div class="copy-page-menu" id="copyPageMenu" role="menu" aria-hidden="true">
+    <button class="copy-page-menu-item" id="copyMarkdownBtn" role="menuitem" data-raw-url="{{ raw_url }}">
+      <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+        <path fill="currentColor" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path>
+        <path fill="currentColor" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+      </svg>
+      <div class="menu-item-text">
+        <div class="menu-item-title">Copy page</div>
+        <div class="menu-item-subtitle">Copy page as Markdown for LLMs</div>
+      </div>
+    </button>
+    
+    <a class="copy-page-menu-item" href="{{ view_url }}" target="_blank" rel="noopener noreferrer" role="menuitem">
+      <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+        <path fill="currentColor" d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 13.25 15H2.75A1.75 1.75 0 0 1 1 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM4.75 5h6.5a.75.75 0 0 1 0 1.5h-6.5a.75.75 0 0 1 0-1.5Zm0 3h6.5a.75.75 0 0 1 0 1.5h-6.5a.75.75 0 0 1 0-1.5Zm0 3h3.5a.75.75 0 0 1 0 1.5h-3.5a.75.75 0 0 1 0-1.5Z"></path>
+      </svg>
+      <div class="menu-item-text">
+        <div class="menu-item-title">View as Markdown →</div>
+        <div class="menu-item-subtitle">View this page as plain text</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var copyPageBtn = document.getElementById('copyPageBtn');
+  var copyPageMenu = document.getElementById('copyPageMenu');
+  var copyMarkdownBtn = document.getElementById('copyMarkdownBtn');
+  
+  if (!copyPageBtn || !copyPageMenu || !copyMarkdownBtn) {
+    return;
+  }
+  
+  /* Toggle dropdown */
+  copyPageBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    var isExpanded = copyPageBtn.getAttribute('aria-expanded') === 'true';
+    copyPageBtn.setAttribute('aria-expanded', String(!isExpanded));
+    copyPageMenu.setAttribute('aria-hidden', String(isExpanded));
+    copyPageMenu.classList.toggle('show');
+  });
+  
+  /* Close dropdown when clicking outside */
+  document.addEventListener('click', function(e) {
+    if (!copyPageBtn.contains(e.target) && !copyPageMenu.contains(e.target)) {
+      copyPageBtn.setAttribute('aria-expanded', 'false');
+      copyPageMenu.setAttribute('aria-hidden', 'true');
+      copyPageMenu.classList.remove('show');
+    }
+  });
+  
+  /* Copy markdown to clipboard */
+  copyMarkdownBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    var rawUrl = this.getAttribute('data-raw-url');
+    var titleElement = copyMarkdownBtn.querySelector('.menu-item-title');
+    var originalText = titleElement.textContent;
+    
+    titleElement.textContent = 'Loading...';
+    
+    fetch(rawUrl)
+      .then(function(response) {
+        if (!response.ok) throw new Error('Failed to fetch markdown');
+        return response.text();
+      })
+      .then(function(markdown) {
+        return navigator.clipboard.writeText(markdown);
+      })
+      .then(function() {
+        titleElement.textContent = 'Copied!';
+        setTimeout(function() {
+          titleElement.textContent = originalText;
+          copyPageBtn.setAttribute('aria-expanded', 'false');
+          copyPageMenu.setAttribute('aria-hidden', 'true');
+          copyPageMenu.classList.remove('show');
+        }, 1500);
+      })
+      .catch(function(err) {
+        console.error('Error copying markdown:', err);
+        titleElement.textContent = 'Error!';
+        setTimeout(function() {
+          titleElement.textContent = originalText;
+        }, 2000);
+      });
+  });
+  
+  /* Keyboard navigation */
+  copyPageBtn.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      copyPageBtn.setAttribute('aria-expanded', 'false');
+      copyPageMenu.setAttribute('aria-hidden', 'true');
+      copyPageMenu.classList.remove('show');
+    }
+  });
+});
+</script>
+{% endif %}
+
