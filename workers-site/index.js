@@ -88,7 +88,7 @@ async function handleEvent(event) {
   let options = {}
   let cacheControl = {}
 
-  if (event.request.url.match(/\.js$/) || event.request.url.match(/\.css$/) || event.request.url.match(/\.png$/)) {
+  if (event.request.url.match(/\.js($|\?)/) || event.request.url.match(/\.css($|\?)/) || event.request.url.match(/\.png($|\?)/)) {
     cacheControl = {
       browserTTL: 365 * 60 * 60 * 24,
       edgeTTL: 30 * 60 * 60 * 24,
