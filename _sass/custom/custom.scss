@@ -298,6 +298,10 @@ img {
   flex: 1;
   min-width: 0;
   max-width: 750px;
+  
+  @media (max-width: 800px) {
+    max-width: 100%;
+  }
 }
 
 .toc-sidebar {
@@ -601,6 +605,56 @@ p.text-delta + ul#markdown-toc {
     vertical-align: middle;
     height: 38px !important;
     width: auto !important;
+  }
+}
+
+// =============================================================================
+// Mobile Responsive Fixes
+// =============================================================================
+
+@media (max-width: 900px) {
+  // Fix horizontal overflow on mobile
+  .main {
+    max-width: 100% !important;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  .main-content-wrap {
+    max-width: 100% !important;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .content-with-toc {
+    max-width: 100%;
+  }
+  
+  .main-content table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+  
+  // Code blocks on mobile - ensure they stay within container and scroll
+  div.highlight {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    
+    pre {
+      max-width: 100%;
+    }
+    
+    code {
+      white-space: pre;
+    }
+  }
+  
+  // Hide copy button on mobile
+  .copy-btn {
+    display: none !important;
   }
 }
 

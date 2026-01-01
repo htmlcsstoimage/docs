@@ -1,6 +1,6 @@
 ---
 layout: page
-title: API Reference - HTML/CSS to Image
+title: Using the API
 permalink: /getting-started/using-the-api/
 parent: Getting started
 nav_order: 1

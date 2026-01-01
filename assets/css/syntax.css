@@ -267,3 +267,20 @@ pre code {
   background: #585b70;
 }
 
+/* Mobile Responsive Styles */
+@media (max-width: 800px) {
+  /* Hide copy button on mobile (no hover on touch devices) */
+  .copy-btn {
+    display: none;
+  }
+  
+  /* Fix code block overflow */
+  .highlight {
+    max-width: 100%;
+  }
+  
+  .highlight pre {
+    max-width: 100%;
+  }
+}
+
