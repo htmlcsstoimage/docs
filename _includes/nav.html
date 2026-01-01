@@ -18,7 +18,7 @@
           {%- endif -%}
           {%- if node.has_children -%}
             {%- if node.expanded != true -%}
-              <a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a>
+              <a href="#" class="nav-list-expander" aria-label="Expand {{ node.title }}"><svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg></a>
             {%- endif -%}
             <a href="{{ node.url | absolute_url }}" class="mb-0 nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
           {%- else -%}
@@ -34,7 +34,7 @@
                     {%- assign second_level_url = child.url | absolute_url -%}
                   {%- endif -%}
                   {%- if child.has_children -%}
-                    <a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a>
+                    <a href="#" class="nav-list-expander" aria-label="Expand {{ child.title }}"><svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg></a>
                   {%- endif -%}
                   <a href="{{ child.url | absolute_url }}" class="nav-list-link child{% if page.url == child.url %} active{% endif %}">{{ child.title }}</a>
                   {%- if child.has_children -%}

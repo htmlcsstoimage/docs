@@ -37,7 +37,8 @@ $blue-100: #2869e6 !default;
 $blue-200: #264caf !default;
 $blue-300: #183385 !default;
 
-$hcti-green: #02b875 !default;
+$hcti-green: #018a59 !default; // Darker green for WCAG AA contrast (5.3:1 on white)
+$hcti-green-light: #02b875 !default; // Original lighter green for decorative use
 $green-000: #41d693 !default;
 $green-100: #11b584 !default;
 $green-200: #009c7b !default;

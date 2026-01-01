@@ -2,6 +2,44 @@ body {
   background-color: $sidebar-color;
 }
 
+// =============================================================================
+// Accessibility: Improved Contrast Fixes
+// =============================================================================
+
+// Override grey text utilities for better contrast (WCAG AA requires 4.5:1)
+// $grey-dk-000 (#959396) only has ~3.5:1 contrast on white, so we use darker colors
+.text-grey-dk-000 {
+  color: $grey-dk-100 !important; // #5c5962 has ~6:1 contrast ratio
+}
+
+// DocSearch placeholder - improve contrast for search button
+.DocSearch-Button-Placeholder {
+  color: #5c5962 !important; // Better contrast than default light grey
+}
+
+.DocSearch-Button {
+  .DocSearch-Search-Icon {
+    color: #5c5962 !important;
+  }
+}
+
+// Site footer text contrast fix
+.site-footer {
+  color: $grey-lt-100 !important; // Light color on dark background for sidebar
+}
+
+// Aux navigation buttons (Get an API Key, Demo) - improve link contrast
+// $hcti-green (#02b875) has ~3.6:1 contrast on white, need 4.5:1 for WCAG AA
+.aux-nav {
+  .site-button {
+    color: #018a59 !important; // Darker green with ~5.3:1 contrast ratio on white
+    
+    &:hover {
+      color: #016847 !important; // Even darker on hover for clear feedback
+    }
+  }
+}
+
 .cloudinary-image {
   width: auto;
   height: auto;

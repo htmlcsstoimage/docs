@@ -43,9 +43,9 @@ layout: table_wrappers
   <div class="site-container">
   <div class="side-bar">
     <div class="site-header">
-      <a href="{{ '/' | absolute_url }}" class="site-title lh-tight">{% include title.html %}</a>
-      <a href="#" id="menu-button" class="site-button">
-        <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+      <a href="{{ '/' | absolute_url }}" class="site-title lh-tight" aria-label="{{ site.title }}">{% include title.html %}</a>
+      <a href="#" id="menu-button" class="site-button" aria-label="Toggle navigation menu">
+        <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-menu"></use></svg>
       </a>
     </div>
     <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
