@@ -2,7 +2,7 @@
 
 $html = <<<EOD
 <div class='box'>
-  Generated from PHP ✅
+  Generated from PHP
 </div>
 EOD;
 

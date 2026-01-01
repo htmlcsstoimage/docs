@@ -180,8 +180,8 @@ layout: table_wrappers
   </div>
   </div> <!-- .site-container -->
 
-  <link href="/assets/css/syntax.css" rel="stylesheet" type="text/css" />
-  <link href="/assets/css/search.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/css/syntax.css?v={{ site.time | date: '%s' }}" rel="stylesheet" type="text/css" />
+  <link href="/assets/css/search.css?v={{ site.time | date: '%s' }}" rel="stylesheet" type="text/css" />
 
   {% javascript_asset_tag global %}
   - /assets/js/just-the-docs.js

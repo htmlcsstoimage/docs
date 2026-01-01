@@ -24,3 +24,4 @@ Troubleshoot common image generation issues.
 | [White/Blank Images](/guides/debugging/white-images/) | Troubleshoot images that render blank |
 | [Rendering Emoji](/guides/debugging/emoji/) | Ensure emoji display correctly |
 
+

@@ -206,3 +206,4 @@ If your image isn't cropping correctly, work through these steps:
 
 {% include code_footer.md version=2 %}
 
+

@@ -23,3 +23,4 @@ Control the appearance of your images.
 | [Transparent Background](/guides/styling/transparent-background/) | Create images with transparency |
 | [File Formats](/guides/styling/file-formats/) | Choose between PNG, JPG, and WebP |
 
+
