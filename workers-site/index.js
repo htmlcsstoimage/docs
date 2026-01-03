@@ -30,14 +30,10 @@ async function redirectOrHandleEvent(event) {
   var site = "https://docs.htmlcsstoimage.com";
 
   switch (path) {
+    // Getting Started redirects
     case "/getting-started/creating-an-image":
-      return Response.redirect(site + '/getting-started/using-the-api/', 301);
-    case "/guides/render-when-ready":
-      return Response.redirect(site + '/parameters/render_when_ready', 301);
     case "/getting-started/deleting-an-image":
-      return Response.redirect(site + '/getting-started/using-the-api/', 301);
     case "/getting-started/retrieving-an-image":
-      return Response.redirect(site + '/getting-started/using-the-api/', 301);
     case "/getting-started/authentication":
       return Response.redirect(site + '/getting-started/using-the-api/', 301);
     case "/getting-started/full-page-images":
@@ -46,8 +42,82 @@ async function redirectOrHandleEvent(event) {
       return Response.redirect(site + '/guides/advanced/duplicate-detection/', 301);
     case "/getting-started/faq":
       return Response.redirect(site + '/faq', 301);
+    case "/getting-started/integromat-integration":
+      return Response.redirect(site + '/integrations/make/', 301);
+    case "/getting-started/zapier-integration":
+      return Response.redirect(site + '/integrations/zapier/', 301);
+    case "/getting-started/convert-emails-images":
+      return Response.redirect(site + '/guides/workflows/email-to-images/', 301);
+    case "/getting-started/file-formats":
+    case "/getting-started/lossless-image-optimization":
+      return Response.redirect(site + '/guides/styling/file-formats/', 301);
+
+    // Social Media Guides
+    case "/guides/twitter-screenshot":
+    case "/guides/twitter-embed":
+      return Response.redirect(site + '/guides/social-media/twitter/', 301);
+    case "/guides/facebook-screenshot":
+      return Response.redirect(site + '/guides/social-media/facebook/', 301);
+    case "/guides/instagram-embed":
+      return Response.redirect(site + '/guides/social-media/instagram/', 301);
+    case "/guides/linkedin-screenshot":
+      return Response.redirect(site + '/guides/social-media/linkedin/', 301);
+
+    // Debugging Guides
+    case "/guides/debugging-cropping-issues":
+      return Response.redirect(site + '/guides/debugging/cropping-issues/', 301);
+    case "/guides/debugging-blurry-images":
+      return Response.redirect(site + '/guides/debugging/blurry-images/', 301);
+    case "/guides/debugging-white-images":
+    case "/guides/debugging-white-or-blank-images":
+      return Response.redirect(site + '/guides/debugging/white-images/', 301);
+    case "/guides/rendering-emoji":
+      return Response.redirect(site + '/guides/debugging/emoji/', 301);
+
+    // Styling Guides
+    case "/guides/external-css-and-fonts":
+    case "/guides/external-css-js-and-fonts":
+      return Response.redirect(site + '/guides/styling/external-css-fonts/', 301);
+    case "/guides/transparent-background":
+      return Response.redirect(site + '/guides/styling/transparent-background/', 301);
+    case "/guides/file-formats":
+      return Response.redirect(site + '/guides/styling/file-formats/', 301);
+
+    // Advanced Guides
+    case "/guides/blocking-cookie-banners":
+      return Response.redirect(site + '/guides/advanced/blocking-cookie-banners/', 301);
+    case "/guides/duplicate-image-detection":
+      return Response.redirect(site + '/guides/advanced/duplicate-detection/', 301);
+    case "/guides/account-usage":
+      return Response.redirect(site + '/guides/advanced/account-usage/', 301);
+    case "/guides/converting-base64-to-image":
+    case "/guides/base64-to-image":
+      return Response.redirect(site + '/guides/advanced/base64/', 301);
+
+    // Workflow Guides
+    case "/guides/postman":
+      return Response.redirect(site + '/guides/workflows/postman/', 301);
+    case "/guides/insomnia":
+      return Response.redirect(site + '/guides/workflows/insomnia/', 301);
+    case "/guides/convert-emails-images":
+    case "/guides/email-to-images":
+      return Response.redirect(site + '/guides/workflows/email-to-images/', 301);
+    case "/guides/email-screenshot-slack":
+    case "/guides/email-to-slack":
+      return Response.redirect(site + '/guides/workflows/email-to-slack/', 301);
+    case "/guides/image-charts-with-highchartsjs":
+    case "/guides/image-charts-with-highcharts":
+      return Response.redirect(site + '/guides/workflows/highcharts/', 301);
+
+    // Parameter redirects
+    case "/guides/render-when-ready":
+      return Response.redirect(site + '/parameters/render_when_ready/', 301);
     case "/guides/using-google-fonts":
       return Response.redirect(site + '/parameters/google_fonts/', 301);
+    case "/guides/selector":
+      return Response.redirect(site + '/parameters/selector/', 301);
+
+    // Advanced Examples redirects (legacy paths)
     case "/advanced-examples/using-google-fonts":
       return Response.redirect(site + '/parameters/google_fonts/', 301);
     case "/advanced-examples/rendering-emoji":
@@ -58,26 +128,15 @@ async function redirectOrHandleEvent(event) {
       return Response.redirect(site + '/guides/styling/transparent-background/', 301);
     case "/advanced-examples/external-css-and-fonts":
       return Response.redirect(site + '/guides/styling/external-css-fonts/', 301);
-    case "/getting-started/lossless-image-optimization":
-      return Response.redirect(site + '/guides/styling/file-formats/', 301);
     case "/advanced-examples/instagram-embed":
       return Response.redirect(site + '/guides/social-media/instagram/', 301);
     case "/advanced-examples/twitter-embed":
       return Response.redirect(site + '/guides/social-media/twitter/', 301);
-    case "/getting-started/integromat-integration":
-      return Response.redirect(site + '/integrations/integromat/', 301);
+
+    // Integrations
     case "/integrations/integromat":
       return Response.redirect(site + '/integrations/make/', 301);
-    case "/getting-started/zapier-integration":
-      return Response.redirect(site + '/integrations/zapier/', 301);
-    case "/getting-started/convert-emails-images":
-      return Response.redirect(site + '/guides/workflows/email-to-images/', 301);
-    case "/getting-started/file-formats":
-      return Response.redirect(site + '/guides/styling/file-formats/', 301);
-    case "/guides/selector":
-      return Response.redirect(site + '/parameters/selector/', 301);
-    case "/guides/twitter-embed":
-      return Response.redirect(site + '/guides/social-media/twitter/', 301);
+
     default:
       return await handleEvent(event);
   }
@@ -138,7 +197,11 @@ async function handleEvent(event) {
           mapRequestToAsset: req => new Request(`${new URL(req.url).origin}/404.html`, req),
         })
 
-        return new Response(notFoundResponse.body, { ...notFoundResponse, status: 404 })
+        return new Response(notFoundResponse.body, {
+          status: 404,
+          statusText: 'Not Found',
+          headers: notFoundResponse.headers
+        })
       } catch (e) { }
     }
 
