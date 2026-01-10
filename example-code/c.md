@@ -27,7 +27,7 @@ We provide an official NuGet package for .NET that makes it easy to generate ima
 | [HtmlCssToImage](https://www.nuget.org/packages/HtmlCssToImage) | [![NuGet](https://img.shields.io/nuget/v/HtmlCssToImage.svg)](https://www.nuget.org/packages/HtmlCssToImage) | Core client library for the HTML/CSS to Image API |
 | [HtmlCssToImage.DependencyInjection](https://www.nuget.org/packages/HtmlCssToImage.DependencyInjection) | [![NuGet](https://img.shields.io/nuget/v/HtmlCssToImage.DependencyInjection.svg)](https://www.nuget.org/packages/HtmlCssToImage.DependencyInjection) | ASP.NET Core dependency injection |
 | [HtmlCssToImage.Blazor](https://www.nuget.org/packages/HtmlCssToImage.Blazor) | [![NuGet](https://img.shields.io/nuget/v/HtmlCssToImage.Blazor.svg)](https://www.nuget.org/packages/HtmlCssToImage.Blazor) | Open Graph image tags for Blazor |
-| [HtmlCssToImage.TagHelper](https://www.nuget.org/packages/HtmlCssToImage.TagHelper) | [![NuGet](https://img.shields.io/nuget/v/HtmlCssToImage.TagHelper.svg)](https://www.nuget.org/packages/HtmlCssToImage.TagHelper) | Tag helpers for Razor Pages and MVC |
+| [HtmlCssToImage.TagHelpers](https://www.nuget.org/packages/HtmlCssToImage.TagHelpers) | [![NuGet](https://img.shields.io/nuget/v/HtmlCssToImage.TagHelpers.svg)](https://www.nuget.org/packages/HtmlCssToImage.TagHelpers) | Tag helpers for Razor Pages and MVC |
 
 For full documentation, see the [GitHub repository](https://github.com/htmlcsstoimage/dotnet-client).
 
@@ -171,10 +171,10 @@ dotnet add package HtmlCssToImage.Blazor
 
 ## Razor Pages / MVC Tag Helpers
 
-For ASP.NET Core Razor Pages and MVC applications, use the `HtmlCssToImage.TagHelper` package:
+For ASP.NET Core Razor Pages and MVC applications, use the `HtmlCssToImage.TagHelpers` package:
 
 ```bash
-dotnet add package HtmlCssToImage.TagHelper
+dotnet add package HtmlCssToImage.TagHelpers
 ```
 
 <hr>
