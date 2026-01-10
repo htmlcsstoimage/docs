@@ -22,12 +22,12 @@ Generate png, jpg or webp images with C# and .NET. Renders exactly like Google C
 
 We provide an official NuGet package for .NET that makes it easy to generate images from HTML/CSS in your .NET applications.
 
-| Package | Description |
-|:--------|:------------|
-| [HtmlCssToImage](https://www.nuget.org/packages/HtmlCssToImage) | Core client library for the HTML/CSS to Image API |
-| [HtmlCssToImage.DependencyInjection](https://www.nuget.org/packages/HtmlCssToImage.DependencyInjection) | Integration with ASP.NET Core dependency injection |
-| [HtmlCssToImage.Blazor](https://www.nuget.org/packages/HtmlCssToImage.Blazor) | Generate Open Graph image tags in Blazor applications |
-| [HtmlCssToImage.TagHelper](https://www.nuget.org/packages/HtmlCssToImage.TagHelper) | Tag helpers for ASP.NET Core Razor Pages and MVC |
+| Package | NuGet | Description |
+|:--------|:------|:------------|
+| [HtmlCssToImage](https://www.nuget.org/packages/HtmlCssToImage) | [![NuGet](https://img.shields.io/nuget/v/HtmlCssToImage.svg)](https://www.nuget.org/packages/HtmlCssToImage) | Core client library for the HTML/CSS to Image API |
+| [HtmlCssToImage.DependencyInjection](https://www.nuget.org/packages/HtmlCssToImage.DependencyInjection) | [![NuGet](https://img.shields.io/nuget/v/HtmlCssToImage.DependencyInjection.svg)](https://www.nuget.org/packages/HtmlCssToImage.DependencyInjection) | ASP.NET Core dependency injection |
+| [HtmlCssToImage.Blazor](https://www.nuget.org/packages/HtmlCssToImage.Blazor) | [![NuGet](https://img.shields.io/nuget/v/HtmlCssToImage.Blazor.svg)](https://www.nuget.org/packages/HtmlCssToImage.Blazor) | Open Graph image tags for Blazor |
+| [HtmlCssToImage.TagHelper](https://www.nuget.org/packages/HtmlCssToImage.TagHelper) | [![NuGet](https://img.shields.io/nuget/v/HtmlCssToImage.TagHelper.svg)](https://www.nuget.org/packages/HtmlCssToImage.TagHelper) | Tag helpers for Razor Pages and MVC |
 
 For full documentation, see the [GitHub repository](https://github.com/htmlcsstoimage/dotnet-client).
 
