@@ -16,6 +16,29 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+### Official .NET / C# NuGet Packages
+January 10, 2026
+{: .text-delta}
+
+We've released official NuGet packages for .NET developers! The new packages make it easy to integrate HTML/CSS to Image into your .NET applications with strongly-typed models and full async support.
+
+| Package | Description |
+|:--------|:------------|
+| [HtmlCssToImage](https://www.nuget.org/packages/HtmlCssToImage) | Core client library |
+| [HtmlCssToImage.DependencyInjection](https://www.nuget.org/packages/HtmlCssToImage.DependencyInjection) | ASP.NET Core dependency injection |
+| [HtmlCssToImage.Blazor](https://www.nuget.org/packages/HtmlCssToImage.Blazor) | Open Graph image tags for Blazor |
+| [HtmlCssToImage.TagHelpers](https://www.nuget.org/packages/HtmlCssToImage.TagHelpers) | Razor tag helpers for MVC/Razor Pages |
+
+Key features:
+- **Strongly-typed requests** for HTML/CSS, URL screenshots, and templates
+- **Batch image creation** for generating multiple images in one call
+- **Signed URL generation** for create-and-render workflows
+- **Native AOT support** for .NET 9+
+
+[View the C# documentation](/example-code/c/) or check out the [GitHub repository](https://github.com/htmlcsstoimage/dotnet-client).
+
+<hr>
+
 ### MCP Server for AI Assistants
 December 29, 2025
 {: .text-delta}
