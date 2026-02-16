@@ -90,6 +90,13 @@ Supporting login is a common request, but we have chosen not to support it due t
 Some sites have the option of creating an "embed" of a page. This is the best option if it's available to you. You can then use the embed's HTML to generate a screenshot without login.
 
 <hr>
+## Do you have an IP allowlist?
+
+We don't provide a static IP list. Our rendering servers scale dynamically on AWS, so the source IPs can change.
+
+If you are screenshotting protected URLs, we recommend adding a custom query parameter to the URL (for example `?hcti=1`) and creating a firewall rule (such as in Cloudflare) that allows requests when that query parameter is present.
+
+<hr>
 ## Need help getting started?
 
 We'd be happy to walk you through getting started. Send us an email: **support@htmlcsstoimage.com**. We're experts at generating images and will help you get going using the API.

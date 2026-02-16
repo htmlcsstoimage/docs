@@ -102,6 +102,12 @@ Alternatively, pass full HTML markup (starting with `<html>` and ending with `</
 
 Yes, set `full_screen: true` to capture the entire scrollable height of a page, not just the viewport. [Learn more](/parameters/full_screen/).
 
+### Do you have a list of IP addresses I can allowlist?
+
+No. Our rendering servers scale dynamically on AWS, so we are unable provide a static IP allowlist.
+
+If you're taking screenshots of protected URLs, we recommend adding a custom query parameter to the URL (for example `?hcti=1`). Then create a firewall rule (such as in Cloudflare) that allows requests when that query parameter is present.
+
 ### How do I block cookie consent banners?
 
 Set `block_consent_banners: true` when taking URL screenshots. This uses a browser extension to automatically dismiss most cookie popups. [Learn more](/guides/advanced/blocking-cookie-banners/).
@@ -286,6 +292,14 @@ Email us! **support@htmlcsstoimage.com**. We'd love to hear from you. We're expe
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes, set full_screen: true to capture the entire scrollable height of a page, not just the viewport."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you have a list of IP addresses I can allowlist?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Our rendering servers scale dynamically on AWS, so we don't provide a static IP allowlist. If you're taking screenshots of protected URLs, add a custom query parameter to the URL (for example ?hcti=1) and create a firewall rule (such as in Cloudflare) that allows requests when that query parameter is present."
       }
     },
     {
