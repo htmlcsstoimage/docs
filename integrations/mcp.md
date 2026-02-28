@@ -284,9 +284,5 @@ If images fail to generate:
 - Ensure HTML content is valid
 - For URL screenshots, verify the URL is publicly accessible
 
-## Need Help?
-
-We're happy to help you get started with the MCP server. Send us an email: **support@htmlcsstoimage.com**
-
 {% include code_footer.md version=1 %}
 
