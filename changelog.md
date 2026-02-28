@@ -16,6 +16,27 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+### Organizations, invites, and user permissions
+February 28, 2026
+{: .text-delta}
+
+We've added **organizations**, **invites**, and **user permissions** so you can collaborate on an account with your team.
+
+- **Organizations** — Group API keys, usage, and billing under a single organization. You can create multiple organizations and switch between them.
+- **Invites** — Owners and admins can invite people to join an organization by email. Invitees can accept or decline; accepted invites assign a role (Owner, Admin, or User).
+- **User permissions** — Three roles control what members can do:
+  - **Owner** — Full control: manage billing, API keys, members, invites, and organization metadata.
+  - **Admin** — Manage billing, API keys, and users (invite members, change roles, remove members). Cannot assign or invite as Owner.
+  - **User** — View organization resources and create images. Cannot manage billing, API keys, or other members.
+
+**Organization settings** (members, invites, usage, billing): [https://htmlcsstoimage.com/dashboard/organization-settings](https://htmlcsstoimage.com/dashboard/organization-settings)
+
+**Account settings** (your email, organizations, switching orgs, pending invites): [https://htmlcsstoimage.com/account/settings](https://htmlcsstoimage.com/account/settings)
+
+For more detail, see [Organization settings](/guides/account/organization-settings/) and [Account settings](/guides/account/account-settings/) in the guides.
+
+<hr>
+
 ### Official .NET / C# NuGet Packages
 January 10, 2026
 {: .text-delta}

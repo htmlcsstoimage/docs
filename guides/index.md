@@ -20,6 +20,17 @@ In-depth guides for common tasks and advanced features.
 
 <hr>
 
+## Account & organizations
+
+Manage your account and team in the dashboard:
+
+| Guide | Description |
+|:------|:------------|
+| [Account settings](/guides/account/account-settings/) | Your login, organizations, switching orgs, and accepting invites |
+| [Organization settings](/guides/account/organization-settings/) | Members, invites, roles, and billing for an organization |
+
+<hr>
+
 ## Social Media Screenshots
 
 Capture content from popular social platforms:
