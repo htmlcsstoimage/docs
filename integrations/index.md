@@ -58,6 +58,7 @@ Use the Model Context Protocol (MCP) to generate images directly from your AI co
 | Integration | Supported tools | Description |
 |:------------|:----------------|:------------|
 | **[MCP Server](/integrations/mcp/)** | Cursor, Claude Desktop, Windsurf, Cline, Zed, OpenCode | Generate images by chatting with your AI assistant. No code needed—just describe the image you want. |
+| **[VM0 Community Skill](https://github.com/vm0-ai/vm0-skills/blob/main/htmlcsstoimage/SKILL.md)** | VM0 | Community-maintained skill for generating images via HCTI API calls from VM0 workflows. |
 
 ### How it works
 

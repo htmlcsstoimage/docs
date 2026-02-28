@@ -210,6 +210,19 @@ Pipedream supports MCP servers for building serverless workflows. Connect the HT
 
 [Pipedream MCP Integration](https://mcp.pipedream.com/app/html_css_to_image){: .btn .fs-5 .mb-4 .mb-md-0 target="_blank" }
 
+## Community skills
+
+The community has also created third-party AI skills for HTML/CSS to Image.
+
+### VM0 community skill
+
+A VM0 community member created an HCTI skill with `curl`-based examples for HTML/CSS rendering and URL screenshots:
+
+- [VM0 skill source (GitHub)](https://github.com/vm0-ai/vm0-skills/blob/main/htmlcsstoimage/SKILL.md)
+- [Raw skill file](https://raw.githubusercontent.com/vm0-ai/vm0-skills/main/htmlcsstoimage/SKILL.md)
+
+{% include hint.md title="Community maintained" text="This skill is maintained by the VM0 community and is not an official HTML/CSS to Image integration." %}
+
 ## Example Prompts
 
 Once configured, you can ask your AI assistant to generate images naturally. Here are some examples:
