@@ -55,6 +55,7 @@ curl -X POST https://hcti.io/v1/image \
 - **Code Examples:** https://docs.htmlcsstoimage.com/example-code/
 - **Parameters:** https://docs.htmlcsstoimage.com/parameters/
 - **MCP Server:** https://docs.htmlcsstoimage.com/integrations/mcp/
+- **TypeScript Client (npm):** https://docs.htmlcsstoimage.com/example-code/typescript/
 - **FAQ:** https://docs.htmlcsstoimage.com/faq/
 
 ## Integrations
@@ -62,6 +63,7 @@ curl -X POST https://hcti.io/v1/image \
 - **Zapier:** https://docs.htmlcsstoimage.com/integrations/zapier/
 - **Make:** https://docs.htmlcsstoimage.com/integrations/make/
 - **MCP Server:** https://docs.htmlcsstoimage.com/integrations/mcp/
+- **TypeScript Client (npm):** https://docs.htmlcsstoimage.com/example-code/typescript/
 
 ## Code Examples Available
 

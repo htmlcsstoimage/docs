@@ -251,6 +251,17 @@ For AI assistants like Cursor, Claude Desktop, Windsurf, Cline, and Zed.
 
 ---
 
+## Official TypeScript Client (npm)
+
+Use the official npm package for typed requests and helper methods in Node.js/TypeScript projects.
+
+**Package:** `@html-css-to-image/client`  
+**Install:** `npm install @html-css-to-image/client`  
+**Docs:** https://docs.htmlcsstoimage.com/example-code/typescript/  
+**npm:** https://www.npmjs.com/package/@html-css-to-image/client
+
+---
+
 ## Code Examples
 
 ### Python

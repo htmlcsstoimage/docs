@@ -9,6 +9,37 @@ description: >-
 ---
 {% include intro.md language="TypeScript" %}
 
+## Official npm client
+
+If you want a typed SDK instead of building requests manually, use the official npm package: [`@html-css-to-image/client`](https://www.npmjs.com/package/@html-css-to-image/client).
+
+```bash
+npm install @html-css-to-image/client
+```
+
+```typescript
+import { HtmlCssToImageClient, CreateHtmlCssImageRequest } from '@html-css-to-image/client';
+
+const client = HtmlCssToImageClient.fromEnv();
+
+const result = await client.createImage(
+  new CreateHtmlCssImageRequest({
+    html: "<div class='box'>TypeScript ✅</div>",
+    css: ".box { border: 4px solid #03B875; padding: 20px; }"
+  })
+);
+
+if (result.success) {
+  console.log(result.url);
+} else {
+  console.error(result.error);
+}
+```
+
+You can also generate signed URLs, render templates, and create image batches. See the [TypeScript client repository](https://github.com/htmlcsstoimage/ts-client) for full usage details.
+
+<hr>
+
 This example uses the [axios package](https://www.npmjs.com/package/axios). Install with `npm install axios`.
 
 ```typescript

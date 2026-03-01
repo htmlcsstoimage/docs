@@ -9,6 +9,8 @@ description: >-
 ---
 {% include intro.md language="JavaScript" %}
 
+Looking for the official npm client? See the **Official npm client** section on the [TypeScript example page](/example-code/typescript/).
+
 This example uses the [Request client](https://github.com/request/request-promise). Install with `npm install request`.
 
 ```javascript
