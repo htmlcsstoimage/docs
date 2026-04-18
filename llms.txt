@@ -33,6 +33,7 @@ curl -X POST https://hcti.io/v1/image \
 - Batch create up to 25 images in one request
 - Reusable templates with variable substitution
 - MCP Server integration for AI assistants (Cursor, Claude, Windsurf)
+- HTTP proxy support for routing render traffic through your own proxy
 - Global CDN delivery via Cloudflare
 
 ## Key Parameters
@@ -56,6 +57,7 @@ curl -X POST https://hcti.io/v1/image \
 - **Parameters:** https://docs.htmlcsstoimage.com/parameters/
 - **MCP Server:** https://docs.htmlcsstoimage.com/integrations/mcp/
 - **TypeScript Client (npm):** https://docs.htmlcsstoimage.com/example-code/typescript/
+- **HTTP Proxies:** https://docs.htmlcsstoimage.com/guides/advanced/proxies/
 - **FAQ:** https://docs.htmlcsstoimage.com/faq/
 
 ## Integrations

@@ -54,6 +54,7 @@ Creates an image from HTML/CSS or screenshots a URL.
 | `color_scheme` | String | `light` or `dark` mode |
 | `timezone` | String | IANA timezone, e.g. `America/New_York` |
 | `disable_twemoji` | Boolean | Use native emoji instead of Twemoji |
+| `proxy_id` | String | Route the render's outbound traffic through one of your dashboard-configured HTTP proxies. Available on the 10k images/month plan or higher. See https://docs.htmlcsstoimage.com/guides/advanced/proxies/ |
 
 **Example Request:**
 
@@ -219,6 +220,19 @@ POST https://hcti.io/v1/image
   }
 }
 ```
+
+---
+
+## HTTP Proxies
+
+Route a render's outbound traffic through your own HTTP proxy. Useful for restricting access to internal content, controlling the egress IP, or getting past bot detection.
+
+- Configure proxies in the dashboard at https://htmlcsstoimage.com/dashboard/proxies (URL, port, optional auth, optional bypass hosts).
+- Use a proxy by passing `proxy_id` on the create image request.
+- Disabling a proxy does not affect images that have already been generated.
+- Available on the 10,000 images/month plan or higher.
+
+Full guide: https://docs.htmlcsstoimage.com/guides/advanced/proxies/
 
 ---
 
