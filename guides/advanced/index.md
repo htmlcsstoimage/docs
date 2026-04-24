@@ -24,5 +24,6 @@ Get more from the API.
 | [Account Usage](/guides/advanced/account-usage/) | Track your API usage programmatically |
 | [Base64 to Image](/guides/advanced/base64/) | Work with Base64-encoded images |
 | [HTTP Proxies](/guides/advanced/proxies/) | Route renders through your own HTTP proxy |
+| [Jumbo Images](/guides/advanced/jumbo-images/) | Render images larger than 8000px by splitting into tiles |
 
 

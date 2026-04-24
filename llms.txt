@@ -49,6 +49,8 @@ curl -X POST https://hcti.io/v1/image \
 | `viewport_height` | Browser viewport height |
 | `selector` | CSS selector to capture specific element |
 | `ms_delay` | Milliseconds to wait before capture |
+| `jumbo_max_width` | Max output width for jumbo renders (up to 80,000px). Must be set with `jumbo_max_height`. |
+| `jumbo_max_height` | Max output height for jumbo renders (up to 80,000px). Must be set with `jumbo_max_width`. |
 
 ## Documentation
 
@@ -58,6 +60,7 @@ curl -X POST https://hcti.io/v1/image \
 - **MCP Server:** https://docs.htmlcsstoimage.com/integrations/mcp/
 - **TypeScript Client (npm):** https://docs.htmlcsstoimage.com/example-code/typescript/
 - **HTTP Proxies:** https://docs.htmlcsstoimage.com/guides/advanced/proxies/
+- **Jumbo Images:** https://docs.htmlcsstoimage.com/guides/advanced/jumbo-images/
 - **FAQ:** https://docs.htmlcsstoimage.com/faq/
 
 ## Integrations
