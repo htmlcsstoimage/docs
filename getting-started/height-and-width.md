@@ -131,4 +131,8 @@ Once you have determined your height and width in pixels, you can then set your 
 If you need the DPI metadata tag set on your image, you can do this by adding the query param to your image url. For example `hcti.io/v1/image/123abc?dpi=300`.
 Please note, you will still need to use the calculations above to create an image large enough to have the correct DPI when printed.
 
+### Jumbo Images
+
+If you need to render really large images without sacrificing quality, you'll want to set the `jumbo_max_width` and `jumbo_max_height` parameters. [Learn more](/guides/advanced/jumbo-images).
+
 {% include code_footer.md version=3 %}

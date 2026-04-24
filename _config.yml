@@ -92,7 +92,7 @@ aux_links:
   "Get an API Key":
     - "https://htmlcsstoimage.com"
   "Demo":
-    - "https://htmlcsstoimage.com/demo"
+    - "https://htmlcsstoimage.com/#demo"
 
 # Exclude from processing.
 # The following items will not be processed, by default.

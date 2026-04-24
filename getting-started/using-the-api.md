@@ -14,7 +14,7 @@ description: >-
 Generate images from HTML and CSS.
 {: .fs-6 .fw-300 }
 
-[Live demo](https://htmlcsstoimage.com/demo){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[Live demo](https://htmlcsstoimage.com/#demo){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 [Get an API Key](https://htmlcsstoimage.com){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 {% include hint.md title="Using Cursor or Claude Code?" text="Generate images without writing code using our [MCP Server integration](/integrations/mcp/)." %}

@@ -10,6 +10,9 @@
 | **block_consent_banners**   | `Boolean` | When set to `true`, automatically blocks cookie consent banners and popups on websites. Most useful for URL screenshots. [Learn more](/guides/advanced/blocking-cookie-banners/). |
 | **viewport_width**   | `Integer` | Set the width of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. [Learn more](/getting-started/setting-height-and-width/). |
 | **viewport_height**   | `Integer` | Set the height of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. [Learn more](/getting-started/setting-height-and-width/). |
+| **viewport_mobile** | `Boolean` | Set Chrome's viewport to emulate a mobile device. |
+| **viewport_landscape**| `Boolean` | Set Chrome's viewport to landscape mode. |
+| **viewport_touch** | `Boolean` | Set Chrome's viewport to support touch events. |
 | **color_scheme**   | `String` | Set Chrome to render in `light` or `dark` mode. Affects websites using `prefers-color-scheme`. [Learn more](/parameters/color_scheme/). |
 | **timezone**   | `String` | Render your image with Chrome set to a specified timezone. Use IANA timezone identifiers like `America/New_York`. [Learn more](/parameters/timezone/). |
 | **disable_twemoji**   | `Boolean` | Twemoji is used by default to render emoji consistently. Set to `true` to use native emoji fonts instead. |

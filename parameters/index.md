@@ -15,7 +15,7 @@ description: >-
 Detailed information on all the available parameters for the API.
 {: .fs-4 .fw-300 }
 
-### Parameters
+## Parameters
 
 The create image endpoint accepts the following parameters. Accepted as either `json` or `formdata`.
 
@@ -29,7 +29,7 @@ The create image endpoint accepts the following parameters. Accepted as either `
 
 <hr>
 
-### Additional parameters
+## Additional parameters
 
 Optional parameters for greater control over your image.
 
@@ -37,5 +37,5 @@ Optional parameters for greater control over your image.
 
 <hr>
 
-[Live demo](https://htmlcsstoimage.com/demo){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[Live demo](https://htmlcsstoimage.com/#demo){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 [Get an API Key](https://htmlcsstoimage.com){: .btn .fs-5 .mb-4 .mb-md-0 }

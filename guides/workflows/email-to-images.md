@@ -15,7 +15,7 @@ description: >-
 Generate images of full webpages and emails with HTML/CSS to Image. Renders exactly like Google Chrome.
 {: .fs-4 .fw-300 }
 
-[Live demo](https://htmlcsstoimage.com/demo){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 target="_blank" }
+[Live demo](https://htmlcsstoimage.com/#demo){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 target="_blank" }
 [Get an API Key](https://htmlcsstoimage.com){: .btn .fs-5 .mb-4 .mb-md-0 target="_blank" }
 <hr>
 
@@ -38,7 +38,7 @@ For more details on how the API works, see [Creating an image](/getting-started/
   </div>
 </div>
 
-[Try it yourself](https://htmlcsstoimage.com/demo){: .btn .btn-green .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[Try it yourself](https://htmlcsstoimage.com/#demo){: .btn .btn-green .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 <hr>
 

@@ -366,7 +366,7 @@ August 16, 2020
 We've rebuilt the live demo. Now you can preview your HTML/CSS as you edit it. Then click the *image* button to see it converted into an image.
 This makes it much easier to prototype your images inside a browser.
 
-- [HTML/CSS to Image Demo](https://htmlcsstoimage.com/demo)
+- [HTML/CSS to Image Demo](https://htmlcsstoimage.com/#demo)
 
 <hr>
 ### Ruby Client released
