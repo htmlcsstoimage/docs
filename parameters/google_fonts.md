@@ -153,6 +153,6 @@ If you need to use fonts not available on Google Fonts:
 2. Convert your font to base64 and include it directly in your CSS
 3. Host the font files yourself and reference them via URL
 
-[Try it yourself](https://htmlcsstoimage.com/demo){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[Try it yourself](https://htmlcsstoimage.com/#demo){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 {% include code_footer.md version=1 %} 

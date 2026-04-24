@@ -101,9 +101,15 @@ Optional parameters for greater control over your image.
 | **render_when_ready**   | `Boolean` | Set to true to control when the image is generated. Call `ScreenshotReady()` from JavaScript to generate the image. [Learn more](/parameters/render_when_ready/). |
 | **viewport_width**   | `Integer` | Set the width of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
 | **viewport_height**   | `Integer` | Set the height of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
+| **viewport_mobile** | `Boolean` | Set Chrome's viewport to emulate a mobile device. |
+| **viewport_landscape**| `Boolean` | Set Chrome's viewport to landscape mode. |
+| **viewport_touch** | `Boolean` | Set Chrome's viewport to support touch events. |
 | **color_scheme**   | `String` | Set Chrome to render in `light` or `dark` mode. [Learn more](/parameters/color_scheme/). |
 | **timezone**   | `String` | Render your image with Chrome set to a specified timezone. Use IANA timezone identifiers. [Learn more](/parameters/timezone/). |
 | **disable_twemoji**   | `Boolean` | Set to `true` to use native emoji fonts instead of Twemoji. |
+| **proxy_id**   | `String` | Route the render's outbound traffic through one of your [HTTP proxies](/guides/advanced/proxies/) configured in the dashboard. Available on the 10k images/month plan or higher. |
+| **jumbo_max_width**   | `Integer` | Maximum output width when rendering a [jumbo image](/guides/advanced/jumbo-images/) (up to 80,000px). Must be set together with `jumbo_max_height`. Consumes extra renders. |
+| **jumbo_max_height**   | `Integer` | Maximum output height when rendering a [jumbo image](/guides/advanced/jumbo-images/) (up to 80,000px). Must be set together with `jumbo_max_width`. Consumes extra renders. |
 
 <hr>
 
@@ -181,9 +187,15 @@ Optional parameters for greater control over your image.
 | **render_when_ready**   | `Boolean` | Set to true to control when the image is generated. Call `ScreenshotReady()` from JavaScript to generate the image. [Learn more](/parameters/render_when_ready/). |
 | **viewport_width**   | `Integer` | Set the width of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
 | **viewport_height**   | `Integer` | Set the height of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
+| **viewport_mobile** | `Boolean` | Set Chrome's viewport to emulate a mobile device. |
+| **viewport_landscape**| `Boolean` | Set Chrome's viewport to landscape mode. |
+| **viewport_touch** | `Boolean` | Set Chrome's viewport to support touch events. |
 | **color_scheme**   | `String` | Set Chrome to render in `light` or `dark` mode. [Learn more](/parameters/color_scheme/). |
 | **timezone**   | `String` | Render your image with Chrome set to a specified timezone. Use IANA timezone identifiers. [Learn more](/parameters/timezone/). |
 | **disable_twemoji**   | `Boolean` | Set to `true` to use native emoji fonts instead of Twemoji. |
+| **proxy_id**   | `String` | Route the render's outbound traffic through one of your [HTTP proxies](/guides/advanced/proxies/) configured in the dashboard. Available on the 10k images/month plan or higher. |
+| **jumbo_max_width**   | `Integer` | Maximum output width when rendering a [jumbo image](/guides/advanced/jumbo-images/) (up to 80,000px). Must be set together with `jumbo_max_height`. Consumes extra renders. |
+| **jumbo_max_height**   | `Integer` | Maximum output height when rendering a [jumbo image](/guides/advanced/jumbo-images/) (up to 80,000px). Must be set together with `jumbo_max_width`. Consumes extra renders. |
 
 <hr>
 
@@ -295,7 +307,7 @@ STATUS: 200 OK
       "updated_at": "2020-07-19T17:16:43.987+00:00",
       "version": 1595179003987,
       "viewport_height": null,
-      "viewport_width": null
+      "viewport_width": null,      
     }
   ],
   "pagination": {

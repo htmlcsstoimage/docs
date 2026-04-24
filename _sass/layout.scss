@@ -20,6 +20,7 @@
 }
 
 .main {
+  flex-grow: 1;
   @include mq(md) {
     position: relative;
     max-width: $content-width;
