@@ -47,7 +47,7 @@ The big win is **quality**. Jumbo lets you produce huge images **without losing 
 - Retina (`device_scale: 2` or `3`) renders of medium-sized pages where `width * device_scale` would already cross 8000px.
 - Any HTML or URL screenshot where the natural output exceeds ~8000px.
 
-Jumbo works with both `html`/`css` and `url` requests. You can apply jumbo params on Templates as well.
+Jumbo works with both `html`/`css` and `url` requests. You can apply jumbo params on [Templates](/getting-started/templates) as well.
 
 <hr>
 
