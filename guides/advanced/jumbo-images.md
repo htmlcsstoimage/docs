@@ -37,7 +37,7 @@ The big win is **quality**. Jumbo lets you produce huge images **without losing 
 - Each tile is rendered natively in Chrome at full resolution, then stitched. There's no resampling or post-render shrinking.
 - Crisp text, vector edges, and 1px borders that would normally turn fuzzy on huge canvases stay clean.
 
-{% include hint.md title="Without jumbo, large images get downscaled" text="If your output would naturally exceed ~8000px and you **don't** set the jumbo params, the API automatically scales the image down to fit Chrome's limit and avoid duplication issues. That manifests as a **blurry, lower-resolution image** — text gets soft, fine lines smear, and high `device_scale` values stop helping. If your render is anywhere near 8000px on either side, set `jumbo_max_width` and `jumbo_max_height` to keep it sharp." %}
+{% include hint.md title="Without jumbo, large images get downscaled" text="If your output would naturally exceed ~8000px and you **don't** set the jumbo params, the API automatically scales the image down to fit Chrome's limit and avoid duplication issues. <br/> This manifests as a **blurry, lower-resolution image** — text gets soft, fine lines smear, and high `device_scale` values stop helping. <br/> If your render is anywhere near 8000px on either side, set `jumbo_max_width` and `jumbo_max_height` to keep it sharp." %}
 
 ### When to use it
 
@@ -75,22 +75,9 @@ When you pass `jumbo_max_width` and `jumbo_max_height`, the renderer:
 5. Renders each tile separately in Chrome. No scrolling, no need to worry about sticky elements.
 6. Stitches the tiles back into a single image and uploads the result.
 
-```mermaid
-flowchart LR
-    Request[Request with jumbo_max] --> Measure[Measure natural size]
-    Measure --> Fits{Fits in max?}
-    Fits -->|Yes| FullScale[Render at full scale]
-    Fits -->|No| Downscale[Downscale, preserve aspect ratio]
-    FullScale --> Split[Split into 8000x8000 tiles]
-    Downscale --> Split
-    Split --> RenderTiles[Render each tile]
-    RenderTiles --> Stitch[Stitch tiles together]
-    Stitch --> Upload[Upload final image]
-```
-
 The result is a single large screenshot.
 
-{% include hint.md title="Jumbo is measured AFTER device_scale is applied." text="If you expect your final image to be 5000x2000 and you want a crisp retina image, you should set your jumbo max to at least 10,000x4,000." %}
+{% include hint.md title="Jumbo is measured after device_scale is applied." text="If you expect your final image to be `5,000` x `2,000` and you want a crisp retina image, you should set your jumbo max to at least `10,000` x `4,000`." %}
 
 <hr>
 
@@ -125,14 +112,15 @@ When used with `ms_delay` the [standard `ms_delay` multiple](/parameters/ms_dela
 
 ### Examples
 
-| Jumbo size | `ms_delay` | Total Tiles | Renders billed |
-|------------|-----------|------|---------------|
-| `8,001 x 8,001` | 0 | 4 | 5 |
-| `12,000 x 4,000` | 0 | 2 | 3 |
-| `16,000 x 1,000` | `6000` | 2 | 6 |
-| `24,000 x 16,000` | 0 | 6 | 7 |
-| `80,000 x 5,000` | 0 | 10 | 11 |
-| `16,000 x 16,000` | `7000` | 4 | 6 |
+| Jumbo size        | `ms_delay` | Total Tiles | Renders billed |
+|:------------------|:-----------|:-----------:|:--------------:|
+| `8,001 x 8,001`   |            | 4           | 5              |
+| `12,000 x 4,000`  |            | 2           | 3              |
+| `16,000 x 1,000`  | `6000`     | 2           | 4              |
+| `24,000 x 16,000` |            | 6           | 7              |
+| `80,000 x 5,000`  |            | 10          | 11             |
+| `16,000 x 16,000` | `7000`     | 4           | 6              |
+
 
 
 <hr>
