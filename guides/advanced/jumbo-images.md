@@ -27,7 +27,7 @@ Render large screenshots without reducing quality by splitting and stitching til
 
 Rendering really tall or wide html with Puppeteer has issues around <a href="https://github.com/puppeteer/puppeteer/issues/1576" target="_blank">8000px</a> where your content may start repeating or overlapping. Most images don't reach these extremes, and when they do - we'll scale down your image to fit and prevent this behavior.
 
-Jumbo images get around this. When you set `jumbo_max_width` and `jumbo_max_height`, the API renders your output in **8000 x 8000 tiles** and stitches them back into a single image. This lets you generate images up to **80,000 pixels** on a side.
+Jumbo images allow you to scale beyond this. When you set `jumbo_max_width` and `jumbo_max_height`, the API renders lets you generate images up to **80,000 pixels** on a side.
 
 ### Why jumbo matters
 
