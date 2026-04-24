@@ -27,7 +27,7 @@ Render large screenshots without reducing quality by splitting and stitching til
 
 Normal images are limited to 8000 x 8000 pixels. If your image scales beyond this, we automatically scale it down by default.
 
-Jumbo images allow you to scale beyond this. When you set `jumbo_max_width` and `jumbo_max_height`, the API renders lets you generate images up to **80,000 pixels** on a side.
+Jumbo images allow you to scale beyond this. When you set `jumbo_max_width` and `jumbo_max_height`, the API lets you generate images up to **80,000 pixels** on a side.
 
 ### Why jumbo matters
 
