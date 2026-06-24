@@ -197,7 +197,17 @@ Returns image creation counts by hour, day, month, and billing period.
 
 ## Templates
 
-Templates allow reusable HTML with variable substitution using Handlebars syntax.
+Templates allow reusable image designs with variable substitution. Templates can be created by sending HTML/CSS to the Templates API or by building visually in the dashboard with the Template Editor.
+
+Template Editor docs:
+- Overview: https://docs.htmlcsstoimage.com/template-editor/
+- Quick Start: https://docs.htmlcsstoimage.com/template-editor/quick-start/
+- Canvas: https://docs.htmlcsstoimage.com/template-editor/canvas/
+- Variables: https://docs.htmlcsstoimage.com/template-editor/variables/
+- Blocks: https://docs.htmlcsstoimage.com/template-editor/blocks/
+- Advanced: https://docs.htmlcsstoimage.com/template-editor/advanced/
+
+For editor templates, use the Variables guide to decide which values should be passed with `template_values`. Rich Text and HTML blocks can discover Handlebars variables from their content. Other supported properties can be connected to variables in the editor.
 
 ### Create Template
 
@@ -365,4 +375,3 @@ Yes, via `google_fonts` parameter or embedding font links in HTML.
 Email: support@htmlcsstoimage.com
 
 We're experts at debugging HTML rendering issues and love helping developers succeed.
-
