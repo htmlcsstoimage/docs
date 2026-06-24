@@ -32,6 +32,7 @@ curl -X POST https://hcti.io/v1/image \
 - Screenshot any public URL
 - Batch create up to 25 images in one request
 - Reusable templates with variable substitution
+- Visual Template Editor for building saved templates from blocks in the dashboard
 - MCP Server integration for AI assistants (Cursor, Claude, Windsurf)
 - HTTP proxy support for routing render traffic through your own proxy
 - Global CDN delivery via Cloudflare
@@ -57,6 +58,10 @@ curl -X POST https://hcti.io/v1/image \
 - **API Reference:** https://docs.htmlcsstoimage.com/getting-started/using-the-api/
 - **Code Examples:** https://docs.htmlcsstoimage.com/example-code/
 - **Parameters:** https://docs.htmlcsstoimage.com/parameters/
+- **Templates API:** https://docs.htmlcsstoimage.com/getting-started/templates/
+- **Template Editor:** https://docs.htmlcsstoimage.com/template-editor/
+- **Template Editor Variables:** https://docs.htmlcsstoimage.com/template-editor/variables/
+- **Template Editor Blocks:** https://docs.htmlcsstoimage.com/template-editor/blocks/
 - **MCP Server:** https://docs.htmlcsstoimage.com/integrations/mcp/
 - **TypeScript Client (npm):** https://docs.htmlcsstoimage.com/example-code/typescript/
 - **HTTP Proxies:** https://docs.htmlcsstoimage.com/guides/advanced/proxies/
@@ -77,4 +82,3 @@ Python, PHP, JavaScript, TypeScript, Ruby, Go, C#, VB.NET, cURL, Google Apps Scr
 ## Support
 
 Email: support@htmlcsstoimage.com
-
