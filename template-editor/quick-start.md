@@ -18,7 +18,7 @@ Build a saved image template, test it with variables, and render it through the 
 
 Start in the dashboard by creating a new template or opening an existing one. The editor opens with the canvas in the middle, the block sidebar on the left, and the editing sidebar on the right.
 
-If you want a starting point, browse the [template presets](https://htmlcsstoimage.com/templates) or try the [template playground](/templates/playground) before building your own template.
+If you want a starting point, browse the [template presets](https://htmlcsstoimage.com/templates) or try the [template playground](https://htmlcsstoimage.com/templates/playground) before building your own template.
 
 <figure class="te-doc-figure te-doc-figure--wide">
   <img src="/assets/images/template-editor/te-empty-editor.png" alt="Blank template editor with the block sidebar, empty canvas, and properties sidebar">
@@ -30,7 +30,7 @@ If you want a starting point, browse the [template presets](https://htmlcsstoima
 |:---------------|:------------|
 | Blank template | You already know the size and layout you want |
 | [Template presets](https://htmlcsstoimage.com/templates) | You want to start from an existing design |
-| [Template playground](/templates/playground) | You want to test a template flow in the browser |
+| [Template playground](https://htmlcsstoimage.com/templates/playground) | You want to test a template flow in the browser |
 
 ## Basic workflow
 
@@ -71,7 +71,7 @@ The editor saves the design structure for you. In API requests, you work with th
 | Topic | Go here |
 |:------|:--------|
 | Start from an existing design | [Template presets](https://htmlcsstoimage.com/templates) |
-| Try a template in the browser | [Template playground](/templates/playground) |
+| Try a template in the browser | [Template playground](https://htmlcsstoimage.com/templates/playground) |
 | Set the image size | [Canvas](/template-editor/canvas/) |
 | Pick the right block type | [Blocks](/template-editor/blocks/) |
 | Add template variables | [Variables](/template-editor/variables/) |
