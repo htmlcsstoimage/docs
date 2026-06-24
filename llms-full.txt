@@ -207,7 +207,7 @@ Template Editor docs:
 - Blocks: https://docs.htmlcsstoimage.com/template-editor/blocks/
 - Advanced: https://docs.htmlcsstoimage.com/template-editor/advanced/
 
-For editor templates, use the Variables guide to understand which values should be passed with `template_values`. Rich Text and HTML blocks can discover Handlebars variables from their content. Other supported properties can be connected to variables in the editor.
+For editor templates, use the Variables guide to decide which values should be passed with `template_values`. Rich Text and HTML blocks can discover Handlebars variables from their content. Other supported properties can be connected to variables in the editor.
 
 ### Create Template
 

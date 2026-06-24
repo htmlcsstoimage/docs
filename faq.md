@@ -136,7 +136,7 @@ Create a 1200x630px template with your branding, then generate unique images for
 
 ### Can I create reusable templates?
 
-Yes! Templates let you define a reusable image design with variables that get substituted at render time. Perfect for generating thousands of similar images with different content.
+Yes! Templates let you define a reusable image design with variables that get substituted at render time. They are useful when you need many images with the same layout and different content.
 
 You can create templates via the [API](/getting-started/templates/#creating-a-template) or build a template visually with the [Template Editor](/template-editor/).
 

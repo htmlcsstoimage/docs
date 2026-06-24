@@ -54,18 +54,20 @@ Supported property fields use the hard-hat indicator to show their current varia
 
   <div class="te-variable-modes-grid__icon">{% include template-editor/hard-hat-icon.md color="#d97706" label="Ignored variable" %}</div>
   <div>Ignore</div>
-  <div>The property will be unset/skipped when no value is provided.</div>
+  <div>The property is left unset when no value is provided.</div>
 </div>
 
-{% include hint.md title="Handlebars Variable Mode" text="Variables discovered within Handlebars content can be set to `Required`, `Fallback` or `Ignore` (the default) in the Variables tab. When setting `Fallback` you can provide the fallback value there." %}
+{% include hint.md title="Handlebars Variable Mode" text="Variables discovered within Handlebars content can be set to `Required`, `Fallback`, or `Ignore` (the default) in the Variables tab. Fallback variables can also store their fallback value there." %}
 
 
 ### Template Keys
-When you want to make a property respond to template values at render time, you must assign it a template key.
+Assign a template key when a property should respond to template values at render time.
 
-You do this in the variable popover, when deciding its variable mode.
+Set the key in the variable popover, along with the variable mode.
 
-Template keys can use dot notation for nested data, such as `author.name`. You can also refer to array elements using simple bracket notation like `tags[0]` or `items[2].name`. You can assign the same template key to multiple properties, so long as their types are compatible (which will be determined when you attempt to save your variable mode / key).
+Template keys can use dot notation for nested data, such as `author.name`. You can also refer to array elements using simple bracket notation like `tags[0]` or `items[2].name`.
+
+You can assign the same template key to multiple properties when their types are compatible. The editor checks compatibility when you save the variable mode and key.
 
 You cannot assign a template key that overlaps or conflicts with the object path of another property or Handlebars variable. For example, if one property uses `author.name`, another text block cannot use `author`, because `author` is already expected to be a JSON object instead of a string.
 
