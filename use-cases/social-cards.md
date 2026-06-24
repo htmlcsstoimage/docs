@@ -99,6 +99,8 @@ Once you have the image URL, add it to your page's `<head>`:
 
 For high-volume use, consider using [Templates](/getting-started/templates/). Create a template once with variables, then generate images by passing just the dynamic values.
 
+You can build the social card visually with the [Template Editor](/template-editor/) and start from common sizes in the [Canvas guide](/template-editor/canvas/), including the Open Graph preset.
+
 ```bash
 curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
   -H "Content-Type: application/json" \
@@ -120,4 +122,3 @@ curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
 4. **Test across platforms** - Preview how your card looks on Twitter, Facebook, etc.
 
 {% include code_footer.md version=1 %}
-

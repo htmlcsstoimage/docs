@@ -67,9 +67,72 @@ img {
   border: 0;
 }
 
-// Inline code styling (single backticks) - light pink text, no background
-// This targets <code> elements that are NOT inside code blocks
-code.language-plaintext.highlighter-rouge {
+.te-doc-figure {
+  margin: 1.5rem 0 2rem;
+
+  img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    background: white;
+    border: $border $border-color;
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(31, 35, 40, 0.08);
+  }
+}
+.te-doc-figure.centered img{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.te-doc-figure--sidebar {
+  img {
+    max-width: 430px;
+  }
+}
+
+.te-doc-figure--natural {
+  img {
+    width: auto;
+    max-width: 100%;
+  }
+}
+
+.te-doc-section-with-aside {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(12rem, 26%, 18rem);
+  gap: 1.25rem;
+  align-items: start;
+  margin-bottom: 1.5rem;
+}
+
+.te-doc-figure--inline {
+  margin: 0.25rem 0 0;
+}
+
+.te-doc-figure--wide {
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+}
+
+@media (max-width: 50rem) {
+  .te-doc-section-with-aside {
+    display: block;
+  }
+
+  .te-doc-figure--inline {
+    width: 100%;
+    margin: 1rem 0 1.5rem;
+  }
+}
+
+// Inline code styling (single backticks and raw inline <code>) - light pink text, no background
+code.language-plaintext.highlighter-rouge,
+p > code,
+li > code,
+td > code,
+dd > code {
   background-color: transparent !important;
   color: #d63384 !important; // Light pinkish color
   padding: 0.1em 0.2em !important;
@@ -228,6 +291,12 @@ pre[class*="language-sh"] {
     margin-top: -2px;
     margin-right: 4px;
     fill: $blue-000;
+  }
+  .hint-title {
+    color: $body-heading-color;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 0.5rem;
   }
   p {
     margin-left: 28px;
@@ -625,6 +694,353 @@ p.text-delta + ul#markdown-toc {
 }
 
 // =============================================================================
+// Template Editor Property Lists
+// =============================================================================
+
+.te-property-list {
+  margin: 1rem 0 1.5rem;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.te-property-list__header {
+  display: grid;
+  grid-template-columns: 1rem minmax(8rem, 0.36fr) 1fr;
+  gap: 1rem;
+  padding: 0.65rem 0.9rem;
+  background: $grey-lt-000;
+  border-bottom: 1px solid $border-color;
+  color: $grey-dk-200;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  &::before {
+    content: "";
+  }
+}
+
+.te-property {
+  margin: 0;
+  border-bottom: 1px solid $border-color;
+  background: white;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.te-property__summary {
+  display: grid;
+  grid-template-columns: 1rem minmax(8rem, 0.36fr) 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.85rem 0.9rem;
+}
+
+details.te-property > .te-property__summary {
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+  padding-right: 2.25rem;
+  -webkit-user-select: none;
+  user-select: none;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &::after {
+    position: absolute;
+    top: 0.95rem;
+    right: 1rem;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-right: 2px solid $grey-dk-100;
+    border-bottom: 2px solid $grey-dk-100;
+    content: "";
+    transform: rotate(45deg);
+    transform-origin: center;
+  }
+
+  &:hover {
+    background: $grey-lt-000;
+  }
+}
+
+details.te-property[open] > .te-property__summary {
+  border-bottom: 1px solid $border-color;
+
+  &::after {
+    top: 1.1rem;
+    transform: rotate(225deg);
+  }
+}
+
+.te-property__variable {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 1rem;
+}
+
+.te-property__name {
+  color: $grey-dk-300;
+  font-weight: 700;
+}
+
+.te-property__name-text {
+  min-width: 0;
+}
+
+.te-property__templated-icon {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex: 0 0 auto;
+  opacity: 0.72;
+  margin-top: 0.1rem;
+  border: none;
+}
+
+.te-property__details {
+  color: $grey-dk-100;
+  line-height: 1.45;
+
+  p {
+    margin: 0;
+  }
+}
+
+.te-property__more {
+  display: grid;
+  grid-template-columns: 1rem minmax(8rem, 0.36fr) 1fr;
+  gap: 1rem;
+  padding: 0 0.9rem;
+  color: $grey-dk-200;
+  background: mix(white, $grey-lt-000, 45%);
+
+  .anchor-heading {
+    display: none !important;
+  }
+
+  .hint {
+    margin: 0.85rem 0 0;
+    padding: 0.6rem 0.7rem;
+    overflow: visible;
+    background: rgba($grey-lt-000, 0.55);
+    border-color: mix($border-color, white, 72%);
+    border-left: 1px solid mix($border-color, white, 72%);
+    border-radius: 4px;
+
+    h3,
+    .hint-title {
+      margin: 0 0 0.2rem;
+      color: $grey-dk-300;
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: 1.3;
+      text-transform: none;
+    }
+
+    p {
+      margin: 0;
+      color: $grey-dk-100;
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+
+    svg {
+      width: 0.78rem;
+      height: 0.78rem;
+      margin-top: -0.12rem;
+      fill: $grey-dk-100;
+    }
+  }
+
+  p {
+    margin: 0 0 0.75rem;
+    line-height: 1.55;
+  }
+
+  h3 {
+    margin: 0.95rem 0 0.25rem;
+    font-size: 0.92rem;
+  }
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.te-property__more-inner {
+  grid-column: 2 / 4;
+  max-width: 44rem;
+  padding: 1rem 0 1.05rem;
+}
+
+.te-property__sections {
+  margin: 0.85rem 0;
+}
+
+.te-property__section {
+  padding: 0.8rem 0;
+  margin: 0;
+  border-top: 1px solid $border-color;
+
+  &:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.te-property__subhead {
+  margin-bottom: 0.25rem;
+  color: $grey-dk-300;
+  font-size: 0.77rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.te-property__meta {
+  color: $grey-dk-100;
+  font-size: 0.88rem;
+}
+
+.te-property-templatable {
+  margin: 0.55rem 0 0.75rem;
+}
+
+.te-property-templatable__title {
+  color: $grey-dk-100;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.te-property-templatable__list {
+  margin: 0.3rem 0 0;
+  padding: 0;
+  color: $grey-dk-200;
+  font-size: 0.9rem;
+  list-style: none;
+  line-height: 1.45;
+
+  li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin: 0.12rem 0;
+    padding-left: 0;
+    list-style: none;
+
+    &::before {
+      display: none !important;
+      content: none !important;
+    }
+
+    &::marker {
+      content: "";
+    }
+  }
+}
+
+.te-property-templatable__marker {
+  width: 0.22rem;
+  height: 0.22rem;
+  flex: 0 0 0.22rem;
+  background: $grey-dk-000;
+  border-radius: 50%;
+  transform: translateY(-0.16rem);
+}
+
+.te-compact-list {
+  margin: 0.4rem 0 0;
+  padding-left: 1.05rem;
+
+  li {
+    margin: 0.15rem 0;
+  }
+}
+
+.te-variable-modes-grid {
+  display: grid;
+  grid-template-columns: 2.25rem max-content minmax(0, 1fr);
+  margin: 0.85rem 0 1rem;
+  overflow: hidden;
+  color: $grey-dk-100;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+
+  > * {
+    min-height: 2.45rem;
+    padding: 0.65rem 0.75rem;
+    border-top: 1px solid $border-color;
+  }
+
+  > :nth-child(-n + 3) {
+    min-height: auto;
+    padding-top: 0.55rem;
+    padding-bottom: 0.55rem;
+    color: $grey-dk-100;
+    font-size: 0.82rem;
+    font-weight: 700;
+    background: mix(white, $grey-lt-000, 45%);
+    border-top: 0;
+  }
+
+  > :nth-child(3n + 1) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 0.45rem;
+    padding-left: 0.45rem;
+  }
+}
+
+.te-variable-modes-grid__icon svg {
+  display: inline-block;
+}
+
+@media (max-width: 42rem) {
+  .te-property-list__header {
+    display: none;
+  }
+
+  .te-property__summary {
+    grid-template-columns: 1rem 1fr;
+    gap: 0.25rem 0.75rem;
+  }
+
+  .te-property__details {
+    grid-column: 2;
+  }
+
+  .te-property__more {
+    grid-template-columns: 1rem 1fr;
+    gap: 0.25rem 0.75rem;
+  }
+
+  .te-property__more-inner {
+    grid-column: 2;
+  }
+}
+
+// =============================================================================
 // Cursor MCP Install Button
 // =============================================================================
 
@@ -695,4 +1111,3 @@ p.text-delta + ul#markdown-toc {
     display: none !important;
   }
 }
-

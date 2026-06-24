@@ -63,6 +63,7 @@ The API returns a URL to your generated image. Use it anywhere - in emails, soci
 | Take screenshots of websites | [URL to Image](/getting-started/url-to-image/) |
 | Control image dimensions | [Setting Height and Width](/getting-started/setting-height-and-width/) |
 | Create reusable templates | [Templates](/getting-started/templates/) |
+| Design templates visually | [Template Editor](/template-editor/) |
 | Generate images in one request | [Create and Render](/getting-started/create-and-render/) |
 
 <hr>

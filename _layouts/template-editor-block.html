@@ -1,0 +1,16 @@
+---
+layout: page
+---
+{{ content }}
+
+{% assign template_editor_templated_content = page.templated_content | default: "" | strip %}
+<section class="te-templated-content">
+  <h2 id="templated-content">Templated Content</h2>
+  {% if template_editor_templated_content != "" %}
+  {{ template_editor_templated_content | markdownify }}
+  {% endif %}
+  {% capture template_editor_templating_note %}
+  {% include template-editor/templating-note.md %}
+  {% endcapture %}
+  {{ template_editor_templating_note | markdownify }}
+</section>

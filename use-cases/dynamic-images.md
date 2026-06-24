@@ -67,7 +67,9 @@ Generate product cards, sale announcements, or promotional graphics from product
 
 ## Using templates
 
-For dynamic images, [Templates](/getting-started/templates/) are the most efficient approach. Define your HTML once with variables, then generate images by passing just the dynamic data.
+For dynamic images, [Templates](/getting-started/templates/) are the most efficient approach. Define the design once with variables, then generate images by passing just the dynamic data.
+
+You can write the HTML/CSS yourself or build the design visually with the [Template Editor](/template-editor/). If your template uses editor variables, the [Variables guide](/template-editor/variables/) explains preview data, fallback behavior, and `template_values`.
 
 ### Create a template
 
@@ -149,4 +151,3 @@ curl -X POST https://hcti.io/v1/image/batch -u 'UserID:APIKey' \
 ```
 
 {% include code_footer.md version=1 %}
-

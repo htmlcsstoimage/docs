@@ -2,7 +2,7 @@
 layout: default
 title: Guides
 permalink: /guides/
-nav_order: 5
+nav_order: 15
 has_children: true
 expanded: false
 description: >-

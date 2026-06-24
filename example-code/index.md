@@ -2,7 +2,7 @@
 layout: default
 title: Example code
 permalink: /example-code/
-nav_order: 4
+nav_order: 10
 has_children: true
 description: >-
   HTML to Image code examples for Python, PHP, JavaScript, Ruby, Go, C#, TypeScript, and more. Copy-paste ready API integration code.

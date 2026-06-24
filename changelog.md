@@ -16,6 +16,23 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+### Template Editor for visual template design
+June 24, 2026
+{: .text-delta}
+
+We've introduced the Template Editor, a visual way to build saved image templates in the dashboard.
+
+Instead of writing every template by hand in HTML and CSS, you can build reusable image designs from blocks, style them visually, connect template variables, preview with test data, and render the saved template through the API.
+
+- **Visual blocks** for text, images, shapes, HTML, and layout panels.
+- **Canvas controls** for image size, background, and render settings.
+- **Template variables** for text, image URLs, colors, numbers, and other render-time values.
+- **Preview and export tools** to test your template before using it in production.
+
+Templates built in the editor are saved alongside HTML/CSS templates and render through the existing Templates API. See the [Template Editor docs](/template-editor/) to get started.
+
+<hr>
+
 ### Jumbo images — render up to 80,000px without quality loss
 April 23, 2026
 {: .text-delta}

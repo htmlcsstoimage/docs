@@ -3,7 +3,7 @@ layout: page
 title: Image Templates
 permalink: /getting-started/templates/
 description: >-
-  Create a re-usable templates for your HTML & CSS to make image generation easy.
+  Create reusable templates for your HTML & CSS to make image generation easy.
 parent: Getting started
 nav_order: 5
 ---
@@ -11,7 +11,7 @@ nav_order: 5
 {: .no_toc }
 {: .fs-9 }
 
-Create re-usable templates to make image generation easy.
+Create reusable templates to make image generation easy.
 {: .fs-6 .fw-300 }
 
 [Get an API Key](https://htmlcsstoimage.com){: .btn .btn-blue .fs-5 .mb-4 .mb-md-0 }
@@ -20,16 +20,20 @@ Create re-usable templates to make image generation easy.
 
 ## What are Templates?
 
-A template allows you to define HTML that includes **variables** to be substituted at the time of image creation. 
+A template defines reusable image markup with **variables** that are replaced when an image is created.
+
+You can create templates by sending HTML and CSS to the API, or by building a template visually in the [Template Editor](/template-editor/). Templates created in the editor are still rendered through the same template API.
+
+If you are building templates visually, start with the [Template Editor Quick Start](/template-editor/quick-start/). For API-only templates, continue below.
 
 ### Handlebars variables
-Templates support [handlebars](https://handlebarsjs.com/) variables. This allows you to place {% raw %} `{{title_text}}` {% endraw %} in your HTML.
-Then have that replaced with any value you'd like while creating your image.
+Templates support [Handlebars](https://handlebarsjs.com/) variables. Add {% raw %}`{{title_text}}`{% endraw %} to your HTML, then pass a value for `title_text` when creating the image.
 
-### Common usecases
+### Common use cases
 - Define a reusable template, then pass variables to it to generate unique images.
-- Create images using signed urls in a `GET` request (no need to POST and store the URL).
-- Useful for social sharing images. Such as `og:image` or `twitter:image`.
+- Use the [Template Editor](/template-editor/) to build a reusable image from blocks instead of writing all of the HTML and CSS by hand.
+- Create images using signed URLs in a `GET` request.
+- Generate social sharing images, such as `og:image` or `twitter:image`.
 
 ### Example
 This image was generated with a template.
@@ -207,7 +211,7 @@ To generate a templated image, make an HTTP request to the API using the <b>temp
   <span>post</span> https://hcti.io/v1/image/<b>:template_id</b>
 </pre>
 
-{% include hint.md title="Template Versions" text="When you create an image using a `template_id`, it will automatically utilize the most recent version of that template. If you want to create an image from a specific template_version you can append `/:template_version` to your POST: `hcti.io/v1/image/:template_id/:template_version`" %}
+{% include hint.md title="Template Versions" text="When you create an image using a `template_id`, it will automatically use the most recent version of that template. If you want to create an image from a specific template_version you can append `/:template_version` to your POST: `hcti.io/v1/image/:template_id/:template_version`" %}
 
 ### Parameters
 
@@ -216,7 +220,7 @@ The create templated image endpoint accepts the following parameters, accepted a
 
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
-| **template_values**<span class="text-red-200">*</span>           | `JSON`  | These are the variables that will be substituted in your template's HTML. |
+| **template_values**<span class="text-red-200">*</span>           | `JSON`  | Values for the variables in your template. For editor templates, see the [Variables guide](/template-editor/variables/). |
 
 <hr>
 

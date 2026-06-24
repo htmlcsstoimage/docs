@@ -247,6 +247,8 @@ Once configured, you can ask your AI assistant to generate images naturally. Her
 - "Create an image using my 'social-card' template with the title set to 'New Feature Release'"
 - "Save this HTML/CSS as a template called 'blog-header' so I can reuse it"
 
+If you design templates in the dashboard first, the [Template Editor docs](/template-editor/) can help you choose blocks, set up variables, and understand what values the MCP server should pass as `template_values`.
+
 ## Image Parameters
 
 When creating images, the main parameters are:
@@ -285,4 +287,3 @@ If images fail to generate:
 - For URL screenshots, verify the URL is publicly accessible
 
 {% include code_footer.md version=1 %}
-

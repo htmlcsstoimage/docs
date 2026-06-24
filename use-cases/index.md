@@ -2,7 +2,7 @@
 layout: default
 title: Use Cases
 permalink: /use-cases/
-nav_order: 6
+nav_order: 20
 has_children: true
 description: >-
   See how developers use HTML/CSS to Image to automate image generation for social cards, screenshots, certificates, and more.
@@ -28,6 +28,7 @@ The HTML/CSS to Image API is incredibly flexible. If you can build it with HTML 
 | [Social Cards](/use-cases/social-cards/) | Open Graph images, Twitter cards, LinkedIn previews |
 | [Screenshots](/use-cases/screenshots/) | Capture any webpage, archive content, create previews |
 | [Dynamic Images](/use-cases/dynamic-images/) | Personalized graphics, certificates, job listings, quotes |
+| [Template Editor](/template-editor/) | Visual template building for repeatable image designs |
 
 <hr>
 
@@ -87,4 +88,4 @@ Use the `selector` param to [capture just a portion of the page](/getting-starte
 
 [Get an API Key](https://htmlcsstoimage.com){: .btn .btn-blue .fs-5 .mb-4 .mb-md-0 .mr-2 }
 [View API Docs](/getting-started/using-the-api/){: .btn .fs-5 .mb-4 .mb-md-0 }
-
+[Open Template Editor Docs](/template-editor/){: .btn .fs-5 .mb-4 .mb-md-0 }
