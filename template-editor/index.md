@@ -23,7 +23,7 @@ Design saved image templates in the dashboard, then render them through the API.
 
 The Template Editor is for building image templates visually. Add blocks, style them, connect template variables, then render the saved template through the API.
 
-Use the editor when you want a reusable layout but do not want to write the whole design by hand in HTML and CSS. For a fast example, start from the [template presets](https://htmlcsstoimage.com/templates) or open the [template playground](/templates/playground).
+Use the editor when you want a reusable layout but do not want to write the whole design by hand in HTML and CSS. For a fast example, start from the [template presets](https://htmlcsstoimage.com/templates) or open the [template playground](https://htmlcsstoimage.com/templates/playground).
 
 Open it from the dashboard by creating or editing a template. The canvas is the image area, the left sidebar adds blocks, and the right sidebar changes depending on whether you are editing a block, the canvas, or variables.
 
