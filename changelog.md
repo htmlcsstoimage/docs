@@ -16,6 +16,17 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+### Template Editor: Context Menu & Input Improvements
+June 29, 2026
+{: .text-delta}
+
+- You can now right-click on blocks and have quick access to set a subset of their properties.
+- The gradient input now has a more intuitive slider interface and interactive preview.
+- The quick position popover now lets you adjust a block's X and Y position independently, so you can center it horizontally without changing its vertical position, or vice versa.
+
+
+<hr>
+
 ### Template Editor for visual template design
 June 24, 2026
 {: .text-delta}
