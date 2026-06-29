@@ -514,25 +514,11 @@ img {
   }
 }
 
-// Also hide the "Table of contents" text-delta label on large screens
-.text-delta:has(+ #markdown-toc),
-p.text-delta + ul#markdown-toc {
-  @media (min-width: 1201px) {
-    & {
-      display: none;
-    }
-  }
-}
-
-// Hide the preceding "Table of contents" label when sidebar is visible
 @media (min-width: 1201px) {
-  // Target the text-delta paragraph that comes right before the TOC
-  .main-content > p.text-delta {
-    display: none;
-  }
-  
-  // Hide hr elements that wrap the inline TOC
-  .main-content > hr:first-of-type {
+  // Hide inline TOC elements when the sidebar TOC is visible.
+  .main-content > .text-delta:has(+ #markdown-toc),
+  .main-content > hr:has(+ #markdown-toc),
+  .main-content > hr:has(+ .text-delta + #markdown-toc) {
     display: none;
   }
 }
