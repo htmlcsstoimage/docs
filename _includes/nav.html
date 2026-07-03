@@ -12,37 +12,40 @@
   {%- for node in pages_list -%}
     {%- unless node.nav_exclude -%}
       {%- if node.parent == nil and node.title -%}
+        {%- assign node_nav_title = node.nav_title | default: node.title -%}
         <li class="nav-list-item {% if node.expanded or page.url == node.url or page.parent == node.title or page.grand_parent == node.title %} active{% endif %}">
           {%- if page.parent == node.title or page.grand_parent == node.title -%}
             {%- assign first_level_url = node.url | absolute_url -%}
           {%- endif -%}
           {%- if node.has_children -%}
             {%- if node.expanded != true -%}
-              <a href="#" class="nav-list-expander" aria-label="Expand {{ node.title }}"><svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg></a>
+              <a href="#" class="nav-list-expander" aria-label="Expand {{ node_nav_title }}"><svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg></a>
             {%- endif -%}
-            <a href="{{ node.url | absolute_url }}" class="mb-0 nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
+            <a href="{{ node.url | absolute_url }}" class="mb-0 nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node_nav_title }}</a>
           {%- else -%}
-            <a href="{{ node.url | absolute_url }}" class="nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
+            <a href="{{ node.url | absolute_url }}" class="nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node_nav_title }}</a>
           {%- endif -%}
           {%- if node.has_children -%}
             {%- assign children_list = pages_list | where: "parent", node.title -%}
             <ul class="nav-list ">
             {%- for child in children_list -%}
               {%- unless child.nav_exclude -%}
+                {%- assign child_nav_title = child.nav_title | default: child.title -%}
                 <li class="nav-list-item {% if page.url == child.url or page.parent == child.title %} active{% endif %}">
                   {%- if page.url == child.url or page.parent == child.title -%}
                     {%- assign second_level_url = child.url | absolute_url -%}
                   {%- endif -%}
                   {%- if child.has_children -%}
-                    <a href="#" class="nav-list-expander" aria-label="Expand {{ child.title }}"><svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg></a>
+                    <a href="#" class="nav-list-expander" aria-label="Expand {{ child_nav_title }}"><svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg></a>
                   {%- endif -%}
-                  <a href="{{ child.url | absolute_url }}" class="nav-list-link child{% if page.url == child.url %} active{% endif %}">{{ child.title }}</a>
+                  <a href="{{ child.url | absolute_url }}" class="nav-list-link child{% if page.url == child.url %} active{% endif %}">{{ child_nav_title }}</a>
                   {%- if child.has_children -%}
                     {%- assign grand_children_list = pages_list | where: "parent", child.title | where: "grand_parent", node.title -%}
                     <ul class="nav-list">
                     {%- for grand_child in grand_children_list -%}
+                      {%- assign grand_child_nav_title = grand_child.nav_title | default: grand_child.title -%}
                       <li class="nav-list-item {% if page.url == grand_child.url %} active{% endif %}">
-                        <a href="{{ grand_child.url | absolute_url }}" class="nav-list-link child{% if page.url == grand_child.url %} active{% endif %}">{{ grand_child.title }}</a>
+                        <a href="{{ grand_child.url | absolute_url }}" class="nav-list-link child{% if page.url == grand_child.url %} active{% endif %}">{{ grand_child_nav_title }}</a>
                       </li>
                     {%- endfor -%}
                     </ul>

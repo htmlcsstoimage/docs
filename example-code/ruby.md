@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Ruby - HTML to Image Example
+nav_title: Ruby
 parent: Example code
 permalink: /example-code/ruby/
 description: >-

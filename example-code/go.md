@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Go - HTML to Image Example
+nav_title: Go
 parent: Example code
 permalink: /example-code/go/
 description: >-

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: TypeScript - HTML to Image Example
+nav_title: TypeScript
 parent: Example code
 permalink: /example-code/typescript/
 description: >-

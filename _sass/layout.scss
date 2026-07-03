@@ -6,8 +6,10 @@
   z-index: 0;
   flex-wrap: wrap;
   background-color: $sidebar-color;
-  margin-left: auto;
-
+  @include mq(md){
+    margin-left: auto;
+  }
+  
   // @include mq(md) {
   //   flex-wrap: nowrap;
   //   position: fixed;
@@ -17,6 +19,12 @@
   //   border-right: $border $border-color;
   //   align-items: flex-end;
   // }
+}
+.side-bar-inner{
+   @include mq(md) {
+    position: sticky;
+    top:0;
+   }
 }
 
 .main {

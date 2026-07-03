@@ -28,7 +28,8 @@ For more details on how this works, see [Creating an image](/getting-started/usi
 
 This code creates a `WebClient`, sets credentials and POSTS the HTML & CSS as values to the API.  The response will be json with the URL to the generated image.
 
-```clike
+```vb
+
 Imports System
 Imports System.Net
 Public Module htciExample

@@ -56,7 +56,7 @@ Choose your path to get started:
 |:-------------|:--------|
 | **Read the API docs** | [Using the API](/getting-started/using-the-api/) |
 | **Design a reusable template** | [Template Editor](/template-editor/) |
-| **See example code** | [PHP](/example-code/php), [JavaScript](/example-code/javascript), [Ruby](/example-code/ruby), [Python](/example-code/python), [Go](/example-code/go), [cURL](/example-code/curl), [C#](/example-code/c) |
+| **See example code** | [PHP](/example-code/php), [JavaScript](/example-code/javascript), [Ruby](/example-code/ruby), [Python](/example-code/python), [Go](/example-code/go), [Java](/example-code/java), [Rust](/example-code/rust), [Kotlin](/example-code/kotlin), [Elixir](/example-code/elixir), [Zig](/example-code/zig), [cURL](/example-code/curl), [C#](/example-code/c) |
 | **Use with AI assistants** | [MCP Server](/integrations/mcp/) for Cursor, Claude, Windsurf, and more |
 | **No-code options** | [Zapier](/integrations/zapier/) or [Make](/integrations/make/) |
 | **See use cases** | [Use Cases & Examples](/use-cases/) |

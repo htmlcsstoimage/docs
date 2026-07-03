@@ -211,6 +211,8 @@ To generate a templated image, make an HTTP request to the API using the <b>temp
   <span>post</span> https://hcti.io/v1/image/<b>:template_id</b>
 </pre>
 
+You can also generate a templated image with a signed `GET` URL that renders on demand. See [Creating a templated image URL](/getting-started/create-and-render/#creating-a-templated-image-url).
+
 {% include hint.md title="Template Versions" text="When you create an image using a `template_id`, it will automatically use the most recent version of that template. If you want to create an image from a specific template_version you can append `/:template_version` to your POST: `hcti.io/v1/image/:template_id/:template_version`" %}
 
 ### Parameters

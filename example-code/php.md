@@ -1,6 +1,7 @@
 ---
 layout: page
 title: PHP - HTML to Image Example
+nav_title: PHP
 parent: Example code
 permalink: /example-code/php/
 description: >-
