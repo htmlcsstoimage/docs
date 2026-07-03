@@ -2,7 +2,7 @@
 layout: page
 title: FAQ
 permalink: /faq/
-nav_order: 10
+nav_order: 50
 description: Frequently asked questions about the HTML/CSS to Image API - file formats, pricing, rate limits, and more.
 ---
 # Frequently Asked Questions

@@ -4,14 +4,15 @@ title: Example code
 permalink: /example-code/
 nav_order: 10
 has_children: true
+has_toc: false
 description: >-
-  HTML to Image code examples for Python, PHP, JavaScript, Ruby, Go, C#, TypeScript, and more. Copy-paste ready API integration code.
+  HTML to Image and PDF code examples for Python, PHP, JavaScript, TypeScript, Ruby, Go, C#/.NET, Java, Rust, Kotlin, Elixir, and more. Copy-paste ready API integration code.
 ---
 # Example code
 {: .no_toc }
 {: .fs-9 }
 
-To get started quickly, take a look at our example code for generating images.
+Use these examples to render HTML/CSS, webpage screenshots, PDFs, and reusable templates from your application.
 {: .fs-4 .fw-300 }
 
 [Live demo](https://htmlcsstoimage.com/#demo){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
@@ -23,20 +24,34 @@ To get started quickly, take a look at our example code for generating images.
 
 ## Works with any programming language
 
-The HTML/CSS to Image API is a simple REST API. **If your language can make an HTTP request, it can generate images.** 
+The HTML/CSS to Image API is a simple REST API. **If your language can make an HTTP request, it can generate images and PDFs.**
 
 We provide example code for popular languages, but the API works the same way everywhere:
 
 1. Send a `POST` request to `https://hcti.io/v1/image`
-2. Include your HTML/CSS in the request body
+2. Include your HTML/CSS, a URL, or template values in the request
 3. Authenticate with HTTP Basic Auth
-4. Receive a JSON response with your image URL
+4. Receive a JSON response with a generated image URL
+5. Use the returned URL as PNG, JPG, WebP, or PDF
 
 ---
 
-## The API request
+## Start with a client library
 
-Here's what a request to the API looks like:
+If you are using TypeScript, JavaScript, or .NET, start with the official clients. They include helpers for authentication, JSON requests, templates, and signed image URLs.
+
+| Language | Recommended starting point |
+|:---------|:---------------------------|
+| TypeScript / JavaScript | [Official npm client](/example-code/typescript/#official-npm-client) |
+| C# / .NET | [Official NuGet package](/example-code/c/) |
+
+The other examples stay close to each language's standard HTTP and JSON tools, adding a popular client library only when the language does not include one.
+
+---
+
+## Common API requests
+
+### Create an image
 
 | Property | Description |
 |:---------|:------------|
@@ -50,7 +65,9 @@ Here's what a request to the API looks like:
 ```json
 {
   "html": "<div class='box'>Hello, world!</div>",
-  "css": ".box { padding: 20px; background: #03B875; color: white; }"
+  "css": ".box { padding: 20px; background: #03B875; color: white; }",
+  "google_fonts": "Roboto",
+  "device_scale": 2
 }
 ```
 
@@ -58,21 +75,43 @@ Here's what a request to the API looks like:
 
 ```json
 {
-  "url": "https://hcti.io/v1/image/be4c5118-fe19-462b-a49e-48cf72697a9d"
+  "url": "https://hcti.io/v1/image/be4c5118-fe19-462b-a49e-48cf72697a9d",
+  "id": "be4c5118-fe19-462b-a49e-48cf72697a9d"
 }
 ```
 
-The returned URL is your generated image. Append `.png`, `.jpg`, or `.webp` to the URL to get different formats.
+The returned URL is your generated image. Append `.png`, `.jpg`, `.webp`, or `.pdf` to get a specific format.
+
+### Render a reusable template
+
+Use a template when the design stays the same and only the data changes.
+
+```bash
+curl -X POST https://hcti.io/v1/image/t-your-template-id \
+  -u "$HCTI_USER_ID:$HCTI_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "template_values": {
+      "title": "Quarterly report",
+      "stats": {
+        "revenue": "$48k",
+        "growth": "12%"
+      }
+    }
+  }'
+```
+
+Objects inside `template_values` should be encoded as JSON. If you use form data instead of JSON, send `template_values` as a JSON-encoded string.
 
 ---
 
 ## Quick reference with cURL
 
-The simplest way to test the API:
+The simplest way to test a direct HTML/CSS render:
 
 ```bash
 curl -X POST https://hcti.io/v1/image \
-  -u 'your-user-id:your-api-key' \
+  -u "$HCTI_USER_ID:$HCTI_API_KEY" \
   -H 'Content-Type: application/json' \
   -d '{"html": "<h1>Hello!</h1>"}'
 ```
@@ -81,23 +120,54 @@ curl -X POST https://hcti.io/v1/image \
 
 ## Available parameters
 
-| Parameter | Required | Description |
-|:----------|:---------|:------------|
-| `html` | Yes* | The HTML to render |
-| `css` | No | CSS styles for your HTML |
-| `url` | Yes* | URL of a webpage to screenshot |
-| `google_fonts` | No | Google Fonts to load (comma separated) |
-| `ms_delay` | No | Milliseconds to wait before capture |
-| `device_scale` | No | Device scale factor (1-3) for retina images |
-| `full_screen` | No | Capture the full scrollable page |
-| `selector` | No | CSS selector to screenshot a specific element |
+The examples send JSON. The API also accepts form data; when using form data, nested objects such as `pdf_options` should be JSON encoded.
 
-*Either `html` or `url` is required.
+### Create image body parameters
 
-For full parameter documentation, see [Parameters](/parameters/).
+| Name | Type | Description |
+|:-----|:-----|:------------|
+| **html**† | `String` | HTML to render. Send a snippet or a full HTML document. |
+| **css** | `String` | CSS for your HTML. When used with `url`, the CSS is injected into the page. |
+| **url**† | `String` | Fully qualified public URL to screenshot. When passed, it overrides `html`. |
+
+{% include hint.md title="Required params" text="† Either `html` OR `url` is required, but not both. `css` is optional." %}
+
+### Rendering options
+
+{% include additional_parameters.md %}
+
+When rendering templated images, send a `POST` request to `https://hcti.io/v1/image/:template_id` with `template_values` as JSON:
+
+```json
+{
+  "template_values": {
+    "title": "Quarterly report",
+    "subtitle": "Q4 summary"
+  }
+}
+```
+
+For the full list of request, template, and generated image URL parameters, see [Using the API](/getting-started/using-the-api/) and [Image Templates](/getting-started/templates/).
 
 ---
 
 ## Choose your language
 
-Select your programming language below to see a complete working example:
+Select your programming language to see a complete working example:
+
+| Language | Example |
+|:---------|:--------|
+| cURL | [Terminal example](/example-code/curl/) |
+| JavaScript | [JavaScript example](/example-code/javascript/) |
+| TypeScript | [TypeScript example](/example-code/typescript/) |
+| Python | [Python example](/example-code/python/) |
+| PHP | [PHP example](/example-code/php/) |
+| Ruby | [Ruby example](/example-code/ruby/) |
+| Go | [Go example](/example-code/go/) |
+| C# / .NET | [C# / .NET example](/example-code/c/) |
+| VB.NET | [VB.NET example](/example-code/vb.net/) |
+| Java | [Java example](/example-code/java/) |
+| Kotlin | [Kotlin example](/example-code/kotlin/) |
+| Rust | [Rust example](/example-code/rust/) |
+| Elixir | [Elixir example](/example-code/elixir/) |
+| Google Apps Script | [Google Apps Script example](/example-code/google-apps-script/) |

@@ -3,7 +3,7 @@ layout: page
 title: Setting height and width
 permalink: /getting-started/setting-height-and-width/
 parent: Getting started
-nav_order: 3
+nav_order: 5
 description: >-
   For height and width you have two options. Setting it in your HTML or using
   the API to crop your images on the fly. 

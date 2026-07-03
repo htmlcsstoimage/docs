@@ -42,6 +42,7 @@ layout: table_wrappers
 
   <div class="site-container">
   <div class="side-bar">
+    <div class="side-bar-inner">
     <div class="site-header">
       <a href="{{ '/' | absolute_url }}" class="site-title lh-tight" aria-label="{{ site.title }}">{% include title.html %}</a>
       <a href="#" id="menu-button" class="site-button" aria-label="Toggle navigation menu">
@@ -51,6 +52,7 @@ layout: table_wrappers
     <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
       {% include nav.html %}
     </nav>
+    </div>
   </div>
   <div class="main" id="top">
     <div id="main-header" class="main-header">

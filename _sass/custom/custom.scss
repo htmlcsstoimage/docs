@@ -532,9 +532,9 @@ img {
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   
-  .breadcrumb-nav {
+  .breadcrumb-nav, .breadcrumb-nav-list {
     flex: 1;
     margin-bottom: 0 !important;
   }
@@ -1096,4 +1096,21 @@ details.te-property[open] > .te-property__summary {
   .copy-btn {
     display: none !important;
   }
+}
+
+.code-title{
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 0rem;
+  margin-top: 0.5rem;
+}
+.code-subtitle{
+  font-size: 0.9rem;
+  color: $grey-dk-200;
+  font-weight: 200;
+  margin-top: 0.25rem;
+}
+
+.main-content > h1:first-of-type{
+  margin-top: 0 !important;
 }

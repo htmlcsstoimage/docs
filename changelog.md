@@ -3,7 +3,7 @@ title: Changelog
 layout: page
 permalink: /changelog/
 description: Learn about what we're improving for the HTML/CSS to Image API.
-nav_order: 20
+nav_order: 1000
 ---
 
 # Changelog
