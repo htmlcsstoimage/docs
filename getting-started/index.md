@@ -6,7 +6,7 @@ nav_order: 2
 expanded: true
 has_children: true
 description: >-
-  Get started with the HTML/CSS to Image API. Quick start guide with examples for Python, PHP, JavaScript, Ruby, Go, Java, Rust, Kotlin, Elixir, and Zig.
+  Get started with the HTML/CSS to Image API. Quick start guide with examples for Python, PHP, JavaScript, Ruby, Go, C#, Rust, TypeScript and more.
 ---
 # Getting started
 {: .no_toc }
@@ -76,15 +76,14 @@ Get started quickly with code samples in your language:
 - [JavaScript](/example-code/javascript)
 - [Ruby](/example-code/ruby)
 - [Python](/example-code/python)
+- [TypeScript](/example-code/typescript)
+- [C#](/example-code/c)
 - [Go](/example-code/go)
+- [cURL](/example-code/curl)
 - [Java](/example-code/java)
 - [Rust](/example-code/rust)
 - [Kotlin](/example-code/kotlin)
 - [Elixir](/example-code/elixir)
-- [Zig](/example-code/zig)
-- [C#](/example-code/c)
-- [cURL](/example-code/curl)
-- [VB.NET](/example-code/vb.net)
 - [Google Apps Script](/example-code/google-apps-script)
 
 <hr>

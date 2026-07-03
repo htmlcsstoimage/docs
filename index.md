@@ -5,6 +5,7 @@ nav_order: 1
 ---
 
 # HTML/CSS to Image API
+
 {: .fs-9 }
 
 Your search for pixel perfect image generation ends here.
@@ -52,14 +53,14 @@ curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
 
 Choose your path to get started:
 
-| I want to... | Go here |
-|:-------------|:--------|
-| **Read the API docs** | [Using the API](/getting-started/using-the-api/) |
-| **Design a reusable template** | [Template Editor](/template-editor/) |
-| **See example code** | [PHP](/example-code/php), [JavaScript](/example-code/javascript), [Ruby](/example-code/ruby), [Python](/example-code/python), [Go](/example-code/go), [Java](/example-code/java), [Rust](/example-code/rust), [Kotlin](/example-code/kotlin), [Elixir](/example-code/elixir), [Zig](/example-code/zig), [cURL](/example-code/curl), [C#](/example-code/c) |
-| **Use with AI assistants** | [MCP Server](/integrations/mcp/) for Cursor, Claude, Windsurf, and more |
-| **No-code options** | [Zapier](/integrations/zapier/) or [Make](/integrations/make/) |
-| **See use cases** | [Use Cases & Examples](/use-cases/) |
+| I want to...                   | Go here                                                                                                                                                                                                                                                                                                                                                                 |
+|:-------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Read the API docs**          | [Using the API](/getting-started/using-the-api/)                                                                                                                                                                                                                                                                                                                        |
+| **Design a reusable template** | [Template Editor](/template-editor/)                                                                                                                                                                                                                                                                                                                                    |
+| **See example code**           | [PHP](/example-code/php), [JavaScript](/example-code/javascript), [Ruby](/example-code/ruby), [Python](/example-code/python), [Go](/example-code/go), [cURL](/example-code/curl), [C#](/example-code/c), [TypeScript](/example-code/typescript), [Java](/example-code/java), [Rust](/example-code/rust), [Kotlin](/example-code/kotlin), [Elixir](/example-code/elixir) |
+| **Use with AI assistants**     | [MCP Server](/integrations/mcp/) for Cursor, Claude, Windsurf, and more                                                                                                                                                                                                                                                                                                 |
+| **No-code options**            | [Zapier](/integrations/zapier/) or [Make](/integrations/make/)                                                                                                                                                                                                                                                                                                          |
+| **See use cases**              | [Use Cases & Examples](/use-cases/)                                                                                                                                                                                                                                                                                                                                     |
 
 {% include hint.md title="Works with any language" text="Don't see your language? The API works with anything that can make HTTP requests. See the [cURL example](/example-code/curl/) and adapt it to your stack." %}
 
