@@ -16,6 +16,22 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+### n8n integration
+July 16, 2026
+{: .text-delta}
+
+The HTML/CSS to Image integration for n8n is now available. It supports:
+
+- Creating images and PDFs from HTML/CSS
+- Taking screenshots of webpage URLs
+- Rendering saved templates with dynamic values
+- Generating signed render-on-demand URLs
+- Returning image metadata, binary PNG/JPG/WebP/PDF files, or both
+
+[Read the n8n integration guide](/integrations/n8n/).
+
+<hr>
+
 ### Template Editor: Context Menu & Input Improvements
 June 29, 2026
 {: .text-delta}

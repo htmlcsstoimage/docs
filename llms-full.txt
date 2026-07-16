@@ -275,6 +275,25 @@ For AI assistants like Cursor, Claude Desktop, Windsurf, Cline, and Zed.
 
 ---
 
+## n8n Integration
+
+Use the HTML/CSS to Image integration to generate images, website screenshots, PDFs, and signed render-on-demand URLs in n8n workflows.
+
+**Package:** `@html-css-to-image/n8n-nodes-html-css-to-image`
+
+**Docs:** https://docs.htmlcsstoimage.com/integrations/n8n/
+
+**npm:** https://www.npmjs.com/package/@html-css-to-image/n8n-nodes-html-css-to-image
+
+**Available operations:**
+- Create an image or PDF from HTML and CSS
+- Take a screenshot of a webpage URL
+- Render a saved template with dynamic values
+- Generate signed template or webpage URLs
+- Return URL metadata, a binary PNG/JPG/WebP/PDF file, or both
+
+---
+
 ## Official TypeScript Client (npm)
 
 Use the official npm package for typed requests and helper methods in Node.js/TypeScript projects.

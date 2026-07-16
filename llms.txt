@@ -63,6 +63,7 @@ curl -X POST https://hcti.io/v1/image \
 - **Template Editor Variables:** https://docs.htmlcsstoimage.com/template-editor/variables/
 - **Template Editor Blocks:** https://docs.htmlcsstoimage.com/template-editor/blocks/
 - **MCP Server:** https://docs.htmlcsstoimage.com/integrations/mcp/
+- **n8n Integration:** https://docs.htmlcsstoimage.com/integrations/n8n/
 - **TypeScript Client (npm):** https://docs.htmlcsstoimage.com/example-code/typescript/
 - **HTTP Proxies:** https://docs.htmlcsstoimage.com/guides/advanced/proxies/
 - **Jumbo Images:** https://docs.htmlcsstoimage.com/guides/advanced/jumbo-images/
@@ -72,6 +73,7 @@ curl -X POST https://hcti.io/v1/image \
 
 - **Zapier:** https://docs.htmlcsstoimage.com/integrations/zapier/
 - **Make:** https://docs.htmlcsstoimage.com/integrations/make/
+- **n8n:** https://docs.htmlcsstoimage.com/integrations/n8n/
 - **MCP Server:** https://docs.htmlcsstoimage.com/integrations/mcp/
 - **TypeScript Client (npm):** https://docs.htmlcsstoimage.com/example-code/typescript/
 

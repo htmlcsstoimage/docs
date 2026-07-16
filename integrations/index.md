@@ -6,7 +6,7 @@ nav_order: 3
 expanded: false
 has_children: true
 description: >-
-  Integrate HTML/CSS to Image with Zapier, Make, and AI assistants via MCP. No-code and low-code automation options.
+  Integrate HTML/CSS to Image with n8n, Zapier, Make, and AI assistants via MCP. No-code and low-code automation options.
 ---
 # Integrations
 {: .no_toc }
@@ -40,6 +40,7 @@ Connect HTML/CSS to Image to your existing workflows. Trigger image generation f
 |:------------|:---------|:------------|
 | **[Zapier](/integrations/zapier/)** | Beginners & quick automation | The easiest way to connect with 5,000+ apps. Create images when triggers fire in Gmail, Google Sheets, Airtable, Slack, and more. |
 | **[Make](/integrations/make/)** | Complex workflows | Build sophisticated multi-step automations with branching logic, loops, and data transformations. Formerly known as Integromat. |
+| **[n8n](/integrations/n8n/)** | Flexible workflows | Generate images, screenshots, PDFs, and signed URLs in your n8n workflows. |
 
 ### What you can automate
 

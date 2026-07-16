@@ -152,10 +152,11 @@ Yes! We have an MCP server that works with Cursor, Claude Desktop, Windsurf, Zed
 
 [Learn more about MCP integration](/integrations/mcp/).
 
-### Do you have Zapier or Make integrations?
+### Do you have n8n, Zapier, or Make integrations?
 
-Yes! Both are available for no-code automation. Connect image generation to thousands of other apps without writing code.
+Yes! Connect image generation to thousands of other apps with n8n, Zapier, or Make.
 
+- [n8n integration](/integrations/n8n/)
 - [Zapier integration](/integrations/zapier/)
 - [Make integration](/integrations/make/)
 
