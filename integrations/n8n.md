@@ -1,11 +1,12 @@
 ---
 layout: page
 title: n8n integration
+nav_title: n8n
 permalink: /integrations/n8n/
 parent: Integrations
 nav_order: 3
 description: >-
-  Generate images, website screenshots, PDFs, and signed image URLs in n8n with the HTML/CSS to Image community node.
+  Generate images, website screenshots, PDFs, and signed image URLs in n8n with the HTML/CSS to Image API community node.
 ---
 # n8n: HTML/CSS to Image
 {: .no_toc }
