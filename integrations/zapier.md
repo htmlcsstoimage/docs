@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Zapier integration
+nav_title: Zapier
 permalink: /integrations/zapier/
 parent: Integrations
 nav_order: 1

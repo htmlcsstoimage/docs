@@ -88,10 +88,11 @@ Get started quickly with code samples in your language:
 
 <hr>
 
-## No-code options
+## Automation and no-code options
 
 Don't want to write code? We've got you covered:
 
+- **[n8n](/integrations/n8n/)** - Build flexible image-generation workflows
 - **[Zapier](/integrations/zapier/)** - Connect with 5,000+ apps
 - **[Make](/integrations/make/)** - Build powerful automation workflows
 - **[MCP Server](/integrations/mcp/)** - Generate images from AI assistants like Cursor, Claude, and more

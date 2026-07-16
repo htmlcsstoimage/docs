@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Make integration
+nav_title: Make
 permalink: /integrations/make/
 parent: Integrations
 nav_order: 2
