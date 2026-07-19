@@ -16,6 +16,15 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+### HtmlCssToImage .NET Client v0.6.0
+July 19, 2026
+{: .text-delta}
+
+Our C#/.NET client was updated with improved performance for building urls and new `ImageRenderOptions` to support render-time:
+- Resizing (`height` and `width`)
+- DPI adjustments
+- Full cropping support
+
 ### n8n integration
 July 16, 2026
 {: .text-delta}
