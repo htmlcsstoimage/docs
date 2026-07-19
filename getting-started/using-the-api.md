@@ -139,8 +139,8 @@ Advanced cropping options for precise control over the rendered image region.
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
 | **aspect_ratio** | `String` | Crop to a specific aspect ratio. Format: `width_height` (e.g., `16_9`, `1_1`). |
-| **x_origin** | `String` | Origin point for x-axis cropping. Accepts pixels (`100px`) or percentage (`50%`). |
-| **y_origin** | `String` | Origin point for y-axis cropping. Accepts pixels (`100px`) or percentage (`50%`). |
+| **x_origin** | `String` | Horizontal alignment for a crop whose width is supplied by `crop_width` or derived from `aspect_ratio`. Accepts `start`, `center`, or `end`. Cannot be combined with `x_1` or `x_2`. |
+| **y_origin** | `String` | Vertical alignment for a crop whose height is supplied by `crop_height` or derived from `aspect_ratio`. Accepts `start`, `center`, or `end`. Cannot be combined with `y_1` or `y_2`. |
 | **x_1** | `String` | Starting x coordinate for crop region. Use with `x_2` or `crop_width`. |
 | **x_2** | `String` | Ending x coordinate for crop region. Must be used with `x_1`. |
 | **y_1** | `String` | Starting y coordinate for crop region. Use with `y_2` or `crop_height`. |
