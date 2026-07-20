@@ -17,6 +17,7 @@
 | **color_scheme**   | `String` | Set Chrome to render in `light` or `dark` mode. Affects websites using `prefers-color-scheme`. [Learn more](/parameters/color_scheme/). |
 | **timezone**   | `String` | Render your image with Chrome set to a specified timezone. Use IANA timezone identifiers like `America/New_York`. [Learn more](/parameters/timezone/). |
 | **disable_twemoji**   | `Boolean` | Twemoji is used by default to render emoji consistently. Set to `true` to use native emoji fonts instead. |
+| **transparent_background**   | `Boolean` | Set to `true` to render with a transparent background. The existing CSS-based method remains supported. [Learn more](/parameters/transparent_background/). |
 | **proxy_id**   | `String` | Route the render's outbound traffic through one of your [HTTP proxies](/guides/advanced/proxies/) configured in the dashboard. Available on the 10k images/month plan or higher. |
 | **jumbo_max_width**   | `Integer` | Maximum output width when rendering a [jumbo image](/guides/advanced/jumbo-images/) (up to 80,000px). Must be set together with `jumbo_max_height`. Consumes extra renders. |
 | **jumbo_max_height**   | `Integer` | Maximum output height when rendering a [jumbo image](/guides/advanced/jumbo-images/) (up to 80,000px). Must be set together with `jumbo_max_width`. Consumes extra renders. |

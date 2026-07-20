@@ -18,6 +18,24 @@ Create images with transparent backgrounds for logos, overlays, and more
 
 <hr>
 
+## Simplified method (recommended)
+
+We've simplified transparent backgrounds. You can now set `transparent_background` to `true` directly on the create image request:
+
+```json
+{
+  "html": "<div class='content'>Your content here</div>",
+  "transparent_background": true
+}
+```
+
+The parameter works with both HTML/CSS and URL-based images. For a URL screenshot, replace `html` with `url`.
+
+{% include hint.md title="Existing method still supported" text="The CSS-based method documented below still works. You can keep using it with existing integrations, but `transparent_background: true` is the simplest option for new requests." %}
+
+
+<hr>
+
 ## Implementation
 
 To render an image with a transparent background, pass the CSS via the **`css` parameter**:
@@ -133,4 +151,3 @@ Transparent PNGs are supported in all modern browsers:
 - Mobile browsers
 
 {% include code_footer.md version=3 %}
-

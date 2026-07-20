@@ -161,6 +161,8 @@ export interface HtmlCssToImageRequest {
   device_scale?: number;
   /** Whether to render the full page */
   full_screen?: boolean;
+  /** Whether to render with a transparent background */
+  transparent_background?: boolean;
   /** CSS selector to screenshot */
   selector?: string;
 }
@@ -255,4 +257,3 @@ console.log(imageUrl);
 ```
 
 {% include code_footer.md version=1 %}
-

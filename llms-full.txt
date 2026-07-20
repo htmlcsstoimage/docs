@@ -54,6 +54,7 @@ Creates an image from HTML/CSS or screenshots a URL.
 | `color_scheme` | String | `light` or `dark` mode |
 | `timezone` | String | IANA timezone, e.g. `America/New_York` |
 | `disable_twemoji` | Boolean | Use native emoji instead of Twemoji |
+| `transparent_background` | Boolean | Render with a transparent background. Use PNG output. |
 | `proxy_id` | String | Route the render's outbound traffic through one of your dashboard-configured HTTP proxies. Available on the 10k images/month plan or higher. See https://docs.htmlcsstoimage.com/guides/advanced/proxies/ |
 
 **Example Request:**

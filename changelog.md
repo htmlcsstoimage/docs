@@ -16,6 +16,18 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+### Transparent backgrounds with one parameter
+July 20, 2026
+{: .text-delta}
+
+You can now render a transparent PNG by setting `transparent_background: true` on the create image request. It works with both HTML/CSS and URL-based images, as well as saved templates and image batches.
+
+The existing CSS-based transparent background method remains supported. The official clients expose the new option as `TransparentBackground` in .NET and `transparent_background` in TypeScript.
+
+[Read the transparent background guide](/guides/styling/transparent-background/).
+
+<hr>
+
 ### HtmlCssToImage .NET Client v0.6.0
 July 19, 2026
 {: .text-delta}

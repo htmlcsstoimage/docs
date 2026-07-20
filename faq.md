@@ -85,12 +85,18 @@ Yes, include the `<link>` tag to the Font Awesome CDN in your HTML. You may need
 
 ### How do I get a transparent background?
 
-Use PNG format and pass the transparent background via the **`css` parameter** (not in a `<style>` tag in your HTML):
+The simplest option is to use PNG format and set **`transparent_background: true`** on the create image request:
+
+```json
+{ "transparent_background": true }
+```
+
+The existing CSS method still works. Pass the transparent background via the **`css` parameter** (not in a `<style>` tag in your HTML):
 
 ```json
 { "css": "body { background-color: transparent; }" }
 ```
-Transparency only works when set through the `css` parameter. [Learn more](/guides/styling/transparent-background/).
+When using the CSS method, transparency only works when set through the `css` parameter. [Learn more](/guides/styling/transparent-background/).
 
 ### How do I render an entire webpage?
 
@@ -286,7 +292,7 @@ Email us! **support@htmlcsstoimage.com**. We'd love to hear from you. We're expe
       "name": "How do I get a transparent background?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Use PNG format and pass the transparent background via the css parameter, not in a style tag in your HTML. Set css to 'body { background-color: transparent; }'. This is a common mistake—transparency only works when set through the css parameter."
+        "text": "Use PNG format and set transparent_background to true on the create image request. The existing CSS method still works: pass the transparent background via the css parameter, not in a style tag in your HTML. Set css to 'body { background-color: transparent; }'. When using the CSS method, transparency only works when set through the css parameter."
       }
     },
     {
