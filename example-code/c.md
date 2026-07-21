@@ -66,7 +66,7 @@ var request = new CreateHtmlCssImageRequest
     GoogleFonts = "Roboto"
 };
 
-var result = await client.CreateImageAsync(request);
+using var result = await client.CreateImageAsync(request);
 
 if (result.Success)
 {
@@ -74,6 +74,8 @@ if (result.Success)
     // https://hcti.io/v1/image/be4c5118-fe19-462b-a49e-48cf72697a9d
 }
 ```
+
+API calls return an `ApiResult<T>` that owns the raw `HttpResponseMessage`. The raw response lets you inspect headers, the originating request, and other HTTP details when needed. Use `using` or `using var` so it is disposed after you finish reading the result.
 
 <hr>
 
@@ -88,7 +90,7 @@ var request = new CreateUrlImageRequest
     FullScreen = true  // Capture the full scrollable page
 };
 
-var result = await client.CreateImageAsync(request);
+using var result = await client.CreateImageAsync(request);
 
 if (result.Success)
 {
@@ -113,7 +115,7 @@ var request = new CreateTemplatedImageRequest
     }
 };
 
-var result = await client.CreateImageAsync(request);
+using var result = await client.CreateImageAsync(request);
 ```
 
 <hr>
@@ -151,7 +153,7 @@ public class ImageService
     public async Task<string> GenerateImageAsync(string html, string css)
     {
         var request = new CreateHtmlCssImageRequest { Html = html, Css = css };
-        var result = await _client.CreateImageAsync(request);
+        using var result = await _client.CreateImageAsync(request);
         return result.Success ? result.Response.Url : null;
     }
 }
@@ -191,7 +193,7 @@ var variations = new List<CreateHtmlCssImageRequest>
     new() { Html = "<div>Image 3</div>", Css = "div { color: green; }" }
 };
 
-var result = await client.CreateImageBatchAsync(variations);
+using var result = await client.CreateImageBatchAsync(variations);
 
 if (result.Success)
 {
@@ -240,7 +242,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 
-var client = new HttpClient();
+using var client = new HttpClient();
 
 // Set up Basic Authentication
 var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("user_id:api_key"));
@@ -252,13 +254,13 @@ var payload = new
     css = ".box { padding: 20px; background-color: #03B875; color: white; }"
 };
 
-var content = new StringContent(
+using var content = new StringContent(
     JsonSerializer.Serialize(payload),
     Encoding.UTF8,
     "application/json"
 );
 
-var response = await client.PostAsync("https://hcti.io/v1/image", content);
+using var response = await client.PostAsync("https://hcti.io/v1/image", content);
 var json = await response.Content.ReadAsStringAsync();
 
 Console.WriteLine(json);

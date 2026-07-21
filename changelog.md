@@ -16,6 +16,21 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+### Image deletion in .NET v0.8.0 and TypeScript v0.5.0
+July 21, 2026
+{: .text-delta}
+
+The official .NET and TypeScript clients now support deleting images through the API:
+
+- Delete one image with `DeleteImageAsync` in .NET or `deleteImage` in TypeScript.
+- Delete multiple images in one request with `DeleteImageBatchAsync` in .NET or `deleteImageBatch` in TypeScript.
+
+The .NET client's `ApiResult<T>` now implements `IDisposable` because it owns the raw `HttpResponseMessage`. The raw response remains available when you need headers, the originating request, or other transport details. C# callers should use `using` or `using var` when reading API results.
+
+[View the C# examples](/example-code/c/) or [TypeScript examples](/example-code/typescript/).
+
+<hr>
+
 ### Transparent backgrounds with one parameter
 July 20, 2026
 {: .text-delta}
