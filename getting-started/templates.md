@@ -113,6 +113,7 @@ Optional parameters for greater control over your image.
 | **disable_twemoji**   | `Boolean` | Set to `true` to use native emoji fonts instead of Twemoji. |
 | **transparent_background**   | `Boolean` | Set to `true` to render images created from this template with a transparent background. [Learn more](/parameters/transparent_background/). |
 | **proxy_id**   | `String` | Route the render's outbound traffic through one of your [HTTP proxies](/guides/advanced/proxies/) configured in the dashboard. Available on the 10k images/month plan or higher. |
+| **storage_destination_id**   | `String` | Save images created from this template to one of your organization's [storage destinations](/guides/advanced/storage-destinations/). Available on the 3,000 images/month plan or higher. |
 | **jumbo_max_width**   | `Integer` | Maximum output width when rendering a [jumbo image](/guides/advanced/jumbo-images/) (up to 80,000px). Must be set together with `jumbo_max_height`. Consumes extra renders. |
 | **jumbo_max_height**   | `Integer` | Maximum output height when rendering a [jumbo image](/guides/advanced/jumbo-images/) (up to 80,000px). Must be set together with `jumbo_max_width`. Consumes extra renders. |
 
@@ -200,6 +201,7 @@ Optional parameters for greater control over your image.
 | **disable_twemoji**   | `Boolean` | Set to `true` to use native emoji fonts instead of Twemoji. |
 | **transparent_background**   | `Boolean` | Set to `true` to render images created from this template with a transparent background. [Learn more](/parameters/transparent_background/). |
 | **proxy_id**   | `String` | Route the render's outbound traffic through one of your [HTTP proxies](/guides/advanced/proxies/) configured in the dashboard. Available on the 10k images/month plan or higher. |
+| **storage_destination_id**   | `String` | Save images created from this template to one of your organization's [storage destinations](/guides/advanced/storage-destinations/). Available on the 3,000 images/month plan or higher. |
 | **jumbo_max_width**   | `Integer` | Maximum output width when rendering a [jumbo image](/guides/advanced/jumbo-images/) (up to 80,000px). Must be set together with `jumbo_max_height`. Consumes extra renders. |
 | **jumbo_max_height**   | `Integer` | Maximum output height when rendering a [jumbo image](/guides/advanced/jumbo-images/) (up to 80,000px). Must be set together with `jumbo_max_width`. Consumes extra renders. |
 
@@ -258,6 +260,7 @@ STATUS: 200 OK
       "name": null,
       "render_when_ready": null,
       "render_count": 142,
+      "storage_destination_id": "your-storage-destination-id",
       "color_scheme": null,
       "timezone": null,
       "updated_at": "2020-07-19T17:16:43.987+00:00",
@@ -277,6 +280,7 @@ STATUS: 200 OK
 | Field | Type | Description |
 |:------|:-----|:------------|
 | **render_count** | `Integer` | Number of times this template has been used to generate images. |
+| **storage_destination_id** | `String` or `null` | Storage destination inherited by images created from this template. |
 | **color_scheme** | `String` | Light or dark mode setting, if configured. |
 | **timezone** | `String` | Timezone setting, if configured. |
 
@@ -310,6 +314,7 @@ STATUS: 200 OK
       "name": null,
       "render_when_ready": null,
       "render_count": 142,
+      "storage_destination_id": "your-storage-destination-id",
       "color_scheme": null,
       "timezone": null,
       "updated_at": "2020-07-19T17:16:43.987+00:00",

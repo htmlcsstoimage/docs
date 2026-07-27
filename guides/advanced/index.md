@@ -25,5 +25,4 @@ Get more from the API.
 | [Base64 to Image](/guides/advanced/base64/) | Work with Base64-encoded images |
 | [HTTP Proxies](/guides/advanced/proxies/) | Route renders through your own HTTP proxy |
 | [Jumbo Images](/guides/advanced/jumbo-images/) | Render images larger than 8000px by splitting into tiles |
-
-
+| [Storage Destinations](/guides/advanced/storage-destinations/) | Store rendered images to your own S3-compatible bucket |

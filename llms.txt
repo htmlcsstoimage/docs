@@ -35,6 +35,7 @@ curl -X POST https://hcti.io/v1/image \
 - Visual Template Editor for building saved templates from blocks in the dashboard
 - MCP Server integration for AI assistants (Cursor, Claude, Windsurf)
 - HTTP proxy support for routing render traffic through your own proxy
+- Custom storage destinations for saving renders to your own S3-compatible bucket
 - Global CDN delivery via Cloudflare
 
 ## Key Parameters
@@ -51,8 +52,11 @@ curl -X POST https://hcti.io/v1/image \
 | `selector` | CSS selector to capture specific element |
 | `ms_delay` | Milliseconds to wait before capture |
 | `transparent_background` | Set to `true` to render a transparent PNG |
+| `storage_destination_id` | Save rendered files to a configured storage destination |
 | `jumbo_max_width` | Max output width for jumbo renders (up to 80,000px). Must be set with `jumbo_max_height`. |
 | `jumbo_max_height` | Max output height for jumbo renders (up to 80,000px). Must be set with `jumbo_max_width`. |
+
+With **Disable HCTI Storage**, authenticate the returned `/v1/store/...` URL with an HTTP Basic `PUT` request using API credentials from the same organization as the image. Its HTTP 200 or 424 JSON response reports the overall outcome plus status, target, bucket, and key for the base image and any transformation.
 
 ## Documentation
 
@@ -67,6 +71,7 @@ curl -X POST https://hcti.io/v1/image \
 - **n8n Integration:** https://docs.htmlcsstoimage.com/integrations/n8n/
 - **TypeScript Client (npm):** https://docs.htmlcsstoimage.com/example-code/typescript/
 - **HTTP Proxies:** https://docs.htmlcsstoimage.com/guides/advanced/proxies/
+- **Storage Destinations:** https://docs.htmlcsstoimage.com/guides/advanced/storage-destinations/
 - **Jumbo Images:** https://docs.htmlcsstoimage.com/guides/advanced/jumbo-images/
 - **Transparent Backgrounds:** https://docs.htmlcsstoimage.com/guides/styling/transparent-background/
 - **FAQ:** https://docs.htmlcsstoimage.com/faq/

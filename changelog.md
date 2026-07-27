@@ -16,6 +16,23 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+### Store rendered images in your own bucket
+July 27, 2026
+{: .text-delta}
+
+You can now configure storage destinations for Amazon S3, Cloudflare R2, Backblaze B2, DigitalOcean Spaces, Wasabi, Google Cloud Storage, and other S3-compatible services.
+
+- Add and test destinations from the dashboard, with credentials scoped to your bucket and optional key prefix.
+- Select the default, EU, or FedRAMP data jurisdiction when connecting a Cloudflare R2 bucket.
+- Pass `storage_destination_id` when creating an HTML/CSS image, URL screenshot, image batch, or template.
+- Keep the normal HTML/CSS to Image copy while also writing to your bucket, or choose to **Disable HCTI Storage** for files that should live only in your storage.
+- Authenticate `PUT /v1/store/...` requests with your user ID and API key, and use the structured response to see the outcome, object status, bucket, and key for the base image and any transformation.
+- Use `storage_destination_id` in the official TypeScript client or `StorageDestinationId` in the .NET client.
+
+Storage destinations are available on the 3,000 images/month plan or higher. [Read the Storage Destinations guide](/guides/advanced/storage-destinations/).
+
+<hr>
+
 ### Image deletion in .NET v0.8.0 and TypeScript v0.5.0
 July 21, 2026
 {: .text-delta}
