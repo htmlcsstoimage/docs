@@ -99,7 +99,7 @@ curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
 
 ## Control the viewport
 
-Set a specific viewport size for your screenshots:
+Set a specific [viewport size](/parameters/viewport/#viewport-width-and-height) for your screenshots:
 
 ```bash
 curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
@@ -144,4 +144,3 @@ We have dedicated guides for capturing content from popular platforms:
 - Some sites may block automated access
 
 {% include code_footer.md version=1 %}
-

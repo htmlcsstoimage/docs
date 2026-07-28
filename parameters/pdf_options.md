@@ -3,7 +3,7 @@ layout: page
 title: pdf_options
 permalink: /parameters/pdf_options/
 parent: Parameters
-nav_order: 13
+nav_order: 8
 description: >-
   Customize PDF output with page size, margins, and scaling options
 ---
@@ -185,4 +185,3 @@ All size values support these units:
 {% include hint.md title="Tip" text="For print documents, use inches (in) or millimeters (mm) for more accurate sizing." %}
 
 {% include code_footer.md version=2 %}
-

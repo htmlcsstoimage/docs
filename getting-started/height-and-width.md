@@ -65,10 +65,10 @@ Margins are respected by the auto crop. To add some space around your image, you
 When rendering your image, we use a live instance of Google Chrome running on one of our servers. In Chrome, the viewport is the total viewable area rendered
 by the browser. 
 
-- By default, the viewport is set to: `1366x768`. If you use the API to screenshot a `url` or send a full HTML page, you will get back an image
+- By default, the viewport is set to: `1920x1080`. If you use the API to screenshot a `url` or send a full HTML page, you will get back an image
 rendered inside the default viewport.
 
-- You can customize this by adjusting the `viewport_height` and `viewport_width` parameters while creating your image.
+- You can customize this by adjusting the [`viewport_height` and `viewport_width` parameters](/parameters/viewport/#viewport-width-and-height) while creating your image.
 
 - We recommend using this for images rendered by `url` or when sending a full page. HTML snippets are better sized using automatic cropping and height/width in CSS.
 

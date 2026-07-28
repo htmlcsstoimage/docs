@@ -3,7 +3,7 @@ layout: page
 title: selector
 permalink: /parameters/selector/
 parent: Parameters
-nav_order: 9
+nav_order: 11
 description: >-
   Learn how to select and crop specific elements from a webpage using CSS selectors.
 ---

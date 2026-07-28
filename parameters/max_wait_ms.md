@@ -3,7 +3,7 @@ layout: page
 title: max_wait_ms
 permalink: /parameters/max_wait_ms/
 parent: Parameters
-nav_order: 12
+nav_order: 5
 description: >-
   Set a maximum time limit before taking the screenshot
 ---
@@ -124,4 +124,3 @@ When generating many screenshots, use `max_wait_ms` to prevent slow pages from b
 {% include hint.md title="Note" text="If the page hasn't loaded essential content within max_wait_ms, the screenshot may be incomplete. Test with your specific URLs to find the right balance." %}
 
 {% include code_footer.md version=1 %}
-

@@ -3,7 +3,7 @@ layout: page
 title: timezone
 permalink: /parameters/timezone/
 parent: Parameters
-nav_order: 11
+nav_order: 13
 description: >-
   Set Chrome's timezone for rendering time-sensitive content
 ---
@@ -120,4 +120,3 @@ When `timezone` is set:
 {% include hint.md title="Tip" text="Use timezone identifiers, not abbreviations. For example, use 'America/New_York' instead of 'EST' or 'EDT'." %}
 
 {% include code_footer.md version=1 %}
-

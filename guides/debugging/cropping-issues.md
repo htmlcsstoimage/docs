@@ -42,7 +42,7 @@ The most frequent cropping issue we see: **sending a full HTML page when you mea
 
 ### What Happens with a Full HTML Page
 
-When you include `<!DOCTYPE html>`, `<html>`, `<head>`, or `<body>` tags, the API treats your content as a **full webpage** and renders it inside the default viewport (1366x768 pixels).
+When you include `<!DOCTYPE html>`, `<html>`, `<head>`, or `<body>` tags, the API treats your content as a **full webpage** and renders it inside the default viewport (1920x1080 pixels).
 
 **Example of what NOT to do:**
 
@@ -63,7 +63,7 @@ When you include `<!DOCTYPE html>`, `<html>`, `<head>`, or `<body>` tags, the AP
 </html>
 ```
 
-**Result:** Instead of a 400x200 image, you get a 1366x768 image with your content in the corner:
+**Result:** Instead of a 400x200 image, you get a 1920x1080 image with your content in the corner:
 
 <img src="https://hcti.io/v1/image/019b75eb-127e-7ce2-98bd-978ca7690c92" alt="Full HTML page renders the entire viewport, not cropped to element size" style="max-width: 500px; border: 1px solid #ddd; border-radius: 4px;" />
 
@@ -160,7 +160,7 @@ Notice the transparent space around the card when using `margin: 20px`. This is 
 
 ## When You Need Full HTML Pages
 
-Sometimes you do need to send a full HTML page—for example, when including external libraries, complex CSS, or JavaScript. In these cases, use the `viewport_width` and `viewport_height` parameters to control the image size:
+Sometimes you do need to send a full HTML page—for example, when including external libraries, complex CSS, or JavaScript. In these cases, use the [`viewport_width` and `viewport_height` parameters](/parameters/viewport/#viewport-width-and-height) to control the image size:
 
 ```json
 {
@@ -199,11 +199,9 @@ If your image isn't cropping correctly, work through these steps:
 
 | Scenario | Solution |
 |:---------|:---------|
-| Image is full viewport size (1366x768) | Remove `<html>`, `<body>` tags—use HTML snippet |
+| Image is full viewport size (1920x1080) | Remove `<html>`, `<body>` tags—use HTML snippet |
 | Image size doesn't match your CSS | Set `width` and `height` on outermost element |
 | Need space around the image | Add `margin` to the outermost element |
 | Must use full HTML page | Use `viewport_width`/`viewport_height` or `selector` param |
 
 {% include code_footer.md version=2 %}
-
-

@@ -3,7 +3,7 @@ layout: page
 title: full_screen
 permalink: /parameters/full_screen/
 parent: Parameters
-nav_order: 4
+nav_order: 3
 description: >-
   Capture the entire height of a webpage, including content below the fold
 ---
@@ -31,7 +31,7 @@ Use `full_screen` when you need to capture:
 
 ## Default behavior
 
-By default, `full_screen` is `false`. The API captures only what's visible in the viewport (default size: `1366x768`). And automatically crops to the content inside the viewport.
+By default, `full_screen` is `false`. The API captures only what's visible in the viewport (default size: `1920x1080`). And automatically crops to the content inside the viewport.
 
 ## Example usage
 
@@ -102,7 +102,7 @@ Capture entire documentation pages for offline reference or archival:
 }
 ```
 
-Note: In this example, even though we set a viewport_height, the API will still generate an image larger if needed based on the URL.
+Note: In this example, even though we set [`viewport_height`](/parameters/viewport/#viewport-width-and-height), the API will still generate an image larger if needed based on the URL.
 
 ### Email newsletter previews
 
@@ -135,4 +135,3 @@ Screenshot entire landing pages for design review or competitive analysis:
 {% include hint.md title="Performance tip" text="For very long pages, consider whether you really need the full page. Using the `selector` parameter to capture just a specific section is often faster and produces smaller files." %}
 
 {% include code_footer.md version=1 %}
-

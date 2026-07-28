@@ -95,27 +95,7 @@ The create template endpoint accepts the following parameters. Accepted as eithe
 
 Optional parameters for greater control over your image.
 
-| Name        | Type          | Description |
-|:-------------|:------------------|:------|
-| **google_fonts**   | `String` | [Google fonts](/parameters/google_fonts/) to be loaded. Example: `Roboto`. Multiple fonts can be loaded like this: `Roboto|Open Sans`  |
-| **selector**  | `String` | A CSS selector for an element on the webpage. We'll crop the image to this specific element. For example: `section#complete-toolkit.container-lg` |
-| **ms_delay**   | `Integer` | The number of milliseconds the API should delay before generating the image. This is useful when waiting for JavaScript. We recommend starting with `500`. Large values slow down the initial render time.|
-| **max_wait_ms**   | `Integer` | Sets a maximum time limit (500-10000ms) for waiting before taking the screenshot. |
-| **device_scale**   | `Double` | This adjusts the pixel ratio for the screenshot. Minimum: `0.1`, Maximum: `3`. |
-| **render_when_ready**   | `Boolean` | Set to true to control when the image is generated. Call `ScreenshotReady()` from JavaScript to generate the image. [Learn more](/parameters/render_when_ready/). |
-| **viewport_width**   | `Integer` | Set the width of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
-| **viewport_height**   | `Integer` | Set the height of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
-| **viewport_mobile** | `Boolean` | Set Chrome's viewport to emulate a mobile device. |
-| **viewport_landscape**| `Boolean` | Set Chrome's viewport to landscape mode. |
-| **viewport_touch** | `Boolean` | Set Chrome's viewport to support touch events. |
-| **color_scheme**   | `String` | Set Chrome to render in `light` or `dark` mode. [Learn more](/parameters/color_scheme/). |
-| **timezone**   | `String` | Render your image with Chrome set to a specified timezone. Use IANA timezone identifiers. [Learn more](/parameters/timezone/). |
-| **disable_twemoji**   | `Boolean` | Set to `true` to use native emoji fonts instead of Twemoji. |
-| **transparent_background**   | `Boolean` | Set to `true` to render images created from this template with a transparent background. [Learn more](/parameters/transparent_background/). |
-| **proxy_id**   | `String` | Route the render's outbound traffic through one of your [HTTP proxies](/guides/advanced/proxies/) configured in the dashboard. Available on the 10k images/month plan or higher. |
-| **storage_destination_id**   | `String` | Save images created from this template to one of your organization's [storage destinations](/guides/advanced/storage-destinations/). Available on the 3,000 images/month plan or higher. |
-| **jumbo_max_width**   | `Integer` | Maximum output width when rendering a [jumbo image](/guides/advanced/jumbo-images/) (up to 80,000px). Must be set together with `jumbo_max_height`. Consumes extra renders. |
-| **jumbo_max_height**   | `Integer` | Maximum output height when rendering a [jumbo image](/guides/advanced/jumbo-images/) (up to 80,000px). Must be set together with `jumbo_max_width`. Consumes extra renders. |
+{% include template_additional_parameters.md %}
 
 <hr>
 
@@ -183,27 +163,7 @@ The edit template endpoint accepts the following parameters. Accepted as either 
 
 Optional parameters for greater control over your image.
 
-| Name        | Type          | Description |
-|:-------------|:------------------|:------|
-| **google_fonts**   | `String` | [Google fonts](/parameters/google_fonts/) to be loaded. Example: `Roboto`. Multiple fonts can be loaded like this: `Roboto|Open Sans`  |
-| **selector**  | `String` | A CSS selector for an element on the webpage. We'll crop the image to this specific element. For example: `section#complete-toolkit.container-lg` |
-| **ms_delay**   | `Integer` | The number of milliseconds the API should delay before generating the image. This is useful when waiting for JavaScript. We recommend starting with `500`. Large values slow down the initial render time.|
-| **max_wait_ms**   | `Integer` | Sets a maximum time limit (500-10000ms) for waiting before taking the screenshot. |
-| **device_scale**   | `Double` | This adjusts the pixel ratio for the screenshot. Minimum: `0.1`, Maximum: `3`. |
-| **render_when_ready**   | `Boolean` | Set to true to control when the image is generated. Call `ScreenshotReady()` from JavaScript to generate the image. [Learn more](/parameters/render_when_ready/). |
-| **viewport_width**   | `Integer` | Set the width of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
-| **viewport_height**   | `Integer` | Set the height of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
-| **viewport_mobile** | `Boolean` | Set Chrome's viewport to emulate a mobile device. |
-| **viewport_landscape**| `Boolean` | Set Chrome's viewport to landscape mode. |
-| **viewport_touch** | `Boolean` | Set Chrome's viewport to support touch events. |
-| **color_scheme**   | `String` | Set Chrome to render in `light` or `dark` mode. [Learn more](/parameters/color_scheme/). |
-| **timezone**   | `String` | Render your image with Chrome set to a specified timezone. Use IANA timezone identifiers. [Learn more](/parameters/timezone/). |
-| **disable_twemoji**   | `Boolean` | Set to `true` to use native emoji fonts instead of Twemoji. |
-| **transparent_background**   | `Boolean` | Set to `true` to render images created from this template with a transparent background. [Learn more](/parameters/transparent_background/). |
-| **proxy_id**   | `String` | Route the render's outbound traffic through one of your [HTTP proxies](/guides/advanced/proxies/) configured in the dashboard. Available on the 10k images/month plan or higher. |
-| **storage_destination_id**   | `String` | Save images created from this template to one of your organization's [storage destinations](/guides/advanced/storage-destinations/). Available on the 3,000 images/month plan or higher. |
-| **jumbo_max_width**   | `Integer` | Maximum output width when rendering a [jumbo image](/guides/advanced/jumbo-images/) (up to 80,000px). Must be set together with `jumbo_max_height`. Consumes extra renders. |
-| **jumbo_max_height**   | `Integer` | Maximum output height when rendering a [jumbo image](/guides/advanced/jumbo-images/) (up to 80,000px). Must be set together with `jumbo_max_width`. Consumes extra renders. |
+{% include template_additional_parameters.md %}
 
 <hr>
 

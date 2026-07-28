@@ -45,6 +45,10 @@ Creates an image from HTML/CSS or screenshots a URL.
 | `device_scale` | Double | Pixel ratio (0.1-3). Default: 2 (retina) |
 | `viewport_width` | Integer | Browser viewport width in pixels |
 | `viewport_height` | Integer | Browser viewport height in pixels |
+| `viewport_mobile` | Boolean | Emulate a mobile viewport |
+| `viewport_landscape` | Boolean | Render the viewport in landscape orientation |
+| `viewport_touch` | Boolean | Enable touch support in the viewport |
+| `media_type` | String | Emulate `screen` or `print` CSS media |
 | `selector` | String | CSS selector to capture specific element |
 | `ms_delay` | Integer | Milliseconds to wait before capture (0-10000) |
 | `max_wait_ms` | Integer | Maximum wait time cap (500-10000) |

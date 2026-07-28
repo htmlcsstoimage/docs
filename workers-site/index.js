@@ -116,6 +116,8 @@ async function redirectOrHandleEvent(event) {
       return Response.redirect(site + '/parameters/google_fonts/', 301);
     case "/guides/selector":
       return Response.redirect(site + '/parameters/selector/', 301);
+    case "/parameters/jumbo-images":
+      return Response.redirect(site + '/guides/advanced/jumbo-images/', 301);
 
     // Advanced Examples redirects (legacy paths)
     case "/advanced-examples/using-google-fonts":
@@ -229,5 +231,4 @@ function handlePrefix(prefix) {
     return new Request(url.toString(), defaultAssetKey)
   }
 }
-
 

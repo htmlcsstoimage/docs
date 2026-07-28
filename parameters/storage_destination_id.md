@@ -3,7 +3,7 @@ layout: page
 title: storage_destination_id
 permalink: /parameters/storage_destination_id/
 parent: Parameters
-nav_order: 15
+nav_order: 12
 description: >-
   Store rendered images in an Amazon S3 or S3-compatible storage destination configured for your organization.
 ---

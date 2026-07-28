@@ -3,7 +3,7 @@ layout: page
 title: ms_delay
 permalink: /parameters/ms_delay/
 parent: Parameters
-nav_order: 2
+nav_order: 7
 description: >-
   Control the delay before screenshot capture when needed for dynamic content
 ---

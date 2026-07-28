@@ -49,6 +49,10 @@ curl -X POST https://hcti.io/v1/image \
 | `device_scale` | Pixel ratio (1-3) for retina images |
 | `viewport_width` | Browser viewport width |
 | `viewport_height` | Browser viewport height |
+| `viewport_mobile` | Emulate a mobile viewport |
+| `viewport_landscape` | Render the viewport in landscape orientation |
+| `viewport_touch` | Enable touch support in the viewport |
+| `media_type` | Apply `screen` or `print` CSS media styles |
 | `selector` | CSS selector to capture specific element |
 | `ms_delay` | Milliseconds to wait before capture |
 | `transparent_background` | Set to `true` to render a transparent PNG |
@@ -73,6 +77,8 @@ With **Disable HCTI Storage**, authenticate the returned `/v1/store/...` URL wit
 - **HTTP Proxies:** https://docs.htmlcsstoimage.com/guides/advanced/proxies/
 - **Storage Destinations:** https://docs.htmlcsstoimage.com/guides/advanced/storage-destinations/
 - **Jumbo Images:** https://docs.htmlcsstoimage.com/guides/advanced/jumbo-images/
+- **Viewport Parameters:** https://docs.htmlcsstoimage.com/parameters/viewport/
+- **CSS Media Type:** https://docs.htmlcsstoimage.com/parameters/media_type/
 - **Transparent Backgrounds:** https://docs.htmlcsstoimage.com/guides/styling/transparent-background/
 - **FAQ:** https://docs.htmlcsstoimage.com/faq/
 

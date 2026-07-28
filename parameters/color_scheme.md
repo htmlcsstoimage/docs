@@ -3,7 +3,7 @@ layout: page
 title: color_scheme
 permalink: /parameters/color_scheme/
 parent: Parameters
-nav_order: 10
+nav_order: 1
 description: >-
   Set Chrome to render in light or dark mode for screenshots
 ---
@@ -113,4 +113,3 @@ The `color_scheme` parameter emulates the CSS media feature `prefers-color-schem
 {% include hint.md title="Note" text="If a website doesn't support prefers-color-scheme, this parameter will have no effect on the output." %}
 
 {% include code_footer.md version=2 %}
-

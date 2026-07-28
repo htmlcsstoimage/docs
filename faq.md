@@ -22,7 +22,7 @@ PNG (default), JPG, WebP, and PDF. Simply change the file extension on your imag
 
 ### What are the maximum image dimensions?
 
-There's no strict maximum size. The `viewport_width` limit is 6000 pixels. For height, there's no set limit—`full_screen` screenshots can reach ~10,000 pixels tall.
+There's no strict maximum size. The [`viewport_width`](/parameters/viewport/#viewport-width-and-height) limit is 6000 pixels. For height, there's no set limit—`full_screen` screenshots can reach ~10,000 pixels tall.
 
 Keep in mind images render at 2x by default, so the actual output resolution is double the viewport size. Smaller images will render faster and perform better.
 

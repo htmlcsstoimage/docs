@@ -3,7 +3,7 @@ layout: page
 title: device_scale
 permalink: /parameters/device_scale/
 parent: Parameters
-nav_order: 3
+nav_order: 2
 description: >-
   Control image resolution by adjusting the pixel ratio of screenshots
 ---
