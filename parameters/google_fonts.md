@@ -3,7 +3,7 @@ layout: default
 title: google_fonts
 permalink: /parameters/google_fonts/
 parent: Parameters
-nav_order: 4
+nav_order: 40
 ---
 
 # Google Fonts Parameter

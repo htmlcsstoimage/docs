@@ -3,7 +3,7 @@ layout: page
 title: Jumbo Images
 permalink: /parameters/jumbo-images/
 parent: Parameters
-nav_order: 15
+nav_order: 170
 sitemap: false
 description: >-
   Redirect to the Jumbo Images parameter guide.

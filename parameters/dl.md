@@ -3,7 +3,7 @@ layout: page
 title: dl
 permalink: /parameters/dl/
 parent: Parameters
-nav_order: 17
+nav_order: 190
 description: >-
   Use the dl query parameter to make images downloadable directly from the browser.
 ---

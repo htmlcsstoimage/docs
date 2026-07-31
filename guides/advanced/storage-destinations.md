@@ -29,7 +29,7 @@ A storage destination tells HTML/CSS to Image where to write a copy of each rend
 
 By default, HTML/CSS to Image keeps its normal copy and also writes a copy to your destination. If you choose **Disable HCTI Storage**, your bucket becomes the only location where the rendered file is stored.
 
-{% include hint.md title="Plan availability" text="Storage destinations are available on the **3,000 images/month plan or higher**. If you'd like to try this on a different plan, email **support@htmlcsstoimage.com**." %}
+{% include hint.md title="Plan availability" text="Storage destinations are available on the **10,000 images/month plan or higher**. If you'd like to try this on a different plan, email **support@htmlcsstoimage.com**." %}
 
 <hr>
 

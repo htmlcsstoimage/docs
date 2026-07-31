@@ -49,6 +49,10 @@ Creates an image from HTML/CSS or screenshots a URL.
 | `viewport_landscape` | Boolean | Render the viewport in landscape orientation |
 | `viewport_touch` | Boolean | Enable touch support in the viewport |
 | `media_type` | String | Emulate `screen` or `print` CSS media |
+| `headers` | Object | Flat object of custom HTTP header names and values for URL screenshots. Up to 20 unique, case-insensitive names. |
+| `additional_header_origins` | Array | Additional exact HTTP(S) origins allowed to receive custom headers. Up to 20 unique origins. |
+| `include_headers_on_subrequests` | Boolean | Also send custom headers with subrequests to the requested URL's origin and any additional header origins. Default: false. |
+| `identify_as_hcti` | Boolean | Add `X-HCTI-SCREENSHOT: 1` to the top-level URL request. |
 | `selector` | String | CSS selector to capture specific element |
 | `ms_delay` | Integer | Milliseconds to wait before capture (0-10000) |
 | `max_wait_ms` | Integer | Maximum wait time cap (500-10000) |
@@ -60,7 +64,7 @@ Creates an image from HTML/CSS or screenshots a URL.
 | `disable_twemoji` | Boolean | Use native emoji instead of Twemoji |
 | `transparent_background` | Boolean | Render with a transparent background. Use PNG output. |
 | `proxy_id` | String | Route the render's outbound traffic through one of your dashboard-configured HTTP proxies. Available on the 10k images/month plan or higher. See https://docs.htmlcsstoimage.com/guides/advanced/proxies/ |
-| `storage_destination_id` | String | Save rendered files to one of your organization's configured storage destinations. Available on the 3,000 images/month plan or higher. See https://docs.htmlcsstoimage.com/guides/advanced/storage-destinations/ |
+| `storage_destination_id` | String | Save rendered files to one of your organization's configured storage destinations. Available on the 10,000 images/month plan or higher. See https://docs.htmlcsstoimage.com/guides/advanced/storage-destinations/ |
 
 **Example Request:**
 
@@ -267,7 +271,7 @@ Save rendered files to an Amazon S3 or S3-compatible bucket owned by your organi
 - `outcome` is `complete` (HTTP 200), `partial` (HTTP 424; base stored but transformation failed), or `failed` (HTTP 424; base not stored).
 - Each object result reports `status` (`stored`, `already_stored`, `failed`, or `not_attempted`), `target` (`hcti_storage` or `storage_destination`), `bucket`, and `key`.
 - Objects use the access settings configured on the destination bucket; HCTI does not make them public. Deleting an image or destination in HCTI does not delete rendered objects already written to the bucket.
-- Available on the 3,000 images/month plan or higher.
+- Available on the 10,000 images/month plan or higher.
 
 Full guide: https://docs.htmlcsstoimage.com/guides/advanced/storage-destinations/
 

@@ -3,7 +3,7 @@ layout: page
 title: timezone
 permalink: /parameters/timezone/
 parent: Parameters
-nav_order: 13
+nav_order: 150
 description: >-
   Set Chrome's timezone for rendering time-sensitive content
 ---

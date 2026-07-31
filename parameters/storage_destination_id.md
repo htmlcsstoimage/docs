@@ -3,7 +3,7 @@ layout: page
 title: storage_destination_id
 permalink: /parameters/storage_destination_id/
 parent: Parameters
-nav_order: 12
+nav_order: 140
 description: >-
   Store rendered images in an Amazon S3 or S3-compatible storage destination configured for your organization.
 ---
@@ -71,6 +71,6 @@ curl -X POST https://hcti.io/v1/image \
 }
 ```
 
-{% include hint.md title="Plan availability" text="Storage destinations are available on the **3,000 images/month plan or higher**." %}
+{% include hint.md title="Plan availability" text="Storage destinations are available on the **10,000 images/month plan or higher**." %}
 
 {% include code_footer.md version=1 %}

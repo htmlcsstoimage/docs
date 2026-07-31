@@ -3,7 +3,7 @@ layout: page
 title: pdf_options
 permalink: /parameters/pdf_options/
 parent: Parameters
-nav_order: 8
+nav_order: 100
 description: >-
   Customize PDF output with page size, margins, and scaling options
 ---

@@ -16,6 +16,23 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+### Custom request headers for URL screenshots
+July 31, 2026
+{: .text-delta}
+
+URL screenshots can now include custom HTTP headers for authenticated pages, preview environments, origin-specific behavior, and other controlled workflows.
+
+- Pass `headers` as a flat JSON object, or repeat `headers=name:value` in form and create-and-render requests.
+- Custom headers are restricted to top-level navigations on the requested URL's origin by default.
+- Set `include_headers_on_subrequests: true` when same-origin CSS, images, JavaScript, or API requests also require the headers.
+- Use `additional_header_origins` to explicitly allow exact cross-origin schemes, hosts, and ports. Headers are never sent to origins outside this allowlist.
+- Set `identify_as_hcti: true` to add `X-HCTI-SCREENSHOT: 1` when your application only needs to identify a screenshot request. This predictable value should not be used for authentication.
+- Use the new options with the official .NET client v0.10.0 and TypeScript client v0.7.0, including signed create-and-render URLs.
+
+Avoid long-lived credentials and do not put secrets in signed URLs. [Read the custom headers documentation](/parameters/headers/) or see how to [allow authorized renders through Cloudflare](/guides/debugging/cloudflare-challenges/).
+
+<hr>
+
 ### Store rendered images in your own bucket
 July 27, 2026
 {: .text-delta}
@@ -29,7 +46,7 @@ You can now configure storage destinations for Amazon S3, Cloudflare R2, Backbla
 - Authenticate `PUT /v1/store/...` requests with your user ID and API key, and use the structured response to see the outcome, object status, bucket, and key for the base image and any transformation.
 - Use `storage_destination_id` in the official TypeScript client or `StorageDestinationId` in the .NET client.
 
-Storage destinations are available on the 3,000 images/month plan or higher. [Read the Storage Destinations guide](/guides/advanced/storage-destinations/).
+Storage destinations are available on the 10,000 images/month plan or higher. [Read the Storage Destinations guide](/guides/advanced/storage-destinations/).
 
 <hr>
 

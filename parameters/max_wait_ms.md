@@ -3,7 +3,7 @@ layout: page
 title: max_wait_ms
 permalink: /parameters/max_wait_ms/
 parent: Parameters
-nav_order: 5
+nav_order: 70
 description: >-
   Set a maximum time limit before taking the screenshot
 ---

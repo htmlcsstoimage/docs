@@ -6,7 +6,7 @@ parent: Guides
 has_children: true
 nav_order: 2
 description: >-
-  Troubleshoot common image generation issues including cropping, blurry images, blank images, and emoji rendering.
+  Troubleshoot common image generation issues including cropping, blurry images, blank images, emoji rendering, and Cloudflare challenges.
 ---
 # Debugging
 {: .no_toc }
@@ -23,5 +23,5 @@ Troubleshoot common image generation issues.
 | [Blurry Images](/guides/debugging/blurry-images/) | Fix image resolution and clarity issues |
 | [White/Blank Images](/guides/debugging/white-images/) | Troubleshoot images that render blank |
 | [Rendering Emoji](/guides/debugging/emoji/) | Ensure emoji display correctly |
-
+| [Cloudflare Challenges](/guides/debugging/cloudflare-challenges/) | Allow authorized renders through Cloudflare on a site you control |
 

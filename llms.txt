@@ -53,6 +53,10 @@ curl -X POST https://hcti.io/v1/image \
 | `viewport_landscape` | Render the viewport in landscape orientation |
 | `viewport_touch` | Enable touch support in the viewport |
 | `media_type` | Apply `screen` or `print` CSS media styles |
+| `headers` | Add custom HTTP headers to a URL screenshot |
+| `additional_header_origins` | Additional exact HTTP(S) origins allowed to receive custom headers |
+| `include_headers_on_subrequests` | Also send custom headers with subrequests to allowed origins |
+| `identify_as_hcti` | Identify the top-level request with `X-HCTI-SCREENSHOT: 1` |
 | `selector` | CSS selector to capture specific element |
 | `ms_delay` | Milliseconds to wait before capture |
 | `transparent_background` | Set to `true` to render a transparent PNG |
@@ -79,6 +83,9 @@ With **Disable HCTI Storage**, authenticate the returned `/v1/store/...` URL wit
 - **Jumbo Images:** https://docs.htmlcsstoimage.com/guides/advanced/jumbo-images/
 - **Viewport Parameters:** https://docs.htmlcsstoimage.com/parameters/viewport/
 - **CSS Media Type:** https://docs.htmlcsstoimage.com/parameters/media_type/
+- **Custom Request Headers:** https://docs.htmlcsstoimage.com/parameters/headers/
+- **Identify HCTI Requests:** https://docs.htmlcsstoimage.com/parameters/identify_as_hcti/
+- **Cloudflare Challenges:** https://docs.htmlcsstoimage.com/guides/debugging/cloudflare-challenges/
 - **Transparent Backgrounds:** https://docs.htmlcsstoimage.com/guides/styling/transparent-background/
 - **FAQ:** https://docs.htmlcsstoimage.com/faq/
 

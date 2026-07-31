@@ -12,7 +12,7 @@
 | **[proxy_id](/parameters/proxy_id/)** | `String` | Route the render through one of your organization's configured HTTP proxies. Available on the 10k images/month plan or higher. |
 | **[render_when_ready](/parameters/render_when_ready/)** | `Boolean` | Wait to generate the image until JavaScript calls `ScreenshotReady()`. |
 | **[selector](/parameters/selector/)** | `String` | Crop the image to an element matching this CSS selector. For example: `section#complete-toolkit.container-lg`. |
-| **[storage_destination_id](/parameters/storage_destination_id/)** | `String` | Save images created from this template to one of your organization's configured storage destinations. Available on the 3,000 images/month plan or higher. |
+| **[storage_destination_id](/parameters/storage_destination_id/)** | `String` | Save images created from this template to one of your organization's configured storage destinations. Available on the 10,000 images/month plan or higher. |
 | **[timezone](/parameters/timezone/)** | `String` | Set Chrome's timezone using an IANA timezone identifier. |
 | **[transparent_background](/parameters/transparent_background/)** | `Boolean` | Set to `true` to render images created from this template with a transparent background. |
 | **[viewport_height](/parameters/viewport/#viewport-width-and-height)** | `Integer` | Set the height of Chrome's viewport. Both dimensions must be set if using either. |

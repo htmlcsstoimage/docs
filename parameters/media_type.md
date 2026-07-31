@@ -3,7 +3,7 @@ layout: page
 title: media_type
 permalink: /parameters/media_type/
 parent: Parameters
-nav_order: 6
+nav_order: 80
 description: >-
   Render a page using its screen or print CSS media styles.
 ---

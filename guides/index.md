@@ -54,6 +54,7 @@ Troubleshoot common image generation issues:
 | [Debugging Blurry Images](/guides/debugging/blurry-images/) | Fix image resolution and clarity issues |
 | [Debugging White/Blank Images](/guides/debugging/white-images/) | Troubleshoot images that render blank |
 | [Rendering Emoji](/guides/debugging/emoji/) | Ensure emoji display correctly |
+| [Cloudflare Challenges](/guides/debugging/cloudflare-challenges/) | Allow authorized renders through Cloudflare on a site you control |
 
 <hr>
 

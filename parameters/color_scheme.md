@@ -3,7 +3,7 @@ layout: page
 title: color_scheme
 permalink: /parameters/color_scheme/
 parent: Parameters
-nav_order: 1
+nav_order: 10
 description: >-
   Set Chrome to render in light or dark mode for screenshots
 ---

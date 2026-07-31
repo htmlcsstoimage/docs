@@ -3,7 +3,7 @@ layout: page
 title: full_screen
 permalink: /parameters/full_screen/
 parent: Parameters
-nav_order: 3
+nav_order: 30
 description: >-
   Capture the entire height of a webpage, including content below the fold
 ---
