@@ -23,7 +23,7 @@ Generate images on Make with HTML/CSS to Image. Renders exactly like Google Chro
 Connect HTML/CSS to Image with thousands of integrations on Make.
 
 <a href="https://www.make.com/en/integrations/html-css-to-image?utm_source=htmlcsstoimage&utm_medium=partner&utm_campaign=htmlcsstoimage-partner-program" target="_blank">
-{% cloudinary /assets/images/integromat.png sizes="500px" alt="Connect html css to image with integromat to automatically create images" %}
+{% cloudinary /assets/images/make.png sizes="500px" alt="Connect HTML/CSS to Image with Make to automatically create images" %}
 </a>
 
 ## Available Actions

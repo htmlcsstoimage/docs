@@ -6,7 +6,7 @@ parent: Social Media
 grand_parent: Guides
 nav_order: 2
 description: >-
-  Learn how to automatically generate a screenshot of a Facebook post with HTML/CSS to Image. This works with Zapier, Integromat or any programming language. JavaScript, PHP, Python, Ruby.
+  Learn how to automatically take screenshots of Facebook posts with HTML/CSS to Image using Zapier, AI assistants via MCP, or JavaScript, PHP, Python, and Ruby.
 ---
 # Screenshot a Facebook post
 {: .no_toc }
@@ -54,5 +54,3 @@ HTML
 [Try it yourself](https://htmlcsstoimage.com/examples/facebook-screenshot){: .btn .btn-green .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 {% include code_footer.md version=2 %}
-
-

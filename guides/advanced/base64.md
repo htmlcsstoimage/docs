@@ -6,13 +6,13 @@ parent: Advanced
 grand_parent: Guides
 nav_order: 4
 description: >-
-  Learn to convert base64 into a PNG or JPG with the HTML/CSS to Image API
+  Convert base64 to PNG, JPG, or PDF with HTML/CSS to Image using the API, Zapier, or AI assistants via MCP.
 ---
 # Convert base64 to an image
 {: .no_toc }
 {: .fs-9 }
 
-Learn how to generate PNG's or JPG's from base64. Works with Zapier and Integromat.
+Learn how to generate PNGs, JPGs, or PDFs from base64. Works with Zapier and Make.
 {: .fs-6 .fw-300 }
 
 <hr>
@@ -20,6 +20,8 @@ Learn how to generate PNG's or JPG's from base64. Works with Zapier and Integrom
 ## How it works
 
 To render base64 to an image, you can use an `img` tag and set the `src` to the base64 of your image.
+
+The rendered result is available as PNG or JPG. To generate a PDF, append `.pdf` to the returned image URL. See [PDF options](/parameters/pdf_options/) to customize page size, margins, scaling, and backgrounds.
 
 
 ```html
@@ -53,5 +55,3 @@ We have integrations for both Zapier and Make. You can use the example code abov
 
 
 {% include code_footer.md version=3 %}
-
-

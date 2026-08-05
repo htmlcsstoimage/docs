@@ -529,7 +529,7 @@ August 3, 2020
 {: .text-delta}
 We've added additional parameters to the Integromat integration. You can now use `selector`, `ms_delay` and `device_scale`.
 
-- [HTML/CSS to Image Integromat Integration](/integrations/integromat/)
+- [HTML/CSS to Image Integromat Integration](/integrations/make/)
 
 ### Template API
 July 27, 2020
@@ -608,6 +608,6 @@ We have added the [Delete endpoint](/getting-started/using-the-api/#deleting-an-
 ### Integromat integration
 November 29, 2019
 {: .text-delta}
-Our [Integromat integration](/integrations/integromat) is now available. You can use the integration to connect HTML/CSS to Image with the thousands of integrations available on Integromat.
+Our [Integromat integration](/integrations/make/) is now available. You can use the integration to connect HTML/CSS to Image with the thousands of integrations available on Integromat.
 
 <hr>

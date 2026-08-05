@@ -6,7 +6,7 @@ nav_order: 3
 expanded: false
 has_children: true
 description: >-
-  Integrate HTML/CSS to Image with n8n, Zapier, Make, and AI assistants via MCP. No-code and low-code automation options.
+  Integrate HTML/CSS to Image with n8n, Zapier, Make, and AI assistants via MCP. No-code and low-code image, PDF and screenshot automation.
 ---
 # Integrations
 {: .no_toc }
