@@ -133,11 +133,11 @@ This allows you to create signed URLs without exposing your API Key. If any part
 
 ### Testing token generation online
 
-You can test token generation using online tools like [FreeFormatter's HMAC Generator](https://www.freeformatter.com/hmac-generator.html):
+Use our [HMAC SHA-256 Generator](/hmac-generator/) to test token generation. It runs entirely in your browser; your API key and query string are never sent to our servers.
 
 1. Enter your query string (e.g., `html=%3Cdiv%3EHello%3C%2Fdiv%3E`) as the **String**
 2. Enter your API Key as the **Secret Key**
-3. The **Computed MAC** in lowercase hex format is your token
+3. Copy the generated lowercase hexadecimal token
 
 For example:
 - Input String: `html=%3Cdiv%3EHello%3C%2Fdiv%3E`
