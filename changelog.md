@@ -26,7 +26,7 @@ You can now set `dedupe_duration_s` when creating an HTML/CSS image or URL scree
 - HTML/CSS images default to 30 days on Free and Basic plans, 180 days on Pro, and 365 days on Scale.
 - Free and Basic plans support either `0` or the plan default. Pro and Scale plans support any value from `0` through their plan maximum.
 - The option is available for standard single-image POST requests and MCP-created images. It does not apply to batches, templates, or signed create-and-render URLs.
-- The official TypeScript and .NET clients now expose the option when creating images. It is not included in generated create-and-render URLs or batch requests.
+- The official TypeScript client v0.8.0 and .NET client v0.11.0 now expose the option when creating images. It is not included in generated create-and-render URLs or batch requests.
 
 Read the [`dedupe_duration_s` parameter docs](/parameters/dedupe_duration_s/) or the [duplicate detection guide](/guides/advanced/duplicate-detection/).
 
