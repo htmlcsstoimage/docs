@@ -1,9 +1,15 @@
+{% comment %}
+  Pass create_and_render=true to omit options unsupported by signed create-and-render URLs.
+{% endcomment %}
+
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
 | **[additional_header_origins](/parameters/headers/#additional-header-origins)** | `Array` | Allow custom `headers` on requests to specific additional HTTP or HTTPS origins. |
 | **[block_consent_banners](/guides/advanced/blocking-cookie-banners/)**   | `Boolean` | When set to `true`, automatically blocks cookie consent banners and popups on websites. Most useful for URL screenshots. |
 | **[color_scheme](/parameters/color_scheme/)**   | `String` | Set Chrome to render in `light` or `dark` mode. Affects websites using `prefers-color-scheme`. |
+{% unless include.create_and_render -%}
 | **[dedupe_duration_s](/parameters/dedupe_duration_s/)** | `Integer` | Reuse an identical recent image without consuming image credits. Sets the lookback window in seconds; defaults and allowed values vary by image type and plan. |
+{% endunless -%}
 | **[device_scale](/parameters/device_scale/)**   | `Double` | Controls the image resolution by adjusting the pixel ratio. Minimum: `0.1`, Maximum: `3`. Higher values increase image quality and file size. For example, `2` will double the resolution. |
 | **[disable_twemoji](/guides/debugging/emoji/#disabling-twemoji)**   | `Boolean` | Twemoji is used by default to render emoji consistently. Set to `true` to use native emoji fonts instead. |
 | **[full_screen](/parameters/full_screen/)**   | `Boolean` | When set to true, the API will generate an image of the entire height of the page. |
@@ -16,7 +22,9 @@
 | **[max_wait_ms](/parameters/max_wait_ms/)**   | `Integer` | Sets a maximum time limit (500-10000ms) for waiting before taking the screenshot. Unlike `ms_delay`, this is a cap rather than a fixed delay. Useful when pages load extra irrelevant content. |
 | **[media_type](/parameters/media_type/)** | `String` | Set Chrome to render using `screen` or `print` CSS media styles. |
 | **[ms_delay](/parameters/ms_delay/)**   | `Integer` | The number of milliseconds the API should delay before generating the image. This is useful when waiting for JavaScript. We recommend starting with `500`. Large values slow down the initial render time. |
+{% unless include.create_and_render -%}
 | **[pdf_options](/parameters/pdf_options/)**   | `Object` | Customize PDF output with page size, margins, scale, and background printing. Use this when you plan to request the generated URL with a `.pdf` extension. |
+{% endunless -%}
 | **[proxy_id](/parameters/proxy_id/)**   | `String` | Route the render's outbound traffic through one of your [HTTP proxies](/guides/advanced/proxies/) configured in the dashboard. Available on the 10k images/month plan or higher. |
 | **[render_when_ready](/parameters/render_when_ready/)**   | `Boolean` | Set to true to control when the image is generated. Call `ScreenshotReady()` from JavaScript to generate the image. |
 | **[selector](/parameters/selector/)**  | `String` | A CSS selector for an element on the webpage. We'll crop the image to this specific element. For example: `section#complete-toolkit.container-lg` |

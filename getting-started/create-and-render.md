@@ -65,7 +65,7 @@ The parameters are the same as the [standard API endpoint](/getting-started/usin
 
 Optional parameters for greater control over your image.
 
-{% include additional_parameters.md %}
+{% include additional_parameters.md create_and_render=true %}
 
 <hr>
 
