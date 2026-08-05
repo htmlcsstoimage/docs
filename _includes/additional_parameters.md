@@ -3,6 +3,7 @@
 | **[additional_header_origins](/parameters/headers/#additional-header-origins)** | `Array` | Allow custom `headers` on requests to specific additional HTTP or HTTPS origins. |
 | **[block_consent_banners](/guides/advanced/blocking-cookie-banners/)**   | `Boolean` | When set to `true`, automatically blocks cookie consent banners and popups on websites. Most useful for URL screenshots. |
 | **[color_scheme](/parameters/color_scheme/)**   | `String` | Set Chrome to render in `light` or `dark` mode. Affects websites using `prefers-color-scheme`. |
+| **[dedupe_duration_s](/parameters/dedupe_duration_s/)** | `Integer` | Reuse an identical recent image without consuming image credits. Sets the lookback window in seconds; defaults and allowed values vary by image type and plan. |
 | **[device_scale](/parameters/device_scale/)**   | `Double` | Controls the image resolution by adjusting the pixel ratio. Minimum: `0.1`, Maximum: `3`. Higher values increase image quality and file size. For example, `2` will double the resolution. |
 | **[disable_twemoji](/guides/debugging/emoji/#disabling-twemoji)**   | `Boolean` | Twemoji is used by default to render emoji consistently. Set to `true` to use native emoji fonts instead. |
 | **[full_screen](/parameters/full_screen/)**   | `Boolean` | When set to true, the API will generate an image of the entire height of the page. |
@@ -10,8 +11,8 @@
 | **[headers](/parameters/headers/)** | `Object` | Add custom HTTP headers when screenshotting a URL. Headers are restricted to the requested URL's origin and any `additional_header_origins`. |
 | **[identify_as_hcti](/parameters/identify_as_hcti/)** | `Boolean` | Add `X-HCTI-SCREENSHOT: 1` to the top-level request when screenshotting a URL. |
 | **[include_headers_on_subrequests](/parameters/headers/#include-headers-on-subrequests)** | `Boolean` | Also add custom `headers` to same-origin subrequests and subrequests matching `additional_header_origins`. |
-| **[jumbo_max_height](/guides/advanced/jumbo-images/)**   | `Integer` | Maximum output height when rendering a jumbo image (up to 80,000px). Must be set together with `jumbo_max_width`. Consumes extra renders. |
-| **[jumbo_max_width](/guides/advanced/jumbo-images/)**   | `Integer` | Maximum output width when rendering a jumbo image (up to 80,000px). Must be set together with `jumbo_max_height`. Consumes extra renders. |
+| **[jumbo_max_height](/guides/advanced/jumbo-images/)**   | `Integer` | Maximum output height when rendering a jumbo image (up to 80,000px). Must be set together with `jumbo_max_width`. Consumes additional image credits. |
+| **[jumbo_max_width](/guides/advanced/jumbo-images/)**   | `Integer` | Maximum output width when rendering a jumbo image (up to 80,000px). Must be set together with `jumbo_max_height`. Consumes additional image credits. |
 | **[max_wait_ms](/parameters/max_wait_ms/)**   | `Integer` | Sets a maximum time limit (500-10000ms) for waiting before taking the screenshot. Unlike `ms_delay`, this is a cap rather than a fixed delay. Useful when pages load extra irrelevant content. |
 | **[media_type](/parameters/media_type/)** | `String` | Set Chrome to render using `screen` or `print` CSS media styles. |
 | **[ms_delay](/parameters/ms_delay/)**   | `Integer` | The number of milliseconds the API should delay before generating the image. This is useful when waiting for JavaScript. We recommend starting with `500`. Large values slow down the initial render time. |

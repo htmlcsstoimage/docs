@@ -30,9 +30,9 @@ The simplest way to monitor usage is through the response headers returned with 
 
 | Header | Description |
 |:-------|:------------|
-| `x-renders-allowed` | Your total image allowance for the current billing period |
-| `x-renders-consumed` | Number of renders used by this specific request |
-| `x-renders-used` | Total renders used in the current billing period |
+| `x-renders-allowed` | Total image credits available for the current billing period |
+| `x-renders-consumed` | Number of image credits consumed by this request |
+| `x-renders-used` | Total image credits used in the current billing period |
 
 {% include hint.md title="Monitoring Tip" text="These headers make it easy to implement usage alerts in your application before hitting your plan limits." %}
 
@@ -91,5 +91,4 @@ The response includes usage data organized into different time periods:
 {% include hint.md title="Usage Tracking" text="Consider implementing regular usage checks with this endpoint to monitor trends and plan capacity needs." %}
 
 {% include code_footer.md version=1 %}
-
 

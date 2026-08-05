@@ -16,6 +16,22 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+### Control duplicate image detection with `dedupe_duration_s`
+August 5, 2026
+{: .text-delta}
+
+You can now set `dedupe_duration_s` when creating an HTML/CSS image or URL screenshot. When an image with the same content and parameters was created within that lookback window, the API can return its existing image ID and URL without consuming another image credit.
+
+- URL screenshots default to a 0-second lookback.
+- HTML/CSS images default to 30 days on Free and Basic plans, 180 days on Pro, and 365 days on Scale.
+- Free and Basic plans support either `0` or the plan default. Pro and Scale plans support any value from `0` through their plan maximum.
+- The option is available for standard single-image POST requests and MCP-created images. It does not apply to batches, templates, or signed create-and-render URLs.
+- The official TypeScript and .NET clients now expose the option when creating images. It is not included in generated create-and-render URLs or batch requests.
+
+Read the [`dedupe_duration_s` parameter docs](/parameters/dedupe_duration_s/) or the [duplicate detection guide](/guides/advanced/duplicate-detection/).
+
+<hr>
+
 ### Custom request headers for URL screenshots
 July 31, 2026
 {: .text-delta}
@@ -139,7 +155,7 @@ You can now render images far beyond Chrome's usual ~8000px limit by setting `ju
 - **Render up to 80,000px on each side** (subject to a 400,000,000-pixel total area cap).
 - **Quality is preserved.** Each tile renders at full resolution and the final image keeps its `device_scale`. No more blurry downscaled output when your render naturally exceeds 8000px.
 - **Both params required together.** Pass `jumbo_max_width` and `jumbo_max_height` on the create image request. Works with both `html`/`css` and `url` renders.
-- **Billed per tile.** Each 8000 x 8000 tile counts as one render against your monthly quota.
+- **Billed per tile.** Each 8000 x 8000 tile consumes one image credit.
 
 Without jumbo, a render larger than ~8000px is automatically scaled down to fit, which usually produces a blurry image. If you're rendering big, set the jumbo params.
 
@@ -309,8 +325,8 @@ May 18, 2022
 
 This has been a much requested feature!
 
-We have increased the `ms_delay` limit to 20 seconds (20,000ms). Usage above 5000ms does cost an additional image render credit.
-For example, using `ms_delay` of 10000ms on an image will count as 2 images towards your monthly quota.
+We have increased the `ms_delay` limit to 20 seconds (20,000ms). Usage above 5000ms does cost an additional image credit.
+For example, using `ms_delay` of 10000ms on an image will consume 2 image credits.
 
 This is useful for pages with very slow load times, such as metrics dashboards. We hope you find it useful!
 

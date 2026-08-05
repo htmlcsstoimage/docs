@@ -4,8 +4,8 @@
 | **[device_scale](/parameters/device_scale/)** | `Double` | Adjust the pixel ratio for the screenshot. Minimum: `0.1`, Maximum: `3`. |
 | **[disable_twemoji](/guides/debugging/emoji/#disabling-twemoji)** | `Boolean` | Set to `true` to use native emoji fonts instead of Twemoji. |
 | **[google_fonts](/parameters/google_fonts/)** | `String` | Google fonts to be loaded. Example: `Roboto`. Load multiple fonts with `Roboto|Open Sans`. |
-| **[jumbo_max_height](/guides/advanced/jumbo-images/)** | `Integer` | Maximum output height in jumbo mode, up to `80,000` pixels. Must be set with `jumbo_max_width`. Consumes extra renders. |
-| **[jumbo_max_width](/guides/advanced/jumbo-images/)** | `Integer` | Maximum output width in jumbo mode, up to `80,000` pixels. Must be set with `jumbo_max_height`. Consumes extra renders. |
+| **[jumbo_max_height](/guides/advanced/jumbo-images/)** | `Integer` | Maximum output height in jumbo mode, up to `80,000` pixels. Must be set with `jumbo_max_width`. Consumes additional image credits. |
+| **[jumbo_max_width](/guides/advanced/jumbo-images/)** | `Integer` | Maximum output width in jumbo mode, up to `80,000` pixels. Must be set with `jumbo_max_height`. Consumes additional image credits. |
 | **[max_wait_ms](/parameters/max_wait_ms/)** | `Integer` | Set a maximum time limit (`500`–`10000` milliseconds) for waiting before taking the screenshot. |
 | **[media_type](/parameters/media_type/)** | `String` | Set Chrome to render using `screen` or `print` CSS media styles. |
 | **[ms_delay](/parameters/ms_delay/)** | `Integer` | Delay before generating the image. Useful when waiting for JavaScript. We recommend starting with `500` milliseconds. |

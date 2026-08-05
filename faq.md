@@ -172,7 +172,7 @@ Yes! Connect image generation to thousands of other apps with n8n, Zapier, or Ma
 
 ### Is there a rate limit?
 
-No per-second or per-minute rate limits. You can make requests as fast as you need. The only limit is your monthly image quota based on your plan.
+No per-second or per-minute rate limits. You can make requests as fast as you need. The only limit is the number of monthly image credits included with your plan.
 
 ### What happens if I exceed my plan limit?
 
@@ -348,7 +348,7 @@ Email us! **support@htmlcsstoimage.com**. We'd love to hear from you. We're expe
       "name": "Is there a rate limit?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No per-second or per-minute rate limits. You can make requests as fast as you need. The only limit is your monthly image quota based on your plan."
+        "text": "No per-second or per-minute rate limits. You can make requests as fast as you need. The only limit is the number of monthly image credits included with your plan."
       }
     },
     {

@@ -222,7 +222,7 @@ Console.WriteLine($"Signed URL: {url}");
 // Use this URL in img tags - the image renders when accessed
 ```
 
-This is useful when you have content that may never be viewed, allowing you to generate images on-demand without using API credits upfront.
+This is useful when you have content that may never be viewed, allowing you to generate images on-demand without using image credits upfront.
 
 <hr>
 

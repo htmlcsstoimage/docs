@@ -89,7 +89,7 @@ STATUS: 429 TOO MANY REQUESTS
 {
     "error": "Plan limit exceeded",
     "statusCode": 429,
-    "message": "You've used 3055 of your 3000 renders. Upgrade via the Dashboard: https://htmlcsstoimage.com/dashboard"
+    "message": "You've used 3055 of your 3000 image credits. Upgrade via the Dashboard: https://htmlcsstoimage.com/dashboard"
 }
 ```
 

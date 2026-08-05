@@ -45,39 +45,40 @@ Only add `ms_delay` if you notice issues with the default behavior.
 
 ## Image credits and billing
 
-### Credit usage
+### Image credit usage
+{: #credit-usage }
 The `ms_delay` parameter can affect how many image credits are consumed per request:
 
-| Delay Range (ms) | Credits Used | Example Usage |
+| Delay Range (ms) | Image Credits Used | Example Usage |
 |:----------------|:-------------|:--------------|
-| 0-5000 | 1 credit | Standard usage, suitable for most cases |
-| 5001-10000 | 2 credits | Complex pages with many assets |
-| 10001-15000 | 3 credits | Heavy JavaScript applications |
-| 15001-20000 | 4 credits | Maximum delay scenarios |
+| 0-5000 | 1 image credit | Standard usage, suitable for most cases |
+| 5001-10000 | 2 image credits | Complex pages with many assets |
+| 10001-15000 | 3 image credits | Heavy JavaScript applications |
+| 15001-20000 | 4 image credits | Maximum delay scenarios |
 
 ### Important notes
 - Maximum allowed value is 20,000ms (20 seconds)
-- Values are rounded up to the nearest credit tier
-- Credits are calculated before the request is processed
+- Values are rounded up to the nearest image credit tier
+- Image credits are calculated before the request is processed
 
-{% include hint.md title="Cost optimization" text="To minimize credit usage, try optimizing your page load time before increasing ms_delay. Consider using render_when_ready for precise timing control." %}
+{% include hint.md title="Cost optimization" text="To minimize image credit usage, try optimizing your page load time before increasing ms_delay. Consider using render_when_ready for precise timing control." %}
 
 ### Examples
 
 ```javascript
-// Standard usage (1 credit)
+// Standard usage (1 image credit)
 {
   "html": "<div>Your content</div>",
   "ms_delay": 3000
 }
 
-// 2 credits used
+// 2 image credits used
 {
   "html": "<div>Your content</div>",
   "ms_delay": 8000
 }
 
-// 4 credits used (maximum)
+// 4 image credits used (maximum)
 {
   "html": "<div>Your content</div>",
   "ms_delay": 20000
@@ -92,4 +93,4 @@ Instead of using high `ms_delay` values, consider:
 3. Preloading assets
 4. Reducing JavaScript execution time
 
-This can help reduce both credit usage and overall processing time.
+This can help reduce both image credit usage and overall processing time.

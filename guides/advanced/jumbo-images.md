@@ -104,15 +104,15 @@ The 400-million-pixel area cap means you can't max out both dimensions at once. 
 
 ## Billing
 
-Jumbo images consume one additional render per tile.
+Jumbo images consume one additional image credit per tile.
 
 The number of tiles is calculated from the **maximum specified size**.
 
-When used with `ms_delay` the [standard `ms_delay` multiple](/parameters/ms_delay#credit-usage) is only applied to the base image and not the additional tile credits.
+When used with `ms_delay`, the [standard `ms_delay` multiple](/parameters/ms_delay#credit-usage) is applied only to the base image, not to the image credits for additional tiles.
 
 ### Examples
 
-| Jumbo size        | `ms_delay` | Total Tiles | Renders billed |
+| Jumbo size        | `ms_delay` | Total Tiles | Image credits billed |
 |:------------------|:-----------|:-----------:|:--------------:|
 | `8,001 x 8,001`   |            | 4           | 5              |
 | `12,000 x 4,000`  |            | 2           | 3              |
@@ -211,9 +211,9 @@ Fix: set `jumbo_max_width` and `jumbo_max_height` to the size you actually want.
 
 If your final image is 10,000 px tall, the effective device_scale will be 0.8 to fit it within the 8000px boundary. If you're expecting a readable, sharp image - you need jumbo.
 
-### Why did this cost N renders?
+### Why did this cost N image credits?
 
-See [Billing](#billing). The render count is `1 + ceil(width / 8000) * ceil(height / 8000)` based on the **maximum output size**, plus any [`ms_delay` cost](/parameters/ms_delay#credit-usage). The dashboard usage view shows the per-image render count.
+See [Billing](#billing). The image credit count is `1 + ceil(width / 8000) * ceil(height / 8000)` based on the **maximum output size**, plus any [`ms_delay` image credit cost](/parameters/ms_delay#credit-usage). The dashboard usage view shows the image credit count for each image.
 
 ### Why does jumbo cost more?
 

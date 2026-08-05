@@ -20,7 +20,7 @@ Get more from the API.
 | Guide | Description |
 |:------|:------------|
 | [Blocking Cookie Banners](/guides/advanced/blocking-cookie-banners/) | Hide consent popups in screenshots |
-| [Duplicate Detection](/guides/advanced/duplicate-detection/) | Avoid creating duplicate images |
+| [Duplicate Detection](/guides/advanced/duplicate-detection/) | Reuse identical recent images without extra image credits |
 | [Account Usage](/guides/advanced/account-usage/) | Track your API usage programmatically |
 | [Base64 to Image](/guides/advanced/base64/) | Work with Base64-encoded images |
 | [HTTP Proxies](/guides/advanced/proxies/) | Route renders through your own HTTP proxy |

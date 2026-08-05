@@ -283,7 +283,7 @@ If the MCP server is not connecting:
 ### Image Generation Errors
 
 If images fail to generate:
-- Check your account has available renders on the [dashboard](https://htmlcsstoimage.com/dashboard)
+- Check that your account has available image credits on the [dashboard](https://htmlcsstoimage.com/dashboard)
 - Ensure HTML content is valid
 - For URL screenshots, verify the URL is publicly accessible
 
