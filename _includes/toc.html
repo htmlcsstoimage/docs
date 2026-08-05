@@ -29,8 +29,12 @@
         {% assign id_parts = h2_content | split: '"' %}
         {% assign heading_id = id_parts[0] %}
         
-        {% comment %} Extract the text after the closing anchor tag {% endcomment %}
-        {% if h2_content contains '</a>' %}
+        {% comment %} Extract text before a trailing anchor or after a leading anchor {% endcomment %}
+        {% assign h2_opening = heading_id | append: '">' %}
+        {% assign h2_before_anchor = h2_content | split: '<a ' | first | remove_first: h2_opening | strip_html | strip %}
+        {% if h2_before_anchor != "" %}
+          {% assign heading_text = h2_before_anchor | truncate: 80, "" %}
+        {% elsif h2_content contains '</a>' %}
           {% assign after_anchor_parts = h2_content | split: '</a>' %}
           {% assign heading_text = after_anchor_parts[1] | strip_html | strip | truncate: 80, "" %}
         {% else %}
@@ -58,7 +62,11 @@
                       {% assign h3_id_parts = h3_content | split: '"' %}
                       {% assign h3_id = h3_id_parts[0] %}
                       
-                      {% if h3_content contains '</a>' %}
+                      {% assign h3_opening = h3_id | append: '">' %}
+                      {% assign h3_before_anchor = h3_content | split: '<a ' | first | remove_first: h3_opening | strip_html | strip %}
+                      {% if h3_before_anchor != "" %}
+                        {% assign h3_text = h3_before_anchor | truncate: 60, "" %}
+                      {% elsif h3_content contains '</a>' %}
                         {% assign h3_after_anchor = h3_content | split: '</a>' %}
                         {% assign h3_text = h3_after_anchor[1] | strip_html | strip | truncate: 60, "" %}
                       {% else %}
