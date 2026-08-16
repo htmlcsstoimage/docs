@@ -1,0 +1,283 @@
+{
+  "contexts": {
+    "html": "HTML/CSS image requests",
+    "url": "URL screenshot requests",
+    "templates": "template creation and updates",
+    "og_config": "public page-level hcti: metadata for OG Image Configs",
+    "create_and_render": "signed create-and-render URLs"
+  },
+  "parameters": [
+    {
+      "name": "html",
+      "description": "HTML to render.",
+      "type": "String",
+      "link": "/getting-started/using-the-api/",
+      "additional": false,
+      "support": { "html": true, "url": false, "templates": true, "og_config": false, "create_and_render": true }
+    },
+    {
+      "name": "url",
+      "description": "The fully qualified URL of a public page to capture.",
+      "type": "String",
+      "link": "/getting-started/url-to-image/",
+      "additional": false,
+      "support": { "html": false, "url": true, "templates": false, "og_config": false, "create_and_render": true }
+    },
+    {
+      "name": "css",
+      "description": "CSS used to style the rendered image or modify a captured page.",
+      "type": "String",
+      "link": "/parameters/",
+      "additional": false,
+      "support": { "html": true, "url": true, "templates": true, "og_config": true, "create_and_render": true }
+    },
+    {
+      "name": "content_version",
+      "description": "Change an OG image's content identity when content at the same path changes.",
+      "type": "Integer",
+      "link": "/guides/debugging/og-image-caching/#force-a-new-content-identity",
+      "additional": false,
+      "support": { "html": false, "url": false, "templates": false, "og_config": true, "create_and_render": false }
+    },
+    {
+      "name": "metadata",
+      "description": "Custom metadata stored with an image.",
+      "type": "Object",
+      "link": "/parameters/",
+      "additional": false,
+      "support": { "html": true, "url": true, "templates": false, "og_config": false, "create_and_render": false }
+    },
+    {
+      "name": "max_render_once",
+      "description": "Ensure an image is rendered and saved only once.",
+      "type": "Boolean",
+      "link": "/parameters/",
+      "additional": false,
+      "support": { "html": true, "url": true, "templates": false, "og_config": false, "create_and_render": true }
+    },
+    {
+      "name": "additional_header_origins",
+      "description": "Allow custom `headers` on requests to specific additional HTTP or HTTPS origins.",
+      "type": "Array",
+      "link": "/parameters/headers/#additional-header-origins",
+      "additional": true,
+      "support": { "html": false, "url": true, "templates": false, "og_config": false, "create_and_render": true }
+    },
+    {
+      "name": "block_consent_banners",
+      "description": "When set to `true`, automatically blocks cookie consent banners and popups on websites. Most useful for URL screenshots.",
+      "type": "Boolean",
+      "link": "/guides/advanced/blocking-cookie-banners/",
+      "additional": true,
+      "support": { "html": false, "url": true, "templates": false, "og_config": true, "create_and_render": true }
+    },
+    {
+      "name": "color_scheme",
+      "description": "Set Chrome to render in `light` or `dark` mode. Affects websites using `prefers-color-scheme`.",
+      "type": "String",
+      "link": "/parameters/color_scheme/",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": true, "og_config": true, "create_and_render": true }
+    },
+    {
+      "name": "dedupe_duration_s",
+      "description": "Reuse an identical recent image without consuming image credits. Sets the lookback window in seconds; defaults and allowed values vary by image type and plan.",
+      "type": "Integer",
+      "link": "/parameters/dedupe_duration_s/",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": false, "og_config": false, "create_and_render": false }
+    },
+    {
+      "name": "device_scale",
+      "description": "Control resolution by adjusting the pixel ratio from `0.1` to `3`. Higher values increase image quality and file size.",
+      "type": "Double",
+      "link": "/parameters/device_scale/",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": true, "og_config": true, "create_and_render": true }
+    },
+    {
+      "name": "disable_twemoji",
+      "description": "Set to `true` to use native emoji fonts instead of Twemoji.",
+      "type": "Boolean",
+      "link": "/guides/debugging/emoji/#disabling-twemoji",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": true, "og_config": false, "create_and_render": true }
+    },
+    {
+      "name": "full_screen",
+      "description": "Generate an image of the entire height of a URL page.",
+      "type": "Boolean",
+      "link": "/parameters/full_screen/",
+      "additional": true,
+      "support": { "html": false, "url": true, "templates": false, "og_config": false, "create_and_render": true }
+    },
+    {
+      "name": "google_fonts",
+      "description": "Load one or more Google fonts, such as `Roboto|Open Sans`.",
+      "type": "String",
+      "link": "/parameters/google_fonts/",
+      "additional": true,
+      "support": { "html": true, "url": false, "templates": true, "og_config": false, "create_and_render": true }
+    },
+    {
+      "name": "headers",
+      "description": "Add custom HTTP headers when screenshotting a URL. Headers are restricted to the requested URL's origin and any `additional_header_origins`.",
+      "type": "Object",
+      "link": "/parameters/headers/",
+      "additional": true,
+      "support": { "html": false, "url": true, "templates": false, "og_config": false, "create_and_render": true }
+    },
+    {
+      "name": "identify_as_hcti",
+      "description": "Add `X-HCTI-SCREENSHOT: 1` to the top-level request when screenshotting a URL.",
+      "type": "Boolean",
+      "link": "/parameters/identify_as_hcti/",
+      "additional": true,
+      "support": { "html": false, "url": true, "templates": false, "og_config": true, "create_and_render": true }
+    },
+    {
+      "name": "include_headers_on_subrequests",
+      "description": "Also add custom `headers` to same-origin subrequests and subrequests matching `additional_header_origins`.",
+      "type": "Boolean",
+      "link": "/parameters/headers/#include-headers-on-subrequests",
+      "additional": true,
+      "support": { "html": false, "url": true, "templates": false, "og_config": false, "create_and_render": true }
+    },
+    {
+      "name": "jumbo_max_height",
+      "description": "Maximum output height in jumbo mode, up to `80,000` pixels. Must be set with `jumbo_max_width` and consumes additional image credits.",
+      "type": "Integer",
+      "link": "/guides/advanced/jumbo-images/",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": true, "og_config": false, "create_and_render": true }
+    },
+    {
+      "name": "jumbo_max_width",
+      "description": "Maximum output width in jumbo mode, up to `80,000` pixels. Must be set with `jumbo_max_height` and consumes additional image credits.",
+      "type": "Integer",
+      "link": "/guides/advanced/jumbo-images/",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": true, "og_config": false, "create_and_render": true }
+    },
+    {
+      "name": "max_wait_ms",
+      "description": "Set a maximum time limit from `500` to `10000` milliseconds for waiting before taking the screenshot.",
+      "type": "Integer",
+      "link": "/parameters/max_wait_ms/",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": true, "og_config": true, "create_and_render": true }
+    },
+    {
+      "name": "media_type",
+      "description": "Set Chrome to render using `screen` or `print` CSS media styles.",
+      "type": "String",
+      "link": "/parameters/media_type/",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": true, "og_config": true, "create_and_render": true }
+    },
+    {
+      "name": "ms_delay",
+      "description": "Delay before generating the image. Useful when waiting for JavaScript; start with `500` milliseconds.",
+      "type": "Integer",
+      "link": "/parameters/ms_delay/",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": true, "og_config": true, "create_and_render": true }
+    },
+    {
+      "name": "pdf_options",
+      "description": "Customize PDF output with page size, margins, scale, and background printing.",
+      "type": "Object",
+      "link": "/parameters/pdf_options/",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": false, "og_config": false, "create_and_render": false }
+    },
+    {
+      "name": "proxy_id",
+      "description": "Route outbound traffic through one of your organization's configured HTTP proxies. Available on the 10,000 images/month plan or higher.",
+      "type": "String",
+      "link": "/parameters/proxy_id/",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": true, "og_config": false, "create_and_render": true }
+    },
+    {
+      "name": "render_when_ready",
+      "description": "Wait to generate the image until JavaScript calls `ScreenshotReady()`.",
+      "type": "Boolean",
+      "link": "/parameters/render_when_ready/",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": true, "og_config": true, "create_and_render": true }
+    },
+    {
+      "name": "selector",
+      "description": "Crop the image to an element matching this CSS selector, such as `section#complete-toolkit.container-lg`.",
+      "type": "String",
+      "link": "/parameters/selector/",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": false, "og_config": true, "create_and_render": true }
+    },
+    {
+      "name": "storage_destination_id",
+      "description": "Save rendered files to one of your organization's configured storage destinations. Available on the 10,000 images/month plan or higher.",
+      "type": "String",
+      "link": "/parameters/storage_destination_id/",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": true, "og_config": false, "create_and_render": true }
+    },
+    {
+      "name": "timezone",
+      "description": "Set Chrome's timezone with an IANA identifier such as `America/New_York`.",
+      "type": "String",
+      "link": "/parameters/timezone/",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": true, "og_config": true, "create_and_render": true }
+    },
+    {
+      "name": "transparent_background",
+      "description": "Set to `true` to render with a transparent background.",
+      "type": "Boolean",
+      "link": "/parameters/transparent_background/",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": true, "og_config": true, "create_and_render": true }
+    },
+    {
+      "name": "viewport_height",
+      "description": "Set the height of Chrome's viewport. Both dimensions must be set when using either.",
+      "type": "Integer",
+      "link": "/parameters/viewport/#viewport-width-and-height",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": true, "og_config": true, "create_and_render": true }
+    },
+    {
+      "name": "viewport_landscape",
+      "description": "Set Chrome's viewport to landscape mode.",
+      "type": "Boolean",
+      "link": "/parameters/viewport/#viewport-landscape",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": true, "og_config": true, "create_and_render": true }
+    },
+    {
+      "name": "viewport_mobile",
+      "description": "Set Chrome's viewport to emulate a mobile device.",
+      "type": "Boolean",
+      "link": "/parameters/viewport/#viewport-mobile",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": true, "og_config": true, "create_and_render": true }
+    },
+    {
+      "name": "viewport_touch",
+      "description": "Set Chrome's viewport to support touch events.",
+      "type": "Boolean",
+      "link": "/parameters/viewport/#viewport-touch",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": true, "og_config": true, "create_and_render": true }
+    },
+    {
+      "name": "viewport_width",
+      "description": "Set the width of Chrome's viewport. Both dimensions must be set when using either.",
+      "type": "Integer",
+      "link": "/parameters/viewport/#viewport-width-and-height",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": true, "og_config": true, "create_and_render": true }
+    }
+  ]
+}

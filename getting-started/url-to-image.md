@@ -6,7 +6,7 @@ description: >-
   Take a screenshot of any URL using the API. Screenshot generated in a real
   instance of Google Chrome.
 parent: Getting started
-nav_order: 4
+nav_order: 2
 ---
 # URL to Image
 {: .no_toc }
@@ -23,6 +23,8 @@ The high resolution screenshot API you've been searching for.
 
 With the API, you can automate taking a screenshot of any website.
 
+{% include hint.md title="Need a social card for every page?" text="Use an [OG Image Config](/getting-started/og-images/) to map every public page path on a website or CMS to a screenshot or template—without making a separate API request for each page." %}
+
 Pass the `url` param to the `hcti.io/v1/image` endpoint, and we'll generate a screenshot for you. Here's an example using cURL.
 
 ```bash
@@ -38,7 +40,7 @@ Don't write code? Don't worry, you can also do this with our [Zapier integration
 
 To customize your image further, you can take advantage of the following optional parameters.
 
-{% include additional_parameters.md %}
+{% include additional_parameters.md context="url" %}
 
 <hr>
 

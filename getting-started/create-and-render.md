@@ -1,9 +1,11 @@
 ---
 layout: page
-title: Single-Request Image Generation
+title: Signed Image URLs
 permalink: /getting-started/create-and-render/
 parent: Getting started
 nav_order: 6
+description: >-
+  Generate signed image URLs from HTML, public webpages, or template values with a single authenticated GET request.
 ---
 # Single-Request Image Generation
 {: .no_toc }
@@ -15,6 +17,8 @@ Generate images from HTML/CSS, URLs, or templates in a single request with signe
 <hr>
 
 {% include hint.md title="Recommendation" text="We recommend using the [standard API endpoint](/getting-started/using-the-api/) for most use cases. Only use this endpoint if you specifically need to generate image URLs from client-side code or need to avoid the two-step create-then-fetch process." %}
+
+{% include hint.md title="Publishing social cards?" text="If each image corresponds to a public page on your website or CMS, an [OG Image Config](/getting-started/og-images/) is usually simpler. It maps page paths to stable image URLs and does not require an HMAC token for every page." %}
 
 ## Key benefits
 

@@ -1,30 +1,50 @@
 ---
 layout: page
-title: Social Cards - Generate OG Images from HTML
+title: Social Cards and Automatic Open Graph Images
 permalink: /use-cases/social-cards/
 parent: Use Cases
 nav_order: 1
 description: >-
-  Generate Open Graph images, Twitter cards, and social media previews automatically with HTML/CSS to Image.
+  Generate Open Graph images, Twitter cards, and social media previews for websites, CMSs, and applications with HTML/CSS to Image.
 ---
-# Social Cards
+# Social Cards and Open Graph Images
 {: .no_toc }
 {: .fs-9 }
 
-Auto-generate beautiful social media images for every page.
+Generate a link-preview image for every page, post, product, or profile.
 {: .fs-4 .fw-300 }
 
 <hr>
 
 ## What are social cards?
 
-Social cards (also called Open Graph images or OG images) are the preview images that appear when you share a link on Twitter, Facebook, LinkedIn, Slack, or other platforms. They're crucial for engagement - posts with images get significantly more clicks and shares.
+Social cards—also called **Open Graph images**, **OG images**, or **link-preview images**—appear when someone shares a URL on Twitter, Facebook, LinkedIn, Slack, and other platforms. The page identifies the image with `og:image` and `twitter:image` tags in its HTML `<head>`.
 
 ## The challenge
 
-Manually creating social images for every blog post, product page, or user profile doesn't scale. That's where HTML/CSS to Image comes in - you design a template once, then generate unique images automatically.
+One fallback image is easy to maintain. A specific image for every blog post, product page, or user profile requires a repeatable way to combine page data with a design.
 
-## How it works
+## Choose an OG image workflow
+
+| Your situation | Recommended workflow |
+|:---------------|:---------------------|
+| You have an existing public website, CMS, store, or static site | Use an [OG Image Config](/getting-started/og-images/). It maps each page path to a screenshot or template without an API request or HMAC token per page. |
+| Your application generates images from arbitrary or private data | Use the [image API](/getting-started/using-the-api/) with HTML/CSS or a reusable [template](/getting-started/templates/). |
+| You need a render-on-demand `GET` URL containing template values or a target URL | Use [Signed Image URLs](/getting-started/create-and-render/). |
+
+### Automatic OG images for an existing site
+
+Create one OG Image Config for your site's exact origin. A page such as `/articles/hello` uses a matching image URL:
+
+```html
+<meta property="og:image" content="https://hcti.io/v1/og/DOMAIN_ID/articles/hello">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hcti.io/v1/og/DOMAIN_ID/articles/hello">
+```
+
+HCTI can capture the page or a selected element. It can also render a template using the page's title, description, Open Graph metadata, or explicit template values. See the [OG Image Config setup guide](/getting-started/og-images/) and the [CMS and platform guides](/guides/og-images/).
+
+### API and template workflow
 
 1. **Design your template** - Create an HTML/CSS layout for your social card
 2. **Make it dynamic** - Use placeholders for title, author, date, etc.
@@ -75,16 +95,16 @@ curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
 
 | Platform | Recommended Size |
 |:---------|:-----------------|
-| Twitter | 1200 x 628 px |
+| Twitter | 1200 x 600 px |
 | Facebook | 1200 x 630 px |
 | LinkedIn | 1200 x 627 px |
 | Slack | 1200 x 630 px |
 
-For best results across all platforms, use **1200 x 630 pixels**.
+For one broad fallback image, use **1200 x 630 pixels**. An [OG Image Config](/getting-started/og-images/#4-choose-image-size-optimization) can instead adapt one render or create a separate render for each recognized platform size.
 
 ## Adding to your HTML
 
-Once you have the image URL, add it to your page's `<head>`:
+Once you have the image URL, add it to your page's `<head>`. This can be the path-based URL from an OG Image Config or the URL returned by an API or template request:
 
 ```html
 <!-- Open Graph / Facebook -->
@@ -97,7 +117,7 @@ Once you have the image URL, add it to your page's `<head>`:
 
 ## Using templates
 
-For high-volume use, consider using [Templates](/getting-started/templates/). Create a template once with variables, then generate images by passing just the dynamic values.
+For a consistent design, use [Templates](/getting-started/templates/). Create a template once with variables, then populate it through the API, a signed URL, or an OG Image Config.
 
 You can build the social card visually with the [Template Editor](/template-editor/) and start from common sizes in the [Canvas guide](/template-editor/canvas/), including the Open Graph preset.
 
@@ -119,6 +139,6 @@ curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
 1. **Keep text large** - Social cards are often viewed as thumbnails
 2. **Use high contrast** - Ensure text is readable at small sizes
 3. **Include branding** - Add your logo or consistent colors
-4. **Test across platforms** - Preview how your card looks on Twitter, Facebook, etc.
+4. **Test the published URL** - Use the [Social Card Previewer](https://htmlcsstoimage.com/tools/social-card-previewer) and check more than one page path.
 
 {% include code_footer.md version=1 %}

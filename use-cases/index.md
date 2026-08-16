@@ -21,14 +21,16 @@ See how developers are using HTML/CSS to Image in production.
 
 ## What can you build?
 
-The HTML/CSS to Image API is incredibly flexible. If you can build it with HTML and CSS, you can turn it into an image. Here are some of the most popular use cases:
+HTML/CSS layouts can become images for websites, social platforms, emails, documents, and automated workflows. These are some of the most common uses:
 
 | Use Case | Description |
 |:---------|:------------|
-| [Social Cards](/use-cases/social-cards/) | Open Graph images, Twitter cards, LinkedIn previews |
+| [Social Cards](/use-cases/social-cards/) | Automatic Open Graph images, Twitter cards, and API-generated social previews |
 | [Screenshots](/use-cases/screenshots/) | Capture any webpage, archive content, create previews |
 | [Dynamic Images](/use-cases/dynamic-images/) | Personalized graphics, certificates, job listings, quotes |
 | [Template Editor](/template-editor/) | Visual template building for repeatable image designs |
+
+{% include hint.md title="Adding cards to an existing site?" text="An [OG Image Config](/getting-started/og-images/) gives every public page or CMS route a matching social image URL without adding an image-generation backend." %}
 
 <hr>
 

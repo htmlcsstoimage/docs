@@ -5,7 +5,7 @@ permalink: /getting-started/templates/
 description: >-
   Create reusable templates for your HTML & CSS to make image generation easy.
 parent: Getting started
-nav_order: 5
+nav_order: 4
 ---
 # Image Templates
 {: .no_toc }
@@ -33,7 +33,7 @@ Templates support [Handlebars](https://handlebarsjs.com/) variables. Add {% raw 
 - Define a reusable template, then pass variables to it to generate unique images.
 - Use the [Template Editor](/template-editor/) to build a reusable image from blocks instead of writing all of the HTML and CSS by hand.
 - Create images using signed URLs in a `GET` request.
-- Generate social sharing images, such as `og:image` or `twitter:image`.
+- Generate social sharing images, such as `og:image` or `twitter:image`. For an existing website or CMS, an [OG Image Config](/getting-started/og-images/) can populate the template from each page's metadata.
 
 ### Example
 This image was generated with a template.
@@ -176,6 +176,8 @@ To generate a templated image, make an HTTP request to the API using the <b>temp
 </pre>
 
 You can also generate a templated image with a signed `GET` URL that renders on demand. See [Creating a templated image URL](/getting-started/create-and-render/#creating-a-templated-image-url).
+
+To use one template for automatic social cards across an existing site, select it in an [OG Image Config](/getting-started/og-images/#template-values). HCTI can map page titles, descriptions, Open Graph metadata, and explicit `html:tv:` values to its variables.
 
 {% include hint.md title="Template Versions" text="When you create an image using a `template_id`, it will automatically use the most recent version of that template. If you want to create an image from a specific template_version you can append `/:template_version` to your POST: `hcti.io/v1/image/:template_id/:template_version`" %}
 

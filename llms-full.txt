@@ -243,6 +243,39 @@ POST https://hcti.io/v1/image
 
 ---
 
+## Automatic Open Graph Images
+
+OG Image Configs generate social cards for existing public websites, stores, CMSs, and static sites without requiring an API request or HMAC signature for every page.
+
+An exact website origin is connected to a domain ID. The path after that domain ID maps to the same path on the configured origin:
+
+| Public page | HCTI image URL |
+|-------------|----------------|
+| `https://example.com/` | `https://hcti.io/v1/og/DOMAIN_ID/` |
+| `https://example.com/articles/hello` | `https://hcti.io/v1/og/DOMAIN_ID/articles/hello` |
+
+Rendering modes:
+- **Page Screenshot:** Capture the page viewport or an element selected with `hcti:selector`.
+- **Template Values:** Render an HCTI template using mapped page metadata or explicit `html:tv:VARIABLE_NAME` meta tags.
+
+Behavior:
+- Dashboard defaults can be overridden with supported `hcti:` page metadata. Page metadata takes precedence.
+- Refresh intervals control when HCTI checks the source page for new metadata.
+- A numeric `hcti:content_version` gives changed content at the same page path a new image identity.
+- Query strings are ignored for source-page selection and cache busting.
+- Image sizing can use one universal image, adapt one render to platform-specific bounds, or render each platform size separately.
+
+Use an OG Image Config when images correspond to public page paths. Use the image API, templates, or signed image URLs when arbitrary values must be passed at request time.
+
+Documentation:
+- Setup: https://docs.htmlcsstoimage.com/getting-started/og-images/
+- Supported page parameters: https://docs.htmlcsstoimage.com/getting-started/og-images/supported-parameters/
+- Platform and CMS guides: https://docs.htmlcsstoimage.com/guides/og-images/
+- Caching and refreshes: https://docs.htmlcsstoimage.com/guides/debugging/og-image-caching/
+- Signed Image URLs: https://docs.htmlcsstoimage.com/getting-started/create-and-render/
+
+---
+
 ## HTTP Proxies
 
 Route a render's outbound traffic through your own HTTP proxy. Useful for restricting access to internal content, controlling the egress IP, or getting past bot detection.
@@ -397,7 +430,7 @@ curl -X POST https://hcti.io/v1/image \
 
 ## Common Use Cases
 
-1. **Social Cards (OG Images)** - Auto-generate Open Graph images for blog posts
+1. **Social Cards (OG Images)** - Use path-based OG Image Configs for public sites and CMSs, or templates and the image API for application data
 2. **Website Screenshots** - Capture any public URL
 3. **Dynamic Images** - Certificates, receipts, personalized graphics
 4. **Email Images** - Generate images for email campaigns

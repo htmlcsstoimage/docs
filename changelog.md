@@ -16,6 +16,23 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+### Automatic Open Graph images for websites and CMSs
+August 16, 2026
+{: .text-delta}
+
+OG Image Configs provide one path-based image URL pattern for every public page on a website, store, CMS, or static site.
+
+- Connect an exact website origin that you own or administer.
+- Use **Page Screenshot** to capture the page or a selected element, or use **Template Values** to render page metadata in an HCTI template.
+- Choose one universal image, adapt one render to platform-specific bounds, or render each platform size separately.
+- Control how often HCTI refreshes page metadata and use `hcti:content_version` when content at the same path needs a new image identity.
+- Add page-specific screenshot controls with supported `hcti:` metadata.
+- Follow dedicated setup guides for Shopify, Squarespace, Webflow, Wix, WordPress, Jekyll, Astro, and Sitepress.
+
+[Set up automatic Open Graph images](/getting-started/og-images/) or choose a [platform and CMS guide](/guides/og-images/).
+
+<hr>
+
 ### Control duplicate image detection with `dedupe_duration_s`
 August 5, 2026
 {: .text-delta}
@@ -299,7 +316,7 @@ We've added new pages with detailed information on how to better use ms_delay an
 April 12, 2023
 {: .text-delta}
 
-We've added a new page explaining how to [grab your account usage](/guides/account-usage) via the API. 
+We've added a new page explaining how to [grab your account usage](/guides/advanced/account-usage/) via the API.
 
 <hr>
 
@@ -544,7 +561,7 @@ These variables can be replaced when creating an image, making for even simpler 
 ### Render when ready
 July 26, 2020
 {: .text-delta}
-We have added the [`render_when_ready` parameter to image creation](/guides/render-when-ready/). This gives you control over when the image is rendered.
+We have added the [`render_when_ready` parameter to image creation](/parameters/render_when_ready/). This gives you control over when the image is rendered.
 
 By setting `render_when_ready` to `true`, we will wait to generate the image until your HTML calls the `ScreenshotReady()` function in JavaScript.
 

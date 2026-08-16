@@ -61,10 +61,11 @@ The API returns a URL to your generated image. Use it anywhere - in emails, soci
 |:-------------|:-----------|
 | Generate images from HTML/CSS | [Using the API](/getting-started/using-the-api/) |
 | Take screenshots of websites | [URL to Image](/getting-started/url-to-image/) |
-| Control image dimensions | [Setting Height and Width](/getting-started/setting-height-and-width/) |
+| Add automatic social cards to a site or CMS | [Open Graph Images](/getting-started/og-images/) |
 | Create reusable templates | [Templates](/getting-started/templates/) |
+| Control image dimensions | [Setting Height and Width](/getting-started/setting-height-and-width/) |
 | Design templates visually | [Template Editor](/template-editor/) |
-| Generate images in one request | [Create and Render](/getting-started/create-and-render/) |
+| Generate images with a signed `GET` URL | [Signed Image URLs](/getting-started/create-and-render/) |
 
 <hr>
 

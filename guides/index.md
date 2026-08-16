@@ -44,6 +44,18 @@ Capture content from popular social platforms:
 
 <hr>
 
+## Open Graph Images
+
+Add automatic social cards to websites, stores, CMSs, and static sites:
+
+| Guide | Description |
+|:------|:------------|
+| [OG Image Configs](/getting-started/og-images/) | Connect a website origin and create path-specific social cards |
+| [Platform and CMS guides](/guides/og-images/) | Setup instructions for Shopify, Squarespace, Webflow, Wix, WordPress, Jekyll, Astro, and Sitepress |
+| [OG Image caching](/guides/debugging/og-image-caching/) | Understand refresh intervals, content versions, and social-platform caches |
+
+<hr>
+
 ## Debugging
 
 Troubleshoot common image generation issues:

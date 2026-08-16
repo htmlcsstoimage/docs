@@ -33,6 +33,7 @@ curl -X POST https://hcti.io/v1/image \
 - Batch create up to 25 images in one request
 - Reusable templates with variable substitution
 - Visual Template Editor for building saved templates from blocks in the dashboard
+- Automatic Open Graph images for public website and CMS pages with path-based image URLs
 - MCP Server integration for AI assistants (Cursor, Claude, Windsurf)
 - HTTP proxy support for routing render traffic through your own proxy
 - Custom storage destinations for saving renders to your own S3-compatible bucket
@@ -66,12 +67,30 @@ curl -X POST https://hcti.io/v1/image \
 
 With **Disable HCTI Storage**, authenticate the returned `/v1/store/...` URL with an HTTP Basic `PUT` request using API credentials from the same organization as the image. Its HTTP 200 or 424 JSON response reports the overall outcome plus status, target, bucket, and key for the base image and any transformation.
 
+## Automatic Open Graph Images
+
+An OG Image Config connects an exact public website origin to a path-based HCTI image URL. For example, `/v1/og/DOMAIN_ID/articles/hello` renders the configured origin's `/articles/hello` page.
+
+- Use **Page Screenshot** to capture the page, viewport, or a selected element.
+- Use **Template Values** to populate an HCTI template from page titles, descriptions, Open Graph metadata, mapped custom metadata, or explicit `html:tv:` values.
+- Supported page-level screenshot overrides use `hcti:` metadata.
+- Page metadata can be refreshed on an interval. A numeric `hcti:content_version` creates a new content identity for changes at the same path.
+- Image sizing can use one universal render, resize one render for the requesting platform, or render platform-specific sizes.
+- Query strings do not select a different source page or bust the OG image cache.
+
+Use OG Image Configs for social cards tied to existing public pages. Use the standard API or signed image URLs when arbitrary values must be supplied at request time.
+
 ## Documentation
 
 - **API Reference:** https://docs.htmlcsstoimage.com/getting-started/using-the-api/
 - **Code Examples:** https://docs.htmlcsstoimage.com/example-code/
 - **Parameters:** https://docs.htmlcsstoimage.com/parameters/
 - **Templates API:** https://docs.htmlcsstoimage.com/getting-started/templates/
+- **Automatic Open Graph Images:** https://docs.htmlcsstoimage.com/getting-started/og-images/
+- **Supported OG Image Parameters:** https://docs.htmlcsstoimage.com/getting-started/og-images/supported-parameters/
+- **OG Image CMS Guides:** https://docs.htmlcsstoimage.com/guides/og-images/
+- **OG Image Caching:** https://docs.htmlcsstoimage.com/guides/debugging/og-image-caching/
+- **Signed Image URLs:** https://docs.htmlcsstoimage.com/getting-started/create-and-render/
 - **Template Editor:** https://docs.htmlcsstoimage.com/template-editor/
 - **Template Editor Variables:** https://docs.htmlcsstoimage.com/template-editor/variables/
 - **Template Editor Blocks:** https://docs.htmlcsstoimage.com/template-editor/blocks/

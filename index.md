@@ -2,6 +2,8 @@
 title: HTML/CSS to Image API
 layout: default
 nav_order: 1
+description: >-
+  Generate images from HTML and CSS, screenshot webpages, and create automatic Open Graph images for websites and CMSs.
 ---
 
 # HTML/CSS to Image API
@@ -15,7 +17,7 @@ Your search for pixel perfect image generation ends here.
 [Get an API Key](https://htmlcsstoimage.com){: .btn .fs-5 .mb-4 .mb-md-0 }
 <hr>
 
-The API for generating high quality images from HTML/CSS.
+Generate high-quality images from HTML/CSS, capture public webpages, or automate social cards across an entire site.
 
 - Converts HTML to `png`, `jpg` or `webp`
 - Screenshot any URL
@@ -23,7 +25,7 @@ The API for generating high quality images from HTML/CSS.
 
 <hr>
 
-## Two ways to generate images
+## Three ways to generate images
 
 ### From HTML/CSS
 
@@ -47,6 +49,12 @@ curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
 
 [Learn more about URL to Image →](/getting-started/url-to-image/)
 
+### Automatic Open Graph images
+
+Connect a website or CMS once, then use one path-based image URL pattern for every page. HCTI can screenshot each page or populate a reusable template from its metadata—without an API request or HMAC signature for every social card.
+
+[Set up automatic Open Graph images →](/getting-started/og-images/)
+
 <hr>
 
 ## Quick start
@@ -56,6 +64,7 @@ Choose your path to get started:
 | I want to...                   | Go here                                                                                                                                                                                                                                                                                                                                                                 |
 |:-------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Read the API docs**          | [Using the API](/getting-started/using-the-api/)                                                                                                                                                                                                                                                                                                                        |
+| **Add automatic social cards** | [Open Graph Images](/getting-started/og-images/) for a website, CMS, or store                                                                                                                                                                                                                                                                                          |
 | **Design a reusable template** | [Template Editor](/template-editor/)                                                                                                                                                                                                                                                                                                                                    |
 | **See example code**           | [PHP](/example-code/php), [JavaScript](/example-code/javascript), [Ruby](/example-code/ruby), [Python](/example-code/python), [Go](/example-code/go), [cURL](/example-code/curl), [C#](/example-code/c), [TypeScript](/example-code/typescript), [Java](/example-code/java), [Rust](/example-code/rust), [Kotlin](/example-code/kotlin), [Elixir](/example-code/elixir) |
 | **Use with AI assistants**     | [MCP Server](/integrations/mcp/) for Cursor, Claude, Windsurf, and more                                                                                                                                                                                                                                                                                                 |

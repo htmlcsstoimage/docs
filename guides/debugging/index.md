@@ -24,4 +24,4 @@ Troubleshoot common image generation issues.
 | [White/Blank Images](/guides/debugging/white-images/) | Troubleshoot images that render blank |
 | [Rendering Emoji](/guides/debugging/emoji/) | Ensure emoji display correctly |
 | [Cloudflare Challenges](/guides/debugging/cloudflare-challenges/) | Allow authorized renders through Cloudflare on a site you control |
-
+| [OG Image Caching and Refreshes](/guides/debugging/og-image-caching/) | Refresh automatic social cards and troubleshoot HCTI or platform caches |
