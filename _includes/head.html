@@ -20,6 +20,12 @@
   <meta property="og:type" content="article">
   {% seo %}
 
+  {% if site.gh_edit_repository and site.gh_edit_branch and page.path %}
+    {% assign repo_parts = site.gh_edit_repository | split: "github.com/" %}
+    {% assign repo_path = repo_parts[1] %}
+    <link rel="alternate" type="text/markdown" href="https://raw.githubusercontent.com/{{ repo_path }}/{{ site.gh_edit_branch }}/{{ page.path }}">
+  {% endif %}
+
   {% if page.url == "/" %}
   <script type="application/ld+json">
   {
