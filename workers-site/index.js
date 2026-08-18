@@ -35,7 +35,14 @@ async function redirectOrHandleEvent(event) {
     case "/getting-started/deleting-an-image":
     case "/getting-started/retrieving-an-image":
     case "/getting-started/authentication":
+    case "/getting-started/api-reference":
       return Response.redirect(site + '/getting-started/using-the-api/', 301);
+    case "/getting-started/take-a-screenshot-of-a-url":
+      return Response.redirect(site + '/getting-started/url-to-image/', 301);
+    case "/getting-started/mcp-server":
+      return Response.redirect(site + '/integrations/mcp/', 301);
+    case "/getting-started/using-fonts":
+      return Response.redirect(site + '/parameters/google_fonts/', 301);
     case "/getting-started/full-page-images":
       return Response.redirect(site + '/guides/workflows/email-to-images/', 301);
     case "/getting-started/duplicate-image-detection":
@@ -71,13 +78,19 @@ async function redirectOrHandleEvent(event) {
     case "/guides/debugging-white-images":
     case "/guides/debugging-white-or-blank-images":
       return Response.redirect(site + '/guides/debugging/white-images/', 301);
+    case "/guides/troubleshooting/debugging":
+      return Response.redirect(site + '/guides/debugging/', 301);
     case "/guides/rendering-emoji":
       return Response.redirect(site + '/guides/debugging/emoji/', 301);
 
     // Styling Guides
     case "/guides/external-css-and-fonts":
     case "/guides/external-css-js-and-fonts":
+    case "/guides/custom-fonts":
+    case "/guides/using-custom-fonts":
       return Response.redirect(site + '/guides/styling/external-css-fonts/', 301);
+    case "/guides/using-fonts":
+      return Response.redirect(site + '/parameters/google_fonts/', 301);
     case "/guides/transparent-background":
       return Response.redirect(site + '/guides/styling/transparent-background/', 301);
     case "/guides/file-formats":
@@ -108,6 +121,12 @@ async function redirectOrHandleEvent(event) {
     case "/guides/image-charts-with-highchartsjs":
     case "/guides/image-charts-with-highcharts":
       return Response.redirect(site + '/guides/workflows/highcharts/', 301);
+    case "/example-code/postman":
+      return Response.redirect(site + '/guides/workflows/postman/', 301);
+
+    // Template redirects
+    case "/guides/templates":
+      return Response.redirect(site + '/getting-started/templates/', 301);
 
     // Parameter redirects
     case "/guides/render-when-ready":
@@ -138,6 +157,8 @@ async function redirectOrHandleEvent(event) {
     // Integrations
     case "/integrations/integromat":
       return Response.redirect(site + '/integrations/make/', 301);
+    case "/integrations/mcp-server":
+      return Response.redirect(site + '/integrations/mcp/', 301);
 
     default:
       return await handleEvent(event);
@@ -231,4 +252,3 @@ function handlePrefix(prefix) {
     return new Request(url.toString(), defaultAssetKey)
   }
 }
-
