@@ -211,6 +211,8 @@ Pipedream supports MCP servers for building serverless workflows. Connect the HT
 
 [Pipedream MCP Integration](https://mcp.pipedream.com/app/html_css_to_image){: .btn .fs-5 .mb-4 .mb-md-0 target="_blank" }
 
+The MCP server is also listed on [Smithery](https://smithery.ai/servers/htmlcsstoimage/hcti).
+
 ## Community skills
 
 The community has also created third-party AI skills for HTML/CSS to Image.
