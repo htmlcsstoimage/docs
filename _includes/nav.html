@@ -13,8 +13,8 @@
     {%- unless node.nav_exclude -%}
       {%- if node.parent == nil and node.title -%}
         {%- assign node_nav_title = node.nav_title | default: node.title -%}
-        <li class="nav-list-item {% if node.expanded or page.url == node.url or page.parent == node.title or page.grand_parent == node.title %} active{% endif %}">
-          {%- if page.parent == node.title or page.grand_parent == node.title -%}
+        <li class="nav-list-item {% if node.expanded or page.url == node.url or page.parent == node.title or page.grand_parent == node.title or page.great_grand_parent == node.title %} active{% endif %}">
+          {%- if page.parent == node.title or page.grand_parent == node.title or page.great_grand_parent == node.title -%}
             {%- assign first_level_url = node.url | absolute_url -%}
           {%- endif -%}
           {%- if node.has_children -%}
@@ -31,8 +31,8 @@
             {%- for child in children_list -%}
               {%- unless child.nav_exclude -%}
                 {%- assign child_nav_title = child.nav_title | default: child.title -%}
-                <li class="nav-list-item {% if page.url == child.url or page.parent == child.title %} active{% endif %}">
-                  {%- if page.url == child.url or page.parent == child.title -%}
+                <li class="nav-list-item {% if page.url == child.url or page.parent == child.title or page.grand_parent == child.title %} active{% endif %}">
+                  {%- if page.url == child.url or page.parent == child.title or page.grand_parent == child.title -%}
                     {%- assign second_level_url = child.url | absolute_url -%}
                   {%- endif -%}
                   {%- if child.has_children -%}
@@ -44,8 +44,27 @@
                     <ul class="nav-list">
                     {%- for grand_child in grand_children_list -%}
                       {%- assign grand_child_nav_title = grand_child.nav_title | default: grand_child.title -%}
-                      <li class="nav-list-item {% if page.url == grand_child.url %} active{% endif %}">
+                      <li class="nav-list-item {% if page.url == grand_child.url or page.parent == grand_child.title %} active{% endif %}">
+                        {%- if page.url == grand_child.url or page.parent == grand_child.title -%}
+                          {%- assign third_level_url = grand_child.url | absolute_url -%}
+                        {%- endif -%}
+                        {%- if grand_child.has_children -%}
+                          <a href="#" class="nav-list-expander" aria-label="Expand {{ grand_child_nav_title }}"><svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg></a>
+                        {%- endif -%}
                         <a href="{{ grand_child.url | absolute_url }}" class="nav-list-link child{% if page.url == grand_child.url %} active{% endif %}">{{ grand_child_nav_title }}</a>
+                        {%- if grand_child.has_children -%}
+                          {%- assign great_grand_children_list = pages_list | where: "parent", grand_child.title | where: "grand_parent", child.title | where: "great_grand_parent", node.title -%}
+                          <ul class="nav-list">
+                          {%- for great_grand_child in great_grand_children_list -%}
+                            {%- unless great_grand_child.nav_exclude -%}
+                              {%- assign great_grand_child_nav_title = great_grand_child.nav_title | default: great_grand_child.title -%}
+                              <li class="nav-list-item {% if page.url == great_grand_child.url %} active{% endif %}">
+                                <a href="{{ great_grand_child.url | absolute_url }}" class="nav-list-link child{% if page.url == great_grand_child.url %} active{% endif %}">{{ great_grand_child_nav_title }}</a>
+                              </li>
+                            {%- endunless -%}
+                          {%- endfor -%}
+                          </ul>
+                        {%- endif -%}
                       </li>
                     {%- endfor -%}
                     </ul>

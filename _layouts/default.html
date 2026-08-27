@@ -85,7 +85,11 @@ layout: table_wrappers
           <div class="breadcrumb-with-actions">
             <nav aria-label="Breadcrumb" class="breadcrumb-nav">
               <ol class="breadcrumb-nav-list">
-                {% if page.grand_parent %}
+                {% if page.great_grand_parent %}
+                  <li class="breadcrumb-nav-list-item"><a href="{{ first_level_url }}">{{ page.great_grand_parent }}</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="{{ second_level_url }}">{{ page.grand_parent }}</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="{{ third_level_url }}">{{ page.parent }}</a></li>
+                {% elsif page.grand_parent %}
                   <li class="breadcrumb-nav-list-item"><a href="{{ first_level_url }}">{{ page.grand_parent }}</a></li>
                   <li class="breadcrumb-nav-list-item"><a href="{{ second_level_url }}">{{ page.parent }}</a></li>
                 {% else %}

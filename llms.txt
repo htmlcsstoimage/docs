@@ -98,7 +98,7 @@ Use OG Image Configs for social cards tied to existing public pages. Use the sta
 - **n8n Integration:** https://docs.htmlcsstoimage.com/integrations/n8n/
 - **TypeScript Client (npm):** https://docs.htmlcsstoimage.com/example-code/typescript/
 - **HTTP Proxies:** https://docs.htmlcsstoimage.com/guides/advanced/proxies/
-- **Storage Destinations:** https://docs.htmlcsstoimage.com/guides/advanced/storage-destinations/
+- **Storage Destinations:** https://docs.htmlcsstoimage.com/guides/advanced/storage-destinations/ — Includes individual setup guides for Amazon S3, Cloudflare R2, Backblaze B2, DigitalOcean Spaces, Wasabi, Google Cloud Storage, and other S3-compatible services.
 - **Jumbo Images:** https://docs.htmlcsstoimage.com/guides/advanced/jumbo-images/
 - **Viewport Parameters:** https://docs.htmlcsstoimage.com/parameters/viewport/
 - **CSS Media Type:** https://docs.htmlcsstoimage.com/parameters/media_type/

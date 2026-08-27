@@ -4,6 +4,8 @@ title: Storage Destinations
 permalink: /guides/advanced/storage-destinations/
 parent: Advanced
 grand_parent: Guides
+has_children: true
+has_toc: false
 nav_order: 7
 description: >-
   Use Storage Destinations to automate rendering HTML/CSS images, URL screenshots or dynamic templated images to your Amazon S3 or S3-compatible bucket.
@@ -35,15 +37,17 @@ By default, HTML/CSS to Image keeps its normal copy and also writes a copy to yo
 
 ## Supported providers
 
-| Provider | Authentication | Additional settings |
-|:---------|:---------------|:--------------------|
-| Amazon S3 | IAM role | AWS region |
-| Cloudflare R2 | R2 access key and secret | Cloudflare account ID and optional data jurisdiction |
-| Backblaze B2 | Application key and secret | B2 region |
-| DigitalOcean Spaces | Spaces access key and secret | Spaces region |
-| Wasabi | Access key and secret | Wasabi region |
-| Google Cloud Storage | HMAC access ID and secret | — |
-| Other S3-compatible service | Access key and secret | Public HTTPS endpoint, optional signing region, and addressing style |
+Choose your provider for credentials, permissions, dashboard fields, connection testing, and provider-specific troubleshooting:
+
+| Provider guide | Authentication | Additional settings |
+|:---------------|:---------------|:--------------------|
+| [Upload to Amazon S3](/guides/advanced/storage-destinations/s3/) | IAM role | AWS region |
+| [Upload to Cloudflare R2](/guides/advanced/storage-destinations/r2/) | R2 access key and secret | Cloudflare account ID and optional data jurisdiction |
+| [Upload to Backblaze B2](/guides/advanced/storage-destinations/backblaze-b2/) | Application key and secret | B2 region |
+| [Upload to DigitalOcean Spaces](/guides/advanced/storage-destinations/digitalocean-spaces/) | Spaces access key and secret | Spaces region |
+| [Upload to Wasabi](/guides/advanced/storage-destinations/wasabi/) | Access key and secret | Wasabi region |
+| [Upload to Google Cloud Storage](/guides/advanced/storage-destinations/google-cloud-storage/) | HMAC access ID and secret | — |
+| [Upload to another S3-compatible service](/guides/advanced/storage-destinations/s3-compatible/) | Access key and secret | Public HTTPS endpoint, optional signing region, and addressing style |
 
 The bucket must already exist. HTML/CSS to Image does not create buckets for you.
 
@@ -63,75 +67,19 @@ Storage destinations are managed in the [Storage Destinations dashboard](https:/
 
 The optional key prefix works like a folder and keeps HCTI objects within one part of the bucket. Enter it without leading or trailing slashes.
 
-### Amazon S3
+### Permissions shared by every provider
 
-Amazon S3 uses an IAM role instead of a long-lived access key. HTML/CSS to Image assumes that role and receives temporary AWS credentials when it needs to access your bucket.
+Use credentials restricted to the destination bucket and key prefix whenever your provider supports it.
 
-The dashboard generates two example policies after you enter the bucket and optional key prefix. They serve different purposes and belong in different parts of the IAM role.
+| S3 permission | Required? | What happens without it |
+|:--------------|:----------|:------------------------|
+| `PutObject` | **Required** | The connection test fails, the destination cannot be enabled, and HCTI cannot save rendered files. |
+| `GetObject` | Optional | A later resize, crop, or format conversion can fail when **Disable HCTI Storage** is selected because HCTI cannot reload the original from your bucket. |
+| `DeleteObject` | Optional | The connection test succeeds, but its small test object remains under `<key-prefix>/.hcti/connection-tests/`. HCTI does not use this permission to delete rendered images. |
 
-#### Trust policy
-
-The trust policy answers: **Who can assume this role?**
-
-- Add it to the role's **Trust relationships** in AWS IAM.
-- Its principal is the HTML/CSS to Image storage writer role.
-- Its action is `sts:AssumeRole`.
-- Its `sts:ExternalId` condition contains an ID unique to your HTML/CSS to Image organization.
-
-The external ID prevents the HCTI writer role from using this role on behalf of a different organization. Use the value generated in your dashboard and do not reuse it for another organization. The trust policy only allows the role to be assumed; it does not grant access to any S3 objects.
-
-#### Role permissions policy
-
-The role permissions policy answers: **What can HCTI do after assuming the role?**
-
-Attach the generated policy to the role as an inline or managed permissions policy. It should scope object access to:
-
-- `arn:aws:s3:::<bucket>/<key-prefix>/*` for rendered images.
-- `arn:aws:s3:::<bucket>/<key-prefix>/.hcti/connection-tests/*` for connection-test cleanup.
-
-The generated example includes these permissions:
-
-| Permission | Required? | What happens without it |
-|:-----------|:----------|:------------------------|
-| `s3:PutObject` | **Required** | The connection test fails, the destination cannot be enabled, and HCTI cannot save rendered files. |
-| `s3:GetObject` | Optional | When you choose to **Disable HCTI Storage**, HCTI can still write the base image and any transformation included in the initial render. A later resize, crop, or format conversion returns an error because HCTI cannot reload the original from your bucket. |
-| `s3:DeleteObject` | Optional | The connection test still succeeds, but its small test object remains under `<key-prefix>/.hcti/connection-tests/`. This permission is not used to delete rendered images. |
-
-The connection test verifies that HCTI can assume the role and write a small text object. Deleting that object is best-effort, so cleanup failure does not fail the test. The test does not verify `s3:GetObject`; if you plan to use **Disable HCTI Storage** and request transformations after the initial store, include read access in the role policy.
-
-To finish the AWS setup:
-
-1. Create an IAM role in your AWS account.
-2. Add the dashboard-generated trust policy to the role's trust relationship.
-3. Attach the dashboard-generated role permissions policy.
-4. Paste the role ARN into the storage destination form.
-5. Test the connection, then enable and save the destination.
-
-### Cloudflare R2
-
-Cloudflare R2 uses your Cloudflare account ID and S3 API credentials. Create the credentials from an R2 API token with **Object Read & Write** access scoped to the destination bucket.
-
-The optional **Data jurisdiction** setting selects the R2 jurisdictional endpoint:
-
-| Dashboard option | Endpoint | Use when |
-|:-----------------|:---------|:---------|
-| **Default** | `<account-id>.r2.cloudflarestorage.com` | The bucket has no jurisdiction restriction. This is also the correct choice for buckets that use a location hint. |
-| **European Union** | `<account-id>.eu.r2.cloudflarestorage.com` | The bucket was created in the European Union jurisdiction. |
-| **FedRAMP** | `<account-id>.fedramp.r2.cloudflarestorage.com` | The bucket was created in the FedRAMP jurisdiction. |
-
-Choose the jurisdiction that was used when the bucket was created. Selecting **European Union** or **FedRAMP** for a bucket without that restriction, or selecting **Default** for a jurisdiction-restricted bucket, points HCTI at the wrong endpoint and causes the connection test to fail.
-
-Changing **Data jurisdiction** changes the destination endpoint. Run **Test connection** again before saving the updated destination.
-
-### Other providers
-
-Backblaze B2, DigitalOcean Spaces, Wasabi, Google Cloud Storage, and other S3-compatible services also use provider-issued access keys. Create credentials restricted to the destination bucket and key prefix whenever the provider supports it.
-
-Those credentials need the provider's equivalent of object write permission. Read permission has the same conditional requirement described above, and delete permission is only used to clean up connection-test objects.
+The connection test verifies that HCTI can write a small text object. Deleting that object is best-effort, so cleanup failure does not fail the test. The test does not verify read access.
 
 Credentials are encrypted before being stored. Saved secret access keys are not displayed again.
-
-{% include hint.md title="Custom endpoints must be public" text="An **Other S3-compatible** endpoint must use HTTPS, resolve to public IP addresses, and must not include credentials, a path, query string, or fragment." %}
 
 <hr>
 

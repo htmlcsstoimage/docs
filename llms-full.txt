@@ -308,6 +308,16 @@ Save rendered files to an Amazon S3 or S3-compatible bucket owned by your organi
 
 Full guide: https://docs.htmlcsstoimage.com/guides/advanced/storage-destinations/
 
+Provider setup guides:
+
+- Amazon S3: https://docs.htmlcsstoimage.com/guides/advanced/storage-destinations/s3/
+- Cloudflare R2: https://docs.htmlcsstoimage.com/guides/advanced/storage-destinations/r2/
+- Backblaze B2: https://docs.htmlcsstoimage.com/guides/advanced/storage-destinations/backblaze-b2/
+- DigitalOcean Spaces: https://docs.htmlcsstoimage.com/guides/advanced/storage-destinations/digitalocean-spaces/
+- Wasabi: https://docs.htmlcsstoimage.com/guides/advanced/storage-destinations/wasabi/
+- Google Cloud Storage: https://docs.htmlcsstoimage.com/guides/advanced/storage-destinations/google-cloud-storage/
+- Other S3-compatible services: https://docs.htmlcsstoimage.com/guides/advanced/storage-destinations/s3-compatible/
+
 ---
 
 ## MCP Server Integration
