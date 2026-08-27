@@ -119,6 +119,8 @@ The API supports `jpg`, `png`, `webp`, and `pdf`. If no file extension is passed
 | webp | `https://hcti.io/v1/image/a3ab2ab2-906e-4b5c-a88d-41a1c3f3779e.webp` |
 | pdf | `https://hcti.io/v1/image/a3ab2ab2-906e-4b5c-a88d-41a1c3f3779e.pdf` |
 
+{% include hint.md title="Tip" text="You can include the desired format as a parameter when creating your image. See [here](/parameters/format/) for more details." %}
+
 {% include hint.md title="PNG by default" text="The API returns `png` by default. If no extension is on the URL, a png will be generated." %}
 
 ### Query parameters

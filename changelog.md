@@ -16,6 +16,29 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+### Choose the returned file format in image creation requests
+August 27, 2026
+{: .text-delta}
+
+Image creation requests can now include `format` in the request body. This parameter selects the file extension included in the returned URL; it does not change the stored image definition.
+
+- Set `format` to `png`, `jpg`, `webp`, or `pdf` for an HTML/CSS image, URL screenshot, saved-template image, or image batch.
+- Raster images are rendered and stored as PNGs. JPG and WebP URLs convert that stored PNG when requested.
+- PDFs are rendered and saved separately when a PDF URL is requested.
+- The same image ID can still be requested later with a different supported extension.
+- Batch requests can set `format` in `default_options` or override it in an individual variation.
+- When omitted, the API returns its default extensionless URL, which renders as PNG.
+
+The official clients now expose the body parameter and apply it to generated signed URL paths:
+
+- [.NET client v0.12.0](https://github.com/htmlcsstoimage/dotnet-client) with `RenderImageFormat.PDF` support.
+- [TypeScript client v0.9.0](https://github.com/htmlcsstoimage/ts-client).
+- [Ruby client v0.3.0](https://github.com/htmlcsstoimage/ruby-client).
+
+[Read the `format` parameter documentation](/parameters/format/) or compare output types in the [file formats guide](/guides/styling/file-formats/).
+
+<hr>
+
 ### Ruby client v0.2.0
 August 21, 2026
 {: .text-delta}

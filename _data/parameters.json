@@ -104,6 +104,14 @@
       "support": { "html": true, "url": true, "templates": true, "og_config": false, "create_and_render": true }
     },
     {
+      "name": "format",
+      "description": "Choose the file extension in the initially returned image URL: `png`, `jpg`, `webp`, or `pdf`.",
+      "type": "String",
+      "link": "/parameters/format/",
+      "additional": true,
+      "support": { "html": true, "url": true, "templates": false, "og_config": false, "create_and_render": false }
+    },
+    {
       "name": "full_screen",
       "description": "Generate an image of the entire height of a URL page.",
       "type": "Boolean",

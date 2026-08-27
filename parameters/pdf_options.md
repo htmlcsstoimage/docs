@@ -21,11 +21,12 @@ Generate customized PDF documents from HTML
 
 When generating PDFs, use the `pdf_options` parameter to control page size, margins, scaling, and background printing.
 
-To get a PDF instead of an image, add `.pdf` to your image URL:
+You can use either of these flows:
 
-```
-https://hcti.io/v1/image/abc123.pdf
-```
+- **Create an image, then render it as a PDF:** Create the image normally, then add `.pdf` to the returned image URL.
+- **Render it as a PDF directly:** Include [`format: "pdf"`](/parameters/format/) when creating the image. The URL in the creation response will already end in `.pdf`.
+
+In both cases, the PDF is rendered and saved separately when its URL is requested. The `format` parameter only controls the URL returned by the creation request; it does not change the stored image definition.
 
 ## Parameters
 
@@ -50,7 +51,7 @@ The `pdf_options` object accepts the following properties:
 
 ## Example usage
 
-### Basic PDF generation
+### Create an image, then render it as a PDF
 
 Create an image and access it as PDF:
 
@@ -66,6 +67,33 @@ Then append `.pdf` to the returned URL:
 ```
 https://hcti.io/v1/image/abc123.pdf
 ```
+
+### Return a PDF URL directly
+
+Set `format` to `pdf` when creating the image:
+
+```bash
+curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
+     -H "Content-Type: application/json" \
+     -d '{
+       "html": "<h1>Invoice #1234</h1><p>Thank you for your purchase.</p>",
+       "format": "pdf",
+       "pdf_options": {
+         "print_background": true
+       }
+     }'
+```
+
+The response URL already includes the PDF extension:
+
+```json
+{
+  "url": "https://hcti.io/v1/image/abc123.pdf",
+  "id": "abc123"
+}
+```
+
+Requesting that URL renders and returns the separately saved PDF.
 
 ### Letter size with margins
 

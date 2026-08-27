@@ -35,6 +35,8 @@ To specify a format, add the appropriate file extension to your image URL:
 | WebP | `https://hcti.io/v1/image/abc123.webp` | Modern web applications, optimal compression |
 | PDF | `https://hcti.io/v1/image/abc123.pdf` | Documents, invoices, printable content |
 
+{% include hint.md title="Tip" text="You can include the desired format as a parameter when creating your image. See [here](/parameters/format/) for more details." %}
+
 {% include hint.md title="Default Format" text="If no extension is specified, the API will return a PNG image." %}
 
 ## Format Characteristics
@@ -124,5 +126,4 @@ Benefits:
 | PDF | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 {% include code_footer.md version=1 %}
-
 
