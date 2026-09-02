@@ -6,7 +6,7 @@ permalink: /integrations/n8n/
 parent: Integrations
 nav_order: 3
 description: >-
-  Generate images, website screenshots, PDFs, and signed image URLs in n8n with the HTML/CSS to Image API community node.
+  Generate images, website screenshots, PDFs, and signed image URLs in n8n with the verified HTML/CSS to Image API node.
 ---
 # n8n: HTML/CSS to Image API
 {: .no_toc }
@@ -15,31 +15,39 @@ description: >-
 Generate images, website screenshots, PDFs, and signed image URLs in your n8n workflows.
 {: .fs-4 .fw-300 }
 
-[View package on npm](https://www.npmjs.com/package/@html-css-to-image/n8n-nodes-html-css-to-image){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 target="_blank" }
+[Install in n8n](https://n8n.io/integrations/htmlcss-to-image-api/){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 target="_blank" }
+[View package on npm](https://www.npmjs.com/package/@html-css-to-image/n8n-nodes-html-css-to-image){: .btn .fs-5 .mb-4 .mb-md-0 .mr-2 target="_blank" }
 [Get an API Key](https://htmlcsstoimage.com/dashboard){: .btn .fs-5 .mb-4 .mb-md-0 target="_blank" }
 
-{% include hint.md title="Verification pending" text="We've submitted the node to n8n for verification. While that review is in progress, you can install it as a community node on a self-hosted n8n instance. It is not currently available to install on n8n Cloud." %}
+{% include hint.md title="Verified by n8n" text="The HTML/CSS to Image integration is verified by n8n and available for both n8n Cloud and self-hosted instances." %}
 
 <hr>
 
-## Install on self-hosted n8n
+## Install the integration
 
-An n8n instance owner or admin can install the node from npm:
+An n8n instance owner or admin can install the verified node for everyone on the instance:
 
-1. In n8n, go to **Settings → Community Nodes**.
-2. Select **Install**.
-3. Enter this npm package name:
+1. Open a workflow in n8n and select **+** to open the Nodes panel.
+2. Search for **HTML/CSS to Image API**.
+3. Select the node under **More from the community**.
+4. Select **Install**.
+5. Add the node to your workflow.
 
-   ```text
-   @html-css-to-image/n8n-nodes-html-css-to-image
-   ```
+See [n8n's verified community-node installation guide](https://docs.n8n.io/integrations/community-nodes/installation-and-management/install-verified-community-nodes) for instance settings and the latest installation details.
 
-4. Acknowledge the community-node installation warning.
-5. Select **Install**.
+### Manual installation on self-hosted n8n
 
-After installation, add the **HTML/CSS to Image API** node to a workflow.
+Most users should install the verified node from the Nodes panel. If you manage community packages manually—for example, on an n8n instance running in queue mode—you can install the package from npm instead:
 
-See [n8n's community-node installation guide](https://docs.n8n.io/integrations/community-nodes/installation/gui-install/) for the latest requirements and installation details.
+```shell
+mkdir -p ~/.n8n/nodes
+cd ~/.n8n/nodes
+npm install @html-css-to-image/n8n-nodes-html-css-to-image
+```
+
+Restart n8n after installation. This method is only for self-hosted instances; it isn't needed or available on n8n Cloud.
+
+See [n8n's manual community-node installation guide](https://docs.n8n.io/integrations/community-nodes/installation-and-management/manual-installation) for Docker and queue-mode details.
 
 ## Add your credentials
 
@@ -54,6 +62,7 @@ n8n stores the values in its encrypted credential store and tests them against t
 - **Create From HTML/CSS** — Render HTML and CSS as an image or PDF.
 - **Create From URL** — Take a screenshot of a public webpage.
 - **Create From Template** — Render a saved template with dynamic values.
+- **Delete** — Permanently delete an image by ID.
 - **Generate Signed URL** — Create a signed template or webpage URL that renders on demand.
 
 All input fields support n8n expressions, so content and options can come from earlier workflow steps.
@@ -83,7 +92,8 @@ For saved templates, add each variable under **Template Values**. You can choose
 
 ## Resources
 
+- [HTML/CSS to Image on n8n](https://n8n.io/integrations/htmlcss-to-image-api/)
 - [npm package](https://www.npmjs.com/package/@html-css-to-image/n8n-nodes-html-css-to-image)
 - [Source code and issue tracker](https://github.com/htmlcsstoimage/n8n-node)
 - [HTML/CSS to Image API documentation](/getting-started/using-the-api/)
-- [n8n community-node documentation](https://docs.n8n.io/integrations/community-nodes/)
+- [n8n verified community-node documentation](https://docs.n8n.io/integrations/community-nodes/installation-and-management/install-verified-community-nodes)

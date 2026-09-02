@@ -16,6 +16,25 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+### HTML/CSS to Image is now verified by n8n
+September 2, 2026
+{: .text-delta}
+
+The official HTML/CSS to Image integration is now verified by n8n. Instance owners and admins can find and install it directly from the n8n Nodes panel on n8n Cloud or a self-hosted instance.
+
+Use the integration to:
+
+- Create images and PDFs from HTML/CSS.
+- Take screenshots of webpage URLs.
+- Render saved templates with dynamic values.
+- Generate signed render-on-demand URLs.
+- Delete images by ID.
+- Return image metadata, binary PNG/JPG/WebP/PDF files, or both.
+
+[View HTML/CSS to Image on n8n](https://n8n.io/integrations/htmlcss-to-image-api/) or [read the integration guide](/integrations/n8n/).
+
+<hr>
+
 ### Choose the returned file format in image creation requests
 August 27, 2026
 {: .text-delta}
