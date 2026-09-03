@@ -140,6 +140,8 @@ See the [signed image URL guide](/getting-started/create-and-render/) for URL co
 | [.NET](/example-code/c/) | `0.12.0` | `Format = RenderImageFormat.PDF` |
 | [TypeScript](/example-code/typescript/) | `0.9.0` | `format: 'pdf'` |
 | [Ruby](/example-code/ruby/) | `0.3.0` | `format: "pdf"` |
+| [Python](/example-code/python/#official-pypi-client) | `0.2.0` | `format="pdf"` |
+| [PHP](/example-code/php/#official-composer-client) | `0.1.0` | `format: ImageFormat::PDF` |
 
 For choosing a format and retrieving an existing image with a different extension, see the [file formats guide](/guides/styling/file-formats/).
 

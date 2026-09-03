@@ -38,14 +38,16 @@ We provide example code for popular languages, but the API works the same way ev
 
 ## Start with a client library
 
-If you are using TypeScript, JavaScript, or .NET, start with the official clients. They include helpers for authentication, JSON requests, templates, and signed image URLs.
+If you are using TypeScript, JavaScript, .NET, Python, or PHP, start with the official clients. They include helpers for authentication, JSON requests, templates, and signed image URLs.
 
 | Language | Recommended starting point |
 |:---------|:---------------------------|
 | TypeScript / JavaScript | [Official npm client](/example-code/typescript/#official-npm-client) |
 | C# / .NET | [Official NuGet package](/example-code/c/) |
+| Python | [Official PyPI client](/example-code/python/#official-pypi-client) |
+| PHP | [Official Composer client](/example-code/php/#official-composer-client) |
 
-The other examples stay close to each language's standard HTTP and JSON tools, adding a popular client library only when the language does not include one.
+The pages also include direct HTTP examples when you want to work with the API without an SDK.
 
 ---
 

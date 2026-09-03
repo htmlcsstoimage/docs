@@ -6,10 +6,51 @@ parent: Example code
 permalink: /example-code/php/
 description: >-
   Convert HTML to an image (png, jpg or webp) with PHP + the HTML/CSS to Image
-  API. Renders exactly like Google Chrome.
+  API. Official Composer package for PHP 8.2+.
 ---
 {% include intro.md language="PHP" %}
 
+## Official Composer client
+
+For typed requests, responses, and signed URL helpers, use the official [`html-css-to-image/client`](https://packagist.org/packages/html-css-to-image/client) package.
+
+```bash
+composer require html-css-to-image/client
+```
+
+```php
+<?php
+
+use HtmlCssToImage\HtmlCssToImageClient;
+use HtmlCssToImage\Request\CreateHtmlCssImageRequest;
+use HtmlCssToImage\Response\CreateImageSuccessResponse;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$client = new HtmlCssToImageClient(
+    apiId: 'your-api-id',
+    apiKey: 'your-api-key',
+);
+
+$result = $client->createImage(
+    new CreateHtmlCssImageRequest(
+        html: "<div class='box'>PHP ✅</div>",
+        css: '.box { border: 4px solid #03B875; padding: 20px; }',
+    ),
+);
+
+if ($result instanceof CreateImageSuccessResponse) {
+    echo $result->url;
+} else {
+    echo $result->error;
+}
+```
+
+The client also supports URL screenshots, templates, batches, image deletion, render options, and signed URLs. See the [PHP client repository](https://github.com/htmlcsstoimage/php-client) for complete usage and API documentation.
+
+<hr>
+
+## Direct HTTP example
 
 ```php
 {% include_snippet everything from snippets/plain_php.php %}

@@ -379,6 +379,30 @@ Use the official npm package for typed requests and helper methods in Node.js/Ty
 
 ---
 
+## Official Python Client (PyPI)
+
+Use the official Python package for typed requests and responses, configurable HTTPX transport, and signed URL helpers.
+
+- **Package:** `html-css-to-image`
+- **Install:** `pip install html-css-to-image`
+- **Docs:** https://docs.htmlcsstoimage.com/example-code/python/
+- **PyPI:** https://pypi.org/project/html-css-to-image/
+- **GitHub:** https://github.com/htmlcsstoimage/python-client
+
+---
+
+## Official PHP Client (Packagist)
+
+Use the official Composer package for typed requests and responses, injectable PSR-18 transport, and signed URL helpers.
+
+- **Package:** `html-css-to-image/client`
+- **Install:** `composer require html-css-to-image/client`
+- **Docs:** https://docs.htmlcsstoimage.com/example-code/php/
+- **Packagist:** https://packagist.org/packages/html-css-to-image/client
+- **GitHub:** https://github.com/htmlcsstoimage/php-client
+
+---
+
 ## Code Examples
 
 ### Python

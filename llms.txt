@@ -97,6 +97,9 @@ Use OG Image Configs for social cards tied to existing public pages. Use the sta
 - **MCP Server:** https://docs.htmlcsstoimage.com/integrations/mcp/
 - **n8n Integration:** https://docs.htmlcsstoimage.com/integrations/n8n/
 - **TypeScript Client (npm):** https://docs.htmlcsstoimage.com/example-code/typescript/
+- **Python Client (PyPI):** https://docs.htmlcsstoimage.com/example-code/python/
+- **PHP Client (Packagist):** https://docs.htmlcsstoimage.com/example-code/php/
+- **.NET Client (NuGet):** https://docs.htmlcsstoimage.com/example-code/c/
 - **HTTP Proxies:** https://docs.htmlcsstoimage.com/guides/advanced/proxies/
 - **Storage Destinations:** https://docs.htmlcsstoimage.com/guides/advanced/storage-destinations/ — Includes individual setup guides for Amazon S3, Cloudflare R2, Backblaze B2, DigitalOcean Spaces, Wasabi, Google Cloud Storage, and other S3-compatible services.
 - **Jumbo Images:** https://docs.htmlcsstoimage.com/guides/advanced/jumbo-images/
@@ -115,6 +118,9 @@ Use OG Image Configs for social cards tied to existing public pages. Use the sta
 - **n8n:** https://docs.htmlcsstoimage.com/integrations/n8n/
 - **MCP Server:** https://docs.htmlcsstoimage.com/integrations/mcp/
 - **TypeScript Client (npm):** https://docs.htmlcsstoimage.com/example-code/typescript/
+- **Python Client (PyPI):** https://docs.htmlcsstoimage.com/example-code/python/
+- **PHP Client (Packagist):** https://docs.htmlcsstoimage.com/example-code/php/
+- **.NET Client (NuGet):** https://docs.htmlcsstoimage.com/example-code/c/
 
 ## Code Examples Available
 

@@ -119,7 +119,7 @@ author=%7B%22name%22%3A%22Jeff%22%7D&title=%22Launch%22
 
 The `author` value decodes to `{"name":"Jeff"}`. The `title` value decodes to `"Launch"`.
 
-{% include hint.md title="Use an official client" text="The [TypeScript](/example-code/typescript/) and [.NET](/example-code/c/) clients include signed URL helpers (`generateTemplatedImageUrl` and `CreateTemplatedImageUrl`) so you do not need to hand-build the query string or HMAC token." %}
+{% include hint.md title="Use an official client" text="The [TypeScript](/example-code/typescript/), [.NET](/example-code/c/), [Python](/example-code/python/), and [PHP](/example-code/php/) clients include signed URL helpers so you do not need to hand-build the query string or HMAC token." %}
 
 <hr>
 
@@ -195,6 +195,37 @@ var imageUrl = client.CreateTemplatedImageUrl(
         title = "Launch",
         author = new { name = "Avery" }
     });
+```
+
+#### [Python Client](/example-code/python/#official-pypi-client)
+
+```python
+from html_css_to_image import HtmlCssToImageClient
+
+with HtmlCssToImageClient.from_env() as client:
+    image_url = client.generate_templated_image_url_from_values(
+        "t-b0354248-e7f6-4cca-81c6-2b4a70a16388",
+        {
+            "title": "Launch",
+            "author": {"name": "Avery"},
+        },
+    )
+```
+
+#### [PHP Client](/example-code/php/#official-composer-client)
+
+```php
+use HtmlCssToImage\HtmlCssToImageClient;
+
+$client = HtmlCssToImageClient::fromEnvironment();
+
+$imageUrl = $client->generateTemplatedImageUrlFromValues(
+    't-b0354248-e7f6-4cca-81c6-2b4a70a16388',
+    [
+        'title' => 'Launch',
+        'author' => ['name' => 'Avery'],
+    ],
+);
 ```
 
 
