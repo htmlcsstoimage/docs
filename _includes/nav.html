@@ -16,6 +16,7 @@
         <li class="nav-list-item {% if node.expanded or page.url == node.url or page.parent == node.title or page.grand_parent == node.title or page.great_grand_parent == node.title %} active{% endif %}">
           {%- if page.parent == node.title or page.grand_parent == node.title or page.great_grand_parent == node.title -%}
             {%- assign first_level_url = node.url | absolute_url -%}
+            {%- assign first_level_title = node_nav_title -%}
           {%- endif -%}
           {%- if node.has_children -%}
             {%- if node.expanded != true -%}
@@ -34,6 +35,7 @@
                 <li class="nav-list-item {% if page.url == child.url or page.parent == child.title or page.grand_parent == child.title %} active{% endif %}">
                   {%- if page.url == child.url or page.parent == child.title or page.grand_parent == child.title -%}
                     {%- assign second_level_url = child.url | absolute_url -%}
+                    {%- assign second_level_title = child_nav_title -%}
                   {%- endif -%}
                   {%- if child.has_children -%}
                     <a href="#" class="nav-list-expander" aria-label="Expand {{ child_nav_title }}"><svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg></a>
@@ -47,6 +49,7 @@
                       <li class="nav-list-item {% if page.url == grand_child.url or page.parent == grand_child.title %} active{% endif %}">
                         {%- if page.url == grand_child.url or page.parent == grand_child.title -%}
                           {%- assign third_level_url = grand_child.url | absolute_url -%}
+                          {%- assign third_level_title = grand_child_nav_title -%}
                         {%- endif -%}
                         {%- if grand_child.has_children -%}
                           <a href="#" class="nav-list-expander" aria-label="Expand {{ grand_child_nav_title }}"><svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg></a>

@@ -1234,3 +1234,37 @@ details.te-property[open] > .te-property__summary {
 .main-content > h1:first-of-type{
   margin-top: 0 !important;
 }
+
+// Give client walkthroughs a quieter title and clear separation between steps.
+.main-content.mcp-client-guide {
+  > h1 { font-size: 2rem; line-height: 1.25; margin-bottom: 1rem; }
+  > .mcp-lead { font-size: 1.125rem; line-height: 1.6; }
+  > h2 { margin-top: 3rem; margin-bottom: 1rem; }
+  > ol > li { margin-bottom: 0.75rem; }
+
+  .mcp-config {
+    margin: 1.5rem 0 2rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid $grey-lt-200;
+    border-radius: 6px;
+
+    summary { cursor: pointer; font-weight: 500; }
+    &[open] summary { margin-bottom: 1rem; }
+  }
+
+  @media (max-width: 600px) {
+    > h1 { font-size: 1.625rem; }
+  }
+}
+
+// Prose prompts should stay readable at every viewport width.
+.main-content .language-text.highlighter-rouge {
+  .highlight { min-width: 0; }
+
+  pre,
+  pre code {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+}

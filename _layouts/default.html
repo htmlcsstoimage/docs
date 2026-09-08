@@ -86,16 +86,16 @@ layout: table_wrappers
             <nav aria-label="Breadcrumb" class="breadcrumb-nav">
               <ol class="breadcrumb-nav-list">
                 {% if page.great_grand_parent %}
-                  <li class="breadcrumb-nav-list-item"><a href="{{ first_level_url }}">{{ page.great_grand_parent }}</a></li>
-                  <li class="breadcrumb-nav-list-item"><a href="{{ second_level_url }}">{{ page.grand_parent }}</a></li>
-                  <li class="breadcrumb-nav-list-item"><a href="{{ third_level_url }}">{{ page.parent }}</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="{{ first_level_url }}">{{ first_level_title | default: page.great_grand_parent }}</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="{{ second_level_url }}">{{ second_level_title | default: page.grand_parent }}</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="{{ third_level_url }}">{{ third_level_title | default: page.parent }}</a></li>
                 {% elsif page.grand_parent %}
-                  <li class="breadcrumb-nav-list-item"><a href="{{ first_level_url }}">{{ page.grand_parent }}</a></li>
-                  <li class="breadcrumb-nav-list-item"><a href="{{ second_level_url }}">{{ page.parent }}</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="{{ first_level_url }}">{{ first_level_title | default: page.grand_parent }}</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="{{ second_level_url }}">{{ second_level_title | default: page.parent }}</a></li>
                 {% else %}
-                  <li class="breadcrumb-nav-list-item"><a href="{{ first_level_url }}">{{ page.parent }}</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="{{ first_level_url }}">{{ first_level_title | default: page.parent }}</a></li>
                 {% endif %}
-                <li class="breadcrumb-nav-list-item"><span>{{ page.title }}</span></li>
+                <li class="breadcrumb-nav-list-item"><span>{{ page.nav_title | default: page.title }}</span></li>
               </ol>
             </nav>
             {% include copy_page.html %}
@@ -117,7 +117,7 @@ layout: table_wrappers
       {% endcapture %}
 
       <div class="content-with-toc">
-        <div id="main-content" class="main-content" role="main">
+        <div id="main-content" class="main-content {{ page.content_class | escape }}" role="main">
           {{ rendered_content }}
 
           {% if page.has_children == true and page.has_toc != false %}
