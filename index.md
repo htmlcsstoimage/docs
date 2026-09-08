@@ -7,8 +7,7 @@ description: >-
 ---
 
 # HTML/CSS to Image API
-
-{: .fs-9 }
+{: .no_toc }
 
 Your search for pixel perfect image generation ends here.
 {: .fs-6 .fw-300 }
@@ -32,8 +31,11 @@ Generate high-quality images from HTML/CSS, capture public webpages, or automate
 Create images programmatically using HTML and CSS. Perfect for social cards, certificates, dynamic graphics, and more.
 
 ```bash
-curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
-  -d html="<div style='padding:20px;background:#4f46e5;color:white;font-size:24px;'>Hello World</div>"
+curl -X POST https://hcti.io/v1/image \
+  -u 'UserID:APIKey' \
+  --data-urlencode 'html=<div class="card">Hello World</div>' \
+  --data-urlencode 'css=.card { padding: 20px; background: #4f46e5;
+    color: white; font-size: 24px; }'
 ```
 
 [Learn more about HTML to Image →](/getting-started/using-the-api/)
