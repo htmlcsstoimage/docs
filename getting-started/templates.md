@@ -131,10 +131,10 @@ STATUS: 429 TOO MANY REQUESTS
 {
     "error": "Plan limit exceeded",
     "statusCode": 429,
-    "message": "The tryit plan is limited to 1 template"
+    "message": "The tryit plan is limited to 5 templates"
 }
 ```
-{% include hint.md title="Plan Limits" text="Free plans can create 1 template. Paid plans can create 1,000. You can edit your existing templates an unlimited number of times." %}
+{% include hint.md title="Plan Limits" text="Free plans can create 5 templates. Paid plans can create 1,000. You can edit your existing templates an unlimited number of times." %}
 <hr>
 
 ## Editing a Template
