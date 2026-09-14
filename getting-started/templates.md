@@ -71,6 +71,8 @@ HTML:
 
 ## Creating a Template
 
+Requires [`templates:create_update`](/getting-started/using-the-api/permissions/).
+
 To generate a template, make an HTTP request to the API.
 
 <pre class="http-method fs-4">
@@ -139,6 +141,8 @@ STATUS: 429 TOO MANY REQUESTS
 
 ## Editing a Template
 
+Requires [`templates:create_update`](/getting-started/using-the-api/permissions/).
+
 To edit a template you've already made, make an HTTP request to the API with the <b>template_id</b> listed in the CREATE response.
 
 <pre class="http-method fs-4">
@@ -169,6 +173,8 @@ Optional parameters for greater control over your image.
 
 ## Creating an image with a template
 
+Requires [`images:create`](/getting-started/using-the-api/permissions/).
+
 To generate a templated image, make an HTTP request to the API using the <b>template_id</b> listed in the [CREATE response](#example-responses).
 
 <pre class="http-method fs-4">
@@ -194,6 +200,8 @@ The create templated image endpoint accepts the following parameters, accepted a
 
 
 ## Listing your templates
+
+Requires [`templates:read`](/getting-started/using-the-api/permissions/).
 
 To list all of your templates, send a get to `v1/template`. Authentication is required.
 
@@ -248,6 +256,8 @@ STATUS: 200 OK
 
 ## Listing your template versions
 
+Requires [`templates:read`](/getting-started/using-the-api/permissions/).
+
 To list all versions of a template, send a get to `v1/template/:template_id`. Authentication is required.
 
 <pre class="http-method fs-4">
@@ -290,5 +300,7 @@ STATUS: 200 OK
   }
 }
 ```
+
+Deleting a template through the API requires `templates:delete`. See the [interactive API reference](https://htmlcsstoimage.com/api-docs) for endpoint schemas. Rendering a known template ID uses `images:create`; discovering templates first requires `templates:read`.
 
 {% include code_footer.md version=2 %}

@@ -170,9 +170,15 @@ Yes! Connect image generation to thousands of other apps with n8n, Zapier, or Ma
 
 ## Account & Billing
 
+### Can I manage resources with scoped credentials?
+
+Yes. Use [API key permissions](/getting-started/using-the-api/permissions/) to control access to images, templates, usage, and the [Management API](/management-api/). MCP connections use separately approved [OAuth permissions](/integrations/mcp/permissions/). API key management is available through REST and the dashboard, not MCP.
+
 ### Is there a rate limit?
 
-No per-second or per-minute rate limits. You can make requests as fast as you need. The only limit is the number of monthly image credits included with your plan.
+Image generation has no per-second or per-minute rate limit and uses your plan’s image credits. Management resource operations allow 100 reads and 20 writes per minute per resource family and organization, shared across REST and MCP.
+
+See [rate limits and retry guidance](/getting-started/using-the-api/rate-limits/). A management throttle and an exhausted image allowance can both return `429`, but require different recovery steps.
 
 ### What happens if I exceed my plan limit?
 
@@ -223,6 +229,14 @@ Email us! **support@htmlcsstoimage.com**. We'd love to hear from you. We're expe
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I manage resources with scoped credentials?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. API key permissions control access to images, templates, usage, and Management API resources. MCP connections use separately approved OAuth permissions. API key management is available through REST and the dashboard."
+      }
+    },
     {
       "@type": "Question",
       "name": "What file formats are supported?",
@@ -348,7 +362,7 @@ Email us! **support@htmlcsstoimage.com**. We'd love to hear from you. We're expe
       "name": "Is there a rate limit?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No per-second or per-minute rate limits. You can make requests as fast as you need. The only limit is the number of monthly image credits included with your plan."
+        "text": "Image generation has no per-second or per-minute rate limit and uses your plan’s image credits. Management resource operations allow 100 reads and 20 writes per minute per resource family and organization, shared across REST and MCP."
       }
     },
     {

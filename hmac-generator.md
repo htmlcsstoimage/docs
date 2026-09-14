@@ -189,3 +189,5 @@ Generate a token for an HTML/CSS to Image signed URL.
 Use the token in the path of your [create-and-render URL](/getting-started/create-and-render/#creating-an-image). Keep your API key secret; only the generated token belongs in the signed URL.
 
 <script src="/assets/js/hmac-generator.js" defer></script>
+
+The signing key must be enabled and grant [`images:create`](/getting-started/using-the-api/permissions/). See [API key management](/management-api/api-keys/) when replacing or disabling signing credentials.

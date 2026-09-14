@@ -1,10 +1,12 @@
 {% comment %}
   Renders additional parameters from _data/parameters.json.
 
-  context="html", "url", "templates", "og_config", or "create_and_render"
+  context="html", "url", "templates", "og_config", "og_config_management",
+  or "create_and_render"
   filters to parameters supported in that context. With no context, the table
   keeps the combined HTML/URL API view. create_and_render=true remains supported
-  for existing callers.
+  for existing callers. Set include_primary=true to also show primary fields
+  such as css when listing all supported options for a context.
 {% endcomment %}
 {% assign parameter_context = include.context | default: "api" -%}
 {% if include.create_and_render -%}
@@ -14,7 +16,7 @@
 |:-----|:-----|:------------|
 {% for parameter in site.data.parameters.parameters -%}
   {% assign show_parameter = false -%}
-  {% if parameter.additional -%}
+  {% if parameter.additional or include.include_primary -%}
     {% if parameter_context == "api" -%}
       {% if parameter.support.html or parameter.support.url -%}
         {% assign show_parameter = true -%}

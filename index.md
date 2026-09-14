@@ -89,6 +89,10 @@ Dev.to uses the API to autogenerate thousands of custom social images for Twitte
 
 <hr>
 
+## Manage organization resources
+
+Use the [Management API](/management-api/) to manage API keys, proxies, storage destinations, and OG configurations, or monitor image usage. Most resource operations are also available through [MCP tools](/integrations/mcp/tools/).
+
 ## Get an API key
 
 To use this API, you'll need an API key. Get started for free:

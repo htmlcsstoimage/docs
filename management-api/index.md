@@ -1,0 +1,97 @@
+---
+layout: page
+title: Management API
+permalink: /management-api/
+has_children: true
+nav_order: 2.5
+description: >-
+  Manage API keys, usage, proxies, storage destinations, and Open Graph configurations through the HTML/CSS to Image API and MCP.
+---
+# Management API
+{: .no_toc }
+
+Create application credentials, configure image delivery, and automate social image setup from your application or AI assistant.
+{: .fs-6 .fw-300 }
+
+The Management API lets you configure the resources you use in the HCTI dashboard: API keys, proxies, storage destinations, and Open Graph configurations. You can also monitor image usage. It uses the same `https://hcti.io/v1` base URL and HTTP Basic authentication as the [image and template API](/getting-started/using-the-api/).
+
+[Interactive API reference](https://htmlcsstoimage.com/api-docs){: .btn .btn-primary }
+[Authentication and API keys](/getting-started/using-the-api/api-keys/){: .btn }
+
+## What you can manage
+
+| Resource | REST API | MCP |
+|:---------|:---------|:----|
+| [API keys](/management-api/api-keys/) | Create, list, retrieve, update, disable, and re-enable | Not available |
+| [Proxies](/management-api/proxies/) | Create, list, retrieve, update, and delete | Same operations |
+| [Storage destinations](/management-api/storage-destinations/) | Create, list, retrieve, update, delete, and get the AWS external ID | Same operations |
+| [OG configurations](/management-api/og-configs/) | Create, list, retrieve, update, and delete | Same operations |
+| [Usage](/management-api/usage/) | Historical image counts by time interval and billing period | Current image usage and limits; maximum batch size |
+
+Organization membership, invitations, billing changes, and organization settings are managed in the [dashboard](/guides/account/organization-settings/).
+
+## Make your first request
+
+As an organization Owner or Admin, create or edit a key in the [API keys dashboard](https://htmlcsstoimage.com/dashboard/api-keys) and grant the permissions your application needs. For example, grant `api_keys:read` to list key metadata. Existing keys with only the original image, template, and usage permissions need additional grants for management operations.
+
+Set `HCTI_API_ID` and `HCTI_API_KEY` in your server's environment, then run:
+
+```bash
+curl 'https://hcti.io/v1/api-keys?count=10' \
+  --user "$HCTI_API_ID:$HCTI_API_KEY"
+```
+
+The response contains a `data` array and a `pagination` object. Key secrets are not returned by list or get requests. See the [API keys reference](/management-api/api-keys/) for response fields and examples.
+
+## Authentication and permissions
+
+Your API credentials identify the organization whose resources you can access. Resource IDs must belong to that organization. Switching organizations in the dashboard does not change the organization associated with an existing API key.
+
+Each operation requires a specific [permission](/getting-started/using-the-api/permissions/). A key can have read access without create/update or delete access. Plan requirements still apply; granting a permission does not enable a feature your plan does not support. [Compare plans](https://htmlcsstoimage.com/pricing) for feature availability and image allowances.
+
+MCP uses OAuth instead of API keys. Approve the required permissions when connecting your assistant. See [MCP authorization](/integrations/mcp/permissions/) and the [complete tools reference](/integrations/mcp/tools/).
+
+## Resource IDs and pagination
+
+Treat resource IDs and pagination cursors as opaque strings. For API keys, use `id` in management URLs; `api_id` is the authentication username.
+
+The four resource list endpoints accept:
+
+| Query parameter | Description |
+|:----------------|:------------|
+| `count` | Maximum items per page, from 1 to 100. Defaults to 10. |
+| `page_start` | The previous response's `pagination.next_page_start`. Omit for the first page. |
+
+Results are ordered newest first. Pass the cursor back unchanged and stop when `next_page_start` is `null`. An empty final page looks like:
+
+```json
+{
+  "data": [],
+  "pagination": { "next_page_start": null }
+}
+```
+
+Proxy, storage destination, and OG configuration lists include disabled resources. API key lists exclude disabled keys unless `include_disabled=true`.
+
+## Creating and updating resources
+
+Send JSON with `Content-Type: application/json`. Successful creates, gets, and updates return `200 OK`; deletes return `204 No Content`.
+
+Updates replace the configuration. Send all settings you want to retain; omitted optional fields can clear settings or restore defaults. API key, proxy, storage destination, and OG configuration updates use `POST` with the resource ID.
+
+To keep an existing secret without resending it, explicitly set `authentication.retain_password: true` for proxies or `connection_info.retain_secret_access_key: true` for access-key storage destinations. See [proxy updates](/management-api/proxies/#update-a-proxy) and [storage updates](/management-api/storage-destinations/#updates-and-connection-tests) for requirements and examples.
+
+## Errors and retries
+
+| Status | What to check |
+|:-------|:--------------|
+| `400` | Request fields, resource ID format, and pagination cursor. Validation errors may identify individual fields. |
+| `401` | Missing, invalid, or disabled API credentials. |
+| `403` | Required permissions, authority to modify another key, or plan eligibility. Read the error message. |
+| `404` | The resource or a referenced resource was not found in the authenticated organization. |
+| `409` | A conflicting OG configuration. See the returned message. |
+| `429` | The resource operation group has reached its request limit. |
+
+Management resource reads allow **100 requests/minute**, and writes allow **20 requests/minute**, per resource family and organization. REST and MCP share these counters. See [rate limits](/getting-started/using-the-api/rate-limits/) for headers, retries, and how these limits differ from image credits.
+
+{% include code_footer.md version=1 %}

@@ -78,6 +78,8 @@ Checking the account limit first lets Cascade choose a supported batch size. Sha
 
 ## Troubleshooting
 
+For a permission-denied error, [reconnect and approve the required access](/integrations/mcp/permissions/#add-permissions-to-an-existing-connection) before retrying. Usage checks and maximum batch-size checks require `usage:read`.
+
 ### Missing tools or connection errors
 
 Refresh the MCP servers after editing the configuration, and confirm HCTI tools are enabled in Cascade. If a team allowlist is configured, it must permit the `hcti` server. Reconnect the account if authorization has expired.

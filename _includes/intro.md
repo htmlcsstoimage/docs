@@ -43,3 +43,5 @@ You can sign up for a free API key to get started.
 ## {{ include.language }} example code
 
 This {{ include.language }} code example sends an HTTP POST to the `https://hcti.io/v1/image` API to convert your HTML/CSS to an image.
+
+For API ID/key terminology, scoped credentials, and access errors, see [authentication and API keys](/getting-started/using-the-api/api-keys/). Image creation requires `images:create`.

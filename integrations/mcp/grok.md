@@ -79,6 +79,8 @@ Replace the example URL and selector with a real page and matching element. Grok
 
 ## Troubleshooting
 
+For a permission-denied error, [reconnect and approve the required access](/integrations/mcp/permissions/#add-permissions-to-an-existing-connection) before retrying. Usage checks and maximum batch-size checks require `usage:read`.
+
 ### Missing tools or connection errors
 
 Run `grok mcp doctor hcti` to diagnose the direct connection. In `/mcps`, refresh with `r`, enable the server, and authenticate with `i`. Use `grok inspect` to identify configurations inherited from another client if duplicate tools appear.

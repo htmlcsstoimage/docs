@@ -84,6 +84,8 @@ Replace social-card with a template in your account. If you do not have one yet,
 
 ## Troubleshooting
 
+For a permission-denied error, [reconnect and approve the required access](/integrations/mcp/permissions/#add-permissions-to-an-existing-connection) before retrying. Usage checks and maximum batch-size checks require `usage:read`.
+
 ### Missing tools or connection errors
 
 Run `opencode mcp list` from the project directory and confirm `hcti` is enabled. Use `opencode mcp auth hcti` to authenticate. Check that your agent configuration has not disabled HCTI tools.

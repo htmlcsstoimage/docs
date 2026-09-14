@@ -1,0 +1,154 @@
+---
+layout: page
+title: Proxies API
+permalink: /management-api/proxies/
+parent: Management API
+nav_order: 3
+description: >-
+  Manage HTTP proxy configurations for HTML/CSS to Image through REST or MCP, including credentials, bypass hosts, permissions, and replacement updates.
+---
+# Proxies API
+{: .no_toc }
+
+Manage proxies used to route image rendering traffic through your own provider. For setup and rendering examples, see the [HTTP proxies guide](/guides/advanced/proxies/). Check [plans and feature availability](https://htmlcsstoimage.com/pricing) if your plan does not include proxies.
+
+## Operations
+
+Read operations share **100 requests/minute**; write operations share **20 requests/minute**, per organization across REST and MCP. [Authentication](/getting-started/using-the-api/api-keys/), [rate limits](/getting-started/using-the-api/rate-limits/), and plan eligibility apply. See the [interactive API reference](https://htmlcsstoimage.com/api-docs) for schemas.
+
+{% include operation-cards.html resource="proxies" %}
+
+## Create a proxy
+
+```bash
+curl 'https://hcti.io/v1/proxies' \
+  --user "$HCTI_API_ID:$HCTI_API_KEY" \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "name": "Screenshot proxy",
+    "url": "https://proxy.example.com",
+    "port": 8443,
+    "disabled": false,
+    "authentication": {
+      "username": "your-proxy-username",
+      "password": "your-proxy-password"
+    },
+    "bypass_hosts": ["fonts.googleapis.com", "fonts.gstatic.com"]
+  }'
+```
+
+Replace the example connection with your provider's details. A successful request returns `200 OK` with the [proxy configuration](#response-fields), including its username but never its password.
+
+| Request field | Description |
+|:--------------|:------------|
+| `name` | Required. 3–500 characters after trimming leading/trailing whitespace. |
+| `url` | Required. Absolute HTTP or HTTPS proxy URL, up to 512 characters. Supply port and credentials separately; no path other than `/`, query, or fragment. |
+| `port` | Optional, 1–65535. Omitted/null uses 80 for HTTP or 443 for HTTPS. |
+| `disabled` | Optional, defaults to `false`. The response uses `enabled`. |
+| `authentication` | Optional object. Supply `username` and either `password` or, on update, `retain_password: true`. Omitted/null removes authentication on update. |
+| `bypass_hosts` | Up to 100 entries. Hostnames, IPs, or absolute URLs; URLs are reduced to hosts, lowercased, and deduplicated. Omitted/null/`[]` clears the list. |
+
+### Authentication fields
+
+These fields belong inside `authentication`:
+
+| Field | Description |
+|:------|:------------|
+| `username` | Required when authentication is supplied. Up to 512 characters; an empty string is valid. |
+| `password` | Required when creating an authenticated proxy or replacing its password. Up to 484 UTF-8 bytes. An empty string sets an empty password. |
+| `retain_password` | Set `true` on update to keep the existing password. Requires existing authentication, exactly the same username, and an omitted/null `password`. Omitted, null, or `false` requires a supplied password. |
+
+Username and password whitespace is preserved exactly. Do not combine `retain_password: true` with a supplied password, including an empty string; that returns `400`.
+
+### Response fields
+
+Create, get, and update responses return the following fields. Each entry in a list response has the same shape:
+
+| Field | Description |
+|:------|:------------|
+| `id` | Proxy identifier used in management requests and as `proxy_id` when creating images. |
+| `name` | Display name of the proxy. |
+| `url` | Proxy URL. |
+| `port` | Configured proxy port. |
+| `bypass_hosts` | Hosts that bypass the proxy. |
+| `username` | Configured username, or `null` when authentication is not configured. An empty string is a valid username and still indicates authentication. |
+| `enabled` | Whether the proxy is enabled. |
+| `created_at` | UTC timestamp when the proxy was created. |
+| `updated_at` | UTC timestamp when the proxy was last updated. |
+
+Passwords and the request-only `retain_password` flag are never returned. The response has a top-level `username`; it does not have an `authentication` object.
+
+## List and retrieve proxies
+
+```bash
+curl 'https://hcti.io/v1/proxies?count=10' \
+  --user "$HCTI_API_ID:$HCTI_API_KEY"
+
+curl "https://hcti.io/v1/proxies/$PROXY_ID" \
+  --user "$HCTI_API_ID:$HCTI_API_KEY"
+```
+
+Lists include disabled proxies and exclude deleted proxies, newest first. Set `count` from 1 to 100 (default 10) and follow `pagination.next_page_start` using `page_start`. See [pagination](/management-api/#resource-ids-and-pagination).
+
+## Update a proxy
+
+Use `POST /v1/proxies/{id}` with the same complete request shape as creation. This **replaces** the proxy configuration. Resend the port, bypass hosts, authentication, and disabled state you want to retain.
+
+For example, to update an authenticated proxy without resending its password, use its existing username and set `retain_password: true`:
+
+```bash
+curl "https://hcti.io/v1/proxies/$PROXY_ID" \
+  --user "$HCTI_API_ID:$HCTI_API_KEY" \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "name": "Screenshot proxy",
+    "url": "https://proxy.example.com",
+    "port": 8443,
+    "disabled": false,
+    "authentication": {
+      "username": "your-proxy-username",
+      "retain_password": true
+    },
+    "bypass_hosts": ["fonts.googleapis.com", "fonts.gstatic.com"]
+  }'
+```
+
+- **Keep the password:** Supply the exact existing username with `retain_password: true` and omit `password` or set it to null.
+- **Replace the password or username:** Supply both `username` and `password`; omit `retain_password` or set it to false. Retention cannot be used when changing the username.
+- **Remove authentication:** Omit `authentication` or set it to null.
+
+These rules also apply when disabling a proxy. Omitting just the password does not retain it automatically.
+
+A GET response is not a complete update body. If its `username` is null, use `authentication: null`. Otherwise, put the username inside `authentication` and choose whether to retain or replace the password. Set `disabled` to the opposite of the response's `enabled` value, and send the request fields listed above.
+
+## Delete a proxy
+
+```bash
+curl --request DELETE "https://hcti.io/v1/proxies/$PROXY_ID" \
+  --user "$HCTI_API_ID:$HCTI_API_KEY"
+```
+
+Success returns `204 No Content`. The proxy can no longer be used for rendering. Repeating deletion of the same proxy succeeds. To temporarily stop new use, update the complete configuration with `disabled: true` instead.
+
+## Use the proxy
+
+Pass the returned `id` as [`proxy_id`](/parameters/proxy_id/) when creating an image. That image operation needs `images:create`; editing proxy configuration requires the separate management permission above.
+
+## MCP
+
+Create tools accept the request object under `content`; update tools accept `id` and `content`. Get/delete take `id`; list takes `count` and `page_start`. For example, these are arguments for `create_proxy` for a proxy that needs no authentication:
+
+```json
+{
+  "content": {
+    "name": "Screenshot proxy",
+    "url": "https://proxy.example.com",
+    "port": 8443,
+    "disabled": false
+  }
+}
+```
+
+Approve the appropriate [MCP permissions](/integrations/mcp/permissions/) first. The [tools reference](/integrations/mcp/tools/#proxies) covers result handling. Avoid putting proxy credentials into chat; use the dashboard or your application's secret handling when configuring authenticated proxies.
+
+{% include code_footer.md version=1 %}

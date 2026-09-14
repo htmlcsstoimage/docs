@@ -79,6 +79,8 @@ Zed supplies the file content to the assistant, which sends the rendering input 
 
 ## Troubleshooting
 
+For a permission-denied error, [reconnect and approve the required access](/integrations/mcp/permissions/#add-permissions-to-an-existing-connection) before retrying. Usage checks and maximum batch-size checks require `usage:read`.
+
 ### Missing tools or connection errors
 
 Check the status indicator in Settings → AI → MCP Servers. If the server is active but tools are missing from the conversation, check the Agent Panel profile and enable the HCTI tools. Mention HCTI explicitly in your prompt.

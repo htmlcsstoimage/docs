@@ -73,4 +73,8 @@ curl -X POST https://hcti.io/v1/image \
 
 {% include hint.md title="Plan availability" text="Storage destinations are available on the **10,000 images/month plan or higher**." %}
 
+## Manage destination configurations
+
+Create or inspect destinations through the [Management API](/management-api/storage-destinations/) or [MCP tools](/integrations/mcp/tools/#storage-destinations). Configuring a destination uses storage-destination permissions; authenticated `PUT /v1/store/{id}` uses `images:store`.
+
 {% include code_footer.md version=1 %}

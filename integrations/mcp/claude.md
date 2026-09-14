@@ -93,6 +93,8 @@ In Claude Code, you can instead point to a report file in the current project an
 
 ## Troubleshooting
 
+For a permission-denied error, [reconnect and approve the required access](/integrations/mcp/permissions/#add-permissions-to-an-existing-connection) before retrying. Usage checks and maximum batch-size checks require `usage:read`.
+
 ### Missing tools or connection errors
 
 In Claude web/desktop, check that the connector is connected and available in the current conversation. In Claude Code, inspect `/mcp` and authenticate `hcti`. If a shared workspace does not allow adding connectors, its owner needs to configure access.

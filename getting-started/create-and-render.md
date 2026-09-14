@@ -378,4 +378,6 @@ STATUS: 401 UNAUTHORIZED
 }
 ```
 
+The signing key must be enabled and grant [`images:create`](/getting-started/using-the-api/permissions/). See [API key management](/management-api/api-keys/) when replacing or disabling signing credentials.
+
 {% include code_footer.md version=1 %}

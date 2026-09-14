@@ -1,0 +1,202 @@
+{
+  "storage-destinations": [
+    {
+      "title": "Create a new storage destination",
+      "method": "POST",
+      "path": "/v1/storage-destinations",
+      "permission": "storage_destinations:create_update",
+      "mcp_tool": "create_storage_destination",
+      "mcp_section": "storage-destinations"
+    },
+    {
+      "title": "List storage destinations",
+      "method": "GET",
+      "path": "/v1/storage-destinations",
+      "permission": "storage_destinations:read",
+      "mcp_tool": "list_storage_destinations",
+      "mcp_section": "storage-destinations"
+    },
+    {
+      "title": "Retrieve a storage destination",
+      "method": "GET",
+      "path": "/v1/storage-destinations/{id}",
+      "permission": "storage_destinations:read",
+      "mcp_tool": "get_storage_destination",
+      "mcp_section": "storage-destinations"
+    },
+    {
+      "title": "Update a storage destination",
+      "method": "POST",
+      "path": "/v1/storage-destinations/{id}",
+      "permission": "storage_destinations:create_update",
+      "mcp_tool": "update_storage_destination",
+      "mcp_section": "storage-destinations"
+    },
+    {
+      "title": "Delete a storage destination",
+      "method": "DELETE",
+      "path": "/v1/storage-destinations/{id}",
+      "permission": "storage_destinations:delete",
+      "mcp_tool": "delete_storage_destination",
+      "mcp_section": "storage-destinations"
+    },
+    {
+      "title": "Get the AWS storage external ID",
+      "method": "GET",
+      "path": "/v1/storage-destinations/aws-external-id",
+      "permission": "storage_destinations:create_update",
+      "mcp_tool": "get_aws_storage_external_id",
+      "mcp_section": "storage-destinations"
+    }
+  ],
+  "api-keys": [
+    {
+      "title": "Create a new API key",
+      "id": "operation-create-a-new-api-key",
+      "method": "POST",
+      "path": "/v1/api-keys",
+      "permission": "api_keys:create_update",
+      "mcp_tool": null,
+      "mcp_section": "api-keys"
+    },
+    {
+      "title": "List API keys",
+      "id": "operation-list-api-keys",
+      "method": "GET",
+      "path": "/v1/api-keys",
+      "permission": "api_keys:read",
+      "mcp_tool": null,
+      "mcp_section": "api-keys"
+    },
+    {
+      "title": "Retrieve an API key",
+      "id": "operation-retrieve-an-api-key",
+      "method": "GET",
+      "path": "/v1/api-keys/{id}",
+      "permission": "api_keys:read",
+      "mcp_tool": null,
+      "mcp_section": "api-keys"
+    },
+    {
+      "title": "Update an API key",
+      "id": "operation-update-an-api-key",
+      "method": "POST",
+      "path": "/v1/api-keys/{id}",
+      "permission": "api_keys:create_update",
+      "mcp_tool": null,
+      "mcp_section": "api-keys"
+    },
+    {
+      "title": "Disable an API key",
+      "id": "operation-disable-an-api-key",
+      "method": "DELETE",
+      "path": "/v1/api-keys/{id}",
+      "permission": "api_keys:delete",
+      "mcp_tool": null,
+      "mcp_section": "api-keys"
+    }
+  ],
+  "proxies": [
+    {
+      "title": "Create a new proxy",
+      "id": "operation-create-a-new-proxy",
+      "method": "POST",
+      "path": "/v1/proxies",
+      "permission": "proxies:create_update",
+      "mcp_tool": "create_proxy",
+      "mcp_section": "proxies"
+    },
+    {
+      "title": "List proxies",
+      "id": "operation-list-proxies",
+      "method": "GET",
+      "path": "/v1/proxies",
+      "permission": "proxies:read",
+      "mcp_tool": "list_proxies",
+      "mcp_section": "proxies"
+    },
+    {
+      "title": "Retrieve a proxy",
+      "id": "operation-retrieve-a-proxy",
+      "method": "GET",
+      "path": "/v1/proxies/{id}",
+      "permission": "proxies:read",
+      "mcp_tool": "get_proxy",
+      "mcp_section": "proxies"
+    },
+    {
+      "title": "Update a proxy",
+      "id": "operation-update-a-proxy",
+      "method": "POST",
+      "path": "/v1/proxies/{id}",
+      "permission": "proxies:create_update",
+      "mcp_tool": "update_proxy",
+      "mcp_section": "proxies"
+    },
+    {
+      "title": "Delete a proxy",
+      "id": "operation-delete-a-proxy",
+      "method": "DELETE",
+      "path": "/v1/proxies/{id}",
+      "permission": "proxies:delete",
+      "mcp_tool": "delete_proxy",
+      "mcp_section": "proxies"
+    }
+  ],
+  "og-configs": [
+    {
+      "title": "Create a new OG configuration",
+      "id": "operation-create-a-new-og-configuration",
+      "method": "POST",
+      "path": "/v1/og-configs",
+      "permission": "og_configs:create_update",
+      "mcp_tool": "create_og_config",
+      "mcp_section": "og-configurations"
+    },
+    {
+      "title": "List OG configurations",
+      "id": "operation-list-og-configurations",
+      "method": "GET",
+      "path": "/v1/og-configs",
+      "permission": "og_configs:read",
+      "mcp_tool": "list_og_configs",
+      "mcp_section": "og-configurations"
+    },
+    {
+      "title": "Retrieve an OG configuration",
+      "id": "operation-retrieve-an-og-configuration",
+      "method": "GET",
+      "path": "/v1/og-configs/{id}",
+      "permission": "og_configs:read",
+      "mcp_tool": "get_og_config",
+      "mcp_section": "og-configurations"
+    },
+    {
+      "title": "Update an OG configuration",
+      "id": "operation-update-an-og-configuration",
+      "method": "POST",
+      "path": "/v1/og-configs/{id}",
+      "permission": "og_configs:create_update",
+      "mcp_tool": "update_og_config",
+      "mcp_section": "og-configurations"
+    },
+    {
+      "title": "Delete an OG configuration",
+      "id": "operation-delete-an-og-configuration",
+      "method": "DELETE",
+      "path": "/v1/og-configs/{id}",
+      "permission": "og_configs:delete",
+      "mcp_tool": "delete_og_config",
+      "mcp_section": "og-configurations"
+    }
+  ],
+  "usage": [
+    {
+      "title": "Retrieve image usage history",
+      "method": "GET",
+      "path": "/v1/usage",
+      "permission": "usage:read",
+      "mcp_tool": null
+    }
+  ]
+}

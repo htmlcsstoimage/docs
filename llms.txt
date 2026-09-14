@@ -5,7 +5,7 @@
 ## Quick Start
 
 - **Endpoint:** `POST https://hcti.io/v1/image`
-- **Authentication:** HTTP Basic Auth (User ID + API Key)
+- **Authentication:** HTTP Basic Auth (API ID + API Key)
 - **Get credentials:** https://htmlcsstoimage.com/dashboard
 
 ## Example Request
@@ -129,3 +129,26 @@ Python, PHP, JavaScript, TypeScript, Ruby, Go, C#, VB.NET, cURL, Google Apps Scr
 ## Support
 
 Email: support@htmlcsstoimage.com
+
+## Management API, credentials, and permissions
+
+Base URL: https://hcti.io/v1. Same Basic authentication as image generation: api_id is the username, api_key is the secret password. A key's resource id is used in management URLs, not authentication.
+
+- Management overview: https://docs.htmlcsstoimage.com/management-api/
+- Interactive API reference: https://htmlcsstoimage.com/api-docs
+- API keys and authentication: https://docs.htmlcsstoimage.com/getting-started/using-the-api/api-keys/
+- Permission reference: https://docs.htmlcsstoimage.com/getting-started/using-the-api/permissions/
+- Rate limits: https://docs.htmlcsstoimage.com/getting-started/using-the-api/rate-limits/
+- Key management: https://docs.htmlcsstoimage.com/management-api/api-keys/
+- Usage: https://docs.htmlcsstoimage.com/management-api/usage/
+- Proxies: https://docs.htmlcsstoimage.com/management-api/proxies/
+- Storage destinations: https://docs.htmlcsstoimage.com/management-api/storage-destinations/
+- OG configurations: https://docs.htmlcsstoimage.com/management-api/og-configs/
+- Complete MCP tools: https://docs.htmlcsstoimage.com/integrations/mcp/tools/
+- MCP authorization: https://docs.htmlcsstoimage.com/integrations/mcp/permissions/
+
+Create and update resources with POST, list/get with GET, and delete with DELETE. API key deletion disables the key. Management operations require the corresponding resource permission; rendering with an existing resource uses image permissions.
+
+Management reads allow 100 requests/minute and writes 20 requests/minute per resource family and organization, shared across REST and MCP. Image creation has no per-second or per-minute request limit; plan image credits still apply. Respect Retry-After or wait 60 seconds for management throttles.
+
+API keys use explicit permission lists; all_future_permissions opts into all current and future grants. MCP uses OAuth and requires new authorization to add permissions. MCP does not support API key management. See the references above for request schemas, permission rules, and tool arguments.

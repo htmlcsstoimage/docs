@@ -12,7 +12,7 @@ Dashboard: https://htmlcsstoimage.com/dashboard
 
 The API uses HTTP Basic authentication.
 
-- Username: Your **User ID** from the dashboard
+- Username: Your **API ID** (`api_id`) from the dashboard
 - Password: Your **API Key** from the dashboard
 
 Get credentials at: https://htmlcsstoimage.com/dashboard
@@ -474,7 +474,7 @@ curl -X POST https://hcti.io/v1/image \
 ## FAQ
 
 **Is there a rate limit?**
-No rate limits. Create images until you reach your plan limit.
+Image creation has no per-second or per-minute rate limit and uses plan image credits. Management resources have separate limits of 100 reads and 20 writes per minute per resource family and organization, shared across REST and MCP.
 
 **How long do image URLs last?**
 Forever, as long as your account is active.
@@ -492,3 +492,38 @@ Yes, via `google_fonts` parameter or embedding font links in HTML.
 Email: support@htmlcsstoimage.com
 
 We're experts at debugging HTML rendering issues and love helping developers succeed.
+
+## Management API, credentials, and permissions
+
+Base URL: https://hcti.io/v1. Same Basic authentication as image generation: api_id is the username, api_key is the secret password. A key's resource id is used in management URLs, not authentication.
+
+- Management overview: https://docs.htmlcsstoimage.com/management-api/
+- Interactive API reference: https://htmlcsstoimage.com/api-docs
+- API keys and authentication: https://docs.htmlcsstoimage.com/getting-started/using-the-api/api-keys/
+- Permission reference: https://docs.htmlcsstoimage.com/getting-started/using-the-api/permissions/
+- Rate limits: https://docs.htmlcsstoimage.com/getting-started/using-the-api/rate-limits/
+- Key management: https://docs.htmlcsstoimage.com/management-api/api-keys/
+- Usage: https://docs.htmlcsstoimage.com/management-api/usage/
+- Proxies: https://docs.htmlcsstoimage.com/management-api/proxies/
+- Storage destinations: https://docs.htmlcsstoimage.com/management-api/storage-destinations/
+- OG configurations: https://docs.htmlcsstoimage.com/management-api/og-configs/
+- Complete MCP tools: https://docs.htmlcsstoimage.com/integrations/mcp/tools/
+- MCP authorization: https://docs.htmlcsstoimage.com/integrations/mcp/permissions/
+
+Resource endpoints: /api-keys, /proxies, /storage-destinations, /og-configs. Create with POST, list/get with GET, delete with DELETE. Updates replace configuration and use POST. Lists use count (1–100, default 10) and page_start; follow pagination.next_page_start until null. Lists include disabled resources except keys, which require include_disabled=true.
+
+API key creation returns the secret once; subsequent public API responses omit it. DELETE disables a key and can be reversed through update. The caller cannot grant permissions beyond its own authority, and must have authority over both existing and replacement grants when updating a key. Explicit current permissions do not grant future permissions; all_future_permissions is a separate opt-in unavailable to MCP.
+
+Permissions: images:create, images:read, images:delete, images:store; templates:read, templates:create_update, templates:delete; usage:read; and read/create_update/delete for proxies, storage_destinations, og_configs, and api_keys. Management permissions are separate from using existing resources in image creation. api_keys permissions are REST-only.
+
+REST historical usage at GET /v1/usage requires usage:read. Hour/day/month series are overlapping views, not additive. MCP check_usage returns current usage/allowance/overages/reset, and get_max_batch_size returns the batch limit (0 means no batching). Both require usage:read.
+
+Management limits: 100 reads/minute and 20 writes/minute per organization for each resource family, shared across all credentials and REST/MCP. Rate-limit groups are api-key:read/write, proxy:read/write, storage-destination:read/write, and og-config:read/write. GET /storage-destinations/aws-external-id and MCP get_aws_storage_external_id require storage_destinations:create_update but use the storage read bucket. REST responses include RateLimit-Policy, RateLimit when available, and Retry-After when available on rejection. Respect Retry-After or wait 60 seconds for management throttles. MCP returns a tool error instructing a 60-second wait. Image, template, and usage endpoints do not use these management buckets. Image-credit exhaustion is a different 429; waiting a minute does not restore credits.
+
+MCP management tools: create_proxy, update_proxy, get_proxy, list_proxies, delete_proxy; create_storage_destination, update_storage_destination, get_storage_destination, list_storage_destinations, delete_storage_destination, get_aws_storage_external_id; create_og_config, update_og_config, get_og_config, list_og_configs, delete_og_config. Create/update use content (plus id on update); get/delete use id; list uses count/page_start. Management results wrap the resource or list in item with success/error. Permission or throttle failures can be direct tool errors.
+
+MCP uses OAuth. Tool discovery is not a permission grant. Reconnect and complete new authorization to add permissions; refresh does not expand grants. Do not retry denied operations until access changes. Never ask users to paste API keys or OAuth tokens into chat. No MCP tools manage API keys, delete images/templates, or change billing/membership.
+
+Proxy responses return a top-level username (null means no authentication; an empty string is a valid username), never passwords. Proxy REST/MCP updates retain a password only with authentication.retain_password=true, an unchanged username, and an omitted/null password. Otherwise supply a password; an empty string replaces it with an empty password. Omitted/null authentication removes authentication.
+
+Access-key storage REST/MCP updates retain a secret only with connection_info.retain_secret_access_key=true, unchanged provider/access_key_id, and an omitted/null secret_access_key. Otherwise supply the secret, including when disabling. Creating resources or changing credential identity requires the secret. Neither retention flag can be true alongside a supplied secret. Retention flags are request-only; Amazon S3 uses IAM roles instead.

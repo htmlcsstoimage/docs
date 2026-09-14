@@ -1,0 +1,76 @@
+---
+layout: page
+title: Rate limits and usage limits
+permalink: /getting-started/using-the-api/rate-limits/
+parent: Using the API
+grand_parent: Getting started
+nav_order: 3
+description: >-
+  Image generation has no per-second or per-minute rate limit. Learn Management API and MCP request limits, retry headers, and image credit limits.
+---
+# Rate limits and usage limits
+{: .no_toc }
+
+<div class="image-rate-limit-callout" role="note">
+  <p><strong>THERE IS NO RATE LIMIT FOR CREATING OR RENDERING IMAGES</strong></p>
+</div>
+
+Management operations have per-minute request limits. Image generation uses your plan's image credits. These are separate limits with different recovery steps.
+
+## Management request limits
+
+| Resource | Read group | Requests/minute | Write group | Requests/minute |
+|:---------|:-----------|:---------------:|:------------|:---------------:|
+| API keys | `api-key:read` | 100 | `api-key:write` | 20 |
+| Proxies | `proxy:read` | 100 | `proxy:write` | 20 |
+| Storage destinations | `storage-destination:read` | 100 | `storage-destination:write` | 20 |
+| OG configurations | `og-config:read` | 100 | `og-config:write` | 20 |
+
+Limits use a sliding 60-second window **per organization and operation group**. Read and write groups are independent, and each resource family has its own groups. All keys and MCP connections for the same organization share the relevant group's allowance across REST and MCP.
+
+List and get operations use the read group. Create, update, and delete operations use the write group. For example, listing proxies and getting individual proxies together share 100 requests/minute. Creating 10 proxies and updating 10 proxies uses the proxy write allowance for that window.
+
+These management rate limits do not apply to image creation, template operations, or `GET /v1/usage`. Image generation has no per-second or per-minute request limit; image credits and other plan limits still apply. Dashboard actions can have their own limits.
+
+## REST response headers
+
+Management resource responses can include rate-limit information after authentication and permission checks:
+
+| Header | Meaning |
+|:-------|:--------|
+| `RateLimit-Policy` | The operation group, request quota (`q`), and window in seconds (`w`). |
+| `RateLimit` | Remaining requests (`r`), when available. |
+| `Retry-After` | Seconds to wait after a rejected request, when available. |
+
+Example headers for a proxy read:
+
+```http
+RateLimit-Policy: "proxy:read";q=100;w=60
+RateLimit: "proxy:read";r=99
+```
+
+An exhausted group returns `429 Too Many Requests`:
+
+```json
+{
+  "error": "Too Many Requests",
+  "message": "Rate limit exceeded. The proxy:read operation group allows 100 requests per minute per organization. If you need a higher limit, contact us at support@htmlcsstoimage.com.",
+  "statusCode": 429
+}
+```
+
+Respect `Retry-After` when present. Otherwise, wait 60 seconds before retrying a management rate-limit rejection. Space out subsequent requests and add a small randomized delay when several workers share an organization. Repeatedly sending the same rejected request does not help.
+
+## MCP rate-limit errors
+
+MCP management tools share the REST allowances above. If a group is exhausted, the tool returns an error explaining the group and limit; the operation is not executed. Wait 60 seconds before retrying. Do not expect REST rate-limit headers or an HTTP `429` as the tool's error format.
+
+If you need higher management limits, [contact support](mailto:support@htmlcsstoimage.com).
+
+## Image credits and plan limits
+
+Image creation consumes image credits. Exceeding the allowance can also return `429`, but its error identifies a **plan limit**, rather than a management operation group. Waiting a minute does not restore image credits: check your billing period and overage settings in the [dashboard](https://htmlcsstoimage.com/dashboard), or [compare plans](https://htmlcsstoimage.com/pricing) for a larger image allowance.
+
+Use the [usage guide](/management-api/usage/) to monitor `x-renders-*` response headers, REST usage history, and MCP current usage. Batch size, template counts, and access to features such as proxies or storage destinations are separate plan restrictions.
+
+{% include code_footer.md version=1 %}

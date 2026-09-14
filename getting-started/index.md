@@ -24,7 +24,7 @@ Start here to learn how to use the HTML/CSS to Image API.
 
 ### 1. Get your API credentials
 
-Sign up at [htmlcsstoimage.com](https://htmlcsstoimage.com) and grab your **User ID** and **API Key** from the [dashboard](https://htmlcsstoimage.com/dashboard).
+Sign up at [htmlcsstoimage.com](https://htmlcsstoimage.com) and grab your **API ID** and **API Key** from the [dashboard](https://htmlcsstoimage.com/dashboard).
 
 ### 2. Make your first request
 
@@ -32,13 +32,13 @@ Choose your approach:
 
 **Generate from HTML/CSS:**
 ```bash
-curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
+curl -X POST https://hcti.io/v1/image -u 'API_ID:API_KEY' \
   -d html="<div style='padding:20px;background:#4f46e5;color:white;'>Hello World</div>"
 ```
 
 **Screenshot a URL:**
 ```bash
-curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
+curl -X POST https://hcti.io/v1/image -u 'API_ID:API_KEY' \
   --data-urlencode url="https://google.com"
 ```
 
@@ -66,6 +66,8 @@ The API returns a URL to your generated image. Use it anywhere - in emails, soci
 | Control image dimensions | [Setting Height and Width](/getting-started/setting-height-and-width/) |
 | Design templates visually | [Template Editor](/template-editor/) |
 | Generate images with a signed `GET` URL | [Signed Image URLs](/getting-started/create-and-render/) |
+| Manage API keys and organization resources | [Management API](/management-api/) |
+| Set up API credentials and permissions | [Authentication and API keys](/getting-started/using-the-api/api-keys/) |
 
 <hr>
 

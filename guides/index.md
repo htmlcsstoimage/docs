@@ -90,7 +90,7 @@ Get more from the API:
 |:------|:------------|
 | [Blocking Cookie Banners](/guides/advanced/blocking-cookie-banners/) | Hide consent popups in screenshots |
 | [Duplicate Image Detection](/guides/advanced/duplicate-detection/) | Reuse identical recent images without extra image credits |
-| [Account Usage](/guides/advanced/account-usage/) | Track your API usage programmatically |
+| [Account Usage](/management-api/usage/) | Track your API usage programmatically |
 | [Base64 to Image](/guides/advanced/base64/) | Work with Base64-encoded images |
 | [HTTP Proxies](/guides/advanced/proxies/) | Route renders through your own HTTP proxy |
 | [Storage Destinations](/guides/advanced/storage-destinations/) | Save rendered images to your own storage bucket |
@@ -108,3 +108,5 @@ Integrate with your development workflow:
 | [Email to Images](/guides/workflows/email-to-images/) | Convert emails to images |
 | [Email to Slack](/guides/workflows/email-to-slack/) | Forward emails as images to Slack |
 | [Image Charts with Highcharts](/guides/workflows/highcharts/) | Generate chart images |
+
+For programmatic resource management, see the [Management API](/management-api/), [API key permissions](/getting-started/using-the-api/permissions/), and [MCP tools](/integrations/mcp/tools/).
