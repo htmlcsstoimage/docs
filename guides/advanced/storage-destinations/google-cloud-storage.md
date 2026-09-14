@@ -105,4 +105,8 @@ Google Cloud documents [creating service account HMAC keys](https://cloud.google
 
 {% include hint.md title="Next: use your storage destination" text="[Continue to the Storage Destinations guide](/guides/advanced/storage-destinations/) for templates, batches, object storage behavior, and the complete `PUT /v1/store` response." %}
 
+## Automate destination setup
+
+You can also automate configuration through the [Storage destinations API](/management-api/storage-destinations/) or [MCP tools](/integrations/mcp/tools/#storage-destinations).
+
 {% include code_footer.md version=1 %}

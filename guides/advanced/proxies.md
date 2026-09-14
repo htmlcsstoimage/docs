@@ -139,4 +139,8 @@ curl -X POST https://hcti.io/v1/image \
 - **Some assets aren't loading** — If those hosts are listed in **Bypass Hosts** they will skip the proxy. Remove them from the list if you want them proxied.
 - **`proxy_id` rejected** — The proxy may be disabled. Re-enable it in the dashboard, or pass a different `proxy_id`.
 
+## Manage proxies through API or MCP
+
+Use the [Proxies API](/management-api/proxies/) or [MCP tools](/integrations/mcp/tools/#proxies) to create, list, inspect, update, and delete proxy configurations. Management uses `proxies:read`, `proxies:create_update`, or `proxies:delete`; rendering with an existing `proxy_id` uses image permissions. API updates replace the complete configuration. To keep an existing password, include the unchanged username and `authentication.retain_password: true`; omitting authentication removes it.
+
 {% include code_footer.md version=1 %}

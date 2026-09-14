@@ -87,6 +87,8 @@ The assistant needs to resolve server-side template expressions before rendering
 
 ## Troubleshooting
 
+For a permission-denied error, [reconnect and approve the required access](/integrations/mcp/permissions/#add-permissions-to-an-existing-connection) before retrying. Usage checks and maximum batch-size checks require `usage:read`.
+
 ### Missing tools or connection errors
 
 If the bridge cannot start, check that Node.js and `npx` are available to the IDE. If needed, replace `npx` in the configuration with its absolute executable path. On Windows, use `npx.cmd` if `npx` cannot be launched.

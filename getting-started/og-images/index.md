@@ -206,3 +206,7 @@ Each guide shows where to put the tags and how to use that platform's page varia
 4. If an old card remains, follow [OG Image caching and refreshes](/guides/debugging/og-image-caching/).
 
 For general metadata syntax, see [The Open Graph protocol](https://ogp.me/) and [MDN's `<meta>` reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta).
+
+## Configure OG images through API or MCP
+
+Automate setup with the [OG configurations API](/management-api/og-configs/) or [MCP tools](/integrations/mcp/tools/#og-configurations). Configuration management requires `og_configs:read`, `og_configs:create_update`, or `og_configs:delete`. Use the returned `domain_id` in public OG image URLs; `id` identifies the configuration for management requests.

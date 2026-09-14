@@ -1,6 +1,6 @@
 ## Available tools
 
-HTML/CSS to Image (HCTI) exposes the same MCP tools in every supported client. Ask your assistant to use HCTI by name when you want it to render HTML/CSS or capture a website.
+HTML/CSS to Image (HCTI) supports these core MCP tools across clients. Access depends on the [permissions approved for your connection](/integrations/mcp/permissions/). Ask your assistant to use HCTI by name when you want it to render HTML/CSS or capture a website.
 
 ### Account usage
 
@@ -28,3 +28,5 @@ HTML/CSS to Image (HCTI) exposes the same MCP tools in every supported client. A
 | **list_template_versions** | Inspect the version history of a template. |
 
 See the [rendering parameters](/integrations/mcp/#image-parameters) for available options and the [Template Editor guide](/template-editor/) for designing reusable templates.
+
+More management capabilities are available for proxies, storage destinations, and Open Graph configurations. See the [complete MCP tools reference](/integrations/mcp/tools/) for all tools and required permissions.

@@ -51,9 +51,13 @@ Your email must be verified before you can accept an invite. If you change your 
 | **Account settings** | Your identity and session: email, login method, which orgs you're in, switching orgs, and handling invites sent to you. |
 | **Organization settings** | One organization's context: its members, roles, invites you send, billing emails, usage, and plan. Use the org switcher to choose which organization's settings you're viewing. |
 
+## API keys and MCP connections
+
+API keys and MCP authorizations stay associated with their organization when you switch the dashboard to another organization. Use that organization’s credentials or reconnect MCP and authorize the intended organization. Review connections at [MCP Sessions](https://htmlcsstoimage.com/dashboard/mcp-sessions); see [authorization and revocation](/integrations/mcp/permissions/).
+
 ## See also
 
 - [Organization settings](/guides/account/organization-settings/) — Roles, inviting members, and managing an organization.
-- [Account usage](/guides/advanced/account-usage/) — Monitoring API usage.
+- [Account usage](/management-api/usage/) — Monitoring API usage.
 
 {% include code_footer.md version=1 %}

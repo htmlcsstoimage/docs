@@ -16,6 +16,18 @@ Always improving. Updates to HTML/CSS to Image are posted here.
 
 If you have feature requests, please send them to us: support@htmlcsstoimage.com.
 
+### Management API and scoped permissions
+September 14, 2026
+{: .text-delta}
+
+Manage API keys, proxies, storage destinations, and Open Graph configurations through the [Management API](/management-api/). Create application-specific credentials with explicit permissions, monitor [usage](/management-api/usage/), and automate resource configuration.
+
+MCP adds proxy, storage destination, and OG configuration management tools. Approve the access you need through [OAuth authorization](/integrations/mcp/permissions/); API key management remains available through REST and the dashboard. See the [complete tools reference](/integrations/mcp/tools/).
+
+Management resource operations have per-organization rate limits shared across REST and MCP: 100 reads and 20 writes per minute for each resource family. These limits are separate from image credits. See [rate limits](/getting-started/using-the-api/rate-limits/).
+
+<hr>
+
 ### Official Python and PHP clients
 September 3, 2026
 {: .text-delta}
@@ -390,7 +402,7 @@ We've added new pages with detailed information on how to better use ms_delay an
 April 12, 2023
 {: .text-delta}
 
-We've added a new page explaining how to [grab your account usage](/guides/advanced/account-usage/) via the API.
+We've added a new page explaining how to [grab your account usage](/management-api/usage/) via the API.
 
 <hr>
 

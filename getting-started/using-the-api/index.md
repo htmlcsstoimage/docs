@@ -3,6 +3,7 @@ layout: page
 title: Using the API
 permalink: /getting-started/using-the-api/
 parent: Getting started
+has_children: true
 nav_order: 1
 description: >-
   Complete API reference for HTML/CSS to Image. Authentication, endpoints, parameters, batch creation, and response formats.
@@ -17,17 +18,21 @@ Generate images from HTML and CSS.
 [Live demo](https://htmlcsstoimage.com/#demo){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 [Get an API Key](https://htmlcsstoimage.com){: .btn .fs-5 .mb-4 .mb-md-0 }
 
-{% include hint.md title="Using Cursor or Claude Code?" text="Generate images without writing code using our [MCP Server integration](/integrations/mcp/)." %}
+{% include hint.md title="Using Cursor, Claude, Codex or another AI tool?" text="Generate images without writing code using our [MCP Server integration](/integrations/mcp/)." %}
 
 <hr>
+
+Browse the [interactive API reference](https://htmlcsstoimage.com/api-docs) for endpoint schemas, or use the [Management API](/management-api/) to configure organization resources. For credentials and access, see [API keys](/getting-started/using-the-api/api-keys/), [permissions](/getting-started/using-the-api/permissions/), and [rate limits](/getting-started/using-the-api/rate-limits/).
 
 ## Authentication
 The API uses [HTTP Basic authentication](https://en.wikipedia.org/wiki/Basic_access_authentication). 
 
-- Your username is the **ID** and your password is your **API Key**. Both of these are available from the [dashboard](https://htmlcsstoimage.com/dashboard/api-keys). The code samples demonstrate how to authenticate your request.
-- Treat your API Key like a password. If exposed, it could be used to create images using your account.
+- Your username is the **API ID** (`api_id`) and your password is your **API Key** (`api_key`). Both of these are available from the [dashboard](https://htmlcsstoimage.com/dashboard/api-keys). The code samples demonstrate how to authenticate your request.
+- Treat your API Key like a password. If exposed, it can be used for any operation its permissions allow. Use a key scoped to the operations your application needs.
 
 ## Creating an image
+
+Requires [`images:create`](/getting-started/using-the-api/permissions/).
 
 To generate an image, make an HTTP request to the API.
 
@@ -92,6 +97,8 @@ STATUS: 429 TOO MANY REQUESTS
     "message": "You've used 3055 of your 3000 image credits. Upgrade via the Dashboard: https://htmlcsstoimage.com/dashboard"
 }
 ```
+
+The `429` example above is an image-credit limit. Management operations can return a separate `429` for per-minute throttling; see [rate limits and retry guidance](/getting-started/using-the-api/rate-limits/). Missing or invalid credentials return `401`; insufficient permissions return `403` with the required permission in the message.
 
 <hr>
 
@@ -202,6 +209,8 @@ Here's a base image (600x400 pixels) and how different cropping parameters affec
 
 ## Deleting an image
 
+Requires [`images:delete`](/getting-started/using-the-api/permissions/).
+
 <pre class="http-method fs-4">
   <span>delete</span> https://hcti.io<b>/v1/image/:image_id</b>
 </pre>
@@ -216,6 +225,8 @@ STATUS: 202 ACCEPTED
 ```
 
 ## Batch image creation
+
+Requires [`images:create`](/getting-started/using-the-api/permissions/).
 
 Create up to 25 images in a single API request. This is more efficient than making multiple individual requests.
 
@@ -264,6 +275,8 @@ STATUS: 200 OK
 
 ### Batch deletion
 
+Requires [`images:delete`](/getting-started/using-the-api/permissions/).
+
 Delete multiple images at once by sending their IDs.
 
 <pre class="http-method fs-4">
@@ -283,6 +296,8 @@ STATUS: 202 ACCEPTED
 <hr>
 
 ## Listing images
+
+Requires [`images:read`](/getting-started/using-the-api/permissions/).
 
 Retrieve a list of all images created by your account with pagination support.
 
@@ -325,6 +340,8 @@ STATUS: 200 OK
 <hr>
 
 ## Checking account usage
+
+Requires [`usage:read`](/getting-started/using-the-api/permissions/). See [Usage and limits](/management-api/usage/) for monitoring headers, billing-period semantics, and MCP usage tools.
 
 <pre class="http-method fs-4">
   <span>get</span> https://hcti.io<b>/v1/usage</b>

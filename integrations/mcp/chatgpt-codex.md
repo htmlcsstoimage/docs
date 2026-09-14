@@ -6,7 +6,7 @@ nav_title: "ChatGPT & Codex"
 permalink: /integrations/mcp/chatgpt-codex/
 parent: "HTML-to-Image, PDF & Screenshot MCP"
 grand_parent: Integrations
-nav_order: 1
+nav_order: 2
 description: >-
   Learn how to connect ChatGPT & Codex to HTML/CSS to Image, take website screenshots, and render HTML/CSS as PNG or PDF with copyable prompts.
 ---
@@ -81,6 +81,8 @@ In ChatGPT, provide the brand colors, fonts, and title in the conversation inste
 {% include mcp_tools.md %}
 
 ## Troubleshooting
+
+For a permission-denied error, [reconnect and approve the required access](/integrations/mcp/permissions/#add-permissions-to-an-existing-connection) before retrying. Usage checks and maximum batch-size checks require `usage:read`.
 
 ### Missing tools or connection errors
 

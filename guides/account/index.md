@@ -21,3 +21,5 @@ Manage your account and team access in the dashboard.
 |:------|:------------|
 | [Account settings](/guides/account/account-settings/) | Your login, organizations, switching orgs, and accepting invites |
 | [Organization settings](/guides/account/organization-settings/) | Members, invites, roles, and billing for an organization |
+
+For programmatic resource management, see the [Management API](/management-api/), [API key permissions](/getting-started/using-the-api/permissions/), and [MCP tools](/integrations/mcp/tools/).

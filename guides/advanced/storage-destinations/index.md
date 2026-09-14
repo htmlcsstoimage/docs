@@ -295,4 +295,8 @@ After a complete store request, read or serve the object from the bucket and key
 - **Connection-test objects remain in the bucket** — Add `s3:DeleteObject`, or the provider's equivalent delete permission, for the `.hcti/connection-tests/` prefix. Deletion is only cleanup and does not affect whether the connection test passes.
 - **Custom endpoint is rejected** — Use a public HTTPS service endpoint with no path, credentials, query string, or fragment.
 
+## Manage destinations through API or MCP
+
+Use the [Storage destinations API](/management-api/storage-destinations/) or [MCP tools](/integrations/mcp/tools/#storage-destinations) for configuration management and AWS external-ID discovery. Configuration permissions are separate from `images:store`, which is required for authenticated `PUT /v1/store/{id}` requests. The API reference explains replacement updates, credential preservation, and automatic connection testing.
+
 {% include code_footer.md version=1 %}

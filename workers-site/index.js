@@ -102,7 +102,8 @@ async function redirectOrHandleEvent(event) {
     case "/guides/duplicate-image-detection":
       return Response.redirect(site + '/guides/advanced/duplicate-detection/', 301);
     case "/guides/account-usage":
-      return Response.redirect(site + '/guides/advanced/account-usage/', 301);
+    case "/guides/advanced/account-usage":
+      return Response.redirect(site + '/management-api/usage/', 301);
     case "/guides/converting-base64-to-image":
     case "/guides/base64-to-image":
       return Response.redirect(site + '/guides/advanced/base64/', 301);

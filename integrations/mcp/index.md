@@ -7,12 +7,12 @@ parent: Integrations
 has_children: true
 nav_order: 4
 description: >-
-  Take website screenshots and render HTML/CSS as images or PDFs with Claude, ChatGPT, Cursor, and other AI tools through MCP.
+  Render HTML/CSS, screenshots, and PDFs with Claude, ChatGPT, or Cursor. Manage HCTI templates, proxies, storage, and Open Graph images through MCP.
 ---
 # MCP Integration
 {: .no_toc }
 
-Take website screenshots and render HTML/CSS as images or PDFs directly from your AI assistant.
+Take website screenshots, render images or PDFs, and manage your organization’s resources directly from your AI assistant.
 {: .fs-4 .fw-300 }
 
 ## Introduction
@@ -22,6 +22,8 @@ No matter which AI tool or agent you use, you can connect it to HTML/CSS to Imag
 - **Start for free.** A free [HCTI account](https://htmlcsstoimage.com) works with any integration. Creating images uses your organization's available image credits just like the API.
 - **Sign in securely.** Authorize your account through OAuth in your browser, without copying API keys into your assistant.
 - **No browser infrastructure to manage.** HCTI handles rendering and returns a hosted URL you can open, download, or share.
+
+You can also ask your assistant to configure proxies, storage destinations, and automatic Open Graph images through the [Management API capabilities](/management-api/). These operations require additional [OAuth permissions](/integrations/mcp/permissions/); API key management is REST-only.
 
 ## Choose your client
 
@@ -57,9 +59,9 @@ Our [agent plugin](https://github.com/htmlcsstoimage/agent-plugins) also package
 
 ## Authentication
 
-After adding HCTI, use your client's connect or login action and complete authorization in your browser. Sign in to the HCTI account whose templates and credits you want to use, then return to the assistant. Some clients prompt automatically on first use; the individual guides show how to connect explicitly.
+After adding HCTI, use your client's connect or login action and complete authorization in your browser. Sign in to the HCTI account whose templates and credits you want to use, review the selected organization and permissions, then return to the assistant. Open **More Permissions** to select additional management access if needed. Some clients prompt automatically on first use; the individual guides show how to connect explicitly.
 
-To check the connection without rendering an image, ask: **"Use HCTI to check my image usage and account limits."** The `check_usage` tool returns usage and limits without rendering an image. Rendering requests use your HCTI account's image allowance; your assistant subscription is separate.
+To check the connection without rendering an image, ask: **"Use HCTI to check my image usage and account limits."** The `check_usage` tool requires `usage:read` and returns usage and limits without rendering an image. `get_max_batch_size` also requires `usage:read`. Rendering requests use your HCTI account's image allowance; your assistant subscription is separate.
 
 ## Example prompts
 
@@ -109,6 +111,15 @@ Return a labeled list of image URLs.
 
 Use the [Template Editor](/template-editor/) to design a template and define the values your assistant should pass as `template_values`.
 
+### How to inspect organization resources
+
+```text
+Use HCTI to list my OG configurations and inspect the blog configuration.
+Explain its template mappings and refresh interval.
+```
+
+Approve `og_configs:read` for this example. To create or update configurations, also approve `og_configs:create_update`. See the [tools reference](/integrations/mcp/tools/) for proxy, storage destination, and OG management operations.
+
 ## Image parameters
 
 When creating images, the main parameters are:
@@ -131,6 +142,14 @@ If you receive authentication errors:
 - Try disconnecting and reconnecting the MCP server to trigger a new OAuth flow
 - Ensure you're logged into the correct HTML/CSS to Image account in your browser
 - Check that pop-ups are not blocked when the OAuth window tries to open
+
+### Permission Errors
+
+A listed tool may require permissions your connection does not have. Disconnect and reconnect HCTI, then approve the required access for the intended organization. Refreshing an existing token does not add permissions. Do not retry a denied operation until access changes. See [MCP authorization](/integrations/mcp/permissions/).
+
+### Rate Limit Errors
+
+Management tool limits are shared with REST requests for your organization. Wait 60 seconds before retrying a rate-limited tool; see [rate limits](/getting-started/using-the-api/rate-limits/).
 
 ### Connection Issues
 

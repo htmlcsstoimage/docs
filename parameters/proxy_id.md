@@ -71,4 +71,8 @@ curl -X POST https://hcti.io/v1/image \
 
 {% include hint.md title="Disabling a proxy" text="You can disable a proxy in the dashboard at any time. Existing images keep working — only new renders that pass that `proxy_id` will be rejected." %}
 
+## Manage proxy configurations
+
+Create or inspect proxies through the [Management API](/management-api/proxies/) or [MCP tools](/integrations/mcp/tools/#proxies). Using an existing proxy for image creation requires image permissions; editing its configuration requires proxy management permissions.
+
 {% include code_footer.md version=1 %}

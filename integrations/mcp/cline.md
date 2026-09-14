@@ -82,6 +82,8 @@ Review the rendered table at the returned URL. Ask Cline to adjust column widths
 
 ## Troubleshooting
 
+For a permission-denied error, [reconnect and approve the required access](/integrations/mcp/permissions/#add-permissions-to-an-existing-connection) before retrying. Usage checks and maximum batch-size checks require `usage:read`.
+
 ### Missing tools or connection errors
 
 Confirm the transport is Streamable HTTP, the server is enabled, and browser authorization completed. Restart the server from MCP settings if necessary. Cline may wait for tool-call approval before sending the rendering request.
