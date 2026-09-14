@@ -35,6 +35,7 @@ Choose your assistant for setup instructions and copyable examples.
 | <span id="setup-for-claude-code"></span><span id="setup-for-claude-desktop"></span>[Claude & Claude Code](/integrations/mcp/claude/) | Install from the Claude Connectors Directory, or connect Claude Code. |
 | <span id="setup-for-cline-vs-code"></span>[Cline](/integrations/mcp/cline/) | Connect a Streamable HTTP server from the Cline extension. |
 | <span id="setup-for-cursor"></span>[Cursor](/integrations/mcp/cursor/) | Add HCTI to Cursor Agent with the install button or MCP configuration. |
+| [Gemini CLI](/integrations/mcp/gemini/) | Connect Gemini CLI with a remote HTTP server and browser sign-in. |
 | [GitHub Copilot](/integrations/mcp/github-copilot/) | Connect Copilot CLI from your terminal. |
 | <span id="setup-for-grok"></span>[Grok](/integrations/mcp/grok/) | Use the HCTI plugin or a direct MCP connection in Grok Build. |
 | [JetBrains IDEs](/integrations/mcp/jetbrains/) | Connect AI Assistant through an OAuth-capable MCP bridge. |

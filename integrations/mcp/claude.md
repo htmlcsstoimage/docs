@@ -6,7 +6,7 @@ nav_title: "Claude & Claude Code"
 permalink: /integrations/mcp/claude/
 parent: "HTML-to-Image, PDF & Screenshot MCP"
 grand_parent: Integrations
-nav_order: 2
+nav_order: 3
 description: >-
   Learn how to connect Claude & Claude Code to HTML/CSS to Image, take website screenshots, and render HTML/CSS as PNG or PDF with copyable prompts.
 ---

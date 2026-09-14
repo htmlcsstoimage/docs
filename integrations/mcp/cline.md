@@ -6,7 +6,7 @@ nav_title: "Cline"
 permalink: /integrations/mcp/cline/
 parent: "HTML-to-Image, PDF & Screenshot MCP"
 grand_parent: Integrations
-nav_order: 3
+nav_order: 4
 description: >-
   Learn how to connect Cline to HTML/CSS to Image, take website screenshots, and render HTML/CSS as PNG or PDF with copyable prompts.
 ---

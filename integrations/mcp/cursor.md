@@ -6,7 +6,7 @@ nav_title: "Cursor"
 permalink: /integrations/mcp/cursor/
 parent: "HTML-to-Image, PDF & Screenshot MCP"
 grand_parent: Integrations
-nav_order: 4
+nav_order: 5
 description: >-
   Learn how to connect Cursor to HTML/CSS to Image, take website screenshots, and render HTML/CSS as PNG or PDF with copyable prompts.
 ---

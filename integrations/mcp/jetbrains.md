@@ -6,7 +6,7 @@ nav_title: "JetBrains IDEs"
 permalink: /integrations/mcp/jetbrains/
 parent: "HTML-to-Image, PDF & Screenshot MCP"
 grand_parent: Integrations
-nav_order: 7
+nav_order: 9
 description: >-
   Learn how to connect JetBrains IDEs to HTML/CSS to Image, take website screenshots, and render HTML/CSS as PNG or PDF with copyable prompts.
 ---

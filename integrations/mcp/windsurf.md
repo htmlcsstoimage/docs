@@ -6,7 +6,7 @@ nav_title: "Windsurf"
 permalink: /integrations/mcp/windsurf/
 parent: "HTML-to-Image, PDF & Screenshot MCP"
 grand_parent: Integrations
-nav_order: 10
+nav_order: 12
 description: >-
   Learn how to connect Windsurf to HTML/CSS to Image, take website screenshots, and render HTML/CSS as PNG or PDF with copyable prompts.
 ---

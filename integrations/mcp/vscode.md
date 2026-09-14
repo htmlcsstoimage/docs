@@ -6,7 +6,7 @@ nav_title: "VS Code"
 permalink: /integrations/mcp/vscode/
 parent: "HTML-to-Image, PDF & Screenshot MCP"
 grand_parent: Integrations
-nav_order: 9
+nav_order: 11
 description: >-
   Learn how to connect VS Code to HTML/CSS to Image, take website screenshots, and render HTML/CSS as PNG or PDF with copyable prompts.
 ---
