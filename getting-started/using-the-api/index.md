@@ -22,7 +22,7 @@ Generate images from HTML and CSS.
 
 <hr>
 
-Browse the [interactive API reference](https://htmlcsstoimage.com/api-docs) for endpoint schemas, or use the [Management API](/management-api/) to configure organization resources. For credentials and access, see [API keys](/getting-started/using-the-api/api-keys/), [permissions](/getting-started/using-the-api/permissions/), and [rate limits](/getting-started/using-the-api/rate-limits/).
+Browse the [interactive API reference](https://htmlcsstoimage.com/api-docs) for endpoint schemas, try the [Postman collection](https://www.postman.com/htmlcsstoimage/html-css-to-image/collection/zgfamed/html-css-to-image-api), or use the [Management API](/management-api/) to configure organization resources. For credentials and access, see [API keys](/getting-started/using-the-api/api-keys/), [permissions](/getting-started/using-the-api/permissions/), and [rate limits](/getting-started/using-the-api/rate-limits/).
 
 ## Authentication
 The API uses [HTTP Basic authentication](https://en.wikipedia.org/wiki/Basic_access_authentication). 
