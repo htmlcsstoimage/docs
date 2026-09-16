@@ -32,7 +32,7 @@ import (
 func main() {
 	client := hcti.NewClient("your-api-id", "your-api-key")
 
-	image, err := client.CreateImage(context.Background(), hcti.HTMLImageRequest{
+	image, err := client.CreateImage(context.Background(), &hcti.HTMLImageRequest{
 		HTML:        "<div class='box'>Go ✅</div>",
 		CSS:         hcti.Ptr(".box { border: 4px solid #03B875; padding: 20px; font-family: 'Roboto'; }"),
 		GoogleFonts: hcti.GoogleFonts{"Roboto"},
