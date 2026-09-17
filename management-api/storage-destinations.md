@@ -20,16 +20,23 @@ Reads, including the AWS external-ID operation, share **100 requests/minute**. W
 
 ## Configure Amazon S3
 
-First retrieve your organization's external ID:
+First retrieve your organization's external ID and HCTI's writer role ARN:
 
 ```bash
 curl 'https://hcti.io/v1/storage-destinations/aws-external-id' \
   --user "$HCTI_API_ID:$HCTI_API_KEY"
 ```
 
-The response is an object with `external_id`. This operation requires create/update permission. It does not require a destination ID.
+The response contains both values needed to construct the IAM role trust policy:
 
-Use that value as `sts:ExternalId` in the IAM role trust policy described in the [Amazon S3 guide](/guides/advanced/storage-destinations/s3/). Configure the role's bucket permissions, then create the destination:
+| Field | Use in your role's trust policy |
+|:------|:-------------------------------|
+| `external_id` | Organization-specific value for the `sts:ExternalId` condition. |
+| `writer_role_arn` | HCTI's existing storage writer role ARN, used as `Principal.AWS`. |
+
+This operation requires `storage_destinations:create_update` and does not require a destination ID.
+
+Create a role in your AWS account that allows `sts:AssumeRole` by the returned `writer_role_arn`, with a `StringEquals` condition requiring the returned `external_id` as `sts:ExternalId`. See the [Amazon S3 guide](/guides/advanced/storage-destinations/s3/). Attach the role's bucket permissions, then create the destination using **your newly created role's ARN** as `connection_info.role_arn`, not HCTI's `writer_role_arn`:
 
 ```bash
 curl 'https://hcti.io/v1/storage-destinations' \

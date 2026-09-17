@@ -86,7 +86,7 @@ See the [Proxies API](/management-api/proxies/) for `content` fields and respons
 | `create_storage_destination` | `storage_destinations:create_update` | `content`. Tests a bucket write before enabling. |
 | `update_storage_destination` | `storage_destinations:create_update` | `id`, complete replacement `content`. Connection changes or re-enabling trigger a write test. |
 | `delete_storage_destination` | `storage_destinations:delete` | `id`. Deletes configuration and credentials, not bucket objects. |
-| `get_aws_storage_external_id` | `storage_destinations:create_update` | No arguments. Returns `external_id` for the organization's AWS trust policy. |
+| `get_aws_storage_external_id` | `storage_destinations:create_update` | No arguments. Returns `external_id` for the `sts:ExternalId` condition and HCTI's `writer_role_arn` for `Principal.AWS` in your role's trust policy. |
 
 See the [Storage destinations API](/management-api/storage-destinations/) for provider-specific `content` and connection-test results. To keep an access-key secret during update, set `connection_info.retain_secret_access_key: true`, keep the provider and access key ID unchanged, and omit the secret. Otherwise, supply the secret. Secret access keys are never returned.
 
