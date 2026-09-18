@@ -18,9 +18,22 @@ Capture a webpage or turn HTML/CSS into a PNG, WebP, or PDF with HTML/CSS to Ima
 
 **You'll need:** an [HCTI account](https://htmlcsstoimage.com) with image credits. Sign in through your browser when connecting—no API key to copy.
 
-## 1. Add HCTI to Cursor Agent
+## 1. Install the Cursor plugin
 
-Use this button to add the hosted MCP server:
+Install the official **HTML/CSS to Image API** plugin from the Cursor Marketplace:
+
+[Install from the Cursor Marketplace](https://cursor.com/marketplace/html-css-to-image){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 target="_blank" }
+
+The plugin adds the hosted HCTI MCP server and workflow guidance for image generation, screenshots, templates, and Open Graph images.
+
+1. Open the marketplace listing and install the plugin in Cursor.
+2. Open Cursor's MCP settings, find `hcti`, and select **Connect**.
+3. Authorize your HCTI account in the browser.
+4. Start a new Agent chat and ask **"Use HCTI to check my image usage and account limits"**.
+
+### Connect the MCP server manually
+
+If you only want the MCP tools without the plugin's workflow guidance, use this button to add the hosted MCP server:
 
 <a href="cursor://anysphere.cursor-deeplink/mcp/install?name=HCTI&config=eyJ0eXBlIjoiaHR0cCIsInVybCI6Imh0dHBzOi8vbWNwLmhjdGkuaW8ifQ==" class="cursor-install-btn">
   <img src="https://cursor.com/deeplink/mcp-install-dark.png" alt="Add HTML/CSS to Image MCP server to Cursor" height="28" />
@@ -38,11 +51,7 @@ Alternatively, merge this entry into `.cursor/mcp.json` in your project, or `~/.
 }
 ```
 
-1. Open Cursor's MCP settings and enable the HCTI server.
-2. Select **Connect** and authorize your HCTI account in the browser.
-3. Start an Agent chat and ask **"Use HCTI to check my image usage and account limits"**.
-
-If **HTML/CSS to Image API** is available in your Cursor Marketplace, installing that plugin is another option and includes workflow guidance. Use either the plugin or the direct MCP configuration to avoid duplicate tools. See [Cursor's MCP guide](https://cursor.com/docs/mcp).
+After adding it, enable the HCTI server in Cursor's MCP settings, select **Connect**, and authorize your account in the browser. Use either the marketplace plugin or the manual MCP configuration to avoid duplicate tools. See [Cursor's MCP guide](https://cursor.com/docs/mcp).
 
 ## 2. Take a screenshot
 
