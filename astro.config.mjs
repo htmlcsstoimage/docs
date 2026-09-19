@@ -11,8 +11,8 @@ import bundleAnalysis from './scripts/bundle-analysis.mjs';
 export default defineConfig({
   site: process.env.DOCS_ORIGIN || 'http://localhost:4321',
   output: 'static',
-  // ClientRouter still performs soft navigation. Avoid speculative requests that
-  // cannot reliably be reused with our revalidated HTML/Markdown responses.
+  // Our fetch-based prefetch matches ClientRouter's request and Vary: Accept.
+  // Native link-prefetch requests use a different browser cache variant.
   prefetch: false,
   trailingSlash: 'always',
   integrations: [...(process.env.ANALYZE === 'true' ? [bundleAnalysis()] : []), sitemap({

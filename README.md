@@ -42,6 +42,19 @@ requires all 148 original routes to exist or redirect to a native page. It check
 old anchors, internal links, assets, external-link attributes, and Markdown
 exports, and writes `migration-report.json`. CI runs this complete-site gate.
 
+## Page prefetching
+
+`src/scripts/prefetch.ts` warms internal HTML pages on hover, focus, or pointer down
+using the same fetch request as Astro's ClientRouter. Navigation waits for an
+in-flight prefetch, then uses the browser cache. The Worker's page responses use
+`Cache-Control: private, max-age=60` and `Vary: Accept`, so HTML and Markdown stay
+separate. Content can remain cached in a browser for up to a minute after deployment.
+
+Astro's native link-prefetch is disabled because its response was not reused by
+ClientRouter in our browser tests. The helper skips external links, downloads,
+Markdown links, explicit full-navigation links, and slow/data-saving connections.
+DevTools' Disable cache option prevents cache reuse when testing this behavior.
+
 ## Bundle analysis
 
 Run `npm run analyze` to build the site and generate interactive reports in

@@ -23,12 +23,14 @@ test('same page URL serves Markdown or HTML, including HEAD and conditional requ
     assert.equal(await response.text(), '/parameters.md');
     assert.equal(response.headers.get('content-type'), 'text/markdown; charset=utf-8');
     assert.equal(response.headers.get('content-location'), '/parameters.md');
+    assert.equal(response.headers.get('cache-control'), 'private, max-age=60');
     assert.equal(response.headers.get('vary'), 'Accept-Encoding, Accept');
     assert.equal(new URL(calls.at(-1).url).search, '?ref=agent');
   }
   const html = await worker.fetch(new Request('https://docs.test/parameters/'), env, ctx);
   assert.equal(await html.text(), '/parameters/');
   assert.equal(html.headers.get('vary'), 'Accept-Encoding, Accept');
+  assert.equal(html.headers.get('cache-control'), 'private, max-age=60');
   const head = await worker.fetch(new Request('https://docs.test/parameters/', { method: 'HEAD', headers: { Accept: 'text/markdown' } }), env, ctx);
   assert.equal(calls.at(-1).method, 'HEAD');
   assert.equal(await head.text(), '');

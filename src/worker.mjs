@@ -42,6 +42,11 @@ export default {
     }
     const headers = new Headers(response.headers);
     if (markdownPath) {
+      // Let hover-prefetched HTML be reused by ClientRouter's fetch. Keep
+      // variants private to the browser and separated by Vary: Accept.
+      if (response.status === 200 || response.status === 304) {
+        headers.set('Cache-Control', 'private, max-age=60');
+      }
       const vary = new Set((headers.get('Vary') || '').split(',').map(value => value.trim()).filter(Boolean));
       if (![...vary].some(value => value.toLowerCase() === 'accept' || value === '*')) vary.add('Accept');
       headers.set('Vary', [...vary].join(', '));
