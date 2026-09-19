@@ -1,0 +1,29 @@
+---
+import { getChangelogEntries, changelogDate } from '../lib/changelog';
+const entries = await getChangelogEntries();
+const index = entries.findIndex(entry => entry.id === Astro.locals.starlightRoute.entry.id);
+const previous = index >= 0 ? entries[index + 1] : undefined;
+const next = index > 0 ? entries[index - 1] : undefined;
+---
+<nav class="changelog-navigation" aria-label="Changelog entries" data-changelog-navigation data-pagefind-ignore>
+  {previous && <a href={`/${previous.id}/`} rel="prev" class="previous">
+    <span class="direction">← Previous</span>
+    <strong>{previous.data.title}</strong>
+    <time datetime={previous.data.changelog!.date}>{changelogDate(previous.data.changelog!.date)}</time>
+  </a>}
+  {next && <a href={`/${next.id}/`} rel="next" class="next">
+    <span class="direction">Next →</span>
+    <strong>{next.data.title}</strong>
+    <time datetime={next.data.changelog!.date}>{changelogDate(next.data.changelog!.date)}</time>
+  </a>}
+</nav>
+<style>
+  .changelog-navigation { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; margin-top:2.5rem; }
+  a { display:flex; flex-direction:column; gap:.5rem; padding:1rem 1.25rem; background:var(--sl-color-gray-6); border:1px solid var(--sl-color-hairline); border-radius:.5rem; text-decoration:none; color:var(--sl-color-white); transition:background .15s,border-color .15s; }
+  a:hover { background:var(--sl-color-gray-5); border-color:var(--sl-color-text-accent); }
+  a:focus-visible { outline:2px solid var(--sl-color-text-accent); outline-offset:3px; }
+  strong { font-size:1rem; font-weight:600; line-height:1.5; }
+  .direction,time { font-size:.8rem; color:var(--sl-color-gray-3); }
+  .next { grid-column:2; text-align:right; }
+  @media(max-width:40rem) { .changelog-navigation { grid-template-columns:1fr; } .next { grid-column:1; } }
+</style>

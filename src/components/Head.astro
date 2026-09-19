@@ -1,0 +1,17 @@
+---
+import pages from '../generated/pages.json';
+const page = pages.find(page => page.route === Astro.url.pathname);
+const { head, entry } = Astro.locals.starlightRoute;
+const tags = head.map(tag => entry.data.og_title && tag.tag === 'meta' &&
+  (tag.attrs?.property === 'og:title' || tag.attrs?.name === 'twitter:title')
+  ? { ...tag, attrs: { ...tag.attrs, content: entry.data.og_title } }
+  : tag);
+---
+{tags.map(({ tag: Tag, attrs, content }) => <Tag {...attrs} set:html={content} />)}
+{page && <link rel="alternate" type="text/markdown" href={page.markdownPath} />}
+{page?.og.image && <>
+  <meta property="og:image" content={page.og.image} />
+  <meta name="twitter:image" content={page.og.image} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+</>}

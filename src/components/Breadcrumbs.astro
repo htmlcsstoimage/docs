@@ -1,0 +1,40 @@
+---
+import navigation from '../navigation.mjs';
+const { entry } = Astro.locals.starlightRoute;
+const route = Astro.url.pathname;
+type Crumb = { label: string; link: string };
+type NavItem = { label: string; link?: string; items?: NavItem[] };
+const candidates: Crumb[][] = [];
+function findPaths(items: NavItem[], parents: Crumb[] = []) {
+  for (const item of items) {
+    if (item.link === route) candidates.push(parents);
+    if (item.items) {
+      const overview = item.items.find(child => child.label === 'Overview' && child.link);
+      const ancestors = overview?.link ? [...parents, { label: item.label, link: overview.link }] : parents;
+      findPaths(item.items, ancestors);
+    }
+  }
+}
+findPaths(navigation);
+// A page can appear in more than one sidebar group. Prefer its URL hierarchy.
+const score = (path: Crumb[]) => path.filter(crumb => route.startsWith(crumb.link)).length;
+const parents = entry.data.changelog
+  ? [{ label: 'Changelog', link: '/changelog/' }]
+  : (candidates.sort((a, b) => score(b) - score(a))[0] || []);
+const crumbs = [{ label: 'Docs', link: '/' }, ...parents.filter(crumb => crumb.link !== route && crumb.link !== '/')];
+---
+{route !== '/' && <nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol>
+    {crumbs.map(crumb => <li><a href={crumb.link}>{crumb.label}</a></li>)}
+    <li class="current"><span aria-current="page">{entry.data.page_title ?? entry.data.title}</span></li>
+  </ol>
+</nav>}
+<style>
+  .breadcrumbs { margin-bottom:.5rem; font-size:.8rem; color:var(--sl-color-gray-3); }
+  ol { display:flex; flex-wrap:wrap; align-items:baseline; gap:.35rem .5rem; list-style:none; padding:0; margin:0; }
+  li { display:flex; align-items:baseline; gap:.5rem; min-width:0; max-width:100%; }
+  li + li::before { content:'›'; color:var(--sl-color-gray-3); }
+  a { color:inherit; text-decoration:none; white-space:nowrap; }
+  a:hover { color:var(--sl-color-text-accent); text-decoration:underline; }
+  .current span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+</style>

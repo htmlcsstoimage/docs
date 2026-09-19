@@ -1,0 +1,29 @@
+---
+import SidebarPersister from './SidebarPersister.astro';
+import SidebarSublist from './SidebarSublist.astro';
+import MobileMenuFooter from './MobileMenuFooter.astro';
+---
+
+<SidebarPersister>
+  <SidebarSublist sublist={Astro.locals.starlightRoute.sidebar} />
+</SidebarPersister>
+<div class="md:sl-hidden"><MobileMenuFooter /></div>
+
+<script>
+  function expandParents(element: Element) {
+    let details = element.closest('details');
+    while (details) {
+      details.open = true;
+      details = details.parentElement?.closest('details') ?? null;
+    }
+  }
+
+  // Starlight records any click inside a summary as a toggle. Navigation links
+  // must keep their native behavior without saving a spurious collapsed state.
+  document.querySelectorAll('a.group-link').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.stopPropagation();
+      if (link.getAttribute('href') === window.location.pathname) expandParents(link);
+    });
+  });
+</script>

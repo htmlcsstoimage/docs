@@ -1,0 +1,594 @@
+[
+  {
+    "route": "/",
+    "source": "index.md"
+  },
+  {
+    "route": "/faq/",
+    "source": "faq.md"
+  },
+  {
+    "route": "/changelog/",
+    "source": "changelog.md"
+  },
+  {
+    "route": "/hmac-generator/",
+    "source": "hmac-generator.md"
+  },
+  {
+    "route": "/getting-started/create-and-render/",
+    "source": "getting-started/create-and-render.md"
+  },
+  {
+    "route": "/getting-started/setting-height-and-width/",
+    "source": "getting-started/height-and-width.md"
+  },
+  {
+    "route": "/getting-started/",
+    "source": "getting-started/index.md"
+  },
+  {
+    "route": "/getting-started/og-images/",
+    "source": "getting-started/og-images/index.md"
+  },
+  {
+    "route": "/getting-started/og-images/supported-parameters/",
+    "source": "getting-started/og-images/supported-parameters.md"
+  },
+  {
+    "route": "/getting-started/templates/",
+    "source": "getting-started/templates.md"
+  },
+  {
+    "route": "/getting-started/url-to-image/",
+    "source": "getting-started/url-to-image.md"
+  },
+  {
+    "route": "/getting-started/using-the-api/api-keys/",
+    "source": "getting-started/using-the-api/api-keys.md"
+  },
+  {
+    "route": "/getting-started/using-the-api/",
+    "source": "getting-started/using-the-api/index.md"
+  },
+  {
+    "route": "/getting-started/using-the-api/permissions/",
+    "source": "getting-started/using-the-api/permissions.md"
+  },
+  {
+    "route": "/getting-started/using-the-api/rate-limits/",
+    "source": "getting-started/using-the-api/rate-limits.md"
+  },
+  {
+    "route": "/parameters/color_scheme/",
+    "source": "parameters/color_scheme.md"
+  },
+  {
+    "route": "/parameters/dedupe_duration_s/",
+    "source": "parameters/dedupe_duration_s.md"
+  },
+  {
+    "route": "/parameters/device_scale/",
+    "source": "parameters/device_scale.md"
+  },
+  {
+    "route": "/parameters/dl/",
+    "source": "parameters/dl.md"
+  },
+  {
+    "route": "/parameters/format/",
+    "source": "parameters/format.md"
+  },
+  {
+    "route": "/parameters/full_screen/",
+    "source": "parameters/full_screen.md"
+  },
+  {
+    "route": "/parameters/google_fonts/",
+    "source": "parameters/google_fonts.md"
+  },
+  {
+    "route": "/parameters/headers/",
+    "source": "parameters/headers.md"
+  },
+  {
+    "route": "/parameters/identify_as_hcti/",
+    "source": "parameters/identify_as_hcti.md"
+  },
+  {
+    "route": "/parameters/",
+    "source": "parameters/index.md"
+  },
+  {
+    "route": "/parameters/jumbo-images/",
+    "source": "parameters/jumbo_images.md"
+  },
+  {
+    "route": "/parameters/max_wait_ms/",
+    "source": "parameters/max_wait_ms.md"
+  },
+  {
+    "route": "/parameters/media_type/",
+    "source": "parameters/media_type.md"
+  },
+  {
+    "route": "/parameters/ms_delay/",
+    "source": "parameters/ms_delay.md"
+  },
+  {
+    "route": "/parameters/pdf_options/",
+    "source": "parameters/pdf_options.md"
+  },
+  {
+    "route": "/parameters/proxy_id/",
+    "source": "parameters/proxy_id.md"
+  },
+  {
+    "route": "/parameters/render_when_ready/",
+    "source": "parameters/render_when_ready.md"
+  },
+  {
+    "route": "/parameters/selector/",
+    "source": "parameters/selector.md"
+  },
+  {
+    "route": "/parameters/storage_destination_id/",
+    "source": "parameters/storage_destination_id.md"
+  },
+  {
+    "route": "/parameters/timezone/",
+    "source": "parameters/timezone.md"
+  },
+  {
+    "route": "/parameters/transparent_background/",
+    "source": "parameters/transparent_background.md"
+  },
+  {
+    "route": "/parameters/viewport/",
+    "source": "parameters/viewport.md"
+  },
+  {
+    "route": "/example-code/c/",
+    "source": "example-code/c.md"
+  },
+  {
+    "route": "/example-code/curl/",
+    "source": "example-code/curl.md"
+  },
+  {
+    "route": "/example-code/elixir/",
+    "source": "example-code/elixir.md"
+  },
+  {
+    "route": "/example-code/go/",
+    "source": "example-code/go.md"
+  },
+  {
+    "route": "/example-code/google-apps-script/",
+    "source": "example-code/google-apps-script.md"
+  },
+  {
+    "route": "/example-code/",
+    "source": "example-code/index.md"
+  },
+  {
+    "route": "/example-code/java/",
+    "source": "example-code/java.md"
+  },
+  {
+    "route": "/example-code/javascript/",
+    "source": "example-code/javascript.md"
+  },
+  {
+    "route": "/example-code/kotlin/",
+    "source": "example-code/kotlin.md"
+  },
+  {
+    "route": "/example-code/php/",
+    "source": "example-code/php.md"
+  },
+  {
+    "route": "/example-code/python/",
+    "source": "example-code/python.md"
+  },
+  {
+    "route": "/example-code/ruby/",
+    "source": "example-code/ruby.md"
+  },
+  {
+    "route": "/example-code/rust/",
+    "source": "example-code/rust.md"
+  },
+  {
+    "route": "/example-code/typescript/",
+    "source": "example-code/typescript.md"
+  },
+  {
+    "route": "/example-code/vb.net/",
+    "source": "example-code/vb.net.md"
+  },
+  {
+    "route": "/guides/account/account-settings/",
+    "source": "guides/account/account-settings.md"
+  },
+  {
+    "route": "/guides/account/",
+    "source": "guides/account/index.md"
+  },
+  {
+    "route": "/guides/account/organization-settings/",
+    "source": "guides/account/organization-settings.md"
+  },
+  {
+    "route": "/guides/advanced/base64/",
+    "source": "guides/advanced/base64.md"
+  },
+  {
+    "route": "/guides/advanced/blocking-cookie-banners/",
+    "source": "guides/advanced/blocking-cookie-banners.md"
+  },
+  {
+    "route": "/guides/advanced/duplicate-detection/",
+    "source": "guides/advanced/duplicate-detection.md"
+  },
+  {
+    "route": "/guides/advanced/",
+    "source": "guides/advanced/index.md"
+  },
+  {
+    "route": "/guides/advanced/jumbo-images/",
+    "source": "guides/advanced/jumbo-images.md"
+  },
+  {
+    "route": "/guides/advanced/proxies/",
+    "source": "guides/advanced/proxies.md"
+  },
+  {
+    "route": "/guides/advanced/storage-destinations/backblaze-b2/",
+    "source": "guides/advanced/storage-destinations/backblaze-b2.md"
+  },
+  {
+    "route": "/guides/advanced/storage-destinations/digitalocean-spaces/",
+    "source": "guides/advanced/storage-destinations/digitalocean-spaces.md"
+  },
+  {
+    "route": "/guides/advanced/storage-destinations/google-cloud-storage/",
+    "source": "guides/advanced/storage-destinations/google-cloud-storage.md"
+  },
+  {
+    "route": "/guides/advanced/storage-destinations/",
+    "source": "guides/advanced/storage-destinations/index.md"
+  },
+  {
+    "route": "/guides/advanced/storage-destinations/r2/",
+    "source": "guides/advanced/storage-destinations/r2.md"
+  },
+  {
+    "route": "/guides/advanced/storage-destinations/s3-compatible/",
+    "source": "guides/advanced/storage-destinations/s3-compatible.md"
+  },
+  {
+    "route": "/guides/advanced/storage-destinations/s3/",
+    "source": "guides/advanced/storage-destinations/s3.md"
+  },
+  {
+    "route": "/guides/advanced/storage-destinations/wasabi/",
+    "source": "guides/advanced/storage-destinations/wasabi.md"
+  },
+  {
+    "route": "/guides/debugging/blurry-images/",
+    "source": "guides/debugging/blurry-images.md"
+  },
+  {
+    "route": "/guides/debugging/cloudflare-challenges/",
+    "source": "guides/debugging/cloudflare-challenges.md"
+  },
+  {
+    "route": "/guides/debugging/cropping-issues/",
+    "source": "guides/debugging/cropping-issues.md"
+  },
+  {
+    "route": "/guides/debugging/emoji/",
+    "source": "guides/debugging/emoji.md"
+  },
+  {
+    "route": "/guides/debugging/",
+    "source": "guides/debugging/index.md"
+  },
+  {
+    "route": "/guides/debugging/og-image-caching/",
+    "source": "guides/debugging/og-image-caching.md"
+  },
+  {
+    "route": "/guides/debugging/white-images/",
+    "source": "guides/debugging/white-images.md"
+  },
+  {
+    "route": "/guides/",
+    "source": "guides/index.md"
+  },
+  {
+    "route": "/guides/og-images/astro/",
+    "source": "guides/og-images/astro.md"
+  },
+  {
+    "route": "/guides/og-images/",
+    "source": "guides/og-images/index.md"
+  },
+  {
+    "route": "/guides/og-images/jekyll/",
+    "source": "guides/og-images/jekyll.md"
+  },
+  {
+    "route": "/guides/og-images/shopify/",
+    "source": "guides/og-images/shopify.md"
+  },
+  {
+    "route": "/guides/og-images/sitepress/",
+    "source": "guides/og-images/sitepress.md"
+  },
+  {
+    "route": "/guides/og-images/squarespace/",
+    "source": "guides/og-images/squarespace.md"
+  },
+  {
+    "route": "/guides/og-images/webflow/",
+    "source": "guides/og-images/webflow.md"
+  },
+  {
+    "route": "/guides/og-images/wix/",
+    "source": "guides/og-images/wix.md"
+  },
+  {
+    "route": "/guides/og-images/wordpress/",
+    "source": "guides/og-images/wordpress.md"
+  },
+  {
+    "route": "/guides/social-media/facebook/",
+    "source": "guides/social-media/facebook.md"
+  },
+  {
+    "route": "/guides/social-media/",
+    "source": "guides/social-media/index.md"
+  },
+  {
+    "route": "/guides/social-media/instagram/",
+    "source": "guides/social-media/instagram.md"
+  },
+  {
+    "route": "/guides/social-media/linkedin/",
+    "source": "guides/social-media/linkedin.md"
+  },
+  {
+    "route": "/guides/social-media/twitter/",
+    "source": "guides/social-media/twitter.md"
+  },
+  {
+    "route": "/guides/styling/external-css-fonts/",
+    "source": "guides/styling/external-css-fonts.md"
+  },
+  {
+    "route": "/guides/styling/file-formats/",
+    "source": "guides/styling/file-formats.md"
+  },
+  {
+    "route": "/guides/styling/",
+    "source": "guides/styling/index.md"
+  },
+  {
+    "route": "/guides/styling/transparent-background/",
+    "source": "guides/styling/transparent-background.md"
+  },
+  {
+    "route": "/guides/workflows/email-to-images/",
+    "source": "guides/workflows/email-to-images.md"
+  },
+  {
+    "route": "/guides/workflows/email-to-slack/",
+    "source": "guides/workflows/email-to-slack.md"
+  },
+  {
+    "route": "/guides/workflows/highcharts/",
+    "source": "guides/workflows/highcharts.md"
+  },
+  {
+    "route": "/guides/workflows/",
+    "source": "guides/workflows/index.md"
+  },
+  {
+    "route": "/guides/workflows/insomnia/",
+    "source": "guides/workflows/insomnia.md"
+  },
+  {
+    "route": "/guides/workflows/postman/",
+    "source": "guides/workflows/postman.md"
+  },
+  {
+    "route": "/integrations/",
+    "source": "integrations/index.md"
+  },
+  {
+    "route": "/integrations/make/",
+    "source": "integrations/make.md"
+  },
+  {
+    "route": "/integrations/mcp/chatgpt-codex/",
+    "source": "integrations/mcp/chatgpt-codex.md"
+  },
+  {
+    "route": "/integrations/mcp/claude/",
+    "source": "integrations/mcp/claude.md"
+  },
+  {
+    "route": "/integrations/mcp/cline/",
+    "source": "integrations/mcp/cline.md"
+  },
+  {
+    "route": "/integrations/mcp/cursor/",
+    "source": "integrations/mcp/cursor.md"
+  },
+  {
+    "route": "/integrations/mcp/gemini/",
+    "source": "integrations/mcp/gemini.md"
+  },
+  {
+    "route": "/integrations/mcp/github-copilot/",
+    "source": "integrations/mcp/github-copilot.md"
+  },
+  {
+    "route": "/integrations/mcp/grok/",
+    "source": "integrations/mcp/grok.md"
+  },
+  {
+    "route": "/integrations/mcp/",
+    "source": "integrations/mcp/index.md"
+  },
+  {
+    "route": "/integrations/mcp/jetbrains/",
+    "source": "integrations/mcp/jetbrains.md"
+  },
+  {
+    "route": "/integrations/mcp/opencode/",
+    "source": "integrations/mcp/opencode.md"
+  },
+  {
+    "route": "/integrations/mcp/permissions/",
+    "source": "integrations/mcp/permissions.md"
+  },
+  {
+    "route": "/integrations/mcp/tools/",
+    "source": "integrations/mcp/tools.md"
+  },
+  {
+    "route": "/integrations/mcp/vscode/",
+    "source": "integrations/mcp/vscode.md"
+  },
+  {
+    "route": "/integrations/mcp/windsurf/",
+    "source": "integrations/mcp/windsurf.md"
+  },
+  {
+    "route": "/integrations/mcp/zed/",
+    "source": "integrations/mcp/zed.md"
+  },
+  {
+    "route": "/integrations/n8n/",
+    "source": "integrations/n8n.md"
+  },
+  {
+    "route": "/integrations/zapier/",
+    "source": "integrations/zapier.md"
+  },
+  {
+    "route": "/management-api/api-keys/",
+    "source": "management-api/api-keys.md"
+  },
+  {
+    "route": "/management-api/",
+    "source": "management-api/index.md"
+  },
+  {
+    "route": "/management-api/og-configs/",
+    "source": "management-api/og-configs.md"
+  },
+  {
+    "route": "/management-api/proxies/",
+    "source": "management-api/proxies.md"
+  },
+  {
+    "route": "/management-api/storage-destinations/",
+    "source": "management-api/storage-destinations.md"
+  },
+  {
+    "route": "/management-api/usage/",
+    "source": "management-api/usage.md"
+  },
+  {
+    "route": "/template-editor/advanced/extra-css/",
+    "source": "template-editor/advanced/extra-css.md"
+  },
+  {
+    "route": "/template-editor/advanced/",
+    "source": "template-editor/advanced/index.md"
+  },
+  {
+    "route": "/template-editor/advanced/panels/",
+    "source": "template-editor/advanced/panels.md"
+  },
+  {
+    "route": "/template-editor/advanced/sizing-positioning/",
+    "source": "template-editor/advanced/sizing-positioning.md"
+  },
+  {
+    "route": "/template-editor/blocks/flex-panel/",
+    "source": "template-editor/blocks/flex-panel.md"
+  },
+  {
+    "route": "/template-editor/blocks/free-panel/",
+    "source": "template-editor/blocks/free-panel.md"
+  },
+  {
+    "route": "/template-editor/blocks/grid-panel/",
+    "source": "template-editor/blocks/grid-panel.md"
+  },
+  {
+    "route": "/template-editor/blocks/html/",
+    "source": "template-editor/blocks/html.md"
+  },
+  {
+    "route": "/template-editor/blocks/image/",
+    "source": "template-editor/blocks/image.md"
+  },
+  {
+    "route": "/template-editor/blocks/",
+    "source": "template-editor/blocks/index.md"
+  },
+  {
+    "route": "/template-editor/blocks/rich-text/",
+    "source": "template-editor/blocks/rich-text.md"
+  },
+  {
+    "route": "/template-editor/blocks/shape/",
+    "source": "template-editor/blocks/shape.md"
+  },
+  {
+    "route": "/template-editor/blocks/simple-text/",
+    "source": "template-editor/blocks/simple-text.md"
+  },
+  {
+    "route": "/template-editor/blocks/table-panel/",
+    "source": "template-editor/blocks/table-panel.md"
+  },
+  {
+    "route": "/template-editor/canvas/",
+    "source": "template-editor/canvas.md"
+  },
+  {
+    "route": "/template-editor/",
+    "source": "template-editor/index.md"
+  },
+  {
+    "route": "/template-editor/quick-start/",
+    "source": "template-editor/quick-start.md"
+  },
+  {
+    "route": "/template-editor/variables/",
+    "source": "template-editor/variables.md"
+  },
+  {
+    "route": "/use-cases/dynamic-images/",
+    "source": "use-cases/dynamic-images.md"
+  },
+  {
+    "route": "/use-cases/",
+    "source": "use-cases/index.md"
+  },
+  {
+    "route": "/use-cases/screenshots/",
+    "source": "use-cases/screenshots.md"
+  },
+  {
+    "route": "/use-cases/social-cards/",
+    "source": "use-cases/social-cards.md"
+  }
+]

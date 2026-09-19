@@ -1,0 +1,51 @@
+@layer base, starlight, theme, components, utilities;
+@import '@astrojs/starlight-tailwind';
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+:root { --sl-color-accent-low:#103c2d; --sl-color-accent:#02b875; --sl-color-accent-high:#8fe4b9; --sl-content-width:51rem; --sl-text-h1:2.5rem; --sl-color-bg:#151b19; --sl-color-bg-nav:#151b19; --sl-color-bg-sidebar:#212529; }
+:root[data-theme='light'] { --sl-color-accent-low:#e4f6eb; --sl-color-accent:#007a4e; --sl-color-accent-high:#075836; --sl-color-white:#171b22; --sl-color-gray-1:#28332d; --sl-color-gray-2:#435148; --sl-color-gray-3:#617067; --sl-color-gray-4:#87988d; --sl-color-gray-5:#dce5dd; --sl-color-gray-6:#f7f9f6; --sl-color-bg:#ffffff; --sl-color-bg-nav:#ffffff; --sl-color-bg-sidebar:#f7f9f6; --sl-color-hairline:#e3e9e3; }
+html { scroll-padding-top:6rem; }
+h1,h2,h3 { letter-spacing:-.025em; }
+main > .content-panel { padding-block:1rem; }
+/* Image zoom inserts a hidden element before the article. */
+.sl-container > .sl-markdown-content { margin-top:0; }
+.sl-markdown-content > a[id]:first-child + p { margin-top:0; }
+
+.platform-sizes td:first-child, .platform-sizes td:first-child code { white-space:nowrap; }
+
+/* Troubleshooting entries are compact reference items within a section. */
+.sl-markdown-content .troubleshooting { --sl-text-h3:1.125rem; --sl-text-h4:1rem; }
+.sl-markdown-content .troubleshooting .sl-heading-wrapper { margin-top:1.5rem; }
+.sl-markdown-content .troubleshooting h3 { line-height:1.5; letter-spacing:normal; }
+.sl-markdown-content .troubleshooting h3 code { font-size:.9em; }
+
+/* Match the main website's fixed 74px charcoal navigation in either theme. */
+:root, :root[data-theme='light'] { --sl-nav-height:74px; --sl-color-bg-nav:#212529; --sl-nav-pad-y:12px; }
+header.header { border-bottom-color:#ffffff20; }
+.sl-markdown-content .sl-link-button { border-radius:.35rem; padding:.5rem .85rem; min-height:0; font-size:.875rem; gap:.4rem; transition:background-color .15s ease, border-color .15s ease, color .15s ease; }
+.sl-markdown-content .sl-link-button.primary { background:#007a4e; border-color:#007a4e; color:#fff; }
+.sl-markdown-content .sl-link-button.primary:hover { background:#005f3d; border-color:#005f3d; color:#fff; }
+.sl-markdown-content .sl-link-button.primary:active { background:#004b30; border-color:#004b30; }
+.sl-markdown-content .sl-link-button.secondary { background:#2b3531; border-color:#3a4840; color:#e5eee9; }
+.sl-markdown-content .sl-link-button.secondary:hover { background:#3b4d43; border-color:#617b6b; color:#fff; }
+.sl-markdown-content .sl-link-button.secondary:active { background:#233229; }
+:root[data-theme='light'] .sl-markdown-content .sl-link-button.secondary { background:#edf2ee; border-color:#dde6df; color:#283d31; }
+:root[data-theme='light'] .sl-markdown-content .sl-link-button.secondary:hover { background:#dce9df; border-color:#a9c3b0; color:#153e27; }
+:root[data-theme='light'] .sl-markdown-content .sl-link-button.secondary:active { background:#cedfd2; }
+.sl-markdown-content .sl-link-button:focus-visible { outline:2px solid var(--sl-color-text-accent); outline-offset:3px; }
+@media(prefers-reduced-motion:reduce) { .sl-markdown-content .sl-link-button { transition:none; } }
+.sl-markdown-content .sl-link-button + .sl-link-button { margin-inline-start:.6rem; }
+@media(min-width:72rem) { .right-sidebar { position:sticky; top:var(--sl-nav-height); padding-top:0; height:calc(100vh - var(--sl-nav-height)); } }
+@media(max-width:49.99rem) { starlight-menu-button button { color:#fff; } }
+/* Zoom UI uses document colors, independent of the always-dark site header. */
+starlight-image-zoom { --sl-color-bg-nav:var(--sl-color-bg); }
+.starlight-image-zoom-control { color:var(--sl-color-white); }
+@media(max-width:49.99rem) { button.sl-menu-button { background:#ffffff10; color:white; border:1px solid #ffffff35; border-radius:.35rem; box-shadow:none; } }
+mobile-starlight-toc { --sl-color-bg-nav:var(--sl-color-bg); }
+
+:root[data-theme='dark'] .sidebar-pane { background-color:#212529; }

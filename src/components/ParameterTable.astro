@@ -1,0 +1,19 @@
+---
+import { marked } from 'marked';
+import data from '../data/parameters.json';
+interface Props { context?: keyof typeof data.contexts | 'api'; includePrimary?: boolean; namePrefix?: string; nameHeading?: string; }
+const { context = 'api', includePrimary = false, namePrefix = '', nameHeading = 'Name' } = Astro.props;
+const parameters = data.parameters.filter(parameter =>
+  (parameter.additional || includePrimary) && (context === 'api'
+    ? parameter.support.html || parameter.support.url
+    : parameter.support[context])
+);
+---
+<table>
+  <thead><tr><th>{nameHeading}</th><th>Type</th><th>Description</th></tr></thead>
+  <tbody>{parameters.map(parameter => <tr>
+    <td><a href={parameter.link}><strong>{namePrefix}{parameter.name}</strong></a></td>
+    <td><code>{parameter.type}</code></td>
+    <td set:html={marked.parseInline(parameter.description)} />
+  </tr>)}</tbody>
+</table>

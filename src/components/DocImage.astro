@@ -1,0 +1,35 @@
+---
+import { Zoom } from 'starlight-image-zoom/components';
+import images from '../data/images.json';
+interface Props { src: string; alt: string; width?: number; height?: number; caption?: string; }
+const { src, alt, width, height, caption } = Astro.props;
+const optimized = (images as Record<string, { width: number; height: number; sources: Record<string, { src: string; width: number }[]> }>)[src];
+const displayWidth = width ?? optimized?.width;
+const displayHeight = height ?? (optimized && displayWidth ? Math.round(displayWidth * optimized.height / optimized.width) : undefined);
+---
+<figure data-doc-image>
+  <Zoom label={alt}>
+    <picture>
+      {optimized && Object.entries(optimized.sources).map(([format, variants]) => <source type={`image/${format}`} srcset={variants.map(v => `${v.src} ${v.width}w`).join(', ')} sizes="(max-width: 50rem) 100vw, 48rem" />)}
+      <img src={src} data-doc-original={src} alt={alt} width={displayWidth} height={displayHeight} loading="lazy" decoding="async" />
+    </picture>
+  </Zoom>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+<script>
+  // The zoom plugin clones the selected responsive image into its dialog.
+  // Load the original there so enlargement retains the source's full detail.
+  new MutationObserver((records) => {
+    for (const record of records) for (const node of record.addedNodes) {
+      if (!(node instanceof Element)) continue;
+      node.querySelectorAll<HTMLImageElement>('dialog img[data-doc-original]').forEach((image) => {
+        image.removeAttribute('srcset');
+        image.src = image.dataset.docOriginal!;
+      });
+    }
+  }).observe(document.body, { childList:true });
+</script>
+<style>
+  figure { margin:1.5rem 0; } img { max-width:100%; height:auto; border:1px solid var(--sl-color-hairline); border-radius:.6rem; }
+  figcaption { color:var(--sl-color-gray-3); font-size:.8rem; margin-top:.6rem; }
+</style>

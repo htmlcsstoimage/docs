@@ -1,0 +1,19 @@
+---
+interface Props { margin?: boolean; label: string; anchor: string; }
+const { margin = false, label, anchor } = Astro.props;
+---
+<figure>
+  <span id={anchor}></span>
+  <div class:list={['sizing-preview', { 'with-margin': margin }]} data-pagefind-ignore aria-hidden="true">
+    <div class="example-box"><strong>{label}</strong><span>400 × 200 CSS pixels</span></div>
+  </div>
+  <figcaption>A 400 × 200 CSS pixel element{margin ? ' with a 20px margin on each side' : ''}. At the default device scale of 2, the output is {margin ? '880 × 480' : '800 × 400'} image pixels.</figcaption>
+</figure>
+<style>
+  figure { margin-block:1.5rem; }
+  .sizing-preview { width:fit-content; max-width:100%; padding:1rem; background:var(--sl-color-bg-sidebar); border:1px solid var(--sl-color-hairline); border-radius:.5rem; }
+  .example-box { width:400px; max-width:100%; min-height:200px; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:.5rem; border:1px solid var(--sl-color-accent); background:var(--sl-color-bg); text-align:center; padding:1rem; }
+  .with-margin { padding:20px; }
+  .example-box span,figcaption { color:var(--sl-color-gray-3); font-size:.8rem; }
+  figcaption { margin-top:.6rem; }
+</style>

@@ -1,0 +1,26 @@
+---
+title: Free Panel
+slug: template-editor/blocks/free-panel
+description: Group free-positioned content in a reusable template.
+---
+import CommonBlockOptions from '../../../../components/CommonBlockOptions.astro';
+import TemplatedContent from '../../../../components/TemplatedContent.astro';
+
+<a id="free-panel" />
+
+Use a Free Panel when blocks should move together while their children keep canvas-style positioning inside the panel. Add one from the left sidebar, then drag blocks into it or use the reparent control.
+
+<CommonBlockOptions />
+
+## Block-specific properties
+
+| Property | Details |
+| --- | --- |
+| Padding | Space between the panel edge and its children. Simple mode shares an inset; Advanced mode sets each side independently. Padding is separate from gaps and child margins. |
+| Overflow | Clip content or let it show outside the panel. |
+| Child positioning | Children use X and Y positions inside the panel. |
+| Reparenting | Move existing blocks into or out of the panel. |
+
+See [Advanced panels](/template-editor/advanced/panels/) for help choosing and combining panel types.
+
+<TemplatedContent />

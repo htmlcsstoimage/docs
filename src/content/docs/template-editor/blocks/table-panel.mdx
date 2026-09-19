@@ -1,0 +1,45 @@
+---
+title: Table Panel
+slug: template-editor/blocks/table-panel
+description: Assign blocks to specific rows and columns with Table Panels.
+---
+import CommonBlockOptions from '../../../../components/CommonBlockOptions.astro';
+import GridTracks from '../../../../components/GridTracks.astro';
+import TemplatedContent from '../../../../components/TemplatedContent.astro';
+
+<a id="table-panel" />
+
+Use Table Panels when each child belongs in a specific cell. Add one from the left sidebar. Children have assigned positions and can span multiple rows or columns; Grid Panel children flow in order instead.
+
+<CommonBlockOptions cell />
+
+## Block-specific properties
+
+| Property | Details |
+| --- | --- |
+| Padding | Space inside the panel edge. Simple mode sets all sides; Advanced mode sets each side. Separate from gaps and child margins. |
+| Columns | Number and sizing of columns. |
+| Rows | Number and sizing of rows. |
+| Column gap | Space between columns. |
+| Row gap | Space between rows. |
+| Cell alignment | Default alignment for blocks inside cells. |
+
+## Child properties
+
+Select a child to adjust its behavior inside the Table Panel.
+
+| Property | Details |
+| --- | --- |
+| Position | Assigned column and row. |
+| Columns | Number of columns the child spans. |
+| Rows | Number of rows the child spans. |
+| Horizontal align | Horizontal alignment override. |
+| Vertical align | Vertical alignment override. |
+| Margin | Space around the child inside its cell, without changing the whole table. |
+| Auto size to grid cell | Whether the child fills the cell area. |
+
+<GridTracks />
+
+See [Advanced panels](/template-editor/advanced/panels/) for help choosing and combining panel types.
+
+<TemplatedContent />

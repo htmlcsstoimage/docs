@@ -3,5 +3,16 @@ _site
 .sass-cache
 .jekyll-cache
 .jekyll-metadata
+.ruby-lsp/
+.DS_Store
 vendor
 /.idea
+node_modules/
+.astro/
+.wrangler/
+dist/
+src/generated/
+migration-report.json
+.env
+.env.*
+!.env.example

@@ -1,0 +1,48 @@
+---
+const { markdownPath } = Astro.props;
+const pageUrl = new URL(Astro.url.pathname, Astro.site || Astro.url.origin).href;
+const prompt = `Read from ${pageUrl} so I can ask questions about it.`;
+---
+<details class="page-actions" data-pagefind-ignore>
+  <summary aria-label="Page actions"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg> Copy page <span aria-hidden="true">⌄</span></summary>
+  <div class="action-list">
+    <button type="button" data-copy-page={markdownPath}><strong>Copy page</strong><small>Copy Markdown for LLMs</small></button>
+    <a href={markdownPath}><strong>View as Markdown ↗</strong><small>Read this page as plain text</small></a>
+    <a href={`https://chatgpt.com/?hints=search&prompt=${encodeURIComponent(prompt)}`} target="_blank" rel="noopener"><strong>Open in ChatGPT ↗</strong><small>Ask questions about this page</small></a>
+    <a href={`https://claude.ai/new?q=${encodeURIComponent(prompt)}`} target="_blank" rel="noopener"><strong>Open in Claude ↗</strong><small>Ask questions about this page</small></a>
+    <span class="copy-status" role="status"></span>
+  </div>
+</details>
+<script>
+  document.querySelectorAll<HTMLDetailsElement>('.page-actions').forEach(menu => {
+    const trigger = menu.querySelector('summary')!;
+    const button = menu.querySelector<HTMLButtonElement>('[data-copy-page]')!;
+    const status = menu.querySelector<HTMLElement>('[role="status"]')!;
+    button.addEventListener('click', async () => {
+      try {
+        const response = await fetch(button.dataset.copyPage!);
+        if (!response.ok) throw new Error('Unable to load Markdown');
+        await navigator.clipboard.writeText(await response.text());
+        status.textContent = 'Copied to clipboard';
+      } catch { status.textContent = 'Copy failed. Use View as Markdown.'; }
+    });
+    document.addEventListener('click', event => {
+      if (event.target instanceof Node && !menu.contains(event.target)) menu.open = false;
+    });
+    menu.addEventListener('keydown', event => {
+      if (event.key === 'Escape') { menu.open = false; trigger.focus(); }
+    });
+  });
+</script>
+<style>
+  .page-actions { position:relative; flex-shrink:0; margin-top:.45rem; font-size:.8rem; z-index:10; }
+  summary { display:flex; align-items:center; gap:.5rem; list-style:none; border:1px solid var(--sl-color-gray-5); padding:.5rem .7rem; border-radius:.35rem; cursor:pointer; color:var(--sl-color-gray-2); white-space:nowrap; }
+  summary::-webkit-details-marker { display:none; }
+  summary:hover { background:var(--sl-color-bg-sidebar); }
+  .action-list { position:absolute; right:0; top:calc(100% + .4rem); width:16rem; max-width:calc(100vw - 3rem); background:var(--sl-color-bg); border:1px solid var(--sl-color-gray-5); border-radius:.5rem; padding:.4rem; box-shadow:0 12px 30px #0002; }
+  .action-list a,.action-list button { display:block; width:100%; text-align:left; padding:.65rem .75rem; border:0; border-radius:.25rem; background:none; color:var(--sl-color-white); text-decoration:none; font:inherit; cursor:pointer; }
+  .action-list a:hover,.action-list button:hover { background:var(--sl-color-bg-sidebar); }
+  strong { display:block; font-weight:550; } small { display:block; margin-top:.15rem; color:var(--sl-color-gray-3); }
+  .copy-status:not(:empty) { display:block; padding:.5rem .75rem; }
+  @media(max-width:40rem) { .page-actions { margin-left:auto; } }
+</style>

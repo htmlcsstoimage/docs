@@ -1,0 +1,25 @@
+---
+import data from '../data/operations.json';
+import Endpoint from './Endpoint.astro';
+interface Props { resource: keyof typeof data; }
+const operations = data[Astro.props.resource].map(operation => ({
+  ...operation,
+  anchor: 'id' in operation ? operation.id : operation.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+}));
+---
+<div class="operations">
+  {operations.map(operation => <section aria-labelledby={operation.anchor}>
+    <h3 id={operation.anchor}>{operation.title}</h3>
+    <Endpoint compact method={operation.method as 'GET' | 'POST' | 'PUT' | 'DELETE'} path={operation.path} />
+    <p>Permission required: <a href={`/getting-started/using-the-api/permissions/#permission-${operation.permission.replace(/[_:]/g, '-')}`}><code>{operation.permission}</code></a></p>
+    <p>MCP tool: {operation.mcp_tool
+      ? <a href={`/integrations/mcp/tools/#${'mcp_section' in operation ? operation.mcp_section : ''}`}><code>{operation.mcp_tool}</code></a>
+      : 'Not available'}</p>
+  </section>)}
+</div>
+<style>
+  .operations { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr)); gap:1rem; margin-block:1.5rem; }
+  section { min-width:0; margin:0; padding:1.1rem; border:1px solid var(--sl-color-hairline); border-radius:.5rem; }
+  h3 { margin:0 0 .8rem; font-size:1rem; }
+  p { margin:.7rem 0 0; font-size:.85rem; overflow-wrap:anywhere; }
+</style>

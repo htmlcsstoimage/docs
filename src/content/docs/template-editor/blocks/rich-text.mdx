@@ -1,0 +1,41 @@
+---
+title: Rich Text
+slug: template-editor/blocks/rich-text
+description: Style text selections and use Handlebars inside template text.
+---
+import CommonBlockOptions from '../../../../components/CommonBlockOptions.astro';
+import TemplatedContent from '../../../../components/TemplatedContent.astro';
+import DocImage from '../../../../components/DocImage.astro';
+
+<a id="rich-text-block" />
+
+Use Rich Text for varied typography, inline styling, or Handlebars composition. Choose **Rich Text Box** in the left sidebar, then double-click the block to edit text directly.
+
+<DocImage src="/assets/images/template-editor/te-rich-text-typography-editor.png" alt="Rich Text block selected with typography controls open" />
+
+Select any word, line, letter, or range and use the inline toolbar to style that selection. The right sidebar applies a property across the whole block, replacing per-selection differences for that property.
+
+Toolbar controls show `mixed` when a selection has multiple values. Choosing a value applies it to the current selection.
+
+<CommonBlockOptions kind="text" />
+
+## Block-specific properties
+
+| Property | Details | Variables |
+| --- | --- | --- |
+| Opacity | Transparency of the whole block, including content and styling. | Yes |
+| Font | Font family, weight, and italic style. | — |
+| Font size | Size of the selected text or whole block. | Yes |
+| Font color | Color of the selected text or whole block. | Yes |
+| Line height | Space between lines. | Yes |
+| Letter spacing | Space between letters. | Yes |
+| Horizontal align | How lines align inside the block. | — |
+| Vertical align | How text sits inside the block. | — |
+| Wrap | How text wraps across lines. | — |
+| Overflow | Behavior when text is larger than the block. | — |
+| Underline | Style and color for selected text or the whole block. | Yes |
+| Text outline | Stroke around text. | Yes |
+| Transform | Text casing. | — |
+| Padding | Space inside the block edge. Simple mode sets all sides; Advanced mode sets each side. | — |
+
+<TemplatedContent><p>Rich Text supports Handlebars variables, loops, conditionals, and repeated content inside one text block.</p></TemplatedContent>

@@ -1,0 +1,68 @@
+---
+title: Blocking cookie banners
+slug: guides/advanced/blocking-cookie-banners
+description: >-
+  Learn how to hide cookie banners when taking screenshots
+---
+import { Aside } from '@astrojs/starlight/components';
+import Help from '../../../../components/Help.astro';
+
+<a id="blocking-cookie-banners" />
+
+Hide cookie banners when taking screenshots.
+
+## How it works
+
+The easiest way to hide cookie banners in your screenshots is by using the `block_consent_banners` parameter.
+
+When set to `true`, the API will automatically detect and block common cookie consent banners and popups on websites. This is the recommended approach for most use cases.
+
+## Automatic cookie banner blocking
+
+Simply add `block_consent_banners: true` to your API request:
+
+```json
+{
+  "url": "https://example.com",
+  "block_consent_banners": true
+}
+```
+
+This automatically handles the most common cookie consent frameworks including:
+- OneTrust
+- Cookiebot
+- Quantcast Choice
+- TrustArc
+- Osano
+- And many others
+
+<Aside title="Recommended method">Start with `block_consent_banners`. Use CSS injection below if a custom banner is not covered.</Aside>
+
+## Manual CSS injection (advanced)
+
+For custom cookie banners not covered by the automatic blocking, you can still use CSS injection.
+
+Any CSS passed via the `css` param when generating a URL image will get injected into the page.
+
+The hard part can be figuring out what CSS to use to block the cookie banner. To do this, we recommend visiting the site in Chrome.
+Use the developer tools inspector to find the ID or CSS class of the cookie banner (the css selector).
+
+Then use this information to override the visibility of the cookie banner.
+
+Here is an example that hides two common cookie banners.
+
+```css
+#onetrust-consent-sdk {
+ display: none !important;
+}
+
+.qc-cmp2-container {
+   display: none !important;
+}
+```
+
+To learn about CSS Selectors, we recommend [this article](https://www.w3schools.com/cssref/css_selectors.asp).
+
+
+<Help />
+

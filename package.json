@@ -1,0 +1,36 @@
+{
+  "name": "hcti-docs",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "npm run prepare:images && npm run prepare:og && astro dev",
+    "build": "npm run prepare:images && npm run prepare:og && astro build",
+    "check": "node scripts/check-site.mjs",
+    "test": "npm run prepare:og && node --test tests/*.test.mjs",
+    "preview": "wrangler dev",
+    "upload:preview": "wrangler versions upload --preview-alias docs-new",
+    "prepare:og": "node scripts/prepare-og.mjs",
+    "check:migration": "node scripts/check-site.mjs --complete",
+    "prepare:images": "node scripts/prepare-images.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "@astrojs/starlight": "^0.42.2",
+    "@astrojs/starlight-tailwind": "^5.0.0",
+    "@html-css-to-image/client": "^0.9.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.3",
+    "cheerio": "^1.2.0",
+    "gray-matter": "^4.0.3",
+    "marked": "^18.0.13",
+    "sharp": "^0.35.4",
+    "starlight-image-zoom": "^0.16.0",
+    "tailwindcss": "^4.3.3",
+    "turndown": "^7.2.4",
+    "turndown-plugin-gfm": "^1.0.2",
+    "wrangler": "^4.135.0"
+  }
+}

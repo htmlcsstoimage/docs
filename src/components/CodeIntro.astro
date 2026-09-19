@@ -1,0 +1,15 @@
+---
+import DocImage from './DocImage.astro';
+interface Props { language: string; anchor: string }
+const { language, anchor } = Astro.props;
+---
+<a id={`${anchor}-htmlcss-to-image`}></a>
+<p>Generate PNG, JPG, WebP, and PDF output with {language}, using HTML/CSS or reusable templates rendered in Google Chrome.</p>
+<h2 id={`generating-images-with-${anchor}`}>Generating images with {language}</h2>
+<ol><li>Send your HTML/CSS to the API.</li><li>The API renders it in Google Chrome.</li><li>Read the generated image URL from the JSON response.</li></ol>
+<p>See <a href="/getting-started/using-the-api/#creating-an-image">Creating an image</a> for request parameters. A response includes the image's <code>url</code> and <code>id</code>.</p>
+<DocImage src="/assets/images/dog-rates-example.png" alt={`Example image generated from HTML with ${language}`} width={500} />
+<h2 id={`authentication-with-${anchor}`}>Authentication with {language}</h2>
+<p>Use HTTP Basic authentication with your API ID as the username and API key as the password. Find both in the <a href="https://htmlcsstoimage.com/dashboard">dashboard</a>. Keep credentials in server-side configuration or environment variables.</p>
+<h2 id={`${anchor}-example-code`}>{language} example code</h2>
+<p>The example sends a POST request to <code>https://hcti.io/v1/image</code>. Image creation requires <code>images:create</code>. See <a href="/getting-started/using-the-api/api-keys/">authentication and API keys</a> for scoped credentials and access errors.</p>
