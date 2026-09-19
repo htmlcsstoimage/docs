@@ -40,6 +40,21 @@ for (const [route, target] of Object.entries(redirects)) {
   }
 }
 assert.equal((await fetch(new URL('/this-page-must-not-exist/', origin))).status, 404);
+// Exercise each asset bypass route as well as the Worker-backed pages above.
+const home = await (await fetch(new URL('/', origin))).text();
+const bundle = home.match(/(?:src|href)="(\/_astro\/[^" ]+\.js)"/);
+assert.ok(bundle, 'Expected a bundled script on the homepage');
+for (const path of [bundle[1], '/pagefind/pagefind.js', '/favicon.ico', Object.keys(images)[0]]) {
+  const response = await fetch(new URL(path, origin), { method: 'HEAD' });
+  assert.equal(response.status, 200, path);
+  assert.equal(response.headers.get('x-content-type-options'), 'nosniff', path);
+  assert.equal(response.headers.get('referrer-policy'), 'strict-origin-when-cross-origin', path);
+  if (!local) assert.match(response.headers.get('x-robots-tag') || '', /noindex/, path);
+}
+const og = await fetch(new URL(`/_og/${pages[0].og.hash}/`, origin));
+assert.equal(og.status, 200);
+assert.match(og.headers.get('content-type') || '', /text\/html/);
+assert.match(og.headers.get('x-robots-tag') || '', /noindex/);
 for (const [original, image] of Object.entries(images)) {
   assert.equal((await fetch(new URL(original, origin), { method: 'HEAD' })).status, 200, original);
   for (const [format, variants] of Object.entries(image.sources)) {

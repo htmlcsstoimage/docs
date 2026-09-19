@@ -9,8 +9,21 @@ const shortcuts = [
 ];
 ---
 <div class="docs-search" data-pagefind-ignore>
+  <button class="pf-trigger-btn flex items-center gap-2 px-3 text-sm" type="button" data-search-trigger aria-label="Search docs" aria-haspopup="dialog" aria-expanded="false" aria-keyshortcuts="Control+k Meta+k">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg>
+    <span class="pf-trigger-text">Search docs</span>
+    <span class="pf-trigger-shortcut ml-auto" aria-hidden="true"><kbd class="pf-trigger-key" data-search-shortcut>⌘</kbd><kbd class="pf-trigger-key">K</kbd></span>
+  </button>
+  <dialog class="pf-modal search-loading" aria-label="Search docs" data-search-loading>
+    <div class="flex items-center gap-3 p-4">
+      <input class="min-w-0 flex-1 rounded border border-solid border-[var(--pf-border)] bg-transparent p-3 text-[var(--pf-text)] outline-[var(--pf-border-focus)]" type="search" aria-label="Search docs" placeholder="Search docs, parameters, and guides…" autofocus />
+      <button class="cursor-pointer rounded px-2 py-1 text-sm" type="button" data-search-cancel aria-label="Close search">Esc</button>
+    </div>
+    <p class="px-4 pb-4 text-sm" role="status" data-search-status>Loading search…</p>
+    <button class="m-4 cursor-pointer underline" type="button" data-search-retry hidden>Retry</button>
+  </dialog>
+  <template data-search-template>
   <pagefind-config bundle-path="/search/" base-url="/" excerpt-length="18" preload></pagefind-config>
-  <pagefind-modal-trigger placeholder="Search docs" shortcut="mod+k"></pagefind-modal-trigger>
   <pagefind-modal>
     <pagefind-modal-header>
       <pagefind-input placeholder="Search docs, parameters, and guides…" debounce="100"></pagefind-input>
@@ -35,51 +48,9 @@ const shortcuts = [
       <span class="search-footer-label">HCTI Docs</span>
     </pagefind-modal-footer>
   </pagefind-modal>
+  </template>
 </div>
 <script>
-  import { getInstanceManager, type PagefindModal } from '@pagefind/component-ui';
-  const initialized = new WeakSet<Element>();
-  // Pagefind does not unregister removed components. Start a clean UI instance
-  // before Astro connects the next page; the imported search bundle stays cached.
-  document.addEventListener('astro:before-swap', () => {
-    getInstanceManager().removeInstance('default');
-  });
-  function initializeSearch() {
-    const root = document.querySelector<HTMLElement>('.docs-search');
-    if (!root || initialized.has(root)) return;
-    initialized.add(root);
-    const instance = getInstanceManager().getInstance('default');
-    const modal = root.querySelector<PagefindModal>('pagefind-modal')!;
-    const start = root.querySelector<HTMLElement>('.search-start')!;
-    const noResults = root.querySelector<HTMLElement>('.search-no-results')!;
-    const input = () => root.querySelector<HTMLInputElement>('pagefind-input input');
-    const updateEmpty = () => {
-      start.hidden = Boolean(input()?.value.trim());
-      noResults.hidden = true;
-    };
-    root.addEventListener('input', updateEmpty);
-    instance.on('search', updateEmpty, root);
-    instance.on('results', (result) => {
-      updateEmpty();
-      noResults.hidden = !instance.searchTerm.trim() || Boolean((result as { results: unknown[] }).results.length);
-    }, root);
-    // Quick links participate in arrow-key navigation before a query is entered.
-    root.addEventListener('keydown', (event) => {
-      if (start.hidden || !['ArrowDown', 'ArrowUp'].includes(event.key)) return;
-      const links = [...start.querySelectorAll<HTMLAnchorElement>('a')];
-      const current = links.indexOf(document.activeElement as HTMLAnchorElement);
-      if (document.activeElement !== input() && current === -1) return;
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      const next = current + (event.key === 'ArrowDown' ? 1 : -1);
-      if (next < 0) input()?.focus();
-      else links[Math.min(next, links.length - 1)]?.focus();
-    }, true);
-    // Native links retain normal navigation and modifier-key behavior.
-    root.addEventListener('click', (event) => {
-      if ((event.target as Element).closest('pagefind-modal a')) modal.close();
-    });
-  }
-  initializeSearch();
-  document.addEventListener('astro:page-load', initializeSearch);
+  import { initializeLazySearch } from '../scripts/search-loader';
+  initializeLazySearch();
 </script>

@@ -10,7 +10,8 @@ routes = [{ pattern = "docs.htmlcsstoimage.com/*", zone_id = "afe7c7febba92b591f
 [assets]
 directory = "./dist"
 binding = "ASSETS"
-run_worker_first = true
+# Pages need Markdown negotiation and redirects; static assets bypass the Worker.
+run_worker_first = ["/*", "!/_astro/*", "!/_og/*", "!/assets/*", "!/pagefind/*", "!/favicon.ico"]
 html_handling = "force-trailing-slash"
 not_found_handling = "404-page"
 

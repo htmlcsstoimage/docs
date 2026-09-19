@@ -61,5 +61,6 @@
   "/advanced-examples/instagram-embed": "/guides/social-media/instagram/",
   "/advanced-examples/twitter-embed": "/guides/social-media/twitter/",
   "/integrations/integromat": "/integrations/make/",
-  "/integrations/mcp-server": "/integrations/mcp/"
+  "/integrations/mcp-server": "/integrations/mcp/",
+  "/sitemap-index.xml": "/sitemap.xml"
 }

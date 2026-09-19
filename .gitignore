@@ -16,3 +16,5 @@ migration-report.json
 .env
 .env.*
 !.env.example
+
+reports/

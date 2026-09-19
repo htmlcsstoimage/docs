@@ -1,4 +1,4 @@
-name: Build and preview docs
+name: Build and deploy docs
 
 on:
   push:
@@ -61,6 +61,33 @@ jobs:
       - name: Verify preview routes and headers
         run: node scripts/check-preview.mjs https://docs-new-docs.mike.workers.dev
 
-  # No production promotion during the migration. main's existing Jekyll
-  # workflow stays in effect until this branch is merged. Add the production
-  # deployment step only as part of the approved cutover.
+  production:
+    needs: check
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: docs-production
+      url: https://docs.htmlcsstoimage.com
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Build production docs with signed HCTI Open Graph URLs
+        run: npm run build
+        env:
+          DOCS_ORIGIN: https://docs.htmlcsstoimage.com
+          DOCS_ENV: production
+          DOCS_BRANCH: main
+          REQUIRE_OG_SIGNING: 'true'
+          HCTI_API_ID: ${{ secrets.V2_HCTI_API_ID }}
+          HCTI_API_KEY: ${{ secrets.V2_HCTI_API_KEY }}
+      - run: npm run check:migration
+      - name: Verify production metadata and sitemap
+        run: node scripts/check-production.mjs
+      - name: Deploy production Worker
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}

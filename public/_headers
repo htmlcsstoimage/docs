@@ -1,0 +1,15 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Worker aliases, e.g. docs-new-docs.mike.workers.dev.
+https://:worker.:account.workers.dev/*
+  X-Robots-Tag: noindex, nofollow
+
+# Version previews, e.g. <version>.docs.mike.workers.dev.
+https://:version.:worker.:account.workers.dev/*
+  X-Robots-Tag: noindex, nofollow
+
+# Generated OG rendering pages are never indexed, including in production.
+/_og/*
+  X-Robots-Tag: noindex, nofollow

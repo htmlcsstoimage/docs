@@ -14,7 +14,8 @@
     "upload:preview": "wrangler versions upload --preview-alias docs-new",
     "prepare:og": "node scripts/prepare-og.mjs",
     "check:migration": "node scripts/check-site.mjs --complete",
-    "prepare:images": "node scripts/prepare-images.mjs"
+    "prepare:images": "node scripts/prepare-images.mjs",
+    "analyze": "ANALYZE=true npm run build"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
@@ -33,5 +34,8 @@
     "turndown": "^7.2.4",
     "turndown-plugin-gfm": "^1.0.2",
     "wrangler": "^4.135.0"
+  },
+  "devDependencies": {
+    "rollup-plugin-visualizer": "^7.1.1"
   }
 }

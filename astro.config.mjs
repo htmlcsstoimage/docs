@@ -5,13 +5,17 @@ import navigation from './src/navigation.mjs';
 import markdownExports from './scripts/markdown-exports.mjs';
 import starlightImageZoom from 'starlight-image-zoom';
 import externalLinks from './scripts/external-links.mjs';
-import sitemap from '@astrojs/sitemap';
+import sitemap from './scripts/sitemap.mjs';
+import bundleAnalysis from './scripts/bundle-analysis.mjs';
 
 export default defineConfig({
   site: process.env.DOCS_ORIGIN || 'http://localhost:4321',
   output: 'static',
+  // ClientRouter still performs soft navigation. Avoid speculative requests that
+  // cannot reliably be reused with our revalidated HTML/Markdown responses.
+  prefetch: false,
   trailingSlash: 'always',
-  integrations: [sitemap({
+  integrations: [...(process.env.ANALYZE === 'true' ? [bundleAnalysis()] : []), sitemap({
     filter: page => !new URL(page).pathname.startsWith('/_og/'),
     serialize: item => ({ ...item, priority: /^\/changelog\/[^/]+\/?$/.test(new URL(item.url).pathname) ? 0.2 : 0.8 }),
   }), starlight({

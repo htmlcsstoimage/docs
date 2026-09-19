@@ -42,6 +42,20 @@ requires all 148 original routes to exist or redirect to a native page. It check
 old anchors, internal links, assets, external-link attributes, and Markdown
 exports, and writes `migration-report.json`. CI runs this complete-site gate.
 
+## Bundle analysis
+
+Run `npm run analyze` to build the site and generate interactive reports in
+`reports/bundle-client.html` and `reports/bundle-prerender.html`, with JSON
+versions alongside them. An SSR report is also generated if that environment runs.
+The client report shows bundled browser JavaScript; prerender/SSR reports describe
+build-time rendering code and are not browser downloads. Toggle gzip/Brotli sizes
+and inspect imports to find large dependencies. Compression sizes are estimates,
+not measured Cloudflare transfers.
+
+Reports are ignored by Git and stay outside `dist`, so they are never deployed.
+Normal builds do not run the analyzer. Google Fonts, runtime-loaded Pagefind
+assets, and copied public assets need separate browser network measurements.
+
 ## Page titles
 
 `title` is the default title, including the browser/SEO title. Optional
@@ -130,9 +144,18 @@ for build-time signing with the HCTI npm package. Signing creates stable URLs;
 it does not request image generation during the build.
 
 The workflow uses `wrangler versions upload`, which does not deploy that version
-to production. There is no Astro production deployment job during migration.
-Preview responses are marked noindex. Do not promote this branch until the full
-migration gate passes and production cutover is explicitly ready.
+to production. The production job runs only on `main` (never pull requests), after validation.
+Static assets (`/_astro/`, `/_og/`, `/assets/`, `/pagefind/`, and `/favicon.ico`) bypass
+the Worker. Pages still run through it for Markdown negotiation and redirects.
+`public/_headers` preserves security headers and marks workers.dev asset responses noindex.
+Preview responses are marked noindex. Merging into `main` triggers a fresh production
+build with the production origin, indexable metadata, and signed HCTI URLs, then
+deploys the existing `docs` Worker. The production metadata gate runs before deployment.
+
+The build publishes a single `/sitemap.xml`, advertised by `/robots.txt`.
+If the sitemap eventually needs multiple chunks, that same URL becomes the index.
+`/sitemap-index.xml` redirects to `/sitemap.xml` for compatibility. Individual
+changelog entries have priority 0.2; other documentation pages have priority 0.8.
 
 ## Help
 
