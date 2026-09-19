@@ -2,12 +2,24 @@
 import pages from '../generated/pages.json';
 const page = pages.find(page => page.route === Astro.url.pathname);
 const { head, entry } = Astro.locals.starlightRoute;
-const tags = head.map(tag => entry.data.og_title && tag.tag === 'meta' &&
-  (tag.attrs?.property === 'og:title' || tag.attrs?.name === 'twitter:title')
-  ? { ...tag, attrs: { ...tag.attrs, content: entry.data.og_title } }
-  : tag);
+const siteTitle = 'HTML/CSS to Image API Docs';
+const brandedTitle = (title: string) => title === siteTitle || title.endsWith(` | ${siteTitle}`)
+  ? title : `${title} | ${siteTitle}`;
+const tags = head.filter(tag => tag.tag !== 'title' &&
+  !(tag.tag === 'meta' && tag.attrs?.name === 'generator'))
+  .map(tag => tag.tag === 'meta' &&
+    (tag.attrs?.property === 'og:title' || tag.attrs?.name === 'twitter:title')
+    ? { ...tag, attrs: { ...tag.attrs, content: brandedTitle(entry.data.og_title ?? entry.data.title) } }
+    : tag);
 ---
+<title>{brandedTitle(entry.data.title)}</title>
+<meta data-pagefind-filter="kind[content]" content={entry.data.changelog ? 'changelog' : 'docs'} />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" />
 {tags.map(({ tag: Tag, attrs, content }) => <Tag {...attrs} set:html={content} />)}
+{!tags.some(tag => tag.tag === 'meta' && tag.attrs?.name === 'twitter:title') &&
+  <meta name="twitter:title" content={brandedTitle(entry.data.og_title ?? entry.data.title)} />}
 {page && <link rel="alternate" type="text/markdown" href={page.markdownPath} />}
 {page?.og.image && <>
   <meta property="og:image" content={page.og.image} />

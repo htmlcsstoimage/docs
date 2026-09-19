@@ -8,8 +8,8 @@ test('OG URLs stay stable for equivalent content and change with content or desi
 });
 test('signing is deterministic and never exposes the API key in the public URL', () => {
   const key = 'test-only-secret-not-a-real-credential';
-  const url = signedImageUrl('https://docs-new-docs.mike.workers.dev/og/example/', 'test-id', key);
-  assert.equal(url, signedImageUrl('https://docs-new-docs.mike.workers.dev/og/example/', 'test-id', key));
+  const url = signedImageUrl('https://docs-new-docs.mike.workers.dev/_og/example/', 'test-id', key);
+  assert.equal(url, signedImageUrl('https://docs-new-docs.mike.workers.dev/_og/example/', 'test-id', key));
   assert.ok(!url.includes(key));
   assert.equal(new URL(url).protocol, 'https:');
 });

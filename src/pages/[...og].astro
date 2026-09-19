@@ -1,0 +1,53 @@
+---
+import pages from '../generated/pages.json';
+// Astro ignores underscore-prefixed page folders. Generate only these internal
+// /_og/<hash>/ routes explicitly instead.
+export function getStaticPaths() {
+  return pages.map(page => ({ params: { og: `_og/${page.og.hash}` }, props: { card: page.og } }));
+}
+const { card } = Astro.props;
+const titleSize = card.title.length > 95 ? 44 : card.title.length > 65 ? 50 : 60;
+// Curated neighboring hues keep every variation soft and in the site's color family.
+const palettes = [
+  ['#7bb98a', '#35a99c', '#4b7dae'],
+  ['#8dbd9b', '#48a99a', '#527fa3'],
+  ['#6bb6a4', '#439daf', '#687fb3'],
+  ['#9ab782', '#56ab91', '#408fa3'],
+  ['#82b8ad', '#599caf', '#7886b0'],
+  ['#75b98d', '#3baba6', '#508ba9'],
+];
+const seed = Number.parseInt(card.hash.slice(0, 8), 16);
+const colors = palettes[seed % palettes.length];
+const angle = 105 + (Number.parseInt(card.hash.slice(8, 10), 16) % 31);
+const gradient = `linear-gradient(${angle}deg,${colors[0]} 0%,${colors[1]} 48%,${colors[2]} 100%)`;
+---
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8" /><meta name="robots" content="noindex" /><title>{card.title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=block" />
+</head>
+<body data-pagefind-ignore>
+  <main id="og-card" style={{ background: gradient }}>
+    <div class="panel">
+      <header class="brand"><img src="/assets/images/hcti-logo.svg" width="56" height="56" alt="" /><span>HTML/CSS to Image</span></header>
+      <div class="content">
+        <h1 style={`font-size:${titleSize}px`}>{card.title}</h1>
+        <p class="description">{card.description}</p>
+      </div>
+      <footer>docs.htmlcsstoimage.com</footer>
+    </div>
+  </main>
+</body></html>
+<style>
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:'IBM Plex Sans',sans-serif; }
+  #og-card { width:1200px; height:630px; padding:32px; color:#192521; }
+  .panel { height:100%; padding:38px 48px 32px; display:flex; flex-direction:column; border:1px solid #dfe8e2; border-radius:8px; background-color:#fcfdfc; background-image:linear-gradient(#254d3a0a 1px,transparent 1px),linear-gradient(90deg,#254d3a0a 1px,transparent 1px); background-size:64px 64px; background-position:26px 26px; box-shadow:0 12px 32px #18382d30; }
+  .brand { display:flex; align-items:center; gap:14px; font-weight:600; font-size:24px; letter-spacing:-.5px; }
+  .brand img { filter:brightness(0); }
+  .content { margin:auto 0; padding:24px 0; }
+  h1 { line-height:1.1; letter-spacing:-2px; margin:0; text-wrap:balance; overflow-wrap:break-word; }
+  .description { font-size:24px; line-height:1.45; color:#4c6058; max-width:960px; margin:22px 0 0; }
+  footer { font-size:18px; color:#4c6058; }
+</style>

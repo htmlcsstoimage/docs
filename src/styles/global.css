@@ -4,8 +4,8 @@
 @import 'tailwindcss/utilities.css' layer(utilities);
 
 @theme {
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 :root { --sl-color-accent-low:#103c2d; --sl-color-accent:#02b875; --sl-color-accent-high:#8fe4b9; --sl-content-width:51rem; --sl-text-h1:2.5rem; --sl-color-bg:#151b19; --sl-color-bg-nav:#151b19; --sl-color-bg-sidebar:#212529; }
 :root[data-theme='light'] { --sl-color-accent-low:#e4f6eb; --sl-color-accent:#007a4e; --sl-color-accent-high:#075836; --sl-color-white:#171b22; --sl-color-gray-1:#28332d; --sl-color-gray-2:#435148; --sl-color-gray-3:#617067; --sl-color-gray-4:#87988d; --sl-color-gray-5:#dce5dd; --sl-color-gray-6:#f7f9f6; --sl-color-bg:#ffffff; --sl-color-bg-nav:#ffffff; --sl-color-bg-sidebar:#f7f9f6; --sl-color-hairline:#e3e9e3; }

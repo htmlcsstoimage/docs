@@ -435,40 +435,6 @@
       ]
     }
   },
-  "/assets/images/image%20%2823%29.png": {
-    "width": 1192,
-    "height": 852,
-    "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/image%20(23)/b7f98571c36bd3b66405.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/image%20(23)/b7f98571c36bd3b66405.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/image%20(23)/b7f98571c36bd3b66405.w1192.avif",
-          "width": 1192
-        }
-      ],
-      "webp": [
-        {
-          "src": "/assets/images/g/image%20(23)/b7f98571c36bd3b66405.w384.webp",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/image%20(23)/b7f98571c36bd3b66405.w768.webp",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/image%20(23)/b7f98571c36bd3b66405.w1192.webp",
-          "width": 1192
-        }
-      ]
-    }
-  },
   "/assets/images/insomnia1.png": {
     "width": 1438,
     "height": 811,

@@ -11,7 +11,10 @@ export default defineConfig({
   site: process.env.DOCS_ORIGIN || 'http://localhost:4321',
   output: 'static',
   trailingSlash: 'always',
-  integrations: [sitemap({ filter: page => !new URL(page).pathname.startsWith('/og/') }), starlight({
+  integrations: [sitemap({
+    filter: page => !new URL(page).pathname.startsWith('/_og/'),
+    serialize: item => ({ ...item, priority: /^\/changelog\/[^/]+\/?$/.test(new URL(item.url).pathname) ? 0.2 : 0.8 }),
+  }), starlight({
     title: 'HTML/CSS to Image',
     description: 'Generate images from HTML and CSS. Developer documentation for HTML/CSS to Image.',
     favicon: '/favicon.ico',

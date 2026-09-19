@@ -35,6 +35,7 @@ for (const page of pages) {
   if ($('img[src*="cloudinary"]').length) errors.push(`${page.route}: Cloudinary image remains`);
   if ($('h1').length !== 1) errors.push(`${page.route}: expected one page title`);
   if (page.og.image && $('meta[property="og:image"]').attr('content') !== page.og.image) errors.push(`${page.route}: missing signed OG image`);
+  await fs.access(`dist/_og/${page.og.hash}/index.html`).catch(() => errors.push(`${page.route}: missing generated OG card`));
   await fs.access(`dist${page.markdownPath}`).catch(() => errors.push(`${page.route}: missing Markdown export`));
 }
 const pendingLinks = new Set();

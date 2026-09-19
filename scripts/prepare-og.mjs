@@ -8,7 +8,7 @@ if (Boolean(apiId) !== Boolean(apiKey)) throw new Error('Set both HCTI_API_ID an
 if (!apiId && process.env.REQUIRE_OG_SIGNING === 'true') throw new Error('Deployment requires V2_HCTI_API_ID and V2_HCTI_API_KEY Actions secrets.');
 const origin = process.env.DOCS_ORIGIN || 'http://localhost:4321';
 if (process.env.REQUIRE_OG_SIGNING === 'true' && !origin.startsWith('https://')) throw new Error('Deployment requires an HTTPS DOCS_ORIGIN.');
-const designFingerprint = digest(await fs.readFile('src/pages/og/[hash].astro'));
+const designFingerprint = digest(await fs.readFile('src/pages/[...og].astro'));
 const pages = [];
 async function walk(dir) {
   for (const entry of await fs.readdir(dir, { withFileTypes: true })) {
@@ -20,7 +20,7 @@ async function walk(dir) {
     const route = data.slug ? `/${data.slug}/` : '/';
     const og = { title: data.og_title ?? data.title, description: data.description || 'Generate images from HTML and CSS.', section: data.section || 'Developer documentation' };
     const hash = cardHash(og, designFingerprint);
-    pages.push({ file, route, title: data.page_title ?? data.title, markdownPath: route === '/' ? '/index.md' : `${route.slice(0, -1)}.md`, og: { ...og, hash, image: apiId ? signedImageUrl(new URL(`/og/${hash}/`, origin).href, apiId, apiKey) : null } });
+    pages.push({ file, route, title: data.page_title ?? data.title, markdownPath: route === '/' ? '/index.md' : `${route.slice(0, -1)}.md`, og: { ...og, hash, image: apiId ? signedImageUrl(new URL(`/_og/${hash}/`, origin).href, apiId, apiKey) : null } });
   }
 }
 await walk('src/content/docs');

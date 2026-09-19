@@ -1,0 +1,73 @@
+---
+import '../styles/search.css';
+const shortcuts = [
+  ['Getting started', 'Make your first API request', '/getting-started/'],
+  ['API keys', 'Authentication and permissions', '/getting-started/using-the-api/api-keys/'],
+  ['Parameters', 'Control how your images render', '/parameters/'],
+  ['Template Editor', 'Build reusable image templates', '/template-editor/'],
+  ['MCP setup', 'Connect your AI assistant', '/integrations/mcp/'],
+];
+---
+<div class="docs-search" data-pagefind-ignore>
+  <pagefind-config bundle-path="/search/" base-url="/" excerpt-length="18" preload></pagefind-config>
+  <pagefind-modal-trigger placeholder="Search docs" shortcut="mod+k"></pagefind-modal-trigger>
+  <pagefind-modal>
+    <pagefind-modal-header>
+      <pagefind-input placeholder="Search docs, parameters, and guides…" debounce="100"></pagefind-input>
+    </pagefind-modal-header>
+    <pagefind-modal-body>
+      <div class="search-start">
+        <p class="search-eyebrow">Quick links</p>
+        <nav aria-label="Search quick links">
+          {shortcuts.map(([title, description, href]) => <a href={href}><span><strong>{title}</strong><small>{description}</small></span><span aria-hidden="true">→</span></a>)}
+        </nav>
+        <p class="search-tip">Try a parameter like <code>viewport</code> or a task like <code>create PDF</code>.</p>
+      </div>
+      <pagefind-summary></pagefind-summary>
+      <div class="search-no-results" hidden>
+        <p>Try a shorter phrase, a parameter name, or a different spelling.</p>
+        <a href="/parameters/">Browse parameters</a><span aria-hidden="true"> · </span><a href="/guides/">Explore guides</a>
+      </div>
+      <pagefind-results max-sub-results="2" max-results="20"></pagefind-results>
+    </pagefind-modal-body>
+    <pagefind-modal-footer>
+      <span class="search-key-help"><kbd>↑</kbd><kbd>↓</kbd> navigate <kbd>↵</kbd> open <kbd>esc</kbd> close</span>
+      <span class="search-footer-label">HCTI Docs</span>
+    </pagefind-modal-footer>
+  </pagefind-modal>
+</div>
+<script>
+  import { getInstanceManager, type PagefindModal } from '@pagefind/component-ui';
+  const root = document.querySelector<HTMLElement>('.docs-search')!;
+  const instance = getInstanceManager().getInstance('default');
+  const modal = root.querySelector<PagefindModal>('pagefind-modal')!;
+  const start = root.querySelector<HTMLElement>('.search-start')!;
+  const noResults = root.querySelector<HTMLElement>('.search-no-results')!;
+  const input = () => root.querySelector<HTMLInputElement>('pagefind-input input');
+  const updateEmpty = () => {
+    start.hidden = Boolean(input()?.value.trim());
+    noResults.hidden = true;
+  };
+  root.addEventListener('input', updateEmpty);
+  instance.on('search', updateEmpty);
+  instance.on('results', (result) => {
+    updateEmpty();
+    noResults.hidden = !instance.searchTerm.trim() || Boolean((result as { results: unknown[] }).results.length);
+  });
+  // Quick links participate in arrow-key navigation before a query is entered.
+  root.addEventListener('keydown', (event) => {
+    if (start.hidden || !['ArrowDown', 'ArrowUp'].includes(event.key)) return;
+    const links = [...start.querySelectorAll<HTMLAnchorElement>('a')];
+    const current = links.indexOf(document.activeElement as HTMLAnchorElement);
+    if (document.activeElement !== input() && current === -1) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    const next = current + (event.key === 'ArrowDown' ? 1 : -1);
+    if (next < 0) input()?.focus();
+    else links[Math.min(next, links.length - 1)]?.focus();
+  }, true);
+  // Native links retain normal navigation and modifier-key behavior.
+  root.addEventListener('click', (event) => {
+    if ((event.target as Element).closest('pagefind-modal a')) modal.close();
+  });
+</script>

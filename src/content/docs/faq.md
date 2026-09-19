@@ -131,7 +131,7 @@ Yes! Change the file extension to `.pdf` on any image URL. You can also customiz
 
 ### How do I generate social media images (OG images)?
 
-Create a 1200x630px template with your branding, then generate unique images for each page by passing dynamic content. Many companies like Dev.to use this for automated social cards.
+Create a 1200x630px template with your branding, then generate unique images for each page by passing dynamic content.
 
 [See our social cards guide](/use-cases/social-cards/).
 

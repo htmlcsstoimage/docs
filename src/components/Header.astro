@@ -1,6 +1,6 @@
 ---
 import SiteTitle from './SiteTitle.astro';
-import Search from '@astrojs/starlight/components/Search.astro';
+import Search from './Search.astro';
 import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
 ---
 <div class="docs-header">
@@ -27,7 +27,6 @@ import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
   .theme-picker :global(.caret) { display:none; }
   .theme-picker :global(option) { background:#212529; color:#fff; text-indent:0; }
   .header-search :global(button[data-open-modal]) { width:100%; background:#ffffff0a; color:#d1d5db; border-color:#ffffff35; border-radius:.35rem; }
-  .header-search :global(kbd) { background:#ffffff10; color:#d1d5db; border-color:#ffffff25; }
   @media(max-width:65rem) { .docs-header { gap:1rem; grid-template-columns:auto 1fr auto auto; } .website-nav { gap:.8rem; } }
   @media(max-width:49.99rem) { .docs-header { grid-template-columns:auto 1fr auto; gap:.5rem; } .website-nav { display:none; } .header-search { justify-self:end; } .theme-picker { font-size:.85rem; } }
 </style>

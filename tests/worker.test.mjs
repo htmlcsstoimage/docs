@@ -42,7 +42,7 @@ test('direct Markdown gets its media type, while assets and missing routes are n
   const env = { ASSETS: { fetch: async request => new Response(new URL(request.url).pathname) } };
   const direct = await worker.fetch(new Request('https://docs.test/parameters.md'), env, ctx);
   assert.equal(direct.headers.get('content-type'), 'text/markdown; charset=utf-8');
-  for (const path of ['/missing/', '/assets/images/a.png', '/og/hash/']) {
+  for (const path of ['/missing/', '/assets/images/a.png', '/_og/hash/']) {
     const response = await worker.fetch(new Request(`https://docs.test${path}`, { headers: { Accept: 'text/markdown' } }), env, ctx);
     assert.equal(await response.text(), path);
   }
@@ -60,7 +60,7 @@ test('every legacy redirect preserves the preview host, with or without trailing
 });
 test('production pages remain indexable, preview pages and OG cards are noindex', async () => {
   const env = { ASSETS: { fetch: async () => new Response('page') } };
-  for (const [url, noindex] of [['https://docs.htmlcsstoimage.com/parameters/', false], ['https://docs.htmlcsstoimage.com/og/hash/', true], ['https://docs-new-docs.mike.workers.dev/', true]]) {
+  for (const [url, noindex] of [['https://docs.htmlcsstoimage.com/parameters/', false], ['https://docs.htmlcsstoimage.com/_og/hash/', true], ['https://docs-new-docs.mike.workers.dev/', true]]) {
     const response = await worker.fetch(new Request(url), env, ctx);
     assert.equal(response.headers.has('x-robots-tag'), noindex);
   }
