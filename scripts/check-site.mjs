@@ -7,6 +7,8 @@ import redirects from '../migration/redirects.json' with { type: 'json' };
 import { isExternalLink } from './external-links.mjs';
 
 const errors = [];
+// Explicitly removed editorial sections; all other legacy anchors remain required.
+const retiredAnchors = new Set(['/#manage-organization-resources']);
 const normalize = path => path === '/' ? path : `${path.replace(/\/$/, '')}/`;
 const planned = new Set(routes.map(page => page.route));
 const built = new Map();
@@ -27,6 +29,7 @@ for (const page of pages) {
   built.set(page.route, { $, ids: new Set(ids) });
   // Full fidelity requires both heading anchors and manually assigned targets.
   for (const id of baseline[page.route]?.ids || []) {
+    if (retiredAnchors.has(`${page.route}#${id}`)) continue;
     if (!ids.includes(id)) errors.push(`${page.route}: missing previous #${id}`);
   }
   const source = await fs.readFile(page.file, 'utf8');
