@@ -1,0 +1,24 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  href: string;
+}
+const { id, title, description, href } = Astro.props;
+---
+<article class="example-card" id={id}>
+  <h3><a href={href}>{title}<span aria-hidden="true"> →</span></a></h3>
+  <p>{description}</p>
+  <div class="example"><slot /></div>
+</article>
+<style>
+  .example-card { min-width:0; padding:1.25rem; border:1px solid var(--sl-color-hairline); border-radius:.5rem; display:flex; flex-direction:column; gap:.75rem; }
+  h3 { margin:0; font-size:1.15rem; line-height:1.35; }
+  h3 a { color:var(--sl-color-white); text-decoration:none; }
+  h3 a:hover { color:var(--sl-color-text-accent); }
+  h3 span { color:var(--sl-color-text-accent); }
+  p { margin:0; font-size:.9rem; line-height:1.6; }
+  .example { margin-top:auto; padding-top:.25rem; min-width:0; }
+  .example :global(.expressive-code) { margin:0; --ec-codeFontSize:.75rem; --ec-codePaddingBlock:.85rem; --ec-codePaddingInline:1rem; }
+</style>

@@ -1,5 +1,7 @@
 ---
 import pages from '../generated/pages.json';
+import { ClientRouter } from 'astro:transitions';
+import NavigationLifecycle from './NavigationLifecycle.astro';
 import { structuredData, serializeStructuredData } from '../lib/structured-data.mjs';
 const page = pages.find(page => page.route === Astro.url.pathname);
 const { head, entry } = Astro.locals.starlightRoute;
@@ -23,6 +25,8 @@ const tags = head.filter(tag => tag.tag !== 'title' &&
     : tag);
 ---
 <title>{brandedTitle(entry.data.title)}</title>
+<ClientRouter fallback="swap" />
+<NavigationLifecycle />
 {jsonLd && <script type="application/ld+json" set:html={serializeStructuredData(jsonLd)} />}
 {entry.data.changelog && <meta property="article:published_time" content={entry.data.changelog.date} />}
 <meta data-pagefind-filter="kind[content]" content={entry.data.changelog ? 'changelog' : 'docs'} />

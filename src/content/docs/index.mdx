@@ -8,6 +8,7 @@ description: >-
 import { Aside, LinkButton } from '@astrojs/starlight/components';
 import ChangelogList from '../../components/ChangelogList.astro';
 import TrustProof from '../../components/TrustProof.astro';
+import ExampleCard from '../../components/ExampleCard.astro';
 
 <a id="htmlcss-to-image-api" />
 
@@ -26,38 +27,81 @@ Generate images and PDFs from HTML/CSS, take screenshots of webpages, or create 
 - No janky fonts or blurry images
 
 
-## Three ways to generate images
+<a id="three-ways-to-generate-images" />
 
-### From HTML/CSS
+## Four ways to generate images
 
-Create images programmatically using HTML and CSS. Perfect for social cards, certificates, dynamic graphics, and more.
+<div className="generation-grid">
+<ExampleCard
+  id="from-htmlcss"
+  title="From HTML/CSS"
+  description="Send HTML and CSS to render an image or PDF. Use your own layouts, fonts, and JavaScript."
+  href="/getting-started/using-the-api/"
+>
 
-```bash
-curl -X POST https://hcti.io/v1/image \
-  -u 'UserID:APIKey' \
-  --data-urlencode 'html=<div class="card">Hello World</div>' \
-  --data-urlencode 'css=.card { padding: 20px; background: #4f46e5;
-    color: white; font-size: 24px; }'
+```http wrap
+POST https://hcti.io/v1/image
+
+{
+  "html": "<h1>Hello world</h1>",
+  "css": "h1 { color: #00b980; }"
+}
 ```
 
-[Learn more about HTML to Image →](/getting-started/using-the-api/)
+</ExampleCard>
+<ExampleCard
+  id="from-any-url"
+  title="From a URL"
+  description="Screenshot a public webpage, capture the full page, or crop to a specific element."
+  href="/getting-started/url-to-image/"
+>
 
-### From any URL
+```http wrap
+POST https://hcti.io/v1/image
 
-Take screenshots of any public webpage. Great for archiving, previews, and automated captures.
-
-```bash
-curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
-  --data-urlencode url="https://google.com"
+{
+  "url": "https://example.com",
+  "full_screen": true
+}
 ```
 
-[Learn more about URL to Image →](/getting-started/url-to-image/)
+</ExampleCard>
+<ExampleCard
+  id="from-templates"
+  title="From a template"
+  description="Design a template in the visual editor or with HTML/CSS, then generate images with different text, images, and data."
+  href="/getting-started/templates/"
+>
 
-### Automatic Open Graph images
+```http wrap
+POST https://hcti.io/v1/image/TEMPLATE_ID
 
-Connect a website or CMS once, then use one path-based image URL pattern for every page. HCTI can screenshot each page or populate a reusable template from its metadata—without an API request or HMAC signature for every social card.
+{
+  "template_values": {
+    "title": "Hello world"
+  }
+}
+```
 
-[Set up automatic Open Graph images →](/getting-started/og-images/)
+</ExampleCard>
+<ExampleCard
+  id="automatic-open-graph-images"
+  title="Automatic Open Graph images"
+  description="Connect your website or CMS and generate a social card for each page from its screenshot or metadata."
+  href="/getting-started/og-images/"
+>
+
+```html wrap
+<head>
+  <meta
+    property="og:image"
+    content="https://hcti.io/v1/og/DOMAIN_ID/"
+  >
+</head>
+```
+
+</ExampleCard>
+</div>
 
 
 ## Quick start

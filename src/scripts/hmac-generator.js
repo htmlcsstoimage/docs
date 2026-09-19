@@ -1,8 +1,9 @@
-(function () {
+function initializeHmacGenerator() {
   'use strict';
 
   var generator = document.querySelector('[data-hmac-generator]');
-  if (!generator) return;
+  if (!generator || generator.dataset.initialized) return;
+  generator.dataset.initialized = "true";
 
   var form = generator.querySelector('[data-hmac-form]');
   var queryInput = generator.querySelector('[data-hmac-query]');
@@ -102,8 +103,12 @@
     }
   });
 
-  window.addEventListener('pagehide', function () {
-    secretInput.value = '';
-    tokenInput.value = '';
-  });
-})();
+  const clearSecrets = () => { secretInput.value = ''; tokenInput.value = ''; };
+  window.addEventListener('pagehide', clearSecrets, { once: true });
+  document.addEventListener('astro:before-swap', () => {
+    clearSecrets();
+    window.removeEventListener('pagehide', clearSecrets);
+  }, { once: true });
+}
+initializeHmacGenerator();
+document.addEventListener('astro:page-load', initializeHmacGenerator);

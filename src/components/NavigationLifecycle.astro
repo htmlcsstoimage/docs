@@ -1,0 +1,31 @@
+<script>
+  import type { TransitionBeforeSwapEvent } from 'astro:transitions/client';
+  let sidebarScroll = 0;
+  function saveSidebar() {
+    const sidebar = document.getElementById('starlight__sidebar');
+    const target = sidebar?.querySelector<HTMLElement>('sl-sidebar-state-persist');
+    if (!target || !matchMedia('(min-width:50em)').matches) return;
+    const open: boolean[] = [];
+    target.querySelectorAll<HTMLElement>('sl-sidebar-restore').forEach(marker => {
+      open[Number(marker.dataset.index)] = marker.closest('details')?.open ?? false;
+    });
+    sidebarScroll = sidebar!.scrollTop;
+    try { sessionStorage.setItem('sl-sidebar-state', JSON.stringify({ hash:target.dataset.hash, open, scroll:sidebarScroll })); } catch {}
+  }
+  document.addEventListener('astro:before-swap', (event) => {
+    saveSidebar();
+    const next = (event as TransitionBeforeSwapEvent).newDocument;
+    // Set the chosen theme before the next document is painted.
+    next.documentElement.dataset.theme = document.documentElement.dataset.theme;
+    document.querySelector<HTMLDialogElement>('pagefind-modal dialog[open]')?.close();
+  });
+  document.addEventListener('astro:after-swap', () => {
+    const sidebar = document.getElementById('starlight__sidebar');
+    if (sidebar && matchMedia('(min-width:50em)').matches) sidebar.scrollTop = sidebarScroll;
+  });
+  // Register after Starlight's initial state handler; always read the current DOM.
+  document.addEventListener('astro:page-load', () => {
+    document.removeEventListener('visibilitychange', saveSidebar);
+    document.addEventListener('visibilitychange', saveSidebar);
+  });
+</script>

@@ -19,7 +19,7 @@ const displayHeight = height ?? (optimized && displayWidth ? Math.round(displayW
 <script>
   // The zoom plugin clones the selected responsive image into its dialog.
   // Load the original there so enlargement retains the source's full detail.
-  new MutationObserver((records) => {
+  const observer = new MutationObserver((records) => {
     for (const record of records) for (const node of record.addedNodes) {
       if (!(node instanceof Element)) continue;
       node.querySelectorAll<HTMLImageElement>('dialog img[data-doc-original]').forEach((image) => {
@@ -27,7 +27,13 @@ const displayHeight = height ?? (optimized && displayWidth ? Math.round(displayW
         image.src = image.dataset.docOriginal!;
       });
     }
-  }).observe(document.body, { childList:true });
+  });
+  function observeZoom() {
+    observer.disconnect();
+    observer.observe(document.body, { childList:true });
+  }
+  observeZoom();
+  document.addEventListener('astro:page-load', observeZoom);
 </script>
 <style>
   figure { margin:1.5rem 0; } img { max-width:100%; height:auto; border:1px solid var(--sl-color-hairline); border-radius:.6rem; }

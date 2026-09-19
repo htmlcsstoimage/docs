@@ -7,32 +7,39 @@ const prompt = `Read from ${pageUrl} so I can ask questions about it.`;
   <summary aria-label="Page actions"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg> Copy page <span aria-hidden="true">⌄</span></summary>
   <div class="action-list">
     <button type="button" data-copy-page={markdownPath}><strong>Copy page</strong><small>Copy Markdown for LLMs</small></button>
-    <a href={markdownPath}><strong>View as Markdown ↗</strong><small>Read this page as plain text</small></a>
+    <a href={markdownPath} data-astro-reload><strong>View as Markdown ↗</strong><small>Read this page as plain text</small></a>
     <a href={`https://chatgpt.com/?hints=search&prompt=${encodeURIComponent(prompt)}`} target="_blank" rel="noopener"><strong>Open in ChatGPT ↗</strong><small>Ask questions about this page</small></a>
     <a href={`https://claude.ai/new?q=${encodeURIComponent(prompt)}`} target="_blank" rel="noopener"><strong>Open in Claude ↗</strong><small>Ask questions about this page</small></a>
     <span class="copy-status" role="status"></span>
   </div>
 </details>
 <script>
-  document.querySelectorAll<HTMLDetailsElement>('.page-actions').forEach(menu => {
-    const trigger = menu.querySelector('summary')!;
-    const button = menu.querySelector<HTMLButtonElement>('[data-copy-page]')!;
-    const status = menu.querySelector<HTMLElement>('[role="status"]')!;
-    button.addEventListener('click', async () => {
-      try {
-        const response = await fetch(button.dataset.copyPage!);
-        if (!response.ok) throw new Error('Unable to load Markdown');
-        await navigator.clipboard.writeText(await response.text());
-        status.textContent = 'Copied to clipboard';
-      } catch { status.textContent = 'Copy failed. Use View as Markdown.'; }
+  let listeners: AbortController;
+  function initializePageActions() {
+    listeners?.abort();
+    listeners = new AbortController();
+    document.querySelectorAll<HTMLDetailsElement>('.page-actions').forEach(menu => {
+      const trigger = menu.querySelector('summary')!;
+      const button = menu.querySelector<HTMLButtonElement>('[data-copy-page]')!;
+      const status = menu.querySelector<HTMLElement>('[role="status"]')!;
+      button.addEventListener('click', async () => {
+        try {
+          const response = await fetch(button.dataset.copyPage!);
+          if (!response.ok) throw new Error('Unable to load Markdown');
+          await navigator.clipboard.writeText(await response.text());
+          status.textContent = 'Copied to clipboard';
+        } catch { status.textContent = 'Copy failed. Use View as Markdown.'; }
+      }, { signal: listeners.signal });
+      document.addEventListener('click', event => {
+        if (event.target instanceof Node && !menu.contains(event.target)) menu.open = false;
+      }, { signal: listeners.signal });
+      menu.addEventListener('keydown', event => {
+        if (event.key === 'Escape') { menu.open = false; trigger.focus(); }
+      }, { signal: listeners.signal });
     });
-    document.addEventListener('click', event => {
-      if (event.target instanceof Node && !menu.contains(event.target)) menu.open = false;
-    });
-    menu.addEventListener('keydown', event => {
-      if (event.key === 'Escape') { menu.open = false; trigger.focus(); }
-    });
-  });
+  }
+  initializePageActions();
+  document.addEventListener('astro:page-load', initializePageActions);
 </script>
 <style>
   .page-actions { position:relative; flex-shrink:0; margin-top:.45rem; font-size:.8rem; z-index:10; }
