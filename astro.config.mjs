@@ -25,5 +25,20 @@ export default defineConfig({
     credits: false,
     head: process.env.DOCS_ENV === 'production' ? [] : [{ tag: 'meta', attrs: { name: 'robots', content: 'noindex, nofollow' } }],
   }), externalLinks(), markdownExports()],
-  vite: { plugins: [tailwindcss()] },
+  vite: {
+    plugins: [tailwindcss()],
+    build: {
+      rolldownOptions: {
+        onwarn(warning, warn) {
+          // Astro 7 emits this legacy marker in generated content modules.
+          // Asset propagation uses module IDs and __astroPropagation metadata,
+          // so the bundler dropping this directive does not affect our output.
+          if (warning.code === 'MODULE_LEVEL_DIRECTIVE'
+            && warning.message.includes('"use astro:head-inject"')
+            && warning.message.includes('?astroPropagatedAssets')) return;
+          warn(warning);
+        },
+      },
+    },
+  },
 });

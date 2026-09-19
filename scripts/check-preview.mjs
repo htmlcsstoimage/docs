@@ -9,7 +9,10 @@ if (!origin || new URL(origin).hostname === 'docs.htmlcsstoimage.com') throw new
 const local = ['localhost', '127.0.0.1', '[::1]'].includes(new URL(origin).hostname);
 for (const route of [...pages.map(page => page.route), '/llms.txt', '/getting-started/using-the-api.md']) {
   const response = await fetch(new URL(route, origin));
-  assert.equal(response.status, 200, route);
+  if (response.status !== 200) {
+    const excerpt = (await response.text()).replace(/\s+/g, ' ').slice(0, 500);
+    throw new Error(`Preview request failed: ${response.url}\nExpected HTTP 200, received ${response.status}.\nContent-Type: ${response.headers.get('content-type')}\nX-Robots-Tag: ${response.headers.get('x-robots-tag')}\nResponse: ${excerpt}\nConfirm the preview URL printed by Wrangler and that Preview URLs are enabled for the Worker before diagnosing this as a missing page.`);
+  }
   if (!local) assert.match(response.headers.get('x-robots-tag') || '', /noindex/, route);
 }
 for (const page of pages) {
