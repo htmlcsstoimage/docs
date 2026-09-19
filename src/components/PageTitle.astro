@@ -10,7 +10,7 @@ const markdownPath = route === '/' ? '/index.md' : `${route.replace(/\/$/, '')}.
 <Breadcrumbs />
 <div class="page-heading">
   {entry.data.page_title ? <h1 id="_top">{pageTitle}</h1> : <DefaultPageTitle />}
-  <PageActions markdownPath={markdownPath} title={pageTitle} />
+  {entry.id !== '404' && <PageActions markdownPath={markdownPath} title={pageTitle} />}
 </div>
 {entry.data.changelog && <p class="published"><time data-changelog-date datetime={entry.data.changelog.date}>{new Date(`${entry.data.changelog.date}T00:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</time></p>}
 <style>

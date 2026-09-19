@@ -15,6 +15,8 @@ async function walk(dir) {
     const file = `${dir}/${entry.name}`;
     if (entry.isDirectory()) { await walk(file); continue; }
     if (!/\.mdx?$/.test(file)) continue;
+    // Starlight's error page is not an article or an OG/Markdown export.
+    if (file === 'src/content/docs/404.mdx') continue;
     const { data } = matter(await fs.readFile(file, 'utf8'));
     if (typeof data.slug !== 'string') throw new Error(`Explicit slug required: ${file}`);
     const route = data.slug ? `/${data.slug}/` : '/';

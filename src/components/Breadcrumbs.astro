@@ -1,27 +1,8 @@
 ---
-import navigation from '../navigation.mjs';
+import { breadcrumbs } from '../lib/breadcrumbs.mjs';
 const { entry } = Astro.locals.starlightRoute;
 const route = Astro.url.pathname;
-type Crumb = { label: string; link: string };
-type NavItem = { label: string; link?: string; items?: NavItem[] };
-const candidates: Crumb[][] = [];
-function findPaths(items: NavItem[], parents: Crumb[] = []) {
-  for (const item of items) {
-    if (item.link === route) candidates.push(parents);
-    if (item.items) {
-      const overview = item.items.find(child => child.label === 'Overview' && child.link);
-      const ancestors = overview?.link ? [...parents, { label: item.label, link: overview.link }] : parents;
-      findPaths(item.items, ancestors);
-    }
-  }
-}
-findPaths(navigation);
-// A page can appear in more than one sidebar group. Prefer its URL hierarchy.
-const score = (path: Crumb[]) => path.filter(crumb => route.startsWith(crumb.link)).length;
-const parents = entry.data.changelog
-  ? [{ label: 'Changelog', link: '/changelog/' }]
-  : (candidates.sort((a, b) => score(b) - score(a))[0] || []);
-const crumbs = [{ label: 'Docs', link: '/' }, ...parents.filter(crumb => crumb.link !== route && crumb.link !== '/')];
+const crumbs = breadcrumbs(route, entry.data.page_title ?? entry.data.title, Boolean(entry.data.changelog)).slice(0, -1);
 ---
 {route !== '/' && <nav class="breadcrumbs" aria-label="Breadcrumb">
   <ol>
