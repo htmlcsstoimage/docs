@@ -7,18 +7,12 @@ interface Props {
 }
 const { id, title, description, href } = Astro.props;
 ---
-<article class="example-card" id={id}>
-  <h3><a href={href}>{title}<span aria-hidden="true"> →</span></a></h3>
-  <p>{description}</p>
-  <div class="example"><slot /></div>
+<article class="example-card flex min-w-0 flex-col gap-3 rounded-lg border border-solid border-[var(--sl-color-hairline)] p-5" id={id}>
+  <h3 class="m-0 text-[1.15rem] leading-[1.35]"><a class="text-[var(--sl-color-white)] no-underline hover:text-[var(--sl-color-text-accent)]" href={href}>{title}<span class="text-[var(--sl-color-text-accent)]" aria-hidden="true"> →</span></a></h3>
+  <p class="m-0 text-[.9rem] leading-[1.6]">{description}</p>
+  <div class="example mt-auto min-w-0 pt-1 [&_.copy]:hidden!"><slot /></div>
 </article>
 <style>
-  .example-card { min-width:0; padding:1.25rem; border:1px solid var(--sl-color-hairline); border-radius:.5rem; display:flex; flex-direction:column; gap:.75rem; }
-  h3 { margin:0; font-size:1.15rem; line-height:1.35; }
-  h3 a { color:var(--sl-color-white); text-decoration:none; }
-  h3 a:hover { color:var(--sl-color-text-accent); }
-  h3 span { color:var(--sl-color-text-accent); }
-  p { margin:0; font-size:.9rem; line-height:1.6; }
-  .example { margin-top:auto; padding-top:.25rem; min-width:0; }
+  /* Expressive Code is rendered by the Markdown pipeline inside the slot. */
   .example :global(.expressive-code) { margin:0; --ec-codeFontSize:.75rem; --ec-codePaddingBlock:.85rem; --ec-codePaddingInline:1rem; }
 </style>

@@ -53,6 +53,19 @@ mobile-starlight-toc { --sl-color-bg-nav:var(--sl-color-bg); }
 
 :root[data-theme='dark'] .sidebar-pane { background-color:#212529; }
 
-/* Keep each generation example at least 400px wide when two cards fit. */
-.generation-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 25rem), 1fr)); gap:1.5rem; }
-.generation-grid > * { margin-top:0 !important; }
+
+/* Subtle scrollbars for the page, navigation, search, tables, and code. */
+:root { --docs-scrollbar-thumb:rgb(120 137 128 / 28%); --docs-scrollbar-hover:rgb(120 137 128 / 50%); }
+:root[data-theme='light'] { --docs-scrollbar-thumb:rgb(67 81 72 / 22%); --docs-scrollbar-hover:rgb(67 81 72 / 42%); }
+:root, :root * { scrollbar-width:thin; scrollbar-color:var(--docs-scrollbar-thumb) transparent; }
+:root:hover, :root *:hover { scrollbar-color:var(--docs-scrollbar-hover) transparent; }
+/* Fallback for browsers without the standard scrollbar properties. */
+@supports not (scrollbar-width:thin) {
+  ::-webkit-scrollbar { width:6px; height:6px; }
+  ::-webkit-scrollbar-track, ::-webkit-scrollbar-corner { background:transparent; }
+  ::-webkit-scrollbar-thumb { background:var(--docs-scrollbar-thumb); border-radius:999px; }
+  ::-webkit-scrollbar-thumb:hover { background:var(--docs-scrollbar-hover); }
+}
+@media (forced-colors:active) {
+  :root, :root *, :root:hover, :root *:hover { scrollbar-color:auto; }
+}

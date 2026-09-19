@@ -17,14 +17,39 @@ const displayHeight = height ?? (optimized && displayWidth ? Math.round(displayW
   {caption && <figcaption>{caption}</figcaption>}
 </figure>
 <script>
-  // The zoom plugin clones the selected responsive image into its dialog.
-  // Load the original there so enlargement retains the source's full detail.
+  // Keep the loaded preview visible until the original is ready to paint.
+  const originals = new Map<string, Promise<HTMLImageElement>>();
+  function loadOriginal(src: string) {
+    const cached = originals.get(src);
+    if (cached) return cached;
+    const image = new Image();
+    image.decoding = 'async';
+    image.src = src;
+    const ready = image.decode().then(() => image);
+    originals.set(src, ready);
+    // Bound retained decoded images when browsing many documentation pages.
+    if (originals.size > 4) originals.delete(originals.keys().next().value!);
+    ready.catch(() => { if (originals.get(src) === ready) originals.delete(src); });
+    return ready;
+  }
+  function warmOriginal(event: Event) {
+    if (!(event.target instanceof Element)) return;
+    const image = event.target.closest('[data-doc-image]')?.querySelector<HTMLImageElement>('img[data-doc-original]');
+    if (image?.dataset.docOriginal) loadOriginal(image.dataset.docOriginal).catch(() => {});
+  }
+  document.addEventListener('pointerover', warmOriginal, { passive:true });
+  document.addEventListener('focusin', warmOriginal);
+  document.addEventListener('pointerdown', warmOriginal, { passive:true });
   const observer = new MutationObserver((records) => {
     for (const record of records) for (const node of record.addedNodes) {
       if (!(node instanceof Element)) continue;
       node.querySelectorAll<HTMLImageElement>('dialog img[data-doc-original]').forEach((image) => {
-        image.removeAttribute('srcset');
-        image.src = image.dataset.docOriginal!;
+        image.loading = 'eager';
+        loadOriginal(image.dataset.docOriginal!).then(original => {
+          if (!image.isConnected) return;
+          image.removeAttribute('srcset');
+          image.src = original.src;
+        }).catch(() => { /* The loaded preview remains usable if the original fails. */ });
       });
     }
   });
