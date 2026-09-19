@@ -4,7 +4,7 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site || Astro.url.origin).href
 const prompt = `Read from ${pageUrl} so I can ask questions about it.`;
 ---
 <details class="page-actions" data-pagefind-ignore>
-  <summary aria-label="Page actions"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg> Copy page <span aria-hidden="true">⌄</span></summary>
+  <summary aria-label="Copy page and more options"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg> Copy page <svg class="block shrink-0" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 9.5 5 5 5-5" /></svg></summary>
   <div class="action-list">
     <button type="button" data-copy-page={markdownPath}><strong>Copy page</strong><small>Copy Markdown for LLMs</small></button>
     <a href={markdownPath} data-astro-reload><strong>View as Markdown ↗</strong><small>Read this page as plain text</small></a>
@@ -42,7 +42,7 @@ const prompt = `Read from ${pageUrl} so I can ask questions about it.`;
   document.addEventListener('astro:page-load', initializePageActions);
 </script>
 <style>
-  .page-actions { position:relative; flex-shrink:0; margin-top:.45rem; font-size:.8rem; z-index:10; }
+  .page-actions { position:relative; flex-shrink:0; margin-top:0; font-size:.8rem; z-index:10; }
   summary { display:flex; align-items:center; gap:.5rem; list-style:none; border:1px solid var(--sl-color-gray-5); padding:.5rem .7rem; border-radius:.35rem; cursor:pointer; color:var(--sl-color-gray-2); white-space:nowrap; }
   summary::-webkit-details-marker { display:none; }
   summary:hover { background:var(--sl-color-bg-sidebar); }

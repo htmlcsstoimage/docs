@@ -13,3 +13,7 @@ https://:version.:worker.:account.workers.dev/*
 # Generated OG rendering pages are never indexed, including in production.
 /_og/*
   X-Robots-Tag: noindex, nofollow
+
+# Astro fingerprints these font files; changed fonts receive new URLs.
+/_astro/fonts/*
+  Cache-Control: public, max-age=31536000, immutable

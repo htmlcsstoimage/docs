@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import tailwindcss from '@tailwindcss/vite';
 import navigation from './src/navigation.mjs';
@@ -11,6 +11,22 @@ import bundleAnalysis from './scripts/bundle-analysis.mjs';
 export default defineConfig({
   site: process.env.DOCS_ORIGIN || 'http://localhost:4321',
   output: 'static',
+  fonts: [
+    {
+      provider: fontProviders.fontsource(), name: 'IBM Plex Sans',
+      cssVariable: '--font-ibm-plex-sans', weights: ['100 700'],
+      styles: ['normal', 'italic'],
+      subsets: ['latin', 'latin-ext', 'cyrillic', 'cyrillic-ext', 'greek', 'vietnamese'],
+      formats: ['woff2'], display: 'swap',
+    },
+    {
+      provider: fontProviders.fontsource(), name: 'IBM Plex Mono',
+      cssVariable: '--font-ibm-plex-mono', weights: [400, 500, 600, 700],
+      styles: ['normal', 'italic'],
+      subsets: ['latin', 'latin-ext', 'cyrillic', 'cyrillic-ext', 'vietnamese'],
+      formats: ['woff2'], display: 'swap', fallbacks: ['monospace'],
+    },
+  ],
   // Our fetch-based prefetch matches ClientRouter's request and Vary: Accept.
   // Native link-prefetch requests use a different browser cache variant.
   prefetch: false,

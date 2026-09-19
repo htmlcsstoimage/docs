@@ -42,6 +42,19 @@ requires all 148 original routes to exist or redirect to a native page. It check
 old anchors, internal links, assets, external-link attributes, and Markdown
 exports, and writes `migration-report.json`. CI runs this complete-site gate.
 
+## Fonts
+
+IBM Plex Sans and Mono are configured through Astro's built-in Fontsource provider
+in `astro.config.mjs`. Astro downloads and caches fonts during the build, then
+serves fingerprinted WOFF2 files from `/_astro/fonts/` with immutable caching.
+Visitors make no Google Fonts requests. The font license is in
+`public/assets/fonts/OFL.txt`.
+
+`<Font />` supplies font-face declarations and adjusted fallbacks. Only the normal
+Latin Sans face is preloaded; other subsets, italics, and Mono load as needed.
+Docs and OG cards share the same self-hosted Sans font. New/uncached font builds
+need network access to Fontsource; rendering the deployed site does not.
+
 ## Page prefetching
 
 `src/scripts/prefetch.ts` warms internal HTML pages on hover, focus, or pointer down
@@ -66,7 +79,7 @@ and inspect imports to find large dependencies. Compression sizes are estimates,
 not measured Cloudflare transfers.
 
 Reports are ignored by Git and stay outside `dist`, so they are never deployed.
-Normal builds do not run the analyzer. Google Fonts, runtime-loaded Pagefind
+Normal builds do not run the analyzer. Font files, runtime-loaded Pagefind
 assets, and copied public assets need separate browser network measurements.
 
 ## Page titles

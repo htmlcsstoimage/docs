@@ -1,5 +1,6 @@
 ---
 import pages from '../generated/pages.json';
+import { Font } from 'astro:assets';
 // Astro ignores underscore-prefixed page folders. Generate only these internal
 // /_og/<hash>/ routes explicitly instead.
 export function getStaticPaths() {
@@ -23,9 +24,7 @@ const gradient = `linear-gradient(${angle}deg,${colors[0]} 0%,${colors[1]} 48%,$
 ---
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8" /><meta name="robots" content="noindex" /><title>{card.title}</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=block" />
+  <Font cssVariable="--font-ibm-plex-sans" preload={[{ subset: 'latin', style: 'normal' }]} />
 </head>
 <body data-pagefind-ignore>
   <main id="og-card" style={{ background: gradient }}>
@@ -41,7 +40,7 @@ const gradient = `linear-gradient(${angle}deg,${colors[0]} 0%,${colors[1]} 48%,$
 </body></html>
 <style>
   * { box-sizing:border-box; }
-  body { margin:0; font-family:'IBM Plex Sans',sans-serif; }
+  body { margin:0; font-family:var(--font-ibm-plex-sans); }
   #og-card { width:1200px; height:630px; padding:32px; color:#192521; }
   .panel { height:100%; padding:38px 48px 32px; display:flex; flex-direction:column; border:1px solid #dfe8e2; border-radius:8px; background-color:#fcfdfc; background-image:linear-gradient(#254d3a0a 1px,transparent 1px),linear-gradient(90deg,#254d3a0a 1px,transparent 1px); background-size:64px 64px; background-position:26px 26px; box-shadow:0 12px 32px #18382d30; }
   .brand { display:flex; align-items:center; gap:14px; font-weight:600; font-size:24px; letter-spacing:-.5px; }
