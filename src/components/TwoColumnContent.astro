@@ -8,6 +8,7 @@ import DefaultTwoColumnContent from '@astrojs/starlight/components/TwoColumnCont
   </DefaultTwoColumnContent>
 </div>
 <style>
+  .docs-columns :global(.content-panel) { min-width:0; }
   /* Share the title/content rows so wrapped titles also align the TOC. */
   @media (min-width:72rem) {
     .docs-columns :global(.lg\:sl-flex:has(.right-sidebar-container)) {
@@ -22,6 +23,7 @@ import DefaultTwoColumnContent from '@astrojs/starlight/components/TwoColumnCont
       grid-row:1 / span 2;
       display:grid;
       grid-template-rows:subgrid;
+      grid-template-columns:minmax(0, 1fr);
       min-width:0;
     }
   }
