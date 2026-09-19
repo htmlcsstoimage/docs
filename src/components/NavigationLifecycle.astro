@@ -1,14 +1,21 @@
 <script>
   import type { TransitionBeforeSwapEvent } from 'astro:transitions/client';
   let sidebarScroll = 0;
-  function saveSidebar() {
+  function saveSidebar(toggle?: HTMLDetailsElement) {
     const sidebar = document.getElementById('starlight__sidebar');
     const target = sidebar?.querySelector<HTMLElement>('sl-sidebar-state-persist');
     if (!target || !matchMedia('(min-width:50em)').matches) return;
-    const open: boolean[] = [];
-    target.querySelectorAll<HTMLElement>('sl-sidebar-restore').forEach(marker => {
-      open[Number(marker.dataset.index)] = marker.closest('details')?.open ?? false;
-    });
+    // Preserve only explicit choices. Current-page ancestors open automatically
+    // and must not accumulate as saved preferences while browsing.
+    let open: (boolean | null)[] = [];
+    try {
+      const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || 'null');
+      if (state?.hash === target.dataset.hash && Array.isArray(state.open)) open = state.open;
+    } catch {}
+    if (toggle) {
+      const marker = toggle.querySelector<HTMLElement>(':scope > sl-sidebar-restore');
+      if (marker) open[Number(marker.dataset.index)] = !toggle.open;
+    }
     sidebarScroll = sidebar!.scrollTop;
     try { sessionStorage.setItem('sl-sidebar-state', JSON.stringify({ hash:target.dataset.hash, open, scroll:sidebarScroll })); } catch {}
   }
@@ -23,9 +30,17 @@
     const sidebar = document.getElementById('starlight__sidebar');
     if (sidebar && matchMedia('(min-width:50em)').matches) sidebar.scrollTop = sidebarScroll;
   });
-  // Register after Starlight's initial state handler; always read the current DOM.
+  document.addEventListener('click', (event) => {
+    if (!(event.target instanceof Element)) return;
+    const summary = event.target.closest('sl-sidebar-state-persist summary');
+    if (!summary || event.target.closest('a')) return;
+    const details = summary.parentElement;
+    if (details instanceof HTMLDetailsElement) saveSidebar(details);
+  });
+  const saveOnVisibilityChange = () => saveSidebar();
+  // Always read the current DOM after soft navigation.
   document.addEventListener('astro:page-load', () => {
-    document.removeEventListener('visibilitychange', saveSidebar);
-    document.addEventListener('visibilitychange', saveSidebar);
+    document.removeEventListener('visibilitychange', saveOnVisibilityChange);
+    document.addEventListener('visibilitychange', saveOnVisibilityChange);
   });
 </script>
