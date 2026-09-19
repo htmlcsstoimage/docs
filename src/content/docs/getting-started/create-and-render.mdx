@@ -42,9 +42,9 @@ To generate an image with a signed URL, construct a URL with your API ID and tok
 
 | Component | Description |
 |:-------------|:------------------|
-| **api_id** | Your public API ID from the dashboard |
-| **token** | HMAC SHA256 hash of the query string using your API Key (see below for how to generate) |
-| **format** | Optional file format: `png` (default), `jpg`, `webp`, or `pdf` |
+| `api_id` | Your public API ID from the dashboard |
+| `token` | HMAC SHA256 hash of the query string using your API Key (see below for how to generate) |
+| `format` | Optional file format: `png` (default), `jpg`, `webp`, or `pdf` |
 
 ### Parameters
 
@@ -52,9 +52,9 @@ The parameters are the same as the [standard API endpoint](/getting-started/usin
 
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
-| **html**† | `String` | This is the HTML you want to render. You can send an HTML snippet \(`<div>Your content</div>`\) or an entire webpage. |
-| **css** | `String` | The CSS for your image. When using with `url` it will be injected into the page. |
-| **url**† | `String` | The fully qualified URL to a public webpage. When passed this will override the html param and will generate a screenshot of the url. |
+| `html`† | `String` | This is the HTML you want to render. You can send an HTML snippet \(`<div>Your content</div>`\) or an entire webpage. |
+| `css` | `String` | The CSS for your image. When using with `url` it will be injected into the page. |
+| `url`† | `String` | The fully qualified URL to a public webpage. When passed this will override the html param and will generate a screenshot of the url. |
 
 <Aside title="Required parameters">† Provide either `url` or `html`. `css` is optional.</Aside>
 
@@ -74,9 +74,9 @@ To generate an image from a template with a signed URL, construct a URL with you
 
 | Component | Description |
 |:-------------|:------------------|
-| **template_id** | The template ID returned by the [template API](/getting-started/templates/#creating-a-template) |
-| **token** | HMAC SHA256 hash of the query string using your API Key |
-| **format** | Optional file format: `png` (default), `jpg`, `webp`, or `pdf`. |
+| `template_id` | The template ID returned by the [template API](/getting-started/templates/#creating-a-template) |
+| `token` | HMAC SHA256 hash of the query string using your API Key |
+| `format` | Optional file format: `png` (default), `jpg`, `webp`, or `pdf`. |
 
 ### Parameters
 
@@ -84,8 +84,8 @@ Template values are passed as query string parameters. Each query parameter name
 
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
-| **template values** | `String`, `Number`, `Boolean`, or `JSON` | Values for the variables in your template. For editor templates, see the [Variables guide](/template-editor/variables/). |
-| **template_version** | `Integer` | Optional. Render a specific version of the template. Include this in the query string before generating the token. |
+| `template values` | `String`, `Number`, `Boolean`, or `JSON` | Values for the variables in your template. For editor templates, see the [Variables guide](/template-editor/variables/). |
+| `template_version` | `Integer` | Optional. Render a specific version of the template. Include this in the query string before generating the token. |
 
 Nested objects and arrays should be serialized as JSON and URL encoded. The token must be generated from the exact encoded query string you put after `?`.
 

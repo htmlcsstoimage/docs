@@ -42,9 +42,9 @@ The create image endpoint accepts the following parameters. Accepted as either `
 
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
-| **html**† | `String`  | This is the HTML you want to render. You can send an HTML snippet \(`<div>Your content</div>`\) or an entire webpage. |
-| **css** | `String` | The CSS for your image. When using with `url` it will be injected into the page. |
-| **url**† | `String` | The fully qualified URL to a public webpage. Such as `https://htmlcsstoimage.com`. When passed this will override the html param and will generate a screenshot of the url. |
+| `html`† | `String`  | This is the HTML you want to render. You can send an HTML snippet \(`<div>Your content</div>`\) or an entire webpage. |
+| `css` | `String` | The CSS for your image. When using with `url` it will be injected into the page. |
+| `url`† | `String` | The fully qualified URL to a public webpage. Such as `https://htmlcsstoimage.com`. When passed this will override the html param and will generate a screenshot of the url. |
 
 <Aside title="Required params">† Either `url` OR `html` is required, but not both. `css` is optional.</Aside>
 
@@ -127,10 +127,10 @@ Query parameters can be added to the URL to adjust your image.
 
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
-| **height** | `Integer` | The height of the image. Maximum `5000`. |
-| **width**  | `Integer`  | The width of the image. Maximum `5000`. |
-| **dpi**  | `Integer`  | Sets the DPI metadata tag on the image. Minimum `30`, maximum `600`. |
-| **dl**     | `Integer` | Set `dl=1` and the image will be served as a downloadable attachment. |
+| `height` | `Integer` | The height of the image. Maximum `5000`. |
+| `width`  | `Integer`  | The width of the image. Maximum `5000`. |
+| `dpi`  | `Integer`  | Sets the DPI metadata tag on the image. Minimum `30`, maximum `600`. |
+| `dl`     | `Integer` | Set `dl=1` and the image will be served as a downloadable attachment. |
 
 ### Cropping parameters
 
@@ -138,15 +138,15 @@ Advanced cropping options for precise control over the rendered image region.
 
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
-| **aspect_ratio** | `String` | Crop to a specific aspect ratio. Format: `width_height` (e.g., `16_9`, `1_1`). |
-| **x_origin** | `String` | Horizontal alignment for a crop whose width is supplied by `crop_width` or derived from `aspect_ratio`. Accepts `start`, `center`, or `end`. Cannot be combined with `x_1` or `x_2`. |
-| **y_origin** | `String` | Vertical alignment for a crop whose height is supplied by `crop_height` or derived from `aspect_ratio`. Accepts `start`, `center`, or `end`. Cannot be combined with `y_1` or `y_2`. |
-| **x_1** | `String` | Starting x coordinate for crop region. Use with `x_2` or `crop_width`. |
-| **x_2** | `String` | Ending x coordinate for crop region. Must be used with `x_1`. |
-| **y_1** | `String` | Starting y coordinate for crop region. Use with `y_2` or `crop_height`. |
-| **y_2** | `String` | Ending y coordinate for crop region. Must be used with `y_1`. |
-| **crop_width** | `String` | Width of the crop region. Use with `x_1` or alone with `aspect_ratio`. |
-| **crop_height** | `String` | Height of the crop region. Use with `y_1` or alone with `aspect_ratio`. |
+| `aspect_ratio` | `String` | Crop to a specific aspect ratio. Format: `width_height` (e.g., `16_9`, `1_1`). |
+| `x_origin` | `String` | Horizontal alignment for a crop whose width is supplied by `crop_width` or derived from `aspect_ratio`. Accepts `start`, `center`, or `end`. Cannot be combined with `x_1` or `x_2`. |
+| `y_origin` | `String` | Vertical alignment for a crop whose height is supplied by `crop_height` or derived from `aspect_ratio`. Accepts `start`, `center`, or `end`. Cannot be combined with `y_1` or `y_2`. |
+| `x_1` | `String` | Starting x coordinate for crop region. Use with `x_2` or `crop_width`. |
+| `x_2` | `String` | Ending x coordinate for crop region. Must be used with `x_1`. |
+| `y_1` | `String` | Starting y coordinate for crop region. Use with `y_2` or `crop_height`. |
+| `y_2` | `String` | Ending y coordinate for crop region. Must be used with `y_1`. |
+| `crop_width` | `String` | Width of the crop region. Use with `x_1` or alone with `aspect_ratio`. |
+| `crop_height` | `String` | Height of the crop region. Use with `y_1` or alone with `aspect_ratio`. |
 
 #### Cropping examples
 
@@ -224,8 +224,8 @@ Create up to 25 images in a single API request. This is more efficient than maki
 
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
-| **default_options** | `Object` | Default parameters applied to all images in the batch. Accepts all standard image creation parameters. |
-| **variations** | `Array` | Array of image objects. Each can override `default_options`. Maximum 25 items. |
+| `default_options` | `Object` | Default parameters applied to all images in the batch. Accepts all standard image creation parameters. |
+| `variations` | `Array` | Array of image objects. Each can override `default_options`. Maximum 25 items. |
 
 ### Example request
 
@@ -290,8 +290,8 @@ Retrieve a list of all images created by your account with pagination support.
 
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
-| **count** | `Integer` | Number of images to return. Default `50`, maximum `50`. |
-| **page_token** | `String` | Token for pagination. Use `next_page_token` from the previous response. |
+| `count` | `Integer` | Number of images to return. Default `50`, maximum `50`. |
+| `page_token` | `String` | Token for pagination. Use `next_page_token` from the previous response. |
 
 ### Example response
 

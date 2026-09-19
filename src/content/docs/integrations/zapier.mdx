@@ -42,11 +42,11 @@ HTML is the only required value. The rest are optional.
 
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
-| **html** (required) | `String` | HTML to render: a snippet (`<div>Your content</div>`) or an entire webpage. |
-| **css** | `String` | The CSS for your image. |
-| **google_fonts** | `String` | [Google fonts](/parameters/google_fonts/) to load. Example: `Roboto`. Separate multiple fonts with a pipe: `Roboto\|Open Sans`. |
-| **ms_delay**   | `Integer` | The number of milliseconds the API should delay before generating the image. This is useful when waiting for JavaScript. We recommend starting with `500`. Large values slow down the initial render time.|
-| **device_scale**   | `Double` | This adjusts the pixel ratio for the screenshot. Minimum: `1`, Maximum: `3`. |
+| `html` (required) | `String` | HTML to render: a snippet (`<div>Your content</div>`) or an entire webpage. |
+| `css` | `String` | The CSS for your image. |
+| `google_fonts` | `String` | [Google fonts](/parameters/google_fonts/) to load. Example: `Roboto`. Separate multiple fonts with a pipe: `Roboto\|Open Sans`. |
+| `ms_delay`   | `Integer` | The number of milliseconds the API should delay before generating the image. This is useful when waiting for JavaScript. We recommend starting with `500`. Large values slow down the initial render time.|
+| `device_scale`   | `Double` | This adjusts the pixel ratio for the screenshot. Minimum: `1`, Maximum: `3`. |
 
 <Aside title="Variables in your HTML">Map values from earlier Zapier steps into your HTML to personalize each image.</Aside>
 
@@ -58,12 +58,12 @@ The only required value is `URL` the rest are optional.
 
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
-| **url** (required) | `String` | The full URL of the webpage to capture, such as `https://htmlcsstoimage.com`. Overrides `html` when both are supplied. |
-| **device_scale**   | `Double` | This adjusts the pixel ratio for the screenshot. Minimum: `1`, Maximum: `3`. |
-| **ms_delay**   | `Integer` | The number of milliseconds the API should delay before generating the image. This is useful when waiting for JavaScript. We recommend starting with `500`. Large values slow down the initial render time.|
-| **viewport_width**   | `Integer` | Set the width of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
-| **viewport_height**   | `Integer` | Set the height of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
-| **selector**  | `String` | A CSS selector for an element on the webpage. We'll crop the image to this specific element. For example: `section#complete-toolkit.container-lg` |
+| `url` (required) | `String` | The full URL of the webpage to capture, such as `https://htmlcsstoimage.com`. Overrides `html` when both are supplied. |
+| `device_scale`   | `Double` | This adjusts the pixel ratio for the screenshot. Minimum: `1`, Maximum: `3`. |
+| `ms_delay`   | `Integer` | The number of milliseconds the API should delay before generating the image. This is useful when waiting for JavaScript. We recommend starting with `500`. Large values slow down the initial render time.|
+| `viewport_width`   | `Integer` | Set the width of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
+| `viewport_height`   | `Integer` | Set the height of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
+| `selector`  | `String` | A CSS selector for an element on the webpage. We'll crop the image to this specific element. For example: `section#complete-toolkit.container-lg` |
 
 ## Troubleshooting
 

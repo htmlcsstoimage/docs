@@ -41,10 +41,10 @@ curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey' \
 
 | Parameter | Value | Description |
 |:----------|:------|:------------|
-| **url** | Tweet URL | The full URL to the tweet on x.com (e.g., `https://x.com/username/status/123456789`) |
-| **selector** | `article` | Crops the image to just the tweet content |
-| **ms_delay** | `3000` | Gives the page time to fully load (3 seconds recommended) |
-| **device_scale** | `2` | Optional. Higher resolution image |
+| `url` | Tweet URL | The full URL to the tweet on x.com (e.g., `https://x.com/username/status/123456789`) |
+| `selector` | `article` | Crops the image to just the tweet content |
+| `ms_delay` | `3000` | Gives the page time to fully load (3 seconds recommended) |
+| `device_scale` | `2` | Optional. Higher resolution image |
 
 <Aside title="Twitter and X URLs">The API follows redirects from `twitter.com` to `x.com`.</Aside>
 
@@ -69,8 +69,8 @@ HTML
 
 | Parameter | Value | Description |
 |:----------|:------|:------------|
-| **selector** | `.twitter-tweet` | Crops to the rendered tweet widget |
-| **ms_delay** | `3000` | Gives the embed time to load via JavaScript |
+| `selector` | `.twitter-tweet` | Crops to the rendered tweet widget |
+| `ms_delay` | `3000` | Gives the embed time to load via JavaScript |
 
 
 ## Choosing the Right Method

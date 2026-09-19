@@ -47,3 +47,20 @@ test('Expressive Code output retains its language, line breaks and indentation',
   const markdown = renderMarkdown('<div class="sl-markdown-content"><div class="expressive-code"><pre data-language="html"><code><div class="ec-line"><div class="code">&lt;div&gt;</div></div><div class="ec-line"><div class="code"><span class="indent">  </span>&lt;h2&gt;Hello&lt;/h2&gt;</div></div><div class="ec-line"><div class="code">&lt;/div&gt;</div></div></code></pre></div></div>', 'Sizing');
   assert.match(markdown, /```html\n<div>\n  <h2>Hello<\/h2>\n<\/div>\n```/);
 });
+
+test('component Markdown uses build props and strips all metadata from served HTML', async () => {
+  const { parameterMarkdown, selectParameters } = await import('../src/lib/parameter-markdown.mjs');
+  const { stripBuildMetadata } = await import('../scripts/markdown-exports.mjs');
+  const props = { context: 'og_config', namePrefix: 'hcti:', nameHeading: 'Parameter' };
+  const expected = parameterMarkdown(selectParameters(props), props);
+  const dom = load('<div class="sl-markdown-content"><table><tr><td>Visual-only table text</td></tr></table></div>');
+  dom('table').attr('data-build-parameter-table', JSON.stringify(props));
+  const markdown = renderMarkdown(dom.html(), 'Parameters');
+  assert.equal(markdown, `# Parameters\n\n${expected}\n`);
+  assert.doesNotMatch(markdown, /Visual-only/);
+  assert.ok(markdown.includes('`hcti:viewport_width`'));
+  assert.ok(!markdown.includes('viewport\\_width'));
+  const cleaned = stripBuildMetadata(dom.html());
+  assert.doesNotMatch(cleaned, /data-build-|data-doc-markdown/);
+  assert.match(cleaned, /<td>Visual-only table text<\/td>/);
+});

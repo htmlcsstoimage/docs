@@ -9,8 +9,8 @@ Every documentation component must have a readable static representation:
 - Use semantic headings, paragraphs, lists and links for ordinary content.
 - `DocImage` becomes `![alt text](original-image-url)`, followed by its caption.
   Responsive variants, styling and the full-size link wrapper are omitted.
-- `ParameterTable` uses a semantic table with a header row. It becomes a GFM
-  pipe table, preserving parameter links, types, descriptions and inline code.
+- `ParameterTable` generates its own GFM Markdown from the same filtered data
+  used for its HTML table, preserving parameter links, types, descriptions and inline code.
   Pipes in cell content are escaped to avoid creating extra columns.
 - `Endpoint` exports its method and URL together as inline code.
 - Starlight `LinkCard` exports a linked title followed by its description.
@@ -19,8 +19,14 @@ Every documentation component must have a readable static representation:
 - For an interactive component, include useful static instructions/content;
   do not make browser interaction the only way to access its meaning.
 
-Components needing special serialization should use an explicit `data-*`
-marker and a rule in `renderMarkdown`, with a test in `tests/markdown.test.mjs`.
+Component Markdown serializers run only in the build exporter. `ParameterTable`
+uses `src/lib/parameter-markdown.mjs` to select and serialize the same data as
+its HTML view. During production builds, the table carries a small
+`data-build-parameter-table` props marker. The exporter uses it to generate
+Markdown, then strips it from the final HTML. Development HTML omits it too.
+Never embed Markdown payloads in HTML attributes or ship build markers to clients.
+
+Test component exports in `tests/markdown.test.mjs`.
 Keep the content in the component rather than maintaining a second Markdown copy.
 Inspect the built `.md` file when migrating each page.
 

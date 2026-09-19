@@ -76,10 +76,10 @@ Send the following parameters as JSON or form data.
 
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
-| **html** (required) | `String` | HTML to render: a snippet (`<div>Your content</div>`) or an entire webpage. |
-| **css** | `String` | The CSS for your image. |
-|**name**| `String` | A short name to identify your template `max length 64`|
-|**description**| `String` | Description to elaborate on the use of your template `max length 1024` |
+| `html` (required) | `String` | HTML to render: a snippet (`<div>Your content</div>`) or an entire webpage. |
+| `css` | `String` | The CSS for your image. |
+| `name` | `String` | A short name to identify your template `max length 64`|
+| `description` | `String` | Description to elaborate on the use of your template `max length 1024` |
 
 <Aside title="Required parameters">`html` is required. `css`, `name`, and `description` are optional.</Aside>
 
@@ -140,10 +140,10 @@ Send the following parameters as JSON or form data.
 
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
-| **html** (required) | `String` | HTML to render: a snippet (`<div>Your content</div>`) or an entire webpage. |
-| **css** | `String` | The CSS for your image. |
-|**name**| `String` | A short name to identify your template `max length 64`|
-|**description**| `String` | Description to elaborate on the use of your template `max length 1024` |
+| `html` (required) | `String` | HTML to render: a snippet (`<div>Your content</div>`) or an entire webpage. |
+| `css` | `String` | The CSS for your image. |
+| `name` | `String` | A short name to identify your template `max length 64`|
+| `description` | `String` | Description to elaborate on the use of your template `max length 1024` |
 
 <Aside title="Required parameters">Send the template's `html` in your update. `css`, `name`, and `description` are optional.</Aside>
 
@@ -173,7 +173,7 @@ Send the following parameters as JSON or form data. When using form data, JSON-e
 
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
-| **template_values** (required) | `JSON` | Values for the variables in your template. For editor templates, see the [Variables guide](/template-editor/variables/). |
+| `template_values` (required) | `JSON` | Values for the variables in your template. For editor templates, see the [Variables guide](/template-editor/variables/). |
 
 
 
@@ -225,10 +225,10 @@ STATUS: 200 OK
 
 | Field | Type | Description |
 |:------|:-----|:------------|
-| **render_count** | `Integer` | Number of times this template has been used to generate images. |
-| **storage_destination_id** | `String` or `null` | Storage destination inherited by images created from this template. |
-| **color_scheme** | `String` | Light or dark mode setting, if configured. |
-| **timezone** | `String` | Timezone setting, if configured. |
+| `render_count` | `Integer` | Number of times this template has been used to generate images. |
+| `storage_destination_id` | `String` or `null` | Storage destination inherited by images created from this template. |
+| `color_scheme` | `String` | Light or dark mode setting, if configured. |
+| `timezone` | `String` | Timezone setting, if configured. |
 
 ## Listing your template versions
 

@@ -13,6 +13,7 @@ const built = new Map();
 for (const page of pages) {
   const html = await fs.readFile(`dist${page.route}index.html`, 'utf8');
   const $ = load(html);
+  if ($('[data-doc-markdown],[data-build-parameter-table]').length) errors.push(`${page.route}: build-only Markdown metadata leaked into HTML`);
   $('a[href]').each((_, element) => {
     const link = $(element);
     if (!isExternalLink(link.attr('href'), process.env.DOCS_ORIGIN || 'http://localhost:4321')) return;

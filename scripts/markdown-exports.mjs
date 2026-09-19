@@ -3,6 +3,9 @@ import { fileURLToPath } from 'node:url';
 import { load } from 'cheerio';
 import Turndown from 'turndown';
 import { gfm } from 'turndown-plugin-gfm';
+import { parameterMarkdown, selectParameters } from '../src/lib/parameter-markdown.mjs';
+
+export const stripBuildMetadata = html => html.replace(/\sdata-build-parameter-table="[^"]*"/g, '');
 
 export function renderMarkdown(html, title) {
   const $ = load(html);
@@ -47,6 +50,15 @@ export function renderMarkdown(html, title) {
       return `${first ? '| ' : ' '}${content.replace(/\|/g, '\\|').replace(/\n+/g, ' ')} |`;
     },
   });
+  // Render from component data, not from its HTML. The small props marker is
+  // build-only and stripped from the final HTML before deployment.
+  td.addRule('component-markdown', {
+    filter: node => node.hasAttribute?.('data-build-parameter-table'),
+    replacement: (_content, node) => {
+      const props = JSON.parse(node.getAttribute('data-build-parameter-table'));
+      return `\n\n${parameterMarkdown(selectParameters(props), props)}\n\n`;
+    },
+  });
   const published = $('time[data-changelog-date]').first().text();
   const navigation = $('[data-changelog-navigation] a').map((_, element) => {
     const link = $(element);
@@ -64,7 +76,11 @@ export default function markdownExports() {
     const pages = JSON.parse(await fs.readFile('src/generated/pages.json', 'utf8'));
     const articles = [];
     for (const page of pages) {
-      const markdown = renderMarkdown(await fs.readFile(`${root}${page.route.slice(1)}index.html`, 'utf8'), page.title);
+      const htmlPath = `${root}${page.route.slice(1)}index.html`;
+      const html = await fs.readFile(htmlPath, 'utf8');
+      const markdown = renderMarkdown(html, page.title);
+      const cleanHtml = stripBuildMetadata(html);
+      if (cleanHtml !== html) await fs.writeFile(htmlPath, cleanHtml);
       const target = `${root}${page.markdownPath.slice(1)}`;
       await fs.mkdir(target.slice(0, target.lastIndexOf('/')), { recursive: true });
       await fs.writeFile(target, markdown);
