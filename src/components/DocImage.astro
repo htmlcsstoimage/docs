@@ -1,0 +1,66 @@
+---
+import { Zoom } from 'starlight-image-zoom/components';
+import images from '../data/images.json';
+interface Props { src: string; alt: string; width?: number; height?: number; caption?: string; }
+const { src, alt, width, height, caption } = Astro.props;
+const optimized = (images as Record<string, { width: number; height: number; sources: Record<string, { src: string; width: number }[]> }>)[src];
+const displayWidth = width ?? optimized?.width;
+const displayHeight = height ?? (optimized && displayWidth ? Math.round(displayWidth * optimized.height / optimized.width) : undefined);
+---
+<figure data-doc-image>
+  <Zoom label={alt}>
+    <picture>
+      {optimized && Object.entries(optimized.sources).map(([format, variants]) => <source type={`image/${format}`} srcset={variants.map(v => `${v.src} ${v.width}w`).join(', ')} sizes="(max-width: 50rem) 100vw, 48rem" />)}
+      <img src={src} data-doc-original={src} alt={alt} width={displayWidth} height={displayHeight} loading="lazy" decoding="async" />
+    </picture>
+  </Zoom>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+<script>
+  // Keep the loaded preview visible until the original is ready to paint.
+  const originals = new Map<string, Promise<HTMLImageElement>>();
+  function loadOriginal(src: string) {
+    const cached = originals.get(src);
+    if (cached) return cached;
+    const image = new Image();
+    image.decoding = 'async';
+    image.src = src;
+    const ready = image.decode().then(() => image);
+    originals.set(src, ready);
+    // Bound retained decoded images when browsing many documentation pages.
+    if (originals.size > 4) originals.delete(originals.keys().next().value!);
+    ready.catch(() => { if (originals.get(src) === ready) originals.delete(src); });
+    return ready;
+  }
+  function warmOriginal(event: Event) {
+    if (!(event.target instanceof Element)) return;
+    const image = event.target.closest('[data-doc-image]')?.querySelector<HTMLImageElement>('img[data-doc-original]');
+    if (image?.dataset.docOriginal) loadOriginal(image.dataset.docOriginal).catch(() => {});
+  }
+  document.addEventListener('pointerover', warmOriginal, { passive:true });
+  document.addEventListener('focusin', warmOriginal);
+  document.addEventListener('pointerdown', warmOriginal, { passive:true });
+  const observer = new MutationObserver((records) => {
+    for (const record of records) for (const node of record.addedNodes) {
+      if (!(node instanceof Element)) continue;
+      node.querySelectorAll<HTMLImageElement>('dialog img[data-doc-original]').forEach((image) => {
+        image.loading = 'eager';
+        loadOriginal(image.dataset.docOriginal!).then(original => {
+          if (!image.isConnected) return;
+          image.removeAttribute('srcset');
+          image.src = original.src;
+        }).catch(() => { /* The loaded preview remains usable if the original fails. */ });
+      });
+    }
+  });
+  function observeZoom() {
+    observer.disconnect();
+    observer.observe(document.body, { childList:true });
+  }
+  observeZoom();
+  document.addEventListener('astro:page-load', observeZoom);
+</script>
+<style>
+  figure { margin:1.5rem 0; } img { max-width:100%; height:auto; border:1px solid var(--sl-color-hairline); border-radius:.6rem; }
+  figcaption { color:var(--sl-color-gray-3); font-size:.8rem; margin-top:.6rem; }
+</style>

@@ -1,0 +1,36 @@
+---
+const logos = [
+  ['Uber', 'uber'], ['HubSpot', 'hubspot'], ['Airtable', 'airtable'],
+  ['monday.com', 'monday'], ['Yamaha', 'yamaha'], ['Wayfair', 'wayfair'],
+  ['PlanetScale', 'planetscale'], ['Expensify', 'expensify'],
+  ['Coldwell Banker', 'coldwell_banker'],
+];
+---
+<div class="trust-proof">
+  <div class="logos" aria-label="Companies using HTML/CSS to Image">
+    {logos.map(([name, file]) => <img src={`/assets/images/logos/${file}_logo.svg`} alt={name} width="144" height="36" loading="lazy" />)}
+  </div>
+  <div class="proof-points">
+    <p><strong>100M+</strong>{' '}<span>images generated</span></p>
+    <p><strong>Since 2018</strong>{' '}<span>running in production</span></p>
+    <p><a href="https://status.htmlcsstoimage.com" target="_blank" rel="noopener">System status →</a>{' '}<span>Uptime and incident history</span></p>
+  </div>
+</div>
+<style>
+  .trust-proof { margin-block:1.5rem; container-type:inline-size; }
+  .logos { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:2rem 2rem; align-items:center; max-width:46rem; margin-inline:auto; padding:1.75rem 2rem 2.5rem; mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); }
+  .logos img { display:block; width:100%; max-width:144px; height:36px; object-fit:contain; margin:0 auto; filter:brightness(0) invert(1); opacity:.7; }
+  :global([data-theme='light']) .logos img { filter:brightness(0); opacity:.65; }
+  .logos img:nth-child(4n+1), .logos img:nth-child(4n) { opacity:.45; }
+  .logos img:last-child { display:none; }
+  .proof-points { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; padding-top:1.25rem; border-top:1px solid var(--sl-color-hairline); }
+  .proof-points p { margin:0; }
+  .proof-points strong, .proof-points a { display:block; font-size:1.1rem; font-weight:600; }
+  .proof-points span { display:block; margin-top:.25rem; font-size:.85rem; color:var(--sl-color-gray-2); }
+  @container(max-width:40rem) {
+    .logos { grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.5rem 1rem; padding-inline:.5rem; mask-image:none; }
+    .logos img:last-child { display:block; }
+    .logos img:nth-child(n) { opacity:.65; }
+  }
+  @media(max-width:35rem) { .proof-points { grid-template-columns:1fr; } }
+</style>

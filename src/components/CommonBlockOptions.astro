@@ -1,0 +1,21 @@
+---
+interface Props { kind?: 'standard' | 'text' | 'image' | 'shape'; cell?: boolean }
+const { kind = 'standard', cell = false } = Astro.props;
+---
+<h2 id="common-properties">Common properties</h2>
+<p>Most blocks share these controls in the right sidebar. Selecting a child also shows controls for its parent layout.</p>
+<table>
+  <thead><tr><th>Property</th><th>Details</th></tr></thead>
+  <tbody>
+    <tr><td>Size</td><td>Width can be fixed, percentage-based, or automatic. Height can be fixed, flexible, or constrained by minimum and maximum values. Lock the aspect ratio to preserve proportions. Size values support variables.</td></tr>
+    <tr><td>Arrange</td><td>X and Y position blocks on the canvas or inside Free Panels, using fixed values or percentage anchors. Alignment controls place blocks at common positions. Rotate, flip, lock, or change the layer order.</td></tr>
+    <tr><td>Background</td><td>Choose a solid color, a linear, radial, or conic gradient, or a pattern. Colors support variables. Gradient stops have colors and positions and are sorted by position; linear and conic gradients also have an angle. Pattern colors and size support variables, with controls varying by pattern.</td></tr>
+    <tr><td>Border</td><td>Simple mode shares color, thickness, style, and radius across all sides. Advanced mode sets each side's color, thickness, and style and each corner's radius independently.</td></tr>
+    <tr><td>Shadow</td><td>Add layers of regular shadow, inner shadow, or glow, subject to the block-specific limits below.</td></tr>
+  </tbody>
+</table>
+<p>Canvas and block backgrounds are separate: transparent areas reveal the parent or canvas. Patterns are based on <a href="https://css-pattern.com/">CSS Pattern</a>. See <a href="/template-editor/advanced/sizing-positioning/">Sizing and positioning</a> for sizing modes and position anchors.</p>
+{cell && <p><strong>Auto size to grid cell</strong> makes a child fill its assigned area. Disable it when the child should keep its own width or height.</p>}
+{kind === 'text' && <p>Text blocks support drop shadows and glow, without inner shadows or spread.</p>}
+{kind === 'image' && <p>With Contain or Scale Down, the border and shadow follow the rendered image.</p>}
+{kind === 'shape' && <p>Rectangles and circles support solid, gradient, and pattern backgrounds and advanced borders. Stars and triangles support solid colors and linear or radial gradients, simple borders, and drop shadows or glow; they do not support patterns, conic gradients, inner shadows, or shadow spread.</p>}

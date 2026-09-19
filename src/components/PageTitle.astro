@@ -1,0 +1,24 @@
+---
+import DefaultPageTitle from '@astrojs/starlight/components/PageTitle.astro';
+import PageActions from './PageActions.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
+const { entry } = Astro.locals.starlightRoute;
+const pageTitle = entry.data.page_title ?? entry.data.title;
+const route = Astro.url.pathname;
+const markdownPath = route === '/' ? '/index.md' : `${route.replace(/\/$/, '')}.md`;
+---
+<div class="page-heading grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-2">
+  {route !== '/' && <div class="col-start-1 row-start-1 min-w-0 min-[40rem]:col-span-2"><Breadcrumbs /></div>}
+  <div class="col-span-2 col-start-1 row-start-2 min-w-0 min-[40rem]:col-span-1">
+    {entry.data.page_title ? <h1 id="_top">{pageTitle}</h1> : <DefaultPageTitle />}
+  </div>
+  {entry.id !== '404' && <div class="col-start-2 row-start-1 self-start justify-self-end min-[40rem]:row-start-2 min-[40rem]:self-center"><PageActions markdownPath={markdownPath} title={pageTitle} /></div>}
+</div>
+{entry.data.changelog && <p class="published"><time data-changelog-date datetime={entry.data.changelog.date}>{new Date(`${entry.data.changelog.date}T00:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</time></p>}
+<style>
+  h1 { margin-top:1rem; font-size:var(--sl-text-h1); line-height:var(--sl-line-height-headings); font-weight:600; color:var(--sl-color-white); }
+  .published { margin:.8rem 0 0; font-size:.9rem; color:var(--sl-color-gray-3); }
+  .page-heading { margin-top:.5rem; }
+  .page-heading :global(h1) { min-width:0; margin-top:0; }
+
+</style>

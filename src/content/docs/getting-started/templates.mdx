@@ -1,0 +1,280 @@
+---
+title: Image templates
+slug: getting-started/templates
+description: >-
+  Create reusable templates for your HTML & CSS to make image generation easy.
+---
+import { Aside, LinkButton } from '@astrojs/starlight/components';
+import DocImage from '../../../components/DocImage.astro';
+import Endpoint from '../../../components/Endpoint.astro';
+import ParameterTable from '../../../components/ParameterTable.astro';
+import Help from '../../../components/Help.astro';
+
+<a id="image-templates" />
+
+Create reusable templates to make image generation easy.
+
+<LinkButton href="https://htmlcsstoimage.com/dashboard">Open Dashboard</LinkButton>
+
+## What are templates?
+
+A template defines reusable image markup with **variables** that are replaced when an image is created.
+
+You can create templates by sending HTML and CSS to the API, or by building a template visually in the [Template Editor](/template-editor/). Templates created in the editor are still rendered through the same template API.
+
+If you are building templates visually, start with the [Template Editor Quick Start](/template-editor/quick-start/). For API-only templates, continue below.
+
+### Handlebars variables
+Templates support [Handlebars](https://handlebarsjs.com/) variables. Add `{{title_text}}` to your HTML, then pass a value for `title_text` when creating the image.
+
+### Common use cases
+- Define a reusable template, then pass variables to it to generate unique images.
+- Use the [Template Editor](/template-editor/) to build a reusable image from blocks instead of writing all of the HTML and CSS by hand.
+- Create images using signed URLs in a `GET` request.
+- Generate social sharing images, such as `og:image` or `twitter:image`. For an existing website or CMS, an [OG Image Config](/getting-started/og-images/) can populate the template from each page's metadata.
+
+### Example
+This image was generated with a template.
+```json
+{ 
+  "text": "With templates, you can use variables to replace parts of your image.",
+  "avatar_url": "https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairDreads01&accessoriesType=Round&hairColor=BrownDark&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=BlazerShirt&eyeType=Happy&eyebrowType=DefaultNatural&mouthType=Eating&skinColor=Brown",
+  "name": "Freddy",
+  "username": "@freddy"
+}
+```
+<DocImage src="/assets/images/template.png" alt="Profile card rendered from template text, avatar, name, and username variables" />
+
+The HTML below uses Bootstrap utility classes; include the corresponding stylesheet in your template to reproduce the styling.
+
+```html
+<div class="p-4 text-center mt-4" style="width: 500px">
+  <span class="tweet-text mb-4">
+    {{text}}
+  </span>
+  <div class="mt-2 p-4">
+    <img src="{{avatar_url}}" class="rounded-circle shadow border mt-4" width="100px">
+  </div>
+  <h4 class="mt-2">
+    {{name}}
+  </h4>
+  <span class="text-muted">{{username}}</span>
+</div>
+```
+
+## Creating a template
+
+Requires [`templates:create_update`](/getting-started/using-the-api/permissions/).
+
+To generate a template, make an HTTP request to the API.
+
+<Endpoint method="POST" path="/v1/template" />
+
+### Parameters
+
+Send the following parameters as JSON or form data.
+
+| Name        | Type          | Description |
+|:-------------|:------------------|:------|
+| `html` (required) | `String` | HTML to render: a snippet (`<div>Your content</div>`) or an entire webpage. |
+| `css` | `String` | The CSS for your image. |
+| `name` | `String` | A short name to identify your template `max length 64`|
+| `description` | `String` | Description to elaborate on the use of your template `max length 1024` |
+
+<Aside title="Required parameters">`html` is required. `css`, `name`, and `description` are optional.</Aside>
+
+### Additional parameters
+
+Optional parameters for greater control over your image.
+
+<ParameterTable context="templates" />
+
+### Example responses
+```
+STATUS: 201 CREATED
+```
+
+```json
+{
+    "template_id": "t-b0354248-e7f6-4cca-81c6-2b4a70a16388",
+    "template_version": 1594409399761
+}
+```
+
+```
+STATUS: 400 BAD REQUEST
+```
+
+```json
+{
+  "error": "Bad Request",
+  "statusCode": 400,
+  "message": "HTML is Required"
+}
+```
+
+```
+STATUS: 429 TOO MANY REQUESTS
+```
+
+```json
+{
+    "error": "Plan limit exceeded",
+    "statusCode": 429,
+    "message": "The tryit plan is limited to 5 templates"
+}
+```
+<Aside title="Plan limits">Free plans can create 5 templates. Paid plans can create 1,000. You can edit your existing templates an unlimited number of times.</Aside>
+
+## Editing a template
+
+Requires [`templates:create_update`](/getting-started/using-the-api/permissions/).
+
+To edit an existing template, send a request with the `template_id` returned when you created it.
+
+<Endpoint method="POST" path="/v1/template/:template_id" />
+
+### Parameters
+
+Send the following parameters as JSON or form data.
+
+| Name        | Type          | Description |
+|:-------------|:------------------|:------|
+| `html` (required) | `String` | HTML to render: a snippet (`<div>Your content</div>`) or an entire webpage. |
+| `css` | `String` | The CSS for your image. |
+| `name` | `String` | A short name to identify your template `max length 64`|
+| `description` | `String` | Description to elaborate on the use of your template `max length 1024` |
+
+<Aside title="Required parameters">Send the template's `html` in your update. `css`, `name`, and `description` are optional.</Aside>
+
+### Additional parameters
+
+Optional parameters for greater control over your image.
+
+<ParameterTable context="templates" />
+
+## Creating an image with a template
+
+Requires [`images:create`](/getting-started/using-the-api/permissions/).
+
+To generate a templated image, send a request using the `template_id` from the [create response](#example-responses).
+
+<Endpoint method="POST" path="/v1/image/:template_id" />
+
+You can also generate a templated image with a signed `GET` URL that renders on demand. See [Creating a templated image URL](/getting-started/create-and-render/#creating-a-templated-image-url).
+
+To use one template for automatic social cards across an existing site, select it in an [OG Image Config](/getting-started/og-images/#template-values). HCTI can map page titles, descriptions, Open Graph metadata, and explicit `html:tv:` values to its variables.
+
+<Aside title="Template versions">Rendering a `template_id` uses its latest version. To pin a version, send your request to `https://hcti.io/v1/image/:template_id/:template_version`.</Aside>
+
+### Parameters
+
+Send the following parameters as JSON or form data. When using form data, JSON-encode `template_values` as a string.
+
+| Name        | Type          | Description |
+|:-------------|:------------------|:------|
+| `template_values` (required) | `JSON` | Values for the variables in your template. For editor templates, see the [Variables guide](/template-editor/variables/). |
+
+
+
+## Listing your templates
+
+Requires [`templates:read`](/getting-started/using-the-api/permissions/).
+
+List your templates with an authenticated GET request.
+
+<Endpoint method="GET" path="/v1/template" />
+
+### Example responses
+```
+STATUS: 200 OK
+```
+
+```json
+{
+  "data": [
+    {
+      "css": null,
+      "created_at": "2020-07-19T17:16:43.987+00:00",
+      "description": null,
+      "device_scale": 2.0,
+      "google_fonts": null,
+      "html": "<blockquote class=\"twitter-tweet\" style=\"width: 400px;\" data-dnt=\"true\">\n<p lang=\"en\" dir=\"ltr\"></p>\n\n<a href=\"{{tweet_link}}\"></a>\n\n</blockquote> <script async src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>",
+      "id": "t-5ff7b966-d32c-4143-bda3-57a440e97a80",
+      "max_wait_ms": null,
+      "ms_delay": 1500,
+      "name": null,
+      "render_when_ready": null,
+      "render_count": 142,
+      "storage_destination_id": "your-storage-destination-id",
+      "color_scheme": null,
+      "timezone": null,
+      "updated_at": "2020-07-19T17:16:43.987+00:00",
+      "version": 1595179003987,
+      "viewport_height": null,
+      "viewport_width": null
+    }
+  ],
+  "pagination": {
+    "next_page_start": null
+  }
+}
+```
+
+### Response fields
+
+| Field | Type | Description |
+|:------|:-----|:------------|
+| `render_count` | `Integer` | Number of times this template has been used to generate images. |
+| `storage_destination_id` | `String` or `null` | Storage destination inherited by images created from this template. |
+| `color_scheme` | `String` | Light or dark mode setting, if configured. |
+| `timezone` | `String` | Timezone setting, if configured. |
+
+## Listing your template versions
+
+Requires [`templates:read`](/getting-started/using-the-api/permissions/).
+
+List a template's versions with an authenticated GET request.
+
+<Endpoint method="GET" path="/v1/template/:template_id" />
+
+
+### Example responses
+```
+STATUS: 200 OK
+```
+
+```json
+{
+  "data": [
+    {
+      "css": null,
+      "created_at": "2020-07-19T17:16:43.987+00:00",
+      "description": null,
+      "device_scale": 2.0,
+      "google_fonts": null,
+      "html": "<blockquote class=\"twitter-tweet\" style=\"width: 400px;\" data-dnt=\"true\">\n<p lang=\"en\" dir=\"ltr\"></p>\n\n<a href=\"{{tweet_link}}\"></a>\n\n</blockquote> <script async src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>",
+      "id": "t-5ff7b966-d32c-4143-bda3-57a440e97a80",
+      "max_wait_ms": null,
+      "ms_delay": 1500,
+      "name": null,
+      "render_when_ready": null,
+      "render_count": 142,
+      "storage_destination_id": "your-storage-destination-id",
+      "color_scheme": null,
+      "timezone": null,
+      "updated_at": "2020-07-19T17:16:43.987+00:00",
+      "version": 1595179003987,
+      "viewport_height": null,
+      "viewport_width": null
+    }
+  ],
+  "pagination": {
+    "next_page_start": null
+  }
+}
+```
+
+Deleting a template through the API requires `templates:delete`. See the [interactive API reference](https://htmlcsstoimage.com/api-docs) for endpoint schemas. Rendering a known template ID uses `images:create`; discovering templates first requires `templates:read`.
+
+<Help />

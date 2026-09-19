@@ -1,0 +1,80 @@
+---
+title: Canvas
+slug: template-editor/canvas
+description: >-
+  Configure the canvas for templates built in the editor.
+---
+<a id="canvas" />
+
+The canvas is the image area your blocks sit on.
+
+Open the Canvas tab in the right sidebar to change canvas settings. These settings apply to the whole template.
+
+## Rendered Image Properties
+
+These settings affect the saved template and the image that is generated from it.
+
+Image settings are saved with the template and flow through when the template is rendered. They map to API parameters such as [`device_scale`](/parameters/device_scale/), [`ms_delay`](/parameters/ms_delay/), [`selector`](/parameters/selector/), and [`proxy_id`](/parameters/proxy_id/).
+
+| Property | Details |
+| --- | --- |
+| Width | Design width of the template. |
+| Height | Design height of the template. |
+| Background | Base background behind all blocks. |
+| Padding | Space inside the canvas edge. |
+| Overflow | Hide or show content outside the canvas. |
+| Emoji | Emoji rendering behavior. |
+| Image Settings | Settings used when rendering the template. |
+
+## Editor Settings
+
+These settings can make editing easier. They do not add visible content to the final image.
+
+| Property | Details |
+| --- | --- |
+| Quick Presets | Set width and height to a common size. |
+| Show grid | Show the grid while editing. |
+| Grid size | Spacing of the editor grid. |
+| Snap to grid | Snap blocks while moving or resizing. |
+| Show invisible block outlines | Outline blocks that are hard to see while editing. |
+
+## Canvas Presets
+
+Canvas presets are shortcuts for common image sizes. Choosing a preset updates the width and height. It does not resize or rearrange the blocks already on the canvas.
+
+Presets are grouped by how the image is usually used:
+
+| Group | Examples |
+|:------|:---------|
+| Social Content | Instagram feed, square, story, reel, Facebook cover, X header, Pinterest pin, LinkedIn post |
+| Digital Ads | Google responsive display, IAB banner, leaderboard, rectangle, and mobile ad sizes |
+| Web, Product, and Docs | Open Graph image, presentation slide, website hero, email hero |
+
+Common presets include:
+
+| Image type | Common canvas size |
+|:-----------|:-------------------|
+| Open Graph image | 1200 x 630 |
+| Instagram square | 1080 x 1080 |
+| Instagram story/reel | 1080 x 1920 |
+| Presentation slide | 1920 x 1080 |
+| Email hero | 1200 x 600 |
+
+## Image Settings
+
+Image settings are saved with the template and flow through when the template is rendered.
+
+| Property | Related API parameter |
+|:---------|:----------------------|
+| Device Scale | [`device_scale`](/parameters/device_scale/) |
+| MS Delay | [`ms_delay`](/parameters/ms_delay/) |
+| Selector | [`selector`](/parameters/selector/) |
+| Proxy | [`proxy_id`](/parameters/proxy_id/) |
+
+Use Device Scale when the final image needs more or fewer pixels than the canvas design size. For example, a `1200 x 630` canvas with `device_scale: 2` renders at `2400 x 1260`.
+
+Use MS Delay when content needs a moment to settle before capture. Most templates should not need a long delay.
+
+Use Selector only when the render should crop to a specific element. Most editor templates can leave this empty.
+
+Use Proxy when remote images or assets should be fetched through one of your configured proxies.

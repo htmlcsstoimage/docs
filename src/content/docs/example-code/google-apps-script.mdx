@@ -1,0 +1,77 @@
+---
+title: Google Apps Script
+slug: example-code/google-apps-script
+description: >-
+  Convert HTML to an image (png, jpg or webp) with Google Apps Script + the HTML/CSS to Image
+  API. Renders exactly like Google Chrome.
+---
+import Help from '../../../components/Help.astro';
+import { LinkButton } from '@astrojs/starlight/components';
+
+<a id="google-apps-script-htmlcss-to-image" />
+
+Generate PNG, JPG, or WebP images with Google Apps Script.
+
+<LinkButton href="https://htmlcsstoimage.com/#demo">Live demo</LinkButton>
+<LinkButton href="https://htmlcsstoimage.com/dashboard" variant="secondary">Get an API key</LinkButton>
+
+## Generate an image with Google Apps Script
+With [Google Apps Script](https://developers.google.com/apps-script), you can build add-ons for Google. It is based on JavaScript, but includes built in functions that you'll need to use to work with the HTML/CSS to Image API.
+
+Our documented JavaScript examples won't work with GAS. You can make use of the built in UrlFetchApp to generate images with the API.
+
+## Example code
+
+This shows you how to authenticate with the API and pass parameters in a POST request. This is passing html/css parameters to the API. You can adapt this sample to pass any parameters or work with any of our endpoints.
+
+```javascript
+function createImage(html, css) {
+  const properties = PropertiesService.getScriptProperties();
+  const username = properties.getProperty('HCTI_API_ID');
+  const password = properties.getProperty('HCTI_API_KEY');
+  if (!username || !password) throw new Error('Set HCTI_API_ID and HCTI_API_KEY in Script Properties');
+  let formData = {
+    'html': html,
+    'css': css,
+  }
+  // Additional parameters such as ms_delay should be included in formData
+
+  let options = {
+    'method' : 'post',
+    'payload' : formData
+  }
+
+  // Replace username with your User ID and password with your API Key
+  options.headers = {"Authorization": "Basic " + Utilities.base64Encode(username + ":" + password)}
+  return JSON.parse(UrlFetchApp.fetch("https://hcti.io/v1/image", options).getContentText()).url
+}
+
+function testCreateImage() {
+  let imageUrl = createImage("<div>Hello, world</div>", "div { color: red; }")
+  console.log(imageUrl)
+}
+```
+
+You can use the Google App Script debugger to test your function by running the `testCreateImage` function.
+
+**Using from HTML**
+
+To call your Google App Script function from an HTML file, see the following example.
+
+```javascript
+function onSuccess(imageUrl) {
+  // This code will run when the function executes successfully.
+  console.log(imageUrl)
+}
+
+function onFailure(error) {
+  // This code will run if there is an error.
+  alert(error.message)
+}
+
+var html = "<div>Hello, world</div>"
+var css = "div { color: red; }"
+google.script.run.withSuccessHandler(onSuccess).withFailureHandler(onFailure).createImage(html, css);
+```
+
+<Help />

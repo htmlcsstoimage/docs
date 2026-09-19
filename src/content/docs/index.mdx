@@ -1,0 +1,139 @@
+---
+title: HTML/CSS to Image API Docs
+slug: ''
+description: >-
+  Generate images from HTML and CSS, screenshot webpages, and create automatic Open Graph images for websites and CMSs.
+---
+
+import { Aside, LinkButton } from '@astrojs/starlight/components';
+import ChangelogList from '../../components/ChangelogList.astro';
+import TrustProof from '../../components/TrustProof.astro';
+import ExampleCard from '../../components/ExampleCard.astro';
+
+<a id="htmlcss-to-image-api" />
+
+Your search for pixel-perfect image generation ends here.
+
+<LinkButton href="https://htmlcsstoimage.com/#demo">Live demo</LinkButton>
+<LinkButton href="https://htmlcsstoimage.com" variant="secondary">Get an API Key</LinkButton>
+
+Generate images and PDFs from HTML/CSS, take screenshots of webpages, or create thousands of images from a single template. We run the browsers so you don't have to.
+
+- Get back a `png`, `jpg`, `webp`, or `pdf`
+- Use your own fonts, CSS, and JavaScript
+- Reuse templates with different text, images, and data
+- Automatically generate Open Graph images for every page on your site
+- Works with your code, automation tools, and AI assistants
+- No janky fonts or blurry images
+
+
+<a id="three-ways-to-generate-images" />
+
+## Four ways to generate images
+
+<div className="generation-grid grid grid-cols-[repeat(auto-fit,minmax(min(100%,25rem),1fr))] gap-6 [&>*]:mt-0!">
+<ExampleCard
+  id="from-htmlcss"
+  title="From HTML/CSS"
+  description="Send HTML and CSS to render an image or PDF. Use your own layouts, fonts, and JavaScript."
+  href="/getting-started/using-the-api/"
+>
+
+```http wrap
+POST https://hcti.io/v1/image
+
+{
+  "html": "<h1>Hello world</h1>",
+  "css": "h1 { color: #00b980; }"
+}
+```
+
+</ExampleCard>
+<ExampleCard
+  id="from-any-url"
+  title="From a URL"
+  description="Screenshot a public webpage, capture the full page, or crop to a specific element."
+  href="/getting-started/url-to-image/"
+>
+
+```http wrap
+POST https://hcti.io/v1/image
+
+{
+  "url": "https://example.com",
+  "full_screen": true
+}
+```
+
+</ExampleCard>
+<ExampleCard
+  id="from-templates"
+  title="From a template"
+  description="Design a template in the visual editor or with HTML/CSS, then generate images with different text, images, and data."
+  href="/getting-started/templates/"
+>
+
+```http wrap
+POST https://hcti.io/v1/image/TEMPLATE_ID
+
+{
+  "template_values": {
+    "title": "Hello world"
+  }
+}
+```
+
+</ExampleCard>
+<ExampleCard
+  id="automatic-open-graph-images"
+  title="Automatic Open Graph images"
+  description="Connect your website or CMS and generate a social card for each page from its screenshot or metadata."
+  href="/getting-started/og-images/"
+>
+
+```html wrap
+<head>
+  <meta
+    property="og:image"
+    content="https://hcti.io/v1/og/DOMAIN_ID/"
+  >
+</head>
+```
+
+</ExampleCard>
+</div>
+
+
+## Quick start
+
+Choose your path to get started:
+
+| I want to...                   | Go here                                                                                                                                                                                                                                                                                                                                                                 |
+|:-------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Read the API docs**          | [Using the API](/getting-started/using-the-api/)                                                                                                                                                                                                                                                                                                                        |
+| **Try requests in Postman**    | [Official collection](https://www.postman.com/htmlcsstoimage/html-css-to-image/collection/zgfamed/html-css-to-image-api) · [Setup guide](/guides/workflows/postman/) |
+| **Add automatic social cards** | [Open Graph Images](/getting-started/og-images/) for a website, CMS, or store                                                                                                                                                                                                                                                                                          |
+| **Design a reusable template** | [Template Editor](/template-editor/)                                                                                                                                                                                                                                                                                                                                    |
+| **See example code**           | [PHP](/example-code/php), [JavaScript](/example-code/javascript), [Ruby](/example-code/ruby), [Python](/example-code/python), [Go](/example-code/go), [cURL](/example-code/curl), [C#](/example-code/c), [TypeScript](/example-code/typescript), [Java](/example-code/java), [Rust](/example-code/rust), [Kotlin](/example-code/kotlin), [Elixir](/example-code/elixir) |
+| **Use with AI assistants**     | Connect [Claude](/integrations/mcp/claude/), [ChatGPT/Codex](/integrations/mcp/chatgpt-codex/), [Cursor](/integrations/mcp/cursor/), [Grok](/integrations/mcp/grok/), [and more](/integrations/mcp/) with MCP                                                                                                                                                                                                                                                                                                 |
+| **Automation options**         | [n8n](/integrations/n8n/), [Zapier](/integrations/zapier/), or [Make](/integrations/make/)                                                                                                                                                                                                                                                                               |
+| **See use cases**              | [Use Cases & Examples](/use-cases/)                                                                                                                                                                                                                                                                                                                                     |
+
+<Aside title="Works with any language">
+Don't see your language? The API works with anything that can make HTTP requests. See the [cURL example](/example-code/curl/) and adapt it to your stack.
+</Aside>
+
+
+## Trusted by developers worldwide
+
+<TrustProof />
+
+## Get an API key
+
+To use this API, you'll need an API key. Get started for free:
+
+<LinkButton href="https://htmlcsstoimage.com/join">Get an API Key</LinkButton>
+
+## Latest updates
+
+<ChangelogList limit={5} />

@@ -1,0 +1,103 @@
+---
+title: "How to take screenshots and render HTML/CSS with Cursor"
+page_title: "Set up HCTI in Cursor"
+slug: integrations/mcp/cursor
+description: >-
+  Learn how to connect Cursor to HTML/CSS to Image, take website screenshots, and render HTML/CSS as PNG or PDF with copyable prompts.
+---
+import McpTools from '../../../../components/McpTools.astro';
+import Help from '../../../../components/Help.astro';
+import { LinkButton } from '@astrojs/starlight/components';
+
+<a id="cursor-mcp-integration" />
+
+Capture a webpage or turn HTML/CSS into a PNG, WebP, or PDF with HTML/CSS to Image.
+
+**You'll need:** an [HCTI account](https://htmlcsstoimage.com) with image credits. Sign in through your browser when connecting—no API key to copy.
+
+## 1. Install the Cursor plugin
+
+Install the official **HTML/CSS to Image API** plugin from the Cursor Marketplace:
+
+<LinkButton href="https://cursor.com/marketplace/html-css-to-image">Install from Cursor Marketplace</LinkButton>
+
+The plugin adds the hosted HCTI MCP server and workflow guidance for image generation, screenshots, templates, and Open Graph images.
+
+1. Open the marketplace listing and install the plugin in Cursor.
+2. Open Cursor's MCP settings, find `hcti`, and select **Connect**.
+3. Authorize your HCTI account in the browser.
+4. Start a new Agent chat and ask **"Use HCTI to check my image usage and account limits"**.
+
+### Connect the MCP server manually
+
+If you only want the MCP tools without the plugin's workflow guidance, use this button to add the hosted MCP server:
+
+<LinkButton href="cursor://anysphere.cursor-deeplink/mcp/install?name=HCTI&config=eyJ0eXBlIjoiaHR0cCIsInVybCI6Imh0dHBzOi8vbWNwLmhjdGkuaW8ifQ==" variant="secondary">Add MCP server to Cursor</LinkButton>
+
+Alternatively, merge this entry into `.cursor/mcp.json` in your project, or `~/.cursor/mcp.json` for all projects:
+
+```json
+{
+  "mcpServers": {
+    "hcti": {
+      "url": "https://mcp.hcti.io"
+    }
+  }
+}
+```
+
+After adding it, enable the HCTI server in Cursor's MCP settings, select **Connect**, and authorize your account in the browser. Use either the marketplace plugin or the manual MCP configuration to avoid duplicate tools. See [Cursor's MCP guide](https://cursor.com/docs/mcp).
+
+## 2. Take a screenshot
+
+Send this prompt after connecting:
+
+```text
+Use HTML/CSS to Image to screenshot https://example.com as a PNG.
+Set viewport_width to 1440 and device_scale to 1. Return the image URL.
+```
+
+Open the returned image URL to view your screenshot. Replace `https://example.com` with your own public URL.
+
+## 3. Render HTML/CSS
+
+Try a small card with explicit text, colors, and dimensions:
+
+```text
+Use HCTI to render this HTML and CSS as a PNG at device_scale 1.
+HTML: <div class="card">Hello from HCTI</div>
+CSS: .card { width: 1200px; height: 630px; display: flex;
+align-items: center; justify-content: center; background: #172554;
+color: white; font: 64px sans-serif; }
+Return the hosted image URL.
+```
+
+The result is a dark blue card with centered white text. Edit the text or CSS and render again to refine it.
+
+## How to export a card from your codebase
+
+Open the project containing your card styles and ask Cursor Agent:
+
+```text
+Read the card component and its styles in this project. Make a self-contained HTML/CSS version with the text "New release", render it with HCTI, and return the PNG URL.
+```
+
+A source component may need to be converted to HTML/CSS first. Ask Cursor to include the relevant styles and replace local asset paths with accessible URLs.
+
+<McpTools />
+
+## Troubleshooting
+
+For a permission-denied error, [reconnect and approve the required access](/integrations/mcp/permissions/#add-permissions-to-an-existing-connection) before retrying. Usage checks and maximum batch-size checks require `usage:read`.
+
+### Missing tools or connection errors
+
+Check whether the server was added for this project or globally. Enable it in MCP settings, complete authorization, and open an Agent chat. If tools appear twice, keep either the plugin connection or the manual entry.
+
+### Rendering errors
+
+HCTI fetches webpages from its hosted service. Use a publicly accessible URL; it cannot reach your computer's `localhost`. For HTML/CSS rendering, supply the file contents and accessible assets rather than local file paths. Check your [HCTI dashboard](https://htmlcsstoimage.com/dashboard) for available image credits.
+
+See [shared MCP troubleshooting](/integrations/mcp/#troubleshooting) for authentication and rendering errors, or [choose another client](/integrations/mcp/#choose-your-client).
+
+<Help />

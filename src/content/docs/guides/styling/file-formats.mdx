@@ -1,0 +1,122 @@
+---
+title: File formats
+slug: guides/styling/file-formats
+description: >-
+  Learn about supported image formats (PNG, JPG, WebP, PDF) and how to optimize your image delivery.
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Help from '../../../../components/Help.astro';
+
+<a id="image-file-formats" />
+
+Choose the right format for your use case
+
+## Supported Formats
+
+The API supports four output formats:
+- PNG (default)
+- JPG
+- WebP
+- PDF
+
+To specify a format, add the appropriate file extension to your image URL:
+
+| Format | Example URL | Best For |
+|:-------|:------------|:---------|
+| PNG | `https://hcti.io/v1/image/abc123.png` | Screenshots, images with transparency |
+| JPG | `https://hcti.io/v1/image/abc123.jpg` | Photos, complex images with no transparency |
+| WebP | `https://hcti.io/v1/image/abc123.webp` | Modern web applications, optimal compression |
+| PDF | `https://hcti.io/v1/image/abc123.pdf` | Documents, invoices, printable content |
+
+<Aside title="Choose a format when creating an image">Use the [`format` parameter](/parameters/format/) to select the format in your create request.</Aside>
+
+<Aside title="Default format">PNG is the default format. Paid accounts may receive an optimized WebP response based on the client's capabilities, as described below.</Aside>
+
+## Format Characteristics
+
+### PNG
+- Lossless compression
+- Supports transparency
+- Larger file size
+- Best for:
+  - Screenshots
+  - Images with text
+  - Graphics with sharp edges
+  - Content requiring transparency
+
+### JPG
+- Lossy compression
+- No transparency support
+- Smaller file size
+- Best for:
+  - Photographs
+  - Complex images
+  - When transparency isn't needed
+  - When smaller file size is priority
+
+### WebP
+- Modern format
+- Supports transparency
+- Superior compression
+- Best for:
+  - Web applications
+  - Progressive loading
+  - Optimal performance
+  - Modern browsers
+
+### PDF
+- Document format
+- Vector-based rendering
+- Ideal for printing
+- Best for:
+  - Invoices and receipts
+  - Certificates
+  - Reports
+  - Printable documents
+- Use the `pdf_options` parameter for customization ([Learn more](/parameters/pdf_options/))
+
+## Automatic WebP Optimization
+
+All paid accounts receive automatic WebP optimization:
+
+1. Our edge servers detect the user's browser capabilities
+2. If WebP is supported, images are automatically served in WebP format
+3. Fallback formats are served for non-supporting browsers
+
+Benefits:
+- Improved page load times
+- Better SEO scores
+- Reduced bandwidth usage
+- No code changes required
+
+<Aside title="Compare the output">Compare file sizes and image quality using your actual content; compression savings vary by image.</Aside>
+
+## Best Practices
+
+### Format Selection
+1. **Default to PNG** for:
+   - Screenshots
+   - Text-heavy images
+   - When quality is critical
+   
+2. **Use JPG** for:
+   - Photos
+   - Complex images
+   - When file size is priority
+   
+3. **Enable WebP** for:
+   - Modern web applications
+   - Performance optimization
+   - Progressive enhancement
+
+## Browser Support
+
+| Format | Chrome | Firefox | Safari | Edge | IE11 |
+|:-------|:-------|:--------|:-------|:-----|:-----|
+| PNG | ✅ | ✅ | ✅ | ✅ | ✅ |
+| JPG | ✅ | ✅ | ✅ | ✅ | ✅ |
+| WebP | ✅ | ✅ | ✅ | ✅ | ❌ |
+| PDF | ✅ | ✅ | ✅ | ✅ | ✅ |
+
+<Help />

@@ -1,0 +1,42 @@
+---
+import { getChangelogEntries, changelogDate } from '../lib/changelog';
+interface Props { limit?: number }
+const { limit } = Astro.props;
+const entries = await getChangelogEntries();
+const visible = limit ? entries.slice(0, limit) : entries;
+const years = [...new Set(visible.map(entry => entry.data.changelog!.date.slice(0, 4)))];
+---
+{!limit && <nav aria-label="Changelog years" class="years">
+  {years.map(year => <a href={`#year-${year}`}>{year}</a>)}
+</nav>}
+<div class:list={['updates', { compact: Boolean(limit) }]}>
+  {visible.map((entry, index) => {
+    const { date, anchor } = entry.data.changelog!;
+    const year = date.slice(0, 4);
+    return <>
+      {!limit && (index === 0 || visible[index - 1].data.changelog!.date.slice(0, 4) !== year) && <h2 class="year" id={`year-${year}`}>{year}</h2>}
+      <article id={limit ? undefined : anchor} class="update" data-changelog-entry>
+        <time datetime={date}>{changelogDate(date)}</time>
+        <div>
+          <h3><a href={`/${entry.id}/`}>{entry.data.title}</a></h3>
+          <p>{entry.data.description}</p>
+        </div>
+      </article>
+    </>;
+  })}
+</div>
+{limit && <p class="all-updates"><a href="/changelog/">All updates →</a></p>}
+<style>
+  .years { display:flex; flex-wrap:wrap; gap:.5rem 1.25rem; margin:1.5rem 0 2rem; font-size:.9rem; }
+  .updates .year { margin:2.5rem 0 .5rem; font-size:1.35rem; }
+  .updates .update { display:grid; grid-template-columns:7.5rem minmax(0, 1fr); gap:1rem; margin:0; padding:1.5rem 0; border-bottom:1px solid var(--sl-color-hairline); scroll-margin-top:7rem; }
+  .updates .update > div { margin:0; }
+  .update time { white-space:nowrap; font-size:.85rem; color:var(--sl-color-gray-3); line-height:1.6; padding-top:.2rem; font-variant-numeric:tabular-nums; }
+  .updates .update h3 { margin:0; font-size:1.1rem; line-height:1.45; }
+  .update h3 a { color:var(--sl-color-white); text-decoration:none; }
+  .update h3 a:hover { color:var(--sl-color-text-accent); text-decoration:underline; text-underline-offset:.2em; }
+  .updates .update p { margin:.45rem 0 0; font-size:.95rem; line-height:1.6; color:var(--sl-color-gray-2); }
+  .updates.compact .update { padding:1rem 0; }
+  .all-updates { font-size:.9rem; }
+  @media(max-width:40rem) { .updates .update { grid-template-columns:minmax(0,1fr); gap:.35rem; } .update time { padding:0; } }
+</style>

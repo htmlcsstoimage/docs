@@ -1,0 +1,140 @@
+---
+title: Transparent background
+slug: guides/styling/transparent-background
+description: >-
+  Learn how to create images with transparent backgrounds using the HTML/CSS to Image API.
+---
+
+import { Aside, LinkButton } from '@astrojs/starlight/components';
+import DocImage from '../../../../components/DocImage.astro';
+import Help from '../../../../components/Help.astro';
+
+<a id="transparent-backgrounds" />
+
+Create images with transparent backgrounds for logos, overlays, and more
+
+## Simplified method (recommended)
+
+We've simplified transparent backgrounds. You can now set `transparent_background` to `true` directly on the create image request:
+
+```json
+{
+  "html": "<div class='content'>Your content here</div>",
+  "transparent_background": true
+}
+```
+
+The parameter works with both HTML/CSS and URL-based images. For a URL screenshot, replace `html` with `url`.
+
+<Aside title="Existing method still supported">The CSS method below still works. For new requests, use `transparent_background: true`.</Aside>
+
+
+
+## Implementation
+
+To render an image with a transparent background, pass the CSS via the **`css` parameter**:
+
+```json
+{
+  "html": "<div class='content'>Your content here</div>",
+  "css": "body { background-color: transparent; }"
+}
+```
+
+<Aside title="Pass CSS in the request">For the CSS-based method, pass the transparent body background in the `css` parameter.</Aside>
+
+<Aside title="Choose a transparent format">Use PNG for transparent output. JPG does not support transparency.</Aside>
+
+## Examples
+
+### Basic Example
+
+This image demonstrates a transparent background:
+
+<DocImage src="/assets/images/cat.png" width={400} alt="Cat image with a transparent background" />
+
+<LinkButton href="https://htmlcsstoimage.com/examples/png-transparent-background">Try it yourself</LinkButton>
+
+### Code Example
+
+```html
+<div class="logo-container">
+  <img src="logo.png" alt="Company Logo">
+</div>
+```
+
+```css
+body {
+  background-color: transparent;
+}
+.logo-container {
+  padding: 20px;
+  /* Any background styling here will be included in the image */
+}
+```
+
+## Common Use Cases
+
+1. **Logos**: Create logo variations with transparent backgrounds
+2. **Overlays**: Generate images that layer well with other content
+3. **Icons**: Design icons that work on any background
+4. **Watermarks**: Create watermarks that blend seamlessly
+
+## Best Practices
+
+### Do's
+- Always use PNG format for transparent backgrounds
+- Test your image on different colored backgrounds
+- Consider adding a subtle shadow for better visibility
+- Use the `device_scale` parameter for higher quality
+
+### Don'ts
+- Don't use JPG format when transparency is needed
+- Don't assume white is transparent
+- Don't forget to set `background-color: transparent`
+
+## URL-based Screenshots
+
+When capturing screenshots from URLs, add the CSS via the API parameters:
+
+```json
+{
+  "url": "https://example.com",
+  "css": "body { background-color: transparent; }"
+}
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **White Background Appears**
+   - Ensure you're using PNG format
+   - Verify CSS is being applied
+   - Check you are passing CSS using the `css` parameter
+
+2. **Partial Transparency**
+   - Look for background colors in child elements
+   - Check for overlapping elements
+   - Verify CSS inheritance
+
+### Example Fix
+
+```css
+/* Send this CSS in the request's css parameter. */
+body { background-color: transparent; }
+```
+
+<Aside title="File size">PNG files with transparency may be larger than JPGs. Compare output sizes and use lossless optimization when needed.</Aside>
+
+## Browser Compatibility
+
+Transparent PNGs are supported in all modern browsers:
+- Chrome
+- Firefox
+- Safari
+- Edge
+- Opera
+- Mobile browsers
+
+<Help />

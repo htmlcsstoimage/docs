@@ -1,0 +1,164 @@
+---
+title: Storage destinations API
+slug: management-api/storage-destinations
+description: >-
+  Manage Amazon S3, Cloudflare R2, and other storage destinations for HTML/CSS to Image through REST or MCP, with permissions and provider setup examples.
+---
+import Operations from '../../../components/Operations.astro';
+import Help from '../../../components/Help.astro';
+
+<a id="storage-destinations-api" />
+
+Configure where HCTI saves rendered files. Your bucket must already exist, and your plan must support storage destinations. [Compare plans](https://htmlcsstoimage.com/pricing) to add this feature. See the [storage guide](/guides/advanced/storage-destinations/) for provider permissions and image storage behavior.
+
+<a id="infrastructure-as-code" />
+
+## Operations
+
+Reads, including the AWS external-ID operation, share **100 requests/minute**. Writes share **20 requests/minute**, per organization across REST and MCP. See [rate limits](/getting-started/using-the-api/rate-limits/) and the [interactive API reference](https://htmlcsstoimage.com/api-docs).
+
+<Operations resource="storage-destinations" />
+
+## Configure Amazon S3
+
+First retrieve your organization's external ID and HCTI's writer role ARN:
+
+```bash
+curl 'https://hcti.io/v1/storage-destinations/aws-external-id' \
+  --user "$HCTI_API_ID:$HCTI_API_KEY"
+```
+
+The response contains both values needed to construct the IAM role trust policy:
+
+| Field | Use in your role's trust policy |
+|:------|:-------------------------------|
+| `external_id` | Organization-specific value for the `sts:ExternalId` condition. |
+| `writer_role_arn` | HCTI's existing storage writer role ARN, used as `Principal.AWS`. |
+
+This operation requires `storage_destinations:create_update` and does not require a destination ID.
+
+Create a role in your AWS account that allows `sts:AssumeRole` by the returned `writer_role_arn`, with a `StringEquals` condition requiring the returned `external_id` as `sts:ExternalId`. See the [Amazon S3 guide](/guides/advanced/storage-destinations/s3/). Attach the role's bucket permissions, then create the destination using **your newly created role's ARN** as `connection_info.role_arn`, not HCTI's `writer_role_arn`:
+
+```bash
+curl 'https://hcti.io/v1/storage-destinations' \
+  --user "$HCTI_API_ID:$HCTI_API_KEY" \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "name": "Production images",
+    "disabled": false,
+    "hcti_storage_disabled": false,
+    "connection_info": {
+      "provider": "aws_s3",
+      "bucket": "your-image-bucket",
+      "key_prefix": "renders/",
+      "region": "us-east-1",
+      "role_arn": "arn:aws:iam::123456789012:role/HctiImageStorage"
+    }
+  }'
+```
+
+Replace the example bucket and role with your configured AWS resources. HCTI tests a write before enabling the destination.
+
+## Request fields
+
+| Field | Description |
+|:------|:------------|
+| `name` | Required, 3–255 characters. |
+| `disabled` | Defaults to `false`. Set `true` to save a disabled configuration. Responses use `enabled`. |
+| `hcti_storage_disabled` | Defaults to `false`. If true, rendered files saved here have no public HCTI URL and are excluded from HCTI storage/CDN caching. |
+| `connection_info` | Required provider-specific object, with `provider` and `bucket`. Optional `key_prefix` selects a prefix within the bucket. |
+
+### Provider settings
+
+All providers require `bucket`. All except Amazon S3 use `access_key_id` and `secret_access_key`; Amazon S3 uses an IAM role instead. On update, access-key providers can use [`retain_secret_access_key: true`](#updates-and-connection-tests) to keep the existing secret explicitly.
+
+| `provider` | Additional connection fields | Setup guide |
+|:-----------|:-----------------------------|:------------|
+| `aws_s3` | Required `region`, `role_arn` | [Amazon S3](/guides/advanced/storage-destinations/s3/) |
+| `cloudflare_r2` | Required `cloudflare_account_id`; optional `cloudflare_jurisdiction` (`eu`, `fedramp`, or null/default) | [Cloudflare R2](/guides/advanced/storage-destinations/r2/) |
+| `backblaze_b2` | Required `region`, such as `us-west-004` | [Backblaze B2](/guides/advanced/storage-destinations/backblaze-b2/) |
+| `digitalocean_spaces` | Required `region`, such as `nyc3` | [DigitalOcean Spaces](/guides/advanced/storage-destinations/digitalocean-spaces/) |
+| `wasabi` | Required `region`, such as `us-east-1` | [Wasabi](/guides/advanced/storage-destinations/wasabi/) |
+| `google_cloud_storage` | HMAC `access_key_id` beginning with `GOOG` and its secret | [Google Cloud Storage](/guides/advanced/storage-destinations/google-cloud-storage/) |
+| `other_s3_compatible` | Required public HTTPS `endpoint`; optional `region` (default `us-east-1`) and `force_path_style` (default `true`) | [Other S3-compatible providers](/guides/advanced/storage-destinations/s3-compatible/) |
+
+Use a provider's supported region value from the [API reference](https://htmlcsstoimage.com/api-docs). Custom endpoints must not contain a path, query, fragment, or credentials. Do not send a generic custom endpoint in place of the provider-specific fields.
+
+## Responses, listing, and retrieval
+
+Creates, updates, and gets return `200 OK` with:
+
+| Field | Description |
+|:------|:------------|
+| `id` | Destination identifier used in management requests and as `storage_destination_id` when creating images. |
+| `name` | Display name of the destination. |
+| `enabled` | Whether the destination is enabled. |
+| `hcti_storage_disabled` | When true, files saved here are excluded from HCTI storage and CDN caching and have no public HCTI image URL. |
+| `connection_info` | Provider connection details without the secret access key. |
+| `last_tested_at` | UTC timestamp of the most recent test, or null. |
+| `last_test_succeeded` | Whether that write test succeeded, or null if untested. |
+| `last_test_error` | Sanitized test error, or null. |
+| `created_at` | UTC timestamp when the destination was created. |
+| `updated_at` | UTC timestamp when the destination was last updated. |
+
+- **List destinations:** `GET /v1/storage-destinations` returns destinations newest first, including disabled destinations.
+- **Page size:** Set `count` from 1 to 100. The default is 10.
+- **Next page:** Pass the response's `pagination.next_page_start` as `page_start` in the next request. Stop when the returned cursor is `null`.
+- **Retrieve one destination:** Use `GET /v1/storage-destinations/{id}`.
+
+See [pagination](/management-api/#resource-ids-and-pagination) for the shared response format.
+
+## Updates and connection tests
+
+Send `POST /v1/storage-destinations/{id}` with the complete replacement configuration. Omitted optional settings clear or reset. For access-key providers, choose explicitly whether to retain or replace the secret:
+
+- **Keep the secret:** Set `connection_info.retain_secret_access_key: true`, keep the provider and access key ID unchanged, and omit `secret_access_key` or set it to null. Existing credentials are required.
+- **Replace the secret:** Supply `connection_info.secret_access_key` and omit `retain_secret_access_key` or set it to false. Creating a destination or changing its provider or access key ID requires a supplied secret.
+- **Missing or conflicting instructions:** An omitted, null, or false retention flag requires a supplied secret, including when disabling the destination. Combining `retain_secret_access_key: true` with a supplied secret returns `400`. Empty or whitespace-only storage secrets are invalid.
+
+For example, this complete R2 update retains the existing secret. Replace the destination ID, account ID, access key ID, and other settings with those of your destination:
+
+```bash
+curl "https://hcti.io/v1/storage-destinations/$DESTINATION_ID" \
+  --user "$HCTI_API_ID:$HCTI_API_KEY" \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "name": "Production images",
+    "disabled": false,
+    "hcti_storage_disabled": false,
+    "connection_info": {
+      "provider": "cloudflare_r2",
+      "bucket": "your-image-bucket",
+      "key_prefix": "renders/",
+      "cloudflare_account_id": "0123456789abcdef0123456789abcdef",
+      "access_key_id": "your-existing-access-key-id",
+      "retain_secret_access_key": true
+    }
+  }'
+```
+
+Amazon S3 uses an IAM role, so these access-key retention fields do not apply. Retention flags are request-only and are not returned in `connection_info`.
+
+### Connection tests
+
+Creation tests a write to the bucket. Changed connection settings and re-enabling a destination also trigger testing; metadata-only changes do not require a test. HCTI attempts to delete its test object, but cleanup failure does not make the write test fail. Test objects may remain under `<key-prefix>/.hcti/connection-tests/` without delete permission.
+
+An enabled request is not saved if the test fails. An explicitly disabled configuration can be saved with a failed test result. Inspect `last_test_succeeded` and `last_test_error`; a successful write test does not verify read permissions or guarantee future connectivity.
+
+After a plan downgrade removes storage-destination support, updates can only disable the destination; other submitted changes are ignored.
+
+## Delete a destination
+
+`DELETE /v1/storage-destinations/{id}` returns `204 No Content` on success. Repeated deletion succeeds. It removes the configuration and its stored credentials, but does not delete the bucket or objects already stored there. Existing images retain their destination reference, and storage retries depending on a disabled or deleted destination fail.
+
+## Use the destination for images
+
+Pass the returned `id` as [`storage_destination_id`](/parameters/storage_destination_id/) on an image request or template. Creating an image uses image permissions; managing destination configuration uses the permissions above. Authenticated [`PUT /v1/store/{id}`](/guides/advanced/storage-destinations/#put-v1store) requires `images:store`.
+
+## MCP
+
+Create accepts `content` with the request fields above. Update takes `id` and `content`; get/delete take `id`; list takes `count` and `page_start`. `get_aws_storage_external_id` takes no arguments.
+
+For example: **"Use HCTI to get my AWS storage external ID so I can configure an IAM role, then list my storage destinations."** Approve both `storage_destinations:create_update` and `storage_destinations:read` for that workflow. See [MCP tools](/integrations/mcp/tools/#storage-destinations) and [authorization](/integrations/mcp/permissions/).
+
+<Help />

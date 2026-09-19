@@ -1,0 +1,46 @@
+---
+title: Facebook screenshot
+slug: guides/social-media/facebook
+description: >-
+  Learn how to automatically take screenshots of Facebook posts with HTML/CSS to Image using Zapier, AI assistants via MCP, or JavaScript, PHP, Python, and Ruby.
+---
+import { LinkButton } from '@astrojs/starlight/components';
+import DocImage from '../../../../components/DocImage.astro';
+import Help from '../../../../components/Help.astro';
+
+<a id="screenshot-a-facebook-post" />
+
+Use the HTML/CSS to Image API to autogenerate screenshots from Facebook.
+
+## How it works
+
+To generate a screenshot of a Facebook post, we can make use of the Facebook embed feature.
+
+Set `selector` to `.fb-post` and start with `ms_delay: 2500`.
+This gives the embed extra time to load and has the API properly crop the image.
+
+
+## Example code
+
+Copy this example, and swap out the href to create an image of any Facebook post you'd like.
+
+<DocImage src="/assets/images/facebook.png" alt="Screenshot of a Facebook post" />
+
+HTML
+```html
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0" nonce="SOhYrMAR"></script>
+
+<!-- See data-href below. Replace that with the link to your Facebook post -->
+<!-- set ms_delay: 2500 to give it extra time toload -->
+<!-- set selector: .fb-post -->
+<div class="fb-post" data-href="https://www.facebook.com/HermanMiller/photos/a.171562157561/10158261466927562/" data-width="500" data-show-text="true"></div>
+```
+
+**Important:** set these parameters when creating the image.
+- selector: `.fb-post`
+- ms_delay: `2500`
+
+<LinkButton href="https://htmlcsstoimage.com/examples/facebook-screenshot">Try it yourself</LinkButton>
+
+<Help />

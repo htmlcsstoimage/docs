@@ -1,9 +1,0 @@
-{% comment %}
-  Usage: {% include operation-cards.html resource="storage-destinations" %}
-  Operation definitions live in _data/operations.json, keyed by resource.
-{% endcomment %}
-<div class="operation-cards">
-  {% for operation in site.data.operations[include.resource] %}
-    {% include operation-card.html operation=operation %}
-  {% endfor %}
-</div>

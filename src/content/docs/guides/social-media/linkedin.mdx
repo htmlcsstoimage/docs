@@ -1,0 +1,42 @@
+---
+title: LinkedIn screenshot
+slug: guides/social-media/linkedin
+description: >-
+  Learn how to automatically take screenshots of LinkedIn posts with HTML/CSS to Image using Zapier, AI assistants via MCP, or JavaScript, PHP, Python, and Ruby.
+---
+import { LinkButton } from '@astrojs/starlight/components';
+import DocImage from '../../../../components/DocImage.astro';
+import Help from '../../../../components/Help.astro';
+
+<a id="screenshot-a-linkedin-post" />
+
+Use the HTML/CSS to Image API to generate images from LinkedIn embeds.
+
+## How it works
+
+To generate a screenshot of a post on LinkedIn, we can make use of the LinkedIn embed API.
+
+For the image to work, make sure you set the `selector` param to `iframe` and `ms_delay` to `2500`.
+This gives the embed extra time to load and nicely crops the post.
+
+
+## Example code
+
+First, you need to grab the LinkedIn embed code. This is available by clicking the 3 dots on the top right of a LinkedIn post and then clicking "embed this post".
+
+If you're automating this, notice in the embed code that the ID for the post is in the URL. You can swap that ID out to load a different post.
+
+<DocImage src="/assets/images/linkedin.png" alt="Screenshot of a LinkedIn post" />
+
+HTML
+```html
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6846990735720361984" height="610" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+```
+
+**Important:** set these parameters when creating the image.
+- selector: `iframe`
+- ms_delay: `2500`
+
+<LinkButton href="https://htmlcsstoimage.com">Try it yourself</LinkButton>
+
+<Help />

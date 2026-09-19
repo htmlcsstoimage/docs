@@ -1,0 +1,10 @@
+---
+import EditLink from '@astrojs/starlight/components/EditLink.astro';
+import ChangelogNavigation from './ChangelogNavigation.astro';
+---
+{Astro.locals.starlightRoute.entry.data.changelog && <ChangelogNavigation />}
+<div class="page-footer" data-pagefind-ignore>
+  <span id="edit-this-page"><EditLink /></span>
+  <a id="back-to-top" href="#_top">Back to top ↑</a>
+</div>
+<style>.page-footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; margin-top:3rem; color:var(--sl-color-gray-3); font-size:.8rem; } a { color:inherit; }</style>
