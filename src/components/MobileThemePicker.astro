@@ -1,0 +1,41 @@
+---
+import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
+import { Icon } from '@astrojs/starlight/components';
+const themes = [
+  { value: 'light', label: 'Light', icon: 'sun' },
+  { value: 'dark', label: 'Dark', icon: 'moon' },
+  { value: 'auto', label: 'System', icon: 'laptop' },
+] as const;
+---
+<div class="mb-3 min-[50rem]:hidden" data-mobile-theme-picker>
+  <div class="grid w-full max-w-72 grid-cols-3 gap-1 rounded-lg border border-[var(--sl-color-gray-5)] p-1" role="group" aria-label="Color theme">
+    {themes.map(theme => <button type="button" data-theme-choice={theme.value} aria-pressed="false" class="flex min-w-0 cursor-pointer items-center justify-center gap-1 rounded-md border-0 bg-transparent px-1.5 py-2 text-xs font-medium text-[var(--sl-color-gray-2)] hover:bg-[var(--sl-color-gray-5)] aria-pressed:bg-[var(--sl-color-text-accent)] aria-pressed:text-[var(--sl-color-text-invert)]">
+      <Icon name={theme.icon} size="0.875rem" /><span>{theme.label}</span>
+    </button>)}
+  </div>
+  <div hidden><ThemeSelect /></div>
+</div>
+<script>
+  // Delegate changes to Starlight so desktop, system preference, and storage
+  // continue using the same theme state.
+  function syncThemeButtons() {
+    document.querySelectorAll<HTMLElement>('[data-mobile-theme-picker]').forEach(picker => {
+      const value = picker.querySelector('select')?.value;
+      picker.querySelectorAll<HTMLButtonElement>('[data-theme-choice]').forEach(button => {
+        button.setAttribute('aria-pressed', String(button.dataset.themeChoice === value));
+      });
+    });
+  }
+  document.addEventListener('click', event => {
+    const button = event.target instanceof Element ? event.target.closest<HTMLButtonElement>('[data-theme-choice]') : null;
+    const select = button?.closest('[data-mobile-theme-picker]')?.querySelector('select');
+    if (!button || !select) return;
+    select.value = button.dataset.themeChoice!;
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  document.addEventListener('change', event => {
+    if (event.target instanceof Element && event.target.closest('starlight-theme-select')) syncThemeButtons();
+  });
+  document.addEventListener('astro:page-load', syncThemeButtons);
+  syncThemeButtons();
+</script>

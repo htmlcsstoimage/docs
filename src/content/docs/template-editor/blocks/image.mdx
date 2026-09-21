@@ -1,0 +1,51 @@
+---
+title: Image
+slug: template-editor/blocks/image
+description: Add photos, logos, avatars, and product images to templates.
+---
+import CommonBlockOptions from '../../../../components/CommonBlockOptions.astro';
+import TemplatedContent from '../../../../components/TemplatedContent.astro';
+import DocImage from '../../../../components/DocImage.astro';
+
+<a id="image-block" />
+
+Use Image blocks for photos, logos, avatars, product images, media library assets, and remote image URLs. Add one from the left sidebar. Start from your media library, a URL, or a stock photo, then change the source later in the block controls.
+
+<DocImage src="/assets/images/template-editor/te-image-add-flow.png" alt="Image block source menu with Library Image, URL Image, and Stock Photo options" />
+
+<CommonBlockOptions kind="image" />
+
+## Block-specific properties
+
+| Property | Details | Variables |
+| --- | --- | --- |
+| Media source | Media library, external URL, or [Pexels](https://www.pexels.com/) stock photo. | Yes |
+| Fit | How the image fills, stretches, crops, or keeps its natural size inside the block. | — |
+| Opacity | Transparency of the whole block, including its content and styling. | Yes |
+| Object position | Which part stays visible when using cover-style cropping. | Yes |
+
+## Image sources
+
+### Media Library
+
+Use the Media Library for reusable logos, product photos, brand images, backgrounds, and icons. Upload assets from the media browser when your plan supports uploads. Assets are shared across your organization's templates, so you can reuse them without uploading them for each template.
+
+### URL
+
+Use an absolute URL for an existing image, or connect the URL to a variable for render-time data.
+
+### Stock Photos
+
+Choose a stock image provided by [Pexels](https://www.pexels.com/).
+
+## Fit modes
+
+| Mode | Details |
+| --- | --- |
+| Cover | Fills the block and may crop the image. |
+| Contain | Keeps the whole image visible. |
+| Fill | Stretches the image to the block size. |
+| Scale Down | Keeps the natural size unless the image needs to shrink. |
+| None | Keeps the natural size. |
+
+<TemplatedContent><p>Connect URL sources to a variable so each generated image can use a different URL.</p></TemplatedContent>

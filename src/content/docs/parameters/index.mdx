@@ -1,0 +1,35 @@
+---
+title: Parameters
+slug: parameters
+description: >-
+  Full parameter reference for the HTML/CSS to Image API. Control viewport, device scale, fonts, delays, selectors, and more.
+---
+import { Aside, LinkButton } from '@astrojs/starlight/components';
+import ParameterTable from '../../../components/ParameterTable.astro';
+
+<a id="parameters-reference" />
+
+Detailed information on all the available parameters for the API.
+
+## Parameters
+
+The create image endpoint accepts the following parameters. Accepted as either `json` or `formdata`.
+
+| Name        | Type          | Description |
+|:-------------|:------------------|:------|
+| `html`† | `String`  | This is the HTML you want to render. You can send an HTML snippet \(`<div>Your content</div>`\) or an entire webpage. |
+| `css` | `String` | The CSS for your image. When using with `url` it will be injected into the page. |
+| `url`† | `String` | The fully qualified URL to a public webpage. Such as `https://htmlcsstoimage.com`. When passed this will override the html param and will generate a screenshot of the url. |
+
+<Aside title="Required params">† Either `url` OR `html` is required, but not both. `css` is optional.</Aside>
+
+
+## Additional parameters
+
+Optional parameters for greater control over your image.
+
+<ParameterTable />
+
+
+<LinkButton href="https://htmlcsstoimage.com/#demo">Live demo</LinkButton>
+<LinkButton href="https://htmlcsstoimage.com" variant="secondary">Get an API Key</LinkButton>

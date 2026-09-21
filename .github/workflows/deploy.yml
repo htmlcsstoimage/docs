@@ -1,46 +1,93 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-# This workflow will download a prebuilt Ruby version, install dependencies and run tests with Rake
-# For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
-
-#    - uses: actions/cache@v2
-#      with:
-#        path: vendor/bundle
-#        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-#        restore-keys: |
-#          ${{ runner.os }}-gems-
-
-name: Deploy
+name: Build and deploy docs
 
 on:
-  workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [docs-new, main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  Deploy:
-
+  check:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 3.1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+        env:
+          DOCS_ORIGIN: https://docs-new-docs.mike.workers.dev
+          DOCS_BRANCH: ${{ github.head_ref || github.ref_name }}
+      - run: npm run check:migration
 
-    - name: Bundle install
-      run: |
-        bundle config path vendor/bundle
-        bundle install --jobs 4 --retry 3
-    - name: Build site
-      env:
-        HCTI_API_KEY: ${{ secrets.HCTI_API_KEY }}
-      run: JEKYLL_ENV=production bundle exec jekyll build
-    - name: Publish
-      uses: cloudflare/wrangler-action@v3
-      with:
-        apiToken: ${{ secrets.CF_API_TOKEN }}
+  preview:
+    needs: check
+    if: github.ref == 'refs/heads/docs-new' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: docs-preview
+      url: https://docs-new-docs.mike.workers.dev
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Build with signed HCTI Open Graph URLs
+        run: npm run build
+        env:
+          DOCS_ORIGIN: https://docs-new-docs.mike.workers.dev
+          DOCS_BRANCH: docs-new
+          REQUIRE_OG_SIGNING: 'true'
+          HCTI_API_ID: ${{ secrets.V2_HCTI_API_ID }}
+          HCTI_API_KEY: ${{ secrets.V2_HCTI_API_KEY }}
+      - run: npm run check:migration
+      - name: Upload preview version (does not deploy to production)
+        run: npx wrangler versions upload --preview-alias docs-new
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+      - name: Verify preview routes and headers
+        run: node scripts/check-preview.mjs https://docs-new-docs.mike.workers.dev
+
+  production:
+    needs: check
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: docs-production
+      url: https://docs.htmlcsstoimage.com
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Build production docs with signed HCTI Open Graph URLs
+        run: npm run build
+        env:
+          DOCS_ORIGIN: https://docs.htmlcsstoimage.com
+          DOCS_ENV: production
+          DOCS_BRANCH: main
+          REQUIRE_OG_SIGNING: 'true'
+          HCTI_API_ID: ${{ secrets.V2_HCTI_API_ID }}
+          HCTI_API_KEY: ${{ secrets.V2_HCTI_API_KEY }}
+      - run: npm run check:migration
+      - name: Verify production metadata and sitemap
+        run: node scripts/check-production.mjs
+      - name: Deploy production Worker
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}

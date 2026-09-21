@@ -1,0 +1,212 @@
+---
+title: Cropping issues
+slug: guides/debugging/cropping-issues
+description: >-
+  Fix images that aren't cropping correctly. Learn why full HTML pages don't auto-crop and how to use HTML snippets instead.
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import DocImage from '../../../../components/DocImage.astro';
+import Help from '../../../../components/Help.astro';
+
+<a id="debugging-cropping-issues" />
+
+Why your image isn't cropping to the size you expect
+
+<a id="table-of-contents" />
+<a id="markdown-toc" />
+
+---
+
+## How Auto-Cropping Works
+<a id="markdown-toc-how-auto-cropping-works" />
+
+The HTML/CSS to Image API has a powerful **auto-cropping** feature that automatically sizes your image to match your HTML content. When you send an HTML snippet, the API crops the resulting image to the dimensions of the **outermost HTML element**.
+
+However, this only works for **HTML snippets**—not full HTML pages.
+
+<Aside title="Auto-cropping">Send an HTML snippet to crop to the outermost element. A full document renders the viewport; use a `selector` to target an element within it.</Aside>
+
+---
+
+## The Most Common Mistake
+<a id="markdown-toc-the-most-common-mistake" />
+
+The most frequent cropping issue we see: **sending a full HTML page when you meant to send an HTML snippet**.
+
+### What Happens with a Full HTML Page
+<a id="markdown-toc-what-happens-with-a-full-html-page" />
+
+When you include `<!DOCTYPE html>`, `<html>`, `<head>`, or `<body>` tags, the API treats your content as a **full webpage** and renders it inside the default viewport (1920x1080 pixels).
+
+**Example of what NOT to do:**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { margin: 0; padding: 0; background: #f5f5f5; }
+  </style>
+</head>
+<body>
+  <div style="height: 200px; width: 400px; background: white; border: 2px solid #e74c3c;">
+    <h2>My Card</h2>
+    <p>This should be 400x200</p>
+  </div>
+</body>
+</html>
+```
+
+**Result:** Instead of a 400x200 image, you get a 1920x1080 image with your content in the corner:
+
+<DocImage src="https://hcti.io/v1/image/019b75eb-127e-7ce2-98bd-978ca7690c92" alt="Full HTML page renders the entire viewport" width={500} />
+
+Notice how the image includes the entire viewport with a gray background, not just your 400x200 card.
+
+---
+
+## The Solution: Use HTML Snippets
+<a id="markdown-toc-the-solution-use-html-snippets" />
+
+Remove the `<!DOCTYPE>`, `<html>`, `<head>`, and `<body>` tags. Send only the HTML elements you want in your image.
+
+**The correct approach:**
+
+```html
+<div style="height: 200px; width: 400px; background: white; border: 2px solid #27ae60; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: system-ui, sans-serif;">
+  <div style="text-align: center;">
+    <h2 style="margin: 0; color: #333;">My Card</h2>
+    <p style="margin: 8px 0 0 0; color: #666;">Correctly sized 400x200</p>
+  </div>
+</div>
+```
+
+**Result:** The image is cropped to the element's border box. With default `content-box` sizing, a 2px border adds 4px to each dimension. Add `box-sizing: border-box` for exactly 400×200 CSS pixels, or 800×400 output pixels at 2x resolution.
+
+<DocImage src="https://hcti.io/v1/image/019b75eb-1d1e-748d-8b7d-59497e1753e9" alt="HTML snippet auto-crops to the element dimensions" width={400} />
+
+---
+
+## Setting Dimensions on the Outermost Element
+<a id="markdown-toc-setting-dimensions-on-the-outermost-element" />
+
+For auto-cropping to work correctly, set explicit `width` and `height` on your **outermost** HTML element:
+
+```html
+<div style="width: 600px; height: 400px; background: white;">
+  <!-- Your content here -->
+</div>
+```
+
+The API will crop the image to match these dimensions (doubled for retina displays by default).
+
+### Using CSS Classes
+<a id="markdown-toc-using-css-classes" />
+
+You can also use a `<style>` tag within your snippet:
+
+```html
+<style>
+  .card {
+    width: 500px;
+    height: 300px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 12px;
+    padding: 24px;
+    color: white;
+    font-family: system-ui, sans-serif;
+  }
+</style>
+<div class="card">
+  <h1>Welcome</h1>
+  <p>Your styled content here</p>
+</div>
+```
+
+---
+
+## Adding Margins Around Your Image
+<a id="markdown-toc-adding-margins-around-your-image" />
+
+Need some breathing room around your content? Add `margin` to the outermost element. The auto-cropper respects margins and includes them in the final image.
+
+### Without Margin
+<a id="markdown-toc-without-margin" />
+
+```html
+<div style="height: 150px; width: 300px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 8px;">
+  <h2>No Margin</h2>
+  <p>Cropped tightly to edges</p>
+</div>
+```
+
+<DocImage src="https://hcti.io/v1/image/019b75eb-2b15-7ce1-bb9b-dc3f248566bf" alt="Image without margin, cropped tightly to edges" width={300} />
+
+### With Margin
+<a id="markdown-toc-with-margin" />
+
+```html
+<div style="height: 150px; width: 300px; margin: 20px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 8px;">
+  <h2>With Margin</h2>
+  <p>20px space around</p>
+</div>
+```
+
+<DocImage src="https://hcti.io/v1/image/019b75eb-34e0-72b4-a785-c6079bcaaf3e" alt="Image with 20px margin around the element" width={340} />
+
+Notice the transparent space around the card when using `margin: 20px`. This is useful for adding padding around social cards, thumbnails, or any image that needs visual breathing room.
+
+---
+
+## When You Need Full HTML Pages
+<a id="markdown-toc-when-you-need-full-html-pages" />
+
+Sometimes you do need to send a full HTML page—for example, when including external libraries, complex CSS, or JavaScript. In these cases, use the [`viewport_width` and `viewport_height` parameters](/parameters/viewport/#viewport-width-and-height) to control the image size:
+
+```json
+{
+  "html": "<!DOCTYPE html><html>...</html>",
+  "viewport_width": 400,
+  "viewport_height": 200
+}
+```
+
+Or use the `selector` parameter to crop to a specific element within the page:
+
+```json
+{
+  "html": "<!DOCTYPE html><html>...<div id='card'>...</div>...</html>",
+  "selector": "#card"
+}
+```
+
+Learn more about the [selector parameter](/parameters/selector/).
+
+---
+
+## Quick Troubleshooting Checklist
+<a id="markdown-toc-quick-troubleshooting-checklist" />
+
+If your image isn't cropping correctly, work through these steps:
+
+1. **Remove full page tags** — Delete `<!DOCTYPE>`, `<html>`, `<head>`, and `<body>` tags
+2. **Set explicit dimensions** — Add `width` and `height` to your outermost element
+3. **Check for wrapper elements** — Ensure no invisible wrapper is affecting dimensions
+4. **Use viewport params for full pages** — If you must use a full page, set `viewport_width` and `viewport_height`
+5. **Try the selector param** — Use `selector` to crop to a specific element
+
+---
+
+## Summary
+<a id="markdown-toc-summary" />
+
+| Scenario | Solution |
+|:---------|:---------|
+| Image is full viewport size (1920x1080) | Remove `<html>`, `<body>` tags—use HTML snippet |
+| Image size doesn't match your CSS | Set `width` and `height` on outermost element |
+| Need space around the image | Add `margin` to the outermost element |
+| Must use full HTML page | Use `viewport_width`/`viewport_height` or `selector` param |
+
+<Help />
+<a id="markdown-toc-need-help" />

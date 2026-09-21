@@ -1,0 +1,33 @@
+---
+---
+<section class="hmac-generator" data-hmac-generator aria-label="HMAC generator">
+  <p class="privacy">Your API key and query string stay in this browser tab. Nothing is transmitted, logged, or stored.</p>
+  <form data-hmac-form autocomplete="off">
+    <label for="hmac-query-string">Query string</label>
+    <textarea id="hmac-query-string" data-hmac-query data-1p-ignore rows="4" required autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="html=%3Cdiv%3EHello%3C%2Fdiv%3E"></textarea>
+    <p class="help">Enter the exact encoded query string after <code>?</code>. A leading <code>?</code> is ignored. Parameter order, encoding, whitespace, and repeated values matter.</p>
+    <label for="hmac-api-key">API Key</label>
+    <div class="input-row">
+      <input id="hmac-api-key" data-hmac-secret data-1p-ignore type="password" required autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Your secret API key" />
+      <button data-hmac-toggle type="button" aria-controls="hmac-api-key" aria-pressed="false">Show</button>
+    </div>
+    <button class="primary" data-hmac-submit type="submit">Generate HMAC</button>
+  </form>
+  <div class="result" data-hmac-result hidden>
+    <label for="hmac-token">HMAC SHA-256 token</label>
+    <div class="input-row">
+      <input id="hmac-token" data-hmac-token data-1p-ignore type="text" readonly autocomplete="off" spellcheck="false" />
+      <button data-hmac-copy type="button">Copy</button>
+    </div>
+  </div>
+  <p data-hmac-status aria-live="polite"></p>
+</section>
+<script>
+  import '../scripts/hmac-generator.js';
+</script>
+<style>
+  .hmac-generator { margin:1.5rem 0; } form,.result { border:1px solid var(--sl-color-hairline); padding:1.5rem; border-radius:.7rem; background:var(--sl-color-bg-sidebar); }
+  .privacy { padding:1rem; background:var(--sl-color-accent-low); color:var(--sl-color-accent-high); border-radius:.5rem; font-size:.9rem; }
+  label { display:block; margin-bottom:.5rem; font-weight:650; } input,textarea { width:100%; min-width:0; border:1px solid var(--sl-color-gray-4); border-radius:.4rem; background:var(--sl-color-bg); color:var(--sl-color-white); font: .85rem var(--sl-font-mono); padding:.7rem; } textarea { resize:vertical; }
+  .input-row { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:.5rem; }.help { font-size:.8rem; color:var(--sl-color-gray-3); margin:.5rem 0 1.5rem; } button { font:inherit; font-size:.85rem; padding:.65rem .9rem; border-radius:.4rem; border:1px solid var(--sl-color-hairline); color:var(--sl-color-white); background:var(--sl-color-bg); cursor:pointer; }.primary { margin-top:1.3rem; background:#007a4e; color:white; border:0; } .primary:disabled { opacity:.6; cursor:wait; }.result { margin-top:1rem; } [data-hmac-status] { font-size:.8rem; min-height:1.4rem; }
+</style>

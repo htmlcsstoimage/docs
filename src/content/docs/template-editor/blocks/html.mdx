@@ -1,0 +1,27 @@
+---
+title: HTML
+slug: template-editor/blocks/html
+description: Use custom markup inside a template editor design.
+---
+import CommonBlockOptions from '../../../../components/CommonBlockOptions.astro';
+import TemplatedContent from '../../../../components/TemplatedContent.astro';
+
+<a id="html-block" />
+
+Use HTML blocks when a design needs custom markup. Add one from the left sidebar. Use the right sidebar for properties, or double-click the block on the canvas to edit its markup inline.
+
+<CommonBlockOptions />
+
+## Block-specific properties
+
+| Property | Details | Variables |
+| --- | --- | --- |
+| Markup | HTML rendered inside the block. | Handlebars |
+| Padding | Space between the edge and content. Simple mode shares an inset; Advanced mode sets each side. | — |
+| Text color | Default text color inside the block. | Yes |
+
+## Preview notes
+
+HTML blocks preview in an iframe to isolate custom markup from the editor. Some behavior can differ from the exported HTML. If something looks off, use the HTML/export button in the top toolbar to inspect the generated HTML.
+
+<TemplatedContent><p>HTML blocks support Handlebars placeholders inside their markup.</p></TemplatedContent>

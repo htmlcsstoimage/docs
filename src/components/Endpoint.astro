@@ -1,0 +1,11 @@
+---
+interface Props { method: 'GET' | 'POST' | 'PUT' | 'DELETE'; path: string; compact?: boolean; }
+const { method, path, compact = false } = Astro.props;
+---
+<div class:list={['endpoint', { compact }]} data-endpoint data-endpoint-url={`https://hcti.io${path}`}><strong>{method}</strong><code>{compact ? path : `https://hcti.io${path}`}</code></div>
+<style>
+  .endpoint { display:flex; gap:1rem; align-items:center; padding:1rem; border:1px solid var(--sl-color-hairline); border-radius:.6rem; background:var(--sl-color-bg-sidebar); overflow-x:auto; }
+  strong { color:var(--sl-color-text-accent); font-family:var(--sl-font-mono); font-size:.8rem; } code { white-space:nowrap; background:none; }
+  .compact { flex-wrap:wrap; gap:.5rem; padding:.7rem; }
+  .compact code { min-width:0; white-space:normal; overflow-wrap:anywhere; }
+</style>

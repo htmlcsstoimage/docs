@@ -1,0 +1,44 @@
+---
+import { createHash } from 'node:crypto';
+import navigation from '../navigation.mjs';
+// Keep Starlight's storage contract, but never restore a collapsed active group.
+const hash = createHash('sha256').update('explicit-toggles-v2:').update(JSON.stringify(navigation)).digest('hex');
+---
+<sl-sidebar-state-persist data-hash={hash}>
+  <script is:inline aria-hidden="true">
+    (() => {
+      try {
+        if (!matchMedia('(min-width: 50em)').matches) return;
+        const target = document.querySelector('sl-sidebar-state-persist');
+        const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || 'null');
+        if (target && state && target.dataset.hash === state.hash) {
+          window._starlightScrollRestore = state.scroll;
+        }
+        // Register even on a fresh visit, before any saved state exists.
+        // The element is reused by subsequent soft navigations.
+        if (!customElements.get('sl-sidebar-restore')) customElements.define('sl-sidebar-restore', class extends HTMLElement {
+          connectedCallback() {
+            const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || 'null');
+            if (!state || this.closest('sl-sidebar-state-persist')?.dataset.hash !== state.hash) return;
+            const details = this.closest('details');
+            const open = state.open?.[Number(this.dataset.index)];
+            if (details && !details.hasAttribute('data-current-group') && typeof open === 'boolean') {
+              details.open = open;
+            }
+          }
+        });
+      } catch {}
+    })();
+  </script>
+  <slot />
+  <script is:inline aria-hidden="true">
+    (() => {
+      const scroller = document.getElementById('starlight__sidebar');
+      if (scroller && window._starlightScrollRestore) scroller.scrollTop = window._starlightScrollRestore;
+      delete window._starlightScrollRestore;
+    })();
+  </script>
+</sl-sidebar-state-persist>
+<style>
+  sl-sidebar-state-persist { display:contents; }
+</style>

@@ -1,0 +1,19 @@
+---
+title: HMAC SHA-256 Generator
+slug: hmac-generator
+description: Generate an HMAC SHA-256 signature from any message and secret key with this private, client-side tool. Nothing is sent to our servers.
+sidebar:
+  hidden: true
+---
+
+import HmacGenerator from '../../components/HmacGenerator.astro';
+
+<a id="hmac-sha-256-generator" />
+
+Generate a token for an HTML/CSS to Image signed URL.
+
+<HmacGenerator />
+
+Use the token in the path of your [create-and-render URL](/getting-started/create-and-render/#creating-an-image). Keep your API key secret; only the generated token belongs in the signed URL.
+
+The signing key must be enabled and grant [`images:create`](/getting-started/using-the-api/permissions/). See [API key management](/management-api/api-keys/) when replacing or disabling signing credentials.

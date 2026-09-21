@@ -1,0 +1,46 @@
+---
+title: Instagram embed
+slug: guides/social-media/instagram
+description: >-
+  Learn how to automate converting an Instagram post into an image. Works with Zapier and any programming language. Ruby, PHP, JavaScript.
+---
+import { LinkButton } from '@astrojs/starlight/components';
+import DocImage from '../../../../components/DocImage.astro';
+import Help from '../../../../components/Help.astro';
+
+<a id="convert-an-instagram-post-into-an-image" />
+
+Learn how to use the API to generate an image from an Instagram post.
+
+## How it works
+
+To generate a screenshot of an Instagram post, you can make use of the Instagram embed API.
+
+<DocImage src="/assets/images/insta-embed.png" width={300} alt="Instagram embed menu" />
+
+You can generate this code yourself by viewing an Instagram post in a web browser. Clicking the top right hamburger menu, and then "Embed".
+
+## Example code
+
+Copy this example, and swap out the href to create an image of any post you'd like.
+
+<DocImage src="/assets/images/instagram.png" width={400} alt="Screenshot of an Instagram post" />
+HTML
+```html
+<blockquote style = 'width:600px;' class='instagram-media' data-instgrm-version='14'>
+
+<!-- replace this href with the link to the post -->
+<a href='https://www.instagram.com/p/CWA2UbCs6x_/' ></a>
+
+</blockquote>
+<script src="https://www.instagram.com/embed.js"></script>
+```
+
+**Important:** set these parameters when creating the image.
+- selector: `.instagram-media-rendered`
+- ms_delay: `1750`
+
+<LinkButton href="https://htmlcsstoimage.com/examples/instagram-post-screenshot">Try it yourself</LinkButton>
+
+<Help />
+

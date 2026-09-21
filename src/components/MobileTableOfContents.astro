@@ -1,0 +1,39 @@
+---
+import DefaultMobileTableOfContents from '@astrojs/starlight/components/MobileTableOfContents.astro';
+import PageActions from './PageActions.astro';
+const { entry, toc } = Astro.locals.starlightRoute;
+const route = Astro.url.pathname;
+const markdownPath = route === '/' ? '/index.md' : `${route.replace(/\/$/, '')}.md`;
+---
+<div class="mobile-toolbar">
+  <DefaultMobileTableOfContents />
+  {toc && entry.id !== '404' && <div class="mobile-page-actions min-[40rem]:hidden print:hidden">
+    <PageActions markdownPath={markdownPath} />
+  </div>}
+</div>
+<style>
+  @media (max-width:39.999rem) {
+    .mobile-toolbar { position:fixed; top:var(--sl-nav-height); inset-inline:0; z-index:var(--sl-z-index-toc); display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; padding:.5rem 1rem; background:var(--sl-color-bg); border-bottom:1px solid var(--sl-color-hairline); }
+    .mobile-toolbar :global(mobile-starlight-toc nav) { position:static; border:0; }
+    .mobile-toolbar :global(#starlight__on-this-page--mobile) { height:2.5rem; padding:0; border:0; }
+    .mobile-toolbar :global(.display-current) { display:none; }
+    .mobile-toolbar :global(.dropdown) { position:absolute; inset-inline:0; top:100%; }
+    .mobile-page-actions :global(.action-list) { position:fixed; left:1rem; right:auto; top:calc(var(--sl-nav-height) + var(--sl-mobile-toc-height) + .4rem); }
+  }
+</style>
+<script>
+  let observer: ResizeObserver | undefined;
+  function measureToolbar() {
+    observer?.disconnect();
+    const toolbar = document.querySelector<HTMLElement>('.mobile-toolbar');
+    if (!toolbar) return;
+    observer = new ResizeObserver(() => {
+      if (matchMedia('(max-width:39.999rem)').matches) {
+        document.documentElement.style.setProperty('--sl-mobile-toc-height', `${toolbar.getBoundingClientRect().height}px`);
+      } else document.documentElement.style.removeProperty('--sl-mobile-toc-height');
+    });
+    observer.observe(toolbar);
+  }
+  measureToolbar();
+  document.addEventListener('astro:page-load', measureToolbar);
+</script>

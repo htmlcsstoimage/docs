@@ -1,0 +1,64 @@
+---
+title: Curl
+slug: example-code/curl
+description: >-
+  Convert HTML to an image (png, jpg or webp) with Curl + the HTML/CSS to Image
+  API. Renders exactly like Google Chrome.
+---
+import Help from '../../../components/Help.astro';
+import { LinkButton } from '@astrojs/starlight/components';
+
+<a id="curl" />
+
+Generate PNG, JPG, or WebP images from your terminal with cURL.
+
+<LinkButton href="https://htmlcsstoimage.com/#demo">Live demo</LinkButton>
+<LinkButton href="https://htmlcsstoimage.com/dashboard" variant="secondary">Get an API key</LinkButton>
+
+## Generate an image with cURL
+
+Run this command in your terminal to generate an image using the API.
+
+For more details on how this works, see [Creating an image](/getting-started/using-the-api#creating-an-image).
+
+```bash
+# Replace UserID and APIKey with your credentials from the dashboard https://htmlcsstoimage.com/dashboard
+curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey'\
+     -d html="<div class='ping'>Pong ✅</div>" \
+     -d css=".ping { padding: 20px; font-family: 'sans-serif'; }"
+```
+
+## Response
+
+The API will return a json payload with the URL to your new image.
+
+```json
+{ "url":"https://hcti.io/v1/image/1eecf460-e2e5-4db1-9db6-cf862c34a744" }
+```
+
+## Advanced example
+Here we use additional parameters. Note that each line ends with a `\`.
+
+```bash
+# Replace UserID and APIKey with your credentials from the dashboard https://htmlcsstoimage.com/dashboard
+curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey'\
+     -d html="<div class='ping'>Pong ✅</div>" \
+     -d css=".ping { padding: 20px; font-family: 'sans-serif'; }" \
+     -d ms_delay=1000 \
+     -d selector=".ping"
+```
+
+## Loading in contents from a file
+
+In this example, we grab the contents of a local HTML file and pass them in to the `html` param.
+
+Use `--data-urlencode html@path/to/file.html` to read and encode the HTML file directly.
+
+```bash
+curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey'\
+     --data-urlencode html@path/to/file.html \
+     -d css=".ping { padding: 20px; font-family: 'sans-serif'; }"
+```
+
+
+<Help />

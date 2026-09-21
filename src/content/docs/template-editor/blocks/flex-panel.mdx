@@ -1,0 +1,40 @@
+---
+title: Flex Panel
+slug: template-editor/blocks/flex-panel
+description: Build rows, columns, and dynamic stacks with Flex Panels.
+---
+import CommonBlockOptions from '../../../../components/CommonBlockOptions.astro';
+import TemplatedContent from '../../../../components/TemplatedContent.astro';
+
+<a id="flex-panel" />
+
+Use Flex Panels for layouts that flow in one direction: rows, columns, stacks, and bars. Add one from the left sidebar. Children flow in order and respond when content changes.
+
+<CommonBlockOptions />
+
+## Block-specific properties
+
+| Property | Details |
+| --- | --- |
+| Padding | Space inside the panel edge. Simple mode sets all sides; Advanced mode sets each side. Separate from gaps and child margins. |
+| Direction | Row or column layout. |
+| Wrap | Keep children on one line or allow wrapping. |
+| Gap | Space between children. |
+| Justify content | Distribution along the main direction. |
+| Align items | Default alignment across the panel. Individual children can override it. |
+
+## Child properties
+
+Select a child to adjust its behavior inside the Flex Panel.
+
+| Property | Details |
+| --- | --- |
+| Grow | How much the child expands when extra space is available. |
+| Shrink | How much the child contracts when space is tight. |
+| Align | Alignment override for this child. |
+| Basis | Automatic or a specific starting size along the panel's flow direction. |
+| Margin | Extra space around this child. |
+
+See [Advanced panels](/template-editor/advanced/panels/) for help choosing and combining panel types.
+
+<TemplatedContent />

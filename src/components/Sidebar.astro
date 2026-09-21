@@ -1,0 +1,42 @@
+---
+import SidebarPersister from './SidebarPersister.astro';
+import SidebarSublist from './SidebarSublist.astro';
+import MobileMenuFooter from './MobileMenuFooter.astro';
+import MobileThemePicker from './MobileThemePicker.astro';
+---
+
+<MobileThemePicker />
+<SidebarPersister>
+  <SidebarSublist sublist={Astro.locals.starlightRoute.sidebar} />
+</SidebarPersister>
+<div class="md:sl-hidden"><MobileMenuFooter /></div>
+
+<script>
+  import { navigate } from 'astro:transitions/client';
+  const initialized = new WeakSet<Element>();
+  function expandParents(element: Element) {
+    let details = element.closest('details');
+    while (details) {
+      details.open = true;
+      details = details.parentElement?.closest('details') ?? null;
+    }
+  }
+
+  // Starlight records any click inside a summary as a toggle. Navigation links
+  // must keep their native behavior without saving a spurious collapsed state.
+  function initializeSidebar() {
+    document.querySelectorAll<HTMLAnchorElement>('a.group-link').forEach((link) => {
+      if (initialized.has(link)) return;
+      initialized.add(link);
+      link.addEventListener('click', (event) => {
+        event.stopPropagation();
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        if (link.getAttribute('href') === window.location.pathname) expandParents(link);
+        else navigate(link.href);
+      });
+    });
+  }
+  initializeSidebar();
+  document.addEventListener('astro:page-load', initializeSidebar);
+</script>

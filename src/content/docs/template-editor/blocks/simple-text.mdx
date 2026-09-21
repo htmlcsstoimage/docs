@@ -1,0 +1,42 @@
+---
+title: Simple Text
+slug: template-editor/blocks/simple-text
+description: Render a text value with a shared style and automatic font sizing.
+---
+import CommonBlockOptions from '../../../../components/CommonBlockOptions.astro';
+import TemplatedContent from '../../../../components/TemplatedContent.astro';
+import DocImage from '../../../../components/DocImage.astro';
+
+<a id="simple-text-block" />
+
+Use Simple Text when one block should render one text value with a shared style. Choose **Simple Text Box** in the left sidebar. Edit its content and text properties in the right sidebar.
+
+<CommonBlockOptions kind="text" />
+
+## Block-specific properties
+
+| Property | Details | Variables |
+| --- | --- | --- |
+| Content | Text rendered by the block. | Yes |
+| Auto font size | Scale text to fit within the font-size range. | Yes |
+| Minimum font size | Smallest allowed size when auto font size is enabled. | Yes |
+| Maximum font size | Largest allowed size when auto font size is enabled. | Yes |
+| Padding | Space inside the block edge. Simple mode sets all sides; Advanced mode sets each side. | — |
+| Opacity | Transparency of the whole block, including content and styling. | Yes |
+| Font | Font family, weight, and italic style. | — |
+| Font color | Text color. | Yes |
+| Line height | Space between lines. | Yes |
+| Letter spacing | Space between letters. | Yes |
+| Horizontal align | Left, center, or right alignment. | — |
+| Vertical align | Top, middle, or bottom alignment. | — |
+| Underline | Underline style and color. | Yes |
+| Text outline | Stroke around text. | Yes |
+| Transform | Text casing. | — |
+
+## Auto font size
+
+Auto font size scales text to fit the block while staying within your range. Enabling it makes Minimum font size and Maximum font size available. Turn it off to keep one specific font size.
+
+<DocImage src="/assets/images/template-editor/te-simple-text-auto-size.gif" alt="Simple Text automatically resizes text as its block size changes" />
+
+<TemplatedContent><p>Source the Content property directly from a variable. Do not put Handlebars syntax in the text itself.</p></TemplatedContent>

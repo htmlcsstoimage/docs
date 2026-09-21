@@ -1,0 +1,257 @@
+---
+title: TypeScript - HTML to Image Example
+slug: example-code/typescript
+description: >-
+  Convert HTML to an image (png, jpg or webp) with TypeScript + the HTML/CSS to Image
+  API. Renders exactly like Google Chrome.
+---
+import CodeIntro from '../../../components/CodeIntro.astro';
+import Help from '../../../components/Help.astro';
+import { Aside } from '@astrojs/starlight/components';
+
+<CodeIntro language="TypeScript" anchor="typescript" />
+
+## Official npm client
+
+If you want a typed SDK instead of building requests manually, use the official npm package: [`@html-css-to-image/client`](https://www.npmjs.com/package/@html-css-to-image/client).
+
+```bash
+npm install @html-css-to-image/client
+```
+
+```typescript
+import { HtmlCssToImageClient, CreateHtmlCssImageRequest } from '@html-css-to-image/client';
+
+const client = HtmlCssToImageClient.fromEnv();
+
+const result = await client.createImage(
+  new CreateHtmlCssImageRequest({
+    html: "<div class='box'>TypeScript ✅</div>",
+    css: ".box { border: 4px solid #03B875; padding: 20px; }"
+  })
+);
+
+if (result.success) {
+  console.log(result.url);
+} else {
+  console.error(result.error);
+}
+```
+
+You can also generate signed URLs, render templates, and create image batches. See the [TypeScript client repository](https://github.com/htmlcsstoimage/ts-client) for full usage details.
+
+## Axios example
+
+This example uses the [axios package](https://www.npmjs.com/package/axios). Install with `npm install axios`.
+
+```typescript
+import axios from 'axios';
+
+interface ImageRequest {
+  html: string;
+  css?: string;
+  google_fonts?: string;
+}
+
+interface ImageResponse {
+  url: string;
+}
+
+async function createImage(): Promise<string> {
+  const payload: ImageRequest = {
+    html: "<div class='box'>TypeScript ✅</div>",
+    css: ".box { border: 4px solid #03B875; padding: 20px; font-family: 'Roboto'; }",
+    google_fonts: "Roboto"
+  };
+
+  // Retrieve your api_id and api_key from the Dashboard. https://htmlcsstoimage.com/dashboard
+  const response = await axios.post<ImageResponse>(
+    'https://hcti.io/v1/image',
+    payload,
+    {
+      auth: {
+        username: 'your-user-id',
+        password: 'your-api-key'
+      },
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+  );
+
+  return response.data.url;
+}
+
+createImage()
+  .then(url => console.log(url))
+  .catch(error => console.error(error));
+
+// https://hcti.io/v1/image/1113184e-419f-49f1-b231-2069942a186f
+```
+
+To see all of the available parameters, see: [Creating an image](/getting-started/using-the-api/#creating-an-image).
+
+<Aside title="Keep credentials on the server">Run authenticated API calls on your backend. Return an image URL to the browser, or generate a signed URL server-side.</Aside>
+
+## TypeScript example with Fetch API
+
+Use the built-in Fetch API in server-side Node.js 18 or newer.
+
+```typescript
+interface ImageRequest {
+  html: string;
+  css?: string;
+  google_fonts?: string;
+}
+
+interface ImageResponse {
+  url: string;
+}
+
+async function createImage(request: ImageRequest): Promise<ImageResponse> {
+  const username = 'your-user-id';
+  const password = 'your-api-key';
+
+  const response = await fetch('https://hcti.io/v1/image', {
+    method: 'POST',
+    body: JSON.stringify(request),
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64')
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
+  return response.json() as Promise<ImageResponse>;
+}
+
+// Usage
+const html = "<div class='box'>Hello from TypeScript!</div>";
+const css = ".box { background-color: #03B875; color: white; padding: 20px; }";
+
+createImage({ html, css })
+  .then(data => console.log(data.url))
+  .catch(error => console.error(error));
+```
+
+
+## TypeScript with full type definitions
+
+For larger projects, you may want more comprehensive type definitions for the API.
+
+```typescript
+// types.ts
+export interface HtmlCssToImageRequest {
+  /** The HTML you want to render */
+  html?: string;
+  /** The CSS for your image */
+  css?: string;
+  /** The URL of a webpage to screenshot */
+  url?: string;
+  /** Google fonts to load (pipe separated) */
+  google_fonts?: string;
+  /** Delay in milliseconds before capturing */
+  ms_delay?: number;
+  /** Device scale factor */
+  device_scale?: number;
+  /** Whether to render the full page */
+  full_screen?: boolean;
+  /** Whether to render with a transparent background */
+  transparent_background?: boolean;
+  /** CSS selector to screenshot */
+  selector?: string;
+}
+
+export interface HtmlCssToImageResponse {
+  url: string;
+}
+
+export interface HtmlCssToImageError {
+  error: string;
+  statusCode: number;
+  message: string;
+}
+
+// api.ts
+import type { HtmlCssToImageRequest, HtmlCssToImageResponse } from './types';
+
+export class HtmlCssToImageClient {
+  private readonly baseUrl = 'https://hcti.io/v1/image';
+  private readonly authHeader: string;
+
+  constructor(userId: string, apiKey: string) {
+    this.authHeader = 'Basic ' + Buffer.from(`${userId}:${apiKey}`).toString('base64');
+  }
+
+  async createImage(request: HtmlCssToImageRequest): Promise<HtmlCssToImageResponse> {
+    const response = await fetch(this.baseUrl, {
+      method: 'POST',
+      body: JSON.stringify(request),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': this.authHeader
+      }
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || `Request failed with status ${response.status}`);
+    }
+
+    return response.json() as Promise<HtmlCssToImageResponse>;
+  }
+}
+
+// Usage
+const client = new HtmlCssToImageClient('your-user-id', 'your-api-key');
+
+const image = await client.createImage({
+  html: "<div class='card'>Welcome!</div>",
+  css: ".card { padding: 20px; border-radius: 8px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }",
+  google_fonts: "Inter"
+});
+
+console.log(image.url);
+```
+
+
+## URL to Image with TypeScript
+
+Capture a screenshot of any webpage:
+
+```typescript
+interface ScreenshotRequest {
+  url: string;
+  full_screen?: boolean;
+  ms_delay?: number;
+}
+
+async function screenshotUrl(request: ScreenshotRequest): Promise<string> {
+  const response = await fetch('https://hcti.io/v1/image', {
+    method: 'POST',
+    body: JSON.stringify(request),
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + Buffer.from('your-user-id:your-api-key').toString('base64')
+    }
+  });
+
+  if (!response.ok) throw new Error(`API request failed: ${response.status}`);
+  const data = await response.json();
+  return data.url;
+}
+
+// Capture a full-page screenshot
+const imageUrl = await screenshotUrl({
+  url: 'https://htmlcsstoimage.com',
+  full_screen: true,
+  ms_delay: 500
+});
+
+console.log(imageUrl);
+```
+
+<Help />

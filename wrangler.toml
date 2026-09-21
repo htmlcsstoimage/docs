@@ -1,10 +1,16 @@
 name = "docs"
 account_id = "fadc7c4786d4e9b9ef650985a9282c82"
-type = "webpack"
-# workers_dev = true
-route = "docs.htmlcsstoimage.com/*"
-zone_id = "afe7c7febba92b591f139226a076a193"
-compatibility_date = "2024-12-18"
+main = "src/worker.mjs"
+compatibility_date = "2026-09-19"
+preview_urls = true
+workers_dev = false
+# versions upload does not change production routing or deploy the version.
+routes = [{ pattern = "docs.htmlcsstoimage.com/*", zone_id = "afe7c7febba92b591f139226a076a193" }]
 
-[site]
-bucket = "./_site"
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+# Pages need Markdown negotiation and redirects; static assets bypass the Worker.
+run_worker_first = ["/*", "!/_astro/*", "!/_og/*", "!/assets/*", "!/pagefind/*", "!/search/*", "!/favicon.ico"]
+html_handling = "force-trailing-slash"
+not_found_handling = "404-page"

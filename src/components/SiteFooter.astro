@@ -1,0 +1,21 @@
+---
+const main = 'https://htmlcsstoimage.com';
+const groups = [
+  {title:'Information', links:[['Documentation','/'],['API Reference',main+'/api-docs/'],['Pricing',main+'/pricing'],['Status','https://status.htmlcsstoimage.com'],['Blog',main+'/blog'],['Twitter','https://twitter.com/htmlcsstoimage'],['GitHub','https://github.com/htmlcsstoimage/docs'],['Changelog','/changelog/'],['llms.txt','/llms.txt']]},
+  {title:'Integrations', links:[['Zapier','/integrations/zapier/'],['Make','/integrations/make/'],['n8n','/integrations/n8n/'],['GitHub Actions','https://github.com/marketplace/actions/html-css-to-image'],['AI/MCP','/integrations/mcp/'],['API Guides','/guides/']]},
+  {title:'Examples', links:[['Sample Code','/example-code/'],['Image Examples',main+'/examples'],['Template Presets',main+'/templates'],['Templates Demo',main+'/templates/playground']]},
+  {title:'Company', links:[['About',main+'/about'],['Contact us',main+'/contact'],['LinkedIn','https://www.linkedin.com/company/html-css-to-image']]},
+  {title:'Tools', links:[['Social Card Preview',main+'/tools/social-card-previewer'],['URL Screenshot Tester',main+'/features/url-screenshots#try-the-url-screenshot-api']]},
+  {title:'Legal', links:[['Terms of Use',main+'/terms'],['Privacy Policy',main+'/privacy']]},
+];
+---
+<footer class="site-footer relative mt-16 bg-[#212529] px-[clamp(1.5rem,4vw,4rem)] pt-12 pb-8 text-[.85rem] text-[#d1d5db] [&_a]:text-inherit [&_a]:no-underline [&_a:hover]:text-[#42d99c] [&_a:hover]:underline" aria-label="HTML/CSS to Image" data-pagefind-ignore>
+  <div class="mx-auto grid max-w-7xl grid-cols-1 gap-8 min-[25rem]:grid-cols-2 min-[40rem]:grid-cols-3 min-[90rem]:grid-cols-6">
+    {groups.map(group => <section><h2 class="mt-0 mb-[.8rem] text-base font-[550] text-white">{group.title}</h2><ul class="m-0 list-none p-0 [&_li+li]:mt-[.4rem]">{group.links.map(([label,href]) => <li><a href={href}>{label}</a></li>)}</ul></section>)}
+  </div>
+  <div class="mx-auto mt-10 flex max-w-7xl flex-wrap items-center gap-4 border-t border-solid border-[#ffffff25] pt-6 text-xs">
+    <a href={main} aria-label="HTML/CSS to Image home"><img src="/assets/images/hcti-logo.svg" alt="HTML/CSS to Image" width="50" height="50" /></a>
+    <div><p class="m-0">© 2018 – {new Date().getFullYear()} Code Happy, LLC</p><p class="m-0 mt-[.35rem] max-w-lg text-[#9ca3af]">Made with an extensive amount of integration tests and serious care for developer happiness.</p></div>
+    <a class="[overflow-wrap:anywhere]" href="mailto:support@htmlcsstoimage.com">support@htmlcsstoimage.com</a>
+  </div>
+</footer>
