@@ -44,7 +44,7 @@ assert.equal((await fetch(new URL('/this-page-must-not-exist/', origin))).status
 const home = await (await fetch(new URL('/', origin))).text();
 const bundle = home.match(/(?:src|href)="(\/_astro\/[^" ]+\.js)"/);
 assert.ok(bundle, 'Expected a bundled script on the homepage');
-for (const path of [bundle[1], '/pagefind/pagefind.js', '/favicon.ico', Object.keys(images)[0]]) {
+for (const path of [bundle[1], '/pagefind/pagefind.js', '/search/pagefind.js', '/favicon.ico', Object.keys(images)[0]]) {
   const response = await fetch(new URL(path, origin), { method: 'HEAD' });
   assert.equal(response.status, 200, path);
   assert.equal(response.headers.get('x-content-type-options'), 'nosniff', path);

@@ -171,7 +171,7 @@ it does not request image generation during the build.
 
 The workflow uses `wrangler versions upload`, which does not deploy that version
 to production. The production job runs only on `main` (never pull requests), after validation.
-Static assets (`/_astro/`, `/_og/`, `/assets/`, `/pagefind/`, and `/favicon.ico`) bypass
+Static assets (`/_astro/`, `/_og/`, `/assets/`, `/pagefind/`, `/search/`, and `/favicon.ico`) bypass
 the Worker. Pages still run through it for Markdown negotiation and redirects.
 `public/_headers` preserves security headers and marks workers.dev asset responses noindex.
 Preview responses are marked noindex. Merging into `main` triggers a fresh production
