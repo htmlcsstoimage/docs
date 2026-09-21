@@ -41,7 +41,7 @@ export default defineConfig({
     sidebar: navigation,
     plugins: [starlightImageZoom()],
     customCss: ['./src/styles/global.css'],
-    components: { TwoColumnContent: './src/components/TwoColumnContent.astro', Sidebar: './src/components/Sidebar.astro', MobileMenuFooter: './src/components/MobileMenuFooter.astro', PageFrame: './src/components/PageFrame.astro', Header: './src/components/Header.astro', SiteTitle: './src/components/SiteTitle.astro', Footer: './src/components/Footer.astro', PageTitle: './src/components/PageTitle.astro', Head: './src/components/Head.astro' },
+    components: { MobileTableOfContents: './src/components/MobileTableOfContents.astro', TwoColumnContent: './src/components/TwoColumnContent.astro', Sidebar: './src/components/Sidebar.astro', MobileMenuFooter: './src/components/MobileMenuFooter.astro', PageFrame: './src/components/PageFrame.astro', Header: './src/components/Header.astro', SiteTitle: './src/components/SiteTitle.astro', Footer: './src/components/Footer.astro', PageTitle: './src/components/PageTitle.astro', Head: './src/components/Head.astro' },
     editLink: { baseUrl: `https://github.com/htmlcsstoimage/docs/edit/${process.env.DOCS_BRANCH || 'docs-new'}/` },
     tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 3 },
     pagination: false,

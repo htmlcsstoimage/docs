@@ -44,11 +44,22 @@ header.header { border-bottom-color:#ffffff20; }
 @media(prefers-reduced-motion:reduce) { .sl-markdown-content .sl-link-button { transition:none; } }
 .sl-markdown-content .sl-link-button + .sl-link-button { margin-inline-start:.6rem; }
 @media(min-width:72rem) { .right-sidebar { position:sticky; top:var(--sl-nav-height); padding-top:0; height:calc(100vh - var(--sl-nav-height)); } }
-@media(max-width:49.99rem) { starlight-menu-button button { color:#fff; } }
 /* Zoom UI uses document colors, independent of the always-dark site header. */
 starlight-image-zoom { --sl-color-bg-nav:var(--sl-color-bg); }
 .starlight-image-zoom-control { color:var(--sl-color-white); }
-@media(max-width:49.99rem) { button.sl-menu-button { background:#ffffff10; color:white; border:1px solid #ffffff35; border-radius:.35rem; box-shadow:none; } }
+@media(max-width:49.99rem) {
+  :root { --sl-menu-button-size:2.5rem; }
+  button.sl-menu-button, .docs-search .pf-trigger-btn {
+    height:2.5rem;
+    background:#ffffff0a; color:#d1d5db; border:1px solid #ffffff35;
+    border-radius:.35rem; box-shadow:none;
+  }
+  button.sl-menu-button:hover, .docs-search .pf-trigger-btn:hover {
+    background:#ffffff12; border-color:#8fe4b980;
+  }
+  button.sl-menu-button { width:2.5rem; padding:0; align-items:center; justify-content:center; }
+  button.sl-menu-button svg { width:1rem; height:1rem; }
+}
 mobile-starlight-toc { --sl-color-bg-nav:var(--sl-color-bg); }
 
 :root[data-theme='dark'] .sidebar-pane { background-color:#212529; }
@@ -69,3 +80,11 @@ mobile-starlight-toc { --sl-color-bg-nav:var(--sl-color-bg); }
 @media (forced-colors:active) {
   :root, :root *, :root:hover, :root *:hover { scrollbar-color:auto; }
 }
+
+/* Give the compact header and toolbar a second row before controls collide. */
+@media(max-width:15rem) {
+  :root, :root[data-theme='light'] { --sl-nav-height:124px; }
+  button.sl-menu-button { top:70px; inset-inline-start:4rem; inset-inline-end:auto; }
+}
+@media(max-width:39.999rem) { :root { --sl-mobile-toc-height:57px; } }
+@media(max-width:294px) { :root { --sl-mobile-toc-height:105px; } }

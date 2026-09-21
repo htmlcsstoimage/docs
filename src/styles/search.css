@@ -49,7 +49,7 @@
 .search-key-help { display:flex; align-items:center; gap:.35rem; font-size:.7rem; color:var(--pf-text-muted); }
 .search-key-help kbd { padding:0 .3rem; border:1px solid var(--pf-border); border-radius:.2rem; font:inherit; }
 .search-footer-label { font-size:.7rem; color:var(--pf-text-muted); }
-@media(max-width:49.99rem) {
+@media(max-width:449px) {
   .docs-search .pf-trigger-btn { width:40px; padding:0; justify-content:center; }
   .docs-search .pf-trigger-text, .docs-search .pf-trigger-shortcut { display:none; }
   .search-footer-label { display:none; }

@@ -28,5 +28,12 @@ import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
   .theme-picker :global(option) { background:#212529; color:#fff; text-indent:0; }
   .header-search :global(button[data-open-modal]) { width:100%; background:#ffffff0a; color:#d1d5db; border-color:#ffffff35; border-radius:.35rem; }
   @media(max-width:65rem) { .docs-header { gap:1rem; grid-template-columns:auto 1fr auto auto; } .website-nav { gap:.8rem; } }
-  @media(max-width:49.99rem) { .docs-header { grid-template-columns:auto 1fr auto; gap:.5rem; } .website-nav { display:none; } .header-search { justify-self:end; } .theme-picker { font-size:.85rem; } }
+  @media(max-width:49.99rem) { .docs-header { grid-template-columns:auto minmax(0,1fr); gap:.5rem; } .website-nav { display:none; } .header-search { justify-self:end; } .theme-picker { display:none; } }
+  @media(min-width:450px) and (max-width:49.99rem) { .header-search { width:min(100%,26rem); } }
+  @media(max-width:22rem) { .docs-header :global(.brand) { gap:.5rem; } .docs-header :global(.brand span) { padding-left:.5rem; } }
+  @media(max-width:15rem) {
+    .docs-header { grid-template-columns:minmax(0,1fr) auto; grid-template-rows:50px 40px; gap:.5rem; align-content:start; }
+    .docs-header :global(.brand) { grid-column:1 / -1; }
+    .header-search { grid-column:1; grid-row:2; justify-self:start; }
+  }
 </style>

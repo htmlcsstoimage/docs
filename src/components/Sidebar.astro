@@ -2,8 +2,10 @@
 import SidebarPersister from './SidebarPersister.astro';
 import SidebarSublist from './SidebarSublist.astro';
 import MobileMenuFooter from './MobileMenuFooter.astro';
+import MobileThemePicker from './MobileThemePicker.astro';
 ---
 
+<MobileThemePicker />
 <SidebarPersister>
   <SidebarSublist sublist={Astro.locals.starlightRoute.sidebar} />
 </SidebarPersister>
