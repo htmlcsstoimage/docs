@@ -7,6 +7,10 @@ on:
 permissions:
   contents: read
 
+env:
+  # Empty uses the production context endpoint; configure overrides in Actions variables.
+  POSTHOG_CTX_URL: ${{ vars.POSTHOG_CTX_URL }}
+
 concurrency:
   group: docs-${{ github.ref }}
   cancel-in-progress: true

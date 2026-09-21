@@ -41,6 +41,34 @@ Pass the actual Wrangler URL to the last command. `npm run check` validates the
 built site: published URLs and anchors, redirect targets, internal links, assets,
 external-link attributes, OG cards, and Markdown exports. CI runs this after each build.
 
+## Product analytics
+
+`POSTHOG_CTX_URL` is a build-time environment variable. When unset or empty it
+defaults to `https://htmlcsstoimage.com/w/api/phctx`. Set local overrides in ignored
+`.env.local` files, or use the `POSTHOG_CTX_URL` GitHub Actions variable for deployments.
+Keep private environment hostnames out of tracked configuration and examples.
+The selected URL is embedded in the built page so the browser can fetch it; do not
+use a private endpoint override for a public deployment if its hostname must stay private.
+
+The static HTML contains only the context endpoint URL. After the window loads,
+an idle task fetches context with `credentials: 'include'` and `cache: 'no-store'`.
+Only an enabled, valid response loads the slim PostHog bundle. Context is cached in
+memory for 60 seconds across Astro page navigation. Returning to the tab or restoring
+it from the back/forward cache forces a refresh. Pageviews are explicit,
+URLs omit queries/fragments, and autocapture and session recording stay disabled,
+matching the main app. Context failures leave analytics disabled without blocking docs.
+
+PostHog uses a shared parent-domain cookie and the persistence name supplied by the
+main app. Before reusing cached context, docs checks that the cookie still matches
+the client, user, and organization. Missing or changed identity forces a context
+refresh before capture, so a cached login cannot overwrite another tab's logout.
+
+The endpoint must allow the exact docs origin and credentialed CORS. An endpoint
+on a different site cannot receive `SameSite=Lax` cookies through this fetch, even
+with credentials included. Test authenticated identity using docs and context
+endpoints on the same site. No authentication cookies or decryption secrets are
+shared with the docs Worker.
+
 ## Fonts
 
 IBM Plex Sans and Mono are configured through Astro's built-in Fontsource provider

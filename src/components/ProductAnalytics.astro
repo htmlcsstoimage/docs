@@ -1,0 +1,8 @@
+---
+import { analyticsContextUrl } from '../lib/analytics-context.mjs';
+const contextUrl = analyticsContextUrl(import.meta.env.POSTHOG_CTX_URL);
+---
+<meta name="posthog-context-url" content={contextUrl} />
+<script>
+  import '../scripts/analytics-loader';
+</script>
