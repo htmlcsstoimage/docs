@@ -11,9 +11,7 @@
     "check": "node scripts/check-site.mjs",
     "test": "npm run prepare:og && node --test tests/*.test.mjs",
     "preview": "wrangler dev",
-    "upload:preview": "wrangler versions upload --preview-alias docs-new",
     "prepare:og": "node scripts/prepare-og.mjs",
-    "check:migration": "node scripts/check-site.mjs --complete",
     "prepare:images": "node scripts/prepare-images.mjs",
     "analyze": "ANALYZE=true npm run build"
   },

@@ -1,4 +1,4 @@
-# Editorial review during migration
+# Writing documentation
 
 Review every page individually for clarity and consistency as well as native
 markup. Preserve facts, meaningful examples, URLs, and incoming heading links.
@@ -13,7 +13,7 @@ For parameter reference pages:
 - Keep examples valid for their declared language, and ensure tables work in
   both HTML and exported Markdown.
 - Avoid repeated explanations or contradictory advice. Verify uncertain API
-  behavior against implementation rather than guessing during a visual rewrite.
+  behavior against implementation rather than guessing.
 - Preserve old anchors when renaming headings by adding explicit anchor aliases.
 
 The Parameters index is a directory, not an individual reference page; its

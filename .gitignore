@@ -1,9 +1,11 @@
+# Local leftovers from the former Jekyll checkout.
 _site
 .asset_pipeline
 .sass-cache
 .jekyll-cache
 .jekyll-metadata
 .ruby-lsp/
+migration-report.json
 .DS_Store
 vendor
 /.idea
@@ -12,7 +14,6 @@ node_modules/
 .wrangler/
 dist/
 src/generated/
-migration-report.json
 .env
 .env.*
 !.env.example

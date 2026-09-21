@@ -1,16 +1,12 @@
 import fs from 'node:fs/promises';
 import { load } from 'cheerio';
 import pages from '../src/generated/pages.json' with { type: 'json' };
-import routes from '../migration/routes.json' with { type: 'json' };
-import baseline from '../migration/legacy-anchors.json' with { type: 'json' };
-import redirects from '../migration/redirects.json' with { type: 'json' };
+import legacyUrls from '../tests/fixtures/legacy-urls.json' with { type: 'json' };
+import redirects from '../src/data/redirects.json' with { type: 'json' };
 import { isExternalLink } from './external-links.mjs';
 
 const errors = [];
-// Explicitly removed editorial sections; all other legacy anchors remain required.
-const retiredAnchors = new Set(['/#manage-organization-resources']);
 const normalize = path => path === '/' ? path : `${path.replace(/\/$/, '')}/`;
-const planned = new Set(routes.map(page => page.route));
 const built = new Map();
 for (const page of pages) {
   const html = await fs.readFile(`dist${page.route}index.html`, 'utf8');
@@ -28,8 +24,7 @@ for (const page of pages) {
   if (ids.length !== new Set(ids).size) errors.push(`${page.route}: duplicate IDs`);
   built.set(page.route, { $, ids: new Set(ids) });
   // Full fidelity requires both heading anchors and manually assigned targets.
-  for (const id of baseline[page.route]?.ids || []) {
-    if (retiredAnchors.has(`${page.route}#${id}`)) continue;
+  for (const id of legacyUrls[page.route] || []) {
     if (!ids.includes(id)) errors.push(`${page.route}: missing previous #${id}`);
   }
   const source = await fs.readFile(page.file, 'utf8');
@@ -42,7 +37,6 @@ for (const page of pages) {
   await fs.access(`dist/_og/${page.og.hash}/index.html`).catch(() => errors.push(`${page.route}: missing generated OG card`));
   await fs.access(`dist${page.markdownPath}`).catch(() => errors.push(`${page.route}: missing Markdown export`));
 }
-const pendingLinks = new Set();
 for (const [route, { $ }] of built) {
   for (const element of $('source[srcset],img[srcset]').toArray()) {
     for (const candidate of $(element).attr('srcset').split(',')) {
@@ -62,16 +56,18 @@ for (const [route, { $ }] of built) {
     const target = normalize(path);
     if (built.has(target)) {
       if (url.hash && !built.get(target).ids.has(decodeURIComponent(url.hash.slice(1)))) errors.push(`${route}: broken ${value}`);
-    } else if (planned.has(target)) pendingLinks.add(target);
-    else await fs.access(`dist${path}`).catch(() => errors.push(`${route}: missing target ${value}`));
+    } else await fs.access(`dist${path}`).catch(() => errors.push(`${route}: missing target ${value}`));
   }
 }
-const migratedRedirects = routes.filter(page => !built.has(page.route) && built.has(normalize(redirects[page.route.replace(/\/$/, '')] || '/__unresolved__')));
-const resolvedRedirects = new Set(migratedRedirects.map(page => page.route));
-const pending = routes.filter(page => !built.has(page.route) && !resolvedRedirects.has(page.route));
-if (process.argv.includes('--complete') && pending.length) errors.push(`${pending.length} source pages still require individual migration`);
-const report = { migrated: pages.length, migratedRedirects: [...resolvedRedirects], total: routes.length, pending: pending.map(page => page.source), pendingLinkTargets: [...pendingLinks], errors };
-await fs.writeFile('migration-report.json', JSON.stringify(report, null, 2));
-console.log(`${pages.length} native pages and ${resolvedRedirects.size} redirect routes migrated out of ${routes.length}; ${pending.length} pending. ${pendingLinks.size} link targets await migration.`);
+// Published URLs must remain available, including through a permanent redirect.
+for (const route of Object.keys(legacyUrls)) {
+  const target = normalize(redirects[route.replace(/\/$/, '')] || route);
+  if (!built.has(target)) errors.push(`${route}: missing published page or redirect target ${target}`);
+}
+for (const [route, target] of Object.entries(redirects)) {
+  if (!built.has(normalize(target))) {
+    await fs.access(`dist${target}`).catch(() => errors.push(`${route}: missing redirect target ${target}`));
+  }
+}
 if (errors.length) { console.error(errors.join('\n')); process.exitCode = 1; }
-else console.log('Migrated pages: URLs, old anchors, assets, Markdown exports, and links verified.');
+else console.log(`${pages.length} pages verified: published URLs and anchors, redirects, assets, Markdown exports, metadata, and links.`);

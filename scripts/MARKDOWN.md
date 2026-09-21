@@ -2,7 +2,7 @@
 
 The native Astro pages are the source of truth. After Astro renders them,
 `markdown-exports.mjs` extracts the article and serializes it as Markdown.
-This exports native components; it does not process or migrate Jekyll sources.
+Components provide their Markdown representation during the build.
 
 Every documentation component must have a readable static representation:
 
@@ -48,6 +48,5 @@ cache entries separate. No HTML-to-Markdown work happens at request time.
 
 Run `npm test`, `npm run build`, then `node scripts/check-preview.mjs
 http://localhost:4321` against `npm run preview`. The preview check covers both
-representations and HEAD requests for every native page. The complete migration
-gate is `npm run check:migration`; all original routes must exist or redirect.
+representations and HEAD requests for every native page. Run `npm run check` to validate built pages, links, assets, and published URL compatibility.
 The same exports also produce `llms.txt` and `llms-full.txt` during each build.

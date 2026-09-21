@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import redirects from '../migration/redirects.json' with { type: 'json' };
+import redirects from '../src/data/redirects.json' with { type: 'json' };
 import pages from '../src/generated/pages.json' with { type: 'json' };
 import images from '../src/data/images.json' with { type: 'json' };
 const origin = process.argv[2];

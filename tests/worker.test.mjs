@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import worker, { prefersMarkdown } from '../src/worker.mjs';
-import redirects from '../migration/redirects.json' with { type: 'json' };
+import redirects from '../src/data/redirects.json' with { type: 'json' };
 const ctx = { waitUntil() {} };
 
 test('Markdown negotiation respects explicit types, quality weights and HTML defaults', () => {

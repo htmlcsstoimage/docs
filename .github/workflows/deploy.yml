@@ -2,10 +2,7 @@ name: Build and deploy docs
 
 on:
   push:
-    branches: [docs-new, main]
-  pull_request:
     branches: [main]
-  workflow_dispatch:
 
 permissions:
   contents: read
@@ -16,6 +13,7 @@ concurrency:
 
 jobs:
   check:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,13 +25,14 @@ jobs:
       - run: npm test
       - run: npm run build
         env:
-          DOCS_ORIGIN: https://docs-new-docs.mike.workers.dev
-          DOCS_BRANCH: ${{ github.head_ref || github.ref_name }}
-      - run: npm run check:migration
+          DOCS_ORIGIN: https://docs.htmlcsstoimage.com
+          DOCS_BRANCH: main
+      - run: npm run check
 
   preview:
     needs: check
-    if: github.ref == 'refs/heads/docs-new' && github.event_name != 'pull_request'
+    # Retained for future use; change this condition to re-enable preview uploads.
+    if: ${{ false }}
     runs-on: ubuntu-latest
     environment:
       name: docs-preview
@@ -53,7 +52,7 @@ jobs:
           REQUIRE_OG_SIGNING: 'true'
           HCTI_API_ID: ${{ secrets.V2_HCTI_API_ID }}
           HCTI_API_KEY: ${{ secrets.V2_HCTI_API_KEY }}
-      - run: npm run check:migration
+      - run: npm run check
       - name: Upload preview version (does not deploy to production)
         run: npx wrangler versions upload --preview-alias docs-new
         env:
@@ -63,7 +62,7 @@ jobs:
 
   production:
     needs: check
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     environment:
       name: docs-production
@@ -84,7 +83,7 @@ jobs:
           REQUIRE_OG_SIGNING: 'true'
           HCTI_API_ID: ${{ secrets.V2_HCTI_API_ID }}
           HCTI_API_KEY: ${{ secrets.V2_HCTI_API_KEY }}
-      - run: npm run check:migration
+      - run: npm run check
       - name: Verify production metadata and sitemap
         run: node scripts/check-production.mjs
       - name: Deploy production Worker

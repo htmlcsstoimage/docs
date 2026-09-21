@@ -1,12 +1,12 @@
 # HTML/CSS to Image docs
 
-The `docs-new` branch rewrites the docs with Astro, Starlight, and Tailwind,
-served by the existing Cloudflare `docs` Worker. Production is still the Jekyll
-site until cutover.
+Documentation for HTML/CSS to Image, built with Astro, Starlight, and Tailwind
+and served by the Cloudflare `docs` Worker at https://docs.htmlcsstoimage.com.
 
-Pages live in `src/content/docs` as native Markdown/MDX. There is no Jekyll build,
-Liquid compatibility layer, or content conversion step. Original URLs, redirects, image paths, and
-heading anchors are checked against the inventory in `migration/`.
+Pages live in `src/content/docs` as Markdown/MDX. Redirects live in
+`src/data/redirects.json`. Compatibility checks preserve published URLs and
+heading anchors using `tests/fixtures/legacy-urls.json`.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for writing guidelines.
 
 ## Local development
 
@@ -33,14 +33,13 @@ Open Graph image metadata is omitted when credentials are absent.
 ```sh
 npm test
 npm run build
-npm run check:migration
+npm run check
 node scripts/check-preview.mjs http://localhost:8787
 ```
 
-Pass the actual Wrangler URL to the last command. `npm run check:migration`
-requires all 148 original routes to exist or redirect to a native page. It checks
-old anchors, internal links, assets, external-link attributes, and Markdown
-exports, and writes `migration-report.json`. CI runs this complete-site gate.
+Pass the actual Wrangler URL to the last command. `npm run check` validates the
+built site: published URLs and anchors, redirect targets, internal links, assets,
+external-link attributes, OG cards, and Markdown exports. CI runs this after each build.
 
 ## Fonts
 
@@ -157,26 +156,26 @@ Internal docs links and email links retain their normal behavior. `npm run check
 enforces this policy. Use the built Worker preview to check it; Astro's development
 server does not run post-build integrations.
 
-## Preview deployment
+## Deployment
 
-GitHub Actions builds `docs-new` and uploads a version of the existing Worker
-with the `docs-new` preview alias:
-
-https://docs-new-docs.mike.workers.dev
+GitHub Actions runs tests, builds, and deploys only on pushes to `main`.
+Pull requests and other branches do not trigger this workflow. The Worker preview
+deployment job is retained but disabled with `if: ${{ false }}`. Change that condition
+to re-enable it; branch previews also require updating workflow triggers and the
+check job condition. `npm run preview` remains available locally.
 
 Required Actions secrets are `CF_API_TOKEN`, `V2_HCTI_API_ID`, and
 `V2_HCTI_API_KEY`. The latter two are mapped to `HCTI_API_ID` and `HCTI_API_KEY`
 for build-time signing with the HCTI npm package. Signing creates stable URLs;
 it does not request image generation during the build.
 
-The workflow uses `wrangler versions upload`, which does not deploy that version
-to production. The production job runs only on `main` (never pull requests), after validation.
+After validation, the production job builds with the production origin,
+indexable metadata, and signed HCTI URLs. It checks production metadata and the
+sitemap before deploying the existing `docs` Worker.
+
 Static assets (`/_astro/`, `/_og/`, `/assets/`, `/pagefind/`, `/search/`, and `/favicon.ico`) bypass
 the Worker. Pages still run through it for Markdown negotiation and redirects.
 `public/_headers` preserves security headers and marks workers.dev asset responses noindex.
-Preview responses are marked noindex. Merging into `main` triggers a fresh production
-build with the production origin, indexable metadata, and signed HCTI URLs, then
-deploys the existing `docs` Worker. The production metadata gate runs before deployment.
 
 The build publishes a single `/sitemap.xml`, advertised by `/robots.txt`.
 If the sitemap eventually needs multiple chunks, that same URL becomes the index.

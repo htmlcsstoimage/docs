@@ -1,4 +1,4 @@
-import redirects from '../migration/redirects.json' with { type: 'json' };
+import redirects from './data/redirects.json' with { type: 'json' };
 import pages from './generated/pages.json' with { type: 'json' };
 
 const markdownRoutes = new Map(pages.map(page => [page.route, page.markdownPath]));
