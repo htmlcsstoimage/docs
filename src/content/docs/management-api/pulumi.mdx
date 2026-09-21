@@ -1,0 +1,205 @@
+---
+title: Pulumi
+slug: management-api/pulumi
+description: >-
+  Manage HTML/CSS to Image with Pulumi in TypeScript, Python, Go, C#, Java, or YAML. Configure images, templates, credentials, storage, proxies, and Open Graph images.
+---
+import Help from '../../../components/Help.astro';
+
+<a id="pulumi" />
+
+Use the official [HCTI Pulumi provider](https://github.com/htmlcsstoimage/pulumi-html-css-to-image) to manage rendering resources from your application's infrastructure project.
+
+## Install and configure
+
+Add the SDK to an existing Pulumi project:
+
+| Language | Install |
+|:---------|:--------|
+| TypeScript / JavaScript | `npm install @html-css-to-image/pulumi` |
+| Python | `pip install pulumi-html-css-to-image` |
+| Go | `go get github.com/htmlcsstoimage/pulumi-html-css-to-image/sdk/go` |
+| C# | `dotnet add package HtmlCssToImage.Pulumi` |
+
+For Java, use Maven coordinates `com.htmlcsstoimage:pulumi`. See the [provider README](https://github.com/htmlcsstoimage/pulumi-html-css-to-image#installation) for the dependency declaration and [YAML examples](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/tree/main/examples) for programs that do not need a language SDK. Published SDKs automatically locate the matching provider plugin.
+
+Configure a management key for your stack:
+
+```bash
+pulumi config set html-css-to-image:apiId YOUR_API_ID
+pulumi config set --secret html-css-to-image:apiKey
+```
+
+The second command prompts for the key. Alternatively, set `HCTI_API_ID` and `HCTI_API_KEY` in the environment running Pulumi. See [credentials and state](/management-api/iac/#credentials-and-state) for permissions and state storage.
+
+The examples below use TypeScript in `index.ts`:
+
+```typescript
+import * as pulumi from "@pulumi/pulumi";
+import * as hcti from "@html-css-to-image/pulumi";
+
+const hello = new hcti.ImageHtmlCss("hello", {
+    html: "<h1>Hello from Pulumi</h1>",
+    css: "h1 { font-family: Inter; padding: 48px; }",
+    googleFonts: ["Inter"],
+}, { retainOnDelete: true });
+
+export const imageUrl = hello.imageUrl;
+```
+
+Run `pulumi preview` and `pulumi up`, then open the returned URL to render the image. Keep your language's dependency lockfile in version control to make deployments reproducible.
+
+## Render after creation
+
+To render during deployment, add an HTTP request that depends on the image URL. [Purrl](https://www.pulumi.com/registry/packages/purrl/) is a community provider for HTTP calls. Choose a request tool that supports the returned method and response format; an image response is binary, not JSON.
+
+For a public image URL, the [Pulumi Command provider](https://www.pulumi.com/registry/packages/command/) can run `curl` and discard the binary response. Install `@pulumi/command` and ensure `curl` is available on the machine running Pulumi:
+
+```typescript
+import * as command from "@pulumi/command";
+
+const renderHello = new command.local.Command("render-hello", {
+    create: 'curl --fail --silent --show-error --location --max-time 120 --output /dev/null "$IMAGE_URL"',
+    environment: { IMAGE_URL: hello.imageUrl },
+    triggers: [hello.id],
+});
+```
+
+The URL output establishes the dependency. The command runs when created and again when a new image ID replaces it. This explicitly renders the image and can consume rendering credits. No delete command is configured.
+
+For custom-storage-only images, follow `renderMethod` and `renderRequiresAuth`: use authenticated `PUT` to the returned `/store` URL with credentials that include `images:store`. Pass credentials through secret inputs; do not substitute a public GET or HEAD request. A failed render fails the deployment step.
+
+## Keep images after replacement or deletion
+
+For images whose URLs you publish outside the stack, we recommend Pulumi's [`retainOnDelete`](https://www.pulumi.com/docs/iac/concepts/options/retainondelete/) resource option. The setup example enables it. Use it on `ImageHtmlCss`, `ImageUrl`, or `ImageTemplated` to keep the previous image when inputs cause a replacement, and to keep the current image when removing the resource or destroying the stack.
+
+Pulumi stops tracking retained images, so later stack operations will not clean them up. This prevents deletion by Pulumi; it does not change HCTI's storage or retention policies. Choose your own cleanup process for images you no longer need. `protect: true` serves a different purpose: it blocks deletion rather than letting replacement proceed while retaining the old image.
+
+## HTML/CSS images
+
+Use `ImageHtmlCss`, as in the setup example, for HTML/CSS designs. Optional fields include viewport dimensions, Google Fonts, PDF options, `proxyId`, and `storageDestinationId`.
+
+Unspecified nullable rendering fields are sent as null so the API controls their defaults. Refresh reads metadata without rendering; changing rendering inputs replaces the image. [Resource reference](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/resources/image_html_css.md).
+
+## URL images
+
+```typescript
+const homepage = new hcti.ImageUrl("homepage", {
+    url: "https://example.com",
+    fullScreen: true,
+});
+```
+
+Capture a webpage, optionally adding CSS, request headers, or a proxy. Headers are treated as sensitive resource attributes. [Resource reference](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/resources/image_url.md).
+
+## Templates
+
+```typescript
+const card = new hcti.Template("card", {
+    name: "Application card",
+    html: "<h1>{{title}}</h1>",
+    css: "h1 { padding: 48px; color: #334155; }",
+});
+```
+
+Edits create a new version under the same template ID. This resource manages HTML/CSS templates, not visual block templates. [Template guide](/getting-started/templates/) · [Resource reference](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/resources/template.md).
+
+## Templated images
+
+```typescript
+const welcome = new hcti.ImageTemplated("welcome", {
+    templateId: card.id,
+    templateVersion: card.version,
+    templateValues: JSON.stringify({ title: "Welcome" }),
+});
+```
+
+Referencing `card.version` replaces the image when the template changes. Omit `templateVersion` to select the latest version at image creation; later template changes do not replace that existing image. Version identifiers are strings, preserving the full precision of API version numbers.
+
+`templateValues` is a sensitive JSON object string. For values containing Pulumi outputs, use `pulumi.jsonStringify` so dependencies and secret markings are preserved. [Resource reference](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/resources/image_templated.md).
+
+## API keys
+
+```typescript
+const application = new hcti.ApiKey("application", {
+    name: "Application rendering",
+    permissions: ["images:create", "templates:read"],
+});
+```
+
+Use the `apiId` and secret `apiKey` outputs to configure your application or a secrets manager resource. Pulumi tracks the dependency when you pass these outputs to another resource. Updates preserve the secret; destroy disables the key. Import cannot recover the original secret.
+
+Set `allFuturePermissions: true` only when you intend to grant every current and future permission. In C#, the secret property is `ApiKey.Value` to avoid a type/member name collision. [Management API](/management-api/api-keys/) · [Resource reference](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/resources/api_key.md).
+
+## Proxies
+
+```typescript
+const config = new pulumi.Config();
+const renderingProxy = new hcti.Proxy("rendering", {
+    name: "Rendering proxy",
+    url: "https://proxy.example.com",
+    port: 8080,
+    authentication: {
+        username: "rendering",
+        password: config.requireSecret("proxyPassword"),
+    },
+});
+```
+
+Set the password with `pulumi config set --secret proxyPassword`. Omit `authentication` for a proxy without credentials. The resource registers an existing proxy; it does not provision a proxy server. Reference `renderingProxy.id` as `proxyId` on an image or template. [Management API](/management-api/proxies/) · [Resource reference](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/resources/proxy.md).
+
+## Storage destinations
+
+```typescript
+const storageConfig = new pulumi.Config();
+const images = new hcti.StorageDestination("images", {
+    name: "Application images",
+    connectionInfo: {
+        awsS3: {
+            bucket: "my-rendered-images",
+            region: "us-east-1",
+            roleArn: storageConfig.require("storageRoleArn"),
+            keyPrefix: "cards",
+        },
+    },
+});
+```
+
+This example uses an existing bucket and role. You can instead create them with Pulumi's AWS provider, then pass their outputs to the HCTI destination. Use `getAwsStorageExternalId` to obtain the external ID and HCTI writer role ARN for the trust policy. Separately managed IAM policies must be attached before destination creation; use Pulumi's `dependsOn` option when an output reference alone does not establish that dependency.
+
+Set exactly one object in `connectionInfo`: `awsS3`, `cloudflareR2`, `backblazeB2`, `digitaloceanSpaces`, `wasabi`, `googleCloudStorage`, or `otherS3Compatible`. Use secret configuration for access-key secrets. Reference `images.id` as `storageDestinationId` on an image or template.
+
+Setting `hctiStorageDisabled: true` enables custom-storage-only output, which requires an authenticated rendering request. See [image lifecycle](/management-api/iac/#image-lifecycle). Deleting the destination does not delete the bucket or stored files.
+
+[Management API](/management-api/storage-destinations/) · [Resource reference](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/resources/storage_destination.md) · [AWS example](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/tree/main/examples/aws-storage).
+
+## OG configurations
+
+```typescript
+const website = new hcti.OgConfig("website", {
+    name: "Website cards",
+    configType: "html_css",
+    baseUrl: "https://example.com",
+    defaultOptions: {
+        selector: "#social-card",
+        viewportWidth: 1200,
+        viewportHeight: 630,
+    },
+});
+```
+
+Use `html_css` to capture your pages or `templated` to fill a template from page metadata. The resource manages the configuration, not every image served through it. For templated OG configurations, omitting `templateVersion` follows the latest template when an image is served. [Management API](/management-api/og-configs/) · [Resource reference](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/resources/og_config.md).
+
+## Look up existing resources
+
+The provider includes three lookup functions, plus output-aware variants for use with resource outputs:
+
+- [`getTemplate`](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/functions/get_template.md): read an existing template's latest or specified version without managing its lifecycle.
+- [`getTemplateVersions`](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/functions/get_template_versions.md): list version history, newest first, following pagination up to `limit` (default 1000).
+- [`getAwsStorageExternalId`](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/functions/get_aws_storage_external_id.md): retrieve the external ID and HCTI writer role ARN needed for an AWS trust policy.
+
+## More examples
+
+[Provider examples](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/tree/main/examples) · [Source and issues](https://github.com/htmlcsstoimage/pulumi-html-css-to-image) · [IaC overview](/management-api/iac/)
+
+<Help />

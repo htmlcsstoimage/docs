@@ -25,6 +25,11 @@ const navigation = [
     { label: 'Proxies API', link: '/management-api/proxies/' },
     { label: 'Storage destinations API', link: '/management-api/storage-destinations/' },
     { label: 'OG configurations API', link: '/management-api/og-configs/' },
+    { label: 'Infrastructure as code', items: [
+      { label: 'Overview', link: '/management-api/iac/' },
+      { label: 'Terraform', link: '/management-api/terraform/' },
+      { label: 'Pulumi', link: '/management-api/pulumi/' },
+    ] },
   ] },
   { label: 'Parameters', items: [
     { label: 'Overview', link: '/parameters/' },

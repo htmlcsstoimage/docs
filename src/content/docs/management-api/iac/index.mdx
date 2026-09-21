@@ -1,0 +1,74 @@
+---
+title: Infrastructure as code
+slug: management-api/iac
+description: >-
+  Manage HTML/CSS to Image with Terraform or Pulumi. Define application credentials, templates, image storage, and Open Graph configurations alongside your infrastructure.
+---
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+import Help from '../../../../components/Help.astro';
+
+<a id="infrastructure-as-code" />
+
+Define your HTML/CSS to Image setup alongside the applications that use it, using Terraform or Pulumi.
+
+Infrastructure as code (IaC) puts your configuration in version control. Review proposed changes before applying them, reuse the same setup across environments, and connect HCTI resources to infrastructure managed by other providers.
+
+<CardGrid>
+  <LinkCard title="Terraform" href="/management-api/terraform/" description="Define resources in HCL. Review with terraform plan, then apply." />
+  <LinkCard title="Pulumi" href="/management-api/pulumi/" description="Use TypeScript, Python, Go, C#, Java, or YAML to manage resources." />
+</CardGrid>
+
+See the [Terraform Registry documentation](https://registry.terraform.io/providers/htmlcsstoimage/html-css-to-image/latest/docs) for the complete provider, resource, and data source reference.
+
+## What you can build
+
+- **An application's rendering setup:** create an API key with the required permissions, save its secret in your cloud's secrets manager, and deploy a reusable image template with your application.
+- **Image delivery to your own storage:** provision a bucket and access policies with your cloud provider, register an HCTI storage destination, and reference it from templates or images.
+- **Social images for a website:** manage an Open Graph configuration and its template with the same deployment that updates your site.
+- **Repeatable environments:** give development and production separate application keys and resource configurations. Your provider credentials determine the HCTI organization each deployment manages.
+
+Resource references establish dependencies. For example, an image can reference the ID of a template created in the same deployment, without copying IDs between files.
+
+## Choose a provider
+
+| Workflow | Terraform | Pulumi |
+|:--|:----------|:-------|
+| Configuration | HCL | TypeScript, JavaScript, Python, Go, C#, Java, or YAML |
+| Review changes | `terraform plan` | `pulumi preview` |
+| Apply changes | `terraform apply` | `pulumi up` |
+| Get started | [Terraform guide](/management-api/terraform/) | [Pulumi guide](/management-api/pulumi/) |
+
+The Pulumi provider bridges the HCTI Terraform provider, so both offer the same resource lifecycle behavior. Their release versions are independent.
+
+## Resources
+
+| Resource | Use it for | Guides |
+|:---------|:-----------|:-------|
+| HTML/CSS images | Save image definitions from HTML and CSS | [Terraform](/management-api/terraform/#htmlcss-images) · [Pulumi](/management-api/pulumi/#htmlcss-images) |
+| URL images | Save webpage screenshot definitions | [Terraform](/management-api/terraform/#url-images) · [Pulumi](/management-api/pulumi/#url-images) |
+| Templated images | Create images from a reusable template and values | [Terraform](/management-api/terraform/#templated-images) · [Pulumi](/management-api/pulumi/#templated-images) |
+| Templates | Manage reusable HTML/CSS designs and their versions | [Terraform](/management-api/terraform/#templates) · [Pulumi](/management-api/pulumi/#templates) |
+| API keys | Manage application credentials and permissions | [Terraform](/management-api/terraform/#api-keys) · [Pulumi](/management-api/pulumi/#api-keys) |
+| Proxies | Register an existing proxy for rendering | [Terraform](/management-api/terraform/#proxies) · [Pulumi](/management-api/pulumi/#proxies) |
+| Storage destinations | Connect image output to your object storage | [Terraform](/management-api/terraform/#storage-destinations) · [Pulumi](/management-api/pulumi/#storage-destinations) |
+| OG configurations | Configure automatic Open Graph images | [Terraform](/management-api/terraform/#og-configurations) · [Pulumi](/management-api/pulumi/#og-configurations) |
+
+Both providers can also look up an existing template, its version history, and the AWS external ID and HCTI writer role ARN needed for an S3 trust policy. They do not offer usage lookups or manage organization membership, billing, or plan settings.
+
+## Credentials and state
+
+Use a dedicated management key with the [permissions](/getting-started/using-the-api/permissions/) needed to read, create/update, and delete the resources in your deployment. Plan and refresh operations need read access too. An Owner or Admin can configure this key in the [dashboard](https://htmlcsstoimage.com/dashboard/api-keys). Use it to manage separate application keys; do not manage the provider's own credentials as a resource.
+
+Terraform and Pulumi keep state to track resource IDs and configuration. API key secrets, proxy passwords, storage credentials, headers, and template values may be present in that state. Use an access-controlled backend. Terraform's sensitive marking hides values in normal output but does not remove them from state; use Pulumi secret inputs for confidential values in your programs.
+
+## Image lifecycle
+
+Image resources save definitions. Applying or refreshing a deployment does not render image bytes. Use the returned rendering URL when you want the image rendered. For custom-storage-only output, rendering requires an authenticated `PUT` to the returned `/store` URL rather than a public CDN request.
+
+Changing image rendering inputs replaces the image with a new ID. Each image resource has independent ownership because the provider disables create-time deduplication. Template edits create a new version under the same template ID. Destroying a storage destination removes its HCTI configuration, not the bucket or files; destroying an API key disables it.
+
+For deployment-time rendering, see [rendering after Terraform apply](/management-api/terraform/#render-after-creation) or [Pulumi render steps](/management-api/pulumi/#render-after-creation). If old URLs must remain available, configure [Pulumi retention](/management-api/pulumi/#keep-images-after-replacement-or-deletion) or follow the [Terraform retention limitations](/management-api/terraform/#keep-images-after-replacement-or-deletion) before replacing or removing images.
+
+Use IaC for persistent application configuration and managed image definitions. For images created in response to individual user requests, call the [image API](/getting-started/using-the-api/) from your application.
+
+<Help />

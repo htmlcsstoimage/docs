@@ -1,0 +1,180 @@
+---
+title: Terraform
+slug: management-api/terraform
+description: >-
+  Configure HTML/CSS to Image with Terraform. Create images, templates, API keys, proxies, storage destinations, and Open Graph configurations.
+---
+import { LinkButton } from '@astrojs/starlight/components';
+import Help from '../../../components/Help.astro';
+
+<a id="terraform" />
+
+Manage HCTI resources using the official [Terraform provider](https://registry.terraform.io/providers/htmlcsstoimage/html-css-to-image/latest/docs).
+
+<LinkButton href="https://registry.terraform.io/providers/htmlcsstoimage/html-css-to-image/latest/docs">Terraform Registry documentation</LinkButton>
+
+## Install and configure
+
+Set `HCTI_API_ID` and `HCTI_API_KEY` in the environment running Terraform. Use a management key with permissions for the resources you intend to manage; see [credentials and state](/management-api/iac/#credentials-and-state).
+
+Create `main.tf`:
+
+```hcl
+terraform {
+  required_providers {
+    htmlcsstoimage = {
+      source  = "htmlcsstoimage/html-css-to-image"
+      version = "~> 0.1.0"
+    }
+  }
+}
+
+provider "htmlcsstoimage" {}
+
+resource "htmlcsstoimage_image_html_css" "hello" {
+  html         = "<h1>Hello from Terraform</h1>"
+  css          = "h1 { font-family: Inter; padding: 48px; }"
+  google_fonts = ["Inter"]
+}
+
+output "image_url" {
+  value = htmlcsstoimage_image_html_css.hello.image_url
+}
+```
+
+Run `terraform init`, `terraform plan`, then `terraform apply`. Open the returned URL to render the image. Commit `.terraform.lock.hcl` with your configuration to record the selected provider version.
+
+The sections below can be added to this configuration. See the [provider reference](https://registry.terraform.io/providers/htmlcsstoimage/html-css-to-image/latest/docs) for all arguments and import instructions.
+
+## Render after creation
+
+Applying Terraform saves the image definition without rendering it. Open the returned `image_url`, or request it from your application or deployment pipeline after apply. Custom-storage-only output requires an authenticated `PUT` to the returned `/store` URL; follow the resource's `render_method` and `render_requires_auth` outputs.
+
+## Keep images after replacement or deletion
+
+Terraform deletes the old image when rendering inputs cause replacement. If you have published that image's URL, consider its lifetime before applying changes.
+
+Terraform has no direct equivalent to Pulumi's `retainOnDelete`. Its `prevent_destroy` lifecycle rule blocks deletion and replacement; `create_before_destroy` still deletes the old image after creating its replacement. If images must outlive your Terraform resources, consider creating them through your application while using Terraform to manage templates and other configuration.
+
+## HTML/CSS images
+
+Use `htmlcsstoimage_image_html_css`, as in the setup example, for HTML/CSS designs. Optional fields include viewport dimensions, Google Fonts, PDF options, `proxy_id`, and `storage_destination_id`.
+
+Unspecified nullable rendering fields are sent as null so the API controls their defaults. Refresh reads metadata without rendering; changing rendering inputs replaces the image. [Resource reference](https://registry.terraform.io/providers/htmlcsstoimage/html-css-to-image/latest/docs/resources/image_html_css).
+
+## URL images
+
+```hcl
+resource "htmlcsstoimage_image_url" "homepage" {
+  url         = "https://example.com"
+  full_screen = true
+}
+```
+
+Capture a webpage, optionally adding CSS, request headers, or a proxy. Headers are sensitive resource attributes. [Resource reference](https://registry.terraform.io/providers/htmlcsstoimage/html-css-to-image/latest/docs/resources/image_url).
+
+## Templates
+
+```hcl
+resource "htmlcsstoimage_template" "card" {
+  name = "Application card"
+  html = "<h1>{{title}}</h1>"
+  css  = "h1 { padding: 48px; color: #334155; }"
+}
+```
+
+Edits create a new template version under the same ID. This resource manages HTML/CSS templates, not visual block templates. [Template guide](/getting-started/templates/) · [Resource reference](https://registry.terraform.io/providers/htmlcsstoimage/html-css-to-image/latest/docs/resources/template).
+
+## Templated images
+
+```hcl
+resource "htmlcsstoimage_image_templated" "welcome" {
+  template_id      = htmlcsstoimage_template.card.id
+  template_version = htmlcsstoimage_template.card.version
+  template_values  = jsonencode({ title = "Welcome" })
+}
+```
+
+Referencing the template's `version` replaces the image when the template changes. You can omit `template_version` to select the latest version at image creation; later template changes do not replace that existing image. Use `jsonencode` for the sensitive `template_values` JSON string. [Resource reference](https://registry.terraform.io/providers/htmlcsstoimage/html-css-to-image/latest/docs/resources/image_templated).
+
+## API keys
+
+```hcl
+resource "htmlcsstoimage_api_key" "application" {
+  name        = "Application rendering"
+  permissions = ["images:create", "templates:read"]
+}
+```
+
+The resource exposes `api_id` and sensitive `api_key` for your application's authentication. Pass them to resources such as a secrets manager rather than embedding them in source code. The management `id` is a different identifier from `api_id`.
+
+Updates preserve the key secret; destroy disables the key. Import cannot recover a secret that the API no longer returns. Set `all_future_permissions = true` only when you intend to grant every current and future permission. [Management API](/management-api/api-keys/) · [Resource reference](https://registry.terraform.io/providers/htmlcsstoimage/html-css-to-image/latest/docs/resources/api_key).
+
+## Proxies
+
+```hcl
+resource "htmlcsstoimage_proxy" "rendering" {
+  name = "Rendering proxy"
+  url  = "https://proxy.example.com"
+  port = 8080
+}
+```
+
+This registers an existing proxy; it does not create a proxy server. Reference `htmlcsstoimage_proxy.rendering.id` as `proxy_id` in an image or template. Authentication uses an optional `authentication` object with `username` and sensitive `password`. [Management API](/management-api/proxies/) · [Resource reference](https://registry.terraform.io/providers/htmlcsstoimage/html-css-to-image/latest/docs/resources/proxy).
+
+## Storage destinations
+
+```hcl
+variable "storage_role_arn" {
+  type = string
+}
+
+resource "htmlcsstoimage_storage_destination" "images" {
+  name = "Application images"
+  connection_info = {
+    aws_s3 = {
+      bucket     = "my-rendered-images"
+      region     = "us-east-1"
+      role_arn   = var.storage_role_arn
+      key_prefix = "cards"
+    }
+  }
+}
+```
+
+This example assumes the bucket and role already exist. Use the [complete AWS example](https://github.com/htmlcsstoimage/terraform-provider-html-css-to-image/tree/main/examples/aws-e2e) to create the bucket, trust policy, IAM role, Secrets Manager secrets, destination, and image together. HCTI tests the destination during configuration, so role permissions must be ready first.
+
+Set exactly one object in `connection_info`: `aws_s3`, `cloudflare_r2`, `backblaze_b2`, `digitalocean_spaces`, `wasabi`, `google_cloud_storage`, or `other_s3_compatible`. Reference the destination's `id` as `storage_destination_id` on an image or template. Setting `hcti_storage_disabled = true` enables custom-storage-only output and changes how images are rendered; see [image lifecycle](/management-api/iac/#image-lifecycle).
+
+[Management API](/management-api/storage-destinations/) · [Resource reference](https://registry.terraform.io/providers/htmlcsstoimage/html-css-to-image/latest/docs/resources/storage_destination).
+
+## OG configurations
+
+```hcl
+resource "htmlcsstoimage_og_config" "website" {
+  name        = "Website cards"
+  config_type = "html_css"
+  base_url    = "https://example.com"
+  default_options = {
+    selector        = "#social-card"
+    viewport_width  = 1200
+    viewport_height = 630
+  }
+}
+```
+
+Use `html_css` to capture your pages or `templated` to fill a template from page metadata. The resource manages the configuration, not every image served through it. For templated OG configurations, omitting `template_version` follows the latest template when an image is served. [Management API](/management-api/og-configs/) · [Resource reference](https://registry.terraform.io/providers/htmlcsstoimage/html-css-to-image/latest/docs/resources/og_config).
+
+## Look up existing resources
+
+The provider includes three data sources:
+
+- [`htmlcsstoimage_template`](https://registry.terraform.io/providers/htmlcsstoimage/html-css-to-image/latest/docs/data-sources/template): read an existing template's latest or specified version without managing its lifecycle.
+- [`htmlcsstoimage_template_versions`](https://registry.terraform.io/providers/htmlcsstoimage/html-css-to-image/latest/docs/data-sources/template_versions): list version history, newest first, following pagination up to `limit` (default 1000).
+- [`htmlcsstoimage_aws_storage_external_id`](https://registry.terraform.io/providers/htmlcsstoimage/html-css-to-image/latest/docs/data-sources/aws_storage_external_id): retrieve the external ID and HCTI writer role ARN for an AWS trust policy.
+
+## More examples
+
+[Provider examples](https://github.com/htmlcsstoimage/terraform-provider-html-css-to-image/tree/main/examples) · [Source and issues](https://github.com/htmlcsstoimage/terraform-provider-html-css-to-image) · [IaC overview](/management-api/iac/)
+
+<Help />
