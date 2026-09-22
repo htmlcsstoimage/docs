@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Tall page capture check — 900 × 12000</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { width: 900px; color: #172033; font-family: Arial, sans-serif; }
+  section {
+    position: relative;
+    height: 1000px;
+    padding: 40px;
+    overflow: hidden;
+    border-top: 2px solid #172033;
+    background: repeating-linear-gradient(to bottom, transparent 0, transparent 99px, #94a3b8 99px, #94a3b8 100px), linear-gradient(135deg, #eff6ff, #dbeafe);
+  }
+  section:nth-child(even) { background-color: #ecfdf5; background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 99px, #94a3b8 99px, #94a3b8 100px); }
+  h1, h2 { margin: 0 0 16px; font-size: 32px; }
+  p { max-width: 680px; font-size: 20px; line-height: 1.6; }
+  .number { margin-top: 160px; font-size: 160px; font-weight: bold; color: #1e40af; }
+  .end { position: absolute; bottom: 24px; left: 40px; right: 40px; padding: 16px; background: #fff; border: 2px solid #172033; font: bold 18px monospace; }
+  .bottom { background: #172033; color: #fff; }
+</style>
+</head>
+<body>
+<!-- Static geometry: exactly twelve 1000px sections. No JS, fonts, images, or network requests. -->
+<section><h1>Tall page capture check</h1><p>900 CSS pixels wide × 12,000 CSS pixels tall. Each section is exactly 1,000 pixels high; horizontal rules repeat every 100 pixels.</p><p>A full-page capture should contain sections 01–12 and the final bottom marker, without missing or repeated strips.</p><div class="number">01</div><div class="end">SECTION 01 · y = 0–999</div></section>
+<section><h2>Section 02 · y = 1000</h2><div class="number">02</div><div class="end">SECTION 02 · y = 1000–1999</div></section>
+<section><h2>Section 03 · y = 2000</h2><div class="number">03</div><div class="end">SECTION 03 · y = 2000–2999</div></section>
+<section><h2>Section 04 · y = 3000</h2><div class="number">04</div><div class="end">SECTION 04 · y = 3000–3999</div></section>
+<section><h2>Section 05 · y = 4000</h2><div class="number">05</div><div class="end">SECTION 05 · y = 4000–4999</div></section>
+<section><h2>Section 06 · y = 5000</h2><div class="number">06</div><div class="end">SECTION 06 · y = 5000–5999</div></section>
+<section><h2>Section 07 · y = 6000</h2><div class="number">07</div><div class="end">SECTION 07 · y = 6000–6999</div></section>
+<section><h2>Section 08 · y = 7000</h2><div class="number">08</div><div class="end">SECTION 08 · y = 7000–7999</div></section>
+<section><h2>Section 09 · y = 8000</h2><div class="number">09</div><div class="end">SECTION 09 · y = 8000–8999</div></section>
+<section><h2>Section 10 · y = 9000</h2><div class="number">10</div><div class="end">SECTION 10 · y = 9000–9999</div></section>
+<section><h2>Section 11 · y = 10000</h2><div class="number">11</div><div class="end">SECTION 11 · y = 10000–10999</div></section>
+<section><h2>Section 12 · y = 11000</h2><div class="number">12</div><div class="end bottom">END OF PAGE · SECTION 12 · bottom edge at y = 12000</div></section>
+</body>
+</html>

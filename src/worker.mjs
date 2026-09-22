@@ -58,7 +58,7 @@ export default {
     }
     headers.set('X-Content-Type-Options', 'nosniff');
     headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
-    if (isPreview || url.pathname.startsWith('/_og/')) headers.set('X-Robots-Tag', 'noindex, nofollow');
+    if (isPreview || url.pathname.startsWith('/_og/') || url.pathname.startsWith('/comparer/')) headers.set('X-Robots-Tag', 'noindex, nofollow');
     return new Response(request.method === 'HEAD' ? null : response.body, { status: response.status, statusText: response.statusText, headers });
   },
 };

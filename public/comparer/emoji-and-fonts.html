@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Font, spacing &amp; emoji regression check</title>
+<!-- Intentionally no webfonts or emoji libraries: tests renderer-provided fonts and emoji support. -->
+<style>
+  * { box-sizing: border-box; }
+  body {
+    width: 900px;
+    margin: 0;
+    padding: 28px;
+    background: #fff;
+    color: #172033;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  h1 { margin: 0 0 20px; font-size: 26px; }
+  section { margin-bottom: 14px; padding: 16px; border: 1px solid #dbe2ea; border-radius: 8px; }
+  h2 { margin: 0 0 10px; color: #64748b; font: 600 13px Roboto, sans-serif; }
+  p { margin: 6px 0; line-height: 1.5; }
+  .sample { font-size: 26px; }
+  .emoji { font-size: 36px; line-height: 1.6; }
+  .green { color: #10b981; }
+  .mono { font-family: "Roboto Mono", monospace; }
+  .small { font-size: 12px; color: #64748b; }
+  img.emoji { width: 1em; height: 1em; margin: 0 .05em 0 .1em; vertical-align: -.1em; }
+</style>
+</head>
+<body>
+<h1>Font, spacing &amp; emoji regression check</h1>
+<section>
+  <h2>Ordinary text — digits and punctuation should inherit green</h2>
+  <p class="sample green">Testing — September 2026</p>
+  <p class="sample green"><strong>$100.7k</strong></p>
+  <p class="sample green">0123456789 · 1,234.56 · 100% · #42 · * + − /</p>
+  <p class="sample">One space between these words. A B C 1 2 3.</p>
+</section>
+<section>
+  <h2>Different font families — watch spaces, digits, and bold text</h2>
+  <p style="font: 24px Roboto">Roboto: Invoice #123 — $456.78</p>
+  <p style="font: 24px 'Open Sans'">Open Sans: Invoice #123 — $456.78</p>
+  <p class="mono" style="font-size: 24px">Mono: 0123456789 ABCDEFGHIJ</p>
+  <p class="mono" style="font-size: 24px">      1111111111 WWWWWWWWWW</p>
+</section>
+<section>
+  <h2>Established emoji — mixed with text and numbers</h2>
+  <p class="emoji">😀 😍 😂 🎉 🚀 🌈 🔥 ✅ ❤️ 🍕</p>
+  <p class="sample green">Sales 🚀 $123.45 · Done ✅ 100% · Love ❤️ 2026</p>
+</section>
+<section>
+  <h2>Emoji 16.0 — useful for testing older Twemoji fallback</h2>
+  <p class="emoji">&#x1FAE9; &#x1FAC6; &#x1FABE; &#x1FADC; &#x1FA89; &#x1FA8F; &#x1FADF;</p>
+  <p class="small">Bags under eyes · Fingerprint · Leafless tree · Root vegetable · Harp · Shovel · Splatter</p>
+</section>
+<section>
+  <h2>Joined sequences, skin tones, and flags</h2>
+  <p class="emoji">👩🏽‍💻 👨🏿‍🚀 👨‍👩‍👧‍👦 🏳️‍🌈 🏳️‍⚧️ 🇺🇸 🇯🇵</p>
+  <p class="emoji">🙂‍↔️ 🙂‍↕️ 🐦‍🔥 🍋‍🟩 🍄‍🟫 ⛓️‍💥</p>
+  <p class="small">Watch for sequences splitting into separate emoji or missing-glyph boxes.</p>
+</section>
+<section>
+  <h2>Text versus emoji presentation — compare with Twemoji disabled</h2>
+  <p class="sample green">Text: &#x2764;&#xFE0E; &#x2600;&#xFE0E; &#x2708;&#xFE0E; &#x00A9;&#xFE0E; &#x2122;&#xFE0E;</p>
+  <p class="sample green">Emoji: &#x2764;&#xFE0F; &#x2600;&#xFE0F; &#x2708;&#xFE0F; &#x00A9;&#xFE0F; &#x2122;&#xFE0F;</p>
+  <p class="sample green">Plain: 0 1 2 3 # * · Keycaps: 0️⃣ 1️⃣ 2️⃣ 3️⃣ #️⃣ *️⃣</p>
+</section>
+<section>
+  <h2>Accents, ligatures, and multilingual fallback</h2>
+  <p class="sample">Café · naïve · Ångström · Straße · office · affinity</p>
+  <p class="sample">Ελληνικά · Русский · العربية · हिन्दी · 日本語 · 中文</p>
+</section>
+</body>
+</html>

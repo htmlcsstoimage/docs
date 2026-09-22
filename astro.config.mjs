@@ -32,7 +32,7 @@ export default defineConfig({
   prefetch: false,
   trailingSlash: 'always',
   integrations: [...(process.env.ANALYZE === 'true' ? [bundleAnalysis()] : []), sitemap({
-    filter: page => !new URL(page).pathname.startsWith('/_og/'),
+    filter: page => !/^\/(?:_og|comparer)(?:\/|$)/.test(new URL(page).pathname),
     serialize: item => ({ ...item, priority: /^\/changelog\/[^/]+\/?$/.test(new URL(item.url).pathname) ? 0.2 : 0.8 }),
   }), starlight({
     title: 'HTML/CSS to Image',

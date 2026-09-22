@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Lazy image capture check</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { width: 900px; color: #172033; background: #fff; font: 18px/1.6 Arial, sans-serif; }
+  header, section, footer { padding: 32px; }
+  h1 { margin: 0 0 12px; font-size: 30px; }
+  h2 { margin: 0 0 12px; font-size: 24px; }
+  p { margin: 8px 0; }
+  section { border-top: 2px solid #cbd5e1; }
+  img { display: block; width: 800px; height: 240px; margin-top: 16px; background: #f1f5f9; border: 2px solid #94a3b8; }
+  .spacer { height: 2200px; padding: 40px; color: #64748b; background: repeating-linear-gradient(to bottom, #f8fafc 0, #f8fafc 199px, #e2e8f0 199px, #e2e8f0 200px); }
+  .status { font: bold 15px monospace; color: #92400e; }
+  .status[data-loaded="true"] { color: #047857; }
+  footer { background: #172033; color: #fff; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Lazy image capture check</h1>
+  <p>All image bytes are embedded SVG data URLs. No remote assets, timers, or automatic scrolling.</p>
+  <p>The first image is a control. Lower images test native loading and viewport-triggered loading separately. Capture at a 900 × 720 viewport, then try a full-page capture with scrolling.</p>
+</header>
+<section>
+  <h2>01 · Eager image (control)</h2>
+  <p class="status" id="eager-status">WAITING FOR IMAGE</p>
+  <img id="eager" width="800" height="240" loading="eager" alt="Green eager-image control"
+    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='240'%3E%3Crect width='800' height='240' fill='%2310b981'/%3E%3Ctext x='40' y='135' font-family='sans-serif' font-size='38' fill='white'%3E01 EAGER IMAGE%3C/text%3E%3C/svg%3E">
+</section>
+<div class="spacer">2,200 CSS pixels of space before the native lazy image.</div>
+<section>
+  <h2>02 · Native loading="lazy"</h2>
+  <p>Browsers may load this before it is visible. Native lazy-load distance varies by browser.</p>
+  <p class="status" id="native-status">WAITING FOR IMAGE</p>
+  <img id="native" width="800" height="240" loading="lazy" alt="Blue native lazy image"
+    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='240'%3E%3Crect width='800' height='240' fill='%232563eb'/%3E%3Ctext x='40' y='135' font-family='sans-serif' font-size='38' fill='white'%3E02 NATIVE LAZY IMAGE%3C/text%3E%3C/svg%3E">
+</section>
+<div class="spacer">2,200 CSS pixels of space before the first observer-triggered image.</div>
+<section>
+  <h2>03 · IntersectionObserver, rootMargin 0px</h2>
+  <p>The image source is assigned only when this element intersects the viewport. A full-page bitmap does not necessarily trigger that.</p>
+  <p class="status" id="observer-status">NOT TRIGGERED</p>
+  <img id="observer" width="800" height="240" alt="Amber placeholder — image not triggered"
+    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='240'%3E%3Crect width='800' height='240' fill='%23fef3c7'/%3E%3Ctext x='40' y='135' font-family='sans-serif' font-size='30' fill='%2392400e'%3ENOT TRIGGERED%3C/text%3E%3C/svg%3E"
+    data-src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='240'%3E%3Crect width='800' height='240' fill='%237c3aed'/%3E%3Ctext x='40' y='135' font-family='sans-serif' font-size='38' fill='white'%3E03 OBSERVER IMAGE%3C/text%3E%3C/svg%3E">
+</section>
+<div class="spacer">2,200 CSS pixels of space before the final observer-triggered image.</div>
+<section>
+  <h2>04 · Near the bottom</h2>
+  <p class="status" id="bottom-status">NOT TRIGGERED</p>
+  <img id="bottom" width="800" height="240" alt="Amber placeholder — bottom image not triggered"
+    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='240'%3E%3Crect width='800' height='240' fill='%23fef3c7'/%3E%3Ctext x='40' y='135' font-family='sans-serif' font-size='30' fill='%2392400e'%3ENOT TRIGGERED%3C/text%3E%3C/svg%3E"
+    data-src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='240'%3E%3Crect width='800' height='240' fill='%23db2777'/%3E%3Ctext x='40' y='135' font-family='sans-serif' font-size='38' fill='white'%3E04 BOTTOM IMAGE%3C/text%3E%3C/svg%3E">
+</section>
+<footer>END OF PAGE · Eager, native lazy, and two observer-triggered images.</footer>
+<script>
+  function trackImage(image) {
+    const status = document.getElementById(image.id + '-status');
+    function loaded() {
+      if (image.naturalWidth > 0) {
+        status.textContent = 'IMAGE LOADED';
+        status.dataset.loaded = 'true';
+      }
+    }
+    image.addEventListener('load', loaded, { once: true });
+    image.addEventListener('error', () => { status.textContent = 'IMAGE ERROR'; }, { once: true });
+    if (image.complete) {
+      loaded();
+    }
+  }
+  document.querySelectorAll('img:not([data-src])').forEach(trackImage);
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          const image = entry.target;
+          document.getElementById(image.id + '-status').textContent = 'TRIGGERED — LOADING';
+          image.src = image.dataset.src;
+          image.alt = image.id === 'bottom' ? 'Pink bottom image loaded' : 'Purple observer image loaded';
+          trackImage(image);
+          observer.unobserve(image);
+        }
+      }
+    }, { rootMargin: '0px', threshold: 0 });
+    document.querySelectorAll('img[data-src]').forEach(image => observer.observe(image));
+  } else {
+    document.querySelectorAll('img[data-src]').forEach(image => {
+      document.getElementById(image.id + '-status').textContent = 'INTERSECTIONOBSERVER UNAVAILABLE';
+    });
+  }
+</script>
+</body>
+</html>
