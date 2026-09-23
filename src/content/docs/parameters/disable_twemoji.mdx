@@ -1,0 +1,40 @@
+---
+title: disable_twemoji
+slug: parameters/disable_twemoji
+description: Control Twemoji replacement for HTML/CSS, template, and URL images.
+---
+
+import Help from '../../../components/Help.astro';
+
+The `disable_twemoji` Boolean parameter controls whether HTML/CSS to Image adds [Twemoji](https://github.com/jdecked/twemoji) when rendering emoji. Its default behavior depends on the image source.
+
+| Image source | Omitted or `null` | `true` | `false` |
+|:-------------|:------------------|:-------|:--------|
+| HTML/CSS or template | Twemoji is enabled | Do not replace emoji with Twemoji; use the supplied or native fonts | Twemoji is enabled |
+| URL | Leave the loaded page's emoji handling unchanged | Leave the loaded page's emoji handling unchanged | Inject Twemoji into the loaded page |
+
+For URL images, `true` does not disable emoji scripts supplied by the website. It only prevents HTML/CSS to Image from injecting Twemoji. To add Twemoji to a URL screenshot, explicitly send `false`.
+
+## Examples
+
+Use the supplied or native emoji fonts in an HTML/CSS image:
+
+```json
+{
+  "html": "<div>Hello 👋 World 🌍</div>",
+  "disable_twemoji": true
+}
+```
+
+Add Twemoji to a URL image:
+
+```json
+{
+  "url": "https://example.com",
+  "disable_twemoji": false
+}
+```
+
+With Twemoji disabled for HTML/CSS and template images, emoji appearance depends on the fonts available in the rendering environment. See the [emoji rendering guide](/guides/debugging/emoji/) for styling details.
+
+<Help />

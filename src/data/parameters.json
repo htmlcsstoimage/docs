@@ -175,9 +175,9 @@
     },
     {
       "name": "disable_twemoji",
-      "description": "Set to `true` to use native emoji fonts instead of Twemoji.",
+      "description": "HTML/CSS and template images use Twemoji by default; set `true` to disable it. URL images inject Twemoji only when explicitly set to `false`.",
       "type": "Boolean",
-      "link": "/guides/debugging/emoji/#disabling-twemoji",
+      "link": "/parameters/disable_twemoji/",
       "additional": true,
       "support": {
         "html": true,

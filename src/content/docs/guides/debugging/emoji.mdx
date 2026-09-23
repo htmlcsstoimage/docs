@@ -2,7 +2,7 @@
 title: Rendering emoji
 slug: guides/debugging/emoji
 description: >-
-  Emoji's are automatically replaced with images for consistent and clear rendering. This is enabled for you by default.
+  Learn how emoji render in images and how to adjust their appearance.
 ---
 
 import { Aside } from '@astrojs/starlight/components';
@@ -11,17 +11,17 @@ import Help from '../../../../components/Help.astro';
 
 <a id="rendering-emoji" />
 
-Emoji rendering is built in and handled automatically for you.
+HTML/CSS and template images use Twemoji by default for consistent emoji rendering. URL images use the loaded page's own emoji handling unless you explicitly enable Twemoji.
 
 ## How it works
 
-Emoji's are automatically replaced with images for consistent and clear rendering. This is enabled for you by default.
+[Twemoji](https://github.com/jdecked/twemoji) replaces emoji text with images in HTML/CSS and template renders by default. URL renders leave the loaded page unchanged unless `disable_twemoji` is explicitly `false`.
 
 <DocImage src="/assets/images/emoji.jpeg" width={400} alt="Emoji support in HTML/CSS to Image API" />
 
 ## `emoji` class
 
-Each image has an `emoji`class added to it on render. This makes it easy to tweak their display. 
+Twemoji replacement images have an `emoji` class, which you can style.
 
 Here is the default CSS we apply to all emoji. To make tweaks, adjust it and include it in your CSS to override the defaults.
 
@@ -36,7 +36,7 @@ img.emoji {
 
 ## Disabling Twemoji
 
-By default, we use [Twemoji](https://github.com/twitter/twemoji) to render emoji as images for consistent cross-platform display. If you prefer to use the native emoji fonts instead (the API runs on Linux servers), you can disable Twemoji with the `disable_twemoji` parameter.
+For HTML/CSS and template images, set `disable_twemoji: true` to use your supplied fonts or the rendering environment's native emoji fonts instead of Twemoji. For URL images, omission, `null`, and `true` leave the loaded page's emoji handling unchanged. Set `disable_twemoji: false` to inject Twemoji into a URL page. `true` does not disable the website's own emoji scripts. See the [`disable_twemoji` parameter guide](/parameters/disable_twemoji/) for the full value table.
 
 ### When to disable Twemoji
 
@@ -55,4 +55,3 @@ By default, we use [Twemoji](https://github.com/twitter/twemoji) to render emoji
 <Aside title="Native emoji fonts">When Twemoji is disabled, emoji appearance depends on the fonts available in the rendering environment.</Aside>
 
 <Help />
-

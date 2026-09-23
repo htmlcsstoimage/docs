@@ -36,6 +36,7 @@ const navigation = [
     { label: 'color_scheme', link: '/parameters/color_scheme/' },
     { label: 'dedupe_duration_s', link: '/parameters/dedupe_duration_s/' },
     { label: 'device_scale', link: '/parameters/device_scale/' },
+    { label: 'disable_twemoji', link: '/parameters/disable_twemoji/' },
     { label: 'format', link: '/parameters/format/' },
     { label: 'full_screen', link: '/parameters/full_screen/' },
     { label: 'google_fonts', link: '/parameters/google_fonts/' },
