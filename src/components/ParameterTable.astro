@@ -8,10 +8,10 @@ const props = { context, includePrimary, namePrefix, nameHeading };
 const parameters = selectParameters(props);
 ---
 <table data-build-parameter-table={import.meta.env.PROD ? JSON.stringify(props) : undefined}>
-  <thead><tr><th>{nameHeading}</th><th>Type</th><th>Description</th></tr></thead>
-  <tbody>{parameters.map(parameter => <tr>
-    <td><a href={parameter.link}><code>{namePrefix}{parameter.name}</code></a></td>
-    <td><code>{parameter.type}</code></td>
+  <thead class="[&_th]:py-3"><tr><th>{nameHeading}</th><th>Type</th><th>Description</th></tr></thead>
+  <tbody class="[&_td]:py-3 [&_td]:align-top [&_td]:leading-relaxed [&_td:first-child]:min-w-60">{parameters.map(parameter => <tr>
+    <td><a class="whitespace-nowrap font-mono text-sm font-medium text-[var(--sl-color-text-accent)] no-underline hover:underline focus-visible:underline" href={parameter.link}>{namePrefix}{parameter.name}</a></td>
+    <td><span class="text-[var(--sl-color-white)]">{parameter.type}</span></td>
     <td set:html={marked.parseInline(parameter.description)} />
   </tr>)}</tbody>
 </table>
