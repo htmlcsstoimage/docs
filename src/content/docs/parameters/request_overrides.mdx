@@ -1,0 +1,101 @@
+---
+title: request_overrides
+slug: parameters/request_overrides
+description: >-
+  Block selected browser network requests while rendering an image or template.
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Help from '../../../components/Help.astro';
+
+Use `request_overrides` to stop selected network requests while Chrome renders an image. For example, you can prevent a third-party script or image from loading in a screenshot.
+
+## When it's useful
+
+A page can make requests that add nothing to the image you want to capture. Blocking those requests can help you:
+
+- **Spend less time and bandwidth loading assets you won't show.** If a screenshot doesn't need a video or a set of decorative images from your CDN, Chrome doesn't need to download them for that render.
+- **Avoid sending screenshot visits to analytics services.** Block tracking beacons or scripts when you don't want automated renders counted alongside real visitors.
+- **Keep screenshots more consistent.** Third-party chat widgets, ads, and other extras can change or fail independently of your page. Block them when they aren't part of the image.
+
+Only block resources your screenshot can do without. Blocking a font, stylesheet, script, or visible image may change the result.
+
+## Block rules
+
+Pass an array of rules. Each rule currently supports the `block` action and must have a `url` pattern, a `resource_types` array, or both:
+
+```json
+{
+  "url": "https://example.com/report",
+  "request_overrides": [
+    {
+      "action": "block",
+      "url": "https://analytics.example.com/*",
+      "resource_types": ["script", "xhr", "fetch"]
+    }
+  ]
+}
+```
+
+`url` matches the full request URL. `*` matches any sequence of characters, including an empty sequence. Matching is case-sensitive. Without `*`, the pattern must match the entire URL exactly. For example, `*://cdn.example.com/*.js` matches JavaScript URLs on that host, while `*.js` matches only URLs ending in `.js`.
+
+`resource_types` matches any listed browser resource type. Supported values are `beacon`, `document`, `stylesheet`, `image`, `image_set`, `media`, `font`, `script`, `text_track`, `xhr`, `fetch`, `event_source`, `manifest`, `ping`, `img`, and `other`.
+
+When a rule has both `url` and `resource_types`, **both must match**. A request is blocked when **any** rule matches. A rule with only `resource_types` applies to matching requests from any URL. Blocking a `document` request can prevent the target page or an embedded frame from loading.
+
+## More examples
+
+To leave tracking beacons and a third-party chat widget out of a screenshot, use two rules. The first matches `beacon` requests from any URL; the second matches every request to the widget host:
+
+```json
+{
+  "request_overrides": [
+    { "action": "block", "resource_types": ["beacon"] },
+    { "action": "block", "url": "*://chat.example.com/*" }
+  ]
+}
+```
+
+If your page references CDN images that aren't needed in the finished screenshot, block only that asset path. Other images on the page can still load:
+
+```json
+{
+  "request_overrides": [
+    {
+      "action": "block",
+      "url": "*://cdn.example.com/unused-decorations/*",
+      "resource_types": ["image", "image_set"]
+    }
+  ]
+}
+```
+
+<Aside title="Availability">
+Request overrides require a paid plan. They work with URL screenshots, HTML/CSS images, and templates. An omitted value, `null`, or an empty array adds no overrides.
+</Aside>
+
+## Request formats
+
+In a JSON image request, pass `request_overrides` as an array, as shown above. In an `application/x-www-form-urlencoded` request, send the entire array as one JSON-encoded field:
+
+```bash
+curl -X POST https://hcti.io/v1/image \
+  -u 'UserID:APIKey' \
+  --data-urlencode 'url=https://example.com/report' \
+  --data-urlencode 'request_overrides=[{"action":"block","url":"*://cdn.example.com/*.js"}]'
+```
+
+The same JSON array or JSON-encoded form field can be supplied when creating or updating a template. Its rules apply when images are rendered from that template. You can also set `default_options.request_overrides` to a JSON array for an [HTML/CSS OG configuration](/management-api/og-configs/).
+
+`request_overrides` is not supported in signed create-and-render query strings or `hcti:` page metadata tags.
+
+## Limits and validation
+
+- Up to 100 rules are allowed per request.
+- Each `url` pattern can contain up to 512 characters and cannot contain control characters.
+- Each rule must have `action: "block"` and at least one nonempty matcher. If supplied, `url` cannot be blank and `resource_types` cannot be empty.
+- Each `resource_types` entry must be one of the supported names above.
+
+Invalid rules return a request validation error.
+
+<Help />

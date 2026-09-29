@@ -399,6 +399,21 @@
       }
     },
     {
+      "name": "request_overrides",
+      "description": "Block browser network requests matching a URL wildcard pattern and/or resource types. Requires a paid plan.",
+      "type": "Array",
+      "link": "/parameters/request_overrides/",
+      "additional": true,
+      "support": {
+        "html": true,
+        "url": true,
+        "templates": true,
+        "og_config": false,
+        "create_and_render": false,
+        "og_config_management": true
+      }
+    },
+    {
       "name": "selector",
       "description": "Crop the image to an element matching this CSS selector, such as `section#complete-toolkit.container-lg`.",
       "type": "String",
