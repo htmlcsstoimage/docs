@@ -1,5 +1,5 @@
 ---
-title: "Block browser requests with `request_overrides`"
+title: "Block browser requests with request_overrides"
 slug: changelog/2026-09-29-block-browser-requests-with-request-overrides
 description: "Block selected scripts, images, and other browser requests while rendering images or templates."
 section: Changelog

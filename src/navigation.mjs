@@ -48,6 +48,7 @@ const navigation = [
     { label: 'pdf_options', link: '/parameters/pdf_options/' },
     { label: 'proxy_id', link: '/parameters/proxy_id/' },
     { label: 'render_when_ready', link: '/parameters/render_when_ready/' },
+    { label: 'request_overrides', link: '/parameters/request_overrides/' },
     { label: 'selector', link: '/parameters/selector/' },
     { label: 'storage_destination_id', link: '/parameters/storage_destination_id/' },
     { label: 'timezone', link: '/parameters/timezone/' },

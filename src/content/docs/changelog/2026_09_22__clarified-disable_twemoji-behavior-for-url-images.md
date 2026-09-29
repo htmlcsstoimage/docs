@@ -1,5 +1,5 @@
 ---
-title: "Clarified `disable_twemoji` behavior for URL images"
+title: "Clarified disable_twemoji behavior for URL images"
 slug: changelog/2026-09-22-clarified-disable-twemoji-behavior-for-url-images
 description: "URL images only receive Twemoji when disable_twemoji is explicitly false; HTML/CSS images still default to false."
 section: Changelog

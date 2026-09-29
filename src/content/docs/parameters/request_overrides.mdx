@@ -10,17 +10,7 @@ import Help from '../../../components/Help.astro';
 
 Use `request_overrides` to stop selected network requests while Chrome renders an image. For example, you can prevent a third-party script or image from loading in a screenshot.
 
-## When it's useful
-
-A page can make requests that add nothing to the image you want to capture. Blocking those requests can help you:
-
-- **Spend less time and bandwidth loading assets you won't show.** If a screenshot doesn't need a video or a set of decorative images from your CDN, Chrome doesn't need to download them for that render.
-- **Avoid sending screenshot visits to analytics services.** Block tracking beacons or scripts when you don't want automated renders counted alongside real visitors.
-- **Keep screenshots more consistent.** Third-party chat widgets, ads, and other extras can change or fail independently of your page. Block them when they aren't part of the image.
-
-Only block resources your screenshot can do without. Blocking a font, stylesheet, script, or visible image may change the result.
-
-## Block rules
+## How it works
 
 Pass an array of rules. Each rule currently supports the `block` action and must have a `url` pattern, a `resource_types` array, or both:
 
@@ -43,7 +33,23 @@ Pass an array of rules. Each rule currently supports the `block` action and must
 
 When a rule has both `url` and `resource_types`, **both must match**. A request is blocked when **any** rule matches. A rule with only `resource_types` applies to matching requests from any URL. Blocking a `document` request can prevent the target page or an embedded frame from loading.
 
-## More examples
+<Aside title="Availability">
+Request overrides require a paid plan. They work with URL screenshots, HTML/CSS images, and templates. An omitted value, `null`, or an empty array adds no overrides.
+</Aside>
+
+## When to use it
+
+A page can make requests that add nothing to the image you want to capture. Blocking those requests can help you:
+
+- **Spend less time and bandwidth loading assets you won't show.** If a screenshot doesn't need a video or a set of decorative images from your CDN, Chrome doesn't need to download them for that render.
+- **Avoid sending screenshot visits to analytics services.** Block tracking beacons or scripts when you don't want automated renders counted alongside real visitors.
+- **Keep screenshots more consistent.** Third-party chat widgets, ads, and other extras can change or fail independently of your page. Block them when they aren't part of the image.
+
+Only block resources your screenshot can do without. Blocking a font, stylesheet, script, or visible image may change the result.
+
+## Example usage
+
+### Block tracking and chat widgets
 
 To leave tracking beacons and a third-party chat widget out of a screenshot, use two rules. The first matches `beacon` requests from any URL; the second matches every request to the widget host:
 
@@ -55,6 +61,8 @@ To leave tracking beacons and a third-party chat widget out of a screenshot, use
   ]
 }
 ```
+
+### Skip unused CDN images
 
 If your page references CDN images that aren't needed in the finished screenshot, block only that asset path. Other images on the page can still load:
 
@@ -69,10 +77,6 @@ If your page references CDN images that aren't needed in the finished screenshot
   ]
 }
 ```
-
-<Aside title="Availability">
-Request overrides require a paid plan. They work with URL screenshots, HTML/CSS images, and templates. An omitted value, `null`, or an empty array adds no overrides.
-</Aside>
 
 ## Request formats
 
