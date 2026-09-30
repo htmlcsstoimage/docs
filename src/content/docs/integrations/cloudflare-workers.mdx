@@ -1,0 +1,112 @@
+---
+title: Cloudflare Workers
+slug: integrations/cloudflare-workers
+description: >-
+  Generate images from Cloudflare Workers with capa's third-party HTML/CSS to Image service binding, generated from our OpenAPI spec.
+---
+import { Aside, LinkButton } from '@astrojs/starlight/components';
+
+Generate images from a Cloudflare Worker using [capa's HTML/CSS to Image capability](https://github.com/acoyfellow/capa/tree/main/capabilities/htmlcsstoimage). Deploy the capability to your Cloudflare account, then call it from your application Worker through a service binding.
+
+<LinkButton href="https://github.com/acoyfellow/capa/tree/main/capabilities/htmlcsstoimage">View capability on GitHub</LinkButton>
+<LinkButton href="https://htmlcsstoimage.com/dashboard/api-keys" variant="secondary">Get API credentials</LinkButton>
+
+<Aside title="Third-party project">
+  capa is an independent project maintained by [acoyfellow](https://github.com/acoyfellow/capa), not an official HTML/CSS to Image SDK. Its generated bindings and types come from our [published OpenAPI specification](https://htmlcsstoimage.com/openapi/v1.json). See our [interactive API reference](https://htmlcsstoimage.com/api-docs) for endpoint schemas, and capa's repository for integration updates and support.
+</Aside>
+
+For a direct SDK integration, we also maintain the official [`@html-css-to-image/client`](https://www.npmjs.com/package/@html-css-to-image/client) TypeScript SDK. See the [TypeScript examples](/example-code/typescript/) and [SDK repository](https://github.com/htmlcsstoimage/ts-client). capa is useful when you want a separate Worker to own the API credentials and expose API operations to other Workers through RPC.
+
+## Deploy the capability
+
+You'll need a Cloudflare account, [Bun](https://bun.sh/), and your HTML/CSS to Image **API ID** and **API Key** from the [dashboard](https://htmlcsstoimage.com/dashboard/api-keys).
+
+Clone capa and install its dependencies from the repository root:
+
+```bash
+git clone https://github.com/acoyfellow/capa.git
+cd capa
+bun install
+cd capabilities/htmlcsstoimage
+```
+
+Set both credentials as Worker secrets. Wrangler prompts for each value, so you don't need to put credentials in a command or configuration file:
+
+```bash
+bunx wrangler secret put HTMLCSSTOIMAGE_USER_ID
+bunx wrangler secret put HTMLCSSTOIMAGE_API_KEY
+bunx wrangler deploy
+```
+
+Use your **API ID** for `HTMLCSSTOIMAGE_USER_ID` and your **API Key** for `HTMLCSSTOIMAGE_API_KEY`. The capability uses these credentials for HTTP Basic authentication with the HTML/CSS to Image API.
+
+The included configuration names this Worker `capa-htmlcsstoimage`, disables its `workers.dev` URL, and exports the `HtmlcsstoimageCapability` RPC entrypoint. Its HTTP handler returns 404; callers use a service binding instead of a public HTTP endpoint.
+
+## Bind your application Worker
+
+In your application's `wrangler.jsonc`, add this entry to the `services` array:
+
+```jsonc
+{
+  "services": [
+    {
+      "binding": "HTMLCSSTOIMAGE",
+      "service": "capa-htmlcsstoimage",
+      "entrypoint": "HtmlcsstoimageCapability"
+    }
+  ]
+}
+```
+
+Keep your application's existing `name`, `main`, and `compatibility_date` settings. If you renamed the capability Worker, update `service` to match. The `binding` name becomes `env.HTMLCSSTOIMAGE` in your application.
+
+From your application directory, generate types with both Worker configurations. Adjust the second path to your local capa checkout:
+
+```bash
+bunx wrangler types -c ./wrangler.jsonc -c ../capa/capabilities/htmlcsstoimage/wrangler.jsonc
+```
+
+This generates `worker-configuration.d.ts` with the `Env` interface and the capability's RPC binding type. See [Cloudflare's RPC service binding documentation](https://developers.cloudflare.com/workers/runtime-apis/bindings/service-bindings/rpc/) and [RPC TypeScript documentation](https://developers.cloudflare.com/workers/runtime-apis/rpc/typescript/) for details.
+
+## Create an image
+
+Call `image.create` from your application Worker. capa returns an envelope containing `result` and `evidence`; check the verdict and result before using the image URL.
+
+```typescript
+export default {
+  async fetch(request, env) {
+    if (request.method !== "POST") {
+      return new Response("Use POST to create an image", {
+        status: 405,
+        headers: { Allow: "POST" },
+      });
+    }
+
+    // Apply your application's authentication and rate limits here.
+    const { result, evidence } = await env.HTMLCSSTOIMAGE.image.create({
+      html: "<div class='card'>Hello from Cloudflare Workers!</div>",
+      css: ".card { padding: 40px; background: #03B875; color: white; font: 32px sans-serif; }",
+    });
+
+    if (evidence.verdict === "fail" || !result?.url) {
+      return Response.json({ error: "Image creation failed" }, { status: 502 });
+    }
+
+    return Response.json({ url: result.url });
+  },
+} satisfies ExportedHandler<Env>;
+```
+
+This example assumes `Env` has been generated with the RPC binding type for the capability's entrypoint. Deploy your application Worker after adding the binding. A successful request returns JSON containing the generated image URL. Standard [API permissions](/getting-started/using-the-api/permissions/), [rate limits](/getting-started/using-the-api/rate-limits/), and account usage apply; creating an image requires `images:create`.
+
+The generated capability also includes operations for batches, templates, OG configurations, proxies, storage destinations, and usage. See the [capability README](https://github.com/acoyfellow/capa/blob/main/capabilities/htmlcsstoimage/README.md) for examples, including retrieving rendered image bytes.
+
+## How secrets and bindings protect your credentials
+
+Cloudflare [Worker secrets](https://developers.cloudflare.com/workers/configuration/secrets/) are encrypted bindings available to the capability Worker at runtime. Once set, their values aren't visible in Wrangler or the dashboard. They stay out of your source code and browser responses.
+
+Your application Worker receives a service binding to call the capability, rather than a copy of the API credentials. The capability makes the authenticated request to HTML/CSS to Image over HTTPS. This keeps credential handling in one Worker while allowing your application to receive the resulting image URL.
+
+The binding grants access to the capability's operations, so protect any application endpoint that invokes it with your own authentication and rate limits. Use a dedicated API key with only the [permissions](/getting-started/using-the-api/permissions/) your application needs. Worker code can read its own secrets: avoid logging credentials or returning them in responses, and review third-party code before deploying it.
+
+For local development, place credentials in a gitignored `.dev.vars` file in the capability directory. Cloudflare documents [local secret setup](https://developers.cloudflare.com/workers/configuration/secrets/#local-development-with-secrets); don't commit that file.

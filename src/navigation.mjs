@@ -107,6 +107,7 @@ const navigation = [
   { label: 'Integrations', items: [
     { label: 'Overview', link: '/integrations/' },
     { label: 'n8n', link: '/integrations/n8n/' },
+    { label: 'Cloudflare Workers', link: '/integrations/cloudflare-workers/' },
     { label: 'Zapier', link: '/integrations/zapier/' },
     { label: 'Make', link: '/integrations/make/' },
     { label: 'MCP server', items: [
