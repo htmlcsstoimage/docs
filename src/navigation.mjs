@@ -68,6 +68,7 @@ const navigation = [
       { label: 'Simple Text', link: '/template-editor/blocks/simple-text/' },
       { label: 'Image', link: '/template-editor/blocks/image/' },
       { label: 'Shape', link: '/template-editor/blocks/shape/' },
+      { label: 'QR Code', link: '/template-editor/blocks/qr-code/' },
       { label: 'HTML', link: '/template-editor/blocks/html/' },
       { label: 'Free Panel', link: '/template-editor/blocks/free-panel/' },
       { label: 'Flex Panel', link: '/template-editor/blocks/flex-panel/' },

@@ -1,0 +1,65 @@
+---
+title: QR Code
+slug: template-editor/blocks/qr-code
+description: Encode URLs or text as QR codes, with variable content, colors, and error correction settings.
+---
+import CommonBlockOptions from '../../../../components/CommonBlockOptions.astro';
+
+<a id="qr-code-block" />
+
+Use QR Code blocks to add scannable links or text to product cards, event graphics, certificates, and other templates. Choose **QR Code** in the left sidebar, then edit **Content** in the right sidebar.
+
+## How it works
+
+The block encodes its Content as a QR code and renders it as SVG in the template. Enter a URL such as `https://example.com/event`, or any non-empty text. The encoded content can come from a variable, so each generated image can have a different QR code.
+
+New blocks start at 240 × 240 pixels with a locked square aspect ratio, black modules, and a white background. The default Content is `https://htmlcsstoimage.com`.
+
+<CommonBlockOptions />
+
+## Block-specific properties
+
+| Property | Details | Variables |
+| --- | --- | --- |
+| Content | URL or text to encode. Must not be empty or contain only whitespace. | Yes |
+| Color | Foreground color of the QR modules. Defaults to black (`#000000`). | Yes |
+| Error correction | Low (L), Medium (M), Quartile (Q), or High (H). Defaults to Medium (M). | — |
+| Quiet zone (modules) | Clear margin around all four sides of the code, measured in module widths. Integer from 4 to 32; defaults to 4. | — |
+| Padding | Additional space inside the block edge. Simple mode sets all sides; Advanced mode sets each side. | — |
+| Opacity | Transparency of the whole block, including content and styling. | Yes |
+
+Use the common **Background** controls to change the white background separately from the QR foreground color.
+
+## Error correction and content limits
+
+Higher error correction levels provide more redundancy, but leave less capacity for content and can make the code denser. Medium (M) is the default; choose another level in the right sidebar when needed.
+
+The amount of content that fits depends on the text and selected error correction level. If the editor reports that the content is too long, shorten it or choose a lower error correction level. Fixed content and saved fallback content are validated before saving; variable content is checked when previewing or rendering.
+
+## Quiet zone and sizing
+
+A module is one small square in the QR pattern. The quiet zone reserves a clear margin around the pattern so scanners can distinguish the code from surrounding content. Keep at least the default four modules on every side; padding adds space beyond this margin.
+
+Keep the foreground dark and the background light, leave the quiet zone clear, and use a size that keeps individual modules visible in the final image. Scan the generated image at its intended display or print size to check the result.
+
+## Example usage
+
+To generate a different destination for each image:
+
+1. Add a QR Code block and click the hard-hat icon beside **Content**.
+2. Set its template key to `qr_url` and its variable mode to **Required**.
+3. In the Variables tab, provide a test URL and turn **Preview** on to check the code.
+4. Save the template, then pass the URL in `template_values` when [creating an image with a template](/getting-started/templates/#creating-an-image-with-a-template).
+
+```json
+{
+  "template_id": "YOUR_TEMPLATE_ID",
+  "template_values": {
+    "qr_url": "https://example.com/events/launch-day"
+  }
+}
+```
+
+Connect Content directly to a property variable rather than putting Handlebars syntax in the field. See [Variables](/template-editor/variables/) for template keys and preview controls.
+
+Use **Fallback** to encode the saved Content when a value is missing or empty. Use **Ignore** to omit the QR block from the generated output when its content is missing or empty. Required content must resolve to a non-empty value that fits at the selected error correction level.
