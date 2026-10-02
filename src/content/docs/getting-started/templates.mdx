@@ -278,3 +278,7 @@ STATUS: 200 OK
 Deleting a template through the API requires `templates:delete`. See the [interactive API reference](https://htmlcsstoimage.com/api-docs) for endpoint schemas. Rendering a known template ID uses `images:create`; discovering templates first requires `templates:read`.
 
 <Help />
+
+## Create a batch of templated images
+
+Use [`POST /v1/image/batch/templated`](/getting-started/using-the-api/#batch-templated-image-creation) to create multiple images from one or more templates. Set shared template values in `default_options` and per-image changes in `variations`. Objects merge recursively, and each variation can select a different template or version.

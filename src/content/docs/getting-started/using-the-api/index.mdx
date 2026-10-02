@@ -216,7 +216,7 @@ STATUS: 202 ACCEPTED
 
 Requires [`images:create`](/getting-started/using-the-api/permissions/).
 
-Create up to 25 images in a single API request. This is more efficient than making multiple individual requests.
+Create multiple HTML/CSS or URL images in a single API request, within your plan's batch limit. For saved templates, use [batch templated image creation](#batch-templated-image-creation).
 
 <Endpoint method="POST" path="/v1/image/batch" />
 
@@ -224,8 +224,8 @@ Create up to 25 images in a single API request. This is more efficient than maki
 
 | Name        | Type          | Description |
 |:-------------|:------------------|:------|
-| `default_options` | `Object` | Default parameters applied to all images in the batch. Accepts all standard image creation parameters. |
-| `variations` | `Array` | Array of image objects. Each can override `default_options`. Maximum 25 items. |
+| `default_options` | `Object` | Default HTML/CSS or URL image parameters applied to all variations. `dedupe_duration_s` is not supported in batches. |
+| `variations` | `Array` | Required, nonempty array of image objects within your plan's batch limit. Each overrides `default_options`. Results preserve this order. |
 
 ### Example request
 
@@ -258,6 +258,86 @@ STATUS: 200 OK
   ]
 }
 ```
+
+## Batch templated image creation
+
+Requires [`images:create`](/getting-started/using-the-api/permissions/) and a plan that supports batches.
+
+Create multiple images from one or more saved templates in a single JSON request. This works with both HTML/CSS templates and templates built in the visual editor.
+
+<Endpoint method="POST" path="/v1/image/batch/templated" />
+
+### Parameters
+
+| Name | Type | Description |
+|:-----|:-----|:------------|
+| `default_options` | `Object` | Optional shared `template_id`, `template_version`, `template_values`, and `format`. |
+| `variations` | `Array` | Required, nonempty array of template options, within your plan's batch limit. Each variation inherits or overrides defaults. Results preserve this order. |
+
+Each object in `default_options` or `variations` accepts:
+
+| Name | Type | Description |
+|:-----|:-----|:------------|
+| `template_id` | `String` | Template to render. Omit in a variation to inherit the default ID. Every variation must resolve to a template owned by your organization. |
+| `template_version` | `Integer` | Specific version. Inherits the default version when the variation omits `template_id`. Supplying `template_id` resets the inherited version, even if it is the same ID; omit a version to use that template's latest version. |
+| `template_values` | `Object` | Variable values. Objects merge recursively by key. Arrays, scalar values, and explicit null values in a variation replace the corresponding default values. The merged object must be nonempty and satisfy the template's required variables. |
+| `format` | `String` | Returned URL format: `png`, `jpg`, `jpeg`, `webp`, or `pdf`. Omit to inherit the default. This only sets the initially returned URL extension. |
+
+Render settings come from each saved template. HTML, URL, and other render options are not fields of this endpoint.
+
+### Example request
+
+```bash
+curl -X POST 'https://hcti.io/v1/image/batch/templated' \
+  -u "$HCTI_API_ID:$HCTI_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "default_options": {
+      "template_id": "t-product-card",
+      "template_version": 3,
+      "format": "webp",
+      "template_values": {
+        "brand": { "name": "Acme", "color": "#2563eb" },
+        "tags": ["New"],
+        "subtitle": "Available now"
+      }
+    },
+    "variations": [
+      { "template_values": { "title": "First product" } },
+      {
+        "template_values": {
+          "title": "Second product",
+          "brand": { "color": "#dc2626" },
+          "tags": ["Sale"],
+          "subtitle": null
+        }
+      },
+      {
+        "template_id": "t-promo-card",
+        "format": "png",
+        "template_values": { "title": "Weekend sale" }
+      }
+    ]
+  }'
+```
+
+The first two images use version 3 of `t-product-card`. The second inherits `brand.name`, overrides `brand.color`, replaces the entire `tags` array, and sets `subtitle` to null. The third uses the latest version of `t-promo-card` and still inherits the shared template values.
+
+### Example response
+
+```json
+{
+  "images": [
+    { "url": "https://hcti.io/v1/image/image-1.webp", "id": "image-1" },
+    { "url": "https://hcti.io/v1/image/image-2.webp", "id": "image-2" },
+    { "url": "https://hcti.io/v1/image/image-3.png", "id": "image-3" }
+  ]
+}
+```
+
+The API returns `200 OK` with one result per variation, in input order. Identical template images reuse existing assets, so multiple entries can return the same image ID. Invalid template selections or values fail validation before images are saved; validation errors identify the affected variation. Normal authentication, plan, usage, and rate limits apply.
+
+The official SDKs provide dedicated methods: `createTemplatedImageBatch` (TypeScript and PHP), `CreateTemplatedImageBatchAsync` (.NET), `CreateTemplatedImageBatch` (Go), and `create_templated_image_batch` (Python and Ruby).
 
 ### Batch deletion
 
