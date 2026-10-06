@@ -1,0 +1,41 @@
+---
+title: Pipedream integration
+slug: integrations/pipedream
+description: >-
+  Create images from HTML/CSS and take webpage screenshots in your Pipedream workflows.
+---
+import { LinkButton } from '@astrojs/starlight/components';
+
+Use HTML/CSS to Image in Pipedream to create images from HTML/CSS or take screenshots of webpages. Pass content from earlier workflow steps, then use the generated image URL in a website, email, or another action.
+
+<LinkButton href="https://pipedream.com/apps/html-css-to-image">Open Pipedream integration</LinkButton>
+
+## Connect your account
+
+1. Add an HTML/CSS to Image action to your Pipedream workflow.
+2. Connect your account using the **API ID** and **API Key** from your [HTML/CSS to Image dashboard](https://htmlcsstoimage.com/dashboard/api-keys).
+3. Enter your HTML/CSS or webpage URL, then run the step.
+
+Keep your API Key in the connected account. You do not need to include it in your HTML or webpage URL.
+
+## Available actions
+
+- **Create Image From HTML:** Create an image from HTML and CSS.
+- **Create Image From URL:** Take a screenshot of a webpage.
+
+We are preparing an update with more rendering options, saved templates, signed URLs, image downloads, and image deletion. These additions are pending review and publication by Pipedream. We will update this page when they are available.
+
+## Use the image URL
+
+Image creation returns an `id` and `url`. Use the URL directly in an image tag or pass it to a later workflow step.
+
+PNG is the default. You can request the same image as JPG, WebP, or PDF by changing the image URL's extension. The **Format** parameter only sets the extension of the returned URL; it does not limit the formats available for that image.
+
+[Signed URLs](/getting-started/create-and-render/) render on demand. Generating a signed URL does not create an image or use image credits. Rendering happens when the URL is requested, including when it is downloaded. To use another format, generate a new signed URL rather than editing its signed parameters.
+
+## Resources
+
+- [Using the API](/getting-started/using-the-api/)
+- [Rendering parameters](/parameters/)
+- [Image templates](/getting-started/templates/)
+- [Signed image URLs](/getting-started/create-and-render/)
