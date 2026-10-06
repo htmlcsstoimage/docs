@@ -151,6 +151,7 @@ const navigation = [
       { label: 'Emoji', link: '/guides/debugging/emoji/' },
       { label: 'Cloudflare challenges', link: '/guides/debugging/cloudflare-challenges/' },
       { label: 'OG Image caching', link: '/guides/debugging/og-image-caching/' },
+      { label: 'Submit feedback', link: '/guides/debugging/feedback/' },
     ] },
     { label: 'Styling', items: [
       { label: 'Overview', link: '/guides/styling/' },

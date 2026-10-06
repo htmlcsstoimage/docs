@@ -128,4 +128,25 @@ If a tool reports insufficient permissions, it was not executed. [Reconnect and 
 
 API key management is available through the [REST Management API](/management-api/api-keys/) and dashboard, not MCP. MCP also has no tools for deleting images/templates or changing billing, membership, or organization settings. Use the corresponding REST operations or dashboard where available.
 
+## Feedback
+
+| Tool | Required permission | Arguments and result |
+|:-----|:--------------------|:---------------------|
+| `submit_feedback` | None | Required `message`; optional `subject` and `callback_url`. Returns `success`, `item.message`, and `item.id`. |
+
+Use any authenticated MCP connection to report a bug, request a feature, or suggest an improvement. Describe what you tried, what you expected, and what happened. Include steps to reproduce the issue and related request, image, or template IDs.
+
+Example arguments:
+
+```json
+{
+  "subject": "PDF content is clipped",
+  "message": "The bottom of page 2 is clipped when I render my HTML as PDF. I expected the full page to appear. To reproduce, render the same HTML with format set to pdf, then png. The PNG includes all the content."
+}
+```
+
+Submit feedback when the user requests or approves it. Remove credentials and get explicit approval before sharing private content. After submitting, share the confirmation and feedback ID.
+
+Your organization can submit **2 reports per minute** across REST and MCP. For a rate-limit error, wait 60 seconds before retrying. See the [feedback guide](/guides/debugging/feedback/) for field limits, callbacks, and response examples.
+
 <Help />

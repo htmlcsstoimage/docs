@@ -1,0 +1,100 @@
+---
+title: Submit feedback
+slug: guides/debugging/feedback
+description: >-
+  Report bugs, request features, and suggest improvements through POST /v1/feedback or the submit_feedback MCP tool.
+---
+import Endpoint from '../../../../components/Endpoint.astro';
+import Help from '../../../../components/Help.astro';
+
+Report a bug, request a feature, or suggest an improvement to the HCTI team through the API or your MCP assistant.
+
+For bug reports, describe what you tried, what you expected, and what happened. Include steps to reproduce the issue and any related request, image, or template IDs.
+
+## REST endpoint
+
+<Endpoint method="POST" path="/v1/feedback" />
+
+Send a JSON body with `Content-Type: application/json`. You can submit anonymously or use [HTTP Basic authentication](/getting-started/using-the-api/api-keys/) to link feedback to your organization. Any valid API key can submit feedback.
+
+## Parameters
+
+| Name | Type | Required | Description |
+|:-----|:-----|:---------|:------------|
+| `message` | String | Yes | Describe your feedback in at least 20 characters, excluding surrounding whitespace. Maximum 10,000 characters, including whitespace. |
+| `subject` | String | No | Short summary, up to 255 characters. Surrounding whitespace is trimmed; blank subjects are ignored. |
+| `callback_url` | String | No | Public HTTP or HTTPS URL where HCTI can send a response. Maximum 2,048 characters. |
+
+A callback URL must include its scheme and host, resolve only to public IP addresses, and contain no embedded credentials or URL fragment. Omit `callback_url` when you do not need a response. Callback responses have no guaranteed delivery or response time.
+
+Remove credentials from your report and get approval before sharing someone else's private content, including customer HTML.
+
+## Example usage
+
+Submit a bug report:
+
+```bash
+curl --request POST 'https://hcti.io/v1/feedback' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "subject": "PDF content is clipped",
+    "message": "The bottom of page 2 is clipped when I render my HTML as PDF. I expected the full page to appear. To reproduce, render the same HTML with format set to pdf, then png. The PNG includes all the content."
+  }'
+```
+
+To link the report to your organization, add `--user "$HCTI_API_ID:$HCTI_API_KEY"` with your API credentials set in those environment variables.
+
+### Success response
+
+`200 OK` returns a confirmation and the feedback ID:
+
+```json
+{
+  "message": "Feedback received. Thank you!",
+  "id": "<feedback-id>"
+}
+```
+
+Use the returned `id` to reference your feedback.
+
+### Errors and rate limits
+
+Invalid input returns `400 Bad Request` with the message `Invalid feedback.` Check `validationErrors` for the fields to fix. Invalid API credentials return `401 Unauthorized`.
+
+The `feedback:write` rate limit allows **2 submissions per minute**:
+
+- Your organization shares this limit across all API keys and MCP connections.
+- Anonymous API submissions share a limit per IP address.
+
+If the API returns `429 Too Many Requests`, wait the number of seconds in `Retry-After`, or 60 seconds if the header is absent. See [rate limits](/getting-started/using-the-api/rate-limits/#feedback-submissions).
+
+## Submit feedback through MCP
+
+Ask your connected assistant to send feedback to HCTI. The [`submit_feedback`](/integrations/mcp/tools/#feedback) tool is available to every authenticated MCP connection.
+
+The tool accepts `message`, `subject`, and `callback_url` as arguments:
+
+```json
+{
+  "subject": "PDF content is clipped",
+  "message": "The bottom of page 2 is clipped when I render my HTML as PDF. I expected the full page to appear. To reproduce, render the same HTML with format set to pdf, then png. The PNG includes all the content."
+}
+```
+
+Successful submissions return:
+
+```json
+{
+  "item": {
+    "message": "Feedback received. Thank you!",
+    "id": "<feedback-id>"
+  },
+  "success": true
+}
+```
+
+Use `success` to check the result and `item.id` to reference your feedback. If the tool reports a rate-limit error, wait 60 seconds before retrying.
+
+Assistants should get your approval before sending feedback on their own and share the confirmation and feedback ID after submitting.
+
+<Help />

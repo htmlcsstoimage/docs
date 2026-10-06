@@ -28,6 +28,10 @@ List and get operations use the read group. Create, update, and delete operation
 
 These management rate limits do not apply to image creation, template operations, or `GET /v1/usage`. Image generation has no per-second or per-minute request limit; image credits and other plan limits still apply. Dashboard actions can have their own limits.
 
+## Feedback submissions
+
+[`POST /v1/feedback` and `submit_feedback`](/guides/debugging/feedback/) allow **2 submissions per minute** in the `feedback:write` group. Your organization shares this limit across all API keys and MCP connections. Anonymous API submissions share a limit per IP address.
+
 ## REST response headers
 
 Management resource responses can include rate-limit information after authentication and permission checks:

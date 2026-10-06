@@ -35,10 +35,11 @@ Permissions unavailable to your organization role are disabled. Owners and Admin
 | Create/update management resources | The corresponding `proxies:create_update`, `storage_destinations:create_update`, or `og_configs:create_update` |
 | Delete a management resource | The corresponding resource's `:delete` permission |
 | Get the AWS storage external ID | `storage_destinations:create_update` |
+| Submit feedback | None |
 
 For workflows that first inspect and then update a resource, approve both read and create/update. Deletion is a separate permission. See the [complete tools reference](/integrations/mcp/tools/) and [permission model](/getting-started/using-the-api/permissions/).
 
-A connection with no selected permissions cannot perform product operations. Successfully connecting or seeing a tool listed does not mean it is authorized.
+Every authenticated connection can use [`submit_feedback`](/integrations/mcp/tools/#feedback). Image and resource operations require the permissions listed above.
 
 ## Add permissions to an existing connection
 
