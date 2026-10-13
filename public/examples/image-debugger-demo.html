@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Image debugger demo — daily report</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px;
+      width: 800px;
+      background: #eef5f1;
+      color: #182f25;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .report {
+      padding: 36px;
+      border: 1px solid #d8e6dd;
+      border-radius: 24px;
+      background: white;
+      box-shadow: 0 12px 36px #183e2410;
+    }
+    header { display: flex; align-items: center; justify-content: space-between; }
+    .brand { font-size: 14px; font-weight: 700; letter-spacing: .02em; }
+    .badge {
+      padding: 7px 11px;
+      border-radius: 20px;
+      background: #e7f6ed;
+      color: #08743b;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    h1 { margin: 30px 0 8px; font-size: 36px; letter-spacing: -.04em; }
+    .subtitle { margin: 0; color: #64796d; font-size: 15px; }
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 28px 0; }
+    .metric { padding: 20px; border: 1px solid #e0e9e3; border-radius: 14px; background: #fafcfb; }
+    .label { color: #64796d; font-size: 12px; }
+    .value { margin: 10px 0 6px; font-size: 27px; font-weight: 700; letter-spacing: -.03em; }
+    .change { color: #08743b; font-size: 12px; }
+    .activity { padding: 20px; border: 1px solid #e0e9e3; border-radius: 14px; }
+    .activity h2 { margin: 0 0 14px; font-size: 14px; }
+    .row { display: flex; justify-content: space-between; padding: 11px 0; font-size: 13px; }
+    .row + .row { border-top: 1px solid #edf2ee; }
+    .status { color: #64796d; }
+    .notice { margin-top: 18px; padding: 13px 16px; border-radius: 10px; background: #fff7e7; color: #865d14; font-size: 12px; }
+    footer { display: flex; justify-content: space-between; margin-top: 24px; color: #7b8d82; font-size: 11px; }
+  </style>
+</head>
+<body>
+  <main class="report" id="daily-report">
+    <header>
+      <span class="brand">NORTHSTAR / DAILY REPORT</span>
+      <span class="badge" id="render-status">Preparing report</span>
+    </header>
+    <h1>A good day for growth.</h1>
+    <p class="subtitle">October 13, 2026 · All figures are sample data.</p>
+    <section class="metrics" aria-label="Daily metrics">
+      <div class="metric">
+        <div class="label">Revenue</div>
+        <div class="value">$12,480</div>
+        <div class="change">↑ 18.6% this week</div>
+      </div>
+      <div class="metric">
+        <div class="label">New customers</div>
+        <div class="value">84</div>
+        <div class="change">↑ 12.0% this week</div>
+      </div>
+      <div class="metric">
+        <div class="label">Conversion rate</div>
+        <div class="value">4.8%</div>
+        <div class="change">↑ 0.7 percentage points</div>
+      </div>
+    </section>
+    <section class="activity" aria-label="Report activity">
+      <h2>Report activity</h2>
+      <div class="row"><span>Sample metrics loaded</span><span class="status">Complete</span></div>
+      <div class="row"><span>Revenue summary</span><span class="status">Complete</span></div>
+      <div class="row"><span>Optional revenue chart</span><span class="status">Unavailable</span></div>
+    </section>
+    <div class="notice">Demo: the optional chart intentionally fails. Open the debugger's Logs tab to inspect the error.</div>
+    <footer><span>Generated with HTML/CSS to Image</span><span id="completion-status">Initializing…</span></footer>
+  </main>
+  <script>
+    // These diagnostics are intentional. No external services are called.
+    console.log("[Demo] Starting daily report render.");
+    console.info("[Demo] Loaded sample metrics: revenue=$12,480, customers=84, conversion=4.8%.");
+    console.debug("[Demo] Layout: three metric cards; optional revenue chart enabled.");
+
+    setTimeout(function checkConfiguration() {
+      console.warn("[Demo] Custom font is unavailable. Using the system font fallback.");
+      console.error("[Demo] Optional chart data is missing. The summary cards can still render.");
+      console.assert(false, "[Demo] Expected 7 chart data points; received 0.");
+    }, 100);
+
+    // A separate timer throws an uncaught error with named stack frames.
+    // It doesn't stop the readiness timer below from running.
+    function validateChartData() {
+      throw new TypeError("[Demo] Cannot render the optional revenue chart: chart data is missing.");
+    }
+
+    function renderRevenueChart() {
+      validateChartData();
+    }
+
+    setTimeout(function initializeOptionalChart() {
+      renderRevenueChart();
+    }, 200);
+
+    setTimeout(function finishReport() {
+      document.getElementById("render-status").textContent = "Ready to capture";
+      document.getElementById("completion-status").textContent = "Report ready · 3 sample metrics";
+      console.info("[Demo] Report ready. The optional chart error did not prevent capture.");
+
+      // Works with render_when_ready for both HTML input and URL screenshots.
+      const ready = document.createElement("span");
+      ready.id = "HCTIReadyNow";
+      ready.hidden = true;
+      document.body.appendChild(ready);
+    }, 500);
+  </script>
+</body>
+</html>

@@ -1,24 +1,29 @@
 import fs from 'node:fs/promises';
 import { imageVariants } from './image-variants.mjs';
 
-const originals = new Set();
+const originals = new Map();
 async function collect(dir) {
   for (const entry of await fs.readdir(dir, { withFileTypes: true })) {
     const file = `${dir}/${entry.name}`;
     if (entry.isDirectory()) await collect(file);
     else if (/\.mdx?$/.test(file)) {
       const content = await fs.readFile(file, 'utf8');
-      for (const match of content.matchAll(/<DocImage\b[^>]*\bsrc="(\/assets\/images\/[^"\n]+\.(?:png|jpe?g|webp|avif))"/gi)) originals.add(match[1]);
+      for (const match of content.matchAll(/<DocImage\b[^>]*>/gi)) {
+        const src = match[0].match(/\bsrc="(\/assets\/images\/[^"\n]+\.(?:png|jpe?g|webp|avif))"/i)?.[1];
+        if (!src) continue;
+        const preset = /\bpreset="screenshot"/.test(match[0]) ? 'screenshot' : originals.get(src)?.preset;
+        originals.set(src, { preset });
+      }
     }
   }
 }
 await collect('src/content/docs');
 const manifest = {};
-const pending = [...originals].sort();
+const pending = [...originals.keys()].sort();
 await Promise.all(Array.from({ length: 2 }, async () => {
   while (pending.length) {
     const src = pending.shift();
-    const variants = await imageVariants(await fs.readFile(`public${decodeURIComponent(src)}`), 'public/assets/images/g', src);
+    const variants = await imageVariants(await fs.readFile(`public${decodeURIComponent(src)}`), 'public/assets/images/g', src, originals.get(src));
     if (variants) manifest[src] = variants;
   }
 }));

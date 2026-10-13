@@ -49,3 +49,25 @@ test('small images produce one variant at their natural width', async () => {
     await fs.rm(dir, { recursive: true, force: true });
   }
 });
+
+test('screenshot previews preserve resized pixels and support high-density displays', async () => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'docs-screenshot-test-'));
+  try {
+    const width = 2200, height = 16;
+    const pixels = Buffer.alloc(width * height * 3);
+    for (let i = 0; i < pixels.length; i++) pixels[i] = (i * 37 + Math.floor(i / 11)) % 256;
+    const input = await sharp(pixels, { raw: { width, height, channels: 3 } }).png().toBuffer();
+    const result = await imageVariants(input, dir, '/assets/images/screenshot.png', { preset: 'screenshot' });
+    assert.deepEqual(Object.keys(result.sources), ['webp']);
+    assert.equal(result.sources.webp.at(-1).width, 2048);
+    for (const source of result.sources.webp) {
+      const expected = await sharp(input).resize({ width: source.width }).raw().toBuffer();
+      const file = path.join(dir, decodeURIComponent(source.src.slice('/assets/images/g/'.length)));
+      assert.ok(expected.equals(await sharp(file).removeAlpha().raw().toBuffer()));
+    }
+    const standard = await imageVariants(input, dir, '/assets/images/screenshot.png');
+    assert.notEqual(standard.sources.webp[0].src, result.sources.webp[0].src);
+  } finally {
+    await fs.rm(dir, { recursive: true, force: true });
+  }
+});

@@ -145,6 +145,7 @@ const navigation = [
     ] },
     { label: 'Debugging', items: [
       { label: 'Overview', link: '/guides/debugging/' },
+      { label: 'Image debugger (beta)', link: '/guides/debugging/using-the-image-debugger/' },
       { label: 'Blurry images', link: '/guides/debugging/blurry-images/' },
       { label: 'Cropping issues', link: '/guides/debugging/cropping-issues/' },
       { label: 'White images', link: '/guides/debugging/white-images/' },

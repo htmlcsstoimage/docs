@@ -63,31 +63,17 @@
     "width": 1269,
     "height": 802,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/api-keys/create-key-advanced/33572280db545fec3508.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/api-keys/create-key-advanced/33572280db545fec3508.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/api-keys/create-key-advanced/33572280db545fec3508.w1269.avif",
-          "width": 1269
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/api-keys/create-key-advanced/33572280db545fec3508.w384.webp",
+          "src": "/assets/images/g/api-keys/create-key-advanced/ad177730f44e3af22e6a.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/api-keys/create-key-advanced/33572280db545fec3508.w768.webp",
+          "src": "/assets/images/g/api-keys/create-key-advanced/ad177730f44e3af22e6a.w768.webp",
           "width": 768
         },
         {
-          "src": "/assets/images/g/api-keys/create-key-advanced/33572280db545fec3508.w1269.webp",
+          "src": "/assets/images/g/api-keys/create-key-advanced/ad177730f44e3af22e6a.w1269.webp",
           "width": 1269
         }
       ]
@@ -97,31 +83,17 @@
     "width": 1272,
     "height": 802,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/api-keys/create-key-simple/b2366fa7d8abc3eebbe9.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/api-keys/create-key-simple/b2366fa7d8abc3eebbe9.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/api-keys/create-key-simple/b2366fa7d8abc3eebbe9.w1272.avif",
-          "width": 1272
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/api-keys/create-key-simple/b2366fa7d8abc3eebbe9.w384.webp",
+          "src": "/assets/images/g/api-keys/create-key-simple/d65288cbbbe92b63bbef.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/api-keys/create-key-simple/b2366fa7d8abc3eebbe9.w768.webp",
+          "src": "/assets/images/g/api-keys/create-key-simple/d65288cbbbe92b63bbef.w768.webp",
           "width": 768
         },
         {
-          "src": "/assets/images/g/api-keys/create-key-simple/b2366fa7d8abc3eebbe9.w1272.webp",
+          "src": "/assets/images/g/api-keys/create-key-simple/d65288cbbbe92b63bbef.w1272.webp",
           "width": 1272
         }
       ]
@@ -131,31 +103,17 @@
     "width": 997,
     "height": 634,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/api-keys/permission-details/d424fa70732fab745c40.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/api-keys/permission-details/d424fa70732fab745c40.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/api-keys/permission-details/d424fa70732fab745c40.w997.avif",
-          "width": 997
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/api-keys/permission-details/d424fa70732fab745c40.w384.webp",
+          "src": "/assets/images/g/api-keys/permission-details/ef4165fb9dc30bd290e0.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/api-keys/permission-details/d424fa70732fab745c40.w768.webp",
+          "src": "/assets/images/g/api-keys/permission-details/ef4165fb9dc30bd290e0.w768.webp",
           "width": 768
         },
         {
-          "src": "/assets/images/g/api-keys/permission-details/d424fa70732fab745c40.w997.webp",
+          "src": "/assets/images/g/api-keys/permission-details/ef4165fb9dc30bd290e0.w997.webp",
           "width": 997
         }
       ]
@@ -379,31 +337,17 @@
     "width": 956,
     "height": 538,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/google/189ff53725b34ada600a.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/google/189ff53725b34ada600a.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/google/189ff53725b34ada600a.w956.avif",
-          "width": 956
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/google/189ff53725b34ada600a.w384.webp",
+          "src": "/assets/images/g/google/87d4edcb6b5e94819055.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/google/189ff53725b34ada600a.w768.webp",
+          "src": "/assets/images/g/google/87d4edcb6b5e94819055.w768.webp",
           "width": 768
         },
         {
-          "src": "/assets/images/g/google/189ff53725b34ada600a.w956.webp",
+          "src": "/assets/images/g/google/87d4edcb6b5e94819055.w956.webp",
           "width": 956
         }
       ]
@@ -435,43 +379,193 @@
       ]
     }
   },
+  "/assets/images/image-debugger/demo-events.png": {
+    "width": 3360,
+    "height": 1952,
+    "sources": {
+      "webp": [
+        {
+          "src": "/assets/images/g/image-debugger/demo-events/8e82e860ba5f6cc43ef3.w384.webp",
+          "width": 384
+        },
+        {
+          "src": "/assets/images/g/image-debugger/demo-events/8e82e860ba5f6cc43ef3.w768.webp",
+          "width": 768
+        },
+        {
+          "src": "/assets/images/g/image-debugger/demo-events/8e82e860ba5f6cc43ef3.w1280.webp",
+          "width": 1280
+        },
+        {
+          "src": "/assets/images/g/image-debugger/demo-events/8e82e860ba5f6cc43ef3.w1600.webp",
+          "width": 1600
+        },
+        {
+          "src": "/assets/images/g/image-debugger/demo-events/8e82e860ba5f6cc43ef3.w2048.webp",
+          "width": 2048
+        }
+      ]
+    }
+  },
+  "/assets/images/image-debugger/demo-image.png": {
+    "width": 3360,
+    "height": 1952,
+    "sources": {
+      "webp": [
+        {
+          "src": "/assets/images/g/image-debugger/demo-image/29a9c3553d0efff0456d.w384.webp",
+          "width": 384
+        },
+        {
+          "src": "/assets/images/g/image-debugger/demo-image/29a9c3553d0efff0456d.w768.webp",
+          "width": 768
+        },
+        {
+          "src": "/assets/images/g/image-debugger/demo-image/29a9c3553d0efff0456d.w1280.webp",
+          "width": 1280
+        },
+        {
+          "src": "/assets/images/g/image-debugger/demo-image/29a9c3553d0efff0456d.w1600.webp",
+          "width": 1600
+        },
+        {
+          "src": "/assets/images/g/image-debugger/demo-image/29a9c3553d0efff0456d.w2048.webp",
+          "width": 2048
+        }
+      ]
+    }
+  },
+  "/assets/images/image-debugger/demo-logs.png": {
+    "width": 3360,
+    "height": 1952,
+    "sources": {
+      "webp": [
+        {
+          "src": "/assets/images/g/image-debugger/demo-logs/ea146174755b4fca1697.w384.webp",
+          "width": 384
+        },
+        {
+          "src": "/assets/images/g/image-debugger/demo-logs/ea146174755b4fca1697.w768.webp",
+          "width": 768
+        },
+        {
+          "src": "/assets/images/g/image-debugger/demo-logs/ea146174755b4fca1697.w1280.webp",
+          "width": 1280
+        },
+        {
+          "src": "/assets/images/g/image-debugger/demo-logs/ea146174755b4fca1697.w1600.webp",
+          "width": 1600
+        },
+        {
+          "src": "/assets/images/g/image-debugger/demo-logs/ea146174755b4fca1697.w2048.webp",
+          "width": 2048
+        }
+      ]
+    }
+  },
+  "/assets/images/image-debugger/events.png": {
+    "width": 3360,
+    "height": 1952,
+    "sources": {
+      "webp": [
+        {
+          "src": "/assets/images/g/image-debugger/events/9d904032bb2aedf06368.w384.webp",
+          "width": 384
+        },
+        {
+          "src": "/assets/images/g/image-debugger/events/9d904032bb2aedf06368.w768.webp",
+          "width": 768
+        },
+        {
+          "src": "/assets/images/g/image-debugger/events/9d904032bb2aedf06368.w1280.webp",
+          "width": 1280
+        },
+        {
+          "src": "/assets/images/g/image-debugger/events/9d904032bb2aedf06368.w1600.webp",
+          "width": 1600
+        },
+        {
+          "src": "/assets/images/g/image-debugger/events/9d904032bb2aedf06368.w2048.webp",
+          "width": 2048
+        }
+      ]
+    }
+  },
+  "/assets/images/image-debugger/image-details.png": {
+    "width": 3360,
+    "height": 1952,
+    "sources": {
+      "webp": [
+        {
+          "src": "/assets/images/g/image-debugger/image-details/a51dc3b909c13b03bcb1.w384.webp",
+          "width": 384
+        },
+        {
+          "src": "/assets/images/g/image-debugger/image-details/a51dc3b909c13b03bcb1.w768.webp",
+          "width": 768
+        },
+        {
+          "src": "/assets/images/g/image-debugger/image-details/a51dc3b909c13b03bcb1.w1280.webp",
+          "width": 1280
+        },
+        {
+          "src": "/assets/images/g/image-debugger/image-details/a51dc3b909c13b03bcb1.w1600.webp",
+          "width": 1600
+        },
+        {
+          "src": "/assets/images/g/image-debugger/image-details/a51dc3b909c13b03bcb1.w2048.webp",
+          "width": 2048
+        }
+      ]
+    }
+  },
+  "/assets/images/image-debugger/requests.png": {
+    "width": 3360,
+    "height": 1952,
+    "sources": {
+      "webp": [
+        {
+          "src": "/assets/images/g/image-debugger/requests/0d488bd05ea64d0928d6.w384.webp",
+          "width": 384
+        },
+        {
+          "src": "/assets/images/g/image-debugger/requests/0d488bd05ea64d0928d6.w768.webp",
+          "width": 768
+        },
+        {
+          "src": "/assets/images/g/image-debugger/requests/0d488bd05ea64d0928d6.w1280.webp",
+          "width": 1280
+        },
+        {
+          "src": "/assets/images/g/image-debugger/requests/0d488bd05ea64d0928d6.w1600.webp",
+          "width": 1600
+        },
+        {
+          "src": "/assets/images/g/image-debugger/requests/0d488bd05ea64d0928d6.w2048.webp",
+          "width": 2048
+        }
+      ]
+    }
+  },
   "/assets/images/insomnia1.png": {
     "width": 1438,
     "height": 811,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/insomnia1/e52a52d5fe0591600bf8.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/insomnia1/e52a52d5fe0591600bf8.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/insomnia1/e52a52d5fe0591600bf8.w1280.avif",
-          "width": 1280
-        },
-        {
-          "src": "/assets/images/g/insomnia1/e52a52d5fe0591600bf8.w1438.avif",
-          "width": 1438
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/insomnia1/e52a52d5fe0591600bf8.w384.webp",
+          "src": "/assets/images/g/insomnia1/6dd0ce9a015b7db1ff1a.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/insomnia1/e52a52d5fe0591600bf8.w768.webp",
+          "src": "/assets/images/g/insomnia1/6dd0ce9a015b7db1ff1a.w768.webp",
           "width": 768
         },
         {
-          "src": "/assets/images/g/insomnia1/e52a52d5fe0591600bf8.w1280.webp",
+          "src": "/assets/images/g/insomnia1/6dd0ce9a015b7db1ff1a.w1280.webp",
           "width": 1280
         },
         {
-          "src": "/assets/images/g/insomnia1/e52a52d5fe0591600bf8.w1438.webp",
+          "src": "/assets/images/g/insomnia1/6dd0ce9a015b7db1ff1a.w1438.webp",
           "width": 1438
         }
       ]
@@ -481,39 +575,21 @@
     "width": 1407,
     "height": 809,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/insomnia2/77d9cc3c4ff3c9eea8fd.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/insomnia2/77d9cc3c4ff3c9eea8fd.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/insomnia2/77d9cc3c4ff3c9eea8fd.w1280.avif",
-          "width": 1280
-        },
-        {
-          "src": "/assets/images/g/insomnia2/77d9cc3c4ff3c9eea8fd.w1407.avif",
-          "width": 1407
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/insomnia2/77d9cc3c4ff3c9eea8fd.w384.webp",
+          "src": "/assets/images/g/insomnia2/e27dab44fe2792e8fac9.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/insomnia2/77d9cc3c4ff3c9eea8fd.w768.webp",
+          "src": "/assets/images/g/insomnia2/e27dab44fe2792e8fac9.w768.webp",
           "width": 768
         },
         {
-          "src": "/assets/images/g/insomnia2/77d9cc3c4ff3c9eea8fd.w1280.webp",
+          "src": "/assets/images/g/insomnia2/e27dab44fe2792e8fac9.w1280.webp",
           "width": 1280
         },
         {
-          "src": "/assets/images/g/insomnia2/77d9cc3c4ff3c9eea8fd.w1407.webp",
+          "src": "/assets/images/g/insomnia2/e27dab44fe2792e8fac9.w1407.webp",
           "width": 1407
         }
       ]
@@ -651,40 +727,26 @@
     "width": 1868,
     "height": 610,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/make/4ccebac7b2973160c8bf.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/make/4ccebac7b2973160c8bf.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/make/4ccebac7b2973160c8bf.w1280.avif",
-          "width": 1280
-        },
-        {
-          "src": "/assets/images/g/make/4ccebac7b2973160c8bf.w1600.avif",
-          "width": 1600
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/make/4ccebac7b2973160c8bf.w384.webp",
+          "src": "/assets/images/g/make/dce8f305e8da09900a56.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/make/4ccebac7b2973160c8bf.w768.webp",
+          "src": "/assets/images/g/make/dce8f305e8da09900a56.w768.webp",
           "width": 768
         },
         {
-          "src": "/assets/images/g/make/4ccebac7b2973160c8bf.w1280.webp",
+          "src": "/assets/images/g/make/dce8f305e8da09900a56.w1280.webp",
           "width": 1280
         },
         {
-          "src": "/assets/images/g/make/4ccebac7b2973160c8bf.w1600.webp",
+          "src": "/assets/images/g/make/dce8f305e8da09900a56.w1600.webp",
           "width": 1600
+        },
+        {
+          "src": "/assets/images/g/make/dce8f305e8da09900a56.w1868.webp",
+          "width": 1868
         }
       ]
     }
@@ -693,31 +755,17 @@
     "width": 1024,
     "height": 560,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/proxies-dashboard/09172ac94504bb093a2d.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/proxies-dashboard/09172ac94504bb093a2d.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/proxies-dashboard/09172ac94504bb093a2d.w1024.avif",
-          "width": 1024
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/proxies-dashboard/09172ac94504bb093a2d.w384.webp",
+          "src": "/assets/images/g/proxies-dashboard/adb552cccc591b5e6421.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/proxies-dashboard/09172ac94504bb093a2d.w768.webp",
+          "src": "/assets/images/g/proxies-dashboard/adb552cccc591b5e6421.w768.webp",
           "width": 768
         },
         {
-          "src": "/assets/images/g/proxies-dashboard/09172ac94504bb093a2d.w1024.webp",
+          "src": "/assets/images/g/proxies-dashboard/adb552cccc591b5e6421.w1024.webp",
           "width": 1024
         }
       ]
@@ -727,23 +775,13 @@
     "width": 470,
     "height": 240,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/selector-example/1d7cdc0f4278bad1c616.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/selector-example/1d7cdc0f4278bad1c616.w470.avif",
-          "width": 470
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/selector-example/1d7cdc0f4278bad1c616.w384.webp",
+          "src": "/assets/images/g/selector-example/bd8a4d5095ffa2d9d2b8.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/selector-example/1d7cdc0f4278bad1c616.w470.webp",
+          "src": "/assets/images/g/selector-example/bd8a4d5095ffa2d9d2b8.w470.webp",
           "width": 470
         }
       ]
@@ -753,31 +791,17 @@
     "width": 884,
     "height": 438,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/slack-email-1/10f21f2d49dcf6c6d26a.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/slack-email-1/10f21f2d49dcf6c6d26a.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/slack-email-1/10f21f2d49dcf6c6d26a.w884.avif",
-          "width": 884
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/slack-email-1/10f21f2d49dcf6c6d26a.w384.webp",
+          "src": "/assets/images/g/slack-email-1/cf4560687ae60ef4cd12.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/slack-email-1/10f21f2d49dcf6c6d26a.w768.webp",
+          "src": "/assets/images/g/slack-email-1/cf4560687ae60ef4cd12.w768.webp",
           "width": 768
         },
         {
-          "src": "/assets/images/g/slack-email-1/10f21f2d49dcf6c6d26a.w884.webp",
+          "src": "/assets/images/g/slack-email-1/cf4560687ae60ef4cd12.w884.webp",
           "width": 884
         }
       ]
@@ -787,40 +811,26 @@
     "width": 2046,
     "height": 1142,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/slack-email-2/ff6a31eab25518882a7e.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/slack-email-2/ff6a31eab25518882a7e.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/slack-email-2/ff6a31eab25518882a7e.w1280.avif",
-          "width": 1280
-        },
-        {
-          "src": "/assets/images/g/slack-email-2/ff6a31eab25518882a7e.w1600.avif",
-          "width": 1600
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/slack-email-2/ff6a31eab25518882a7e.w384.webp",
+          "src": "/assets/images/g/slack-email-2/2c2c60a62c94427c4bbd.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/slack-email-2/ff6a31eab25518882a7e.w768.webp",
+          "src": "/assets/images/g/slack-email-2/2c2c60a62c94427c4bbd.w768.webp",
           "width": 768
         },
         {
-          "src": "/assets/images/g/slack-email-2/ff6a31eab25518882a7e.w1280.webp",
+          "src": "/assets/images/g/slack-email-2/2c2c60a62c94427c4bbd.w1280.webp",
           "width": 1280
         },
         {
-          "src": "/assets/images/g/slack-email-2/ff6a31eab25518882a7e.w1600.webp",
+          "src": "/assets/images/g/slack-email-2/2c2c60a62c94427c4bbd.w1600.webp",
           "width": 1600
+        },
+        {
+          "src": "/assets/images/g/slack-email-2/2c2c60a62c94427c4bbd.w2046.webp",
+          "width": 2046
         }
       ]
     }
@@ -829,40 +839,26 @@
     "width": 2028,
     "height": 2154,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/slack-email-3/25ff98c2a05dfc905289.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/slack-email-3/25ff98c2a05dfc905289.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/slack-email-3/25ff98c2a05dfc905289.w1280.avif",
-          "width": 1280
-        },
-        {
-          "src": "/assets/images/g/slack-email-3/25ff98c2a05dfc905289.w1600.avif",
-          "width": 1600
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/slack-email-3/25ff98c2a05dfc905289.w384.webp",
+          "src": "/assets/images/g/slack-email-3/5212c2ded53a3c29fe78.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/slack-email-3/25ff98c2a05dfc905289.w768.webp",
+          "src": "/assets/images/g/slack-email-3/5212c2ded53a3c29fe78.w768.webp",
           "width": 768
         },
         {
-          "src": "/assets/images/g/slack-email-3/25ff98c2a05dfc905289.w1280.webp",
+          "src": "/assets/images/g/slack-email-3/5212c2ded53a3c29fe78.w1280.webp",
           "width": 1280
         },
         {
-          "src": "/assets/images/g/slack-email-3/25ff98c2a05dfc905289.w1600.webp",
+          "src": "/assets/images/g/slack-email-3/5212c2ded53a3c29fe78.w1600.webp",
           "width": 1600
+        },
+        {
+          "src": "/assets/images/g/slack-email-3/5212c2ded53a3c29fe78.w2028.webp",
+          "width": 2028
         }
       ]
     }
@@ -871,40 +867,26 @@
     "width": 2112,
     "height": 1184,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/slack-email-4/734a21ae775140c5f39a.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/slack-email-4/734a21ae775140c5f39a.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/slack-email-4/734a21ae775140c5f39a.w1280.avif",
-          "width": 1280
-        },
-        {
-          "src": "/assets/images/g/slack-email-4/734a21ae775140c5f39a.w1600.avif",
-          "width": 1600
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/slack-email-4/734a21ae775140c5f39a.w384.webp",
+          "src": "/assets/images/g/slack-email-4/242f3c6523c0b3b627f0.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/slack-email-4/734a21ae775140c5f39a.w768.webp",
+          "src": "/assets/images/g/slack-email-4/242f3c6523c0b3b627f0.w768.webp",
           "width": 768
         },
         {
-          "src": "/assets/images/g/slack-email-4/734a21ae775140c5f39a.w1280.webp",
+          "src": "/assets/images/g/slack-email-4/242f3c6523c0b3b627f0.w1280.webp",
           "width": 1280
         },
         {
-          "src": "/assets/images/g/slack-email-4/734a21ae775140c5f39a.w1600.webp",
+          "src": "/assets/images/g/slack-email-4/242f3c6523c0b3b627f0.w1600.webp",
           "width": 1600
+        },
+        {
+          "src": "/assets/images/g/slack-email-4/242f3c6523c0b3b627f0.w2048.webp",
+          "width": 2048
         }
       ]
     }
@@ -913,40 +895,26 @@
     "width": 2118,
     "height": 2058,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/slack-email-5/93119a4c9f95979bd48d.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/slack-email-5/93119a4c9f95979bd48d.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/slack-email-5/93119a4c9f95979bd48d.w1280.avif",
-          "width": 1280
-        },
-        {
-          "src": "/assets/images/g/slack-email-5/93119a4c9f95979bd48d.w1600.avif",
-          "width": 1600
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/slack-email-5/93119a4c9f95979bd48d.w384.webp",
+          "src": "/assets/images/g/slack-email-5/237651cd3b94a3df2b54.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/slack-email-5/93119a4c9f95979bd48d.w768.webp",
+          "src": "/assets/images/g/slack-email-5/237651cd3b94a3df2b54.w768.webp",
           "width": 768
         },
         {
-          "src": "/assets/images/g/slack-email-5/93119a4c9f95979bd48d.w1280.webp",
+          "src": "/assets/images/g/slack-email-5/237651cd3b94a3df2b54.w1280.webp",
           "width": 1280
         },
         {
-          "src": "/assets/images/g/slack-email-5/93119a4c9f95979bd48d.w1600.webp",
+          "src": "/assets/images/g/slack-email-5/237651cd3b94a3df2b54.w1600.webp",
           "width": 1600
+        },
+        {
+          "src": "/assets/images/g/slack-email-5/237651cd3b94a3df2b54.w2048.webp",
+          "width": 2048
         }
       ]
     }
@@ -955,40 +923,26 @@
     "width": 2104,
     "height": 1126,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/slack-email-6/5a40f0c8ce71f26c1e34.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/slack-email-6/5a40f0c8ce71f26c1e34.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/slack-email-6/5a40f0c8ce71f26c1e34.w1280.avif",
-          "width": 1280
-        },
-        {
-          "src": "/assets/images/g/slack-email-6/5a40f0c8ce71f26c1e34.w1600.avif",
-          "width": 1600
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/slack-email-6/5a40f0c8ce71f26c1e34.w384.webp",
+          "src": "/assets/images/g/slack-email-6/a7d6d5c7ccfd8b37fba6.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/slack-email-6/5a40f0c8ce71f26c1e34.w768.webp",
+          "src": "/assets/images/g/slack-email-6/a7d6d5c7ccfd8b37fba6.w768.webp",
           "width": 768
         },
         {
-          "src": "/assets/images/g/slack-email-6/5a40f0c8ce71f26c1e34.w1280.webp",
+          "src": "/assets/images/g/slack-email-6/a7d6d5c7ccfd8b37fba6.w1280.webp",
           "width": 1280
         },
         {
-          "src": "/assets/images/g/slack-email-6/5a40f0c8ce71f26c1e34.w1600.webp",
+          "src": "/assets/images/g/slack-email-6/a7d6d5c7ccfd8b37fba6.w1600.webp",
           "width": 1600
+        },
+        {
+          "src": "/assets/images/g/slack-email-6/a7d6d5c7ccfd8b37fba6.w2048.webp",
+          "width": 2048
         }
       ]
     }
@@ -997,40 +951,26 @@
     "width": 2178,
     "height": 2222,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/slack-email-7/39ba3e4b04442faa6a9b.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/slack-email-7/39ba3e4b04442faa6a9b.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/slack-email-7/39ba3e4b04442faa6a9b.w1280.avif",
-          "width": 1280
-        },
-        {
-          "src": "/assets/images/g/slack-email-7/39ba3e4b04442faa6a9b.w1600.avif",
-          "width": 1600
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/slack-email-7/39ba3e4b04442faa6a9b.w384.webp",
+          "src": "/assets/images/g/slack-email-7/fa371f95ecf0127a40b3.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/slack-email-7/39ba3e4b04442faa6a9b.w768.webp",
+          "src": "/assets/images/g/slack-email-7/fa371f95ecf0127a40b3.w768.webp",
           "width": 768
         },
         {
-          "src": "/assets/images/g/slack-email-7/39ba3e4b04442faa6a9b.w1280.webp",
+          "src": "/assets/images/g/slack-email-7/fa371f95ecf0127a40b3.w1280.webp",
           "width": 1280
         },
         {
-          "src": "/assets/images/g/slack-email-7/39ba3e4b04442faa6a9b.w1600.webp",
+          "src": "/assets/images/g/slack-email-7/fa371f95ecf0127a40b3.w1600.webp",
           "width": 1600
+        },
+        {
+          "src": "/assets/images/g/slack-email-7/fa371f95ecf0127a40b3.w2048.webp",
+          "width": 2048
         }
       ]
     }
@@ -1039,39 +979,21 @@
     "width": 1427,
     "height": 826,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/slack-email/53a6919ebe5d66f81ad6.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/slack-email/53a6919ebe5d66f81ad6.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/slack-email/53a6919ebe5d66f81ad6.w1280.avif",
-          "width": 1280
-        },
-        {
-          "src": "/assets/images/g/slack-email/53a6919ebe5d66f81ad6.w1427.avif",
-          "width": 1427
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/slack-email/53a6919ebe5d66f81ad6.w384.webp",
+          "src": "/assets/images/g/slack-email/eb655940cf77d79d879f.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/slack-email/53a6919ebe5d66f81ad6.w768.webp",
+          "src": "/assets/images/g/slack-email/eb655940cf77d79d879f.w768.webp",
           "width": 768
         },
         {
-          "src": "/assets/images/g/slack-email/53a6919ebe5d66f81ad6.w1280.webp",
+          "src": "/assets/images/g/slack-email/eb655940cf77d79d879f.w1280.webp",
           "width": 1280
         },
         {
-          "src": "/assets/images/g/slack-email/53a6919ebe5d66f81ad6.w1427.webp",
+          "src": "/assets/images/g/slack-email/eb655940cf77d79d879f.w1427.webp",
           "width": 1427
         }
       ]
@@ -1115,40 +1037,26 @@
     "width": 3970,
     "height": 1640,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/template-editor/te-empty-editor/8babe23df3d20dff3157.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/template-editor/te-empty-editor/8babe23df3d20dff3157.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/template-editor/te-empty-editor/8babe23df3d20dff3157.w1280.avif",
-          "width": 1280
-        },
-        {
-          "src": "/assets/images/g/template-editor/te-empty-editor/8babe23df3d20dff3157.w1600.avif",
-          "width": 1600
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/template-editor/te-empty-editor/8babe23df3d20dff3157.w384.webp",
+          "src": "/assets/images/g/template-editor/te-empty-editor/d02e635366c807ac3ffe.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/template-editor/te-empty-editor/8babe23df3d20dff3157.w768.webp",
+          "src": "/assets/images/g/template-editor/te-empty-editor/d02e635366c807ac3ffe.w768.webp",
           "width": 768
         },
         {
-          "src": "/assets/images/g/template-editor/te-empty-editor/8babe23df3d20dff3157.w1280.webp",
+          "src": "/assets/images/g/template-editor/te-empty-editor/d02e635366c807ac3ffe.w1280.webp",
           "width": 1280
         },
         {
-          "src": "/assets/images/g/template-editor/te-empty-editor/8babe23df3d20dff3157.w1600.webp",
+          "src": "/assets/images/g/template-editor/te-empty-editor/d02e635366c807ac3ffe.w1600.webp",
           "width": 1600
+        },
+        {
+          "src": "/assets/images/g/template-editor/te-empty-editor/d02e635366c807ac3ffe.w2048.webp",
+          "width": 2048
         }
       ]
     }
@@ -1157,23 +1065,13 @@
     "width": 560,
     "height": 583,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/template-editor/te-image-add-flow/96f384ffc465e98a0054.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/template-editor/te-image-add-flow/96f384ffc465e98a0054.w560.avif",
-          "width": 560
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/template-editor/te-image-add-flow/96f384ffc465e98a0054.w384.webp",
+          "src": "/assets/images/g/template-editor/te-image-add-flow/f40bc04f6185bb601f55.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/template-editor/te-image-add-flow/96f384ffc465e98a0054.w560.webp",
+          "src": "/assets/images/g/template-editor/te-image-add-flow/f40bc04f6185bb601f55.w560.webp",
           "width": 560
         }
       ]
@@ -1183,40 +1081,26 @@
     "width": 3970,
     "height": 1640,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/template-editor/te-quote-preset-editor/938f1952e40503d33104.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/template-editor/te-quote-preset-editor/938f1952e40503d33104.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/template-editor/te-quote-preset-editor/938f1952e40503d33104.w1280.avif",
-          "width": 1280
-        },
-        {
-          "src": "/assets/images/g/template-editor/te-quote-preset-editor/938f1952e40503d33104.w1600.avif",
-          "width": 1600
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/template-editor/te-quote-preset-editor/938f1952e40503d33104.w384.webp",
+          "src": "/assets/images/g/template-editor/te-quote-preset-editor/854d7bc4fb744ce2bd36.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/template-editor/te-quote-preset-editor/938f1952e40503d33104.w768.webp",
+          "src": "/assets/images/g/template-editor/te-quote-preset-editor/854d7bc4fb744ce2bd36.w768.webp",
           "width": 768
         },
         {
-          "src": "/assets/images/g/template-editor/te-quote-preset-editor/938f1952e40503d33104.w1280.webp",
+          "src": "/assets/images/g/template-editor/te-quote-preset-editor/854d7bc4fb744ce2bd36.w1280.webp",
           "width": 1280
         },
         {
-          "src": "/assets/images/g/template-editor/te-quote-preset-editor/938f1952e40503d33104.w1600.webp",
+          "src": "/assets/images/g/template-editor/te-quote-preset-editor/854d7bc4fb744ce2bd36.w1600.webp",
           "width": 1600
+        },
+        {
+          "src": "/assets/images/g/template-editor/te-quote-preset-editor/854d7bc4fb744ce2bd36.w2048.webp",
+          "width": 2048
         }
       ]
     }
@@ -1225,31 +1109,17 @@
     "width": 830,
     "height": 1320,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/template-editor/te-quote-preset-variables-preview-sidebar/5a846cd1981045d02b30.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/template-editor/te-quote-preset-variables-preview-sidebar/5a846cd1981045d02b30.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/template-editor/te-quote-preset-variables-preview-sidebar/5a846cd1981045d02b30.w830.avif",
-          "width": 830
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/template-editor/te-quote-preset-variables-preview-sidebar/5a846cd1981045d02b30.w384.webp",
+          "src": "/assets/images/g/template-editor/te-quote-preset-variables-preview-sidebar/3ceb086cc4a2056b1135.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/template-editor/te-quote-preset-variables-preview-sidebar/5a846cd1981045d02b30.w768.webp",
+          "src": "/assets/images/g/template-editor/te-quote-preset-variables-preview-sidebar/3ceb086cc4a2056b1135.w768.webp",
           "width": 768
         },
         {
-          "src": "/assets/images/g/template-editor/te-quote-preset-variables-preview-sidebar/5a846cd1981045d02b30.w830.webp",
+          "src": "/assets/images/g/template-editor/te-quote-preset-variables-preview-sidebar/3ceb086cc4a2056b1135.w830.webp",
           "width": 830
         }
       ]
@@ -1259,40 +1129,26 @@
     "width": 3970,
     "height": 1640,
     "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/template-editor/te-rich-text-typography-editor/0b335257e37fdbdac048.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/template-editor/te-rich-text-typography-editor/0b335257e37fdbdac048.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/template-editor/te-rich-text-typography-editor/0b335257e37fdbdac048.w1280.avif",
-          "width": 1280
-        },
-        {
-          "src": "/assets/images/g/template-editor/te-rich-text-typography-editor/0b335257e37fdbdac048.w1600.avif",
-          "width": 1600
-        }
-      ],
       "webp": [
         {
-          "src": "/assets/images/g/template-editor/te-rich-text-typography-editor/0b335257e37fdbdac048.w384.webp",
+          "src": "/assets/images/g/template-editor/te-rich-text-typography-editor/986ee5627d15fedda76b.w384.webp",
           "width": 384
         },
         {
-          "src": "/assets/images/g/template-editor/te-rich-text-typography-editor/0b335257e37fdbdac048.w768.webp",
+          "src": "/assets/images/g/template-editor/te-rich-text-typography-editor/986ee5627d15fedda76b.w768.webp",
           "width": 768
         },
         {
-          "src": "/assets/images/g/template-editor/te-rich-text-typography-editor/0b335257e37fdbdac048.w1280.webp",
+          "src": "/assets/images/g/template-editor/te-rich-text-typography-editor/986ee5627d15fedda76b.w1280.webp",
           "width": 1280
         },
         {
-          "src": "/assets/images/g/template-editor/te-rich-text-typography-editor/0b335257e37fdbdac048.w1600.webp",
+          "src": "/assets/images/g/template-editor/te-rich-text-typography-editor/986ee5627d15fedda76b.w1600.webp",
           "width": 1600
+        },
+        {
+          "src": "/assets/images/g/template-editor/te-rich-text-typography-editor/986ee5627d15fedda76b.w2048.webp",
+          "width": 2048
         }
       ]
     }

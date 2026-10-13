@@ -176,6 +176,11 @@ Variants are grouped by the original path without its extension, for example
 Missing variants are recreated; obsolete variants and empty source folders are
 removed automatically when preparing images.
 Run `npm run prepare:images` after adding or replacing images during development.
+Use `<DocImage preset="screenshot" ... />` for screenshots with small text.
+This generates lossless WebP previews up to 2048 pixels wide. Zoom uses the
+original dimensions to fit the viewport and selects a responsive WebP or the
+full-resolution original for that size and screen density. Animated GIFs retain
+their original animation.
 Do not introduce Cloudinary tags or legacy style classes.
 
 The build applies `target="_blank" rel="noopener"` to external HTTP(S)

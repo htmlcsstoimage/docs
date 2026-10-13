@@ -1,41 +1,55 @@
 ---
 import { Zoom } from 'starlight-image-zoom/components';
 import images from '../data/images.json';
-interface Props { src: string; alt: string; width?: number; height?: number; caption?: string; }
+interface Props { src: string; alt: string; width?: number; height?: number; caption?: string; preset?: 'screenshot'; }
 const { src, alt, width, height, caption } = Astro.props;
 const optimized = (images as Record<string, { width: number; height: number; sources: Record<string, { src: string; width: number }[]> }>)[src];
 const displayWidth = width ?? optimized?.width;
 const displayHeight = height ?? (optimized && displayWidth ? Math.round(displayWidth * optimized.height / optimized.width) : undefined);
+const zoomSources = optimized?.sources.webp ?? [];
+const zoomSrcset = zoomSources.length ? [...zoomSources.map(v => `${v.src} ${v.width}w`), ...(optimized!.width > zoomSources.at(-1)!.width ? [`${src} ${optimized!.width}w`] : [])].join(', ') : undefined;
 ---
 <figure data-doc-image>
   <Zoom label={alt}>
     <picture>
-      {optimized && Object.entries(optimized.sources).map(([format, variants]) => <source type={`image/${format}`} srcset={variants.map(v => `${v.src} ${v.width}w`).join(', ')} sizes="(max-width: 50rem) 100vw, 48rem" />)}
-      <img src={src} data-doc-original={src} alt={alt} width={displayWidth} height={displayHeight} loading="lazy" decoding="async" />
+      {optimized && Object.entries(optimized.sources).map(([format, variants]) => <source type={`image/${format}`} srcset={variants.map(v => `${v.src} ${v.width}w`).join(', ')} sizes="(max-width: 56rem) 100vw, 56rem" />)}
+      <img src={src} data-doc-original={src} data-doc-zoom-srcset={zoomSrcset} data-doc-width={optimized?.width ?? displayWidth} data-doc-height={optimized?.height ?? displayHeight} alt={alt} width={displayWidth} height={displayHeight} loading="lazy" decoding="async" />
     </picture>
   </Zoom>
   {caption && <figcaption>{caption}</figcaption>}
 </figure>
 <script>
-  // Keep the loaded preview visible until the original is ready to paint.
-  const originals = new Map<string, Promise<HTMLImageElement>>();
-  function loadOriginal(src: string) {
-    const cached = originals.get(src);
+  // The plugin sizes clones using the density-adjusted preview's naturalWidth.
+  // Use the original dimensions and select a responsive source for the actual zoom size.
+  const zoomImages = new Map<string, Promise<HTMLImageElement>>();
+  function zoomRect(image: HTMLImageElement) {
+    const width = Number(image.dataset.docWidth) || image.naturalWidth;
+    const height = Number(image.dataset.docHeight) || image.naturalHeight;
+    const scale = Math.min(1, window.innerWidth / width, window.innerHeight / height);
+    return { width: width * scale, height: height * scale };
+  }
+  function loadZoomImage(image: HTMLImageElement) {
+    const src = image.dataset.docOriginal!;
+    const { width } = zoomRect(image);
+    const key = `${src}:${width}:${window.devicePixelRatio}`;
+    const cached = zoomImages.get(key);
     if (cached) return cached;
-    const image = new Image();
-    image.decoding = 'async';
-    image.src = src;
-    const ready = image.decode().then(() => image);
-    originals.set(src, ready);
+    const zoom = new Image();
+    zoom.decoding = 'async';
+    zoom.sizes = `${width}px`;
+    if (image.dataset.docZoomSrcset) zoom.srcset = image.dataset.docZoomSrcset;
+    zoom.src = src;
+    const ready = zoom.decode().then(() => zoom);
+    zoomImages.set(key, ready);
     // Bound retained decoded images when browsing many documentation pages.
-    if (originals.size > 4) originals.delete(originals.keys().next().value!);
-    ready.catch(() => { if (originals.get(src) === ready) originals.delete(src); });
+    if (zoomImages.size > 4) zoomImages.delete(zoomImages.keys().next().value!);
+    ready.catch(() => { if (zoomImages.get(key) === ready) zoomImages.delete(key); });
     return ready;
   }
   function warmOriginal(event: Event) {
     if (!(event.target instanceof Element)) return;
     const image = event.target.closest('[data-doc-image]')?.querySelector<HTMLImageElement>('img[data-doc-original]');
-    if (image?.dataset.docOriginal) loadOriginal(image.dataset.docOriginal).catch(() => {});
+    if (image?.dataset.docOriginal) loadZoomImage(image).catch(() => {});
   }
   document.addEventListener('pointerover', warmOriginal, { passive:true });
   document.addEventListener('focusin', warmOriginal);
@@ -45,10 +59,30 @@ const displayHeight = height ?? (optimized && displayWidth ? Math.round(displayW
       if (!(node instanceof Element)) continue;
       node.querySelectorAll<HTMLImageElement>('dialog img[data-doc-original]').forEach((image) => {
         image.loading = 'eager';
-        loadOriginal(image.dataset.docOriginal!).then(original => {
+        image.style.transition = 'none';
+        const { width, height } = zoomRect(image);
+        const left = (window.innerWidth - width) / 2;
+        const top = (window.innerHeight - height) / 2;
+        const source = Array.from(document.querySelectorAll<HTMLImageElement>('[data-doc-image] img')).find(source => source.dataset.docOriginal === image.dataset.docOriginal);
+        if (source) {
+          const rect = source.getBoundingClientRect();
+          const scaleX = rect.width / width;
+          const scaleY = rect.height / height;
+          const translateX = (-left + (rect.width - width) / 2 + rect.left) / scaleX;
+          const translateY = (-top + (rect.height - height) / 2 + rect.top) / scaleY;
+          image.dataset.zoomTransform = `scale(${scaleX}, ${scaleY}) translate3d(${translateX}px, ${translateY}px, 0)`;
+          image.style.transform = image.dataset.zoomTransform;
+        }
+        // Set geometry before the plugin starts its transition. Decoding may finish later.
+        Object.assign(image.style, { width: `${width}px`, height: `${height}px`, left: `${left}px`, top: `${top}px` });
+        // Commit the corrected starting transform before enabling the zoom animation.
+        image.getBoundingClientRect();
+        image.style.removeProperty('transition');
+        loadZoomImage(image).then(zoom => {
           if (!image.isConnected) return;
+          image.closest('picture')?.querySelectorAll('source').forEach(source => source.remove());
           image.removeAttribute('srcset');
-          image.src = original.src;
+          image.src = zoom.currentSrc;
         }).catch(() => { /* The loaded preview remains usable if the original fails. */ });
       });
     }

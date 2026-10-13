@@ -2,10 +2,9 @@ import fs from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import sharp from 'sharp';
 
-const widths = [384, 768, 1280, 1600];
-const formats = { avif: { quality: 60, effort: 2 }, webp: { quality: 85 } };
-
-export async function imageVariants(input, outputDir, source = '/assets/images/image.png') {
+export async function imageVariants(input, outputDir, source = '/assets/images/image.png', { preset } = {}) {
+  const widths = preset === 'screenshot' ? [384, 768, 1280, 1600, 2048] : [384, 768, 1280, 1600];
+  const formats = preset === 'screenshot' ? { webp: { lossless: true, effort: 4 } } : { avif: { quality: 60, effort: 2 }, webp: { quality: 85 } };
   const metadata = await sharp(input).metadata();
   // Preserve animation and unsupported originals unchanged.
   if ((metadata.pages || 1) > 1 || !metadata.width || !metadata.height) return null;
@@ -14,7 +13,7 @@ export async function imageVariants(input, outputDir, source = '/assets/images/i
   const folder = decodeURIComponent(source).replace(/^\/assets\/images\//, '').replace(/\.[^.]+$/, '');
   if (folder.startsWith('/') || folder.split('/').some(part => !part || part === '..')) throw new Error(`Invalid image path: ${source}`);
   const urlFolder = folder.split('/').map(encodeURIComponent).join('/');
-  const sizes = [...new Set([...widths.filter(w => w < width), Math.min(width, 1600)])];
+  const sizes = [...new Set([...widths.filter(w => w < width), Math.min(width, widths.at(-1))])];
   const sources = {};
   await fs.mkdir(`${outputDir}/${folder}`, { recursive: true });
   for (const [format, options] of Object.entries(formats)) {
