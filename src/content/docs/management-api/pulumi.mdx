@@ -8,7 +8,9 @@ import Help from '../../../components/Help.astro';
 
 <a id="pulumi" />
 
-Use the official [HCTI Pulumi provider](https://github.com/htmlcsstoimage/pulumi-html-css-to-image) to manage rendering resources from your application's infrastructure project.
+Use the official [HCTI Pulumi provider](https://www.pulumi.com/registry/packages/html-css-to-image/) to manage rendering resources from your application's infrastructure project.
+
+Browse the [Pulumi Registry API reference](https://www.pulumi.com/registry/packages/html-css-to-image/api-docs/) for all resource inputs, outputs, and lookup functions in your preferred language.
 
 ## Install and configure
 
@@ -79,7 +81,7 @@ Pulumi stops tracking retained images, so later stack operations will not clean 
 
 Use `ImageHtmlCss`, as in the setup example, for HTML/CSS designs. Optional fields include viewport dimensions, Google Fonts, PDF options, `proxyId`, and `storageDestinationId`.
 
-Unspecified nullable rendering fields are sent as null so the API controls their defaults. Refresh reads metadata without rendering; changing rendering inputs replaces the image. [Resource reference](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/resources/image_html_css.md).
+Unspecified nullable rendering fields are sent as null so the API controls their defaults. Refresh reads metadata without rendering; changing rendering inputs replaces the image. [Resource reference](https://www.pulumi.com/registry/packages/html-css-to-image/api-docs/imagehtmlcss/).
 
 ## URL images
 
@@ -90,7 +92,7 @@ const homepage = new hcti.ImageUrl("homepage", {
 });
 ```
 
-Capture a webpage, optionally adding CSS, request headers, or a proxy. Headers are treated as sensitive resource attributes. [Resource reference](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/resources/image_url.md).
+Capture a webpage, optionally adding CSS, request headers, or a proxy. Headers are treated as sensitive resource attributes. [Resource reference](https://www.pulumi.com/registry/packages/html-css-to-image/api-docs/imageurl/).
 
 ## Templates
 
@@ -102,7 +104,7 @@ const card = new hcti.Template("card", {
 });
 ```
 
-Edits create a new version under the same template ID. This resource manages HTML/CSS templates, not visual block templates. [Template guide](/getting-started/templates/) · [Resource reference](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/resources/template.md).
+Edits create a new version under the same template ID. This resource manages HTML/CSS templates, not visual block templates. [Template guide](/getting-started/templates/) · [Resource reference](https://www.pulumi.com/registry/packages/html-css-to-image/api-docs/template/).
 
 ## Templated images
 
@@ -116,7 +118,7 @@ const welcome = new hcti.ImageTemplated("welcome", {
 
 Referencing `card.version` replaces the image when the template changes. Omit `templateVersion` to select the latest version at image creation; later template changes do not replace that existing image. Version identifiers are strings, preserving the full precision of API version numbers.
 
-`templateValues` is a sensitive JSON object string. For values containing Pulumi outputs, use `pulumi.jsonStringify` so dependencies and secret markings are preserved. [Resource reference](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/resources/image_templated.md).
+`templateValues` is a sensitive JSON object string. For values containing Pulumi outputs, use `pulumi.jsonStringify` so dependencies and secret markings are preserved. [Resource reference](https://www.pulumi.com/registry/packages/html-css-to-image/api-docs/imagetemplated/).
 
 ## API keys
 
@@ -129,7 +131,7 @@ const application = new hcti.ApiKey("application", {
 
 Use the `apiId` and secret `apiKey` outputs to configure your application or a secrets manager resource. Pulumi tracks the dependency when you pass these outputs to another resource. Updates preserve the secret; destroy disables the key. Import cannot recover the original secret.
 
-Set `allFuturePermissions: true` only when you intend to grant every current and future permission. In C#, the secret property is `ApiKey.Value` to avoid a type/member name collision. [Management API](/management-api/api-keys/) · [Resource reference](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/resources/api_key.md).
+Set `allFuturePermissions: true` only when you intend to grant every current and future permission. In C#, the secret property is `ApiKey.Value` to avoid a type/member name collision. [Management API](/management-api/api-keys/) · [Resource reference](https://www.pulumi.com/registry/packages/html-css-to-image/api-docs/apikey/).
 
 ## Proxies
 
@@ -146,7 +148,7 @@ const renderingProxy = new hcti.Proxy("rendering", {
 });
 ```
 
-Set the password with `pulumi config set --secret proxyPassword`. Omit `authentication` for a proxy without credentials. The resource registers an existing proxy; it does not provision a proxy server. Reference `renderingProxy.id` as `proxyId` on an image or template. [Management API](/management-api/proxies/) · [Resource reference](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/resources/proxy.md).
+Set the password with `pulumi config set --secret proxyPassword`. Omit `authentication` for a proxy without credentials. The resource registers an existing proxy; it does not provision a proxy server. Reference `renderingProxy.id` as `proxyId` on an image or template. [Management API](/management-api/proxies/) · [Resource reference](https://www.pulumi.com/registry/packages/html-css-to-image/api-docs/proxy/).
 
 ## Storage destinations
 
@@ -171,7 +173,7 @@ Set exactly one object in `connectionInfo`: `awsS3`, `cloudflareR2`, `backblazeB
 
 Setting `hctiStorageDisabled: true` enables custom-storage-only output, which requires an authenticated rendering request. See [image lifecycle](/management-api/iac/#image-lifecycle). Deleting the destination does not delete the bucket or stored files.
 
-[Management API](/management-api/storage-destinations/) · [Resource reference](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/resources/storage_destination.md) · [AWS example](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/tree/main/examples/aws-storage).
+[Management API](/management-api/storage-destinations/) · [Resource reference](https://www.pulumi.com/registry/packages/html-css-to-image/api-docs/storagedestination/) · [AWS example](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/tree/main/examples/aws-storage).
 
 ## OG configurations
 
@@ -188,18 +190,18 @@ const website = new hcti.OgConfig("website", {
 });
 ```
 
-Use `html_css` to capture your pages or `templated` to fill a template from page metadata. The resource manages the configuration, not every image served through it. For templated OG configurations, omitting `templateVersion` follows the latest template when an image is served. [Management API](/management-api/og-configs/) · [Resource reference](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/resources/og_config.md).
+Use `html_css` to capture your pages or `templated` to fill a template from page metadata. The resource manages the configuration, not every image served through it. For templated OG configurations, omitting `templateVersion` follows the latest template when an image is served. [Management API](/management-api/og-configs/) · [Resource reference](https://www.pulumi.com/registry/packages/html-css-to-image/api-docs/ogconfig/).
 
 ## Look up existing resources
 
 The provider includes three lookup functions, plus output-aware variants for use with resource outputs:
 
-- [`getTemplate`](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/functions/get_template.md): read an existing template's latest or specified version without managing its lifecycle.
-- [`getTemplateVersions`](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/functions/get_template_versions.md): list version history, newest first, following pagination up to `limit` (default 1000).
-- [`getAwsStorageExternalId`](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/blob/main/docs/functions/get_aws_storage_external_id.md): retrieve the external ID and HCTI writer role ARN needed for an AWS trust policy.
+- [`getTemplate`](https://www.pulumi.com/registry/packages/html-css-to-image/api-docs/gettemplate/): read an existing template's latest or specified version without managing its lifecycle.
+- [`getTemplateVersions`](https://www.pulumi.com/registry/packages/html-css-to-image/api-docs/gettemplateversions/): list version history, newest first, following pagination up to `limit` (default 1000).
+- [`getAwsStorageExternalId`](https://www.pulumi.com/registry/packages/html-css-to-image/api-docs/getawsstorageexternalid/): retrieve the external ID and HCTI writer role ARN needed for an AWS trust policy.
 
 ## More examples
 
-[Provider examples](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/tree/main/examples) · [Source and issues](https://github.com/htmlcsstoimage/pulumi-html-css-to-image) · [IaC overview](/management-api/iac/)
+[Pulumi Registry](https://www.pulumi.com/registry/packages/html-css-to-image/) · [Provider examples](https://github.com/htmlcsstoimage/pulumi-html-css-to-image/tree/main/examples) · [Source and issues](https://github.com/htmlcsstoimage/pulumi-html-css-to-image) · [IaC overview](/management-api/iac/)
 
 <Help />
