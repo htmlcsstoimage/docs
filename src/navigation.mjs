@@ -59,7 +59,8 @@ const navigation = [
   ] },
   { label: 'Template Editor', items: [
     { label: 'Overview', link: '/template-editor/' },
-    { label: 'Quick start', link: '/template-editor/quick-start/' },
+    { label: 'Visual editor quick start', link: '/template-editor/quick-start/' },
+    { label: 'HTML/CSS editor', link: '/template-editor/html-css/' },
     { label: 'Canvas', link: '/template-editor/canvas/' },
     { label: 'Variables', link: '/template-editor/variables/' },
     { label: 'Blocks', items: [

@@ -1033,6 +1033,34 @@
       ]
     }
   },
+  "/assets/images/template-editor/te-editor-choice.png": {
+    "width": 3580,
+    "height": 2100,
+    "sources": {
+      "webp": [
+        {
+          "src": "/assets/images/g/template-editor/te-editor-choice/e7655b91ae211cb7c514.w384.webp",
+          "width": 384
+        },
+        {
+          "src": "/assets/images/g/template-editor/te-editor-choice/e7655b91ae211cb7c514.w768.webp",
+          "width": 768
+        },
+        {
+          "src": "/assets/images/g/template-editor/te-editor-choice/e7655b91ae211cb7c514.w1280.webp",
+          "width": 1280
+        },
+        {
+          "src": "/assets/images/g/template-editor/te-editor-choice/e7655b91ae211cb7c514.w1600.webp",
+          "width": 1600
+        },
+        {
+          "src": "/assets/images/g/template-editor/te-editor-choice/e7655b91ae211cb7c514.w2048.webp",
+          "width": 2048
+        }
+      ]
+    }
+  },
   "/assets/images/template-editor/te-empty-editor.png": {
     "width": 3970,
     "height": 1640,
@@ -1056,6 +1084,90 @@
         },
         {
           "src": "/assets/images/g/template-editor/te-empty-editor/d02e635366c807ac3ffe.w2048.webp",
+          "width": 2048
+        }
+      ]
+    }
+  },
+  "/assets/images/template-editor/te-html-css-options.png": {
+    "width": 3580,
+    "height": 2100,
+    "sources": {
+      "webp": [
+        {
+          "src": "/assets/images/g/template-editor/te-html-css-options/24806d81b1d611e7c4c1.w384.webp",
+          "width": 384
+        },
+        {
+          "src": "/assets/images/g/template-editor/te-html-css-options/24806d81b1d611e7c4c1.w768.webp",
+          "width": 768
+        },
+        {
+          "src": "/assets/images/g/template-editor/te-html-css-options/24806d81b1d611e7c4c1.w1280.webp",
+          "width": 1280
+        },
+        {
+          "src": "/assets/images/g/template-editor/te-html-css-options/24806d81b1d611e7c4c1.w1600.webp",
+          "width": 1600
+        },
+        {
+          "src": "/assets/images/g/template-editor/te-html-css-options/24806d81b1d611e7c4c1.w2048.webp",
+          "width": 2048
+        }
+      ]
+    }
+  },
+  "/assets/images/template-editor/te-html-css-placeholders.png": {
+    "width": 3580,
+    "height": 2100,
+    "sources": {
+      "webp": [
+        {
+          "src": "/assets/images/g/template-editor/te-html-css-placeholders/bba0258e18eeae8707f1.w384.webp",
+          "width": 384
+        },
+        {
+          "src": "/assets/images/g/template-editor/te-html-css-placeholders/bba0258e18eeae8707f1.w768.webp",
+          "width": 768
+        },
+        {
+          "src": "/assets/images/g/template-editor/te-html-css-placeholders/bba0258e18eeae8707f1.w1280.webp",
+          "width": 1280
+        },
+        {
+          "src": "/assets/images/g/template-editor/te-html-css-placeholders/bba0258e18eeae8707f1.w1600.webp",
+          "width": 1600
+        },
+        {
+          "src": "/assets/images/g/template-editor/te-html-css-placeholders/bba0258e18eeae8707f1.w2048.webp",
+          "width": 2048
+        }
+      ]
+    }
+  },
+  "/assets/images/template-editor/te-html-css-variables.png": {
+    "width": 3580,
+    "height": 2100,
+    "sources": {
+      "webp": [
+        {
+          "src": "/assets/images/g/template-editor/te-html-css-variables/a18f8330fedde15c7e05.w384.webp",
+          "width": 384
+        },
+        {
+          "src": "/assets/images/g/template-editor/te-html-css-variables/a18f8330fedde15c7e05.w768.webp",
+          "width": 768
+        },
+        {
+          "src": "/assets/images/g/template-editor/te-html-css-variables/a18f8330fedde15c7e05.w1280.webp",
+          "width": 1280
+        },
+        {
+          "src": "/assets/images/g/template-editor/te-html-css-variables/a18f8330fedde15c7e05.w1600.webp",
+          "width": 1600
+        },
+        {
+          "src": "/assets/images/g/template-editor/te-html-css-variables/a18f8330fedde15c7e05.w2048.webp",
           "width": 2048
         }
       ]

@@ -20,16 +20,16 @@ Create reusable templates to make image generation easy.
 
 A template defines reusable image markup with **variables** that are replaced when an image is created.
 
-You can create templates by sending HTML and CSS to the API, or by building a template visually in the [Template Editor](/template-editor/). Templates created in the editor are still rendered through the same template API.
+You can [build templates in the dashboard](/template-editor/) with either the visual block editor or the HTML/CSS code editor, or send HTML and CSS to the API. Saved templates use the same template API for rendering.
 
-If you are building templates visually, start with the [Template Editor Quick Start](/template-editor/quick-start/). For API-only templates, continue below.
+For dashboard workflows, start with [Build templates in the dashboard](/template-editor/) to choose an editor. Continue below for the template API reference.
 
 ### Handlebars variables
 Templates support [Handlebars](https://handlebarsjs.com/) variables. Add `{{title_text}}` to your HTML, then pass a value for `title_text` when creating the image.
 
 ### Common use cases
 - Define a reusable template, then pass variables to it to generate unique images.
-- Use the [Template Editor](/template-editor/) to build a reusable image from blocks instead of writing all of the HTML and CSS by hand.
+- [Build a template in the dashboard](/template-editor/) using visual blocks or HTML/CSS with a live preview.
 - Create images using signed URLs in a `GET` request.
 - Generate social sharing images, such as `og:image` or `twitter:image`. For an existing website or CMS, an [OG Image Config](/getting-started/og-images/) can populate the template from each page's metadata.
 
@@ -66,7 +66,7 @@ The HTML below uses Bootstrap utility classes; include the corresponding stylesh
 
 Requires [`templates:create_update`](/getting-started/using-the-api/permissions/).
 
-To generate a template, make an HTTP request to the API.
+You can [create an HTML/CSS template in the dashboard](/template-editor/html-css/#open-the-code-editor), or make an HTTP request to the API.
 
 <Endpoint method="POST" path="/v1/template" />
 
@@ -130,7 +130,9 @@ STATUS: 429 TOO MANY REQUESTS
 
 Requires [`templates:create_update`](/getting-started/using-the-api/permissions/).
 
-To edit an existing template, send a request with the `template_id` returned when you created it.
+To edit interactively, open **Templates** in the dashboard and click **Edit template** on an HTML/CSS template. See the [code editor guide](/template-editor/html-css/).
+
+To edit through the API, send a request with the `template_id` returned when you created it.
 
 <Endpoint method="POST" path="/v1/template/:template_id" />
 

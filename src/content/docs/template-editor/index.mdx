@@ -2,36 +2,50 @@
 title: Template Editor
 slug: template-editor
 description: >-
-  Design reusable image templates with blocks, canvas settings, variables, and layout panels.
+  Build, preview, and save reusable image templates with visual blocks or HTML and CSS, then generate images through the API.
 ---
 import { LinkButton } from '@astrojs/starlight/components';
 import DocImage from '../../../components/DocImage.astro';
 
 <a id="template-editor" />
 
-Design saved image templates in the dashboard, then render them through the API.
+Build a reusable image template in the dashboard, preview it with sample data, and save it for rendering through the API. Choose the visual block editor to arrange your design on a canvas, or the HTML/CSS code editor to work directly with markup and styles.
 
-<LinkButton href="https://htmlcsstoimage.com/dashboard">Open Dashboard</LinkButton>
+<LinkButton href="https://htmlcsstoimage.com/dashboard/templates">Open templates</LinkButton>
 <LinkButton href="https://htmlcsstoimage.com/templates" variant="secondary">Browse Presets</LinkButton>
 <LinkButton href="/getting-started/templates/" variant="secondary">Templates API</LinkButton>
 
 
-The Template Editor is for building image templates visually. Add blocks, style them, connect template variables, then render the saved template through the API.
+## Choose an editor
 
-Use the editor when you want a reusable layout but do not want to write the whole design by hand in HTML and CSS. For a fast example, start from the [template presets](https://htmlcsstoimage.com/templates) or open the [template playground](https://htmlcsstoimage.com/templates/playground).
+1. Open **Templates** in the dashboard.
+2. Click **Create New Template**.
+3. Under **How would you like to build?**, choose the editor that fits your workflow.
 
-Open it from the dashboard by creating or editing a template. The canvas is the image area, the left sidebar adds blocks, and the right sidebar changes depending on whether you are editing a block, the canvas, or variables.
+<DocImage preset="screenshot" src="/assets/images/template-editor/te-editor-choice.png" alt="New template screen offering the Block editor and Code editor" caption="Start with blocks to build visually, or start with code to write HTML and CSS." />
 
-<DocImage preset="screenshot" src="/assets/images/template-editor/te-quote-preset-editor.png" alt="Template editor with the quote preset open on the canvas" />
+| Editor | Choose it when | Start here |
+|:-------|:---------------|:-----------|
+| **Block editor** | You want to build visually with text, images, shapes, and layout panels. | [Visual editor quick start](/template-editor/quick-start/) |
+| **Code editor** | You want to write HTML and CSS, or edit an HTML/CSS template you already created through the API. | [HTML/CSS editor guide](/template-editor/html-css/) |
+
+For an existing template, click its pencil button, **Edit template**. Entries marked **BLOCKS** open in the visual editor; entries marked **HTML/CSS** open in the code editor. **Duplicate template** starts a copy that gets its own template ID when saved.
 
 ## What you can build
 
-- Reusable social images, product graphics, certificates, reports, cards, and other image layouts
-- Variable-driven text, image URLs, colors, numbers, and other render-time values
-- Layouts made from text, images, shapes, QR codes, HTML, and panel blocks
-- Templates that can be adjusted visually and rendered through the API
+- Social sharing images, product graphics, certificates, reports, and cards
+- Reusable layouts that generate different images from new text, image URLs, and other data
+- Saved templates for API requests, signed URLs, or [automatic Open Graph images](/getting-started/og-images/)
 
-## Editor areas
+## Build visually with the block editor
+
+Add blocks, arrange them on the canvas, and style them using the sidebars. Connect fields to variables when their values should change for each image.
+
+Start from a blank template, browse the [template presets](https://htmlcsstoimage.com/templates), or try the [template playground](https://htmlcsstoimage.com/templates/playground).
+
+<DocImage preset="screenshot" src="/assets/images/template-editor/te-quote-preset-editor.png" alt="Visual block editor with the quote preset open on the canvas" />
+
+### Editor areas
 
 | Area | What it controls |
 |:-----|:-----------------|
@@ -41,21 +55,32 @@ Open it from the dashboard by creating or editing a template. The canvas is the 
 | Variables tab | Preview values and variable behavior before rendering |
 | Preview and export | Check the generated output while you work |
 
+Follow the [visual editor quick start](/template-editor/quick-start/) to build your first template.
+
+## Write HTML and CSS with the code editor
+
+Edit your markup and styles in separate **HTML** and **CSS** tabs alongside a live preview. Use **Variables** to test Handlebars values, and **Options** to configure viewport dimensions, fonts, capture settings, and delivery options.
+
+The code editor opens existing HTML/CSS templates created through the API, so you can continue working on them in the dashboard. Click **Save** to persist your changes.
+
+Follow the [HTML/CSS editor guide](/template-editor/html-css/) for a complete example, preview controls, and the save workflow.
+
 ## Guides
 
 | Guide | Description |
 |:------|:------------|
-| [Quick Start](/template-editor/quick-start/) | Build, preview, save, and render a template |
-| [Canvas](/template-editor/canvas/) | Set image size, canvas styling, and image settings |
-| [Variables](/template-editor/variables/) | Connect render-time values to template fields |
+| [Visual editor quick start](/template-editor/quick-start/) | Build, preview, save, and render a template using blocks |
+| [HTML/CSS editor](/template-editor/html-css/) | Write markup and styles with a live preview, test variables, and save HTML/CSS templates |
+| [Canvas](/template-editor/canvas/) | Set image size, canvas styling, and image settings in the visual editor |
+| [Variables](/template-editor/variables/) | Connect render-time values to visual editor fields |
 | [Blocks](/template-editor/blocks/) | Choose text, media, shape, QR code, HTML, and panel blocks |
-| [Advanced](/template-editor/advanced/) | Layout behavior, panels, sizing, positioning, and Extra CSS |
+| [Advanced](/template-editor/advanced/) | Visual editor layout behavior, panels, sizing, positioning, and Extra CSS |
 
 
 ## How it fits with the API
 
-Templates made in the editor are saved templates. After saving, use the template id and pass `template_values` when generating images.
+Both editors save reusable templates. After saving, use the template ID and pass `template_values` when generating images.
 
-The editor manages the design structure for you. In the API, you work with the saved template, its variables, and the rendered image.
+Use the same [template rendering API](/getting-started/templates/#creating-an-image-with-a-template) for either type. You can also create [signed template URLs](/getting-started/create-and-render/#creating-a-templated-image-url).
 
-You do not need to work with the editor's internal structure directly.
+For creating and updating templates programmatically, see the [templates API reference](/getting-started/templates/).
