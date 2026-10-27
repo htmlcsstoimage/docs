@@ -1,0 +1,8 @@
+---
+import DefaultDraftContentNotice from '@astrojs/starlight/components/DraftContentNotice.astro';
+
+// The 404 entry uses draft only to prevent a duplicate /404/ article route.
+const { entry } = Astro.locals.starlightRoute;
+---
+
+{entry.id !== '404' && <DefaultDraftContentNotice />}
