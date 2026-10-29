@@ -1,0 +1,712 @@
+---
+title: Webhooks
+slug: guides/webhooks
+description: >-
+  Receive signed webhook events when images are stored or deleted, resources change, or usage thresholds are crossed. Set up endpoints, verify deliveries, and inspect event payloads.
+---
+import { Code, LinkButton } from '@astrojs/starlight/components';
+import Help from '../../../components/Help.astro';
+import receiverExample from '../../../../public/example-code/webhook-receiver.mjs?raw';
+
+Webhooks send an HTTP POST to your endpoint when something happens in your HCTI organization. Use them to publish content after an image reaches storage, keep your application in sync with template changes, or notify your team about usage.
+
+Choose the events each endpoint receives, add headers or query parameters for your receiving service, and enable signatures to verify deliveries. The dashboard records event payloads and delivery attempts.
+
+:::note[Image events require a render]
+The usual flow is **create an image → request its image URL to trigger rendering → receive `image_stored` after storage completes**. Creating an image URL or registering a webhook does not start a render. For [custom-storage-only output](/guides/advanced/storage-destinations/), call the authenticated store URL to trigger rendering instead.
+:::
+
+<LinkButton href="https://htmlcsstoimage.com/dashboard/webhooks">Open webhooks</LinkButton>
+<LinkButton href="/management-api/webhooks/" variant="secondary">Webhooks API</LinkButton>
+
+## Set up a webhook in the dashboard
+
+1. Open [Webhooks](https://htmlcsstoimage.com/dashboard/webhooks) in the dashboard and click **Add webhook**. Owners and Admins can manage webhooks. Users can view them and their delivery history.
+2. Enter a **Name** and **Endpoint URL**, such as `https://hooks.example.com/hcti`. Use a public HTTPS endpoint with a DNS hostname on the default HTTPS port. Add query parameters separately rather than including them in this URL.
+3. Under **Events to receive**, expand the groups and select the events your application needs. For example, select `image_stored` to act when rendered files have been saved.
+4. If your receiver needs authentication or routing values, click **Add parameter**, choose **Header** or **Query**, and enter its name and value. Mark credentials **Secret** to encrypt them and hide them from later views and delivery history.
+5. Turn on **Sign deliveries** to add signature verification. Clear **Enabled** and click **Save** so you can configure verification before the first delivery.
+6. Open **Edit webhook**, then **Reveal signing secret**, and copy it into your receiving application's server-side configuration. The secret is generated for every webhook, including those created through the API, and is revealed only in the dashboard.
+7. Once your receiver is ready, select **Enabled** and **Save**. This queues a `webhook_test` delivery using your configured parameters and signing setting.
+
+Creating an enabled webhook also queues a `webhook_test` delivery automatically. Your receiver should accept this event even if it only acts on a particular business event.
+
+The webhook list also provides **Send a test event**, **Edit webhook**, **View delivery history**, and **Delete webhook** actions. Each enabled webhook accepts one test every 30 seconds. Your organization can make five manual test requests per minute.
+
+Webhooks receive matching events while enabled. Adding a subscription does not replay earlier resource changes or already-stored images.
+
+Free plans include up to **2 webhooks** per organization. Paid plans include **10**. Disabled webhooks still count toward that limit.
+
+### Set up through the API or MCP
+
+Use `POST /v1/webhooks` with `webhooks:create_update` and read access to the resources you subscribe to. For example, an image-storage subscription also needs `images:read`:
+
+```bash
+curl 'https://hcti.io/v1/webhooks' \
+  --user "$HCTI_API_ID:$HCTI_API_KEY" \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "name": "Image publishing",
+    "url": "https://hooks.example.com/hcti",
+    "disabled": true,
+    "events": ["image_stored"],
+    "signing_enabled": true
+  }'
+```
+
+This creates a disabled webhook, so `test_event_id` is `null` and nothing is sent yet. **Signed setup through REST or MCP includes a dashboard step**: open **Edit webhook → Reveal signing secret**, then store the secret in your receiver's server-side configuration. Signing secrets and secret parameter values are never returned by REST or MCP.
+
+Once your receiver is ready, enable the webhook in the dashboard, or send the complete configuration to `POST /v1/webhooks/WEBHOOK_ID` with `disabled: false`. Keep `signing_enabled: true` and include every subscription and parameter you want to retain. Updates replace the configuration rather than patching individual fields. Enabling queues a `webhook_test` and returns its `test_event_id` without waiting for successful delivery.
+
+See the [Webhooks API](/management-api/webhooks/) for replacement updates, secret retention, test requests, and event lookup. The [MCP webhook tools](/integrations/mcp/tools/#webhooks) support the same operations. MCP connections cannot subscribe to API key events because they cannot grant `api_keys:read`.
+
+## The event envelope
+
+Every POST has `Content-Type: application/json` and the same outer object, or **envelope**. The envelope identifies the event. Its `data` field contains the payload for that event's `type`.
+
+```json
+{
+  "event_id": "example_event_id",
+  "type": "image_stored",
+  "schema_version": 1,
+  "occurred_at": "2026-10-29T14:00:00Z",
+  "source": {
+    "channel": "api",
+    "api_id": "your-api-id",
+    "ip": "203.0.113.10",
+    "user_agent": "my-image-service/1.0"
+  },
+  "data": {
+    "image_id": "01a135fb-21fa-7027-9b82-70acc0e1fd16",
+    "width": 1200,
+    "height": 630,
+    "file_size_bytes": 48210,
+    "location": "hcti_storage",
+    "location_details": null
+  }
+}
+```
+
+| Field | Meaning |
+|:------|:--------|
+| `event_id` | Unique ID of the logical event. The same event keeps this ID across retries and all webhook endpoints receiving it. Treat it as an opaque string. |
+| `type` | Event name, such as `image_stored` or `template_updated`. Determines the shape of `data`. |
+| `schema_version` | Version of this event type's data shape. Increases for breaking changes. Accept additional fields without failing. |
+| `occurred_at` | UTC time the event happened, rather than the time this delivery attempt was sent. |
+| `source` | Who or what caused the event. Its `channel` identifies the variant below. |
+| `data` | Event-specific details. The [event reference](#events) below describes each shape. |
+
+<details>
+<summary>Source attribution</summary>
+
+| `source.channel` | Additional fields |
+|:-----------------|:------------------|
+| `api` | `api_id` identifies the authenticating key. Includes `ip` and `user_agent` when known. |
+| `dashboard` | `user_id` identifies the signed-in user. Includes `ip` and `user_agent` when known. |
+| `mcp` | `client_name`, `tool_name`, `ip`, and `user_agent` when known. |
+| `anonymous` | `ip` and `user_agent` when known, such as for a public image URL request. |
+| `system` | HCTI background work, billing updates, or support actions. No caller details. |
+
+Attribution describes the call that caused the event. For a lazy-rendered image, this may be the request that fetched the image, rather than the earlier API request that created its URL. Nullable attribution fields can be absent or `null`.
+
+</details>
+
+<a id="shared-resource-payloads" />
+
+### Entity events
+
+Templates, proxies, storage destinations, Open Graph configurations, and API keys share three event patterns. Each uses the envelope above, with an `entity` object inside `data` identifying the resource by its `type` and `id`.
+
+| Event pattern | Structure of `data` | Meaning |
+|:--------------|:--------------------|:--------|
+| `*_created` | `{ "entity": { "type": "...", "id": "..." }, "properties": { ... } }` | A snapshot of the resource's properties when it was created. |
+| `*_updated` | `{ "entity": { "type": "...", "id": "..." }, "changes": { ... } }` | Only the properties that changed, keyed by property path. |
+| `*_deleted` | `{ "entity": { "type": "...", "id": "..." } }` | Identifies the deleted resource without copying its contents. |
+
+For example, `template_created` and `proxy_created` have the same outer structure but different `properties`. Update events use dotted paths for nested properties. A request that leaves all public properties unchanged does not produce an update event.
+
+Each entry in `changes` has a `kind` that describes how to read it:
+
+| Change `kind` | Fields and interpretation |
+|:--------------|:--------------------------|
+| `value` | `previous_value` and `new_value`. Scalars and arrays are reported as whole values. `null` means unset or cleared. Long text values can be truncated as described below. |
+| `secret` | `previous_assigned` and `new_assigned`. Reports whether a credential was set, without exposing its value. |
+| `content` | No value fields. Reports a change to content such as a block template's design. Read the resource for its current contents. |
+
+Image, organization, and test events have their own `data` shapes. For example, `image_deleted` contains `image_ids` rather than an `entity` object. See the [event definitions](#events) for each payload.
+
+### Secrets and truncated values
+
+**Stored passwords, API key secrets, storage secret access keys, and webhook signing secrets are never included in event payloads.** Public identifiers such as `api_id` and a storage `access_key_id` can be included to identify the key or connection.
+
+Creation events report credential state through flags such as `password_assigned` and `secret_access_key_assigned`. Update events use `kind: "secret"` with `previous_assigned` and `new_assigned`. Replacing an existing password reports `true` for both flags without including either password.
+
+**Large text values such as `html` and `css` may be truncated to keep payloads small.** These fields use a text object rather than a plain string, including when they appear as `previous_value` or `new_value` in an update:
+
+| Field | Meaning |
+|:------|:--------|
+| `value` | The full text when `truncated` is `false`, or the beginning when it is `true`. |
+| `truncated` | Whether the text was shortened. |
+| `length` | The original text's length in characters. |
+| `ender` | The original text's final characters when truncated, otherwise `null`. |
+
+When `truncated` is `true`, fetch the resource if you need its full current content. A block template's internal design is reported as a `content` change without its contents.
+
+### Delivery headers and IDs
+
+<div class="webhook-delivery-headers">
+
+| Header | Meaning |
+|:-------|:--------|
+| `webhook-id` | Stable ID for this event's delivery to this webhook endpoint. Retries reuse it. This is **not** the webhook configuration's ID or the envelope's `event_id`. |
+| `webhook-timestamp` | Unix timestamp in seconds for this send attempt. |
+| `webhook-signature` | Present when signing is enabled. Uses the Standard Webhooks `v1,<base64 signature>` format. |
+| `x-hcti-event-id` | The envelope's `event_id`. |
+| `x-hcti-attempt` | Attempt number, starting at `1`. |
+| `user-agent` | `HCTI-Webhooks/1.0`. |
+
+</div>
+
+Use `webhook-id` to deduplicate a delivery at one receiver. If multiple endpoints feed the same workflow, you can use the envelope's `event_id` to deduplicate the event across those endpoints. Store the deduplication record atomically with accepting or processing the event so simultaneous deliveries cannot both start the same work.
+
+## Verify signatures
+
+Turn on **Sign deliveries** and use the webhook's signing secret to verify the **raw request body before parsing it**. Standard Webhooks verifier libraries can check these headers. Re-serializing JSON can change whitespace or property order and invalidate the signature.
+
+The signature is an HMAC-SHA256 of:
+
+```text
+webhook-id.webhook-timestamp.raw-request-body
+```
+
+Strip the `whsec_` prefix from the signing secret and base64-decode the remainder to obtain the HMAC key. Compare signatures in constant time and reject stale timestamps to limit replay. A retry has a fresh timestamp and signature but retains its delivery ID.
+
+The [runnable Node.js receiver](#runnable-nodejs-receiver) below verifies the original request bytes and accepts timestamps within five minutes of the server's clock. Keep the secret in server-side configuration. Use the verified envelope's `event_id` and `data` when deciding what work to perform.
+
+## Delivery guarantees and retries
+
+HCTI uses **at-least-once delivery**: your receiver must be able to accept the same event more than once. Event recording and HTTP delivery are separate, so an unavailable receiver does not roll back the change.
+
+| Event family | How the event is recorded |
+|:-------------|:--------------------------|
+| Template, proxy, storage destination, Open Graph configuration, and API key lifecycle events | Recorded in the same database transaction as the resource change. |
+| `image_stored` and `image_deleted` | Recorded through a durable outbox alongside the image's storage metadata or deletion markers, then relayed for delivery. This is separate from the file upload itself. |
+| `organization_plan_changed` | Recorded with the effective plan change. |
+| `organization_usage_alert` | Recorded with the threshold alert record, independently of whether the notification email succeeds. |
+| `organization_usage_reset` | Recorded with the billing period update after resetting usage. The usage counter reset is a separate operation. |
+| `webhook_test` | A synthetic delivery check, rather than a resource change. |
+
+These recording rules apply to matching subscriptions. They do not replay changes from before a webhook was enabled.
+
+At-least-once does not mean unlimited retries or guaranteed success at an unreachable endpoint. Delivery can end in failure after its retry window, or be invalidated when a webhook is disabled, deleted, or unsubscribed. An HTTP request may reach your application even if its response is lost, causing another attempt.
+
+| Endpoint result | Delivery behavior |
+|:----------------|:------------------|
+| Any `2xx` | Success. No automatic retry. |
+| Timeout, connection/DNS/TLS failure, or transient internal delivery error | Automatic retry. |
+| `408`, `429`, or `5xx` | Automatic retry. |
+| Other `4xx`, a redirect, or a blocked destination | Final failure. Redirects are not followed. |
+
+A delivery gets up to **5 automatic attempts in total**: the initial attempt, then retries after approximately **5 minutes**, **1 hour**, **12 hours**, and **2 days**, each measured from the previous failed attempt. `Retry-After` can delay the next attempt further but does not add attempts. No attempt is scheduled beyond **3 days after the event occurred**. An endpoint has about **10 seconds** to respond.
+
+### Recover from a failed delivery
+
+**There is currently no manual retry or replay action in the dashboard, REST API, or MCP.** Once a delivery reaches final failure or its retry window ends, fixing your endpoint does not resend that event. Sending a test checks the endpoint with a new `webhook_test` event. It does not replay the failed business event.
+
+Use [delivery history](#inspect-delivery-history) to identify failed events and inspect their payloads. Reconcile your application's state with the current image or resource, then enqueue any missing work in your own system. If you recover a historical payload, use its original `event_id` in the same deduplication path as normal deliveries. Keep a durable inbox of received events so you can retry your own processing independently of HCTI's delivery window.
+
+### Build an idempotent receiver
+
+1. Verify the signature and parse the envelope.
+2. Durably accept the event, using a unique delivery or event ID to prevent duplicate processing. Acknowledge known duplicates with `2xx` too.
+3. Return `2xx` promptly, then perform longer work from your own queue. If you cannot durably accept the event, return a retryable error such as `503`.
+4. Make downstream actions idempotent as well, so restarting a worker does not publish the same post or send the same email twice.
+
+**Events can arrive concurrently and out of order.** Retries of older events can arrive after newer changes. Use event timestamps and resource versions where available. Fetch the current resource if your workflow needs its latest state. An update payload describes that change, not necessarily the state at the time you receive it.
+
+### Runnable Node.js receiver
+
+This example uses **Node.js 24** and its built-in [SQLite module](https://nodejs.org/download/release/v24.13.0/docs/api/sqlite.html). It verifies signed POST requests at `/hcti`, commits each event to a durable inbox, and returns `204` for accepted events and known duplicates. It also accepts `webhook_test`, marking it processed without starting business work. A failed database write returns `503` so HCTI can retry.
+
+Download [webhook-receiver.mjs](/example-code/webhook-receiver.mjs), set `HCTI_WEBHOOK_SECRET` to the secret revealed in the dashboard, and run:
+
+```bash
+node webhook-receiver.mjs
+```
+
+The receiver listens at `http://127.0.0.1:3000/hcti`. Put it behind your public HTTPS endpoint or a development HTTPS tunnel, and preserve the raw request body. `PORT` changes the local port. `WEBHOOK_DB` changes the database path, which defaults to `./webhooks.sqlite`.
+
+<details>
+<summary>Complete receiver source</summary>
+
+<Code code={receiverExample} lang="js" />
+
+</details>
+
+The inbox is also the queue. A separate worker can select rows where `processed_at IS NULL`, perform the action using `event_id` as its idempotency key, and set `processed_at` only after success. Handle unfamiliar event types or schema versions deliberately rather than assuming they have an existing payload shape. A worker crash can repeat an action before marking the row, so downstream idempotency still matters.
+
+This example deduplicates by `event_id` for one organization's workflow, including deliveries from multiple webhook endpoints. Preserve the database and its sidecar files on persistent local storage across restarts. For receivers running across multiple machines, use a shared durable database or queue with equivalent atomic deduplication. Keep deduplication records for as long as events can be retried or recovered in your workflow.
+
+### Image events and concurrent renders
+
+Image creation usually returns an image ID and URL before rendering. Rendering starts when the image URL is requested, or when your application calls the authenticated store URL for [custom-storage-only output](/guides/advanced/storage-destinations/). Registering a webhook does not start a render.
+
+`image_stored` reports a saved **base file**, with one event per location: `hcti_storage` or `customer_storage`. Saving to both locations produces two events. Cached responses, resized or reformatted copies of an already stored image, and debugger captures do not produce another base-storage event.
+
+Do not assume exactly one event per image ID. Separate concurrent renders can produce distinct storage events, each with its own `event_id`. These are different from retries of one event. If your business action should happen once per image and storage location, enforce that rule using a key such as `(image_id, location)` in addition to delivery deduplication. For bucket workflows, also inspect `location_details` to identify the destination and object.
+
+## Inspect delivery history
+
+Open [Webhook History](https://htmlcsstoimage.com/dashboard/webhooks/history), or choose **View delivery history** on a webhook to filter by that destination. Open an event to see its envelope and payload, destination statuses, attempt times, HTTP results, and the configuration version used for each attempt. Response bodies and response headers are not retained.
+
+History is retained for **365 days**. Very large payloads may be unavailable in older archived history. A missing payload does not mean an event was never delivered. Secret delivery parameter values are never shown.
+
+`GET /v1/webhooks/events/{event_id}` and MCP `get_webhook_event` retrieve one known event. Reading its payload also requires read access to its resource. Without that access, `data` is `null` and `payload_withheld` is `true`. The dashboard provides the browsable history list.
+
+Pending and retry attempts use the webhook's current delivery settings when dispatched. Disabling or deleting it, or removing its event subscription, stops queued deliveries. A request already in flight may still reach your endpoint. Creating, enabling, or changing an enabled webhook's URL, parameters, or signing setting queues a `webhook_test`. Renaming it or changing only its subscriptions does not queue a test.
+
+## Events
+
+Expand a resource group, then an event for its definition and example. **The JSON examples in this section show `data` only**. Every delivery wraps this data in the [event envelope](#the-event-envelope). Examples use illustrative IDs and values. Nullable fields and additional rendering/provider settings may also be present.
+
+Resource lifecycle events follow the [shared entity structure](#entity-events), including its rules for secret fields and truncated text.
+
+<div class="webhook-events">
+
+<details open>
+<summary>Images</summary>
+
+Subscription and payload access require `images:read`.
+
+<details id="event-image-stored">
+<summary><code>image_stored</code> — a rendered base file was saved</summary>
+
+`image_id` identifies the saved image. `width` and `height` are the stored base image's pixel dimensions before requested transformations. They can be `null` for PDFs or older events. `file_size_bytes` is the base file size and can be `null` for older events.
+
+`location` is `hcti_storage` or `customer_storage`. For customer storage, `location_details` contains `storage_destination_id`, `bucket`, and `path` (the object key including its prefix). Otherwise it is `null`.
+
+```json
+{
+  "image_id": "01a135fb-21fa-7027-9b82-70acc0e1fd16",
+  "width": 1200,
+  "height": 630,
+  "file_size_bytes": 48210,
+  "location": "customer_storage",
+  "location_details": {
+    "storage_destination_id": "example_storage_id",
+    "bucket": "social-images",
+    "path": "posts/01a135fb-21fa-7027-9b82-70acc0e1fd16.png"
+  }
+}
+```
+
+See [image events and concurrent renders](#image-events-and-concurrent-renders) before relying on one notification per image.
+
+</details>
+
+<details id="event-image-deleted">
+<summary><code>image_deleted</code> — a delete request removed images</summary>
+
+One event per delete request. `image_ids` lists the images actually deleted: one ID for a single delete, or multiple IDs for a batch. Already-deleted images are excluded. The event name is singular even when the array contains multiple images.
+
+```json
+{
+  "image_ids": [
+    "01a135fb-21fa-7027-9b82-70acc0e1fd16",
+    "01a13603-b907-7f63-a402-56d9c89865bd"
+  ]
+}
+```
+
+</details>
+</details>
+
+<details>
+<summary>Templates</summary>
+
+Subscription and payload access require `templates:read`.
+
+<details id="event-template-created">
+<summary><code>template_created</code> — a template was created</summary>
+
+`entity.type` is `template`. `properties` includes its `version`, `name`, `description`, and stored rendering overrides, such as `viewport_width`, `device_scale`, `proxy_id`, or `storage_destination_id`. Nullable overrides mean the setting is unset. The `template_type` discriminator identifies the additional fields:
+
+- `html_css`: `html` and `css` are nullable text objects with truncation metadata. `google_fonts` lists families separated by `|`.
+- `blocks`: `block_counts` maps block type names to counts. `variables` lists discovered variables and their value requirements.
+
+Example HTML/CSS properties:
+
+```json
+{
+  "entity": { "type": "template", "id": "example_template_id" },
+  "properties": {
+    "template_type": "html_css",
+    "version": 12345,
+    "name": "Social card",
+    "description": null,
+    "html": { "value": "<h1>Hi</h1>", "truncated": false, "length": 11, "ender": null },
+    "css": null,
+    "google_fonts": null,
+    "viewport_width": 1200,
+    "viewport_height": 630
+  }
+}
+```
+
+The stored overrides use the [template rendering parameters](/getting-started/templates/), rather than resolved defaults. A block template's internal design is not included.
+
+</details>
+
+<details id="event-template-updated">
+<summary><code>template_updated</code> — a template changed</summary>
+
+`entity.type` is `template`. `changes` can include metadata, rendering options, `version`, `html`, `css`, `google_fonts`, `block_counts`, or `variables`. HTML/CSS changes carry truncated text objects as values. A block design change uses `content: { kind: "content" }`.
+
+```json
+{
+  "entity": { "type": "template", "id": "example_template_id" },
+  "changes": {
+    "name": { "kind": "value", "previous_value": "Social card", "new_value": "Product card" },
+    "version": { "kind": "value", "previous_value": 12345, "new_value": 12346 }
+  }
+}
+```
+
+</details>
+
+<details id="event-template-deleted">
+<summary><code>template_deleted</code> — a template was deleted</summary>
+
+Identifies the deleted template. It does not include a copy of its contents.
+
+```json
+{ "entity": { "type": "template", "id": "example_template_id" } }
+```
+
+</details>
+</details>
+
+<details>
+<summary>Proxies</summary>
+
+Subscription and payload access require `proxies:read`.
+
+<details id="event-proxy-created">
+<summary><code>proxy_created</code> — a proxy was created</summary>
+
+`properties` contains `name`, `url`, nullable `port`, `bypass_hosts`, nullable `username`, `password_assigned`, and `enabled`. Passwords are never included. A null port uses the proxy URL scheme's default.
+
+```json
+{
+  "entity": { "type": "proxy", "id": "example_proxy_id" },
+  "properties": {
+    "name": "Rendering proxy",
+    "url": "https://proxy.example.com",
+    "port": 8443,
+    "bypass_hosts": [],
+    "username": "render-user",
+    "password_assigned": true,
+    "enabled": true
+  }
+}
+```
+
+</details>
+
+<details id="event-proxy-updated">
+<summary><code>proxy_updated</code> — a proxy changed</summary>
+
+`entity.type` is `proxy`. Ordinary changes use `kind: "value"`. The `username` and `password` change paths are top-level fields. Password changes report assignment state without the password.
+
+```json
+{
+  "entity": { "type": "proxy", "id": "example_proxy_id" },
+  "changes": {
+    "enabled": { "kind": "value", "previous_value": true, "new_value": false },
+    "password": { "kind": "secret", "previous_assigned": true, "new_assigned": true }
+  }
+}
+```
+
+</details>
+
+<details id="event-proxy-deleted">
+<summary><code>proxy_deleted</code> — a proxy was deleted</summary>
+
+Identifies the deleted proxy configuration.
+
+```json
+{ "entity": { "type": "proxy", "id": "example_proxy_id" } }
+```
+
+</details>
+</details>
+
+<details>
+<summary>Storage destinations</summary>
+
+Subscription and payload access require `storage_destinations:read`.
+
+<details id="event-storage-destination-created">
+<summary><code>storage_destination_created</code> — a storage destination was created</summary>
+
+`properties` contains `name`, `enabled`, `hcti_storage_disabled`, provider-specific `connection_info`, and `secret_access_key_assigned`. Connection details use the [storage destination response shape](/management-api/storage-destinations/), without secret access keys. Amazon S3 uses a role and reports `secret_access_key_assigned: false`.
+
+```json
+{
+  "entity": { "type": "storage_destination", "id": "example_storage_id" },
+  "properties": {
+    "name": "Social images",
+    "enabled": true,
+    "hcti_storage_disabled": false,
+    "connection_info": {
+      "provider": "cloudflare_r2",
+      "cloudflare_account_id": "0123456789abcdef0123456789abcdef",
+      "access_key_id": "your-access-key-id",
+      "bucket": "social-images",
+      "key_prefix": "posts/"
+    },
+    "secret_access_key_assigned": true
+  }
+}
+```
+
+</details>
+
+<details id="event-storage-destination-updated">
+<summary><code>storage_destination_updated</code> — a storage destination changed</summary>
+
+`entity.type` is `storage_destination`. `changes` includes ordinary configuration changes and secret assignment changes. Provider fields use dotted paths under `connection_info`. The secret assignment uses the top-level path `secret_access_key`.
+
+```json
+{
+  "entity": { "type": "storage_destination", "id": "example_storage_id" },
+  "changes": {
+    "connection_info.bucket": { "kind": "value", "previous_value": "old-images", "new_value": "social-images" },
+    "secret_access_key": { "kind": "secret", "previous_assigned": true, "new_assigned": true }
+  }
+}
+```
+
+</details>
+
+<details id="event-storage-destination-deleted">
+<summary><code>storage_destination_deleted</code> — a storage destination was deleted</summary>
+
+Identifies the deleted destination configuration. Deleting a destination does not delete files in your bucket.
+
+```json
+{ "entity": { "type": "storage_destination", "id": "example_storage_id" } }
+```
+
+</details>
+</details>
+
+<details>
+<summary>Open Graph configurations</summary>
+
+Subscription and payload access require `og_configs:read`.
+
+<details id="event-og-config-created">
+<summary><code>og_config_created</code> — an Open Graph configuration was created</summary>
+
+`properties` contains `config_type`, `name`, `description`, `base_url`, `optimization_mode`, `enabled`, and `refresh_interval_s`, plus fields for its variant:
+
+- `html_css`: `default_options`, a separate truncated `css` field, and `extract_values`. CSS from the defaults is reported in `css`.
+- `templated`: `template_id`, nullable `template_version`, `template_values_mapping`, `headers`, and `additional_header_origins`.
+
+Example screenshot configuration:
+
+```json
+{
+  "entity": { "type": "og_config", "id": "example_og_config_id" },
+  "properties": {
+    "config_type": "html_css",
+    "name": "Website cards",
+    "description": null,
+    "base_url": "https://example.com",
+    "optimization_mode": "no_optimization",
+    "enabled": true,
+    "refresh_interval_s": 86400,
+    "default_options": { "viewport_width": 1200, "viewport_height": 630 },
+    "css": null,
+    "extract_values": false
+  }
+}
+```
+
+See [OG configuration fields](/management-api/og-configs/) for the variant-specific options.
+
+</details>
+
+<details id="event-og-config-updated">
+<summary><code>og_config_updated</code> — an Open Graph configuration changed</summary>
+
+`entity.type` is `og_config`. Changes include common and variant-specific fields. Nested defaults use dotted paths. Arrays are reported as whole values. CSS uses truncated text values.
+
+```json
+{
+  "entity": { "type": "og_config", "id": "example_og_config_id" },
+  "changes": {
+    "refresh_interval_s": { "kind": "value", "previous_value": 86400, "new_value": 3600 }
+  }
+}
+```
+
+</details>
+
+<details id="event-og-config-deleted">
+<summary><code>og_config_deleted</code> — an Open Graph configuration was deleted</summary>
+
+Identifies the deleted configuration.
+
+```json
+{ "entity": { "type": "og_config", "id": "example_og_config_id" } }
+```
+
+</details>
+</details>
+
+<details>
+<summary>API keys</summary>
+
+Subscription and payload access require `api_keys:read`. These subscriptions are available through the dashboard or REST, rather than MCP. Key secrets are never included.
+
+<details id="event-api-key-created">
+<summary><code>api_key_created</code> — an API key was created</summary>
+
+`properties` contains `api_id`, nullable `name` and `description`, `enabled`, `all_future_permissions`, and a `permissions` array. Use `entity.id` for management requests and `api_id` as the authentication username.
+
+```json
+{
+  "entity": { "type": "api_key", "id": "example_key_id" },
+  "properties": {
+    "api_id": "your-api-id",
+    "name": "Publishing service",
+    "description": null,
+    "enabled": true,
+    "all_future_permissions": false,
+    "permissions": ["images:create", "images:read"]
+  }
+}
+```
+
+</details>
+
+<details id="event-api-key-updated">
+<summary><code>api_key_updated</code> — an API key's metadata or permissions changed</summary>
+
+`entity.type` is `api_key`. Changes report metadata, enabled state, all-future access, or permissions. Permission arrays are reported as whole values.
+
+```json
+{
+  "entity": { "type": "api_key", "id": "example_key_id" },
+  "changes": {
+    "permissions": {
+      "kind": "value",
+      "previous_value": ["images:create"],
+      "new_value": ["images:create", "images:read"]
+    }
+  }
+}
+```
+
+</details>
+
+<details id="event-api-key-deleted">
+<summary><code>api_key_deleted</code> — an API key was deleted</summary>
+
+Identifies the deleted key by its management ID.
+
+```json
+{ "entity": { "type": "api_key", "id": "example_key_id" } }
+```
+
+</details>
+</details>
+
+<details>
+<summary>Organization</summary>
+
+Subscription and payload access require `usage:read`.
+
+<details id="event-organization-plan-changed">
+<summary><code>organization_plan_changed</code> — the effective plan changed</summary>
+
+`previous_plan` and `new_plan` are public tier names: `Free`, `Basic`, `Pro`, `Scale`, or `No Plan`. Their corresponding `*_credits_allowed` fields give included image credits per billing period. These values can be `null` when unknown. `changed_at` is the UTC time the change took effect.
+
+```json
+{
+  "previous_plan": "Basic",
+  "previous_credits_allowed": 50000,
+  "new_plan": "Pro",
+  "new_credits_allowed": 100000,
+  "changed_at": "2026-10-29T14:00:00Z"
+}
+```
+
+Credit values above are illustrative. Use the delivered limits for the organization's actual plan.
+
+</details>
+
+<details id="event-organization-usage-reset">
+<summary><code>organization_usage_reset</code> — a new usage period started</summary>
+
+`previous_period_credits_used` is the previous period's usage, or `null` if unavailable. `period_start` is the new period's UTC start. `period_end` is its end or `null` if unknown. `plan` and `credits_allowed` describe the new period's plan and can be `null`.
+
+```json
+{
+  "previous_period_credits_used": 42310,
+  "period_start": "2026-10-29T00:00:00Z",
+  "period_end": "2026-11-29T00:00:00Z",
+  "plan": "Basic",
+  "credits_allowed": 50000
+}
+```
+
+</details>
+
+<details id="event-organization-usage-alert">
+<summary><code>organization_usage_alert</code> — usage crossed a threshold</summary>
+
+One logical event is raised per threshold per usage period. Retries can deliver it more than once. `threshold_percent` is `80` or `100`. `credits_used` is usage when the alert was raised. `credits_allowed` is the plan's included allowance. `period_start` identifies the billing period. Concurrent rendering can make the reported usage exceed the exact threshold.
+
+```json
+{
+  "threshold_percent": 80,
+  "credits_used": 40002,
+  "credits_allowed": 50000,
+  "period_start": "2026-10-29T00:00:00Z"
+}
+```
+
+The event does not itself change overage settings or stop rendering.
+
+</details>
+</details>
+
+<details>
+<summary>Test deliveries</summary>
+
+<details id="event-webhook-test">
+<summary><code>webhook_test</code> — check endpoint delivery</summary>
+
+A synthetic event sent only to the webhook being tested. You cannot subscribe to it. It is sent automatically on relevant configuration changes or through the test action, with the webhook's normal parameters and signing setting.
+
+`webhook_id` is the configuration ID being tested. `config_version` is the version of its delivery settings when the test was queued. Inspect the attempt's configuration in history to see the settings actually used if the webhook changed before dispatch.
+
+```json
+{
+  "webhook_id": "example_webhook_id",
+  "config_version": 1
+}
+```
+
+Reading a test payload needs only `webhooks:read`.
+
+</details>
+</details>
+
+</div>
+
+<Help />

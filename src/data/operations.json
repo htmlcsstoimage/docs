@@ -190,6 +190,71 @@
       "mcp_section": "og-configurations"
     }
   ],
+  "webhooks": [
+    {
+      "title": "Create a webhook",
+      "id": "operation-create-a-webhook",
+      "method": "POST",
+      "path": "/v1/webhooks",
+      "permission": "webhooks:create_update",
+      "mcp_tool": "create_webhook",
+      "mcp_section": "webhooks"
+    },
+    {
+      "title": "List webhooks",
+      "id": "operation-list-webhooks",
+      "method": "GET",
+      "path": "/v1/webhooks",
+      "permission": "webhooks:read",
+      "mcp_tool": "list_webhooks",
+      "mcp_section": "webhooks"
+    },
+    {
+      "title": "Retrieve a webhook",
+      "id": "operation-retrieve-a-webhook",
+      "method": "GET",
+      "path": "/v1/webhooks/{id}",
+      "permission": "webhooks:read",
+      "mcp_tool": "get_webhook",
+      "mcp_section": "webhooks"
+    },
+    {
+      "title": "Update a webhook",
+      "id": "operation-update-a-webhook",
+      "method": "POST",
+      "path": "/v1/webhooks/{id}",
+      "permission": "webhooks:create_update",
+      "mcp_tool": "update_webhook",
+      "mcp_section": "webhooks"
+    },
+    {
+      "title": "Delete a webhook",
+      "id": "operation-delete-a-webhook",
+      "method": "DELETE",
+      "path": "/v1/webhooks/{id}",
+      "permission": "webhooks:delete",
+      "mcp_tool": "delete_webhook",
+      "mcp_section": "webhooks"
+    },
+    {
+      "title": "Send a test event",
+      "id": "operation-send-a-test-event",
+      "method": "POST",
+      "path": "/v1/webhooks/{id}/test",
+      "permission": "webhooks:create_update",
+      "mcp_tool": "send_webhook_test_event",
+      "mcp_section": "webhooks"
+    },
+    {
+      "title": "Retrieve a webhook event",
+      "id": "operation-retrieve-a-webhook-event",
+      "method": "GET",
+      "path": "/v1/webhooks/events/{id}",
+      "permission": "webhooks:read",
+      "mcp_tool": "get_webhook_event",
+      "mcp_section": "webhooks"
+    }
+  ],
   "usage": [
     {
       "title": "Retrieve image usage history",

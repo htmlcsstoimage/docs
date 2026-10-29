@@ -35,9 +35,14 @@ Permissions unavailable to your organization role are disabled. Owners and Admin
 | Create/update management resources | The corresponding `proxies:create_update`, `storage_destinations:create_update`, or `og_configs:create_update` |
 | Delete a management resource | The corresponding resource's `:delete` permission |
 | Get the AWS storage external ID | `storage_destinations:create_update` |
+| List webhooks or inspect an event's delivery status | `webhooks:read`. Event payloads also need their resource's read permission. |
+| Create/update a webhook or send a test | `webhooks:create_update`. Subscriptions also need their resource's read permission. |
+| Delete a webhook | `webhooks:delete` |
 | Submit feedback | None |
 
 For workflows that first inspect and then update a resource, approve both read and create/update. Deletion is a separate permission. See the [complete tools reference](/integrations/mcp/tools/) and [permission model](/getting-started/using-the-api/permissions/).
+
+Webhook subscriptions require permission to read the selected events: for example, `images:read` for image events and `usage:read` for organization alerts. API key events are available through REST or the dashboard. MCP connections cannot grant `api_keys:read`. See [webhooks](/guides/webhooks/) for event definitions and delivery behavior.
 
 Every authenticated connection can use [`submit_feedback`](/integrations/mcp/tools/#feedback). Image and resource operations require the permissions listed above.
 

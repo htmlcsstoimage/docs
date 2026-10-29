@@ -25,6 +25,7 @@ const navigation = [
     { label: 'Proxies API', link: '/management-api/proxies/' },
     { label: 'Storage destinations API', link: '/management-api/storage-destinations/' },
     { label: 'OG configurations API', link: '/management-api/og-configs/' },
+    { label: 'Webhooks API', link: '/management-api/webhooks/' },
     { label: 'Infrastructure as code', items: [
       { label: 'Overview', link: '/management-api/iac/' },
       { label: 'Terraform', link: '/management-api/terraform/' },
@@ -133,6 +134,7 @@ const navigation = [
   ] },
   { label: 'Guides', items: [
     { label: 'Overview', link: '/guides/' },
+    { label: 'Webhooks', link: '/guides/webhooks/' },
     { label: 'OG Images', items: [
       { label: 'Overview', link: '/guides/og-images/' },
       { label: 'Shopify', link: '/guides/og-images/shopify/' },

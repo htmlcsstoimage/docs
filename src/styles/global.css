@@ -21,11 +21,31 @@ main > .content-panel { padding-block:1rem; }
 
 .platform-sizes td:first-child, .platform-sizes td:first-child code { white-space:nowrap; }
 
+@media (min-width:40rem) {
+  .webhook-delivery-headers td:first-child,
+  .webhook-delivery-headers td:first-child code { white-space:nowrap; }
+}
+
 /* Troubleshooting entries are compact reference items within a section. */
 .sl-markdown-content .troubleshooting { --sl-text-h3:1.125rem; --sl-text-h4:1rem; }
 .sl-markdown-content .troubleshooting .sl-heading-wrapper { margin-top:1.5rem; }
 .sl-markdown-content .troubleshooting h3 { line-height:1.5; letter-spacing:normal; }
 .sl-markdown-content .troubleshooting h3 code { font-size:.9em; }
+
+/* Event groups use disclosure rows instead of the default quote-like left rail. */
+.sl-markdown-content .webhook-events details { margin:0; padding:0; border:0; }
+.sl-markdown-content .webhook-events > details { margin-block:.75rem; border:1px solid var(--sl-color-hairline); border-radius:.5rem; }
+.sl-markdown-content .webhook-events summary { margin:0; padding:.85rem 1rem; border-radius:.5rem; line-height:1.6; }
+.sl-markdown-content .webhook-events summary::before { float:inline-end; margin:.125rem 0 .125rem .75rem; }
+.sl-markdown-content .webhook-events summary:hover { background:var(--sl-color-gray-6); }
+.sl-markdown-content .webhook-events summary:focus-visible { outline:2px solid var(--sl-color-text-accent); outline-offset:2px; }
+.sl-markdown-content .webhook-events details[open] > summary { margin-bottom:0; }
+.sl-markdown-content .webhook-events > details > summary { background:var(--sl-color-gray-6); }
+.sl-markdown-content .webhook-events > details > p { margin:.75rem 1rem; color:var(--sl-color-gray-2); font-size:.9rem; }
+.sl-markdown-content .webhook-events details details { border-top:1px solid var(--sl-color-hairline); }
+.sl-markdown-content .webhook-events details details > summary { font-weight:400; }
+.sl-markdown-content .webhook-events details details > :not(summary) { margin-inline:1rem; }
+.sl-markdown-content .webhook-events details details > :last-child:not(summary) { margin-bottom:1rem; }
 
 /* Match the main website's fixed 74px charcoal navigation in either theme. */
 :root, :root[data-theme='light'] { --sl-nav-height:74px; --sl-color-bg-nav:#212529; --sl-nav-pad-y:12px; }

@@ -14,6 +14,9 @@ Every documentation component must have a readable static representation:
   Pipes in cell content are escaped to avoid creating extra columns.
 - `Endpoint` exports its method and URL together as inline code.
 - Starlight `LinkCard` exports a linked title followed by its description.
+- Disclosures include their contents even when collapsed. Summaries are separated
+  from the body. Webhook event groups become level-three headings and individual
+  events become level-four headings, preserving the reference hierarchy.
 - Code examples retain their fences and newlines. Navigation, copy buttons,
   heading-link icons and scripts are excluded.
 - For an interactive component, include useful static instructions/content;
@@ -50,3 +53,16 @@ Run `npm test`, `npm run build`, then `node scripts/check-preview.mjs
 http://localhost:4321` against `npm run preview`. The preview check covers both
 representations and HEAD requests for every native page. Run `npm run check` to validate built pages, links, assets, and published URL compatibility.
 The same exports also produce `llms.txt` and `llms-full.txt` during each build.
+
+## Local development
+
+With `npm run dev`, direct `.md` URLs such as `/guides/webhooks.md` render the
+current HTML page and convert its article with the same Markdown serializer.
+The root page is available at `/index.md`. GET and HEAD are supported, and
+responses are not cached so edits appear without a production build. Development
+serves the Markdown as `text/plain` so browsers display the source inline.
+
+Development uses the rendered HTML representation of component tables.
+Production builds also use component-specific build metadata for their full
+Markdown formatting. Content negotiation with `Accept: text/markdown` and the
+generated `llms.txt` files remain part of the Worker/build workflow described above.

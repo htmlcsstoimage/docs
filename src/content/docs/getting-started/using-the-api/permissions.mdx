@@ -44,6 +44,9 @@ Use these exact strings in API key `permissions` arrays. MCP OAuth uses the same
 | <span id="permission-og-configs-read"></span>`og_configs:read` | List/get OG configurations. |
 | <span id="permission-og-configs-create-update"></span>`og_configs:create_update` | Create/update OG configurations. |
 | <span id="permission-og-configs-delete"></span>`og_configs:delete` | Delete OG configurations. |
+| <span id="permission-webhooks-read"></span>`webhooks:read` | List/get webhooks and inspect known events' delivery status. Payloads additionally require resource-read access. |
+| <span id="permission-webhooks-create-update"></span>`webhooks:create_update` | Create/update webhooks and send test events. Subscriptions additionally require resource-read access. |
+| <span id="permission-webhooks-delete"></span>`webhooks:delete` | Delete webhook configurations and stop queued deliveries. |
 | <span id="permission-usage-read"></span>`usage:read` | Read REST usage; call MCP `check_usage` and `get_max_batch_size`. |
 | <span id="permission-api-keys-read"></span>`api_keys:read` | List/get API key metadata without secrets. REST only. |
 | <span id="permission-api-keys-create-update"></span>`api_keys:create_update` | Create/update API keys within the caller's authority. REST only. |
@@ -75,7 +78,7 @@ The API requires a `permissions` array. Use `[]` with `all_future_permissions: t
 
 ## Organization roles
 
-Owners can grant all current and future permissions. Admins can grant current permissions, including management operations, but cannot manage keys with all-future access. Users can operate on images and templates, view usage, and read organization resource configurations and API key metadata; they cannot manage keys or change proxy, storage, or OG configurations.
+Owners can grant all current and future permissions. Admins can grant current permissions, including management operations, but cannot manage keys with all-future access. Users can operate on images and templates, view usage, and read organization resource configurations and API key metadata. They cannot manage keys or change proxy, storage, OG, or webhook configurations.
 
 See [organization settings](/guides/account/organization-settings/) for membership and billing permissions. API keys belong to the organization; their grants are distinct from the dashboard role of the person using the API.
 

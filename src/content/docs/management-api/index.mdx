@@ -2,7 +2,7 @@
 title: Management API
 slug: management-api
 description: >-
-  Manage API keys, usage, proxies, storage destinations, and Open Graph configurations through the HTML/CSS to Image API and MCP.
+  Manage API keys, usage, proxies, storage destinations, Open Graph configurations, and webhooks through the HTML/CSS to Image API and MCP.
 ---
 import { LinkButton } from '@astrojs/starlight/components';
 import Help from '../../../components/Help.astro';
@@ -11,7 +11,7 @@ import Help from '../../../components/Help.astro';
 
 Create application credentials, configure image delivery, and automate social image setup from your application or AI assistant.
 
-The Management API lets you configure the resources you use in the HCTI dashboard: API keys, proxies, storage destinations, and Open Graph configurations. You can also monitor image usage. It uses the same `https://hcti.io/v1` base URL and HTTP Basic authentication as the [image and template API](/getting-started/using-the-api/).
+The Management API lets you configure the resources you use in the HCTI dashboard: API keys, proxies, storage destinations, Open Graph configurations, and webhooks. You can also monitor image usage. It uses the same `https://hcti.io/v1` base URL and HTTP Basic authentication as the [image and template API](/getting-started/using-the-api/).
 
 <LinkButton href="https://htmlcsstoimage.com/api-docs">Interactive API reference</LinkButton>
 <LinkButton href="/getting-started/using-the-api/api-keys/" variant="secondary">Authentication and API keys</LinkButton>
@@ -24,6 +24,7 @@ The Management API lets you configure the resources you use in the HCTI dashboar
 | [Proxies](/management-api/proxies/) | Create, list, retrieve, update, and delete | Same operations |
 | [Storage destinations](/management-api/storage-destinations/) | Create, list, retrieve, update, delete, and get the AWS external ID | Same operations |
 | [OG configurations](/management-api/og-configs/) | Create, list, retrieve, update, and delete | Same operations |
+| [Webhooks](/management-api/webhooks/) | Create, list, retrieve, update, delete, send tests, and inspect known events | Same operations. API key event subscriptions require REST or the dashboard. |
 | [Usage](/management-api/usage/) | Historical image counts by time interval and billing period | Current image usage and limits; maximum batch size |
 
 Organization membership, invitations, billing changes, and organization settings are managed in the [dashboard](/guides/account/organization-settings/).
@@ -58,7 +59,7 @@ MCP uses OAuth instead of API keys. Approve the required permissions when connec
 
 Treat resource IDs and pagination cursors as opaque strings. For API keys, use `id` in management URLs; `api_id` is the authentication username.
 
-The four resource list endpoints accept:
+The resource list endpoints accept:
 
 | Query parameter | Description |
 |:----------------|:------------|
@@ -74,15 +75,17 @@ Results are ordered newest first. Pass the cursor back unchanged and stop when `
 }
 ```
 
-Proxy, storage destination, and OG configuration lists include disabled resources. API key lists exclude disabled keys unless `include_disabled=true`.
+Proxy, storage destination, OG configuration, and webhook lists include disabled resources. API key lists exclude disabled keys unless `include_disabled=true`.
 
 ## Creating and updating resources
 
 Send JSON with `Content-Type: application/json`. Successful creates, gets, and updates return `200 OK`; deletes return `204 No Content`.
 
-Updates replace the configuration. Send all settings you want to retain; omitted optional fields can clear settings or restore defaults. API key, proxy, storage destination, and OG configuration updates use `POST` with the resource ID.
+Updates replace the configuration. Send all settings you want to retain. Omitted optional fields can clear settings or restore defaults. API key, proxy, storage destination, OG configuration, and webhook updates use `POST` with the resource ID.
 
 To keep an existing secret without resending it, explicitly set `authentication.retain_password: true` for proxies or `connection_info.retain_secret_access_key: true` for access-key storage destinations. See [proxy updates](/management-api/proxies/#update-a-proxy) and [storage updates](/management-api/storage-destinations/#updates-and-connection-tests) for requirements and examples.
+
+For secret webhook parameters, use `retain_value: true` with `secret: true` and no `value`. Changing the endpoint URL requires resending secret values through REST or MCP. See [webhook updates](/management-api/webhooks/#update-a-webhook).
 
 ## Errors and retries
 
@@ -92,9 +95,9 @@ To keep an existing secret without resending it, explicitly set `authentication.
 | `401` | Missing, invalid, or disabled API credentials. |
 | `403` | Required permissions, authority to modify another key, or plan eligibility. Read the error message. |
 | `404` | The resource or a referenced resource was not found in the authenticated organization. |
-| `409` | A conflicting OG configuration. See the returned message. |
+| `409` | A conflicting OG configuration or concurrent webhook update. See the returned message. |
 | `429` | The resource operation group has reached its request limit. |
 
-Management resource reads allow **100 requests/minute**, and writes allow **20 requests/minute**, per resource family and organization. REST and MCP share these counters. See [rate limits](/getting-started/using-the-api/rate-limits/) for headers, retries, and how these limits differ from image credits.
+Management resource reads allow **100 requests/minute**, and configuration writes allow **20 requests/minute**, per resource family and organization. Manual webhook tests use a separate **5 requests/minute** group and a 30-second per-webhook cooldown. REST and MCP share these counters. See [rate limits](/getting-started/using-the-api/rate-limits/) for headers, retries, and how these limits differ from image credits.
 
 <Help />

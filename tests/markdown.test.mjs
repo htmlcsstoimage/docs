@@ -4,6 +4,16 @@ import { marked } from 'marked';
 import { load } from 'cheerio';
 import { renderMarkdown } from '../scripts/markdown-exports.mjs';
 
+test('collapsed webhook groups and events retain their hierarchy and complete payloads', () => {
+  const markdown = renderMarkdown(`<div class="sl-markdown-content"><h2>Events</h2><div class="webhook-events"><details><summary>Images</summary><p>Requires <code>images:read</code>.</p><details id="event-image-stored"><summary><code>image_stored</code> — a base file was saved</summary><p>Storage details.</p><pre><code class="language-json">{"image_id":"example"}</code></pre></details></details><details><summary>Test deliveries</summary><details><summary><code>webhook_test</code> — check endpoint delivery</summary><p>A synthetic event.</p></details></details></div><details><summary>Source attribution</summary><p>Caller details.</p></details></div>`, 'Webhooks');
+  const $ = load(marked.parse(markdown));
+  assert.deepEqual($('h3').map((_, node) => $(node).text()).get(), ['Images', 'Test deliveries']);
+  assert.deepEqual($('h4 code').map((_, node) => $(node).text()).get(), ['image_stored', 'webhook_test']);
+  assert.equal($('pre code.language-json').text().trim(), '{"image_id":"example"}');
+  assert.match(markdown, /\*\*Source attribution\*\*\n\nCaller details\./);
+  assert.doesNotMatch(markdown, /Test deliveries`|<details|<summary/);
+});
+
 test('changelog publication dates remain separate from article text', () => {
   const markdown = renderMarkdown('<header><time data-changelog-date datetime="2026-09-15">September 15, 2026</time></header><div class="sl-markdown-content"><p>New Go client.</p></div>', 'Go client');
   assert.equal(markdown, '# Go client\n\nSeptember 15, 2026\n\nNew Go client.\n');
@@ -44,8 +54,8 @@ test('headings, code examples and endpoints retain meaning without UI controls',
 });
 
 test('Expressive Code output retains its language, line breaks and indentation', () => {
-  const markdown = renderMarkdown('<div class="sl-markdown-content"><div class="expressive-code"><pre data-language="html"><code><div class="ec-line"><div class="code">&lt;div&gt;</div></div><div class="ec-line"><div class="code"><span class="indent">  </span>&lt;h2&gt;Hello&lt;/h2&gt;</div></div><div class="ec-line"><div class="code">&lt;/div&gt;</div></div></code></pre></div></div>', 'Sizing');
-  assert.match(markdown, /```html\n<div>\n  <h2>Hello<\/h2>\n<\/div>\n```/);
+  const markdown = renderMarkdown('<div class="sl-markdown-content"><div class="expressive-code"><pre data-language="html"><code><div class="ec-line"><div class="code">&lt;div&gt;</div></div><div class="ec-line"><div class="code">\n</div></div><div class="ec-line"><div class="code"><span class="indent">  </span>&lt;h2&gt;Hello&lt;/h2&gt;</div></div><div class="ec-line"><div class="code">&lt;/div&gt;</div></div></code></pre></div></div>', 'Sizing');
+  assert.match(markdown, /```html\n<div>\n\n  <h2>Hello<\/h2>\n<\/div>\n```/);
 });
 
 test('component Markdown uses build props and strips all metadata from served HTML', async () => {

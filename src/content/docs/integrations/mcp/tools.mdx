@@ -2,7 +2,7 @@
 title: MCP tools reference
 slug: integrations/mcp/tools
 description: >-
-  All HCTI MCP tools for images, templates, usage, proxies, storage destinations, and OG configurations, with required permissions and arguments.
+  All HCTI MCP tools for images, templates, usage, proxies, storage destinations, OG configurations, and webhooks, with required permissions and arguments.
 ---
 import Help from '../../../../components/Help.astro';
 
@@ -112,17 +112,35 @@ For example, arguments to `create_og_config`:
 }
 ```
 
+## Webhooks
+
+| Tool | Required permission | Arguments and behavior |
+|:-----|:--------------------|:-----------------------|
+| `list_webhooks` | `webhooks:read` | Optional `count`, `page_start`. Includes disabled webhooks. |
+| `get_webhook` | `webhooks:read` | `id`. Returns configuration without signing secrets or secret parameter values. |
+| `create_webhook` | `webhooks:create_update` | `content` with name, HTTPS URL, events, optional parameters and signing setting. An enabled webhook queues an automatic test. |
+| `update_webhook` | `webhooks:create_update` | `id`, complete replacement `content`. Omitted parameters are removed. Get the configuration again after a concurrent-update conflict. |
+| `delete_webhook` | `webhooks:delete` | `id`. Stops queued deliveries and returns `true` on success. |
+| `send_webhook_test_event` | `webhooks:create_update` | `webhook_id`. Queues a test for an enabled webhook and returns `event_id`. |
+| `get_webhook_event` | `webhooks:read` | `event_id`. Returns the event, destination statuses, and delivery attempts. |
+
+Subscribing also requires read permission for the selected events' resources, such as `images:read` for `image_stored` or `usage:read` for organization alerts. Changing delivery settings or enabling a webhook requires read access to every selected event. API key events cannot be subscribed to through MCP because `api_keys:read` is excluded from OAuth. Event lookup with insufficient resource-read permission returns `data: null` and `payload_withheld: true` while retaining delivery status.
+
+Signing secrets can be revealed only in the dashboard. To keep an existing secret parameter on update, use `secret: true` and `retain_value: true`, with the same location and key and no `value`. If the endpoint URL changes, resend secret values instead. See the [Webhooks API](/management-api/webhooks/) for `content` fields and response details, and the [webhooks guide](/guides/webhooks/) for signatures, event payloads, and at-least-once delivery.
+
+Manual tests share **5 requests/minute** per organization in `webhook:test`, separate from configuration writes. Each webhook also has a **30-second cooldown**, including after an automatic test.
+
 ## Management results and pagination
 
 Management tools return structured results with `success`, `item`, and `error`. On success, `item` contains the resource, list page, or `true` for deletion. A list page inside `item` has `data` and `pagination.next_page_start`.
 
-Management lists accept `count` from 1 to 100 (default 10). Pass the returned cursor as `page_start` until it is null. Proxy, storage, and OG lists include disabled resources. Do not assume a disabled resource can be used for new renders.
+Management lists accept `count` from 1 to 100 (default 10). Pass the returned cursor as `page_start` until it is null. Proxy, storage, OG, and webhook lists include disabled resources. Do not assume a disabled resource can be used for new renders or deliveries.
 
 Permission and rate-limit failures can be returned directly as MCP tool errors without this structured wrapper. Check the tool's error status and message before using its result.
 
 ## Permissions and rate limits
 
-Management reads share **100 requests/minute per resource family and organization**; writes share **20 requests/minute**. These allowances are shared with REST. `get_aws_storage_external_id` uses the storage read group while requiring create/update permission. See [rate limits](/getting-started/using-the-api/rate-limits/).
+Management reads share **100 requests/minute per resource family and organization**. Configuration writes share **20 requests/minute**. These allowances are shared with REST. Manual webhook tests use the separate allowance described above. `get_aws_storage_external_id` uses the storage read group while requiring create/update permission. See [rate limits](/getting-started/using-the-api/rate-limits/).
 
 If a tool reports insufficient permissions, it was not executed. [Reconnect and approve the required access](/integrations/mcp/permissions/#add-permissions-to-an-existing-connection) before retrying. A token refresh does not add permissions. For rate-limit errors, wait 60 seconds before retrying.
 

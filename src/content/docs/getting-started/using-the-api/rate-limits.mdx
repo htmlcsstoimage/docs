@@ -21,12 +21,15 @@ Management operations have per-minute request limits. Image generation uses your
 | Proxies | `proxy:read` | 100 | `proxy:write` | 20 |
 | Storage destinations | `storage-destination:read` | 100 | `storage-destination:write` | 20 |
 | OG configurations | `og-config:read` | 100 | `og-config:write` | 20 |
+| Webhooks | `webhook:read` | 100 | `webhook:write` | 20 |
 
 Limits use a sliding 60-second window **per organization and operation group**. Read and write groups are independent, and each resource family has its own groups. All keys and MCP connections for the same organization share the relevant group's allowance across REST and MCP.
 
 List and get operations use the read group. Create, update, and delete operations use the write group. For example, listing proxies and getting individual proxies together share 100 requests/minute. Creating 10 proxies and updating 10 proxies uses the proxy write allowance for that window.
 
 These management rate limits do not apply to image creation, template operations, or `GET /v1/usage`. Image generation has no per-second or per-minute request limit; image credits and other plan limits still apply. Dashboard actions can have their own limits.
+
+Manual [webhook test requests](/management-api/webhooks/#send-a-test-event) use a separate `webhook:test` group with **5 requests/minute** per organization across REST and MCP. Each webhook also accepts only one test every **30 seconds**, including the automatic test after creation or relevant delivery-setting changes.
 
 ## Feedback submissions
 

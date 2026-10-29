@@ -1,0 +1,219 @@
+---
+title: Webhooks API
+slug: management-api/webhooks
+description: >-
+  Create, list, update, and delete HCTI webhooks through REST or MCP, send test events, and inspect delivery status, with permissions and secret parameter handling.
+---
+import Operations from '../../../components/Operations.astro';
+import Help from '../../../components/Help.astro';
+
+Manage webhook endpoints and event subscriptions for your organization. See the [webhooks guide](/guides/webhooks/) for dashboard setup, signatures, delivery guarantees, retries, and the complete [event payload reference](/guides/webhooks/#events).
+
+## Operations
+
+Use the `https://hcti.io/v1` base URL and [HTTP Basic authentication](/getting-started/using-the-api/api-keys/). Resource IDs must belong to the authenticated organization.
+
+<Operations resource="webhooks" />
+
+Reads share **100 requests/minute** in `webhook:read`. Configuration writes share **20 requests/minute** in `webhook:write`. Manual tests have a separate **5 requests/minute** allowance in `webhook:test`. These limits are per organization and shared across REST and MCP. Tests also have a per-webhook cooldown of 30 seconds. See [rate limits](/getting-started/using-the-api/rate-limits/).
+
+## Permissions and subscriptions
+
+| Operation | Required permission |
+|:----------|:--------------------|
+| List/get configurations and get one known event's delivery status | `webhooks:read` |
+| Create/update configuration and send test events | `webhooks:create_update` |
+| Delete configuration | `webhooks:delete` |
+
+Subscribing also requires read access to the event's resource: `images:read`, `templates:read`, `proxies:read`, `storage_destinations:read`, `og_configs:read`, or `api_keys:read`. Organization events require `usage:read`.
+
+Adding subscriptions requires the corresponding read grants. Changing delivery settings or enabling a webhook requires read access to **all** selected events. Renaming, disabling, or removing subscriptions can be done with `webhooks:create_update` without read access to subscriptions you are retaining.
+
+Event lookup returns payloads only for event types the caller can read. Delivery status remains available with `webhooks:read`. MCP cannot subscribe to API key events because `api_keys:read` is excluded from OAuth.
+
+## Create a webhook
+
+```bash
+curl 'https://hcti.io/v1/webhooks' \
+  --user "$HCTI_API_ID:$HCTI_API_KEY" \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "name": "Image publishing",
+    "url": "https://hooks.example.com/hcti",
+    "disabled": true,
+    "events": ["image_stored", "image_deleted"],
+    "signing_enabled": true,
+    "parameters": [
+      {
+        "location": "header",
+        "key": "Authorization",
+        "value": "Bearer your-receiver-token",
+        "secret": true
+      },
+      {
+        "location": "query_parameter",
+        "key": "environment",
+        "value": "production"
+      }
+    ]
+  }'
+```
+
+A successful request returns `200 OK` with the configuration. This example creates a disabled webhook so you can configure verification before receiving deliveries. Its response has `enabled: false` and `test_event_id: null`.
+
+Signed setup through REST or MCP includes a dashboard step. Copy the signing secret from **Edit webhook → Reveal signing secret** in the [dashboard](https://htmlcsstoimage.com/dashboard/webhooks), then store it in your receiver's server-side configuration. Neither the signing secret nor secret parameter values are returned by REST or MCP.
+
+Once the receiver is ready, enable the webhook in the dashboard or [replace its configuration](#update-a-webhook) with `disabled: false`, preserving all subscriptions, parameters, and the signing setting. Enabling queues an automatic `webhook_test` and returns its ID in `test_event_id` without waiting for successful delivery. Creating an enabled webhook has the same test behavior.
+
+Free plans allow 2 webhooks per organization and paid plans allow 10, including disabled webhooks.
+
+### Request fields
+
+Create and update use the same complete configuration:
+
+| Field | Description |
+|:------|:------------|
+| `name` | Required. Nonempty display name, up to 255 characters after trimming. |
+| `url` | Required. HTTPS endpoint, up to 2048 characters. `https://` is assumed if no scheme is supplied. Use a DNS hostname on the default HTTPS port, with no credentials, query string, or fragment. Private/internal destinations are blocked. |
+| `disabled` | Optional boolean, defaults to `false`. Responses use `enabled` instead. Disabled webhooks receive no deliveries. |
+| `events` | Required array of [event names](/guides/webhooks/#events). `webhook_test` cannot be subscribed to. `[]` receives only test events. |
+| `parameters` | Up to 20 custom headers and query parameters combined. Omitted, `null`, or `[]` removes the complete list on update. |
+| `signing_enabled` | Optional boolean, defaults to `false`. Enables Standard Webhooks signatures using the webhook's generated secret. |
+
+### Parameter fields
+
+| Field | Description |
+|:------|:------------|
+| `location` | Required: `header` or `query_parameter`. |
+| `key` | Required. Up to 512 UTF-8 bytes and unique within the location. Header names are case-insensitive, query names case-sensitive. |
+| `value` | Required unless retaining a stored secret. Up to 4096 UTF-8 bytes. An empty string is valid. |
+| `secret` | Optional boolean, defaults to `false`. Secret values are stored encrypted and omitted from read responses and history. Use for credentials. |
+| `retain_value` | Update only. Set `true` with `secret: true` and omit `value` to keep an existing secret with the same location and key. Defaults to `false`. |
+
+Header names must be valid HTTP tokens. Transport headers such as `Host`, `Content-Length`, `Content-Type`, and `User-Agent`, and names beginning with `X-HCTI-` or `Webhook-`, are reserved. Total header names and values must fit within 8 KiB in UTF-8. The endpoint URL plus encoded query parameters must fit within 8192 characters.
+
+### Response fields
+
+Create, get, update, and list entries all use this configuration shape. This example shows an enabled webhook immediately after an update queued a test:
+
+```json
+{
+  "id": "example_webhook_id",
+  "name": "Image publishing",
+  "enabled": true,
+  "url": "https://hooks.example.com/hcti",
+  "events": ["image_stored", "image_deleted"],
+  "parameters": [
+    { "location": "header", "key": "Authorization", "secret": true, "value": null },
+    { "location": "query_parameter", "key": "environment", "secret": false, "value": "production" }
+  ],
+  "signing_enabled": true,
+  "config_version": 1,
+  "created_at": "2026-10-29T14:00:00Z",
+  "updated_at": "2026-10-29T14:00:00Z",
+  "test_event_id": "example_test_event_id"
+}
+```
+
+`config_version` increments when the URL, parameters, or signing setting changes. Delivery attempts record the version they used. `test_event_id` is populated only when that create/update queued a test. It is otherwise `null`, including list and get responses. Timestamps are UTC. Treat IDs as opaque strings.
+
+## List and retrieve webhooks
+
+```bash
+curl 'https://hcti.io/v1/webhooks?count=10' \
+  --user "$HCTI_API_ID:$HCTI_API_KEY"
+
+curl 'https://hcti.io/v1/webhooks/WEBHOOK_ID' \
+  --user "$HCTI_API_ID:$HCTI_API_KEY"
+```
+
+Lists return `{ "data": [...], "pagination": { "next_page_start": "..." } }` in descending creation order, including disabled webhooks. `count` accepts 1–100 and defaults to 10. Pass the returned cursor as `page_start` for the next page. A `null` cursor marks the end.
+
+## Update a webhook
+
+`POST /v1/webhooks/{id}` **replaces the configuration**. Send every subscription and parameter you want to keep. Omitted booleans return to their defaults, so omitting `disabled` enables the webhook and omitting `signing_enabled` turns signing off.
+
+To retain a secret without resending it:
+
+```bash
+curl 'https://hcti.io/v1/webhooks/WEBHOOK_ID' \
+  --user "$HCTI_API_ID:$HCTI_API_KEY" \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "name": "Image publishing",
+    "url": "https://hooks.example.com/hcti",
+    "disabled": false,
+    "events": ["image_stored"],
+    "signing_enabled": true,
+    "parameters": [
+      {
+        "location": "header",
+        "key": "Authorization",
+        "secret": true,
+        "retain_value": true
+      }
+    ]
+  }'
+```
+
+The secret must already exist with the same location and key. Do not send `value` alongside `retain_value: true`. **Changing the URL requires resending secret values** through REST or MCP. Retained secrets cannot be redirected to another recipient. The dashboard supports keeping saved secrets when changing the URL.
+
+Enabling a webhook or changing an enabled webhook's URL, parameters, or signing setting queues a test. Renaming it, changing only subscriptions, or saving unchanged settings does not queue one.
+
+A concurrent update can return `409 Conflict`. Get the latest configuration, reconcile the changes, and submit the complete intended configuration again.
+
+## Send a test event
+
+```bash
+curl --request POST 'https://hcti.io/v1/webhooks/WEBHOOK_ID/test' \
+  --user "$HCTI_API_ID:$HCTI_API_KEY"
+```
+
+Returns `200 OK` with `{ "event_id": "example_test_event_id" }`. The event is queued with the webhook's normal delivery parameters and signing setting. Inspect its status with event lookup below.
+
+The webhook must be enabled, or the request returns `400`. Each webhook accepts one test every **30 seconds**, including the automatic test after creation or relevant settings changes. A manual request during cooldown returns `429`. Manual tests also share the organization's separate five-per-minute allowance.
+
+## Get a webhook event
+
+```bash
+curl 'https://hcti.io/v1/webhooks/events/EVENT_ID' \
+  --user "$HCTI_API_ID:$HCTI_API_KEY"
+```
+
+The response includes the delivered [envelope fields](/guides/webhooks/#the-event-envelope), `data`, `payload_withheld`, and `destinations`:
+
+| Field | Meaning |
+|:------|:--------|
+| `data` | Event-specific payload, or `null` if withheld or no longer available in history. |
+| `payload_withheld` | `true` when the caller lacks read permission for this event's resource. |
+| `destinations[]` | Each destination's `webhook_id`, `webhook_name`, status, invalidation reason, scheduling/completion timestamps, and attempts. |
+| `destinations[].attempts[]` | Newest-first attempts: number, URL without query parameters, start/end times, HTTP status, error, `manual_retry`, and the configuration used. |
+| `destinations[].attempts[].config` | Configuration `version`, `signing_enabled`, and parameters with secret values omitted. Can be `null` when unavailable. |
+
+Destination statuses are `pending`, `in_flight`, `retry_scheduled`, `succeeded`, `failed`, `invalidated`, or `cancelled`. `next_attempt_at` is populated while a retry is scheduled. Invalidations identify `webhook_deleted`, `webhook_disabled`, or `event_not_selected`. An attempt's `error` can identify an HTTP failure, timeout, connection/DNS/TLS failure, redirect, blocked destination, or internal failure. See [delivery behavior](/guides/webhooks/#delivery-guarantees-and-retries).
+
+Response bodies and response headers from your endpoint are not retained. History is retained for 365 days. Very large payloads may be omitted from older archived history. Use the [dashboard history](https://htmlcsstoimage.com/dashboard/webhooks/history) to browse events. REST and MCP retrieve a known event ID rather than listing history.
+
+## Delete a webhook
+
+```bash
+curl --request DELETE 'https://hcti.io/v1/webhooks/WEBHOOK_ID' \
+  --user "$HCTI_API_ID:$HCTI_API_KEY"
+```
+
+Returns `204 No Content`. Repeating deletion of the same webhook succeeds. Queued deliveries are not sent. An HTTP request already in flight may still arrive. Deleting a configuration does not erase its retained delivery history.
+
+## Errors
+
+| Status | What to check |
+|:-------|:--------------|
+| `400` | Invalid ID, URL, event, parameter, retained secret, or a test request for a disabled webhook. |
+| `401` | Missing, invalid, or disabled API credentials. |
+| `403` | Missing webhook/resource permission or an organization restriction. |
+| `404` | Webhook or event was not found in this organization. |
+| `409` | Another request changed the webhook concurrently. Reload before retrying. |
+| `429` | Shared operation-group allowance, per-webhook test cooldown, or the plan's webhook count limit. Read the error and respect `Retry-After` when supplied. |
+
+See the [interactive API reference](https://htmlcsstoimage.com/api-docs) for request and response schemas, and [MCP tools](/integrations/mcp/tools/#webhooks) for tool arguments.
+
+<Help />
