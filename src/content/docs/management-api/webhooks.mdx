@@ -9,6 +9,12 @@ import Help from '../../../components/Help.astro';
 
 Manage webhook endpoints and event subscriptions for your organization. See the [webhooks guide](/guides/webhooks/) for dashboard setup, signatures, delivery guarantees, retries, and the complete [event payload reference](/guides/webhooks/#events).
 
+## Infrastructure as code
+
+Use [Terraform](/management-api/terraform/#webhooks) or [Pulumi](/management-api/pulumi/#webhooks) to configure webhooks in the same project as your receiver. Both providers expose the signing secret as a sensitive output when creating a webhook, so you can pass it to your receiver's secrets manager.
+
+You can also import an existing webhook. The provider guides explain how to retain its secret parameters without knowing their values. Import does not retrieve the signing secret.
+
 ## Operations
 
 Use the `https://hcti.io/v1` base URL and [HTTP Basic authentication](/getting-started/using-the-api/api-keys/). Resource IDs must belong to the authenticated organization.
@@ -61,7 +67,7 @@ curl 'https://hcti.io/v1/webhooks' \
 
 A successful request returns `200 OK` with the configuration. This example creates a disabled webhook so you can configure verification before receiving deliveries. Its response has `enabled: false` and `test_event_id: null`.
 
-Signed setup through REST or MCP includes a dashboard step. Copy the signing secret from **Edit webhook → Reveal signing secret** in the [dashboard](https://htmlcsstoimage.com/dashboard/webhooks), then store it in your receiver's server-side configuration. Neither the signing secret nor secret parameter values are returned by REST or MCP.
+The REST create response includes `signing_secret`, even when signing is disabled. Store it in your receiver's secrets manager or server-side configuration. Later API responses omit it. For an existing webhook or one created through MCP, use **Edit webhook → Reveal signing secret** in the [dashboard](https://htmlcsstoimage.com/dashboard/webhooks). Secret header and query parameter values are never returned.
 
 Once the receiver is ready, enable the webhook in the dashboard or [replace its configuration](#update-a-webhook) with `disabled: false`, preserving all subscriptions, parameters, and the signing setting. Enabling queues an automatic `webhook_test` and returns its ID in `test_event_id` without waiting for successful delivery. Creating an enabled webhook has the same test behavior.
 
@@ -94,7 +100,7 @@ Header names must be valid HTTP tokens. Transport headers such as `Host`, `Conte
 
 ### Response fields
 
-Create, get, update, and list entries all use this configuration shape. This example shows an enabled webhook immediately after an update queued a test:
+Create, get, update, and list responses share the fields below. This example shows an enabled webhook immediately after an update queued a test:
 
 ```json
 {
@@ -114,6 +120,8 @@ Create, get, update, and list entries all use this configuration shape. This exa
   "test_event_id": "example_test_event_id"
 }
 ```
+
+REST create responses also include `signing_secret`, even when signing is disabled. Update, get, list, and MCP responses omit this field.
 
 `config_version` increments when the URL, parameters, or signing setting changes. Delivery attempts record the version they used. `test_event_id` is populated only when that create/update queued a test. It is otherwise `null`, including list and get responses. Timestamps are UTC. Treat IDs as opaque strings.
 

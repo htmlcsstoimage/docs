@@ -26,7 +26,7 @@ The usual flow is **create an image → request its image URL to trigger renderi
 3. Under **Events to receive**, expand the groups and select the events your application needs. For example, select `image_stored` to act when rendered files have been saved.
 4. If your receiver needs authentication or routing values, click **Add parameter**, choose **Header** or **Query**, and enter its name and value. Mark credentials **Secret** to encrypt them and hide them from later views and delivery history.
 5. Turn on **Sign deliveries** to add signature verification. Clear **Enabled** and click **Save** so you can configure verification before the first delivery.
-6. Open **Edit webhook**, then **Reveal signing secret**, and copy it into your receiving application's server-side configuration. The secret is generated for every webhook, including those created through the API, and is revealed only in the dashboard.
+6. Open **Edit webhook**, then **Reveal signing secret**, and copy it into your receiving application's server-side configuration.
 7. Once your receiver is ready, select **Enabled** and **Save**. This queues a `webhook_test` delivery using your configured parameters and signing setting.
 
 Creating an enabled webhook also queues a `webhook_test` delivery automatically. Your receiver should accept this event even if it only acts on a particular business event.
@@ -54,11 +54,15 @@ curl 'https://hcti.io/v1/webhooks' \
   }'
 ```
 
-This creates a disabled webhook, so `test_event_id` is `null` and nothing is sent yet. **Signed setup through REST or MCP includes a dashboard step**: open **Edit webhook → Reveal signing secret**, then store the secret in your receiver's server-side configuration. Signing secrets and secret parameter values are never returned by REST or MCP.
+This creates a disabled webhook, so `test_event_id` is `null` and nothing is sent yet. Store the returned `signing_secret` in your receiver's secrets manager or server-side configuration. The REST API includes it only in the create response, even when signing is disabled. For an existing webhook or one created through MCP, use **Edit webhook → Reveal signing secret** in the dashboard.
 
 Once your receiver is ready, enable the webhook in the dashboard, or send the complete configuration to `POST /v1/webhooks/WEBHOOK_ID` with `disabled: false`. Keep `signing_enabled: true` and include every subscription and parameter you want to retain. Updates replace the configuration rather than patching individual fields. Enabling queues a `webhook_test` and returns its `test_event_id` without waiting for successful delivery.
 
 See the [Webhooks API](/management-api/webhooks/) for replacement updates, secret retention, test requests, and event lookup. The [MCP webhook tools](/integrations/mcp/tools/#webhooks) support the same operations. MCP connections cannot subscribe to API key events because they cannot grant `api_keys:read`.
+
+### Set up with Terraform or Pulumi
+
+Manage subscriptions and delivery settings alongside your receiver's infrastructure with [Terraform](/management-api/terraform/#webhooks) or [Pulumi](/management-api/pulumi/#webhooks). Both providers return the signing secret as a sensitive output when creating a webhook. The examples show how to configure your receiver before enabling deliveries.
 
 ## The event envelope
 
@@ -228,7 +232,7 @@ Use [delivery history](#inspect-delivery-history) to identify failed events and 
 
 This example uses **Node.js 24** and its built-in [SQLite module](https://nodejs.org/download/release/v24.13.0/docs/api/sqlite.html). It verifies signed POST requests at `/hcti`, commits each event to a durable inbox, and returns `204` for accepted events and known duplicates. It also accepts `webhook_test`, marking it processed without starting business work. A failed database write returns `503` so HCTI can retry.
 
-Download [webhook-receiver.mjs](/example-code/webhook-receiver.mjs), set `HCTI_WEBHOOK_SECRET` to the secret revealed in the dashboard, and run:
+Download [webhook-receiver.mjs](/example-code/webhook-receiver.mjs), set `HCTI_WEBHOOK_SECRET` to the signing secret from the REST create response or dashboard, and run:
 
 ```bash
 node webhook-receiver.mjs

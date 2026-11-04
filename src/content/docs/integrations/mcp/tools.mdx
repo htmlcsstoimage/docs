@@ -136,7 +136,7 @@ For example, arguments to `create_og_config`:
 
 Subscribing also requires read permission for the selected events' resources, such as `images:read` for `image_stored` or `usage:read` for organization alerts. Changing delivery settings or enabling a webhook requires read access to every selected event. API key events cannot be subscribed to through MCP because `api_keys:read` is excluded from OAuth. Event lookup with insufficient resource-read permission returns `data: null` and `payload_withheld: true` while retaining delivery status.
 
-Signing secrets can be revealed only in the dashboard. To keep an existing secret parameter on update, use `secret: true` and `retain_value: true`, with the same location and key and no `value`. If the endpoint URL changes, resend secret values instead. See the [Webhooks API](/management-api/webhooks/) for `content` fields and response details, and the [webhooks guide](/guides/webhooks/) for signatures, event payloads, and at-least-once delivery.
+MCP responses omit signing secrets. Reveal the secret in the dashboard to configure your receiver. To keep an existing secret parameter on update, use `secret: true` and `retain_value: true`, with the same location and key and no `value`. If the endpoint URL changes, resend secret values instead. See the [Webhooks API](/management-api/webhooks/) for `content` fields and response details, and the [webhooks guide](/guides/webhooks/) for signatures, event payloads, and at-least-once delivery.
 
 Manual tests share **5 requests/minute** per organization in `webhook:test`, separate from configuration writes. Each webhook also has a **30-second cooldown**, including after an automatic test.
 

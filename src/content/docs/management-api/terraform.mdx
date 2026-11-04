@@ -2,7 +2,7 @@
 title: Terraform
 slug: management-api/terraform
 description: >-
-  Configure HTML/CSS to Image with Terraform. Create images, templates, API keys, proxies, storage destinations, and Open Graph configurations.
+  Configure HTML/CSS to Image with Terraform. Create images, templates, API keys, webhooks, proxies, storage destinations, and Open Graph configurations.
 ---
 import { LinkButton } from '@astrojs/starlight/components';
 import Help from '../../../components/Help.astro';
@@ -24,7 +24,7 @@ terraform {
   required_providers {
     htmlcsstoimage = {
       source  = "htmlcsstoimage/html-css-to-image"
-      version = "~> 0.1.0"
+      version = "~> 0.3.0"
     }
   }
 }
@@ -164,6 +164,43 @@ resource "htmlcsstoimage_og_config" "website" {
 ```
 
 Use `html_css` to capture your pages or `templated` to fill a template from page metadata. The resource manages the configuration, not every image served through it. For templated OG configurations, omitting `template_version` follows the latest template when an image is served. [Management API](/management-api/og-configs/) · [Resource reference](https://registry.terraform.io/providers/htmlcsstoimage/html-css-to-image/latest/docs/resources/og_config).
+
+## Webhooks
+
+Configure event subscriptions, signing, and delivery parameters with `htmlcsstoimage_webhook`. Requires provider version 0.3.0 or later.
+
+```hcl
+variable "receiver_token" {
+  type      = string
+  sensitive = true
+}
+
+resource "htmlcsstoimage_webhook" "images" {
+  name            = "Image publishing"
+  url             = "https://hooks.example.com/hcti"
+  events          = ["image_stored", "image_deleted"]
+  disabled        = true
+  signing_enabled = true
+  parameters = [{
+    location = "header"
+    key      = "Authorization"
+    value    = var.receiver_token
+    secret   = true
+  }]
+}
+```
+
+Replace the example URL with your receiver's HTTPS endpoint and supply the header value through `receiver_token`. You can also pass the URL and credentials from other resources in the same configuration.
+
+This example creates a disabled webhook so you can set up signature verification first. Pass `htmlcsstoimage_webhook.images.signing_secret` to your receiver's secrets manager or server-side configuration. Once the receiver is ready, set `disabled = false` and apply again. Terraform marks the signing secret as sensitive and keeps it in state across refreshes and updates. Import cannot retrieve it; for an imported webhook, use the secret already configured in your receiver or reveal it in the dashboard.
+
+Enabling the webhook queues a `webhook_test` delivery. Creating an enabled webhook or changing its delivery settings also queues a test. Apply does not wait for delivery to succeed; plan and refresh do not send tests.
+
+Updates keep the same webhook ID and replace its configuration. Keep every parameter you want in `parameters`; omitting the list removes them all. An empty `events` list receives only test events.
+
+All parameter values are marked sensitive in Terraform but are still stored in state. Setting `secret = true` also hides the value from HCTI API responses and delivery history. To retain an existing secret parameter, including after import, keep `secret = true` and omit `value`. Its location, key, and endpoint must stay the same. Supply a value when creating the parameter, rotating its secret, or changing any of those fields.
+
+Requires `webhooks:read`, `webhooks:create_update`, `webhooks:delete`, and read permission for each subscribed resource. [Management API](/management-api/webhooks/) · [Resource reference](https://registry.terraform.io/providers/htmlcsstoimage/html-css-to-image/latest/docs/resources/webhook).
 
 ## Look up existing resources
 

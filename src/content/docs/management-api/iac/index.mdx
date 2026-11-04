@@ -50,6 +50,7 @@ The Pulumi provider bridges the HCTI Terraform provider, so both offer the same 
 | Templates | Manage reusable HTML/CSS designs and their versions | [Terraform](/management-api/terraform/#templates) · [Pulumi](/management-api/pulumi/#templates) |
 | API keys | Manage application credentials and permissions | [Terraform](/management-api/terraform/#api-keys) · [Pulumi](/management-api/pulumi/#api-keys) |
 | Proxies | Register an existing proxy for rendering | [Terraform](/management-api/terraform/#proxies) · [Pulumi](/management-api/pulumi/#proxies) |
+| Webhooks | Configure event subscriptions and delivery settings for your receiver | [Terraform](/management-api/terraform/#webhooks) · [Pulumi](/management-api/pulumi/#webhooks) |
 | Storage destinations | Connect image output to your object storage | [Terraform](/management-api/terraform/#storage-destinations) · [Pulumi](/management-api/pulumi/#storage-destinations) |
 | OG configurations | Configure automatic Open Graph images | [Terraform](/management-api/terraform/#og-configurations) · [Pulumi](/management-api/pulumi/#og-configurations) |
 
@@ -59,7 +60,7 @@ Both providers can also look up an existing template, its version history, and t
 
 Use a dedicated management key with the [permissions](/getting-started/using-the-api/permissions/) needed to read, create/update, and delete the resources in your deployment. Plan and refresh operations need read access too. An Owner or Admin can configure this key in the [dashboard](https://htmlcsstoimage.com/dashboard/api-keys). Use it to manage separate application keys; do not manage the provider's own credentials as a resource.
 
-Terraform and Pulumi keep state to track resource IDs and configuration. API key secrets, proxy passwords, storage credentials, headers, and template values may be present in that state. Use an access-controlled backend. Terraform's sensitive marking hides values in normal output but does not remove them from state; use Pulumi secret inputs for confidential values in your programs.
+Terraform and Pulumi keep state to track resource IDs and configuration. API key secrets, proxy passwords, storage credentials, webhook signing secrets, headers, and template values may be present in that state. Use an access-controlled backend. Terraform's sensitive marking hides values in normal output but does not remove them from state; use Pulumi secret inputs for confidential values in your programs.
 
 ## Image lifecycle
 

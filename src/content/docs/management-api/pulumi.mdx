@@ -2,7 +2,7 @@
 title: Pulumi
 slug: management-api/pulumi
 description: >-
-  Manage HTML/CSS to Image with Pulumi in TypeScript, Python, Go, C#, Java, or YAML. Configure images, templates, credentials, storage, proxies, and Open Graph images.
+  Manage HTML/CSS to Image with Pulumi in TypeScript, Python, Go, C#, Java, or YAML. Configure images, templates, API keys, webhooks, storage, proxies, and Open Graph images.
 ---
 import Help from '../../../components/Help.astro';
 
@@ -191,6 +191,39 @@ const website = new hcti.OgConfig("website", {
 ```
 
 Use `html_css` to capture your pages or `templated` to fill a template from page metadata. The resource manages the configuration, not every image served through it. For templated OG configurations, omitting `templateVersion` follows the latest template when an image is served. [Management API](/management-api/og-configs/) · [Resource reference](https://www.pulumi.com/registry/packages/html-css-to-image/api-docs/ogconfig/).
+
+## Webhooks
+
+Configure event subscriptions, signing, and delivery parameters with `Webhook`. Requires provider and SDK version 0.3.0 or later.
+
+```typescript
+const receiverConfig = new pulumi.Config();
+const imageEvents = new hcti.Webhook("images", {
+    name: "Image publishing",
+    url: "https://hooks.example.com/hcti",
+    events: ["image_stored", "image_deleted"],
+    disabled: true,
+    signingEnabled: true,
+    parameters: [{
+        location: "header",
+        key: "Authorization",
+        value: receiverConfig.requireSecret("receiverToken"),
+        secret: true,
+    }],
+});
+```
+
+Replace the example URL with your receiver's HTTPS endpoint and set the header value with `pulumi config set --secret receiverToken`. You can also pass the URL and credentials from other resources in the same project.
+
+This example creates a disabled webhook so you can set up signature verification first. Pass `imageEvents.signingSecret` to your receiver's secrets manager or server-side configuration. Once the receiver is ready, set `disabled: false` and deploy again. Pulumi keeps the signing secret encrypted in stack state across refreshes and updates. Import cannot retrieve it; for an imported webhook, use the secret already configured in your receiver or reveal it in the dashboard.
+
+Enabling the webhook queues a `webhook_test` delivery. Creating an enabled webhook or changing its delivery settings also queues a test. Deployment does not wait for delivery to succeed; preview and refresh do not send tests.
+
+Updates keep the same webhook ID and replace its configuration. Keep every parameter you want in `parameters`; omitting the list removes them all. An empty `events` list receives only test events.
+
+All parameter values are secret in Pulumi. Setting `secret: true` also hides the value from HCTI API responses and delivery history. To retain an existing secret parameter, including after import, keep `secret: true` and omit `value`. Its location, key, and endpoint must stay the same. Supply a value when creating the parameter, rotating its secret, or changing any of those fields.
+
+Requires `webhooks:read`, `webhooks:create_update`, `webhooks:delete`, and read permission for each subscribed resource. [Management API](/management-api/webhooks/) · [Resource reference](https://www.pulumi.com/registry/packages/html-css-to-image/api-docs/webhook/).
 
 ## Look up existing resources
 
