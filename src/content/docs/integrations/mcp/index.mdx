@@ -61,6 +61,8 @@ Our [agent plugin](https://github.com/htmlcsstoimage/agent-plugins) also package
 
 After adding HCTI, use your client's connect or login action and complete authorization in your browser. Sign in to the HCTI account whose templates and credits you want to use, review the selected organization and permissions, then return to the assistant. Open **More Permissions** to select additional management access if needed. Some clients prompt automatically on first use; the individual guides show how to connect explicitly.
 
+For client developers, OAuth Dynamic Client Registration (DCR) supports `client_secret_post` and `client_secret_basic` as token endpoint authentication methods. With `client_secret_post`, the client sends its client ID and secret in the token request body. With `client_secret_basic`, it sends them in the HTTP Basic Authorization header.
+
 To check the connection without rendering an image, ask: **"Use HCTI to check my image usage and account limits."** The `check_usage` tool requires `usage:read` and returns usage and limits without rendering an image. `get_max_batch_size` also requires `usage:read`. Rendering requests use your HCTI account's image allowance; your assistant subscription is separate.
 
 ## Example prompts

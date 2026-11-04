@@ -18,9 +18,9 @@ These tools require `images:create`. Rendering uses the organization's image cre
 
 | Tool | Arguments | Result |
 |:-----|:----------|:-------|
-| `create_image` | `content` with `html`, optional `css`, and render options; optional `include_image_data` | Created image details. |
-| `create_url_image` | `content` with `url` and render options; optional `include_image_data` | Screenshot details. |
-| `create_templated_image` | `template_id`, `template_values`; optional `version`, `include_image_data` | Image created from the selected template. |
+| `create_image` | `content` with `html`, optional `css`, and render options; optional `include_image_data`, `include_file` | Created image details. |
+| `create_url_image` | `content` with `url` and render options; optional `include_image_data`, `include_file` | Screenshot details. |
+| `create_templated_image` | `template_id`, `template_values`; optional `version`, `include_image_data`, `include_file` | Image created from the selected template. |
 | `create_batch_images` | Top-level `default_options` and `variations` | Batch image results. Check `get_max_batch_size` first. |
 
 For example, arguments to `create_url_image`:
@@ -33,11 +33,21 @@ For example, arguments to `create_url_image`:
     "viewport_height": 900,
     "device_scale": 1
   },
-  "include_image_data": false
+  "include_image_data": false,
+  "include_file": true
 }
 ```
 
-Use the [rendering parameters](/integrations/mcp/#image-parameters) and the tool's input schema for supported options. `include_image_data` defaults to false; enable it for an inline preview when needed. A deferred render URL requires a separate authenticated PUT and must not be treated as an already rendered, readable image. See [storage behavior](/guides/advanced/storage-destinations/).
+Use the [rendering parameters](/integrations/mcp/#image-parameters) and the tool's input schema for supported options. The three single-image tools accept these top-level response options, both defaulting to `false`:
+
+| Option | Behavior |
+|:-------|:---------|
+| `include_image_data` | Render immediately and include image data for an inline preview. Enable when a preview or visual inspection is needed. |
+| `include_file` | Render immediately and attach the original output, including PDFs, as an MCP embedded resource with `uri`, `mimeType`, and a base64 `blob`. Useful for clients that restrict external links or cannot display inline image content. |
+
+Each option has a **10 MiB** byte limit. If the data cannot be included, the asset URL remains available. Including preview or file data takes longer; enable both options only when both representations are needed.
+
+Deferred renders cannot include preview or file data. A deferred render URL requires a separate authenticated PUT and must not be treated as an already rendered, readable image. See [storage behavior](/guides/advanced/storage-destinations/).
 
 When you already know a template ID, pass it directly. Finding a template by name first requires `templates:read`.
 
