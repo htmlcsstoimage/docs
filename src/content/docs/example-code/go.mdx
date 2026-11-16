@@ -46,6 +46,27 @@ func main() {
 
 The module's package name is `hcti`. Alternatively, use `hcti.NewClientFromEnv()` to load `HCTI_API_ID` and `HCTI_API_KEY`; it returns a client and an error. Optional request fields use pointers: `hcti.Ptr(false)`, `hcti.Ptr(0)`, and `hcti.Ptr("")` send explicit values, while nil leaves the field unspecified.
 
+### Recordings
+
+Record HTML/CSS or a webpage as an MP4, WebM, or GIF with `CreateRecording`:
+
+```go
+recording, err := client.CreateRecording(ctx, &hcti.URLRecordingRequest{
+	URL: "https://example.com",
+	RecordingOptions: hcti.RecordingOptions{
+		DurationMS: 10000,
+		Actions:    []hcti.RecordingAction{hcti.RecordingSimpleScrollAction{}},
+		Output:     &hcti.RecordingOutputOptions{Format: hcti.Ptr(hcti.RecordingFormatMP4)},
+	},
+})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(recording.RecordingURL)
+```
+
+Embed or request `RecordingURL` directly; it waits until the recording is ready. Use `&hcti.HTMLRecordingRequest{HTML: ...}` for HTML/CSS. See [Recordings](/getting-started/recordings/) for triggers, actions, and output options.
+
 The client also supports URL screenshots, PDF options, templates, batches, image deletion, resizing and cropping, and signed URLs. See the [Go client repository](https://github.com/htmlcsstoimage/go-client) for usage and runnable examples, and the [package documentation on pkg.go.dev](https://pkg.go.dev/github.com/htmlcsstoimage/go-client) for the API reference.
 
 

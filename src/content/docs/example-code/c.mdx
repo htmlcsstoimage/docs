@@ -195,6 +195,30 @@ if (result.Success)
 ```
 
 
+## Recordings
+
+Record HTML/CSS or a webpage as an MP4, WebM, or GIF with `CreateRecordingAsync`:
+
+```csharp
+using HtmlCssToImage.Models.Recordings;
+
+using var recording = await client.CreateRecordingAsync(new CreateUrlRecordingRequest
+{
+    Url = "https://example.com",
+    DurationMs = 10000,
+    Actions = [new RecordingSimpleScrollAction()],
+    Output = new() { Format = RecordingFormat.Mp4 }
+});
+
+if (recording.Success)
+{
+    Console.WriteLine(recording.Response.RecordingUrl);
+}
+```
+
+Embed or request `RecordingUrl` directly; it waits until the recording is ready. Use `CreateHtmlCssRecordingRequest` for HTML/CSS. See [Recordings](/getting-started/recordings/) for triggers, actions, and output options.
+
+
 ## Signed URLs (Create and Render)
 
 Generate signed URLs without making an API call. The image is rendered on-demand when the URL is accessed:

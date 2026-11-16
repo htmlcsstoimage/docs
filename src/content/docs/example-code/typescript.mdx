@@ -38,6 +38,27 @@ if (result.success) {
 }
 ```
 
+### Recordings
+
+Record HTML/CSS or a webpage as an MP4, WebM, or GIF with `createRecording`:
+
+```typescript
+import { CreateUrlRecordingRequest } from '@html-css-to-image/client';
+
+const recording = await client.createRecording(new CreateUrlRecordingRequest({
+  url: 'https://example.com',
+  duration_ms: 10000,
+  actions: [{ type: 'simple_scroll' }],
+  output: { format: 'mp4' }
+}));
+
+if (recording.success) {
+  console.log(recording.recording_url);
+}
+```
+
+Embed or request `recording_url` directly; it waits until the recording is ready. Use `CreateHtmlCssRecordingRequest` for HTML/CSS. See [Recordings](/getting-started/recordings/) for triggers, actions, and output options.
+
 You can also generate signed URLs, render templates, and create image batches. See the [TypeScript client repository](https://github.com/htmlcsstoimage/ts-client) for full usage details.
 
 ## Axios example

@@ -47,7 +47,7 @@ Use `recording_url` like an image URL. Download it, or put it straight into your
 <video src="https://hcti.io/v1/recording/01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b.mp4" autoplay muted loop playsinline></video>
 ```
 
-If the recording isn't finished when the URL is requested, the request waits and then returns it. For background jobs, you can [check its status](/getting-started/using-the-api/#checking-status-optional) instead.
+If the recording isn't finished when the URL is requested, the request waits and then returns it. In a workflow, you can optionally [check its status](/getting-started/using-the-api/#checking-status-optional) instead.
 
 See [Using the API](/getting-started/using-the-api/#creating-a-recording) for the full request and response.
 
@@ -92,6 +92,19 @@ For example:
 - A **30-second `target`** video uses **14 credits**, however long the capture was.
 
 Credits are used when the recording is created. Automatic retries don't use more. A request that matches an existing recording through [`dedupe_duration_s`](/parameters/dedupe_duration_s/) uses **0 credits**. The `x-renders-consumed` response header shows what each request used.
+
+## Client libraries
+
+Every [official client](/example-code/#start-with-a-client-library) supports recordings, with typed requests for triggers, actions, and output:
+
+| Language | Client | Method |
+|:---------|:-------|:-------|
+| TypeScript / JavaScript | [`@html-css-to-image/client`](/example-code/typescript/#recordings) | `createRecording` |
+| C# / .NET | [`HtmlCssToImage`](/example-code/c/#recordings) | `CreateRecordingAsync` |
+| Python | [`html-css-to-image`](/example-code/python/#recordings) | `create_recording` |
+| PHP | [`html-css-to-image/client`](/example-code/php/#recordings) | `createRecording` |
+| Go | [`github.com/htmlcsstoimage/go-client`](/example-code/go/#recordings) | `CreateRecording` |
+| Ruby | [`htmlcsstoimage-api`](/example-code/ruby/#recordings) | `create_html_css_recording`, `create_url_recording` |
 
 ## Guides
 

@@ -46,6 +46,29 @@ if ($result instanceof CreateImageSuccessResponse) {
 }
 ```
 
+### Recordings
+
+Record HTML/CSS or a webpage as an MP4, WebM, or GIF with `createRecording`:
+
+```php
+use HtmlCssToImage\Recording\RecordingFormat;
+use HtmlCssToImage\Recording\RecordingOutputOptions;
+use HtmlCssToImage\Recording\RecordingSimpleScrollAction;
+use HtmlCssToImage\Request\CreateUrlRecordingRequest;
+
+$result = $client->createRecording(new CreateUrlRecordingRequest(
+    url: 'https://example.com',
+    durationMs: 10000,
+    actions: [new RecordingSimpleScrollAction()],
+    output: new RecordingOutputOptions(format: RecordingFormat::MP4),
+));
+if ($result->success) {
+    echo "<video src=\"{$result->recordingUrl}\" controls></video>";
+}
+```
+
+Embed or request the recording URL directly; it waits until the recording is ready. Use `CreateHtmlCssRecordingRequest` for HTML/CSS. See [Recordings](/getting-started/recordings/) for triggers, actions, and output options.
+
 The client also supports URL screenshots, templates, batches, image deletion, render options, and signed URLs. See the [PHP client repository](https://github.com/htmlcsstoimage/php-client) for complete usage and API documentation.
 
 
