@@ -1,0 +1,301 @@
+---
+title: actions
+og_title: Script scrolling, clicks, and JavaScript in a video recording
+slug: parameters/actions
+description: >-
+  Reference for recording actions. simple_scroll, scroll, stall, click, locate_selector, execute_javascript, and error, plus branching, easing curves, and limits.
+---
+import { Aside } from '@astrojs/starlight/components';
+import Help from '../../../components/Help.astro';
+
+<a id="using-actions" />
+
+Script scrolling, clicks, waits, and JavaScript during a recording
+
+## How it works
+
+`actions` is an ordered array that runs during a [recording](/getting-started/recordings/), starting when the [`trigger`](/parameters/trigger/) fires. Each action finishes before the next one starts.
+
+Pass `actions` as a JSON array, not a JSON string. The recording deadline set by [`duration_ms`](/parameters/duration_ms/) and [`duration_mode`](/parameters/duration_mode/) can cut any action short.
+
+When any action scrolls, the page is scrolled down and back up before recording starts, so lazy-loaded images are already showing. See [`skip_scroll_preload`](/parameters/skip_scroll_preload/).
+
+## Default behavior
+
+When `actions` is left out, nothing happens on the page. The recording captures the page as it is for the full [`duration_ms`](/parameters/duration_ms/), including any animations, videos, or timers that are already playing.
+
+## Schema
+
+`actions` is an array of objects. Each object's `type` field selects one of the action types below:
+
+| Type | What it does |
+|:-----|:-------------|
+| [`simple_scroll`](#simple_scroll) | Scroll down the page step by step until the bottom or the deadline |
+| [`scroll`](#scroll) | Scroll to exact positions, elements, or coordinates, in the page or a scrollable container |
+| [`stall`](#stall) | Wait while the page keeps playing |
+| [`click`](#click) | Click an element, scrolling it into view first if needed |
+| [`locate_selector`](#locate_selector) | Check for an element and run different actions depending on whether it's there |
+| [`execute_javascript`](#execute_javascript) | Run JavaScript in the page |
+| [`error`](#error) | Fail the recording on purpose |
+
+### `simple_scroll`
+
+Scrolls down in repeated steps until it reaches the bottom of the page or runs out of time. It's the easiest way to record a website walkthrough.
+
+```json
+{ "type": "simple_scroll" }
+```
+
+| Field | Type | Default | Description |
+|:------|:-----|:--------|:------------|
+| `type` | `String` | | **Required.** `simple_scroll` |
+| `scroll_duration_ms` | `Integer` | `800` | Length of each scroll movement, 1–90000 ms. Higher values scroll more slowly. |
+| `ms_between_scrolls` | `Integer` | `400` | Pause after each movement, 0–90000 ms. Higher values give viewers more reading time. |
+| `scroll_distance` | `Number` or `String` | `"90vh"` | Distance of each step. A number of CSS pixels (`900`), a px string (`"900px"`), or a viewport-height string (`"90vh"`). |
+| `easing` | `String` | `ease_in_out_expo` | [Easing](#easing) for each movement. |
+| `stall_at_end_ms` | `Integer` | `0` | Time to hold at the bottom, 0–90000 ms, if time remains. |
+
+A short recording of a long page may not reach the bottom. Increase `duration_ms`, make `scroll_distance` larger, or make `ms_between_scrolls` shorter.
+
+### `scroll`
+
+Scrolls through a list of exact, timed `steps`. Use it to scroll to a specific section, scroll back up, or scroll inside a container like a chat window or code panel.
+
+```json
+{
+  "type": "scroll",
+  "steps": [
+    { "to": { "type": "selector", "selector": "#features", "offset_y": -80 }, "duration_ms": 1500, "easing": "ease_in_out_cubic" },
+    { "to": { "type": "position", "position": "bottom" }, "duration_ms": 3000 },
+    { "to": { "type": "position", "position": "top" }, "duration_ms": 1000, "easing": "ease_out_expo" }
+  ]
+}
+```
+
+| Field | Type | Default | Description |
+|:------|:-----|:--------|:------------|
+| `type` | `String` | | **Required.** `scroll` |
+| `steps` | `Array` | | **Required.** One or more movements, run in order. |
+| `container_selector` | `String` | | CSS selector for a scrollable element. Leave it out to scroll the page. |
+| `if_not_found` | `Array` | | Actions to run if `container_selector` doesn't match anything. If left out or empty, the scroll is skipped. It never falls back to the page. |
+
+Each step in `steps`:
+
+| Field | Type | Default | Description |
+|:------|:-----|:--------|:------------|
+| `to` | `Object` | | **Required.** The destination. See the target types below. |
+| `duration_ms` | `Integer` | | **Required.** How long the movement takes, at least 1 ms. |
+| `easing` | `String` | `linear` | [Easing](#easing) curve. |
+
+`to` with `"type": "position"` scrolls to an edge of the page or container:
+
+| Field | Type | Default | Description |
+|:------|:-----|:--------|:------------|
+| `position` | `String` | `top` | `top`, `bottom`, `left`, or `right`. |
+
+`to` with `"type": "coordinates"` scrolls to an exact position:
+
+| Field | Type | Default | Description |
+|:------|:-----|:--------|:------------|
+| `x` | `Number` | `0` | Horizontal scroll position in CSS pixels. |
+| `y` | `Number` | `0` | Vertical scroll position in CSS pixels. |
+
+`to` with `"type": "selector"` scrolls to an element:
+
+| Field | Type | Default | Description |
+|:------|:-----|:--------|:------------|
+| `selector` | `String` | | **Required.** CSS selector for the destination element. |
+| `offset_x` | `Number` | `0` | Horizontal offset in CSS pixels added to the element's position. |
+| `offset_y` | `Number` | `0` | Vertical offset in CSS pixels added to the element's position. |
+| `if_not_found` | `Array` | | Actions to run if the element is missing. If left out or empty, the step is skipped. |
+
+### `stall`
+
+Waits while recording continues. Animations, videos, and timers on the page keep playing.
+
+```json
+{ "type": "stall", "duration_ms": 2000 }
+```
+
+| Field | Type | Default | Description |
+|:------|:-----|:--------|:------------|
+| `type` | `String` | | **Required.** `stall` |
+| `duration_ms` | `Integer` | | **Required.** How long to wait, in milliseconds. Must be 0 or more. |
+
+To wait *before* capture instead, use a [trigger](/parameters/trigger/).
+
+### `click`
+
+Finds an element, scrolls it into view if needed, and clicks it.
+
+```json
+{ "type": "click", "selector": "button.accept", "timeout_ms": 2000, "if_not_found": [] }
+```
+
+| Field | Type | Default | Description |
+|:------|:-----|:--------|:------------|
+| `type` | `String` | | **Required.** `click` |
+| `selector` | `String` | | **Required.** CSS selector to click. |
+| `timeout_ms` | `Integer` | `0` | How long to wait for the element. `0` checks once. |
+| `if_not_found` | `Array` | | Actions to run if the element isn't found. If left out or empty, the recording continues. |
+| `button` | `String` | `left` | `left`, `right`, `middle`, `back`, or `forward`. |
+| `count` | `Integer` | `1` | The click count reported to the page, 1–3. Use `2` for a double-click event. It doesn't repeat the click. |
+| `delay_ms` | `Integer` | `0` | Time between mouse down and mouse up, 0–5000 ms. |
+| `offset_x` | `Number` | | Horizontal click position in CSS pixels from the element's top-left corner. |
+| `offset_y` | `Number` | | Vertical click position in CSS pixels from the element's top-left corner. |
+
+If you set one offset, the other defaults to `0`. With neither, the element's normal click point is used.
+
+### `locate_selector`
+
+Checks whether an element exists and runs one of two branches. Use it for things that may or may not appear, like cookie prompts, promo modals, or A/B-tested sections.
+
+```json
+{
+  "type": "locate_selector",
+  "selector": "#newsletter-modal",
+  "timeout_ms": 1500,
+  "if_found": [
+    { "type": "click", "selector": "#newsletter-modal .close" },
+    { "type": "stall", "duration_ms": 300 }
+  ],
+  "if_not_found": []
+}
+```
+
+| Field | Type | Default | Description |
+|:------|:-----|:--------|:------------|
+| `type` | `String` | | **Required.** `locate_selector` |
+| `selector` | `String` | | **Required.** CSS selector to look for. |
+| `timeout_ms` | `Integer` | `0` | How long to wait for it. `0` checks once. |
+| `if_found` | `Array` | | Actions to run when it's found. If left out or empty, the recording continues. |
+| `if_not_found` | `Array` | | Actions to run when it isn't found in time. If left out or empty, the recording continues. |
+
+Branch actions don't inherit the selector. Each action inside a branch needs its own `selector`. At least one branch must be able to continue without an [`error`](#error) action.
+
+### `execute_javascript`
+
+Runs JavaScript in the page while recording continues. `script` is the body of an async function, so you can use `await`. The return value is ignored.
+
+```json
+{
+  "type": "execute_javascript",
+  "script": "document.querySelector('#theme').click(); await new Promise(r => setTimeout(r, 500));",
+  "timeout_ms": 3000,
+  "if_error": []
+}
+```
+
+| Field | Type | Default | Description |
+|:------|:-----|:--------|:------------|
+| `type` | `String` | | **Required.** `execute_javascript` |
+| `script` | `String` | | **Required.** An async function body. |
+| `timeout_ms` | `Integer` | `0` | Maximum run time, up to 90000 ms. `0` uses the page timeout. |
+| `if_error` | `Array` | | Leave it out or set it to `null` to fail the recording on an error or timeout. Use `[]` to ignore errors, or an array of recovery actions to run instead. |
+
+Frames keep being captured while the script runs, including during `await`. A timeout doesn't undo the script's side effects or cancel timers and promises it already started.
+
+To wait inside a script, `await` a timer. Don't use a busy loop.
+
+### `error`
+
+Fails the recording right away with the `action_error` code. It must be the last action in its array.
+
+| Field | Type | Default | Description |
+|:------|:-----|:--------|:------------|
+| `type` | `String` | | **Required.** `error` |
+
+```json
+{
+  "type": "locate_selector",
+  "selector": "#pricing",
+  "timeout_ms": 3000,
+  "if_not_found": [{ "type": "error" }]
+}
+```
+
+Use it when a missing element means the video would be wrong, so a recording that's `ready` always shows what you expect. The failed recording's `action_path` (for example `actions[0].if_not_found[0]`) shows which branch failed.
+
+## Branching rules
+
+- `if_found`, `if_not_found`, and `if_error` hold ordinary action arrays. When a branch finishes, the recording continues with the next action after the parent.
+- A branch that's left out, `null`, or empty just continues. Add an `error` action to fail instead. (`execute_javascript.if_error` is the exception: leaving it out fails the recording.)
+- Branches can nest up to **16 levels** deep.
+- An `error` action must be last in its array.
+
+## Easing
+
+`easing` on `simple_scroll` and `scroll` steps sets the shape of each movement. Every family has `ease_in_*` (start slow), `ease_out_*` (end slow), and `ease_in_out_*` (both) versions. To see how each curve moves, visit [easings.net](https://easings.net/). The names match, for example `easeInOutCubic` is `ease_in_out_cubic`.
+
+| Value | Feel |
+|:------|:-----|
+| `linear` | Constant speed |
+| `ease_in_quad`, `ease_out_quad`, `ease_in_out_quad` | Gentle |
+| `ease_in_cubic`, `ease_out_cubic`, `ease_in_out_cubic` | Natural, a good general choice |
+| `ease_in_quart`, `ease_out_quart`, `ease_in_out_quart` | Stronger than cubic |
+| `ease_in_quint`, `ease_out_quint`, `ease_in_out_quint` | Stronger than quartic |
+| `ease_in_sine`, `ease_out_sine`, `ease_in_out_sine` | Very soft |
+| `ease_in_expo`, `ease_out_expo`, `ease_in_out_expo` | Fast in the middle with long, slow ends. Default for `simple_scroll`. |
+| `ease_in_circ`, `ease_out_circ`, `ease_in_out_circ` | Sharp change in speed |
+| `ease_in_back`, `ease_out_back`, `ease_in_out_back` | Pulls back or overshoots slightly |
+| `ease_in_elastic`, `ease_out_elastic`, `ease_in_out_elastic` | Springy oscillation |
+| `ease_in_bounce`, `ease_out_bounce`, `ease_in_out_bounce` | Bounces at the end or start |
+
+Overshoot from `back` and `elastic` curves is limited by the edges of the page.
+
+## Example usage
+
+### Website walkthrough
+
+```json
+{
+  "url": "https://example.com/",
+  "duration_ms": 15000,
+  "actions": [
+    { "type": "stall", "duration_ms": 1500 },
+    { "type": "simple_scroll", "stall_at_end_ms": 1000 }
+  ]
+}
+```
+
+### Start an animation
+
+```json
+{
+  "html": "<h1>Version 2.0 is out.</h1>",
+  "css": "h1 { opacity: 0; } .recording h1 { animation: reveal 1s both; } @keyframes reveal { to { opacity: 1; } }",
+  "duration_ms": 4000,
+  "duration_mode": "fixed",
+  "actions": [{ "type": "execute_javascript", "script": "document.body.classList.add('recording');" }]
+}
+```
+
+### Dismiss a popup, then click through tabs
+
+```json
+{
+  "url": "https://example.com/pricing",
+  "duration_ms": 10000,
+  "duration_mode": "fixed",
+  "actions": [
+    { "type": "click", "selector": ".newsletter-modal .close", "timeout_ms": 2000, "if_not_found": [] },
+    { "type": "click", "selector": "[data-tab='annual']" },
+    { "type": "stall", "duration_ms": 2000 },
+    { "type": "click", "selector": "[data-tab='enterprise']" }
+  ]
+}
+```
+
+## Common use cases
+
+| Use case | Actions |
+|:---------|:--------|
+| Scroll through a landing page | `simple_scroll` |
+| Highlight specific sections | `scroll` with `selector` targets |
+| Record an animation | `execute_javascript` to start it, then `stall` or `fixed` mode |
+| Product demo | `click`, `stall`, and `locate_selector` for optional popups |
+| Scroll a chat window or code panel | `scroll` with `container_selector` |
+
+See the [recording guides](/guides/recordings/scrolling-video/) for complete walkthroughs.
+
+<Help />

@@ -15,6 +15,10 @@ Not finding your answer here? Please email us: <a href="mailto:support@htmlcssto
 
 PNG (default), JPG, WebP, and PDF. Simply change the file extension on your image URL: `.png`, `.jpg`, `.webp`, or `.pdf`. If no extension is specified, you'll get a PNG.
 
+### Can I create videos or animated GIFs?
+
+Yes. [Recordings](/getting-started/recordings/) capture HTML/CSS or a public webpage as MP4, WebM, or GIF, with scripted scrolling, clicks, and JavaScript. Recordings are available on the Startup plan and above, and use [credits based on their duration](/getting-started/recordings/#credits).
+
 ### What are the maximum image dimensions?
 
 Standard renders that exceed the renderer's normal size limit can be downscaled. For larger output, use [Jumbo Images](/guides/advanced/jumbo-images/), which support up to 80,000 pixels per side within a 400,000,000-pixel total area limit. Viewport settings and final output dimensions are different; see [viewport](/parameters/viewport/) and [device scale](/parameters/device_scale/).

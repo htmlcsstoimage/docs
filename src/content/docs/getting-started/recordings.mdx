@@ -1,0 +1,104 @@
+---
+title: Recordings
+og_title: Record HTML/CSS and websites as MP4, WebM, or GIF
+slug: getting-started/recordings
+description: >-
+  Turn HTML/CSS or any public webpage into an MP4, WebM, or animated GIF. Script scrolling, clicks, and JavaScript, and use the recording URL anywhere.
+---
+import { Aside } from '@astrojs/starlight/components';
+import Help from '../../../components/Help.astro';
+
+Record HTML/CSS or a live webpage as an **MP4**, **WebM**, or **animated GIF**. Recordings use the same Chrome renderer as images, so your fonts, CSS, and JavaScript work the same way.
+
+Use them for scrolling website walkthroughs, product demos, animated social posts, and CSS or JavaScript animations. Recordings have no audio.
+
+<Aside title="Plan availability">
+Recordings are available on the **Startup** plan (10,000 images/month) and above.
+</Aside>
+
+## Creating a recording
+
+Send `html` or `url`, a [`duration_ms`](/parameters/duration_ms/), and optionally some [actions](/parameters/actions/) to `POST /v1/recording`:
+
+```bash
+curl -X POST 'https://hcti.io/v1/recording' \
+  -u "$HCTI_API_ID:$HCTI_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "url": "https://example.com/",
+    "viewport_width": 1280,
+    "viewport_height": 720,
+    "duration_ms": 10000,
+    "actions": [{ "type": "simple_scroll" }]
+  }'
+```
+
+```javascript
+{
+  "id": "01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b",
+  "recording_url": "https://hcti.io/v1/recording/01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b.mp4",
+  "status_url": "https://hcti.io/v1/recordings/01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b/status"
+}
+```
+
+Use `recording_url` like an image URL. Download it, or put it straight into your website, app, or email:
+
+```html
+<video src="https://hcti.io/v1/recording/01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b.mp4" autoplay muted loop playsinline></video>
+```
+
+If the recording isn't finished when the URL is requested, the request waits and then returns it. For background jobs, you can [check its status](/getting-started/using-the-api/#checking-status-optional) instead.
+
+See [Using the API](/getting-started/using-the-api/#creating-a-recording) for the full request and response.
+
+## Key parameters
+
+| Parameter | What it does |
+|:----------|:-------------|
+| [`duration_ms`](/parameters/duration_ms/) | **Required.** How long the recording is, from 500 ms to 30 seconds (90 in `target` mode). |
+| [`actions`](/parameters/actions/) | What happens while recording: `simple_scroll` down a page, `scroll` to exact spots, `click`, `stall`, `execute_javascript`, and branches for elements that may not exist. Leave it out to record the page as it is. |
+| [`duration_mode`](/parameters/duration_mode/) | How the actions fit into `duration_ms`. `at_most` (default) ends when the actions finish. `fixed` is always exactly `duration_ms`. `at_least` lets the actions run long. `target` speeds up or slows down the video to fit. |
+| [`trigger`](/parameters/trigger/) | When recording starts: right away, when an element appears, or when your page calls `window.RecordingReady()`. |
+| [`output`](/parameters/output/) | Format (`mp4`, `webm`, `gif`), frame rate, and scale. Defaults to MP4 at 30 fps. |
+| [`viewport_width` / `viewport_height`](/parameters/viewport/) | The video size in CSS pixels. HTML recordings capture the whole viewport, so set these to the size you want. |
+| [`device_scale`](/parameters/device_scale/) | Pixel density. `2` gives sharp, retina-quality text. |
+| [`defer_render`](/parameters/defer_render/) | Wait to render until the recording is first requested. |
+
+Many image parameters work too, like `css`, `google_fonts`, `block_consent_banners`, `proxy_id`, and `storage_destination_id`. The [parameters reference](/parameters/) marks which ones work with recordings.
+
+## Credits
+
+Recordings use the same monthly allowance as images. A recording's cost depends on its requested `duration_ms` and `duration_mode`. Format, frame rate, and resolution don't change it.
+
+- **2 credits** for the first 5 seconds, plus **1 credit** for each additional 5 seconds or part of 5 seconds.
+- **`target` and `at_least` use twice as many**, because the capture can run longer than `duration_ms`.
+
+| `duration_ms` | `at_most` / `fixed` | `target` / `at_least` |
+|--------------:|--------------------:|----------------------:|
+| 500–5,000 | 2 | 4 |
+| 5,001–10,000 | 3 | 6 |
+| 10,001–15,000 | 4 | 8 |
+| 15,001–20,000 | 5 | 10 |
+| 20,001–25,000 | 6 | 12 |
+| 25,001–30,000 | 7 | 14 |
+| 60,000 (`target` only) | — | 26 |
+| 90,000 (`target` only) | — | 38 |
+
+For example:
+
+- A **3-second GIF** in `fixed` mode uses **2 credits**.
+- A **10-second scroll** in the default `at_most` mode uses **3 credits**, even if the page reaches the bottom after 7 seconds.
+- A **12-second demo** uses **4 credits** in `fixed` mode, or **8** in `at_least` mode.
+- A **30-second `target`** video uses **14 credits**, however long the capture was.
+
+Credits are used when the recording is created. Automatic retries don't use more. A request that matches an existing recording through [`dedupe_duration_s`](/parameters/dedupe_duration_s/) uses **0 credits**. The `x-renders-consumed` response header shows what each request used.
+
+## Guides
+
+- [Scrolling website video](/guides/recordings/scrolling-video/)
+- [Animated HTML to video](/guides/recordings/animated-html/)
+- [Clicks and interactions](/guides/recordings/interactions/)
+
+Manage existing recordings with the [Recordings API](/management-api/recordings/), or ask an AI assistant connected to the [MCP server](/integrations/mcp/tools/#recordings) to create them.
+
+<Help />

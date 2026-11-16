@@ -1,0 +1,99 @@
+---
+title: duration_mode
+slug: parameters/duration_mode
+description: >-
+  Choose how a recording's actions fit into duration_ms: at_most, fixed, at_least, or target.
+---
+import { Aside } from '@astrojs/starlight/components';
+import Help from '../../../components/Help.astro';
+
+<a id="using-duration_mode" />
+
+Control how a recording's actions fit into its duration
+
+## How it works
+
+`duration_mode` decides what happens when a [recording's](/getting-started/recordings/) [`actions`](/parameters/actions/) take more or less time than [`duration_ms`](/parameters/duration_ms/).
+
+| Mode | Actions finish **early** | Actions run **long** | Max `duration_ms` | Max capture |
+|:-----|:-------------------------|:---------------------|------------------:|------------:|
+| `at_most` | Video ends when the actions finish | Cut off at `duration_ms` | 30,000 | 30 s |
+| `fixed` | Keeps recording until `duration_ms` | Cut off at `duration_ms` | 30,000 | 30 s |
+| `at_least` | Keeps recording until `duration_ms` | Keeps recording until the actions finish | 30,000 | 90 s |
+| `target` | Video is slowed down to `duration_ms` | Video is sped up to `duration_ms` | 90,000 | 90 s |
+
+## Values
+
+### `at_most`
+
+Records until the actions finish or `duration_ms` is reached, whichever comes first.
+
+### `fixed`
+
+Always produces a video exactly `duration_ms` long. If the actions finish early, it keeps recording the page. If they run long, they're cut off. Animations keep playing during the extra time, so you don't need a trailing `stall`.
+
+### `at_least`
+
+Records for at least `duration_ms`, and keeps going until the actions finish, up to 90 seconds.
+
+### `target`
+
+Runs the actions to completion, up to 90 seconds of capture, then **changes the playback speed** so the video is exactly `duration_ms` long. A 40-second capture with `"duration_ms": 20000` plays at 2× speed. It's the only mode that allows `duration_ms` up to `90000`.
+
+<Aside title="Retiming changes motion speed">
+In `target` mode, scrolls, animations, and stalls all speed up or slow down together. If the motion looks too fast, increase `duration_ms` or remove actions.
+</Aside>
+
+## Default behavior
+
+Defaults to `at_most`.
+
+## When to use each mode
+
+| Mode | Best for |
+|:-----|:---------|
+| `at_most` | Scrolling walkthroughs. `simple_scroll` stops at the bottom, so short pages give short videos. |
+| `fixed` | Timed animations and clips that need an exact length. |
+| `at_least` | Click-throughs where every step must run, on pages whose speed you can't predict. |
+| `target` | Timelapse-style overviews of long pages, or an exact length when you can't predict how long the actions take. |
+
+## Recording credits and billing
+
+`at_least` and `target` use **twice** the [credits](/getting-started/recordings/#credits) of `at_most` and `fixed`, because the capture can run longer than `duration_ms`. A 10-second recording uses 3 credits in `at_most` or `fixed` mode, and 6 in `at_least` or `target` mode.
+
+## Example usage
+
+### Walkthrough that ends at the bottom
+
+```json
+{
+  "url": "https://example.com/",
+  "duration_ms": 15000,
+  "actions": [{ "type": "simple_scroll" }]
+}
+```
+
+### Exact-length animation
+
+```json
+{
+  "html": "<h1>Version 2.0 is out.</h1>",
+  "css": "h1 { opacity: 0; } .recording h1 { animation: reveal 1s both; } @keyframes reveal { to { opacity: 1; } }",
+  "duration_ms": 5000,
+  "duration_mode": "fixed",
+  "actions": [{ "type": "execute_javascript", "script": "document.body.classList.add('recording');" }]
+}
+```
+
+### Speed up a long scroll
+
+```json
+{
+  "url": "https://example.com/changelog",
+  "duration_ms": 20000,
+  "duration_mode": "target",
+  "actions": [{ "type": "simple_scroll", "ms_between_scrolls": 600 }]
+}
+```
+
+<Help />

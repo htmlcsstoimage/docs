@@ -1,0 +1,134 @@
+---
+title: output
+og_title: Export recordings as MP4, WebM, or animated GIF
+slug: parameters/output
+description: >-
+  Choose MP4, WebM, or GIF output, set the frame rate, scale the video without changing layout, and stay within resolution and capture limits.
+---
+import { Aside } from '@astrojs/starlight/components';
+import Help from '../../../components/Help.astro';
+
+<a id="using-output" />
+
+Choose a recording's format, frame rate, and size
+
+## How it works
+
+`output` is an object that sets a [recording's](/getting-started/recordings/) file format, frame rate, and output size. For images, use [`format`](/parameters/format/) instead.
+
+The extension on `recording_url` matches the format, for example `…/v1/recording/{id}.gif`. Recordings have no audio track.
+
+## Schema
+
+| Field | Type | Default | Description |
+|:------|:-----|:--------|:------------|
+| `format` | `String` | `mp4` | `mp4`, `webm`, or `gif`. |
+| `fps` | `Integer` | `30` (MP4, WebM)<br />`15` (GIF) | Frames per second. MP4 and WebM accept 10–120. GIF accepts 10–50. |
+| `scale` | `Number` | `1` | Resizes the finished video without changing the page layout. `0.5` halves the width and height. Must be greater than `0.01`. |
+
+## Default behavior
+
+Leaving `output` out gives an MP4 at 30 fps with no scaling. A GIF defaults to 15 fps.
+
+## When to use each format
+
+| Format | Content type | Use it for |
+|:-------|:-------------|:-----------|
+| `mp4` | `video/mp4` | Most places: social media, email links, `<video>` tags, and video editors. |
+| `webm` | `video/webm` | Web pages where you control the `<video>` tag. Often smaller than MP4. |
+| `gif` | `image/gif` | Places that only accept images, like READMEs, some email clients, and chat apps. |
+
+GIFs are much larger than MP4 or WebM at the same size and length. For a GIF, start with `fps: 15` and `scale: 0.5`, and keep it short.
+
+## Example usage
+
+### Small GIF for a README
+
+```json
+{
+  "url": "https://example.com/",
+  "viewport_width": 1280,
+  "viewport_height": 720,
+  "device_scale": 1,
+  "duration_ms": 6000,
+  "actions": [{ "type": "simple_scroll" }],
+  "output": { "format": "gif", "fps": 15, "scale": 0.5 }
+}
+```
+
+### Smooth 60 fps video
+
+```json
+{
+  "html": "…",
+  "viewport_width": 1920,
+  "viewport_height": 1080,
+  "device_scale": 1,
+  "duration_ms": 5000,
+  "duration_mode": "fixed",
+  "output": { "format": "mp4", "fps": 60 }
+}
+```
+
+### Sharp text at a normal size
+
+Capture at 2× density, then scale the output back down:
+
+```json
+{
+  "url": "https://example.com/",
+  "viewport_width": 1280,
+  "viewport_height": 720,
+  "device_scale": 2,
+  "duration_ms": 10000,
+  "actions": [{ "type": "simple_scroll" }],
+  "output": { "format": "webm", "scale": 0.5 }
+}
+```
+
+## Technical details
+
+### Resolution: viewport, `device_scale`, and `scale`
+
+Three settings decide the final pixel size:
+
+1. **`viewport_width` / `viewport_height`**: the browser window in CSS pixels. This controls layout and responsive breakpoints.
+2. **`device_scale`**: pixel density during capture. `2` captures at twice the CSS size for sharp, retina-quality text.
+3. **`output.scale`**: resizes the finished media. It doesn't change layout or capture work.
+
+```
+output width  = floor(ceil(viewport_width  × device_scale) × output.scale)
+output height = floor(ceil(viewport_height × device_scale) × output.scale)
+```
+
+| Viewport | `device_scale` | `output.scale` | Output size |
+|:---------|---------------:|---------------:|:------------|
+| 1280 × 720 | 1 | 1 | 1280 × 720 |
+| 1280 × 720 | 2 | 1 | 2560 × 1440 |
+| 1280 × 720 | 2 | 0.5 | 1280 × 720, sharper than the first row |
+| 1080 × 1080 | 1 | 0.5 | 540 × 540 |
+
+The output width and height must each be **2–6000 pixels**. Video encoders may round the size slightly so it works with the codec.
+
+### Capture limit
+
+Capture work is limited to **3840 × 2160 pixels at 60 fps**, or 497,664,000 pixels per second:
+
+```
+ceil(viewport_width × device_scale) × ceil(viewport_height × device_scale) × fps ≤ 497,664,000
+```
+
+This uses `device_scale` but not `output.scale`, because scaling happens after capture. If a request goes over the limit, it's rejected with a `400`. To fix it, lower the viewport, `device_scale`, or `fps`.
+
+| Viewport | `device_scale` | `fps` | Pixels per second | OK? |
+|:---------|---------------:|------:|------------------:|:----|
+| 1920 × 1080 | 2 | 60 | 497,664,000 | ✅ At the limit |
+| 1920 × 1080 | 2 | 120 | 995,328,000 | ❌ Lower `fps` to 60 |
+| 1920 × 1080 | 1 | 120 | 248,832,000 | ✅ |
+| 1800 × 1800 (HTML default) | 2 (HTML default) | 30 | 388,800,000 | ✅ |
+
+<Aside title="Higher settings, longer processing">
+Credits don't depend on resolution or frame rate, but processing time does. A 4K 60 fps recording takes much longer to finish than a 720p 30 fps one.
+</Aside>
+
+<Help />

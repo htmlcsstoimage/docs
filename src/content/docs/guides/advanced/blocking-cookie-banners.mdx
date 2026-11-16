@@ -38,6 +38,8 @@ This automatically handles the most common cookie consent frameworks including:
 
 <Aside title="Recommended method">Start with `block_consent_banners`. Use CSS injection below if a custom banner is not covered.</Aside>
 
+`block_consent_banners` also works for [URL recordings](/getting-started/using-the-api/#creating-a-recording). For a banner it doesn't catch, add a [`click`](/parameters/actions/#click) action with `"if_not_found": []` to dismiss it.
+
 ## Manual CSS injection (advanced)
 
 For custom cookie banners not covered by the automatic blocking, you can still use CSS injection.

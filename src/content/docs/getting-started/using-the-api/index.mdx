@@ -358,6 +358,106 @@ STATUS: 202 ACCEPTED
 ```
 
 
+## Creating a recording
+
+Requires [`images:create`](/getting-started/using-the-api/permissions/) and the Startup plan (10,000 images/month) or higher.
+
+Record HTML/CSS or a webpage as an MP4, WebM, or GIF. See [Recordings](/getting-started/recordings/) for an overview and credit costs.
+
+<Endpoint method="POST" path="/v1/recording" />
+
+### Parameters
+
+The create recording endpoint accepts `json` only.
+
+| Name | Type | Description |
+|:-----|:-----|:------------|
+| `html`† | `String` | The HTML to record. Recordings capture the whole viewport, so set `viewport_width` and `viewport_height` to the video size you want. |
+| `css` | `String` | The CSS for your recording. When used with `url`, it's injected into the page. |
+| `url`† | `String` | The fully qualified URL of a public webpage to record. |
+| [`duration_ms`](/parameters/duration_ms/) | `Integer` | **Required.** Requested length in milliseconds. |
+| [`actions`](/parameters/actions/) | `Array` | What happens during the recording: scroll, click, wait, run JavaScript. Leave it out to record the page as it is for the full `duration_ms`. |
+
+<Aside title="Required params">† Either `url` OR `html` is required, but not both.</Aside>
+
+### Additional parameters
+
+<ParameterTable context="recording" />
+
+`block_consent_banners`, `headers`, `identify_as_hcti`, `additional_header_origins`, and `include_headers_on_subrequests` apply to URL recordings only. `google_fonts` applies to HTML recordings only.
+
+HTML recordings default to a 1800 × 1800 viewport at `device_scale: 2`. URL recordings default to 1366 × 768 at `device_scale: 1`.
+
+### Example request
+
+```bash
+curl -X POST 'https://hcti.io/v1/recording' \
+  -u "$HCTI_API_ID:$HCTI_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "url": "https://example.com/",
+    "viewport_width": 1280,
+    "viewport_height": 720,
+    "duration_ms": 10000,
+    "actions": [{ "type": "simple_scroll" }],
+    "output": { "format": "mp4" }
+  }'
+```
+
+### Example response
+
+```
+STATUS: 200 OK
+```
+
+```javascript
+{
+  "id": "01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b",
+  "recording_url": "https://hcti.io/v1/recording/01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b.mp4",
+  "status_url": "https://hcti.io/v1/recordings/01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b/status"
+}
+```
+
+The `x-renders-consumed` header shows the [credits](/getting-started/recordings/#credits) the recording used. Validation errors return `400`, and a plan without recordings returns `403`.
+
+
+## Getting a recording
+
+Use the returned `recording_url` to download the recording, or use it directly in your website, app, or email.
+
+<Endpoint method="GET" path="/v1/recording/:recording_id.mp4" />
+
+If the recording isn't finished yet, the request waits for it and then returns the file. You can put the URL straight into a `<video>` tag, or an `<img>` tag for a GIF, without checking anything first.
+
+```html
+<video src="https://hcti.io/v1/recording/01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b.mp4" autoplay muted loop playsinline></video>
+```
+
+The extension matches the recording's [`output.format`](/parameters/output/): `.mp4`, `.webm`, or `.gif`. Unlike images, a recording can't be converted to another format by changing the extension.
+
+### Checking status (optional)
+
+For background jobs and workflows where you'd rather not hold a request open, check `status_url` instead. It returns `202` until the recording is finished, then `200` with a status of `ready` or `failed`:
+
+```bash
+curl 'https://hcti.io/v1/recordings/01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b/status' \
+  -u "$HCTI_API_ID:$HCTI_API_KEY"
+```
+
+```javascript
+{
+  "id": "01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b",
+  "status": "ready",
+  "recording_url": "https://hcti.io/v1/recording/01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b.mp4",
+  "stored_duration_ms": 9840,
+  "attempt_count": 1,
+  "error": null
+}
+```
+
+You can also subscribe a [webhook](/guides/webhooks/#event-recording-stored) to `recording_stored` and `recording_failed`. See the [Recordings API](/management-api/recordings/) for every status, error code, listing, and deletion.
+
+
 ## Listing images
 
 Requires [`images:read`](/getting-started/using-the-api/permissions/).

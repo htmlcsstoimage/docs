@@ -2,7 +2,7 @@
 title: MCP tools reference
 slug: integrations/mcp/tools
 description: >-
-  All HCTI MCP tools for images, templates, usage, proxies, storage destinations, OG configurations, and webhooks, with required permissions and arguments.
+  All HCTI MCP tools for images, recordings, templates, usage, proxies, storage destinations, OG configurations, and webhooks, with required permissions and arguments.
 ---
 import Help from '../../../../components/Help.astro';
 
@@ -50,6 +50,37 @@ Each option has a **10 MiB** byte limit. If the data cannot be included, the ass
 Deferred renders cannot include preview or file data. A deferred render URL requires a separate authenticated PUT and must not be treated as an already rendered, readable image. See [storage behavior](/guides/advanced/storage-destinations/).
 
 When you already know a template ID, pass it directly. Finding a template by name first requires `templates:read`.
+
+## Recordings
+
+Create MP4, WebM, or GIF [recordings](/getting-started/recordings/) of HTML/CSS or a public webpage. Recordings use the image permission scopes and the organization's credits. See [recording credits](/getting-started/recordings/#credits). Recordings are available on the Startup plan and above.
+
+| Tool | Required permission | Arguments and behavior |
+|:-----|:--------------------|:-----------------------|
+| `create_htmlcss_recording` | `images:create` | `content` with `html`, optional `css`, `duration_ms`, plus optional `actions` and other [recording parameters](/getting-started/using-the-api/#creating-a-recording). Returns `id`, `recording_url`, and `status_url`. |
+| `create_url_recording` | `images:create` | `content` with `url`, `duration_ms`, and `actions`. Same response as above. |
+| `get_recording_status` | `images:read` | `id`. Returns the [status](/management-api/recordings/#statuses), attempt count, and any error. |
+| `get_recording` | `images:read` | `id`. Returns metadata, credits, and the stored source and settings. |
+| `list_recordings` | `images:read` | Optional pagination. Returns recordings newest first. |
+| `store_recording` | `images:store` | `id`. Starts a [deferred recording](/parameters/defer_render/) or saves it to the configured storage. It doesn't re-record. |
+| `delete_recording` | `images:delete` | `id`. Deletes the recording. |
+
+For example, arguments to `create_url_recording`:
+
+```json
+{
+  "content": {
+    "url": "https://example.com/",
+    "viewport_width": 1280,
+    "viewport_height": 720,
+    "duration_ms": 10000,
+    "actions": [{ "type": "simple_scroll" }],
+    "output": { "format": "mp4" }
+  }
+}
+```
+
+Recording tools return URLs, not media bytes. Assistants should check `get_recording_status` a few seconds apart until the status is `ready`, and shouldn't create duplicate recordings just to check progress. The server also provides a `hcti://docs/recording-authoring` resource with timing and action recipes.
 
 ## Template management
 

@@ -264,6 +264,10 @@ Inspect the object results when handling a `424` response. A `partial` outcome m
 
 After a complete store request, read or serve the object from the bucket and key returned in the response. Objects use the access settings configured on your bucket; HCTI does not make them public or add a public-read ACL. Configure your bucket, application, or CDN to provide whatever access your use case requires.
 
+## Recordings
+
+Pass `storage_destination_id` when you [create a recording](/getting-started/using-the-api/#creating-a-recording) to upload the finished MP4, WebM, or GIF to your bucket. Recordings are uploaded once they're finished. With **Disable HCTI Storage**, the media goes only to your bucket and `recording_url` doesn't serve it. Watch for `ready` on the [status endpoint](/management-api/recordings/#get-recording-status) or a [`recording_stored`](/guides/webhooks/#event-recording-stored) webhook. To start a recording created with `defer_render`, send `PUT /v1/recording/{id}/store`.
+
 
 ## Disabling or deleting a destination
 

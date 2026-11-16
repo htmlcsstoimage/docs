@@ -28,8 +28,9 @@ Generate images and PDFs from HTML/CSS, take screenshots of webpages, or create 
 
 
 <a id="three-ways-to-generate-images" />
+<a id="four-ways-to-generate-images" />
 
-## Four ways to generate images
+## Five ways to generate images and video
 
 <div className="generation-grid grid grid-cols-[repeat(auto-fit,minmax(min(100%,25rem),1fr))] gap-6 [&>*]:mt-0!">
 <ExampleCard
@@ -98,6 +99,24 @@ POST https://hcti.io/v1/image/TEMPLATE_ID
     content="https://hcti.io/v1/og/DOMAIN_ID/"
   >
 </head>
+```
+
+</ExampleCard>
+<ExampleCard
+  id="video-and-gif-recordings"
+  title="Video and GIF recordings"
+  description="Record HTML/CSS animations or a scrolling webpage as MP4, WebM, or GIF. Script scrolls, clicks, and JavaScript."
+  href="/getting-started/recordings/"
+>
+
+```http wrap
+POST https://hcti.io/v1/recording
+
+{
+  "url": "https://example.com",
+  "duration_ms": 10000,
+  "actions": [{ "type": "simple_scroll" }]
+}
 ```
 
 </ExampleCard>

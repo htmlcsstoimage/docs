@@ -1,0 +1,112 @@
+---
+title: duration_ms
+slug: parameters/duration_ms
+description: >-
+  Set the requested length of a recording in milliseconds, from 500 to 30,000, or up to 90,000 in target mode.
+---
+import { Aside } from '@astrojs/starlight/components';
+import Help from '../../../components/Help.astro';
+
+<a id="using-duration_ms" />
+
+Set how long a recording is
+
+## How it works
+
+`duration_ms` is the requested length of a [recording](/getting-started/recordings/) in milliseconds. It's required for every recording.
+
+The clock starts when the [`trigger`](/parameters/trigger/) fires. Loading and preparing the page happens before that, and that time isn't part of the video.
+
+[`duration_mode`](/parameters/duration_mode/) decides what `duration_ms` means when your [`actions`](/parameters/actions/) take more or less time:
+
+| `duration_mode` | `duration_ms` is |
+|:----------------|:-----------------|
+| `at_most` (default) | The longest the video can be. It ends early if the actions finish first. |
+| `fixed` | The exact length of the video. |
+| `at_least` | The shortest the video can be. It runs longer if the actions need it. |
+| `target` | The exact length of the video. The capture is sped up or slowed down to fit. |
+
+## Values
+
+| `duration_mode` | Minimum | Maximum |
+|:----------------|--------:|--------:|
+| `at_most`, `fixed`, `at_least` | `500` | `30000` |
+| `target` | `500` | `90000` |
+
+The API also works out the shortest time your actions could take, counting `stall` durations, scroll step durations, and click delays. If that's longer than the mode allows, the request is rejected with a `400`.
+
+## Default behavior
+
+There's no default. Every recording needs a `duration_ms`.
+
+The finished video's length is reported as `stored_duration_ms` by the [Recordings API](/management-api/recordings/#retrieve-a-recording). It can be shorter than `duration_ms` in `at_most` mode, or longer in `at_least` mode.
+
+## Recording credits and billing
+
+<a id="credit-usage" />
+
+### Credit usage
+
+Recordings use 2 credits for the first 5 seconds of `duration_ms`, plus 1 credit for each additional 5 seconds or part of 5 seconds. `target` and `at_least` modes use twice as many.
+
+| `duration_ms` | `at_most` / `fixed` | `target` / `at_least` |
+|--------------:|--------------------:|----------------------:|
+| `5000` | 2 | 4 |
+| `10000` | 3 | 6 |
+| `15000` | 4 | 8 |
+| `30000` | 7 | 14 |
+
+### Important notes
+
+- Credits are based on the requested `duration_ms`, not the length of the finished video.
+- An `at_most` recording that ends early still uses the credits for its full `duration_ms`.
+
+See [recording credits](/getting-started/recordings/#credits) for the full table.
+
+## Example usage
+
+### Scrolling walkthrough
+
+A page walkthrough that ends at the bottom of the page, or at 15 seconds:
+
+```json
+{
+  "url": "https://example.com/",
+  "duration_ms": 15000,
+  "actions": [{ "type": "simple_scroll" }]
+}
+```
+
+### Fixed-length animation
+
+An exactly 6-second clip:
+
+```json
+{
+  "html": "<div class='logo'>Acme</div>",
+  "css": ".logo { animation: spin 2s infinite linear; } @keyframes spin { to { transform: rotate(1turn); } }",
+  "viewport_width": 600,
+  "viewport_height": 600,
+  "duration_ms": 6000,
+  "duration_mode": "fixed"
+}
+```
+
+### Long page in a short video
+
+Capture the whole page, up to 90 seconds, and speed it up to a 20-second video:
+
+```json
+{
+  "url": "https://example.com/blog/long-post",
+  "duration_ms": 20000,
+  "duration_mode": "target",
+  "actions": [{ "type": "simple_scroll" }]
+}
+```
+
+<Aside title="Choosing a length">
+Social clips work well at 5–15 seconds. GIFs get large quickly, so keep them under about 10 seconds.
+</Aside>
+
+<Help />

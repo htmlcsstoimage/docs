@@ -1,0 +1,130 @@
+---
+title: Turn HTML and CSS animations into video
+page_title: Animated HTML to video
+og_title: Convert CSS and JavaScript animations to MP4 or GIF
+slug: guides/recordings/animated-html
+description: >-
+  Record CSS keyframes and JavaScript animations as MP4, WebM, or GIF. Size the canvas, start the animation on cue, and pick a duration mode and output settings.
+---
+import { Aside } from '@astrojs/starlight/components';
+import Help from '../../../../components/Help.astro';
+
+If you can animate it in a browser, you can export it as a video. Use this for animated social posts, product announcements, chart reveals, or a GIF for your README.
+
+## A complete example
+
+This records a progress bar filling in, as a 5-second MP4:
+
+```json
+{
+  "html": "<main><h1>Making progress</h1><div class='track'><div class='bar'></div></div></main>",
+  "css": "*{box-sizing:border-box} body{margin:0;background:#10251c;color:#fff;font-family:system-ui} main{width:960px;height:540px;padding:100px;display:flex;flex-direction:column;justify-content:center} h1{font-size:48px} .track{height:24px;background:#314b3e;border-radius:12px;overflow:hidden} .bar{height:100%;background:#80efb0;transform:scaleX(0);transform-origin:left} .recording .bar{animation:fill 3s ease-in-out forwards} @keyframes fill{to{transform:scaleX(1)}}",
+  "viewport_width": 960,
+  "viewport_height": 540,
+  "device_scale": 1,
+  "duration_ms": 5000,
+  "duration_mode": "fixed",
+  "actions": [
+    { "type": "execute_javascript", "script": "document.body.classList.add('recording');" }
+  ],
+  "output": { "format": "mp4" }
+}
+```
+
+It uses [2 credits](/getting-started/recordings/#credits). The sections below explain each choice.
+
+## 1. Size the canvas to the viewport
+
+Unlike HTML/CSS images, recordings aren't cropped to your content. They capture the full viewport. Set `viewport_width` and `viewport_height` to the video size you want, and make your root element match:
+
+```css
+main { width: 960px; height: 540px; }
+```
+
+The default HTML viewport is 1800 × 1800 at `device_scale: 2`, which is almost never what you want for a video. Common sizes:
+
+| Use | Viewport |
+|:----|:---------|
+| 16:9 video (YouTube, slides) | 1280 × 720 or 1920 × 1080 |
+| Square (Instagram, LinkedIn) | 1080 × 1080 |
+| Vertical (Stories, Reels, TikTok) | 1080 × 1920 |
+| Social card (X, LinkedIn link preview) | 1200 × 630 |
+
+## 2. Start the animation on cue
+
+Before capture starts, the page is loaded and prepared. A CSS animation that starts on page load may be partly or completely done by the time recording begins.
+
+Add the animation under a class, and have the first action add that class:
+
+```css
+.bar { transform: scaleX(0); }
+.recording .bar { animation: fill 3s ease-in-out forwards; }
+```
+
+```json
+{ "type": "execute_javascript", "script": "document.body.classList.add('recording');" }
+```
+
+For JavaScript animations, start them from the script instead, for example `window.startAnimation();`.
+
+If your page needs to load data or images before it can animate, use the [`function_call` trigger](/parameters/trigger/#function_call) and call `window.RecordingReady()` when it's ready.
+
+## 3. Pick a duration mode
+
+- **`fixed`** is usually right for animations. The video is exactly `duration_ms` long, and the animation keeps playing after the last action finishes. Leave a beat at the end so the final frame holds.
+- **`at_most`** (the default) would stop as soon as the actions finish. Here that's right after the class is added, so add a [`stall`](/parameters/actions/#stall) to cover the animation if you use it.
+
+## 4. Choose output settings
+
+**MP4** works almost everywhere. For a **GIF**:
+
+```json
+"output": { "format": "gif", "fps": 15, "scale": 0.5 }
+```
+
+- Keep GIFs short (2–6 seconds) and small. File size grows quickly with dimensions, frame rate, and length.
+- `scale: 0.5` halves the output size without changing your layout. Combine it with `device_scale: 2` for sharp text at a normal size.
+- For smooth, fast motion in MP4 or WebM, try `"fps": 60`.
+
+See [Output](/parameters/output/) for limits.
+
+## Multi-step sequences
+
+Chain actions to sequence several animations, with stalls in between:
+
+```json
+"duration_mode": "fixed",
+"duration_ms": 8000,
+"actions": [
+  { "type": "execute_javascript", "script": "document.body.dataset.step = '1';" },
+  { "type": "stall", "duration_ms": 2500 },
+  { "type": "execute_javascript", "script": "document.body.dataset.step = '2';" },
+  { "type": "stall", "duration_ms": 2500 },
+  { "type": "execute_javascript", "script": "document.body.dataset.step = '3';" }
+]
+```
+
+```css
+[data-step="1"] .headline { animation: slide-in .6s both; }
+[data-step="2"] .chart    { animation: grow 1.2s both; }
+[data-step="3"] .cta      { animation: pop .4s both; }
+```
+
+A script can also wait internally:
+
+```json
+{
+  "type": "execute_javascript",
+  "script": "for (const el of document.querySelectorAll('.item')) { el.classList.add('in'); await new Promise(r => setTimeout(r, 300)); }"
+}
+```
+
+## Fonts and assets
+
+Use `google_fonts` (for example `"google_fonts": "Inter|Playfair Display"`) or load fonts and images from public URLs in your HTML. Everything finishes loading during preparation, before the trigger.
+
+<Aside title="Reusing a recording">
+Sending the exact same request again within the [`dedupe_duration_s`](/parameters/dedupe_duration_s/) window returns the existing recording without using more credits. Change anything in the request, even one character of text, and you get a new recording.
+</Aside>
+
+<Help />

@@ -5,7 +5,9 @@
     "templates": "template creation and updates",
     "og_config": "public page-level hcti: metadata for OG Image Configs",
     "og_config_management": "default_options for HTML/CSS OG configurations in the Management API",
-    "create_and_render": "signed create-and-render URLs"
+    "create_and_render": "signed create-and-render URLs",
+    "recording_html": "HTML/CSS recordings",
+    "recording_url": "URL recordings"
   },
   "parameters": [
     {
@@ -20,7 +22,9 @@
         "templates": true,
         "og_config": false,
         "create_and_render": true,
-        "og_config_management": false
+        "og_config_management": false,
+        "recording_html": true,
+        "recording_url": false
       }
     },
     {
@@ -35,7 +39,9 @@
         "templates": false,
         "og_config": false,
         "create_and_render": true,
-        "og_config_management": false
+        "og_config_management": false,
+        "recording_html": false,
+        "recording_url": true
       }
     },
     {
@@ -50,7 +56,9 @@
         "templates": true,
         "og_config": true,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": true,
+        "recording_url": true
       }
     },
     {
@@ -65,7 +73,9 @@
         "templates": false,
         "og_config": true,
         "create_and_render": false,
-        "og_config_management": false
+        "og_config_management": false,
+        "recording_html": false,
+        "recording_url": false
       }
     },
     {
@@ -80,7 +90,9 @@
         "templates": false,
         "og_config": false,
         "create_and_render": false,
-        "og_config_management": false
+        "og_config_management": false,
+        "recording_html": false,
+        "recording_url": false
       }
     },
     {
@@ -95,7 +107,26 @@
         "templates": false,
         "og_config": false,
         "create_and_render": true,
-        "og_config_management": false
+        "og_config_management": false,
+        "recording_html": false,
+        "recording_url": false
+      }
+    },
+    {
+      "name": "actions",
+      "description": "Ordered actions to run while recording: scroll, click, wait, run JavaScript, and branch. Leave it out to record the page as it is.",
+      "type": "Array",
+      "link": "/parameters/actions/",
+      "additional": true,
+      "support": {
+        "html": false,
+        "url": false,
+        "templates": false,
+        "og_config": false,
+        "create_and_render": false,
+        "og_config_management": false,
+        "recording_html": true,
+        "recording_url": true
       }
     },
     {
@@ -110,7 +141,9 @@
         "templates": false,
         "og_config": false,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": false,
+        "recording_url": true
       }
     },
     {
@@ -125,7 +158,9 @@
         "templates": false,
         "og_config": true,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": false,
+        "recording_url": true
       }
     },
     {
@@ -140,7 +175,9 @@
         "templates": true,
         "og_config": true,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": true,
+        "recording_url": true
       }
     },
     {
@@ -155,7 +192,26 @@
         "templates": false,
         "og_config": false,
         "create_and_render": false,
-        "og_config_management": false
+        "og_config_management": false,
+        "recording_html": true,
+        "recording_url": true
+      }
+    },
+    {
+      "name": "defer_render",
+      "description": "Wait to render a new recording until its URL or store endpoint is first requested.",
+      "type": "Boolean",
+      "link": "/parameters/defer_render/",
+      "additional": true,
+      "support": {
+        "html": false,
+        "url": false,
+        "templates": false,
+        "og_config": false,
+        "create_and_render": false,
+        "og_config_management": false,
+        "recording_html": true,
+        "recording_url": true
       }
     },
     {
@@ -170,7 +226,9 @@
         "templates": true,
         "og_config": true,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": true,
+        "recording_url": true
       }
     },
     {
@@ -185,7 +243,43 @@
         "templates": true,
         "og_config": false,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": true,
+        "recording_url": true
+      }
+    },
+    {
+      "name": "duration_mode",
+      "description": "How actions fit into `duration_ms`: `at_most` (default), `fixed`, `at_least`, or `target`.",
+      "type": "String",
+      "link": "/parameters/duration_mode/",
+      "additional": true,
+      "support": {
+        "html": false,
+        "url": false,
+        "templates": false,
+        "og_config": false,
+        "create_and_render": false,
+        "og_config_management": false,
+        "recording_html": true,
+        "recording_url": true
+      }
+    },
+    {
+      "name": "duration_ms",
+      "description": "**Required for recordings.** Requested recording length in milliseconds, measured from when the trigger fires.",
+      "type": "Integer",
+      "link": "/parameters/duration_ms/",
+      "additional": true,
+      "support": {
+        "html": false,
+        "url": false,
+        "templates": false,
+        "og_config": false,
+        "create_and_render": false,
+        "og_config_management": false,
+        "recording_html": true,
+        "recording_url": true
       }
     },
     {
@@ -200,7 +294,9 @@
         "templates": false,
         "og_config": false,
         "create_and_render": false,
-        "og_config_management": false
+        "og_config_management": false,
+        "recording_html": false,
+        "recording_url": false
       }
     },
     {
@@ -215,7 +311,9 @@
         "templates": false,
         "og_config": false,
         "create_and_render": true,
-        "og_config_management": false
+        "og_config_management": false,
+        "recording_html": false,
+        "recording_url": false
       }
     },
     {
@@ -230,7 +328,9 @@
         "templates": true,
         "og_config": false,
         "create_and_render": true,
-        "og_config_management": false
+        "og_config_management": false,
+        "recording_html": true,
+        "recording_url": false
       }
     },
     {
@@ -245,7 +345,9 @@
         "templates": false,
         "og_config": false,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": false,
+        "recording_url": true
       }
     },
     {
@@ -260,7 +362,9 @@
         "templates": false,
         "og_config": true,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": false,
+        "recording_url": true
       }
     },
     {
@@ -275,7 +379,9 @@
         "templates": false,
         "og_config": false,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": false,
+        "recording_url": true
       }
     },
     {
@@ -290,7 +396,9 @@
         "templates": true,
         "og_config": false,
         "create_and_render": true,
-        "og_config_management": false
+        "og_config_management": false,
+        "recording_html": false,
+        "recording_url": false
       }
     },
     {
@@ -305,7 +413,9 @@
         "templates": true,
         "og_config": false,
         "create_and_render": true,
-        "og_config_management": false
+        "og_config_management": false,
+        "recording_html": false,
+        "recording_url": false
       }
     },
     {
@@ -320,7 +430,9 @@
         "templates": true,
         "og_config": true,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": false,
+        "recording_url": false
       }
     },
     {
@@ -335,7 +447,9 @@
         "templates": true,
         "og_config": true,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": true,
+        "recording_url": true
       }
     },
     {
@@ -350,7 +464,26 @@
         "templates": true,
         "og_config": true,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": false,
+        "recording_url": false
+      }
+    },
+    {
+      "name": "output",
+      "description": "Recording format (`mp4`, `webm`, or `gif`), frame rate, and scale.",
+      "type": "Object",
+      "link": "/parameters/output/",
+      "additional": true,
+      "support": {
+        "html": false,
+        "url": false,
+        "templates": false,
+        "og_config": false,
+        "create_and_render": false,
+        "og_config_management": false,
+        "recording_html": true,
+        "recording_url": true
       }
     },
     {
@@ -365,7 +498,9 @@
         "templates": false,
         "og_config": false,
         "create_and_render": false,
-        "og_config_management": false
+        "og_config_management": false,
+        "recording_html": false,
+        "recording_url": false
       }
     },
     {
@@ -380,7 +515,9 @@
         "templates": true,
         "og_config": false,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": true,
+        "recording_url": true
       }
     },
     {
@@ -395,7 +532,9 @@
         "templates": true,
         "og_config": true,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": false,
+        "recording_url": false
       }
     },
     {
@@ -410,7 +549,9 @@
         "templates": true,
         "og_config": false,
         "create_and_render": false,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": true,
+        "recording_url": true
       }
     },
     {
@@ -425,7 +566,26 @@
         "templates": false,
         "og_config": true,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": false,
+        "recording_url": false
+      }
+    },
+    {
+      "name": "skip_scroll_preload",
+      "description": "Skip the scroll that loads lazy content before a scrolling recording starts.",
+      "type": "Boolean",
+      "link": "/parameters/skip_scroll_preload/",
+      "additional": true,
+      "support": {
+        "html": false,
+        "url": false,
+        "templates": false,
+        "og_config": false,
+        "create_and_render": false,
+        "og_config_management": false,
+        "recording_html": true,
+        "recording_url": true
       }
     },
     {
@@ -440,7 +600,9 @@
         "templates": true,
         "og_config": false,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": true,
+        "recording_url": true
       }
     },
     {
@@ -455,7 +617,9 @@
         "templates": true,
         "og_config": true,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": true,
+        "recording_url": true
       }
     },
     {
@@ -470,7 +634,26 @@
         "templates": true,
         "og_config": true,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": false,
+        "recording_url": false
+      }
+    },
+    {
+      "name": "trigger",
+      "description": "When a recording starts: immediately, when an element is visible, or when the page calls `RecordingReady()`.",
+      "type": "Object",
+      "link": "/parameters/trigger/",
+      "additional": true,
+      "support": {
+        "html": false,
+        "url": false,
+        "templates": false,
+        "og_config": false,
+        "create_and_render": false,
+        "og_config_management": false,
+        "recording_html": true,
+        "recording_url": true
       }
     },
     {
@@ -485,7 +668,9 @@
         "templates": true,
         "og_config": true,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": true,
+        "recording_url": true
       }
     },
     {
@@ -500,7 +685,9 @@
         "templates": true,
         "og_config": true,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": true,
+        "recording_url": true
       }
     },
     {
@@ -515,7 +702,9 @@
         "templates": true,
         "og_config": true,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": true,
+        "recording_url": true
       }
     },
     {
@@ -530,7 +719,9 @@
         "templates": true,
         "og_config": true,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": true,
+        "recording_url": true
       }
     },
     {
@@ -545,7 +736,9 @@
         "templates": true,
         "og_config": true,
         "create_and_render": true,
-        "og_config_management": true
+        "og_config_management": true,
+        "recording_html": true,
+        "recording_url": true
       }
     }
   ]

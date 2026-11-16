@@ -1,0 +1,143 @@
+---
+title: Record a scrolling website video
+page_title: Scrolling website video
+og_title: Turn any webpage into a scrolling video
+slug: guides/recordings/scrolling-video
+description: >-
+  Record a smooth scroll-through of any public webpage as MP4, WebM, or GIF. Tune scroll speed, reading pauses, banners, lazy-loaded images, and length.
+---
+import { Aside } from '@astrojs/starlight/components';
+import Help from '../../../../components/Help.astro';
+
+A scroll-through video is the quickest way to show off a landing page, a portfolio, or a newly shipped feature. This guide starts with a one-action request and builds up to a polished walkthrough.
+
+## The simplest version
+
+```bash
+curl https://hcti.io/v1/recording \
+  --user "$HCTI_API_ID:$HCTI_API_KEY" \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "url": "https://example.com/",
+    "viewport_width": 1280,
+    "viewport_height": 720,
+    "duration_ms": 15000,
+    "actions": [{ "type": "simple_scroll" }]
+  }'
+```
+
+`simple_scroll` moves down 90% of the viewport at a time, pausing between movements, until it reaches the bottom. The default `at_most` [duration mode](/parameters/duration_mode/) stops the video there, or at 15 seconds if the page is long. That costs [4 credits](/getting-started/recordings/#credits).
+
+Use the returned `recording_url` anywhere you would use a video. If the recording isn't finished yet, requesting it waits and then returns it.
+
+## Tune the pacing
+
+| Want | Change |
+|:-----|:-------|
+| Slower, smoother movement | Raise `scroll_duration_ms` (default `800`) |
+| More time to read each screen | Raise `ms_between_scrolls` (default `400`) |
+| Fewer, bigger jumps | Raise `scroll_distance`, e.g. `"100vh"` |
+| Continuous glide | `"ms_between_scrolls": 0`, `"easing": "linear"` |
+| Hold on the footer | `"stall_at_end_ms": 1500` |
+
+A relaxed, readable walkthrough:
+
+```json
+{
+  "type": "simple_scroll",
+  "scroll_duration_ms": 1200,
+  "ms_between_scrolls": 1200,
+  "scroll_distance": "80vh",
+  "easing": "ease_in_out_cubic",
+  "stall_at_end_ms": 1500
+}
+```
+
+## Clean up the page first
+
+Hide banners and chat widgets so they don't cover the content:
+
+```json
+{
+  "url": "https://example.com/",
+  "block_consent_banners": true,
+  "css": "#intercom-container, .chat-widget { display: none !important; }",
+  "duration_ms": 20000,
+  "actions": [{ "type": "simple_scroll" }]
+}
+```
+
+The `css` is injected before capture, the same way it is for [URL screenshots](/getting-started/url-to-image/).
+
+## Open with the hero
+
+Hold on the top of the page before scrolling so viewers can take in the headline:
+
+```json
+"actions": [
+  { "type": "stall", "duration_ms": 1500 },
+  { "type": "simple_scroll", "stall_at_end_ms": 1000 }
+]
+```
+
+## Show a few sections, not the whole page
+
+Use `scroll` with `selector` targets to visit specific sections, then return to the top:
+
+```json
+"actions": [
+  { "type": "stall", "duration_ms": 1000 },
+  {
+    "type": "scroll",
+    "steps": [
+      { "to": { "type": "selector", "selector": "#features", "offset_y": -40 }, "duration_ms": 1500, "easing": "ease_in_out_cubic" },
+      { "to": { "type": "selector", "selector": "#pricing", "offset_y": -40 }, "duration_ms": 1500, "easing": "ease_in_out_cubic" }
+    ]
+  },
+  { "type": "stall", "duration_ms": 2000 },
+  { "type": "scroll", "steps": [{ "to": { "type": "position", "position": "top" }, "duration_ms": 1200, "easing": "ease_out_expo" }] }
+]
+```
+
+## Lazy-loaded images
+
+When any action scrolls, the page is scrolled down and back up **before** capture so lazy-loaded images are ready when the video reaches them. Leave this on for most pages. Set `"skip_scroll_preload": true` only if you want viewers to see content loading in, or if a page breaks when it's scrolled early.
+
+## Fit a long page into a short video
+
+A very long page won't reach the bottom in 30 seconds at a readable speed. You have two options:
+
+- **Keep the speed and cut it off.** Use the default `at_most` with `duration_ms: 30000`. This uses 7 credits.
+- **Show everything, faster.** Use `"duration_mode": "target"`. The whole scroll is captured, up to 90 seconds, and sped up to fit `duration_ms`. This uses twice the credits, so 14 for a 30-second target.
+
+```json
+{
+  "url": "https://example.com/blog/long-post",
+  "duration_ms": 20000,
+  "duration_mode": "target",
+  "actions": [{ "type": "simple_scroll", "ms_between_scrolls": 600 }]
+}
+```
+
+## Mobile walkthroughs
+
+Use a phone-sized viewport with mobile emulation:
+
+```json
+{
+  "url": "https://example.com/",
+  "viewport_width": 390,
+  "viewport_height": 844,
+  "viewport_mobile": true,
+  "viewport_touch": true,
+  "device_scale": 2,
+  "duration_ms": 15000,
+  "actions": [{ "type": "simple_scroll" }]
+}
+```
+
+<Aside title="Choosing a format">
+Use MP4 for sharing and social posts. If you need a GIF, for a README for example, add `"output": { "format": "gif", "scale": 0.5 }` and keep it under about 10 seconds to keep the file small. See [Output](/parameters/output/).
+</Aside>
+
+<Help />

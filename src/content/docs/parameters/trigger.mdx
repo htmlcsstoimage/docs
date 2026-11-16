@@ -1,0 +1,104 @@
+---
+title: trigger
+slug: parameters/trigger
+description: >-
+  Choose when a recording starts: immediately, when an element becomes visible, or when the page calls window.RecordingReady().
+---
+import { Aside } from '@astrojs/starlight/components';
+import Help from '../../../components/Help.astro';
+
+<a id="using-trigger" />
+
+Start a recording when the page is ready
+
+## How it works
+
+`trigger` decides when a [recording](/getting-started/recordings/) starts capturing and running [`actions`](/parameters/actions/).
+
+The page loads and gets ready first, including fonts, images, and the [scroll preload](/parameters/skip_scroll_preload/). Then the recording waits for the trigger. Nothing before the trigger is in the video, and the wait doesn't count toward [`duration_ms`](/parameters/duration_ms/).
+
+If the trigger times out, the recording fails with the `trigger_timeout` [error](/management-api/recordings/#errors) before it starts.
+
+## Schema
+
+`trigger` is an object. Its `type` field selects one of the trigger types below:
+
+| `type` | Starts when | Fails when |
+|:-------|:------------|:-----------|
+| `immediate` | The page is ready | — |
+| `element_visible` | An element matching `selector` is visible | `timeout_ms` runs out |
+| `function_call` | The page calls `window.RecordingReady()` | `timeout_ms` runs out |
+
+### `immediate`
+
+| Field | Type | Default | Description |
+|:------|:-----|:--------|:------------|
+| `type` | `String` | | **Required.** `immediate` |
+
+### `element_visible`
+
+| Field | Type | Default | Description |
+|:------|:-----|:--------|:------------|
+| `type` | `String` | | **Required.** `element_visible` |
+| `selector` | `String` | | **Required.** CSS selector for the element to wait for. |
+| `timeout_ms` | `Integer` | `1000` | Maximum wait in milliseconds. Minimum `100`. The maximum depends on your plan. |
+
+### `function_call`
+
+| Field | Type | Default | Description |
+|:------|:-----|:--------|:------------|
+| `type` | `String` | | **Required.** `function_call` |
+| `timeout_ms` | `Integer` | `1000` | Maximum wait for `window.RecordingReady()` in milliseconds. Minimum `100`. The maximum depends on your plan. |
+
+The maximum `timeout_ms` is 10,000 on Startup, 30,000 on Pro plans, and 50,000 on Scale plans.
+
+## Default behavior
+
+Defaults to `{ "type": "immediate" }`. The recording starts as soon as the page is ready.
+
+## When to use it
+
+- **`element_visible`**: single-page apps, dashboards, and other pages that render their main content after load.
+- **`function_call`**: pages you control, where you know exactly when everything is ready. This is the recording version of [`render_when_ready`](/parameters/render_when_ready/).
+
+<Aside title="Triggers vs. stalls">
+A trigger waits **before** recording, so the wait isn't in the video. A [`stall`](/parameters/actions/#stall) action waits **during** recording, so it is. Use a trigger to skip a loading spinner, and a stall to let viewers watch something happen.
+</Aside>
+
+## Example usage
+
+### Wait for a chart to appear
+
+```json
+{
+  "url": "https://example.com/dashboard",
+  "duration_ms": 8000,
+  "trigger": { "type": "element_visible", "selector": "#dashboard .chart", "timeout_ms": 8000 },
+  "actions": [{ "type": "simple_scroll" }]
+}
+```
+
+### Signal from your page
+
+```json
+{
+  "html": "<canvas id='chart'></canvas><script src='https://example.com/chart.js'></script>",
+  "duration_ms": 5000,
+  "duration_mode": "fixed",
+  "trigger": { "type": "function_call", "timeout_ms": 5000 },
+  "actions": [{ "type": "execute_javascript", "script": "window.animateChart();" }]
+}
+```
+
+Your page calls `window.RecordingReady()` once it's ready to record:
+
+```html
+<script>
+  loadChartData().then(data => {
+    drawChart(data);
+    window.RecordingReady();
+  });
+</script>
+```
+
+<Help />

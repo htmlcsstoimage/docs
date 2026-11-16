@@ -263,5 +263,70 @@
       "permission": "usage:read",
       "mcp_tool": null
     }
+  ],
+  "recordings": [
+    {
+      "title": "Create a recording",
+      "id": "operation-create-a-recording",
+      "method": "POST",
+      "path": "/v1/recording",
+      "permission": "images:create",
+      "mcp_tool": "create_url_recording",
+      "mcp_section": "recordings"
+    },
+    {
+      "title": "Get recording status",
+      "id": "operation-get-recording-status",
+      "method": "GET",
+      "path": "/v1/recordings/{id}/status",
+      "permission": "images:read",
+      "mcp_tool": "get_recording_status",
+      "mcp_section": "recordings"
+    },
+    {
+      "title": "List recordings",
+      "id": "operation-list-recordings",
+      "method": "GET",
+      "path": "/v1/recordings",
+      "permission": "images:read",
+      "mcp_tool": "list_recordings",
+      "mcp_section": "recordings"
+    },
+    {
+      "title": "Retrieve a recording",
+      "id": "operation-retrieve-a-recording",
+      "method": "GET",
+      "path": "/v1/recordings/{id}",
+      "permission": "images:read",
+      "mcp_tool": "get_recording",
+      "mcp_section": "recordings"
+    },
+    {
+      "title": "Store a recording",
+      "id": "operation-store-a-recording",
+      "method": "PUT",
+      "path": "/v1/recording/{id}/store",
+      "permission": "images:store",
+      "mcp_tool": "store_recording",
+      "mcp_section": "recordings"
+    },
+    {
+      "title": "Delete a recording",
+      "id": "operation-delete-a-recording",
+      "method": "DELETE",
+      "path": "/v1/recordings/{id}",
+      "permission": "images:delete",
+      "mcp_tool": "delete_recording",
+      "mcp_section": "recordings"
+    },
+    {
+      "title": "Delete a batch of recordings",
+      "id": "operation-delete-a-batch-of-recordings",
+      "method": "DELETE",
+      "path": "/v1/recordings/batch",
+      "permission": "images:delete",
+      "mcp_tool": null,
+      "mcp_section": "recordings"
+    }
   ]
 }

@@ -116,6 +116,7 @@ curl -X POST https://hcti.io/v1/image \
 ## How it works
 
 - Only **outbound traffic from the render** is proxied. Once an image is generated, it's served from our CDN like any other image — viewing the image URL does not go through your proxy.
+- **Recordings can use proxies too.** Pass `proxy_id` when you [create a recording](/getting-started/using-the-api/#creating-a-recording).
 - **Disabling a proxy is safe.** Existing images keep working. Only new renders that try to use that `proxy_id` will be rejected.
 - **Bypass Hosts skip the proxy.** Listed hostnames go out direct, which is helpful for high-volume third-party assets that don't need to be routed through your infrastructure.
 - The proxy must be reachable over the public internet from our render servers.

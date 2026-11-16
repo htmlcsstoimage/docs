@@ -1,0 +1,116 @@
+---
+title: Record clicks and interactions
+page_title: Clicks and interactions
+og_title: Record product demos with clicks, popups, and fallbacks
+slug: guides/recordings/interactions
+description: >-
+  Script clicks, tab switches, and popup dismissal in a recording, with branches that handle elements that may or may not appear, and fail on purpose when they should.
+---
+import { Aside } from '@astrojs/starlight/components';
+import Help from '../../../../components/Help.astro';
+
+Real pages are unpredictable. A newsletter modal appears for some visitors, an A/B test moves a button, a cookie prompt slips past the blocker. This guide shows how to script interactions that handle those cases.
+
+## Click through tabs
+
+Show each tab of a pricing table or feature section:
+
+```json
+{
+  "url": "https://example.com/pricing",
+  "viewport_width": 1280,
+  "viewport_height": 800,
+  "duration_ms": 9000,
+  "duration_mode": "fixed",
+  "actions": [
+    { "type": "scroll", "steps": [{ "to": { "type": "selector", "selector": "#plans", "offset_y": -40 }, "duration_ms": 1200, "easing": "ease_in_out_cubic" }] },
+    { "type": "stall", "duration_ms": 1500 },
+    { "type": "click", "selector": "[data-tab='annual']" },
+    { "type": "stall", "duration_ms": 2000 },
+    { "type": "click", "selector": "[data-tab='enterprise']" }
+  ]
+}
+```
+
+`click` scrolls the element into view first if needed. `fixed` mode keeps recording after the last click so viewers see the result.
+
+## Dismiss a popup that may not appear
+
+Use `locate_selector` with a short timeout, and leave the `if_not_found` branch empty so the recording continues either way:
+
+```json
+{
+  "type": "locate_selector",
+  "selector": ".newsletter-modal",
+  "timeout_ms": 2000,
+  "if_found": [
+    { "type": "click", "selector": ".newsletter-modal [aria-label='Close']" },
+    { "type": "stall", "duration_ms": 300 }
+  ],
+  "if_not_found": []
+}
+```
+
+For a single click, `click` with `"if_not_found": []` is shorter:
+
+```json
+{ "type": "click", "selector": "#cookie-accept", "timeout_ms": 1500, "if_not_found": [] }
+```
+
+<Aside title="Hide it with CSS instead">
+If you don't need to show the dismissal, hiding the element with `css` (for example `.newsletter-modal { display: none !important; }`) is faster and more reliable.
+</Aside>
+
+## Fail when something important is missing
+
+If a missing element means the video would be wrong, fail on purpose instead of producing a misleading recording:
+
+```json
+{
+  "type": "click",
+  "selector": "#start-demo",
+  "timeout_ms": 5000,
+  "if_not_found": [{ "type": "error" }]
+}
+```
+
+The recording ends as `failed` with `action_error`, and `action_path` shows the branch that failed, for example `actions[2].if_not_found[0]`. See [errors](/management-api/recordings/#errors).
+
+## Handle two versions of a page
+
+Branch on which version of the page loaded:
+
+```json
+{
+  "type": "locate_selector",
+  "selector": "#new-hero",
+  "timeout_ms": 1000,
+  "if_found": [{ "type": "click", "selector": "#new-hero .cta" }],
+  "if_not_found": [{ "type": "click", "selector": ".hero .button", "if_not_found": [{ "type": "error" }] }]
+}
+```
+
+Branches don't inherit selectors. Every action in a branch has its own `selector`.
+
+## Interactions with JavaScript
+
+For things a click can't do, like typing into a field, changing a dropdown, or calling an app API, use `execute_javascript`:
+
+```json
+{
+  "type": "execute_javascript",
+  "script": "const input = document.querySelector('#search'); for (const ch of 'html to video') { input.value += ch; input.dispatchEvent(new Event('input', { bubbles: true })); await new Promise(r => setTimeout(r, 80)); }",
+  "timeout_ms": 5000
+}
+```
+
+This "types" one character every 80 ms. Frames keep being captured during each `await`, so viewers see the text appear.
+
+If the script fails or times out, the recording fails unless you add `if_error`. Use `"if_error": []` to ignore failures, or give it fallback actions.
+
+## Wait for the page, not a guess
+
+- To wait for content **before** recording starts, use an [`element_visible` trigger](/parameters/trigger/#element_visible). The loading state stays out of the video.
+- To wait for something **during** the recording, give `click` or `locate_selector` a `timeout_ms`. They continue as soon as the element appears, which is better than a fixed `stall`.
+
+<Help />

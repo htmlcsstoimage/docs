@@ -12,7 +12,7 @@ const zoomSrcset = zoomSources.length ? [...zoomSources.map(v => `${v.src} ${v.w
 <figure data-doc-image>
   <Zoom label={alt}>
     <picture>
-      {optimized && Object.entries(optimized.sources).map(([format, variants]) => <source type={`image/${format}`} srcset={variants.map(v => `${v.src} ${v.width}w`).join(', ')} sizes="(max-width: 56rem) 100vw, 56rem" />)}
+      {optimized && Object.entries(optimized.sources).map(([format, variants]) => <source type={`image/${format}`} srcset={variants.map(v => `${v.src} ${v.width}w`).join(', ')} sizes="(max-width: 64rem) 100vw, 64rem" />)}
       <img src={src} data-doc-original={src} data-doc-zoom-srcset={zoomSrcset} data-doc-width={optimized?.width ?? displayWidth} data-doc-height={optimized?.height ?? displayHeight} alt={alt} width={displayWidth} height={displayHeight} loading="lazy" decoding="async" />
     </picture>
   </Zoom>

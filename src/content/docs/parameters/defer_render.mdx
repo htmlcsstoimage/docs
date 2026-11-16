@@ -1,0 +1,60 @@
+---
+title: defer_render
+slug: parameters/defer_render
+description: >-
+  Create a recording without starting it. It renders on the first request to its URL or an explicit store request.
+---
+import Help from '../../../components/Help.astro';
+
+<a id="using-defer_render" />
+
+Render a recording only when it's first needed
+
+## How it works
+
+By default, a [recording](/getting-started/recordings/) starts rendering as soon as you create it. With `defer_render: true`, it has the `awaiting_render` status until one of these happens:
+
+- The first request for its `recording_url`. That request waits for the recording to finish, then returns it.
+- A [store request](/management-api/recordings/#store-a-recording), `PUT /v1/recording/{id}/store`, which renders and saves the recording without downloading it.
+
+Checking the recording's [status](/management-api/recordings/#get-recording-status) or metadata doesn't start it.
+
+## Values
+
+`true` or `false`.
+
+## Default behavior
+
+Defaults to `false`. The recording starts rendering when it's created.
+
+## When to use it
+
+Use `defer_render` when you create recordings ahead of time but only some of them will be watched. For example, you might create one per product page and render each one the first time a visitor opens it.
+
+Leave it off when you'll want the recording soon, so it's more likely to be finished by the time it's requested.
+
+An identical recording reused through [`dedupe_duration_s`](/parameters/dedupe_duration_s/) keeps its existing state.
+
+## Example usage
+
+### Create a deferred recording
+
+```json
+{
+  "url": "https://example.com/products/42",
+  "duration_ms": 10000,
+  "actions": [{ "type": "simple_scroll" }],
+  "defer_render": true
+}
+```
+
+### Start it without downloading
+
+```bash
+curl -X PUT 'https://hcti.io/v1/recording/01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b/store' \
+  -u "$HCTI_API_ID:$HCTI_API_KEY"
+```
+
+This requires the `images:store` [permission](/getting-started/using-the-api/permissions/).
+
+<Help />

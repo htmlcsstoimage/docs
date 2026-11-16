@@ -326,6 +326,66 @@ One event per delete request. `image_ids` lists the images actually deleted: one
 </details>
 
 <details>
+<summary>Recordings</summary>
+
+Subscription and payload access require `images:read`. See the [Recordings API](/management-api/recordings/).
+
+<details id="event-recording-stored">
+<summary><code>recording_stored</code> — a finished recording was saved</summary>
+
+`recording_id` identifies the saved recording. `format` is `mp4`, `webm`, or `gif`. `duration_ms` is the length of the saved media after encoding and any `target` retiming, and can be `null`. `file_size_bytes` is the stored file size.
+
+`location` and `location_details` work the same as for [`image_stored`](#event-image-stored). If the recording is saved to both HCTI storage and a storage destination, you get one event for each.
+
+```json
+{
+  "recording_id": "01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b",
+  "format": "mp4",
+  "duration_ms": 9840,
+  "file_size_bytes": 2483120,
+  "location": "hcti_storage",
+  "location_details": null
+}
+```
+
+</details>
+
+<details id="event-recording-failed">
+<summary><code>recording_failed</code> — a recording failed and won't be retried</summary>
+
+Sent once a recording reaches `failed`. It isn't sent for an attempt that will be retried automatically. `error` has the same `code`, `message`, `occurred_at`, `retryable`, and `action_path` fields as the [status response](/management-api/recordings/#errors).
+
+```json
+{
+  "recording_id": "01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b",
+  "attempt_count": 1,
+  "error": {
+    "code": "trigger_timeout",
+    "message": "Recording could not start: the element matching '#dashboard .chart' did not become visible within 8000ms.",
+    "occurred_at": "2026-11-16T15:04:12Z",
+    "retryable": false,
+    "action_path": null
+  }
+}
+```
+
+</details>
+
+<details id="event-recording-deleted">
+<summary><code>recording_deleted</code> — a delete request removed recordings</summary>
+
+One event per delete request. `recording_ids` lists the recordings actually deleted. Recordings that were already deleted aren't included.
+
+```json
+{
+  "recording_ids": ["01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b"]
+}
+```
+
+</details>
+</details>
+
+<details>
 <summary>Templates</summary>
 
 Subscription and payload access require `templates:read`.

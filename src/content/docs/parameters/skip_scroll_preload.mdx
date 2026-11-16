@@ -1,0 +1,61 @@
+---
+title: skip_scroll_preload
+slug: parameters/skip_scroll_preload
+description: >-
+  Skip the scroll down and back up that loads lazy images and media before a scrolling recording starts.
+---
+import Help from '../../../components/Help.astro';
+
+<a id="using-skip_scroll_preload" />
+
+Skip preloading lazy content before a scrolling recording
+
+## How it works
+
+When any of a [recording's](/getting-started/recordings/) [`actions`](/parameters/actions/) scroll, including actions inside branches, the page is scrolled down and back up before recording starts. This loads lazy images, videos, and other media, so they're already showing when your scroll reaches them.
+
+`skip_scroll_preload: true` skips that step. Your scroll actions still run as normal. Recordings with no scrolling actions don't preload, so the setting has no effect on them.
+
+## Values
+
+`true` or `false`.
+
+## Default behavior
+
+Defaults to `false`. Scrolling recordings preload lazy content.
+
+## When to use it
+
+Leave it off for most pages. Skip the preload when:
+
+- You want viewers to see content load or animate in as it scrolls into view.
+- Scrolling the page early triggers something you don't want, like an infinite feed loading more items or scroll-based animations finishing before recording starts.
+
+## Example usage
+
+### Show scroll-in animations
+
+```json
+{
+  "url": "https://example.com/",
+  "duration_ms": 12000,
+  "actions": [{ "type": "simple_scroll" }],
+  "skip_scroll_preload": true
+}
+```
+
+### Infinite feed
+
+Scroll a fixed distance without loading extra items first:
+
+```json
+{
+  "url": "https://example.com/feed",
+  "duration_ms": 8000,
+  "duration_mode": "fixed",
+  "actions": [{ "type": "scroll", "steps": [{ "to": { "type": "coordinates", "y": 2000 }, "duration_ms": 6000, "easing": "ease_in_out_cubic" }] }],
+  "skip_scroll_preload": true
+}
+```
+
+<Help />

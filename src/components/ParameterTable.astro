@@ -1,17 +1,42 @@
 ---
 import { marked } from 'marked';
 import data from '../data/parameters.json';
-import { selectParameters } from '../lib/parameter-markdown.mjs';
-interface Props { context?: keyof typeof data.contexts | 'api'; includePrimary?: boolean; namePrefix?: string; nameHeading?: string; }
-const { context = 'api', includePrimary = false, namePrefix = '', nameHeading = 'Name' } = Astro.props;
-const props = { context, includePrimary, namePrefix, nameHeading };
+import { selectParameters, supportsImages, supportsRecordings } from '../lib/parameter-markdown.mjs';
+import { imageIcon, recordingIcon } from '../lib/parameter-icons.mjs';
+interface Props { context?: keyof typeof data.contexts | 'api' | 'recording' | 'all'; includePrimary?: boolean; namePrefix?: string; nameHeading?: string; applies?: boolean; }
+const { context = 'api', includePrimary = false, namePrefix = '', nameHeading = 'Name', applies = false } = Astro.props;
+const props = { context, includePrimary, namePrefix, nameHeading, applies };
 const parameters = selectParameters(props);
 ---
+{applies && <p class="parameter-legend">
+  <span><span class="parameter-icon" set:html={imageIcon} /> Images</span>
+  <span><span class="parameter-icon" set:html={recordingIcon} /> Recordings</span>
+</p>}
 <table data-build-parameter-table={import.meta.env.PROD ? JSON.stringify(props) : undefined}>
-  <thead class="[&_th]:py-3"><tr><th>{nameHeading}</th><th>Type</th><th>Description</th></tr></thead>
-  <tbody class="[&_td]:py-3 [&_td]:align-top [&_td]:leading-relaxed [&_td:first-child]:min-w-60">{parameters.map(parameter => <tr>
-    <td><a class="whitespace-nowrap font-mono text-sm font-medium text-[var(--sl-color-text-accent)] no-underline hover:underline focus-visible:underline" href={parameter.link}>{namePrefix}{parameter.name}</a></td>
+  <thead class="[&_th]:py-3"><tr><th>{nameHeading}</th>{applies && <th><span class="sr-only">Works with</span></th>}<th>Type</th><th>Description</th></tr></thead>
+  <tbody class="[&_td]:py-3 [&_td]:align-top [&_td]:leading-relaxed">{parameters.map(parameter => <tr>
+    <td class="parameter-name-cell"><a class="parameter-name font-mono text-sm font-medium text-[var(--sl-color-text-accent)] no-underline hover:underline focus-visible:underline" href={parameter.link}>{`${namePrefix}${parameter.name}`.split('_').map((part, i) => i ? <Fragment><wbr />_{part}</Fragment> : part)}</a></td>
+    {applies && <td><div class="parameter-slots">
+      {supportsImages(parameter) ? <span class="parameter-icon" role="img" aria-label="Images" title="Images" set:html={imageIcon} /> : <span class="parameter-icon empty" />}
+      {supportsRecordings(parameter) ? <span class="parameter-icon" role="img" aria-label="Recordings" title="Recordings" set:html={recordingIcon} /> : <span class="parameter-icon empty" />}
+    </div></td>}
     <td><span class="text-[var(--sl-color-white)]">{parameter.type}</span></td>
     <td set:html={marked.parseInline(parameter.description)} />
   </tr>)}</tbody>
 </table>
+<style>
+  .parameter-icon { display:inline-flex; flex:none; width:18px; height:18px; vertical-align:middle; color:var(--sl-color-gray-2); }
+  /* Fixed slots keep each icon in its own column, centered on the first line of text. */
+  .parameter-slots { display:flex; align-items:center; gap:.5rem; height:1.625em; }
+  /* Narrow screens: names wrap at underscores (via <wbr>), and the icons stack with no empty slot. */
+  .parameter-name { overflow-wrap:break-word; }
+  @media (max-width: 50rem) {
+    .parameter-slots { flex-direction:column; height:auto; padding-top:.2rem; }
+    .parameter-icon.empty { display:none; }
+  }
+  @media (min-width: 50rem) {
+    .parameter-name-cell { min-width:15rem; }
+    .parameter-name { white-space:nowrap; }
+  }
+  .parameter-legend { display:flex; flex-wrap:wrap; align-items:center; gap:.35rem 1.25rem; font-size:var(--sl-text-sm); color:var(--sl-color-gray-2); }
+</style>

@@ -31,7 +31,7 @@ Reads share **100 requests/minute** in `webhook:read`. Configuration writes shar
 | Create/update configuration and send test events | `webhooks:create_update` |
 | Delete configuration | `webhooks:delete` |
 
-Subscribing also requires read access to the event's resource: `images:read`, `templates:read`, `proxies:read`, `storage_destinations:read`, `og_configs:read`, or `api_keys:read`. Organization events require `usage:read`.
+Subscribing also requires read access to the event's resource: `images:read` (for image and recording events), `templates:read`, `proxies:read`, `storage_destinations:read`, `og_configs:read`, or `api_keys:read`. Organization events require `usage:read`.
 
 Adding subscriptions requires the corresponding read grants. Changing delivery settings or enabling a webhook requires read access to **all** selected events. Renaming, disabling, or removing subscriptions can be done with `webhooks:create_update` without read access to subscriptions you are retaining.
 

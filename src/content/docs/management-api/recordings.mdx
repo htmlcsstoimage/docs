@@ -1,0 +1,170 @@
+---
+title: Recordings API
+og_title: List, check, store, and delete video recordings
+slug: management-api/recordings
+description: >-
+  List recordings, check a recording's status, retrieve its metadata and settings, store deferred recordings, and delete one recording or a batch, through REST or MCP.
+---
+import Operations from '../../../components/Operations.astro';
+import Endpoint from '../../../components/Endpoint.astro';
+import Help from '../../../components/Help.astro';
+
+Manage the [recordings](/getting-started/recordings/) your organization has created. To create one, see [Using the API](/getting-started/using-the-api/#creating-a-recording).
+
+## Operations
+
+Use the `https://hcti.io/v1` base URL and [HTTP Basic authentication](/getting-started/using-the-api/api-keys/). Recordings use the same `images:*` [permissions](/getting-started/using-the-api/permissions/) as images. Resource IDs must belong to the authenticated organization.
+
+<Operations resource="recordings" />
+
+## Get recording status
+
+<Endpoint method="GET" path="/v1/recordings/{id}/status" />
+
+You don't need this to use a recording, because requesting its `recording_url` waits until it's finished. Status checks are for workflows that would rather not hold a request open.
+
+Returns `202 Accepted` until the recording is finished, then `200 OK`. Responses are never cached.
+
+```json
+{
+  "id": "01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b",
+  "status": "ready",
+  "status_entered_at": "2026-11-16T15:04:12Z",
+  "attempt_count": 1,
+  "error": null,
+  "stored_duration_ms": 9840,
+  "recording_url": "https://hcti.io/v1/recording/01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b.mp4",
+  "storage_destination_hcti_storage_disabled": null
+}
+```
+
+### Statuses
+
+| Status | Finished | Meaning |
+|:-------|:---------|:--------|
+| `processing` | No | The recording is being made. |
+| `pending_retry` | No | An attempt hit a temporary problem and will be retried. `error` describes it. |
+| `awaiting_render` | No | Created with [`defer_render`](/parameters/defer_render/) and not requested yet. |
+| `ready` | Yes | The recording is saved and `recording_url` serves it, unless [HCTI storage is disabled](#storage-destinations). |
+| `failed` | Yes | The recording couldn't be made. See [errors](#errors). |
+| `cancelled` | Yes | The recording was stopped before it finished. |
+
+When checking in a loop, wait a few seconds between requests.
+
+### Errors
+
+`error` describes the most recent failure. It can describe an attempt that will be retried, so check `status` first.
+
+```json
+{
+  "code": "action_error",
+  "message": "The action requested that the recording fail.",
+  "occurred_at": "2026-11-16T15:04:12Z",
+  "retryable": false,
+  "action_path": "actions[1].if_not_found[0]"
+}
+```
+
+| Code | Retried | Cause |
+|:-----|:--------|:------|
+| `trigger_timeout` | No | The [`trigger`](/parameters/trigger/) didn't fire before its `timeout_ms`. |
+| `action_error` | No | An [`error` action](/parameters/actions/#error) ran. `action_path` shows which one. |
+| `javascript_error` | No | An [`execute_javascript`](/parameters/actions/#execute_javascript) script threw an error and had no `if_error` branch. |
+| `javascript_timeout` | No | A script ran past its `timeout_ms` and had no `if_error` branch. |
+| `resource_limit` | No | The recording went over a size or processing limit. Lower the resolution, frame rate, or duration. |
+| `invalid_request` | No | The page or settings couldn't be recorded as requested. |
+| `recording_error` | Yes | A temporary problem interrupted the attempt. |
+
+## List recordings
+
+<Endpoint method="GET" path="/v1/recordings" />
+
+Returns your organization's recordings, newest first. Deleted recordings aren't included. `count` sets the page size, from 1 to 50 (default 50). Pass `next_page_token` as `page_token` to get the next page while `has_next_page` is `true`.
+
+```json
+{
+  "recordings": [
+    {
+      "id": "01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b",
+      "created_at": "2026-11-16T15:03:58Z",
+      "status": "ready",
+      "status_entered_at": "2026-11-16T15:04:12Z",
+      "attempt_count": 1,
+      "recording_url": "https://hcti.io/v1/recording/01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b.mp4",
+      "status_url": "https://hcti.io/v1/recordings/01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b/status"
+    }
+  ],
+  "next_page_token": "eyJ...",
+  "has_next_page": true
+}
+```
+
+A listed `status` was correct when the entry was written. Use `status_url` for the current status.
+
+## Retrieve a recording
+
+<Endpoint method="GET" path="/v1/recordings/{id}" />
+
+Returns the recording's status, credits, and the source and settings it was created with. `recording_type` is `html_css` or `url`. Settings you didn't send are `null`.
+
+```json
+{
+  "recording_type": "url",
+  "id": "01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b",
+  "recording_url": "https://hcti.io/v1/recording/01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b.mp4",
+  "created_at": "2026-11-16T15:03:58Z",
+  "updated_at": "2026-11-16T15:04:12Z",
+  "status": "ready",
+  "status_entered_at": "2026-11-16T15:04:12Z",
+  "attempt_count": 1,
+  "error": null,
+  "credit_count": 3,
+  "stored_duration_ms": 9840,
+  "last_render_stored_at": "2026-11-16T15:04:12Z",
+  "saved_to_storage_destination_at": null,
+  "storage_destination_hcti_storage_disabled": null,
+  "url": "https://example.com/",
+  "duration_ms": 10000,
+  "duration_mode": null,
+  "actions": [{ "type": "simple_scroll" }],
+  "output": { "format": "mp4" }
+}
+```
+
+`credit_count` is the number of [credits](/getting-started/recordings/#credits) the recording used. `stored_duration_ms` is the finished video's length, which can differ from `duration_ms` depending on [`duration_mode`](/parameters/duration_mode/).
+
+## Store a recording
+
+<Endpoint method="PUT" path="/v1/recording/{id}/store" />
+
+Saves the recording to HCTI storage, or to its [storage destination](/guides/advanced/storage-destinations/), without downloading it. If it was created with [`defer_render`](/parameters/defer_render/), this starts it. A recording that's already stored isn't recorded again. Requires `images:store`.
+
+### Storage destinations
+
+With a `storage_destination_id`, finished recordings are also uploaded to your bucket. If the destination has **Disable HCTI Storage** turned on, the recording goes only to your bucket and `recording_url` doesn't serve it. Read it from your bucket once its status is `ready`, or when you get a [`recording_stored`](/guides/webhooks/#event-recording-stored) webhook.
+
+## Delete recordings
+
+<Endpoint method="DELETE" path="/v1/recordings/{id}" />
+
+Deletes one recording and returns `202 Accepted`. Copies already saved to your storage destination aren't deleted. Deleting doesn't refund credits.
+
+<Endpoint method="DELETE" path="/v1/recordings/batch" />
+
+Deletes several recordings at once:
+
+```json
+{ "ids": ["01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b", "01a1b2c4-0000-7f60-8a9b-0c1d2e3f4a5c"] }
+```
+
+Each delete request sends one [`recording_deleted`](/guides/webhooks/#event-recording-deleted) webhook.
+
+## Webhooks
+
+| Event | When |
+|:------|:-----|
+| [`recording_stored`](/guides/webhooks/#event-recording-stored) | A recording was saved. If it's saved to both HCTI storage and a storage destination, you get one event for each. |
+| [`recording_failed`](/guides/webhooks/#event-recording-failed) | A recording failed and won't be retried. |
+| [`recording_deleted`](/guides/webhooks/#event-recording-deleted) | A delete request removed one or more recordings. |
+
+<Help />

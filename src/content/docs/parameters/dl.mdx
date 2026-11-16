@@ -20,10 +20,11 @@ The `dl` parameter allows you to control whether an image is displayed in the br
 
 ## Usage
 
-Add `?dl=1` to any HCTI.io image URL to make it downloadable:
+Add `?dl=1` to any HCTI.io image or [recording](/getting-started/recordings/) URL to make it downloadable:
 
 ```
 https://hcti.io/v1/image/7cb776c5-8c12-4b1a-84aa-9941b815d873.jpg?dl=1
+https://hcti.io/v1/recording/01a1b2c3-d4e5-7f60-8a9b-0c1d2e3f4a5b.mp4?dl=1
 ```
 
 <a id="implementation-examples" />
@@ -58,9 +59,10 @@ function downloadImage(imageId) {
 - Offering high-resolution versions of images
 - Generating downloadable reports or charts
 - Providing image assets for users
+- Letting users save a video or GIF recording
 
 <Aside title="File Format Tip">
-The `dl` parameter works with JPG, PNG, and WebP. The downloaded file will maintain the extension specified in the URL.
+The `dl` parameter works with JPG, PNG, and WebP images, and with MP4, WebM, and GIF recordings. The downloaded file will maintain the extension specified in the URL.
 </Aside>
 
 <Help />
