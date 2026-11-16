@@ -19,6 +19,21 @@ main > .content-panel { padding-block:1rem; }
 .sl-container > .sl-markdown-content { margin-top:0; }
 .sl-markdown-content > a[id]:first-child + p { margin-top:0; }
 
+/* Keep inline code legible without the default heavy gray highlight. */
+:root { --sl-color-bg-inline-code:#202925; --docs-inline-code-text:#e5eee9; --docs-inline-code-border:#35433b; }
+:root[data-theme='light'] { --sl-color-bg-inline-code:#f0f4f1; --docs-inline-code-text:#233c2e; --docs-inline-code-border:#d7e2da; }
+.sl-markdown-content code:not(:where(pre *, .not-content *)) {
+  padding:.125em .35em;
+  border-radius:.25rem;
+  background:var(--sl-color-bg-inline-code);
+  box-shadow:inset 0 0 0 1px var(--docs-inline-code-border);
+  color:var(--docs-inline-code-text);
+  font-size:.875em;
+  font-weight:500;
+}
+.sl-markdown-content a code:not(:where(pre *, .not-content *)) { color:inherit; }
+.sl-markdown-content a:has(code):not(:where(.not-content *)) { text-underline-offset:.2em; text-decoration-thickness:1px; }
+
 .platform-sizes td:first-child, .platform-sizes td:first-child code { white-space:nowrap; }
 
 @media (min-width:40rem) {
