@@ -51,8 +51,8 @@ Scrolls down in repeated steps until it reaches the bottom of the page or runs o
 | `type` | `String` | | **Required.** `simple_scroll` |
 | `scroll_duration_ms` | `Integer` | `800` | Length of each scroll movement, 1–90000 ms. Higher values scroll more slowly. |
 | `ms_between_scrolls` | `Integer` | `400` | Pause after each movement, 0–90000 ms. Higher values give viewers more reading time. |
-| `scroll_distance` | `Number` or `String` | `"90vh"` | Distance of each step. A number of CSS pixels (`900`), a px string (`"900px"`), or a viewport-height string (`"90vh"`). |
-| `easing` | `String` | `ease_in_out_expo` | [Easing](#easing) for each movement. |
+| `scroll_distance` | `Number` or `String` | `"95vh"` | Distance of each step. A number of CSS pixels (`900`), a px string (`"900px"`), or a viewport-height string (`"95vh"`). |
+| `easing` | `String` | `ease_in_out_quad` | [Easing](#easing) for each movement. |
 | `stall_at_end_ms` | `Integer` | `0` | Time to hold at the bottom, 0–90000 ms, if time remains. |
 
 A short recording of a long page may not reach the bottom. Increase `duration_ms`, make `scroll_distance` larger, or make `ms_between_scrolls` shorter.
@@ -230,12 +230,12 @@ Use it when a missing element means the video would be wrong, so a recording tha
 | Value | Feel |
 |:------|:-----|
 | `linear` | Constant speed |
-| `ease_in_quad`, `ease_out_quad`, `ease_in_out_quad` | Gentle |
+| `ease_in_quad`, `ease_out_quad`, `ease_in_out_quad` | Gentle. Default for `simple_scroll`. |
 | `ease_in_cubic`, `ease_out_cubic`, `ease_in_out_cubic` | Natural, a good general choice |
 | `ease_in_quart`, `ease_out_quart`, `ease_in_out_quart` | Stronger than cubic |
 | `ease_in_quint`, `ease_out_quint`, `ease_in_out_quint` | Stronger than quartic |
 | `ease_in_sine`, `ease_out_sine`, `ease_in_out_sine` | Very soft |
-| `ease_in_expo`, `ease_out_expo`, `ease_in_out_expo` | Fast in the middle with long, slow ends. Default for `simple_scroll`. |
+| `ease_in_expo`, `ease_out_expo`, `ease_in_out_expo` | Fast in the middle with long, slow ends. |
 | `ease_in_circ`, `ease_out_circ`, `ease_in_out_circ` | Sharp change in speed |
 | `ease_in_back`, `ease_out_back`, `ease_in_out_back` | Pulls back or overshoots slightly |
 | `ease_in_elastic`, `ease_out_elastic`, `ease_in_out_elastic` | Springy oscillation |
