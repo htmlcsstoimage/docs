@@ -41,7 +41,7 @@ Unlike HTML/CSS images, recordings aren't cropped to your content. They capture 
 main { width: 960px; height: 540px; }
 ```
 
-The default HTML viewport is 1800 × 1800 at `device_scale: 2`, which is almost never what you want for a video. Common sizes:
+The default HTML viewport is 1920 × 1080 at `device_scale: 2`, which produces a 3840 × 2160 video. Set the viewport to the size you design for. Common sizes:
 
 | Use | Viewport |
 |:----|:---------|
@@ -84,7 +84,7 @@ If your page needs to load data or images before it can animate, use the [`funct
 
 - Keep GIFs short (2–6 seconds) and small. File size grows quickly with dimensions, frame rate, and length.
 - `scale: 0.5` halves the output size without changing your layout. Combine it with `device_scale: 2` for sharp text at a normal size.
-- For smooth, fast motion in MP4 or WebM, try `"fps": 60`.
+- For smooth, fast motion in MP4 or WebM, try `"fps": 60`. At 1080p, use `device_scale: 1` so it stays within the capture limit.
 
 See [Output](/parameters/output/) for limits.
 

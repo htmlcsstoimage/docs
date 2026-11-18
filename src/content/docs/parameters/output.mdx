@@ -58,6 +58,8 @@ GIFs are much larger than MP4 or WebM at the same size and length. For a GIF, st
 
 ### Smooth 60 fps video
 
+At 1080p, use `device_scale: 1` to stay within the [capture limit](#capture-limit).
+
 ```json
 {
   "html": "…",
@@ -112,23 +114,23 @@ The output width and height must each be **2–6000 pixels**. Video encoders may
 
 ### Capture limit
 
-Capture work is limited to **3840 × 2160 pixels at 60 fps**, or 497,664,000 pixels per second:
+Capture work is limited to **3840 × 2160 pixels at 30 fps**, or 248,832,000 pixels per second. That allows 4K at 30 fps or 1080p at 60 fps:
 
 ```
-ceil(viewport_width × device_scale) × ceil(viewport_height × device_scale) × fps ≤ 497,664,000
+ceil(viewport_width × device_scale) × ceil(viewport_height × device_scale) × fps ≤ 248,832,000
 ```
 
 This uses `device_scale` but not `output.scale`, because scaling happens after capture. If a request goes over the limit, it's rejected with a `400`. To fix it, lower the viewport, `device_scale`, or `fps`.
 
 | Viewport | `device_scale` | `fps` | Pixels per second | OK? |
 |:---------|---------------:|------:|------------------:|:----|
-| 1920 × 1080 | 2 | 60 | 497,664,000 | ✅ At the limit |
-| 1920 × 1080 | 2 | 120 | 995,328,000 | ❌ Lower `fps` to 60 |
-| 1920 × 1080 | 1 | 120 | 248,832,000 | ✅ |
-| 1800 × 1800 (HTML default) | 2 (HTML default) | 30 | 388,800,000 | ✅ |
+| 1920 × 1080 (HTML default) | 2 (HTML default) | 30 | 248,832,000 | ✅ At the limit |
+| 1920 × 1080 | 2 | 60 | 497,664,000 | ❌ Lower `device_scale` to 1 or `fps` to 30 |
+| 1920 × 1080 | 1 | 60 | 124,416,000 | ✅ |
+| 3840 × 2160 | 1 | 60 | 497,664,000 | ❌ Lower `fps` to 30 |
 
 <Aside title="Higher settings, longer processing">
-Credits don't depend on resolution or frame rate, but processing time does. A 4K 60 fps recording takes much longer to finish than a 720p 30 fps one.
+Credits don't depend on resolution or frame rate, but processing time does. A 4K recording takes much longer to finish than a 720p one.
 </Aside>
 
 <Help />
