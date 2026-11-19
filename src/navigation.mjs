@@ -214,6 +214,7 @@ const navigation = [
       { label: 'Overview', link: '/guides/account/' },
       { label: 'Account settings', link: '/guides/account/account-settings/' },
       { label: 'Organization settings', link: '/guides/account/organization-settings/' },
+      { label: 'Feature trials', link: '/guides/account/feature-trials/' },
     ] },
   ] },
   { label: 'FAQ', link: '/faq/' },

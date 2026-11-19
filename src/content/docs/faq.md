@@ -17,7 +17,7 @@ PNG (default), JPG, WebP, and PDF. Simply change the file extension on your imag
 
 ### Can I create videos or animated GIFs?
 
-Yes. [Recordings](/getting-started/recordings/) capture HTML/CSS or a public webpage as MP4, WebM, or GIF, with scripted scrolling, clicks, and JavaScript. Recordings are available on the Startup plan and above, and use [credits based on their duration](/getting-started/recordings/#credits).
+Yes. [Recordings](/getting-started/recordings/) capture HTML/CSS or a public webpage as MP4, WebM, or GIF, with scripted scrolling, clicks, and JavaScript. Recordings are available on plans with 10,000 credits per month or more, or during an active [feature trial](/guides/account/feature-trials/), and use [credits based on their duration](/getting-started/recordings/#credits).
 
 ### What are the maximum image dimensions?
 
@@ -183,9 +183,19 @@ See [rate limits and retry guidance](/getting-started/using-the-api/rate-limits/
 
 The API returns a `429 Too Many Requests` error with a message showing your usage. You can upgrade your plan anytime from the [Dashboard](https://htmlcsstoimage.com/dashboard), and it takes effect immediately.
 
-### Do you offer a free trial?
+<a id="do-you-offer-a-free-trial"></a>
 
-Yes! Sign up at [htmlcsstoimage.com](https://htmlcsstoimage.com) to get free images to test the API. No credit card required to get started.
+### Do you offer a free plan?
+
+Yes. Our **Free plan has no trial end date** and includes 50 credits each month, enough for 50 standard images. No credit card is required. Sign up at [htmlcsstoimage.com](https://htmlcsstoimage.com).
+
+The Free plan continues after any optional [feature trials](/guides/account/feature-trials/) end. Those trials provide temporary access to extra features; they don't replace the Free plan or require you to upgrade.
+
+### Can I try features that aren't included in my plan?
+
+Yes. **Feature trials** add 14 days of access to eligible advanced features on top of your existing Free or paid plan. You can try recordings, PDFs, storage destinations, proxies, batch creation, and request overrides. Eligible trials can start automatically for new organizations, or an Owner or Admin can start an unused trial from the [Feature trials dashboard](https://htmlcsstoimage.com/dashboard/organization/trials).
+
+Your normal credit allowance and usage charges still apply. When a feature trial ends, only that extra access ends: your underlying plan, including Free, continues. There's no automatic upgrade, and each feature can be trialed once per organization. See the [Feature trials guide](/guides/account/feature-trials/) for details.
 
 ### How do I upgrade my account?
 
@@ -228,6 +238,14 @@ Email us! **support@htmlcsstoimage.com**. We'd love to hear from you. We're expe
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I try features that aren't included in my plan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Feature trials add 14 days of access to eligible advanced features on top of your existing Free or paid plan, including recordings, PDFs, storage destinations, proxies, batch creation, and request overrides. Eligible trials can start automatically for new organizations, or an Owner or Admin can start an unused trial from the Feature trials dashboard. Your normal credit allowance and usage charges still apply. When a feature trial ends, only that extra access ends; your underlying plan, including Free, continues. There is no automatic upgrade, and each feature can be trialed once per organization."
+      }
+    },
     {
       "@type": "Question",
       "name": "Can I manage resources with scoped credentials?",
@@ -374,10 +392,10 @@ Email us! **support@htmlcsstoimage.com**. We'd love to hear from you. We're expe
     },
     {
       "@type": "Question",
-      "name": "Do you offer a free trial?",
+      "name": "Do you offer a free plan?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes! Sign up at htmlcsstoimage.com to get free images to test the API. No credit card required to get started."
+        "text": "Yes. The Free plan has no trial end date and includes 50 credits each month, enough for 50 standard images. No credit card is required. Sign up at htmlcsstoimage.com. The Free plan continues after optional feature trials end. Feature trials provide temporary access to extra features; they do not replace the Free plan or require an upgrade."
       }
     },
     {

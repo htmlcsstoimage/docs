@@ -1,0 +1,73 @@
+---
+title: Feature trials
+slug: guides/account/feature-trials
+description: >-
+  Try advanced features for 14 days on Free or paid plans. Your existing plan continues when a feature trial ends.
+---
+
+import Help from '../../../../components/Help.astro';
+
+**Feature trials** give your organization **14 days of access to advanced features that aren't included in your current plan**. They're available on both Free and paid plans.
+
+Trials are shared by the organization. Your existing plan and monthly allowance continue when a feature trial ends. Trials don't add extra credits or automatically upgrade your subscription.
+
+## View and start trials
+
+1. [Switch to the organization](/guides/account/account-settings/#switching-organizations) you want to use.
+2. Open [Feature trials in the dashboard](https://htmlcsstoimage.com/dashboard/organization/trials). You can also reach it from the Feature trials card in [organization settings](https://htmlcsstoimage.com/dashboard/organization).
+3. Find an available feature and select **Start 14-day trial**. An organization **Owner or Admin** must start the trial.
+4. Use the feature through the dashboard, API, or MCP, with your existing permissions.
+
+Eligible trials can start automatically for new organizations, so check the status and dates before starting. An active trial's 14-day window is already running.
+
+Feature trials are available on Free and paid plans for features those plans don't already include. An organization without a plan needs to choose one before starting a feature trial; Free is an option.
+
+## Features you can try
+
+Availability depends on your organization's plan and which trials it has already used.
+
+| Feature | What you can try |
+|:--------|:-----------------|
+| [Recordings](/getting-started/recordings/) | Record HTML/CSS animations or webpages as MP4, WebM, or GIF |
+| [PDF generation](/parameters/pdf_options/) | Generate PDFs from HTML/CSS and webpages |
+| [Storage destinations](/guides/advanced/storage-destinations/) | Send rendered media to your own storage |
+| [Proxies](/guides/advanced/proxies/) | Render webpages through your own configured proxies |
+| [Batch creation](/getting-started/using-the-api/#batch-image-creation) | Create up to 25 images in one request |
+| [Request overrides](/parameters/request_overrides/) | Customize network requests while rendering |
+
+Each feature's card shows the minimum plan needed to keep using that extra feature after its trial. Upgrading is optional.
+
+## Understand trial status
+
+The Feature trials page shows:
+
+- **Available for 14 days** — Your organization can start an unused trial.
+- **Trial active** — The feature is available until the end date shown on the card. Dates are shown in UTC.
+- **Trial expired** — Temporary access to that extra feature has ended. Your existing plan, including Free, continues.
+- **Included in your plan** — You already have access through your plan and don't need a trial.
+
+Each feature can be trialed once per organization. Changing plans doesn't restart a trial or reset its dates.
+
+## Credits and permissions
+
+Feature trials use your organization's normal credit allowance, and any enabled overages still apply. They don't add extra credits or replace your plan. Recording credit usage depends on duration; see [recording credits](/getting-started/recordings/#credits).
+
+Your existing API keys and MCP connections can use active trial features within their approved permissions. A trial doesn't grant permission to manage resources or change billing. See [API key permissions](/getting-started/using-the-api/permissions/) and [MCP permissions](/integrations/mcp/permissions/).
+
+With MCP, use the `capabilities` tool to check current feature access and trial status. Use `check_usage` to check credits used and your allowance.
+
+## When a trial ends
+
+**Only the extra feature access ends.** Your existing plan and its monthly allowance continue. If you're on Free, you can stay on Free and keep using its included features.
+
+Upgrade only if you want to keep using an extra feature after its trial. Use **Upgrade your plan** at the bottom of the trials page, or [compare plans](https://htmlcsstoimage.com/pricing). There's no automatic upgrade or requirement to choose a paid plan.
+
+If your plan already includes the feature, access continues through your plan.
+
+## Dismiss dashboard reminders
+
+Use the **×** on the dashboard's trial card or reminder to hide it for yourself. Dismissing a reminder doesn't end the organization's trials or hide them for other members.
+
+You can still open the trials page from organization settings or the active/available trial count beside your subscription controls.
+
+<Help />
