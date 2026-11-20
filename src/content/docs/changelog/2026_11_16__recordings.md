@@ -30,7 +30,7 @@ You can now **turn HTML/CSS or any URL into a video or GIF**. Send the same HTML
 - **Manage and automate.** List, retrieve, store, and delete recordings with the [Management API](/management-api/recordings/). You can optionally check a recording's status for workflows, and subscribe to `recording_stored`, `recording_failed`, and `recording_deleted` [webhook events](/guides/webhooks/).
 - **MCP tools.** Agents can create and manage recordings with the new [recording tools](/integrations/mcp/tools/#recordings).
 
-Recordings are available on the Startup plan (10,000 images/month) and higher. A recording uses 2 credits for its first 5 seconds and 1 credit for each additional 5 seconds. See [Credits](/getting-started/recordings/#credits) for how duration modes affect usage, with worked examples.
+Recordings are available on any plan with 10,000+ credits/month. A recording uses 2 credits for its first 5 seconds and 1 credit for each additional 5 seconds. See [Credits](/getting-started/recordings/#credits) for how duration modes affect usage, with worked examples.
 
 Get started with the [Recordings overview](/getting-started/recordings/), or follow a guide for [scrolling videos](/guides/recordings/scrolling-video/), [animated HTML](/guides/recordings/animated-html/), or [interactions](/guides/recordings/interactions/).
 
