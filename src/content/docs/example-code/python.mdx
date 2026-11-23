@@ -79,4 +79,10 @@ print("Your image URL is: %s"%image.json()['url'])
 # https://hcti.io/v1/image/7ed741b8-f012-431e-8282-7eedb9910b32
 ```
 
+## Turning analysis results into a weekly report
+
+After a Python job calculates sales totals or account activity, use those results to fill an HTML report. A [Jinja template](https://jinja.palletsprojects.com/en/stable/templates/) can handle headings, tables, and conditional sections without assembling a long HTML string in Python. Send the completed HTML and its CSS to the client, then include the returned image URL in your report email.
+
+If the report draws charts with JavaScript, use [render readiness](/parameters/render_when_ready/) to wait for the chart to finish. For an existing public dashboard, a URL screenshot may be simpler than recreating its layout. Choose PDF output when readers need several pages of tables rather than one image.
+
 <Help />

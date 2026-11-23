@@ -6,14 +6,11 @@ description: >-
   API. Renders exactly like Google Chrome.
 ---
 import Help from '../../../components/Help.astro';
-import { LinkButton } from '@astrojs/starlight/components';
+import ApiKeySetup from '../../../components/ApiKeySetup.astro';
 
 <a id="curl" />
 
-Generate PNG, JPG, or WebP images from your terminal with cURL.
-
-<LinkButton href="https://htmlcsstoimage.com/#demo">Live demo</LinkButton>
-<LinkButton href="https://htmlcsstoimage.com/dashboard" variant="secondary">Get an API key</LinkButton>
+<ApiKeySetup language="cURL" />
 
 ## Generate an image with cURL
 
@@ -60,5 +57,11 @@ curl -X POST https://hcti.io/v1/image -u 'UserID:APIKey'\
      -d css=".ping { padding: 20px; font-family: 'sans-serif'; }"
 ```
 
+
+## Checking a design in CI
+
+The HTML-file example can also run in a build pipeline. Generate an HTML fixture for a receipt or social card, send the file to HCTI, and attach the returned image URL to the build output for review. This gives reviewers a rendered example without adding a browser installation to the CI runner.
+
+Keep the fixture's data, viewport, fonts, and CSS stable so changes are easier to compare. Send its stylesheet with the request or use publicly accessible absolute asset URLs; HCTI cannot read files beside the HTML on your runner. This is useful for reviewing a design, but the render alone doesn't assert that it matches an approved baseline.
 
 <Help />

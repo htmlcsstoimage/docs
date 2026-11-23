@@ -69,4 +69,10 @@ public class HctiExample {
 }
 ```
 
+## Customer documents in a Java backend
+
+An order or billing service already has the data needed for a receipt, account statement, or delivery summary. Render that data into HTML with your existing template engine, then send it to the API. Use an image for an email summary or choose [PDF output](/parameters/pdf_options/) for a document the customer can download.
+
+For a billing run, commit the business transaction before requesting the render. A slow document export shouldn't keep a database transaction open. Save the returned URL against the invoice or statement record so opening it again doesn't create another render. In a long-running application, reuse your [Java `HttpClient`](https://docs.oracle.com/en/java/javase/21/docs/api/java.net.http/java/net/http/HttpClient.html) across requests to benefit from connection pooling.
+
 <Help />

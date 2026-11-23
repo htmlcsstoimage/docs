@@ -64,4 +64,10 @@ fun main() {
 }
 ```
 
+## Share cards for an Android app
+
+A fitness app could generate a workout summary, or a travel app could create a card for a completed trip. Put the layout in your Kotlin backend and fill it with the user's results. The Android app can display or share the image URL returned by the backend.
+
+The sample above is a Kotlin/JVM program. For an Android integration, keep the HCTI credentials on your server and have the app request a card by workout or trip ID. That also lets you change the design without shipping an app update. For an animated recap, use the [recording endpoint](/getting-started/recordings/) with the same source data and an animated HTML layout.
+
 <Help />

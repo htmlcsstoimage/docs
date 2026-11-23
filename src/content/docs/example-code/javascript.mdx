@@ -168,4 +168,10 @@ fetch('/api/create-image', options)
   .catch(err => console.error(err));
 ```
 
+## Adding an export button to a web app
+
+An export button can turn a dashboard selection into an image for email or chat. Have the browser send the report ID and selected filters to your backend. The backend loads the data, builds the export HTML, and calls HCTI. Return the image URL for the browser to display or offer as a download.
+
+This also gives you control over the export layout. A chart that fills the browser window can become a compact card with a title and date range. If its JavaScript draws the chart after the page loads, set [render readiness](/parameters/render_when_ready/) when drawing finishes. The Fetch example above handles the browser-to-backend part of this flow.
+
 <Help />

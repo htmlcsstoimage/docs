@@ -110,4 +110,10 @@ defmodule MyApp.Images.HtmlCssToImage do
 end
 ```
 
+## Exporting a Phoenix dashboard
+
+For a Phoenix or LiveView dashboard, build an export from the values the user is currently viewing: the selected dates, filters, and calculated totals. Render those values into an HTML report in a context or service module, then send that HTML to HCTI. This avoids needing the renderer to reproduce a logged-in user's LiveView session.
+
+For a large report, submit the export as a background job and notify the LiveView when its URL is available. Save the report's input values with the job so the result reflects what the user requested, even if the dashboard data changes while it runs.
+
 <Help />

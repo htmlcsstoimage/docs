@@ -126,4 +126,10 @@ func main() {
 }
 ```
 
+## Building a screenshot worker in Go
+
+A directory or monitoring service can queue a screenshot whenever a listing is added or its website changes. A Go worker reads the URL from the job, calls HCTI, and saves the image URL against that listing's revision. Serving the directory then only needs to read the saved URL.
+
+Pass a context with a deadline to client operations and use a bounded worker pool for batches of websites. Go's [`http.Client`](https://pkg.go.dev/net/http#Client) is safe for concurrent use and should be reused, so avoid constructing a new HTTP client for every queued item. For a moving website preview, the recording example above can capture a scroll through the page instead of a single frame.
+
 <Help />

@@ -275,4 +275,10 @@ const imageUrl = await screenshotUrl({
 console.log(imageUrl);
 ```
 
+## Product previews in a TypeScript storefront
+
+When a product is published, generate its preview from the same typed data your storefront uses: name, price, photo, and availability. You can render a server-side HTML component or pass those fields to a [saved template](/getting-started/templates/). Store the image URL with the product revision and use it in social metadata or promotional emails.
+
+Generating the preview during publication means a visitor doesn't have to wait for it. Regenerate it when a displayed field changes, and include the design version in your cache key so a template update also produces a new preview. The npm client works with JavaScript too if only part of your application uses TypeScript.
+
 <Help />

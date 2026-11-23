@@ -50,4 +50,10 @@ fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
+## Rendering from an async Rust service
+
+A Rust service might calculate account statistics, process events, or build a customer activity feed. When you need a shareable summary of that data, send an HTML card to HCTI and store the returned image URL with the result. Your service handles the data processing without also managing Chromium processes.
+
+The example above uses blocking `reqwest` for a command-line program. In a Tokio application, use the [async `reqwest::Client`](https://docs.rs/reqwest/latest/reqwest/struct.Client.html) and await the request. Reuse the client for its connection pool and limit how many renders you submit concurrently. A fast Rust backend still has to wait for the network and browser rendering, so generate frequently requested images ahead of time when possible.
+
 <Help />

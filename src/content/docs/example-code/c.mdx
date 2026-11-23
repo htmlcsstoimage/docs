@@ -6,18 +6,15 @@ description: >-
   API. Official NuGet package for .NET 6+.
 ---
 import Help from '../../../components/Help.astro';
-import { LinkButton } from '@astrojs/starlight/components';
+import ApiKeySetup from '../../../components/ApiKeySetup.astro';
 
 <a id="c--net-htmlcss-to-image" />
 
-Generate PNG, JPG, or WebP images with C# and .NET, rendered in Google Chrome.
-
-<LinkButton href="https://htmlcsstoimage.com/#demo">Live demo</LinkButton>
-<LinkButton href="https://htmlcsstoimage.com/dashboard" variant="secondary">Get an API key</LinkButton>
+<ApiKeySetup language="C# and .NET" />
 
 ## Official .NET Package
 
-We provide an official NuGet package for .NET that makes it easy to generate images from HTML/CSS in your .NET applications.
+Our official NuGet package supports HTML/CSS rendering, URL screenshots, PDFs, templates, batches, recordings, and signed image URLs.
 
 | Package | NuGet | Description |
 |:--------|:------|:------------|
@@ -309,5 +306,11 @@ string resultString = System.Text.Encoding.UTF8.GetString(result);
 Console.WriteLine(resultString);
 // {"url":"https://hcti.io/v1/image/404ed70d-dcb9-4778-9be4-fad912321d5b"}
 ```
+
+## Monthly exports from an ASP.NET Core application
+
+A reporting feature can turn a customer's monthly usage into a Razor view, then render it as a PDF or an image for an email. Keep the export model separate from the interactive dashboard so it includes only the reporting period and fields the customer requested.
+
+For scheduled exports, an ASP.NET Core [hosted service](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services) can perform the rendering outside a controller request. Use the dependency-injection setup above, save export progress and the returned URL in your database, and let the dashboard show the result when it is ready. For a short animated usage recap, use the recording request instead of image creation.
 
 <Help />

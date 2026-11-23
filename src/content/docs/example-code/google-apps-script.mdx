@@ -6,14 +6,11 @@ description: >-
   API. Renders exactly like Google Chrome.
 ---
 import Help from '../../../components/Help.astro';
-import { LinkButton } from '@astrojs/starlight/components';
+import ApiKeySetup from '../../../components/ApiKeySetup.astro';
 
 <a id="google-apps-script-htmlcss-to-image" />
 
-Generate PNG, JPG, or WebP images with Google Apps Script.
-
-<LinkButton href="https://htmlcsstoimage.com/#demo">Live demo</LinkButton>
-<LinkButton href="https://htmlcsstoimage.com/dashboard" variant="secondary">Get an API key</LinkButton>
+<ApiKeySetup language="Google Apps Script" />
 
 ## Generate an image with Google Apps Script
 With [Google Apps Script](https://developers.google.com/apps-script), you can build add-ons for Google. It is based on JavaScript, but includes built in functions that you'll need to use to work with the HTML/CSS to Image API.
@@ -73,5 +70,11 @@ var html = "<div>Hello, world</div>"
 var css = "div { color: red; }"
 google.script.run.withSuccessHandler(onSuccess).withFailureHandler(onFailure).createImage(html, css);
 ```
+
+## Sending a weekly summary from Google Sheets
+
+Read the week's totals from a spreadsheet and use them to fill a small HTML scorecard. Call `createImage` from the example above, then save the returned URL in a sheet cell or include the image in a summary email. A fixed HTML layout is useful here because it doesn't depend on the sheet's current column widths or selection.
+
+Use an [installable time-driven trigger](https://developers.google.com/apps-script/guides/triggers/installable) to run the export each week. That is a better fit than calling HCTI from a spreadsheet cell formula, where recalculation could create repeated requests. The sample already reads credentials from Script Properties, so they don't need to live in spreadsheet cells.
 
 <Help />

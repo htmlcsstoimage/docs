@@ -1,0 +1,26 @@
+---
+import { LinkButton } from '@astrojs/starlight/components';
+interface Props { language?: string }
+const { language } = Astro.props;
+---
+<aside class="api-key-setup" aria-label="API key setup">
+  <p>Before you use HTML/CSS to Image{language ? ` with ${language}` : ''}, you'll need an API key.</p>
+  <LinkButton href="https://htmlcsstoimage.com/dashboard">Get started</LinkButton>
+</aside>
+
+<style>
+  .api-key-setup {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-block: 1.5rem;
+    padding: 1.25rem;
+    border: 1px solid var(--sl-color-hairline-light);
+    border-radius: 0.5rem;
+    background: var(--sl-color-bg-sidebar);
+  }
+  .api-key-setup p { flex: 1 1 18rem; margin: 0; }
+  .api-key-setup :global(.sl-link-button) { margin: 0; white-space: nowrap; }
+</style>

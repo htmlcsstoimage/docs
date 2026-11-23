@@ -129,4 +129,10 @@ The code turns out to be a bit more readable and less complex when using Guzzle.
 
 When running this script on a Windows machine, it's possible you'll get an SSL error. The fix for this [is here](https://stackoverflow.com/questions/28858351/php-ssl-certificate-error-unable-to-get-local-issuer-certificate/32095378#32095378).
 
+## Order confirmations from a Laravel application
+
+A Laravel checkout can create a branded order summary from a Blade view using the order's line items and delivery details. Send the rendered HTML to HCTI and save the returned image URL with the order. Your confirmation email can then include the summary without asking an email client to reproduce the checkout page's CSS.
+
+For exports that don't need to appear immediately, put the render in a [queued Laravel job](https://laravel.com/docs/queues) after the order is committed. Keep the HTML for that export independent of session state. Sending an authenticated checkout URL alone won't give the renderer the customer's login session.
+
 <Help />
