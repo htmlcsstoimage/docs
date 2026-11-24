@@ -1400,47 +1400,5 @@
         }
       ]
     }
-  },
-  "/assets/images/zapier.png": {
-    "width": 1606,
-    "height": 588,
-    "sources": {
-      "avif": [
-        {
-          "src": "/assets/images/g/zapier/527775b56448b333c6d5.w384.avif",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/zapier/527775b56448b333c6d5.w768.avif",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/zapier/527775b56448b333c6d5.w1280.avif",
-          "width": 1280
-        },
-        {
-          "src": "/assets/images/g/zapier/527775b56448b333c6d5.w1600.avif",
-          "width": 1600
-        }
-      ],
-      "webp": [
-        {
-          "src": "/assets/images/g/zapier/527775b56448b333c6d5.w384.webp",
-          "width": 384
-        },
-        {
-          "src": "/assets/images/g/zapier/527775b56448b333c6d5.w768.webp",
-          "width": 768
-        },
-        {
-          "src": "/assets/images/g/zapier/527775b56448b333c6d5.w1280.webp",
-          "width": 1280
-        },
-        {
-          "src": "/assets/images/g/zapier/527775b56448b333c6d5.w1600.webp",
-          "width": 1600
-        }
-      ]
-    }
   }
 }

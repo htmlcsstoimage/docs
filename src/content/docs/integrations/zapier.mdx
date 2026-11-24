@@ -2,81 +2,110 @@
 title: Zapier integration
 slug: integrations/zapier
 description: >-
-  Convert HTML/CSS to an image (jpg, png or webp) with Zapier. Renders images
-  exactly like Google Chrome.
+  Record HTML or webpages as video or GIF, capture screenshots and PDFs, and render saved templates. Map the URL or file into your next Zap step.
 ---
 import { Aside, LinkButton } from '@astrojs/starlight/components';
-import DocImage from '../../../components/DocImage.astro';
 import Help from '../../../components/Help.astro';
 
 <a id="zapier-htmlcss-to-image" />
 
-Generate images on Zapier with HTML/CSS to Image. Renders exactly like Google Chrome.
+Use HTML/CSS to Image as an action in a Zap. A new product listing can trigger a GIF walkthrough of its webpage, or a form submission can fill a template and send the finished image as an email attachment.
 
-<LinkButton href="https://zapier.com/apps/htmlcss-to-image/integrations">Zapier integration</LinkButton>
-<LinkButton href="https://htmlcsstoimage.com" variant="secondary">Get an API Key</LinkButton>
-
-Connect HTML/CSS to Image with thousands of integrations on Zapier.
-
-<DocImage src="/assets/images/zapier.png" alt="Connect HTML/CSS to Image with Zapier" />
-
-## Available Actions
-
-Our Zapier integration includes two actions.
-
-- Create images from HTML/CSS
-- Create images from a URL
+<LinkButton href="https://zapier.com/apps/htmlcss-to-image/integrations">Open HTML/CSS to Image on Zapier</LinkButton>
 
 ## Authentication
 
-When connecting the integration to your account, you can retrieve your **User ID** and **API Key** from the dashboard.
+1. After your trigger, add an action and choose **HTML/CSS to Image**.
+2. Select an action event and connect your HCTI account. In Zapier’s **User ID** field, enter the **API ID** shown beside your key in the dashboard. Paste its matching secret into **API Key**. [Find your API credentials](https://htmlcsstoimage.com/dashboard/api-keys)
+3. Map data from your trigger into the action, then test the step. Use the returned fields when configuring the next step.
 
+<Aside type="tip" title="Use a dedicated API key for Zapier">
+Create a separate HCTI key for each third-party integration. Name this one **Zapier** and use **Advanced mode** to select only the permissions your Zaps need. You can then rotate or disable the Zapier key independently. [Create a scoped API key](/getting-started/using-the-api/api-keys/#create-a-key-in-the-dashboard)
+</Aside>
 
-<LinkButton href="https://htmlcsstoimage.com/dashboard" variant="secondary">Get your API Key</LinkButton>
+<a id="permissions-by-action" />
 
-## Create images from HTML/CSS
+## Available actions
 
-The Zapier integration makes it simple to create an image with the API. When creating an image you will see these options:
+| Action | What to use it for | Required Permission |
+| --- | --- | --- |
+| **Create Recording From HTML** | Record HTML and CSS as a silent MP4, WebM, or GIF. | `images:create` |
+| **Create Recording From URL** | Record a webpage, optionally scrolling or clicking through it. | `images:create` |
+| **Fetch Recording Status** | Check a recording once by ID. Returns its status and any rendering error. | `images:read` |
+| **Convert HTML to Image** | Render HTML and optional CSS as an image or PDF. | `images:create` |
+| **Capture a Website Screenshot** | Capture a webpage, a single element, or the full page. | `images:create` |
+| **Create Image From Template** | Fill a saved HCTI template with values from your Zap. | `images:create` |
+| **Generate Signed Template URL** | Get a URL that renders a template with the supplied values when opened. | `images:create` |
+| **Generate Signed Webpage URL** | Get a URL that captures the webpage when opened. Anyone with the signed URL can see the supplied options, including custom header values. | `images:create` |
+| **Permanently Delete Image** | Delete one image. Enter its ID or map **Image ID** from the step that created it. | `images:delete` |
+| **Permanently Delete Recording** | Delete one recording. Enter its ID or map **Recording ID** from the step that created it. | `images:delete` |
 
-HTML is the only required value. The rest are optional.
+For signed URLs, HCTI checks the signing key’s permission when someone opens the URL. To choose a template, proxy, or storage destination by name, also grant the corresponding [dropdown read permission](#an-optional-dropdown-is-empty). You can enter or map a known ID directly.
 
-| Name        | Type          | Description |
-|:-------------|:------------------|:------|
-| `html` (required) | `String` | HTML to render: a snippet (`<div>Your content</div>`) or an entire webpage. |
-| `css` | `String` | The CSS for your image. |
-| `google_fonts` | `String` | [Google fonts](/parameters/google_fonts/) to load. Example: `Roboto`. Separate multiple fonts with a pipe: `Roboto\|Open Sans`. |
-| `ms_delay`   | `Integer` | The number of milliseconds the API should delay before generating the image. This is useful when waiting for JavaScript. We recommend starting with `500`. Large values slow down the initial render time.|
-| `device_scale`   | `Double` | This adjusts the pixel ratio for the screenshot. Minimum: `1`, Maximum: `3`. |
+## Examples
 
-<Aside title="Variables in your HTML">Map values from earlier Zapier steps into your HTML to personalize each image.</Aside>
+### Record a webpage as a GIF
 
-## Create images from a URL
-With this Zapier integration, you can generate a screenshot of any website.
+1. Choose **Create Recording From URL** and map the webpage address into **URL**.
+2. Set **Recording Format** to **GIF**. Under **Duration**, enter `5000` milliseconds and choose **Fixed length** for a five-second clip. The default **At most** can end the clip early when the actions finish. [Compare duration modes](/parameters/duration_mode/)
+3. Under **Recording timeline**, choose **Build actions here**. Set **Action 1** to **Scroll Down the Page**. Choosing an action reveals its settings and the next action picker. Leave the next picker blank to finish. To record a CSS animation without interactions, use **Create Recording From HTML** and leave the first picker blank.
+4. Test the step. Map **Media URL** to share the GIF by link. For an email attachment, turn on **Include Downloadable File** and map **File** into the email step’s attachment field.
 
-The only required value is `URL` the rest are optional.
+For a prepared timeline, choose **Use an action array as JSON** and paste the array into **Recording Actions as JSON**. For a starting point, try one of the [timeline examples](/parameters/actions/#example-usage). To wait until an element appears or your page calls `window.RecordingReady()`, set a [recording start condition](/parameters/trigger/).
 
+With **Defer Rendering** enabled and normal HCTI storage, opening **Media URL** starts the render. **Fetch Recording Status** reports the current state, so repeated status checks alone leave a deferred recording in `awaiting_render`. [Deferred rendering](/parameters/defer_render/)
 
-| Name        | Type          | Description |
-|:-------------|:------------------|:------|
-| `url` (required) | `String` | The full URL of the webpage to capture, such as `https://htmlcsstoimage.com`. Overrides `html` when both are supplied. |
-| `device_scale`   | `Double` | This adjusts the pixel ratio for the screenshot. Minimum: `1`, Maximum: `3`. |
-| `ms_delay`   | `Integer` | The number of milliseconds the API should delay before generating the image. This is useful when waiting for JavaScript. We recommend starting with `500`. Large values slow down the initial render time.|
-| `viewport_width`   | `Integer` | Set the width of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
-| `viewport_height`   | `Integer` | Set the height of Chrome's viewport. This will disable automatic cropping. Both height and width parameters must be set if using either. |
-| `selector`  | `String` | A CSS selector for an element on the webpage. We'll crop the image to this specific element. For example: `section#complete-toolkit.container-lg` |
+### Capture images and PDFs
+
+<a id="designing-images-with-htmlcss" />
+
+#### Create images from HTML/CSS
+
+Choose **Convert HTML to Image**. **HTML** is the only required field. Paste a fragment such as `<h1>Weekly sales</h1>`, then replace the text with a value from an earlier step. Add styling in **CSS**. You can preview your HTML and CSS in [CodePen](https://pen.new).
+
+To load multiple **Google Fonts** for an image, separate their names with a pipe, such as `Roboto|Open Sans`. See the [Google Fonts examples](/parameters/google_fonts/).
+
+#### Create images from a URL
+
+Choose **Capture a Website Screenshot** and enter a full HTTP or HTTPS **URL** that HCTI can reach. Use **Selector** to capture one element, such as `#invoice`. Turn on **Full Screen** for the full height of a webpage, or **Block Cookie Banners** to hide supported consent banners. [Screenshot examples](/getting-started/url-to-image/)
+
+#### Set the dimensions and output format
+
+- **Dimensions.** Set **Viewport Width** and **Viewport Height** together to control the [viewport size](/parameters/viewport/), or leave both blank. **Device Scale** changes pixel density while preserving the layout size. For captures over 8,000 pixels on either side, set **Jumbo Maximum Width** and **Jumbo Maximum Height** together. See the [jumbo image limits](/guides/advanced/jumbo-images/).
+- **PDFs and attachments.** Under **Output and storage**, choose **Format** → **PDF**. Under **PDF layout**, set all four **Page Margins** together if you supply any, using a value such as `12mm` or `0` for each side. Turn on **Include Downloadable File** when the next step needs an attachment. Zapier retrieves **File** in the selected format when that step uses it. [PDF layout examples](/parameters/pdf_options/#letter-size-with-margins)
+
+### Pass values to a saved template
+
+Choose **Create Image From Template** to produce an image, or **Generate Signed Template URL** to render it when someone opens the link. Pick a template by name or map its ID. Leave **Template Version** blank to use the latest version, or enter a version to keep the design fixed. [Working with templates](/getting-started/templates/)
+
+In **Template Variables**, add one name/value pair per variable. A name like `user.address.city` is a single literal key. If your template uses `{{user.address.city}}` to read a nested object, open **Advanced template input** and paste the following object into **Template Variables as JSON**.
+
+```json
+{"user": {"address": {"city": "New York"}}}
+```
+
+You can also map a JSON object from an earlier step. If both inputs supply the same top-level key, the name/value row takes precedence. [Template variable examples](/template-editor/variables/#rendering-with-variables)
 
 ## Troubleshooting
 
-If you have trouble with the Zapier integration, please send us an email: support@htmlcsstoimage.com and we'll help you out.
+### An optional dropdown is empty
 
-### Designing images with HTML/CSS
-Creating your image design can be the most challenging part. We suggest mocking up your image using [Codepen](https://pen.new). It allows you to see your HTML/CSS and edit it live. 
+If a dropdown is empty, you can still enter or map a known ID. To browse the list, check the connected account and its [API key permissions](/getting-started/using-the-api/permissions/).
 
-### 429 error
-If you receive this error, it means you have exceeded your plan limit for creating images this month. Take a look at your [Dashboard](https://htmlcsstoimage.com/dashboard) to check your usage and upgrade your plan.
+- **Proxy** lists enabled proxies and requires `proxies:read`. Leave the field blank for normal routing. [Manage proxies](https://htmlcsstoimage.com/dashboard/proxies)
+- **Storage Destination** lists enabled destinations and requires `storage_destinations:read`. Leave the field blank for your usual storage. [Manage storage destinations](https://htmlcsstoimage.com/dashboard/storage-destinations)
+- **Template** requires `templates:read` to list saved templates.
 
 ### Blank images
-When taking a screenshot of a URL, if you see a blank image, this often means that the screenshot was taken before the page was able to render anything. This can sometimes happen with complex pages that use a lot of JavaScript. To fix it, try adjusting the `ms_delay` value to slow down taking the screenshot.
 
+If a chart or other dynamic content is missing, try **Millisecond Delay** (`500` is half a second). When you control the page, **Wait for ScreenshotReady()** lets your HTML signal when to capture. For a URL screenshot, enable **Wait for Page Readiness** and have the webpage add an element with the ID `HCTIReadyNow` when it is ready. [Readiness examples](/parameters/render_when_ready/)
+
+### 429 error
+
+For a plan-limit error when creating an image, check your remaining credits in the [HCTI dashboard](https://htmlcsstoimage.com/dashboard). If you hit a [rate limit](/getting-started/using-the-api/rate-limits/) while listing proxies or storage destinations, retry after the interval HCTI returns.
+
+## Legazy Zaps before 1.1.0
+
+Zaps built with the original **Create Image** and **Create Image From a URL** actions keep working with their saved connections and mappings. In version 1.1.0 or newer those actions are labeled **Create Image (Legacy)** and **Create Image From a URL (Legacy)**. Choose **Convert HTML to Image** or **Capture a Website Screenshot** when adding a new step.
 
 <Help />
