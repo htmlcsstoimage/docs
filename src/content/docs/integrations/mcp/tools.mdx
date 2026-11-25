@@ -65,7 +65,9 @@ Create MP4, WebM, or GIF [recordings](/getting-started/recordings/) of HTML/CSS 
 | `store_recording` | `images:store` | `id`. Starts a [deferred recording](/parameters/defer_render/) or saves it to the configured storage. It doesn't re-record. |
 | `delete_recording` | `images:delete` | `id`. Deletes the recording. |
 
-For example, arguments to `create_url_recording`:
+Both creation tools accept `content.audio` for MP4 and WebM. To reuse private narration, find its ID with `list_assets` and pass it as `content.audio.asset_id`. [Soundtrack options](/parameters/audio/)
+
+Example arguments for `create_url_recording`:
 
 ```json
 {

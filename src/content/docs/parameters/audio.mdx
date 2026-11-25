@@ -1,0 +1,61 @@
+---
+title: audio
+og_title: Add a soundtrack to an MP4 or WebM recording
+slug: parameters/audio
+description: Add music or narration from your Asset Library or a public URL. Choose when playback starts and what happens when the audio ends.
+---
+import Help from '../../../components/Help.astro';
+
+<a id="using-audio" />
+
+Pass `audio` as a top-level object in the JSON body of `POST /v1/recording` to attach one soundtrack to an HTML/CSS or URL recording. HCTI captures the visuals and adds the supplied track after capture. Only that track is audible, even if the page plays sound. MP4 uses AAC audio and WebM uses Opus. Omit `audio` for a silent recording or when requesting a GIF.
+
+## Choose a source
+
+Supply exactly one of these fields. Audio files can be up to 50 MiB. Supported file types include MP3, WAV, Ogg, M4A, AAC, FLAC, and Opus.
+
+| Field | Type | What to send |
+|:------|:-----|:-------------|
+| `asset_id` | String | The `id` of a completed audio upload in the organization creating the recording. **HCTI only** assets work. You can reuse the ID across recordings. [Upload an asset](/getting-started/uploading-assets/) |
+| `url` | String | A public HTTP or HTTPS URL that serves the audio file and can be fetched at render time. Use a URL of up to 2,048 characters, without embedded credentials or a fragment. |
+
+## Playback options
+
+| Field | Type | Default | What it controls |
+|:------|:-----|:--------|:-----------------|
+| `source_start_ms` | Integer | `0` | How far into the source file to start reading, in milliseconds. |
+| `delay_ms` | Integer | `0` | How many milliseconds of the finished video play before the track starts. |
+| `when_audio_ends` | String | `silence` | `silence` plays the rest of the video silently. `loop` repeats the track from `source_start_ms`. `trim_video` ends the video when the track finishes. |
+| `error_on_source_invalid` | Boolean | `true` | Fail the render if the soundtrack cannot play. Set to `false` to return the full video without audio in that case. |
+
+Both timing values must be zero or greater. With `at_most` (the default), `fixed`, or `target`, the delay must be shorter than `duration_ms`. For every mode, the audio must start before the actual end of the video. A track longer than the video stops at the last frame. If `target` speeds up or slows down the visuals, the soundtrack still plays at normal speed. [Recording duration modes](/parameters/duration_mode/)
+
+## Loop a short track under a scrolling video
+
+Replace `audio.url` with a public link to your track and send this JSON to `POST /v1/recording`. Playback skips the first half-second of the source and starts one second into the video. Each loop returns to the same half-second offset.
+
+```json
+{
+  "url": "https://example.com/",
+  "duration_ms": 6000,
+  "duration_mode": "fixed",
+  "actions": [{ "type": "simple_scroll" }],
+  "output": { "format": "webm" },
+  "audio": {
+    "url": "https://cdn.example.com/audio/intro.mp3",
+    "source_start_ms": 500,
+    "delay_ms": 1000,
+    "when_audio_ends": "loop"
+  }
+}
+```
+
+To use private narration instead, see [Add a voiceover from your Asset Library](/getting-started/recordings/#add-a-voiceover-from-your-asset-library).
+
+## If the track cannot play
+
+The API returns `400` at creation for an invalid request, including two sources, GIF output with audio, or an asset ID that does not identify a completed audio upload in your organization.
+
+A valid request can still fail at render time. For example, the source might have been deleted, the URL might serve an unreadable file, or `source_start_ms` might skip past the end of the track. By default the recording fails with `audio_source_invalid`. Set `error_on_source_invalid` to `false` if you want the full silent video in those cases. The API still validates the request at creation. [Recording status and errors](/management-api/recordings/#errors)
+
+<Help />

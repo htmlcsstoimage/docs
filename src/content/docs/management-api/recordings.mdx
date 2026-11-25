@@ -68,6 +68,7 @@ When checking in a loop, wait a few seconds between requests.
 | Code | Retried | Cause |
 |:-----|:--------|:------|
 | `trigger_timeout` | No | The [`trigger`](/parameters/trigger/) didn't fire before its `timeout_ms`. |
+| `audio_source_invalid` | No | The [soundtrack](/parameters/audio/) was unavailable, could not be decoded, or had no playable audio at the requested timing. |
 | `action_error` | No | An [`error` action](/parameters/actions/#error) ran. `action_path` shows which one. |
 | `javascript_error` | No | An [`execute_javascript`](/parameters/actions/#execute_javascript) script threw an error and had no `if_error` branch. |
 | `javascript_timeout` | No | A script ran past its `timeout_ms` and had no `if_error` branch. |

@@ -37,6 +37,8 @@ Open the existing asset and choose **Replace file**. Its path and base URL stay 
 
 Each file can be up to 50 MiB, within your plan’s storage allowance. The upload form shows your plan limit. The Assets page shows storage used and refreshes periodically after uploads and deletions.
 
+For a voiceover or music track, use the uploaded file’s ID as `audio.asset_id` in an MP4 or WebM recording. You can keep the source set to **HCTI only** and reuse it across videos. [Add a voiceover to a recording](/getting-started/recordings/#add-a-voiceover-from-your-asset-library)
+
 ## Upload from the API
 
 With an API key that has `assets:create_update`, send the file and the path you want to use as multipart form data. This example uploads a private logo from the current directory.

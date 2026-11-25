@@ -30,7 +30,7 @@ Records until the actions finish or `duration_ms` is reached, whichever comes fi
 
 ### `fixed`
 
-Always produces a video exactly `duration_ms` long. If the actions finish early, it keeps recording the page. If they run long, they're cut off. Animations keep playing during the extra time, so you don't need a trailing `stall`.
+Captures for exactly `duration_ms`. If the actions finish early, it keeps recording the page. If they run long, they're cut off. Animations keep playing during the extra time, so you don't need a trailing `stall`.
 
 ### `at_least`
 
@@ -43,6 +43,8 @@ Runs the actions to completion, up to 90 seconds of capture, then **changes the 
 <Aside title="Retiming changes motion speed">
 In `target` mode, scrolls, animations, and stalls all speed up or slow down together. If the motion looks too fast, increase `duration_ms` or remove actions.
 </Aside>
+
+A [soundtrack](/parameters/audio/) plays at normal speed on the finished timeline, including in `target` mode. In any mode, `audio.when_audio_ends: "trim_video"` can shorten the final video to the end of the track.
 
 ## Default behavior
 

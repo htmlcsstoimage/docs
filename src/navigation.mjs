@@ -39,6 +39,7 @@ const navigation = [
   { label: 'Parameters', items: [
     { label: 'Overview', link: '/parameters/' },
     { label: 'actions', link: '/parameters/actions/' },
+    { label: 'audio', link: '/parameters/audio/' },
     { label: 'color_scheme', link: '/parameters/color_scheme/' },
     { label: 'dedupe_duration_s', link: '/parameters/dedupe_duration_s/' },
     { label: 'defer_render', link: '/parameters/defer_render/' },

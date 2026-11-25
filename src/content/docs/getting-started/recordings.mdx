@@ -10,7 +10,7 @@ import Help from '../../../components/Help.astro';
 
 Record HTML/CSS or a live webpage as an **MP4**, **WebM**, or **animated GIF**. Recordings use the same Chrome renderer as images, so your fonts, CSS, and JavaScript work the same way.
 
-Use them for scrolling website walkthroughs, product demos, animated social posts, and CSS or JavaScript animations. Recordings have no audio.
+Use them for scrolling website walkthroughs, product demos, animated social posts, and CSS or JavaScript animations. Add a voiceover or background music to an MP4 or WebM with the optional `audio` parameter. GIFs do not support `audio`.
 
 <Aside title="Plan availability">
 Recordings are included on plans with **10,000 credits/month or more**. On a smaller plan, check for an available [14-day feature trial](/guides/account/feature-trials/). Your usual recording credit usage applies during the trial.
@@ -58,15 +58,56 @@ If the recording isn't finished when the URL is requested, the request waits and
 
 See [Using the API](/getting-started/using-the-api/#creating-a-recording) for the full request and response.
 
+## Add a soundtrack
+
+Choose one source per MP4 or WebM recording. Use `audio.asset_id` for a file in your HCTI Asset Library or `audio.url` for an audio file you already host.
+
+### Add a voiceover from your Asset Library
+
+Upload your narration and leave **HCTI only** selected. Use the `id` returned by the upload as `audio.asset_id`. For a file you already uploaded, list your assets with `GET /v1/assets?media_type=AUDIO` to find its ID. [Upload guide](/getting-started/uploading-assets/) · [Assets API](/management-api/assets/#find-an-existing-file)
+
+For example, send this JSON to `POST /v1/recording`, replacing `YOUR_ASSET_ID` with the narration’s ID. The title fades in during the first second, then the voiceover starts. You can reuse the same ID when you update the title and record it again.
+
+```json
+{
+  "html": "<h1>Introducing the Asset Library</h1>",
+  "css": "@keyframes reveal { from { opacity: 0; } to { opacity: 1; } } .recording h1 { animation: reveal 1s both; }",
+  "duration_ms": 6000,
+  "duration_mode": "fixed",
+  "actions": [{ "type": "execute_javascript", "script": "document.body.classList.add('recording')" }],
+  "audio": { "asset_id": "YOUR_ASSET_ID", "delay_ms": 1000 }
+}
+```
+
+### Use a public audio URL
+
+If your track is already on a website or CDN, HCTI can fetch it at render time. In this request to `POST /v1/recording`, replace the top-level `url` with the webpage to record and `audio.url` with a direct HTTP or HTTPS link to your audio file.
+
+```json
+{
+  "url": "https://example.com/",
+  "duration_ms": 6000,
+  "duration_mode": "fixed",
+  "actions": [{ "type": "simple_scroll" }],
+  "audio": {
+    "url": "https://cdn.example.com/audio/intro.mp3",
+    "when_audio_ends": "loop"
+  }
+}
+```
+
+If the track is shorter than the six-second MP4, it repeats until the video ends. To let viewers hear the soundtrack on your site, embed the returned URL with playback controls, for example `<video src="RECORDING_URL" controls playsinline></video>`. [Audio options and examples](/parameters/audio/)
+
 ## Key parameters
 
 | Parameter | What it does |
 |:----------|:-------------|
 | [`duration_ms`](/parameters/duration_ms/) | **Required.** How long the recording is, from 500 ms to 30 seconds (90 in `target` mode). |
 | [`actions`](/parameters/actions/) | What happens while recording: `simple_scroll` down a page, `scroll` to exact spots, `click`, `stall`, `execute_javascript`, and branches for elements that may not exist. Leave it out to record the page as it is. |
-| [`duration_mode`](/parameters/duration_mode/) | How the actions fit into `duration_ms`. `at_most` (default) ends when the actions finish. `fixed` is always exactly `duration_ms`. `at_least` lets the actions run long. `target` speeds up or slows down the video to fit. |
+| [`duration_mode`](/parameters/duration_mode/) | How the actions fit into `duration_ms`. `at_most` (default) ends when the actions finish. `fixed` captures for `duration_ms`. `at_least` lets the actions run long. `target` speeds up or slows down the video to fit. |
 | [`trigger`](/parameters/trigger/) | When recording starts: right away, when an element appears, or when your page calls `window.RecordingReady()`. |
 | [`output`](/parameters/output/) | Format (`mp4`, `webm`, `gif`), frame rate, and scale. Defaults to MP4 at 30 fps. |
+| [`audio`](/parameters/audio/) | Attach one soundtrack from your Asset Library or a public URL to an MP4 or WebM. |
 | [`viewport_width` / `viewport_height`](/parameters/viewport/) | The video size in CSS pixels. HTML recordings capture the whole viewport, so set these to the size you want. |
 | [`device_scale`](/parameters/device_scale/) | Pixel density. `2` gives sharp, retina-quality text. |
 | [`defer_render`](/parameters/defer_render/) | Wait to render until the recording is first requested. |

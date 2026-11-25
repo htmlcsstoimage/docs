@@ -41,6 +41,8 @@ There's no default. Every recording needs a `duration_ms`.
 
 The finished video's length is reported as `stored_duration_ms` by the [Recordings API](/management-api/recordings/#retrieve-a-recording). It can be shorter than `duration_ms` in `at_most` mode, or longer in `at_least` mode.
 
+With a soundtrack, [`audio.when_audio_ends`](/parameters/audio/#playback-options) set to `trim_video` can shorten the finished video in any mode. Credits still depend on the requested duration.
+
 ## Recording credits and billing
 
 ### Credit usage

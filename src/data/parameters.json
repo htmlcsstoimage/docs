@@ -147,6 +147,23 @@
       }
     },
     {
+      "name": "audio",
+      "description": "Attach one soundtrack from your Asset Library or a public URL to an MP4 or WebM recording.",
+      "type": "Object",
+      "link": "/parameters/audio/",
+      "additional": true,
+      "support": {
+        "html": false,
+        "url": false,
+        "templates": false,
+        "og_config": false,
+        "create_and_render": false,
+        "og_config_management": false,
+        "recording_html": true,
+        "recording_url": true
+      }
+    },
+    {
       "name": "block_consent_banners",
       "description": "When set to `true`, automatically blocks cookie consent banners and popups on websites. Most useful for URL screenshots.",
       "type": "Boolean",

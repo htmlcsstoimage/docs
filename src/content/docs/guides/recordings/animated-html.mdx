@@ -123,6 +123,8 @@ A script can also wait internally:
 
 Use `google_fonts` (for example `"google_fonts": "Inter|Playfair Display"`) or load fonts and images from public URLs in your HTML. Everything finishes loading during preparation, before the trigger.
 
+To start a voiceover after a one-second title animation, set `audio.delay_ms` to `1000` and pass the narration’s Asset Library ID in `audio.asset_id`. [Voiceover example](/getting-started/recordings/#add-a-voiceover-from-your-asset-library)
+
 <Aside title="Reusing a recording">
 Sending the exact same request again within the [`dedupe_duration_s`](/parameters/dedupe_duration_s/) window returns the existing recording without using more credits. Change anything in the request, even one character of text, and you get a new recording.
 </Aside>
