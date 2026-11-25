@@ -1,0 +1,70 @@
+---
+title: Uploading assets
+slug: getting-started/uploading-assets
+description: Upload a logo, font, or stylesheet from your computer and use it in HCTI images, recordings, and console previews.
+---
+
+If your logo is on your laptop, HCTI needs a URL to load it when it renders your HTML. Upload the file to your organization’s asset library and HCTI gives you that URL. You can use it again in other designs without setting up hosting or including the file as base64 in every request.
+
+## Add a logo to your first image
+
+1. Open [Assets in the dashboard](https://htmlcsstoimage.com/dashboard/assets) and choose **Upload asset**.
+2. Drop your logo onto the form. **Asset path** starts with its filename. Keep it, or type a path such as `brand/logo.svg` to group it with other brand files.
+3. Leave **HCTI only** selected and click **Upload asset**.
+4. On the asset details page, copy **Use in an HCTI render**. For a logo, this is an HTML `<img>` tag with your file’s URL already filled in.
+5. Open the [Image Console](https://htmlcsstoimage.com/dashboard/console), paste the tag into the HTML where you want the logo, and check the preview. You can keep editing the design there before creating the image.
+
+The same snippet works in your organization’s HTML/CSS templates and HTML recordings. For a font, paste the supplied `@font-face` rule into your CSS and use its `font-family` on the text you want to change.
+
+## When to use a public URL
+
+**HCTI only** is the default. Your team can preview the file in the signed-in console and use it in renders. Someone who receives the finished image can see the logo in the image. They don’t need access to the original SVG.
+
+Choose **Public** if you also need to open the original file in a local development preview or another design tool. Copy **Public URL** from the asset details. Anyone with that link can load the original. To turn public access off, select **HCTI only** under **Settings** and save. Your HCTI designs can keep using the private URL.
+
+## Replace a file used in several designs
+
+Open the existing asset and choose **Replace file**. Its path and base URL stay the same. The snippet includes a version in the query string. Copy the updated snippet if you want the next render to pick up the replacement immediately.
+
+## File types and storage
+
+| File type | Supported extensions |
+| --- | --- |
+| Images | `.png`, `.jpg`, `.jpeg`, `.svg`, `.webp`, `.gif` |
+| Fonts | `.woff`, `.woff2`, `.ttf`, `.otf` |
+| Stylesheets, JavaScript, and JSON | `.css`, `.js`, `.json` |
+| Audio | `.mp3`, `.wav`, `.ogg`, `.m4a`, `.aac`, `.flac`, `.opus` |
+
+Each file can be up to 50 MiB, within your plan’s storage allowance. The upload form shows your plan limit. The Assets page shows storage used and refreshes periodically after uploads and deletions.
+
+## Upload from the API
+
+With an API key that has `assets:create_update`, send the file and the path you want to use as multipart form data. This example uploads a private logo from the current directory.
+
+```bash
+curl --fail-with-body 'https://hcti.io/v1/assets' \
+  -u "$HCTI_API_ID:$HCTI_API_KEY" \
+  -F 'asset_path=brand/logo.svg' \
+  -F 'file=@./logo.svg'
+```
+
+Use the returned `private_url` as the `src` of an image in your HTML. Keep the asset `id` if you plan to replace it later. To request a public link too, add `-F 'public_access_requested=true'`. If publishing fails, the response still includes the private URL and a `publication_error` explaining what happened.
+
+For listing files, replacing an upload, or checking the remaining storage allowance, see the [Assets API reference](/management-api/assets/).
+
+## Use an asset with an AI assistant
+
+Once you’ve [connected your assistant to HCTI](/integrations/mcp/), try asking:
+
+> Find `brand/logo.svg` in our asset library and use it in the top-left corner of a social card. Keep the logo private.
+
+An assistant with access to a local file can also securely upload it to the library. If the file is only available on your computer, upload it in the dashboard first and give the assistant its asset path. See the [asset tools and permissions](/integrations/mcp/tools/#asset-library).
+
+## How uploaded assets can speed up renders
+
+Suppose you generate a social card for every article on your site. The headline changes each time, but every card uses the same logo and font. Upload those two files once and use their URLs in your [template](/getting-started/templates/). When HCTI renders a card, it reads the files from its own storage. A renderer that has already loaded them can reuse its cached copies on later renders.
+
+- **If you embed images as base64**, replace the long `data:image/…` value in your HTML with the asset URL. Each request then sends just the URL, even for a large JPEG. You can do the same for a shared stylesheet by linking to its uploaded copy.
+- **If your logo or font sometimes times out**, use the uploaded copy in your design. Rendering the next batch of cards no longer depends on your website or CDN answering a request for that file.
+
+This applies to the library URLs in your HTML, CSS, and templates. A [screenshot of a website](/getting-started/url-to-image/) still loads the assets referenced by the live page.

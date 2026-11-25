@@ -1,4 +1,70 @@
 {
+  "assets": [
+    {
+      "title": "Upload a file",
+      "id": "operation-upload-a-file",
+      "method": "POST",
+      "path": "/v1/assets",
+      "permission": "assets:create_update",
+      "mcp_tool": null
+    },
+    {
+      "title": "List assets",
+      "method": "GET",
+      "path": "/v1/assets",
+      "permission": "assets:read",
+      "mcp_tool": "list_assets",
+      "mcp_section": "asset-library"
+    },
+    {
+      "title": "Get an asset",
+      "method": "GET",
+      "path": "/v1/assets/{id}",
+      "permission": "assets:read",
+      "mcp_tool": "get_asset",
+      "mcp_section": "asset-library"
+    },
+    {
+      "title": "Update or replace an asset",
+      "method": "POST",
+      "path": "/v1/assets/{id}",
+      "permission": "assets:create_update",
+      "mcp_tool": "update_asset",
+      "mcp_section": "asset-library"
+    },
+    {
+      "title": "Delete an asset",
+      "method": "DELETE",
+      "path": "/v1/assets/{id}",
+      "permission": "assets:delete",
+      "mcp_tool": "delete_asset",
+      "mcp_section": "asset-library"
+    },
+    {
+      "title": "Check asset storage",
+      "method": "GET",
+      "path": "/v1/assets/usage",
+      "permission": "usage:read",
+      "mcp_tool": "get_asset_storage_usage",
+      "mcp_section": "asset-library"
+    },
+    {
+      "title": "Request an upload ticket",
+      "method": "POST",
+      "path": "/v1/assets/upload-tickets",
+      "permission": "assets:create_update",
+      "mcp_tool": "create_asset_upload_ticket",
+      "mcp_section": "asset-library"
+    },
+    {
+      "title": "Request a replacement ticket",
+      "method": "POST",
+      "path": "/v1/assets/{id}/upload-tickets",
+      "permission": "assets:create_update",
+      "mcp_tool": "create_asset_upload_ticket",
+      "mcp_section": "asset-library"
+    }
+  ],
   "storage-destinations": [
     {
       "title": "Create a new storage destination",

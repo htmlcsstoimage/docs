@@ -2,7 +2,7 @@
 title: MCP tools reference
 slug: integrations/mcp/tools
 description: >-
-  All HCTI MCP tools for images, recordings, templates, usage, proxies, storage destinations, OG configurations, and webhooks, with required permissions and arguments.
+  HCTI MCP tools for images, recordings, templates, uploaded assets, usage, proxies, storage destinations, OG configurations, and webhooks, with required permissions and arguments.
 ---
 import Help from '../../../../components/Help.astro';
 
@@ -92,6 +92,19 @@ Recording tools return URLs, not media bytes. Assistants should check `get_recor
 | `list_template_versions` | `templates:read` | `template_id`, required `count` (1–100), optional `max_version`. Returns paginated template versions. |
 
 Template lists use `max_version` for pagination; use the returned pagination cursor for the next call. This differs from management-resource lists, which use `page_start`. See [templates](/getting-started/templates/) for template concepts and [the Template Editor](/template-editor/) for visual design.
+
+## Asset library
+
+Use a path such as `brand/` to find files your organization already uploaded. Use the returned `private_url` in the HTML or CSS you send to a render tool. The [upload guide](/getting-started/uploading-assets/) walks through the same workflow in the dashboard.
+
+| Tool | Permission | What it does |
+| --- | --- | --- |
+| `list_assets` | `assets:read` | Find assets by path prefix, file type, or requested access. |
+| `get_asset` | `assets:read` | Look up an asset’s URLs and metadata by ID. |
+| `create_asset_upload_ticket` | `assets:create_update` | Request an upload URL for a new path or an existing asset ID. A client with access to the file sends the bytes. |
+| `update_asset` | `assets:create_update` | Change the display name or public access setting. |
+| `delete_asset` | `assets:delete` | Delete the asset and its public copy. |
+| `get_asset_storage_usage` | `usage:read` | Check used storage and the organization’s plan allowance. |
 
 ## Usage and limits
 

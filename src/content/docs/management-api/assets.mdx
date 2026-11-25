@@ -1,0 +1,74 @@
+---
+title: Assets API
+slug: management-api/assets
+description: >-
+  Upload, find, replace, and delete files in your organization's asset library. Manage public access and check storage usage through the REST API.
+---
+
+import Operations from '../../../components/Operations.astro';
+
+Use the Assets API when your application needs a logo, font, or stylesheet in more than one render. Upload the file once, then use its `private_url` in your HTML or CSS. For a walkthrough using the dashboard and console preview, see [Uploading assets](/getting-started/uploading-assets/).
+
+## Upload a file
+
+Send `file` and `asset_path` as multipart form data using an [API key](/getting-started/using-the-api/api-keys/) with `assets:create_update`. The path includes the filename and extension. This example keeps the file private.
+
+```bash
+curl --fail-with-body 'https://hcti.io/v1/assets' \
+  --user "$HCTI_API_ID:$HCTI_API_KEY" \
+  -F 'asset_path=brand/logo.svg' \
+  -F 'file=@./logo.svg'
+```
+
+You can also send `name` for a display label and `public_access_requested=true` if you need a public URL for testing outside HCTI. Each file can be up to 50 MiB within your plan’s storage allowance. See the [list of supported extensions](/getting-started/uploading-assets/#file-types-and-storage).
+
+Keep the returned `id` to manage the asset. The response includes the path, size in bytes, `content_version`, and `private_url`. It includes a usable `public_url` when publication succeeds. A create or update can succeed while a change to public access fails. In that case, check `publication_error` and retry the access change on the same ID.
+
+## Find an existing file
+
+```bash
+curl --fail-with-body 'https://hcti.io/v1/assets?path_prefix=brand/&media_type=IMAGE' \
+  --user "$HCTI_API_ID:$HCTI_API_KEY"
+```
+
+Results are in `data`, newest first. Use `path_prefix` for a folder or a partial filename. The `media_type` filter accepts `IMAGE`, `FONT`, `CSS`, `JAVASCRIPT`, `JSON`, and `AUDIO`. The `public` filter accepts `PUBLIC` or `PRIVATE` and matches the requested access setting.
+
+The default page contains up to 25 assets. Set `count` from 1 to 100. For the next page, pass `pagination.next_page_start` as `page_start` and keep the same filters. A null cursor means you have reached the end.
+
+## Replace a file or change access
+
+Use the asset ID from the upload or list response. To replace the file at its existing path, send multipart form data. Existing templates can keep their base URL. Use the returned `content_version` as `?v=` on the URL to pick up the new file immediately.
+
+```bash
+curl --fail-with-body "https://hcti.io/v1/assets/$ASSET_ID" \
+  --user "$HCTI_API_ID:$HCTI_API_KEY" \
+  -F 'file=@./updated-logo.svg'
+```
+
+To change only the display name or access, send JSON to the same endpoint. Omitted fields keep their current values. For example, to turn off public access:
+
+```bash
+curl --fail-with-body "https://hcti.io/v1/assets/$ASSET_ID" \
+  --user "$HCTI_API_ID:$HCTI_API_KEY" \
+  --json '{"asset_public":false}'
+```
+
+You can also include `name` or `asset_public` alongside a replacement file in the multipart request. To remove the asset entirely, send `DELETE /v1/assets/{id}`. Success returns `204 No Content`.
+
+## Delegate an upload
+
+Use an upload ticket when one client authorizes the upload and another has the file. This is how the [MCP asset tools](/integrations/mcp/tools/#asset-library) upload files. For a new file, send JSON such as `{"asset_path":"brand/logo.svg"}` to `POST /v1/assets/upload-tickets`. For a replacement, send `{}` to `POST /v1/assets/{id}/upload-tickets`.
+
+Give the uploading client the returned `upload_url`. It authorizes one upload and expires at `expires_at`. Send the raw bytes with `Content-Length`. For a local file, curl sets the length automatically:
+
+```bash
+curl --fail-with-body --upload-file ./logo.svg "$UPLOAD_URL"
+```
+
+The client only needs the ticket URL for this PUT. The response contains the saved asset.
+
+## Operations and permissions
+
+Use `GET /v1/assets/usage` to check `total_bytes`, `limit_bytes`, and `available_bytes`. The `updated_at` timestamp tells you when usage was calculated. Recent uploads and deletions can take a moment to appear.
+
+<Operations resource="assets" />

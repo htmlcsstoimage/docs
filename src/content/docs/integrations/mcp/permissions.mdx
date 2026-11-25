@@ -30,6 +30,9 @@ Permissions unavailable to your organization role are disabled. Owners and Admin
 | Render a known template ID | `images:create` |
 | Find a template, then render it | `templates:read`, `images:create` |
 | Create or update a template | `templates:create_update` |
+| Find an uploaded file and render HTML that uses it | `assets:read`, `images:create` |
+| Upload or replace a file, or change its public access | `assets:create_update` |
+| Delete an uploaded file | `assets:delete` |
 | Check current usage or maximum batch size | `usage:read` |
 | Inspect proxy, storage, or OG configurations | The corresponding `proxies:read`, `storage_destinations:read`, or `og_configs:read` |
 | Create/update management resources | The corresponding `proxies:create_update`, `storage_destinations:create_update`, or `og_configs:create_update` |

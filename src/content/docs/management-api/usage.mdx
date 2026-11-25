@@ -89,6 +89,10 @@ Calendar months are different from billing periods. `per_billing_period` follows
 
 `GET /v1/usage` reports image history, not a count of Management API requests. It does not return the current allowance, overage setting, or maximum batch size. The Management API resource read/write rate-limit groups do not apply to this endpoint.
 
+## Asset storage usage
+
+Send `GET /v1/assets/usage` with `usage:read`, or call `get_asset_storage_usage` through MCP. The response gives the bytes used, the plan limit, the bytes available, and the time of the last calculation. See the [Assets API](/management-api/assets/#operations-and-permissions).
+
 ## Check current usage with MCP
 
 With `usage:read` approved for your connection, call `check_usage` without arguments. It returns:

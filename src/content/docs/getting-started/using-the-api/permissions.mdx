@@ -47,7 +47,10 @@ Use these exact strings in API key `permissions` arrays. MCP OAuth uses the same
 | <span id="permission-webhooks-read"></span>`webhooks:read` | List/get webhooks and inspect known events' delivery status. Payloads additionally require resource-read access. |
 | <span id="permission-webhooks-create-update"></span>`webhooks:create_update` | Create/update webhooks and send test events. Subscriptions additionally require resource-read access. |
 | <span id="permission-webhooks-delete"></span>`webhooks:delete` | Delete webhook configurations and stop queued deliveries. |
-| <span id="permission-usage-read"></span>`usage:read` | Read REST usage; call MCP `check_usage` and `get_max_batch_size`. |
+| <span id="permission-assets-read"></span>`assets:read` | List [uploaded assets](/getting-started/uploading-assets/) and read their metadata and URLs. |
+| <span id="permission-assets-create-update"></span>`assets:create_update` | Upload or replace files, change display names, and manage public access. |
+| <span id="permission-assets-delete"></span>`assets:delete` | Delete uploaded assets. |
+| <span id="permission-usage-read"></span>`usage:read` | Read usage and asset storage totals, and check the maximum batch size. |
 | <span id="permission-api-keys-read"></span>`api_keys:read` | List/get API key metadata without secrets. REST only. |
 | <span id="permission-api-keys-create-update"></span>`api_keys:create_update` | Create/update API keys within the caller's authority. REST only. |
 | <span id="permission-api-keys-delete"></span>`api_keys:delete` | Disable API keys through DELETE, within the caller's authority. REST only. |
